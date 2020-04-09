@@ -6,10 +6,14 @@ Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 
 #### 模块划分
 
-|  系统权限   | Security    |  流程控制    |  Activiti    |
-| --- | --- | --- | --- |
-|  定时任务   | quartz    |  接口文档   |  Swagger   |
-|  数据操作   | My Batis   |  核心框架   | Spring Boot     |
+
+
+|功能名称     |实现方式     |完成度     |功能名称     |实现方式     |完成度     |
+| --- | --- | --- | --- | --- | --- |
+|核心框架     |Spring Boot     |已完成     |接口文档     |Swagger     |已完成     |
+|权限管理     |Spring Security     |已完成     |定时任务     |Quartz     |已完成     |
+|流程控制     |Activiti     |未开始     |代码生成     |MyBatis Plus     |未开始     |
+
 
 
 #### 软件截图
