@@ -4,6 +4,8 @@
 
 Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 
+项目不定时更新，建议 Star watch 一份
+
 #### 模块划分
 
 
