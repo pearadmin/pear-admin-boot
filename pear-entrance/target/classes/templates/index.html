@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="component/layui/css/layui.css" />
+    <link rel="stylesheet" href="admin/css/pearMenu.css"/>
+    <link rel="stylesheet" href="admin/css/pearTab.css" />
+    <link rel="stylesheet" href="admin/css/pearTheme.css"/>
+    <link rel="stylesheet" href="admin/css/pearLoad.css"/>
+    <link rel="stylesheet" href="admin/css/pearAdmin.css"/>
+    <style id="pearone-bg-color"></style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin pear-admin">
+    <!-- Header Start -->
+    <div class="layui-header">
+        <ul class="layui-nav layui-layout-left">
+            <li class="collaspe layui-nav-item"><a href="#" class="layui-icon layui-icon-shrink-right"></a></li>
+            <li class="refresh layui-nav-item"><a href="#" class="layui-icon layui-icon-refresh-1"></a></li>
+        </ul>
+        <div id="control" class="layui-layout-control"></div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="#" class="message layui-icon layui-icon-notice"><span class="layui-badge-dot"></span></a></li>
+            <li class="layui-nav-item" lay-unselect="">
+                <a href="javascript:;"><img src="admin/images/avatar.jpg" class="layui-nav-img">就眠仪式</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">个人信息</a></dd>
+                    <dd><a href="javascript:;">偏好设置</a></dd>
+                    <dd><a href="javascript:;">安全配置</a></dd>
+                    <dd class="logout"><a href="javascript:;">注销登陆</a></dd>
+                </dl>
+            </li>
+            <li class="setting layui-nav-item"><a href="#" class="layui-icon layui-icon-more-vertical"></a></li>
+        </ul>
+    </div>
+    <!-- Header End -->
+
+    <!-- Side Start -->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-logo">
+            <img src="admin/images/logo.png" />
+        </div>
+        <div class="layui-side-scroll">
+            <div id="sideMenu"></div>
+        </div>
+    </div>
+    <!-- Side End -->
+
+    <!-- Body Start -->
+    <div class="layui-body">
+        <div id="content" ></div>
+    </div>
+    <!-- Body End -->
+
+</div>
+<div class="preloader"><div class="preloader-inner"></div></div>
+
+<script src="component/layui/layui.js"></script>
+<script th:inline="javascript">
+    layui.use(['pearAdmin','jquery','layer'],function(){
+        let pearAdmin = layui.pearAdmin;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+
+        let config = {
+            keepLoad:false,                        // 主 页 加 载 过 度 时 长
+            muiltTab:true,                        // 是 否 开 启 多 标 签 页 true 开启 false 关闭
+            control:false,                        // 是 否 开 启 多 系 统 菜 单 true 开启 false 关闭
+            theme:"dark-theme",                   // 默 认 主 题 样 式 dark-theme 默认主题 light-theme 亮主题
+            index:'/home',   // 默 认 加 载 主 页
+            data:'/system/user/getUserMenu?username=admin'           // 菜 单 数 据 加 载 地 址
+        };
+
+        pearAdmin.render(config);
+
+        $("body").on("click",".logout",function(){
+            let loader = layer.load();
+            $.ajax({
+                url:'/logout',
+                dataType:'json',
+                type:'post',
+                success:function(result){
+                    layer.close(loader);
+                    if(result.success){
+                        layer.msg("注销成功",{time:1000,icon:1},function(){
+                            location.href = "/login";
+                        });
+                    }
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

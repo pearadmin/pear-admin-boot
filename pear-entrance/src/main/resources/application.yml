@@ -1,0 +1,24 @@
+# Tomcat 端口
+server:
+  port: 8888
+
+spring:
+  # Druid Pool 运行环境
+  profiles:
+    active: druid
+
+# mybatis 配置
+mybatis:
+  mapper-locations: classpath*:**/xml/**.xml
+  type-aliases-package: com.pearadmin
+
+# pageHelper 配置
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true
+
+logging:
+  level:
+    com.pearadmin.*: DEBUG

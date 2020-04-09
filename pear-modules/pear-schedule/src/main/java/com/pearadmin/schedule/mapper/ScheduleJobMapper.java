@@ -1,0 +1,39 @@
+package com.pearadmin.schedule.mapper;
+
+import com.pearadmin.schedule.entity.ScheduleJobBean;
+import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
+
+@Mapper
+public interface ScheduleJobMapper {
+
+    /**
+     * Describe: 定时任务入库
+     * Param: ScheduleJob
+     * Return: Integer 影响条数
+     * */
+    Integer insert(ScheduleJobBean scheduleJob);
+
+    /**
+     * Describe: 根据条件查询定时任务列表
+     * Param: ScheduleJob
+     * Return: ScheduleJob 列表
+     * */
+    List<ScheduleJobBean> selectList(ScheduleJobBean scheduleJob);
+
+    /**
+     * Describe: 根据 jobId 查询定时任务
+     * Param: jobId
+     * Return: ScheduleJob
+     * */
+    ScheduleJobBean selectById(String jobId);
+
+    /**
+     * Describe: 根据 JobId 修改定时任务
+     * Param: ScheduleJob
+     * Return: Integer 影响条数
+     * */
+    Integer updateById(ScheduleJobBean scheduleJob);
+
+    Integer deleteById(String jobId);
+}

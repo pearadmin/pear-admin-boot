@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pear-security" />
+        <module name="pear-datasource" />
+        <module name="pear-generate" />
+        <module name="pear-entrance" />
+        <module name="pear-common" />
+        <module name="pear-system" />
+        <module name="pear-operate" />
+        <module name="pear-source" />
+        <module name="pear-netty" />
+        <module name="pear-schedule" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="pear-action" target="1.8" />
+      <module name="Pear-Admin-Boot" target="1.8" />
+      <module name="pear-common" target="1.8" />
+      <module name="pear-component" target="1.8" />
+      <module name="pear-datasource" target="1.5" />
+      <module name="pear-encode" target="1.8" />
+      <module name="pear-entrance" target="1.8" />
+      <module name="pear-generate" target="1.8" />
+      <module name="pear-mission" target="1.8" />
+      <module name="pear-modules" target="1.8" />
+      <module name="pear-netty" target="1.8" />
+      <module name="pear-operate" target="1.8" />
+      <module name="pear-process" target="1.8" />
+      <module name="pear-quartz" target="1.8" />
+      <module name="pear-schedule" target="1.8" />
+      <module name="pear-security" target="1.8" />
+      <module name="pear-source" target="1.8" />
+      <module name="pear-system" target="1.8" />
+      <module name="pear-token" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Pear-Admin-Boot" options="-parameters" />
+      <module name="pear-action" options="-parameters" />
+      <module name="pear-common" options="-parameters" />
+      <module name="pear-component" options="-parameters" />
+      <module name="pear-datasource" options="-parameters" />
+      <module name="pear-encode" options="-parameters" />
+      <module name="pear-entrance" options="-parameters" />
+      <module name="pear-generate" options="-parameters" />
+      <module name="pear-mission" options="-parameters" />
+      <module name="pear-modules" options="-parameters" />
+      <module name="pear-netty" options="-parameters" />
+      <module name="pear-operate" options="-parameters" />
+      <module name="pear-process" options="-parameters" />
+      <module name="pear-quartz" options="-parameters" />
+      <module name="pear-schedule" options="-parameters" />
+      <module name="pear-security" options="-parameters" />
+      <module name="pear-source" options="-parameters" />
+      <module name="pear-system" options="-parameters" />
+      <module name="pear-token" options="-parameters" />
+    </option>
+  </component>
+</project>
