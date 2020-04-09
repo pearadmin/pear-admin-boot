@@ -4,6 +4,14 @@
 
 Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 
+#### 模块划分
+
+|  系统权限   | Security    |  流程控制    |  Activiti    |
+| --- | --- | --- | --- |
+|  定时任务   | quartz    |  接口文档   |  Swagger   |
+|  数据操作   | My Batis   |  核心框架   | Spring Boot     |
+
+
 #### 软件截图
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0409/232343_75438e29_4835367.png "1DC_YSZ{{Z__FA_)D22ZV~K.png")
