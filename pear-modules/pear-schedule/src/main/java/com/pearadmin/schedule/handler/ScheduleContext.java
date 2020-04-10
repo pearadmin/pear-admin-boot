@@ -16,9 +16,9 @@ import java.util.Date;
 /**
  * 定时器执行日志记录
  */
-public class ScheduleTaskContext extends QuartzJobBean {
+public class ScheduleContext extends QuartzJobBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ScheduleTaskContext.class) ;
+    private static final Logger LOG = LoggerFactory.getLogger(ScheduleContext.class) ;
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
