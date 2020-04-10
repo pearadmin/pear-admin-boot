@@ -1,6 +1,6 @@
 package com.pearadmin.schedule.mapper;
 
-import com.pearadmin.schedule.entity.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJobBean;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 

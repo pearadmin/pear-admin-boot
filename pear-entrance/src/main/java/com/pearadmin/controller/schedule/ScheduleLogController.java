@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.schedule.entity.ScheduleLogBean;
+import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.service.IScheduleLogService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

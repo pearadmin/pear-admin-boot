@@ -2,7 +2,7 @@ package com.pearadmin.schedule.service;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.schedule.entity.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJobBean;
 
 import java.util.List;
 

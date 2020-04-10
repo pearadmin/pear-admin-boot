@@ -2,7 +2,7 @@ package com.pearadmin.schedule.mapper;
 
 
 
-import com.pearadmin.schedule.entity.ScheduleLogBean;
+import com.pearadmin.schedule.domain.ScheduleLogBean;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

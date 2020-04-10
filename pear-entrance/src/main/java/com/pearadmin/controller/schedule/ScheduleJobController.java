@@ -7,7 +7,7 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.ResuBean;
 import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.schedule.entity.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.service.IScheduleJobService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

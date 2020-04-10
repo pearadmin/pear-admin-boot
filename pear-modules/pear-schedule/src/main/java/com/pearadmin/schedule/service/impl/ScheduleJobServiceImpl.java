@@ -3,10 +3,10 @@ package com.pearadmin.schedule.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.schedule.entity.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.mapper.ScheduleJobMapper;
 import com.pearadmin.schedule.service.IScheduleJobService;
-import com.pearadmin.schedule.utils.ScheduleUtil;
+import com.pearadmin.schedule.handler.ScheduleHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
@@ -33,11 +33,11 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     public void init (){
         List<ScheduleJobBean> scheduleJobList = scheduleJobMapper.selectList(null);
         for (ScheduleJobBean scheduleJob : scheduleJobList) {
-            CronTrigger cronTrigger = ScheduleUtil.getCronTrigger(scheduler,Long.parseLong(scheduleJob.getJobId())) ;
+            CronTrigger cronTrigger = ScheduleHandler.getCronTrigger(scheduler,Long.parseLong(scheduleJob.getJobId())) ;
             if (cronTrigger == null){
-                ScheduleUtil.createJob(scheduler,scheduleJob);
+                ScheduleHandler.createJob(scheduler,scheduleJob);
             } else {
-                ScheduleUtil.updateJob(scheduler,scheduleJob);
+                ScheduleHandler.updateJob(scheduler,scheduleJob);
             }
         }
     }
@@ -62,7 +62,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean save(ScheduleJobBean record) {
-        ScheduleUtil.createJob(scheduler,record);
+        ScheduleHandler.createJob(scheduler,record);
         int result =  scheduleJobMapper.insert(record);
         if(result>0){
             return true;
@@ -74,7 +74,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean update(ScheduleJobBean record) {
-        ScheduleUtil.updateJob(scheduler,record);
+        ScheduleHandler.updateJob(scheduler,record);
         int result = scheduleJobMapper.updateById(record);
         if(result>0){
             return true;
@@ -87,7 +87,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Transactional(rollbackFor = Exception.class)
     public Boolean pause(String jobId) {
         ScheduleJobBean scheduleJob = scheduleJobMapper.selectById(jobId);
-        ScheduleUtil.pauseJob(scheduler,Long.parseLong(jobId));
+        ScheduleHandler.pauseJob(scheduler,Long.parseLong(jobId));
         scheduleJob.setStatus("1");
         int result = scheduleJobMapper.updateById(scheduleJob);
         if(result>0){
@@ -101,7 +101,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Transactional(rollbackFor = Exception.class)
     public Boolean resume(String jobId) {
         ScheduleJobBean scheduleJob = scheduleJobMapper.selectById(jobId);
-        ScheduleUtil.resumeJob(scheduler,Long.parseLong(jobId));
+        ScheduleHandler.resumeJob(scheduler,Long.parseLong(jobId));
         scheduleJob.setStatus("0");
         int result = scheduleJobMapper.updateById(scheduleJob);
         if(result>0){
@@ -115,13 +115,13 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Transactional(rollbackFor = Exception.class)
     public void run(String jobId) {
         ScheduleJobBean scheduleJob = scheduleJobMapper.selectById(jobId);
-        ScheduleUtil.run(scheduler,scheduleJob);
+        ScheduleHandler.run(scheduler,scheduleJob);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean delete(String jobId) {
-        ScheduleUtil.deleteJob(scheduler,Long.parseLong(jobId));
+        ScheduleHandler.deleteJob(scheduler,Long.parseLong(jobId));
         int result = scheduleJobMapper.deleteById(jobId);
         if(result>0){
             return true;

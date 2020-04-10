@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pearadmin.schedule.mapper.ScheduleLogMapper" >
-  <resultMap id="ScheduleLogMap" type="com.pearadmin.schedule.entity.ScheduleLogBean" >
+  <resultMap id="ScheduleLogMap" type="com.pearadmin.schedule.domain.ScheduleLogBean" >
     <id column="log_id" property="logId" jdbcType="BIGINT" />
     <result column="job_id" property="jobId" jdbcType="BIGINT" />
     <result column="bean_name" property="beanName" jdbcType="VARCHAR" />

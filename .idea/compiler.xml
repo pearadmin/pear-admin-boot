@@ -9,12 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="pear-security" />
         <module name="pear-datasource" />
-        <module name="pear-generate" />
         <module name="pear-entrance" />
-        <module name="pear-common" />
         <module name="pear-system" />
         <module name="pear-operate" />
-        <module name="pear-source" />
+        <module name="pear-common" />
         <module name="pear-netty" />
         <module name="pear-schedule" />
       </profile>
