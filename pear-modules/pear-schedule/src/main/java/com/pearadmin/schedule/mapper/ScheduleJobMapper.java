@@ -35,5 +35,10 @@ public interface ScheduleJobMapper {
      * */
     Integer updateById(ScheduleJobBean scheduleJob);
 
+    /**
+     * Describe: 根据 JobId 删除定时任务
+     * Param: ScheduleJob
+     * Return: Integer 影响条数
+     * */
     Integer deleteById(String jobId);
 }

@@ -5,13 +5,14 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 定时任务配置管理
- */
+ * Describe: 定时任务配置管理
+ * Author: 就免仪式
+ * CreateTime: 2019/10/23
+ * */
 @Data
 @Alias("ScheduleJob")
 public class ScheduleJobBean extends BaseDomain {
-	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 任务调度参数key
 	 */

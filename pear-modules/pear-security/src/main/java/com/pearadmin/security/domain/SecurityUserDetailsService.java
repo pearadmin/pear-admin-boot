@@ -16,9 +16,6 @@ public class SecurityUserDetailsService implements UserDetailsService {
     @Resource
     private SysUserMapper sysUserMapper;
 
-    @Resource
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 

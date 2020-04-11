@@ -1,15 +1,20 @@
 package com.pearadmin.schedule.handler;
 
 import com.pearadmin.schedule.domain.ScheduleJobBean;
+import lombok.NoArgsConstructor;
 import org.quartz.*;
 
 /**
- * 定时器工具类
- */
+ * Describe: 定时任务工具类
+ * Author: 就免仪式
+ * CreateTime: 2019/10/23
+ * */
+@NoArgsConstructor
 public class ScheduleHandler {
 
-    private ScheduleHandler(){}
-
+    /**
+     * 定时任务标识 Key
+     * */
     private static final String SCHEDULE_NAME = "Pear_" ;
 
     /**
@@ -38,8 +43,10 @@ public class ScheduleHandler {
     }
 
     /**
-     * 创建定时器
-     */
+     * Describe: 创建定时任务
+     * Param: Scheduler ScheduleJobBean
+     * Return: null
+     * */
     public static void createJob (Scheduler scheduler, ScheduleJobBean scheduleJob){
         try {
             // 构建定时器
@@ -62,8 +69,10 @@ public class ScheduleHandler {
     }
 
     /**
-     * 更新定时任务
-     */
+     * Describe: 更新定时任务
+     * Param: Scheduler ScheduleJobBean
+     * Return: null
+     * */
     public static void updateJob(Scheduler scheduler, ScheduleJobBean scheduleJob) {
         try {
             // 构建定时器
@@ -84,8 +93,10 @@ public class ScheduleHandler {
     }
 
     /**
-     * 停止定时器
-     */
+     * Describe: 停止定时任务
+     * Param: Scheduler ScheduleJobBean
+     * Return: null
+     * */
     public static void pauseJob (Scheduler scheduler, Long jobId){
         try {
             scheduler.pauseJob(getJobKey(jobId));
@@ -95,8 +106,10 @@ public class ScheduleHandler {
     }
 
     /**
-     * 恢复定时器
-     */
+     * Describe: 恢复定时任务
+     * Param: Scheduler ScheduleJobBean
+     * Return: null
+     * */
     public static void resumeJob (Scheduler scheduler, Long jobId){
         try {
             scheduler.resumeJob(getJobKey(jobId));
@@ -106,8 +119,10 @@ public class ScheduleHandler {
     }
 
     /**
-     * 删除定时器
-     */
+     * Describe: 删除定时任务
+     * Param: Scheduler ScheduleJobBean
+     * Return: null
+     * */
     public static void deleteJob (Scheduler scheduler, Long jobId){
         try {
             scheduler.deleteJob(getJobKey(jobId));
@@ -117,8 +132,10 @@ public class ScheduleHandler {
     }
 
     /**
-     * 执行定时器
-     */
+     * Describe: 执行定时任务
+     * Param: Scheduler ScheduleJobBean
+     * Return: null
+     * */
     public static void run (Scheduler scheduler, ScheduleJobBean scheduleJob){
         try {
             JobDataMap dataMap = new JobDataMap() ;
@@ -128,4 +145,5 @@ public class ScheduleHandler {
             throw new RuntimeException("run Fail",e) ;
         }
     }
+
 }

@@ -5,21 +5,53 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 定时任务日志
- */
+ * Describe: 定时任务日志记录
+ * Author: 就免仪式
+ * CreateTime: 2019/10/23
+ * */
+
 @Data
 @Alias("ScheduleLog")
 public class ScheduleLogBean extends BaseDomain {
 
-	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 日志编号
+	 * */
 	private String logId;
+
+	/**
+	 * 任务编号
+	 * */
 	private String jobId;
+
+	/**
+	 * 任务名称
+	 * */
 	private String jobName;
+
+	/**
+	 * 运行类
+	 * */
 	private String beanName;
+
+	/**
+	 * 参数集合
+	 * */
 	private String params;
+
+	/**
+	 * 日志状态
+	 * */
 	private Integer status;
+
+	/**
+	 * 异常信息
+	 * */
 	private String error;
+
+	/**
+	 * 运行时长
+	 * */
 	private Integer times;
 
 }

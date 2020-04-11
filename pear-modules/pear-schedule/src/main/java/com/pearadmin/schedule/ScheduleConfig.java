@@ -6,9 +6,20 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Describe: 定时任务配置文件
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
+
 @Configuration
 public class ScheduleConfig {
 
+    /**
+     * Describe: 定时任务工厂
+     * Param: DataSource
+     * Return: ScheduleFactoryBean
+     * */
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
         // Quartz参数配置

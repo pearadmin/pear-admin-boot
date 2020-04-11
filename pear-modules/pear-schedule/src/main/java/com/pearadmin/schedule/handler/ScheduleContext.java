@@ -14,12 +14,19 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
- * 定时器执行日志记录
- */
+ * Describe: 定时任务执行上下文
+ * Author: 就免仪式
+ * CreateTime: 2019/10/23
+ * */
 public class ScheduleContext extends QuartzJobBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(ScheduleContext.class) ;
 
+    /**
+     * Describe: 执行任务并记录日志
+     * Param: JobExecutionContext
+     * Return: null
+     * */
     @Override
     protected void executeInternal(JobExecutionContext context) {
         ScheduleJobBean jobBean = (ScheduleJobBean) context.getMergedJobDataMap().get(ScheduleJobBean.JOB_PARAM_KEY) ;
@@ -33,7 +40,6 @@ public class ScheduleContext extends QuartzJobBean {
         logBean.setCreateTime(new Date());
         long beginTime = System.currentTimeMillis() ;
         try {
-            // 加载并执行定时器的 run 方法
             Object target = SpringContextUtil.getBean(jobBean.getBeanName());
             Method method = target.getClass().getDeclaredMethod("run", String.class);
             method.invoke(target, jobBean.getParams());
