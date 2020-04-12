@@ -1,4 +1,4 @@
-package com.pearadmin.schedule;
+package com.pearadmin.schedule.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
 package com.pearadmin.schedule.task.impl;
 
-import com.pearadmin.schedule.task.TaskService;
+import com.pearadmin.schedule.task.BaseTaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Component("exceptionTask")
-public class ExceptionTask implements TaskService {
+public class ExceptionTask implements BaseTaskService {
 
     private static final Logger LOG = LoggerFactory.getLogger(GetTimeTask.class.getName()) ;
 

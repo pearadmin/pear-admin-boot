@@ -12,6 +12,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>pear-system</name>
     <description>Demo project for Spring Boot</description>
+
     <dependencies>
         <dependency>
             <groupId>com.pearadmin</groupId>
@@ -32,7 +33,6 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.10</version>
         </dependency>
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -43,7 +43,5 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>2.2.6.RELEASE</version>
         </dependency>
-
     </dependencies>
-
 </project>

@@ -1,4 +1,4 @@
-package com.pearadmin.security;
+package com.pearadmin.security.config;
 
 import com.pearadmin.common.constant.SecurityConstants;
 import com.pearadmin.security.service.CustomAuthenticationProvider;

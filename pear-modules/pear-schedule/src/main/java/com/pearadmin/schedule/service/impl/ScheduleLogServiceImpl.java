@@ -7,7 +7,6 @@ import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.mapper.ScheduleLogMapper;
 import com.pearadmin.schedule.service.IScheduleLogService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package com.pearadmin.system.domain;
 
-
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
@@ -10,6 +9,7 @@ import org.apache.ibatis.type.Alias;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
+
 @Data
 @Alias("SysUser")
 public class SysUser extends BaseDomain {

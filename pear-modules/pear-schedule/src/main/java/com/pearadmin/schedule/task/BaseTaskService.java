@@ -6,7 +6,7 @@ package com.pearadmin.schedule.task;
  * CreateTime: 2019/10/23
  * */
 
-public interface TaskService {
+public interface BaseTaskService {
 
     void run(String params) ;
 
