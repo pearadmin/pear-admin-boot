@@ -3,11 +3,12 @@
 <mapper namespace="com.pearadmin.system.mapper.SysDictDataMapper">
 
     <resultMap id="SysDictDataMap" type="SysDictData">
-        <id column="id" property="id"></id>
-        <result column="label" property="label"></result>
-        <result column="value" property="value"></result>
-        <result column="type" property="type"></result>
+        <id column="data_id" property="dataId"></id>
+        <result column="data_label" property="dataLabel"></result>
+        <result column="data_value" property="dataValue"></result>
+        <result column="type_code" property="typeCode"></result>
         <result column="is_default" property="isDefault"></result>
+        <result column="enable" property="enable"></result>
         <result column="update_by" property="updateBy"></result>
         <result column="update_time" property="updateTime"></result>
         <result column="create_by" property="createBy"></result>
@@ -18,10 +19,59 @@
     <select id="selectList" parameterType="SysDictData" resultMap="SysDictDataMap">
         select * from sys_dict_data
         <where>
-            <if test="type!=null and type!=''">
-                and type = #{type}
+            <if test="typeCode!=null and typeCode!=''">
+                and type_code = #{typeCode}
             </if>
         </where>
     </select>
+
+    <select id="selectById" parameterType="string" resultMap="SysDictDataMap">
+        select * from sys_dict_data where data_id = #{dataId}
+    </select>
+
+
+    <insert id="insert" parameterType="SysDictData">
+        insert into sys_dict_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dataId!=null and dataId!=''">
+                data_id,
+            </if>
+            <if test="dataLabel!=null and dataLabel!=''">
+                data_label,
+            </if>
+            <if test="dataValue!=null and dataValue!=''">
+                data_value,
+            </if>
+            <if test="typeCode!=null and typeCode!=''">
+                type_code,
+            </if>
+            <if test="isDefault!=null and isDefault!=''">
+                is_default,
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="dataId!=null and dataId!=''">
+                #{dataId},
+            </if>
+            <if test="dataLabel!=null and dataLabel!=''">
+                #{dataLabel},
+            </if>
+            <if test="dataValue!=null and dataValue!=''">
+                #{dataValue},
+            </if>
+            <if test="typeCode!=null and typeCode!=''">
+                #{typeCode},
+            </if>
+            <if test="isDefault!=null and isDefault!=''">
+                #{isDefault},
+            </if>
+            <if test="remark!=null and remark!=''">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
 
 </mapper>

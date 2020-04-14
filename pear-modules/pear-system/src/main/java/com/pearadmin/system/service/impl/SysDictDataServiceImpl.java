@@ -28,4 +28,19 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
         List<SysDictData> list = sysDictDataMapper.selectList(sysDictData);
         return new PageInfo<>(list);
     }
+
+    @Override
+    public Boolean save(SysDictData sysDictData) {
+        Integer result = sysDictDataMapper.insert(sysDictData);
+        if(result>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public SysDictData getById(String id) {
+       return  sysDictDataMapper.selectById(id);
+    }
 }

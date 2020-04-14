@@ -1,8 +1,10 @@
 package com.pearadmin.system.domain;
 
 import lombok.Data;
+import org.apache.ibatis.type.Alias;
 
 @Data
+@Alias("SysUserRole")
 public class SysUserRole {
 
     /**

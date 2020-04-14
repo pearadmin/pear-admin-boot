@@ -1,6 +1,5 @@
 package com.pearadmin.system.domain;
 
-
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
@@ -17,26 +16,31 @@ public class SysDictData extends BaseDomain {
     /**
      *  id 编号
      * */
-    private String id;
+    private String dataId;
 
     /**
      *  字典显示
      * */
-    private String label;
+    private String dataLabel;
 
     /**
      * 字典值
      * */
-    private String value;
+    private String dataValue;
 
     /**
      * 字典类型
      * */
-    private String type;
+    private String typeCode;
 
     /**
      * 是否为默认
      * */
     private String isDefault;
+
+    /**
+     * 是否启用
+     * */
+    private String enable;
 
 }

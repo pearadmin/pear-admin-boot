@@ -18,15 +18,28 @@ import java.util.Date;
 @RequestMapping("schedule/job")
 public class ScheduleJobController extends BaseController {
 
+    /**
+     * Describe: 定时任务服务
+     * */
     @Resource
     private IScheduleJobService scheduleJobService ;
 
+    /**
+     * Describe: 获取定时任务列表视图
+     * Param ModelAndView
+     * Return 定时任务列表视图
+     * */
     @GetMapping("main")
     public ModelAndView main(ModelAndView modelAndView){
         modelAndView.setViewName("schedule/job/main");
         return modelAndView;
     }
 
+    /**
+     * Describe: 获取定时任务列表数据
+     * Param PageDomain
+     * Return 定时任务列表数据
+     * */
     @GetMapping("data")
     public ResuTable data(PageDomain pageDomain){
        PageInfo<ScheduleJobBean> pageInfo =  scheduleJobService.page(null,pageDomain);
@@ -35,12 +48,22 @@ public class ScheduleJobController extends BaseController {
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
+    /**
+     * Describe: 获取定时任务新增视图
+     * Param ModelAndView
+     * Return ModelAndView
+     * */
     @GetMapping("add")
     public ModelAndView add(ModelAndView modelAndView){
         modelAndView.setViewName("schedule/job/add");
         return modelAndView;
     }
 
+    /**
+     * Describe: 获取定时任务修改视图
+     * Param ModelAndView
+     * Return ModelAndView
+     * */
     @GetMapping("edit")
     public ModelAndView edit(ModelAndView modelAndView,String jobId){
         modelAndView.addObject("scheduleJob",scheduleJobService.getById(jobId));
@@ -49,8 +72,10 @@ public class ScheduleJobController extends BaseController {
     }
 
     /**
-     * 添加定时器
-     */
+     * Describe: 保存定时任务数据
+     * Param ScheduleJob
+     * Return ResuBean
+     * */
     @RequestMapping("/save")
     public ResuBean save (@RequestBody ScheduleJobBean scheduleJob){
         System.out.println(scheduleJob.toString());
@@ -65,8 +90,10 @@ public class ScheduleJobController extends BaseController {
     }
 
     /**
-     * 执行一次定时器
-     */
+     * Describe: 执行一次定时任务
+     * Param ScheduleJob
+     * Return ResuBean 执行结果
+     * */
     @RequestMapping("/run")
     public ResuBean run (String jobId){
         scheduleJobService.run(jobId);
@@ -74,8 +101,10 @@ public class ScheduleJobController extends BaseController {
     }
 
     /**
-     * 更新定时器
-     */
+     * Describe: 更新定时任务数据
+     * Param ScheduleJob
+     * Return ResuBean
+     * */
     @RequestMapping("/update")
     public ResuBean update (@RequestBody ScheduleJobBean scheduleJob){
         Boolean result = scheduleJobService.update(scheduleJob) ;
@@ -87,8 +116,10 @@ public class ScheduleJobController extends BaseController {
     }
 
     /**
-     * 停止定时器
-     */
+     * Describe: 停止定时任务
+     * Param jobId
+     * Return ResuBean 执行结果
+     * */
     @PutMapping("/pause")
     public ResuBean pauseJob (String jobId){
         Boolean result = scheduleJobService.pause(jobId);
@@ -100,8 +131,10 @@ public class ScheduleJobController extends BaseController {
     }
 
     /**
-     * 恢复定时器
-     */
+     * Describe: 恢复定时任务
+     * Param: jobId
+     * Return: 恢复定时任务
+     * */
     @RequestMapping("/resume")
     public ResuBean resumeJob (String jobId){
 
@@ -111,8 +144,10 @@ public class ScheduleJobController extends BaseController {
     }
 
     /**
-     * 删除定时器
-     */
+     * Describe: 删除定时任务
+     * Param: jobId
+     * Return ResuBean
+     * */
     @RequestMapping("/deleteJob")
     public ResuBean deleteJob (String jobId){
         Boolean result = scheduleJobService.delete(jobId);

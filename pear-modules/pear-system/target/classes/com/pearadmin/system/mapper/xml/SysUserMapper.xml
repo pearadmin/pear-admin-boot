@@ -68,6 +68,9 @@
             <if test="phone!=null">
                 phone,
             </if>
+            <if test="sex!=null">
+                sex,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="userId!=null">
@@ -87,6 +90,9 @@
             </if>
             <if test="phone!=null">
                 #{phone},
+            </if>
+            <if test="sex!=null">
+                #{sex},
             </if>
         </trim>
     </insert>

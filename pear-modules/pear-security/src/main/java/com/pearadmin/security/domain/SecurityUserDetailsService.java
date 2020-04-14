@@ -24,6 +24,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
         if(sysUser==null){
             throw new UsernameNotFoundException("Account Not");
         }
+
         SecurityUserDetails securityUserDetails = new SecurityUserDetails();
         securityUserDetails.setUserId(sysUser.getUserId());
         securityUserDetails.setUsername(sysUser.getUsername());

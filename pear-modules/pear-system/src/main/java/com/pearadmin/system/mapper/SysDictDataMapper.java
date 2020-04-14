@@ -10,4 +10,8 @@ import java.util.List;
 public interface SysDictDataMapper {
 
     List<SysDictData> selectList(SysDictData sysDictData);
+
+    Integer insert(SysDictData sysDictData);
+
+    SysDictData selectById(String id);
 }

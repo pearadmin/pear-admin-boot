@@ -47,6 +47,7 @@ public class SysUser extends BaseDomain {
     /**
      * 邮箱
      * */
+
     private String email;
 
     /**

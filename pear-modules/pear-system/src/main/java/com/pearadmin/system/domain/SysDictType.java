@@ -4,7 +4,6 @@ import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
-
 /**
  * Describe: 字典类型领域模型
  * Author: 就 眠 仪 式

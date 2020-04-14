@@ -132,6 +132,11 @@ public class SysUserServiceImpl implements ISysUserService {
         }
     }
 
+    /**
+     * Describe: 保存用户角色数据
+     * Param: SysUser
+     * Return: 操作结果
+     * */
     @Override
     public boolean saveUserRole(String userId, List<String> roleIds) {
         sysUserRoleMapper.deleteByUserId(userId);
@@ -152,6 +157,11 @@ public class SysUserServiceImpl implements ISysUserService {
         }
     }
 
+    /**
+     * Describe: 获取
+     * Param: SysUser
+     * Return: 操作结果
+     * */
     public List<SysRole> getUserRole(String userId){
         List<SysRole> allRole = sysRoleMapper.selectList(null);
         List<SysUserRole> myRole = sysUserRoleMapper.selectByUserId(userId);
@@ -168,4 +178,5 @@ public class SysUserServiceImpl implements ISysUserService {
 
         return sysPowerMapper.selectMenuByUsername(username);
     }
+
 }

@@ -8,17 +8,22 @@ import com.pearadmin.common.web.domain.ResuBean;
 import com.pearadmin.common.web.domain.ResuMenu;
 import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
+import com.pearadmin.common.web.domain.request.ParamMap;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -55,7 +60,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value="获取用户列表视图")
     @PreAuthorize("hasPermission('/system/user/main','sys:user:main')")
     public ModelAndView main(ModelAndView modelAndView){
-        modelAndView.setViewName("system/user/main");
+        modelAndView.setViewName(MODULE_PATH + "main");
         return modelAndView;
     }
 
@@ -67,7 +72,9 @@ public class SysUserController extends BaseController {
     @GetMapping("data")
     @ApiOperation(value="获取用户列表数据")
     public ResuTable data(PageDomain pageDomain,SysUser sysUser){
+
         PageInfo<SysUser> pageInfo = sysUserService.page(sysUser,pageDomain);
+
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
@@ -92,6 +99,7 @@ public class SysUserController extends BaseController {
     @PostMapping("save")
     @ApiOperation(value="保存用户数据")
     public ResuBean save(@RequestBody SysUser sysUser){
+        sysUser.setLogin("0");
         sysUser.setUserId("" + new SnowFlake().nextId());
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));

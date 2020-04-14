@@ -1,12 +1,15 @@
 package com.pearadmin.controller.system;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.MessageConstants;
+import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.ResuBean;
 import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.service.ISysDictDataService;
+import org.hibernate.validator.internal.engine.MessageInterpolatorContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,5 +44,27 @@ public class SysDictDataController extends BaseController {
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
+    @GetMapping("add")
+    public ModelAndView add(ModelAndView modelAndView,String type){
+        modelAndView.addObject("type",type);
+        modelAndView.setViewName(MODULE_PATH+"add");
+        return modelAndView;
+    }
+
+    @PostMapping("save")
+    public ResuBean save(@RequestBody SysDictData sysDictData){
+        sysDictData.setDataId("" + new SnowFlake().nextId());
+        Boolean result = sysDictDataService.save(sysDictData);
+        return decide(result,
+                MessageConstants.SAVE_SUCCESS,
+                MessageConstants.SAVE_FAILURE);
+    }
+
+    @GetMapping("edit")
+    public ModelAndView edit(ModelAndView modelAndView,String dataId){
+        modelAndView.addObject("sysDictData",sysDictDataService.getById(dataId));
+        modelAndView.setViewName(MODULE_PATH+"edit");
+        return modelAndView;
+    }
 
 }

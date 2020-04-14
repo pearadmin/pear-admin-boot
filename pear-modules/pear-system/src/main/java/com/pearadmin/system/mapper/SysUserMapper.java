@@ -1,6 +1,5 @@
 package com.pearadmin.system.mapper;
 
-import com.pearadmin.common.web.domain.ResuMenu;
 import com.pearadmin.system.domain.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

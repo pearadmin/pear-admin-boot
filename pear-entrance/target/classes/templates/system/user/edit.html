@@ -42,6 +42,13 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" th:checked="${sysUser.sex eq '0'}" name="sex" value="0" title="男">
+                        <input type="radio" th:checked="${sysUser.sex eq '1'}" name="sex" value="1" title="女">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">角色</label>
                     <div class="layui-input-block">
                         <input th:each="sysRole:${sysRoles}" th:checked="${sysRole.checked}" th:value="${sysRole.roleId}" th:title="${sysRole.roleName}"  type="checkbox" name="roleIds" lay-skin="primary">

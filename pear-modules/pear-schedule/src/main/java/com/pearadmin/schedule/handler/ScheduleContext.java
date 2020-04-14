@@ -30,7 +30,7 @@ public class ScheduleContext extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) {
         ScheduleJobBean jobBean = (ScheduleJobBean) context.getMergedJobDataMap().get(ScheduleJobBean.JOB_PARAM_KEY) ;
-        IScheduleLogService scheduleJobLogService = (IScheduleLogService) SpringContextUtil.getBean("scheduleJobLogService") ;
+        IScheduleLogService scheduleJobLogService = (IScheduleLogService) SpringContextUtil.getBean("scheduleLogService") ;
         // 定时器日志记录
         ScheduleLogBean logBean = new ScheduleLogBean() ;
         logBean.setLogId("" + new SnowFlake().nextId());

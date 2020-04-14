@@ -17,9 +17,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Slf4j
-@Service("scheduleJobService")
+@Service
 public class ScheduleJobServiceImpl implements IScheduleJobService {
-
 
     @Resource
     private Scheduler scheduler ;

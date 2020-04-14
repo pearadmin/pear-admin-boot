@@ -72,10 +72,11 @@
         let cols = [
             [
                 {type:'checkbox'},
-                {title: '标签', field: 'label', align:'center', width:120},
-                {title: '对应值', field: 'value', align:'center'},
-                {title: '所属字典', field: 'type', align:'center'},
-                {title: '字典状态', field: 'isDefault', align:'center',templet:'#dict-data-enable'},
+                {title: '标签', field: 'dataLabel', align:'center', width:120},
+                {title: '对应值', field: 'dataValue', align:'center'},
+                {title: '所属字典', field: 'typeCode', align:'center'},
+                {title: '是否默认', field: 'isDefault', align:'center'},
+                {title: '状态', field: 'enable', align:'center',templet:'#dict-data-enable'},
                 {title: '操作', toolbar: '#dict-data-bar', align:'center', width:180}
             ]
         ]
@@ -93,7 +94,7 @@
             }, 'filter', 'print', 'exports']
         });
 
-        table.on('tool(dict-type-table)', function(obj){
+        table.on('tool(dict-data-table)', function(obj){
             if(obj.event === 'remove'){
                 layer.msg("删除");
             } else if(obj.event === 'edit'){
@@ -148,7 +149,7 @@
                 title: '新增',
                 shade: 0.1,
                 area: ['500px', '400px'],
-                content: '/system/dictType/add'
+                content: '/system/dictData/add?type='+[[${type}]]
             });
         }
 
@@ -158,7 +159,7 @@
                 title: '修改',
                 shade: 0.1,
                 area: ['500px', '400px'],
-                content: '/system/dictType/edit?dictTypeId='+obj.data['id']
+                content: '/system/dictData/edit?dataId='+obj.data['dataId']
             });
         }
     })

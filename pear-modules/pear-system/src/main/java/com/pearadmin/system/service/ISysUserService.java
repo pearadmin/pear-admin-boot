@@ -5,7 +5,6 @@ import com.pearadmin.common.web.domain.ResuMenu;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
-
 import java.util.List;
 import java.util.Set;
 
@@ -61,10 +60,25 @@ public interface ISysUserService {
      * */
     boolean save(SysUser sysUser);
 
+    /**
+     * Describe: 保存用户角色数据
+     * Param: SysUser
+     * Return: 操作结果
+     * */
     boolean saveUserRole(String userId,List<String> roleIds);
 
+    /**
+     * Describe: 获取用户角色数据
+     * Param: SysUser
+     * Return: 操作结果
+     * */
     List<SysRole> getUserRole(String userId);
 
+    /**
+     * Describe: 获取用户菜单数据
+     * Param: SysUser
+     * Return: 操作结果
+     * */
     Set<ResuMenu> getUserMenu(String username);
 }
 

@@ -19,7 +19,7 @@
                 <div class="layui-input-inline">
                     <input type="text" name="realName" placeholder="" class="layui-input">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dict-type-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="job-query">
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
@@ -102,6 +102,7 @@
                 {title: '参数', field: 'params', align:'center'},
                 {title: '表达式', field: 'cronExpression', align:'center'},
                 {title: '状态', field: 'status', align:'center',templet:'#job-status'},
+                {title: '描述', field: 'remark', align:'center'},
                 {title: '操作', toolbar: '#job-bar', align:'center', width:370}
             ]
         ]
@@ -145,8 +146,8 @@
             }
         });
 
-        form.on('submit(dict-type-query)', function(data){
-            table.reload('dict-type-table',{where:data.field})
+        form.on('submit(job-query)', function(data){
+            table.reload('job-table',{where:data.field})
             return false;
         });
 
