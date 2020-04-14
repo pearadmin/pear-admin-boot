@@ -19,7 +19,7 @@
                 <div class="layui-input-inline">
                     <input type="text" name="username" placeholder="" class="layui-input">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="role-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dict-type-query">
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
@@ -162,7 +162,7 @@
         }
 
         window.refresh = function(){
-            table.reload('dict-data-table');
+            table.reload('dict-type-table');
         }
     })
 </script>

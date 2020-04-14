@@ -49,31 +49,24 @@
     </button>
     <button class="pear-btn pear-btn-warming pear-btn-md" lay-event="runLog">
         <i class="layui-icon layui-icon-file"></i>
-        运行日志
+        日志
     </button>
 </script>
 
 <script type="text/html" id="job-bar">
     {{#if (d.status == 0) { }}
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause">
-        <i class="pear-icon pear-icon-tingzhi"></i>
-         挂起
+    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="pear-icon pear-icon-tingzhi"></i>
     </button>
     {{# }else if(d.status == 1){ }}
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume">
-        <i class="pear-icon pear-icon-kaiqi"></i>
-        激活
+    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="pear-icon pear-icon-kaiqi"></i>
     </button>
     {{# } }}
-    <button class="pear-btn pear-btn-success pear-btn-sm" lay-event="run">
-        <i class="pear-icon pear-icon-kaiqi"></i>
-         执行一次
+    <button class="pear-btn pear-btn-success pear-btn-sm" lay-event="run"><i class="pear-icon pear-icon-kaiqi"></i>
     </button>
-
     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
-     修改</button>
+    </button>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
-     删除</button>
+    </button>
 </script>
 
 <script type="text/html" id="job-status">
@@ -103,7 +96,7 @@
                 {title: '表达式', field: 'cronExpression', align:'center'},
                 {title: '状态', field: 'status', align:'center',templet:'#job-status'},
                 {title: '描述', field: 'remark', align:'center'},
-                {title: '操作', toolbar: '#job-bar', align:'center', width:370}
+                {title: '操作', toolbar: '#job-bar', align:'center', width:220}
             ]
         ]
 
