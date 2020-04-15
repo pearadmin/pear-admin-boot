@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pearadmin.generator.dao.SysGeneratorDao">
+    <!-- mysql数据库信息 -->
+    <select id="queryMySQLList" resultType="map">
+        select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables
+        where table_schema = (select database())
+        <if test="tableName != null and tableName.trim() != ''">
+            and table_name like concat('%', #{tableName}, '%')
+        </if>
+
+        order by create_time desc
+
+        <if test="offset != null and limit != nll">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryMySQLTotal" resultType="int">
+        select count(*) from information_schema.tables where table_schema = (select database())
+        <if test="tableName != null and tableName.trim() != ''">
+            and table_name like concat('%', #{tableName}, '%')
+        </if>
+    </select>
+
+    <select id="queryMySQLTable" resultType="map">
+		select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables 
+			where table_schema = (select database()) and table_name = #{tableName}
+	</select>
+
+    <select id="queryMySQLColumns" resultType="map">
+		select column_name columnName, data_type dataType, column_comment columnComment, column_key columnKey, extra from information_schema.columns
+ 			where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
+	</select>
+
+    <!-- oracle数据库信息 -->
+    <select id="queryOracleList" resultType="map">
+        <!-- select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables
+            where table_schema = (select database())  -->
+        <!-- "tableName" 加双引号密码字段名称大写 -->
+        select a.table_name "tableName", a.tablespace_name "engine",b.comments "tableComment" ,a.last_analyzed "createTime"
+        from
+        user_tables a left join user_tab_comments b on a.table_name=b.table_name
+        where 1=1
+        <if test="tableName != null and tableName.trim() != ''">
+            and a.table_name like '%#{tableName}%'
+        </if>
+        order by a.last_analyzed desc
+        <!-- <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if> -->
+    </select>
+
+    <select id="queryOracleTotal" resultType="int">
+        select count(*) from user_tables a where 1=1
+        <if test="tableName != null and tableName.trim() != ''">
+            and a.table_name like '%#{tableName}%'
+        </if>
+    </select>
+
+    <select id="queryOracleTable" resultType="map"><!--
+	select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables 
+			where table_schema = (select database()) and table_name = #{tableName} -->
+			
+	select a.table_name "tableName", a.tablespace_name "engine",b.COMMENTS "tableComment",a.last_analyzed "createTime"  
+		from 
+			user_tables a left join user_tab_comments b on a.table_name=b.table_name 
+		where 1=1
+		and a.table_name = #{tableName}
+		
+	</select>
+
+    <select id="queryOracleColumns" resultType="map">
+        <!--
+            select column_name columnName, data_type dataType, column_comment columnComment, column_key columnKey, extra from information_schema.columns
+                 where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position -->
+
+        select a.COLUMN_NAME "columnName",a.DATA_TYPE "dataType", b.COMMENTS "columnComment",' ' "columnKey",' ' "extra" from user_tab_columns a left JOIN
+        user_col_comments b on a.table_name=b.table_name and a.COLUMN_NAME=b.COLUMN_NAME
+        where 1=1
+        and a.table_name=#{tableName}
+        order by a.column_id asc
+    </select>
+</mapper>
