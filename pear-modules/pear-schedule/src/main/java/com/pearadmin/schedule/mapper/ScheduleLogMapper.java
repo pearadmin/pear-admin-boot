@@ -5,6 +5,12 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+/**
+ * Describe: 定时任务日志接口
+ * Author: 就免仪式
+ * CreateTime: 2019/10/23
+ * */
+
 @Mapper
 public interface ScheduleLogMapper {
 

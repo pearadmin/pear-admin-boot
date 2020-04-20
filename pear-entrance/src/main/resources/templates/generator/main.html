@@ -7,41 +7,41 @@
     <link rel="stylesheet" href="../../component/layui/css/layui.css" />
 </head>
 <body class="pear-container">
-    <div class="layui-card">
-        <div class="layui-card-body">
-            <form class="layui-form" action="">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">用户名</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="realName" placeholder="" class="layui-input">
-                    </div>
-                    <label class="layui-form-label">账号</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="username" placeholder="" class="layui-input">
-                    </div>
-                    <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="user-query">
-                        <i class="layui-icon layui-icon-search"></i>
-                        查询
-                    </button>
-                    <button type="reset" class="pear-btn pear-btn-md">
-                        <i class="layui-icon layui-icon-refresh"></i>
-                        重置
-                    </button>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="realName" placeholder="" class="layui-input">
                 </div>
-            </form>
-        </div>
+                <label class="layui-form-label">账号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" placeholder="" class="layui-input">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="table-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
+            </div>
+        </form>
     </div>
-    <div class="layui-card">
-        <div class="layui-card-body">
-            <table id="user-table" lay-filter="user-table"></table>
-        </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="table-table" lay-filter="table-table"></table>
     </div>
+</div>
 </body>
 
-<script type="text/html" id="user-toolbar">
+<script type="text/html" id="table-toolbar">
     <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
-        新增
+        导入
     </button>
     <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
@@ -49,32 +49,13 @@
     </button>
 </script>
 
-<script type="text/html" id="user-bar">
-    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
-    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
+<script type="text/html" id="table-bar">
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>&nbsp;配置修改</button>
+    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="encode"><i class="layui-icon layui-icon-export"></i>&nbsp;代码生成</button>
+    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>&nbsp;删除</button>
 </script>
 
-<script type="text/html" id="user-enable">
-    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable" {{ d.enable == '0' ? 'checked' : '' }} />
-</script>
-
-<script type="text/html" id="user-sex">
-    {{#if (d.sex == 0) { }}
-    <span>男</span>
-    {{# }else if(d.sex == 1){ }}
-    <span>女</span>
-    {{# } }}
-</script>
-
-<script type="text/html" id="user-login">
-    {{#if (d.login == 0) { }}
-    <span>在线</span>
-    {{# }else if(d.sex == 1){ }}
-    <span>离线</span>
-    {{# } }}
-</script>
-
-<script type="text/html" id="user-createTime">
+<script type="text/html" id="table-createTime">
     {{layui.util.toDateString(d.createTime, 'yyyy-MM-dd')}}
 </script>
 
@@ -85,43 +66,42 @@
         let form = layui.form;
         let $ = layui.jquery;
 
-        let MODULE_PATH = "/system/user/";
+        let MODULE_PATH = "/generator/";
 
         let cols = [
             [
                 {type:'checkbox'},
-                {title: '姓名', field: 'realName', align:'center',width:120},
-                {title: '性别', field: 'sex', align:'center',templet:'#user-sex'},
-                {title: '电话', field: 'phone', align:'center'},
-                {title: '邮箱', field: 'email', align:'center'},
-                {title: '启用', field: 'enable', align:'center', templet:'#user-enable'},
-                {title: '注册', field: 'createTime', align:'center',templet:'#user-createTime'},
-                {title: '操作', toolbar: '#user-bar', align:'center', width:130}
+                {title: '名称', field: 'tableNames', align:'center',width:120},
+                {title: '别名', field: 'tableComments', align:'center'},
+                {title: '业务', field: 'businessName', align:'center'},
+                {title: '作者', field: 'author', align:'center'},
+                {title: '创建时间', field: 'createTime', align:'center',templet:'#table-createTime'},
+                {title: '操作', toolbar: '#table-bar', align:'center', width:320}
             ]
         ]
 
         table.render({
-            elem: '#user-table',
+            elem: '#table-table',
             url: MODULE_PATH + 'data',
             page: true ,
             cols: cols ,
             skin: 'line',
-            toolbar: '#user-toolbar',
+            toolbar: '#table-toolbar',
             defaultToolbar: [{
                 layEvent: 'refresh',
                 icon: 'layui-icon-refresh',
             }, 'filter', 'print', 'exports']
         });
 
-        table.on('tool(user-table)', function(obj){
-            if(obj.event === 'remove'){
-                window.remove(obj);
-            } else if(obj.event === 'edit'){
-                window .edit(obj);
-            }
+        table.on('tool(table-table)', function(obj){
+             if(obj.event === 'encode'){
+                 window.location.href = "/generator/encode?tableName="+obj.data['tableName'];
+             } else if(obj.event  === 'edit'){
+                 window.edit(obj);
+             }
         });
 
-        table.on('toolbar(user-table)', function(obj){
+        table.on('toolbar(table-table)', function(obj){
             if(obj.event === 'add'){
                 window.add();
             } else if(obj.event === 'refresh'){
@@ -131,18 +111,18 @@
             }
         });
 
-        form.on('submit(user-query)', function(data){
+        form.on('submit(table-query)', function(data){
             window.refresh(data.field);
             return false;
         });
 
-        form.on('switch(user-enable)', function(obj){
+        form.on('switch(table-enable)', function(obj){
             let operate;
 
             if(obj.elem.checked){
-                 operate = "enable";
+                operate = "enable";
             }else{
-                 operate = "disable";
+                operate = "disable";
             }
 
             let loading = layer.load()
@@ -162,26 +142,39 @@
                     }
                 }
             })
-
         });
 
         window.add = function(){
             layer.open({
                 type: 2,
-                title: '新增',
+                title: '导入',
                 shade: 0.1,
-                area: ['500px', '400px'],
-                content: MODULE_PATH + 'add'
+                area: ['800px', '500px'],
+                content: MODULE_PATH + 'import'
             });
         }
 
         window.edit = function(obj){
-            layer.open({
+           /* layer.open({
                 type: 2,
                 title: '修改',
                 shade: 0.1,
-                area: ['500px', '400px'],
-                content: MODULE_PATH + 'edit?userId='+obj.data['userId']
+                area: ['800px', '500px'],
+                content: MODULE_PATH + 'edit?tableId='+obj.data['tableId']
+            });*/
+
+            layer.tab({
+                area: ['600px', '300px'],
+                tab: [{
+                    title: 'TAB1',
+                    content: '内容1'
+                }, {
+                    title: 'TAB2',
+                    content: '内容2'
+                }, {
+                    title: 'TAB3',
+                    content: '内容3'
+                }]
             });
         }
 

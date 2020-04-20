@@ -1,7 +1,7 @@
-package com.pearadmin.generator.utils;
+package com.pearadmin.generator.tools;
 
-import com.pearadmin.generator.entity.ColumnEntity;
-import com.pearadmin.generator.entity.TableEntity;
+import com.pearadmin.generator.domain.GenTableColumn;
+import com.pearadmin.generator.domain.GenTable;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -53,50 +53,50 @@ public class GenUtils {
 		Configuration config = getConfig();
 		
 		//表信息
-		TableEntity tableEntity = new TableEntity();
-		tableEntity.setTableName(table.get("tableName"));
-		tableEntity.setComments(table.get("tableComment"));
+		GenTable tableEntity = new GenTable();
+		tableEntity.setTableNames(table.get("tableName"));
+		tableEntity.setTableComments(table.get("tableComment"));
 		//表名转换成Java类名
-		String className = tableToJava(tableEntity.getTableName(), config.getString("tablePrefix"));
+		String className = tableToJava(tableEntity.getTableNames(), config.getString("tablePrefix"));
 		tableEntity.setClassName(className);
 		tableEntity.setClassname(StringUtils.uncapitalize(className));
 		
 		//列信息
-		List<ColumnEntity> columsList = new ArrayList<>();
+		List<GenTableColumn> columsList = new ArrayList<>();
 		for(Map<String, String> column : columns){
-			ColumnEntity columnEntity = new ColumnEntity();
+			GenTableColumn genColumn = new GenTableColumn();
 
 			//跳过version字段的生成
             if("version".equalsIgnoreCase(column.get("columnName"))){
                 continue;
             }
 
-			columnEntity.setColumnName(column.get("columnName"));
-			columnEntity.setDataType(column.get("dataType").toLowerCase());
-			columnEntity.setComments(column.get("columnComment"));
-			columnEntity.setExtra(column.get("extra"));
+			genColumn.setColumnName(column.get("columnName"));
+			genColumn.setDataType(column.get("dataType").toLowerCase());
+			genColumn.setColumnComment(column.get("columnComment"));
+			genColumn.setExtra(column.get("extra"));
 			
 			//列名转换成Java属性名
-			String attrName = columnToJava(columnEntity.getColumnName());
-			columnEntity.setAttrName(attrName);
-			columnEntity.setAttrname(StringUtils.uncapitalize(attrName));
+			String attrName = columnToJava(genColumn.getColumnName());
+			genColumn.setAttrName(attrName);
+			genColumn.setAttrname(StringUtils.uncapitalize(attrName));
 			
 			//列的数据类型，转换成Java类型
-			String attrType = config.getString(columnEntity.getDataType(), "unknowType");
-			columnEntity.setAttrType(attrType);
+			String attrType = config.getString(genColumn.getDataType(), "unknowType");
+			genColumn.setAttrType(attrType);
 			
 			//是否主键
-			if("PRI".equalsIgnoreCase(column.get("columnKey")) && tableEntity.getPk() == null){
-				tableEntity.setPk(columnEntity);
+			if("PRI".equalsIgnoreCase(column.get("columnKey")) && tableEntity.getPrimaryKey() == null){
+				tableEntity.setPrimaryKey(genColumn);
 			}
 			
-			columsList.add(columnEntity);
+			columsList.add(genColumn);
 		}
 		tableEntity.setColumns(columsList);
 		
 		//没主键，则第一个字段为主键
-		if(tableEntity.getPk() == null){
-			tableEntity.setPk(tableEntity.getColumns().get(0));
+		if(tableEntity.getPrimaryKey() == null){
+			tableEntity.setPrimaryKey(tableEntity.getColumns().get(0));
 		}
 		
 		//设置velocity资源加载器
@@ -106,9 +106,9 @@ public class GenUtils {
 		
 		//封装模板数据
 		Map<String, Object> map = new HashMap<>();
-		map.put("tableName", tableEntity.getTableName());
-		map.put("comments", tableEntity.getComments());
-		map.put("pk", tableEntity.getPk());
+		map.put("tableName", tableEntity.getTableNames());
+		map.put("comments", tableEntity.getTableComments());
+		map.put("pk", tableEntity.getPrimaryKey());
 		map.put("className", tableEntity.getClassName());
 		map.put("classname", tableEntity.getClassname());
 		map.put("pathName", tableEntity.getClassname().toLowerCase());
@@ -135,7 +135,7 @@ public class GenUtils {
 				IOUtils.closeQuietly(sw);
 				zip.closeEntry();
 			} catch (IOException e) {
-				throw new RRException("渲染模板失败，表名：" + tableEntity.getTableName(), e);
+				throw new RuntimeException("渲染模板失败，表名：" + tableEntity.getTableNames(), e);
 			}
 		}
 	}
@@ -165,7 +165,7 @@ public class GenUtils {
 		try {
 			return new PropertiesConfiguration("generator.properties");
 		} catch (ConfigurationException e) {
-			throw new RRException("获取配置文件失败，", e);
+			throw new RuntimeException("获取配置文件失败，", e);
 		}
 	}
 	

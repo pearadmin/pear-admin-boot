@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import org.quartz.*;
 
 /**
- * Describe: 定时任务工具类
+ * Describe: 定时任务处理器
  * Author: 就免仪式
  * CreateTime: 2019/10/23
  * */

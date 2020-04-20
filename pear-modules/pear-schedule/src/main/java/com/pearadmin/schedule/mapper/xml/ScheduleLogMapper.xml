@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pearadmin.schedule.mapper.ScheduleLogMapper" >
 
+  <!-- 映射处理集合 -->
   <resultMap id="ScheduleLogMap" type="com.pearadmin.schedule.domain.ScheduleLogBean" >
     <id column="log_id" property="logId" jdbcType="BIGINT" />
     <result column="job_id" property="jobId" jdbcType="BIGINT" />
@@ -13,12 +14,14 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
 
+  <!-- 根据条件处理 -->
   <select id="selectList" parameterType="ScheduleLog" resultMap="ScheduleLogMap">
     select a.log_id,a.job_id,a.bean_name,a.params,a.error,a.status,a.create_time,a.times,b.job_name as jobName from schedule_log a left join schedule_job b on
      a.job_id = b.job_id
      order by create_time desc
   </select>
 
+  <!-- 插入任务日志 -->
   <insert id="insert" parameterType="ScheduleLog">
     insert into schedule_log
     <trim prefix="(" suffix=")" suffixOverrides=",">

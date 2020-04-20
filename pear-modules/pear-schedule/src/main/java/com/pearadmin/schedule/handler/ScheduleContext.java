@@ -25,7 +25,7 @@ public class ScheduleContext extends QuartzJobBean {
     /**
      * Describe: 执行任务并记录日志
      * Param: JobExecutionContext
-     * Return: null
+     * Return: 无返回值
      * */
     @Override
     protected void executeInternal(JobExecutionContext context) {

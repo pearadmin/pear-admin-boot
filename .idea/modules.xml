@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Pear-Admin-Boot.iml" filepath="$PROJECT_DIR$/Pear-Admin-Boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-common/pear-common.iml" filepath="$PROJECT_DIR$/pear-common/pear-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-entrance/pear-entrance.iml" filepath="$PROJECT_DIR$/pear-entrance/pear-entrance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-generator/pear-generator.iml" filepath="$PROJECT_DIR$/pear-modules/pear-generator/pear-generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-modules.iml" filepath="$PROJECT_DIR$/pear-modules/pear-modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-operate/pear-operate.iml" filepath="$PROJECT_DIR$/pear-modules/pear-operate/pear-operate.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-schedule/pear-schedule.iml" filepath="$PROJECT_DIR$/pear-modules/pear-schedule/pear-schedule.iml" />

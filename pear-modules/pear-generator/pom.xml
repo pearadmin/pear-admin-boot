@@ -45,6 +45,11 @@
             <version>1.10</version>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <artifactId>velocity</artifactId>
             <groupId>org.apache.velocity</groupId>
             <version>1.7</version>

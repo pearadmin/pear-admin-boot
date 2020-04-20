@@ -14,6 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.util.Date;
 
+/**
+ * Describe: 定时任务控制器
+ * Auther: 就眠仪式
+ * createTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping("schedule/job")
 public class ScheduleJobController extends BaseController {

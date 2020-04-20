@@ -1,4 +1,4 @@
-package com.pearadmin.generator.utils;
+package com.pearadmin.generator.tools;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;

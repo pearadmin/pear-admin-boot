@@ -21,4 +21,5 @@ public class SysRolePower {
      * 权限编号
      * */
     private String powerId;
+
 }

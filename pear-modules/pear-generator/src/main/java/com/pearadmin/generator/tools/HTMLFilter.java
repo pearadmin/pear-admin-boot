@@ -1,4 +1,4 @@
-package com.pearadmin.generator.utils;
+package com.pearadmin.generator.tools;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -68,7 +68,6 @@ public final class HTMLFilter {
     private static final Pattern P_RIGHT_ARROW = Pattern.compile(">");
     private static final Pattern P_BOTH_ARROWS = Pattern.compile("<>");
 
-    // @xxx could grow large... maybe use sesat's ReferenceMap
     private static final ConcurrentMap<String,Pattern> P_REMOVE_PAIR_BLANKS = new ConcurrentHashMap<String, Pattern>();
     private static final ConcurrentMap<String,Pattern> P_REMOVE_SELF_BLANKS = new ConcurrentHashMap<String, Pattern>();
 
