@@ -2,72 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="351f9733-a9ca-4aba-81c6-6944b1f3262c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_configuration_commons_configuration_1_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_digester_commons_digester_1_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_velocity_velocity_1_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_velocity_velocity_tools_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-common/src/main/java/com/pearadmin/common/constant/GeneratorContstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/templates/generator/Import.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/templates/generator/edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/templates/generator/main.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/pear-generator.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/mapper/GenTableColumnMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/mapper/GenTableMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/mapper/xml/GenTableColumnMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/mapper/xml/GenTableMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/IGenTableColumnService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/IGenTableService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/impl/GenTableColumnServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/impl/GenTableServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/pear-entrance.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/pear-entrance.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/java/com/pearadmin/controller/ErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/java/com/pearadmin/controller/ErrorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/java/com/pearadmin/controller/schedule/ScheduleJobController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/java/com/pearadmin/controller/schedule/ScheduleJobController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/java/com/pearadmin/controller/schedule/ScheduleLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/java/com/pearadmin/controller/schedule/ScheduleLogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/resources/application-druid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/application-druid.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/resources/templates/system/user/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/templates/system/user/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/target/classes/application-druid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/target/classes/application-druid.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/target/classes/com/pearadmin/controller/ErrorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/target/classes/com/pearadmin/controller/ErrorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/target/classes/com/pearadmin/controller/schedule/ScheduleJobController.class" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/target/classes/com/pearadmin/controller/schedule/ScheduleJobController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/target/classes/com/pearadmin/controller/schedule/ScheduleLogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/target/classes/com/pearadmin/controller/schedule/ScheduleLogController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-entrance/target/classes/templates/system/user/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/target/classes/templates/system/user/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/controller/SysGeneratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/controller/GeneratorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/dao/SysGeneratorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/mapper/GeneratorMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/dao/SysGeneratorDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/mapper/xml/GeneratorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/entity/ColumnEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/domain/GenTableColumn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/entity/TableEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/domain/GenTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/SysGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/IGeneratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/impl/SysGeneratorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/service/impl/GeneratorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/DateGenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/tools/DateGenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/GenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/tools/GenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/HTMLFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/tools/HTMLFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/PageUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/Query.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/R.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/RRException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/SQLFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/XssHttpServletRequestWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/init.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-generator/src/main/java/com/pearadmin/generator/utils/initContants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/handler/ScheduleContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/handler/ScheduleContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/handler/ScheduleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/handler/ScheduleHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/ScheduleJobMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/ScheduleJobMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/ScheduleLogMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/ScheduleLogMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/xml/ScheduleJobMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/xml/ScheduleJobMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/xml/ScheduleLogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/mapper/xml/ScheduleLogMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/service/IScheduleJobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/service/IScheduleJobService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/service/IScheduleLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/src/main/java/com/pearadmin/schedule/service/IScheduleLogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/target/classes/com/pearadmin/schedule/mapper/xml/ScheduleJobMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/target/classes/com/pearadmin/schedule/mapper/xml/ScheduleJobMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/target/classes/com/pearadmin/schedule/mapper/xml/ScheduleLogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-schedule/target/classes/com/pearadmin/schedule/mapper/xml/ScheduleLogMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pear-modules/pear-system/src/main/java/com/pearadmin/system/domain/SysRolePower.java" beforeDir="false" afterPath="$PROJECT_DIR$/pear-modules/pear-system/src/main/java/com/pearadmin/system/domain/SysRolePower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pear-common/target/classes/META-INF/pear-common.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/resources/static/admin/css/pearAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/static/admin/css/pearAdmin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/resources/static/component/layui/lay/extends/pearAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/static/component/layui/lay/extends/pearAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pear-entrance/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pear-entrance/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pear-modules/pear-schedule/target/classes/META-INF/pear-schedule.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pear-modules/pear-security/target/classes/META-INF/pear-security.kotlin_module" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +74,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../workspace/idea-workspace/api-service" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -265,6 +206,11 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
             </expand>
             <select />
           </treeState>
@@ -336,6 +282,7 @@
       <workItem from="1587119475687" duration="1006000" />
       <workItem from="1587195347216" duration="32852000" />
       <workItem from="1587342116008" duration="652000" />
+      <workItem from="1587431298307" duration="2366000" />
     </task>
     <task id="LOCAL-00001" summary="切换外部 dynamic DataSource , 删除 dynamic source 模块">
       <created>1586544965523</created>
@@ -440,75 +387,76 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="507" y="4" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586957909401" />
-    <state x="299" y="153" key="FileChooserDialogImpl" timestamp="1587342135215">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="363" y="-879" key="FileChooserDialogImpl" timestamp="1587431896617">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state x="299" y="153" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585702292256" />
     <state x="299" y="153" key="FileChooserDialogImpl/0.0.1536.824/4.-1080.1842.1080@0.0.1536.824" timestamp="1587342135215" />
+    <state x="363" y="-879" key="FileChooserDialogImpl/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587431896617" />
     <state x="299" y="153" key="FileChooserDialogImpl/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1587030184577" />
     <state x="378" y="-887" key="FileChooserDialogImpl/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587030284861" />
     <state x="299" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587272289953" />
-    <state width="1443" height="17" key="GridCell.Tab.0.bottom" timestamp="1587305980173">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.0.bottom" timestamp="1587433660498">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083328" />
-    <state width="1745" height="3" key="GridCell.Tab.0.bottom/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641631" />
+    <state width="1559" height="85" key="GridCell.Tab.0.bottom/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660498" />
     <state width="1294" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716176" />
     <state width="1822" height="4" key="GridCell.Tab.0.bottom/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587305980173" />
-    <state width="1443" height="17" key="GridCell.Tab.0.center" timestamp="1587305980173">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.0.center" timestamp="1587433660498">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083328" />
-    <state width="1745" height="3" key="GridCell.Tab.0.center/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641630" />
+    <state width="1559" height="85" key="GridCell.Tab.0.center/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660498" />
     <state width="1294" height="2" key="GridCell.Tab.0.center/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716176" />
     <state width="1822" height="4" key="GridCell.Tab.0.center/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587305980173" />
-    <state width="1443" height="17" key="GridCell.Tab.0.left" timestamp="1587305980173">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.0.left" timestamp="1587433660498">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083327" />
-    <state width="1745" height="3" key="GridCell.Tab.0.left/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641630" />
+    <state width="1559" height="85" key="GridCell.Tab.0.left/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660498" />
     <state width="1294" height="2" key="GridCell.Tab.0.left/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716176" />
     <state width="1822" height="4" key="GridCell.Tab.0.left/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587305980173" />
-    <state width="1443" height="17" key="GridCell.Tab.0.right" timestamp="1587305980173">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.0.right" timestamp="1587433660498">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083328" />
-    <state width="1745" height="3" key="GridCell.Tab.0.right/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641631" />
+    <state width="1559" height="85" key="GridCell.Tab.0.right/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660498" />
     <state width="1294" height="2" key="GridCell.Tab.0.right/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716176" />
     <state width="1822" height="4" key="GridCell.Tab.0.right/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587305980173" />
-    <state width="1443" height="17" key="GridCell.Tab.1.bottom" timestamp="1587305980174">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.1.bottom" timestamp="1587433660499">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083328" />
-    <state width="1745" height="3" key="GridCell.Tab.1.bottom/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641631" />
+    <state width="1559" height="85" key="GridCell.Tab.1.bottom/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660499" />
     <state width="1294" height="2" key="GridCell.Tab.1.bottom/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716177" />
     <state width="1822" height="4" key="GridCell.Tab.1.bottom/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587305980174" />
-    <state width="1443" height="17" key="GridCell.Tab.1.center" timestamp="1587305980173">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.1.center" timestamp="1587433660499">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083328" />
-    <state width="1745" height="3" key="GridCell.Tab.1.center/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641631" />
+    <state width="1559" height="85" key="GridCell.Tab.1.center/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660499" />
     <state width="1294" height="2" key="GridCell.Tab.1.center/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716176" />
     <state width="1822" height="4" key="GridCell.Tab.1.center/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587305980173" />
-    <state width="1443" height="17" key="GridCell.Tab.1.left" timestamp="1587305980173">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.1.left" timestamp="1587433660498">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083328" />
-    <state width="1745" height="3" key="GridCell.Tab.1.left/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641631" />
+    <state width="1559" height="85" key="GridCell.Tab.1.left/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660498" />
     <state width="1294" height="2" key="GridCell.Tab.1.left/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716176" />
     <state width="1822" height="4" key="GridCell.Tab.1.left/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587305980173" />
-    <state width="1443" height="17" key="GridCell.Tab.1.right" timestamp="1587305980173">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1559" height="85" key="GridCell.Tab.1.right" timestamp="1587433660499">
+      <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
     <state width="1024" height="2" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585712083328" />
-    <state width="1745" height="3" key="GridCell.Tab.1.right/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587088641631" />
+    <state width="1559" height="85" key="GridCell.Tab.1.right/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433660499" />
     <state width="1294" height="2" key="GridCell.Tab.1.right/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1586429716177" />
     <state width="1822" height="4" key="GridCell.Tab.1.right/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1587038644387" />
     <state width="1443" height="17" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587305980173" />
@@ -550,10 +498,10 @@
     <state x="898" y="335" key="com.intellij.ide.util.TipDialog/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1585787725050" />
     <state x="898" y="335" key="com.intellij.ide.util.TipDialog/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1586912443166" />
     <state x="446" y="363" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1586677371925" />
-    <state x="780" y="-520" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587375442466">
+    <state x="780" y="-520" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587433778660">
       <screen x="4" y="-1080" width="1842" height="1080" />
     </state>
-    <state x="780" y="-520" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587375442466" />
+    <state x="780" y="-520" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/4.-1080.1842.1080@4.-1080.1842.1080" timestamp="1587433778660" />
     <state x="647" y="427" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/4.-1080.1920.1040@0.0.1536.824" timestamp="1587030145030" />
     <state x="813" y="-541" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/4.-1080.1920.1040@4.-1080.1920.1040" timestamp="1586775363571" />
     <state x="647" y="427" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1586970731923" />
