@@ -1,0 +1,21 @@
+-- 菜单SQL
+
+-- 按钮父菜单ID
+set @parentId = REPLACE(UUID(),"-","");
+
+INSERT INTO `sys_menu` (`menu_id`,`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+    VALUES ( @parentId,'1', '${comments}', '${modername}/${pathName}.html', NULL, '1', 'fa fa-file-code-o', '6');
+
+-- 菜单对应按钮SQL
+INSERT INTO `sys_menu` (`menu_id`,`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+ VALUES (
+    REPLACE(UUID(),"-",""), @parentId, '查看', null, '${modername}:${pathName}:list,${modername}:${pathName}:info', '2', null, '6');
+INSERT INTO `sys_menu` (`menu_id`,`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+ VALUES (
+    REPLACE(UUID(),"-",""), @parentId, '新增', null, '${modername}:${pathName}:save', '2', null, '6');
+INSERT INTO `sys_menu` (`menu_id`,`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+ VALUES (
+    REPLACE(UUID(),"-",""), @parentId, '修改', null, '${modername}:${pathName}:update', '2', null, '6');
+INSERT INTO `sys_menu` (`menu_id`,`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+ VALUES (
+    REPLACE(UUID(),"-",""), @parentId, '删除', null, '${modername}:${pathName}:delete', '2', null, '6');

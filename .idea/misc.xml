@@ -20,6 +20,7 @@
       <set>
         <option value="$PROJECT_DIR$/pear-component/pear-operate/pom.xml" />
         <option value="$PROJECT_DIR$/pear-component/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-modules/pear-logging/pom.xml" />
       </set>
     </option>
   </component>

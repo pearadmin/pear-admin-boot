@@ -40,6 +40,7 @@
         <module>pear-security</module>  <!-- 权限控制模块 -->
         <module>pear-schedule</module>  <!-- 定时任务模块 -->
         <module>pear-generator</module> <!-- 代码生成模块 -->
+        <module>pear-operate</module>   <!-- 系统日志模块 -->
     </modules>
 
 </project>

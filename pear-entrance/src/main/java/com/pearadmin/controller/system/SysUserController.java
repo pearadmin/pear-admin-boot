@@ -8,22 +8,18 @@ import com.pearadmin.common.web.domain.ResuBean;
 import com.pearadmin.common.web.domain.ResuMenu;
 import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.request.ParamMap;
+import com.pearadmin.operate.aspect.lang.annotation.OperLog;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -56,6 +52,7 @@ public class SysUserController extends BaseController {
      * Param ModelAndView
      * Return 用户列表视图
      * */
+    @OperLog(title = "列表视图")
     @GetMapping("main")
     @ApiOperation(value="获取用户列表视图")
     @PreAuthorize("hasPermission('/system/user/main','sys:user:main')")
@@ -69,6 +66,7 @@ public class SysUserController extends BaseController {
      * Param ModelAndView
      * Return 用户列表数据
      * */
+    @OperLog(title = "用户数据")
     @GetMapping("data")
     @ApiOperation(value="获取用户列表数据")
     public ResuTable data(PageDomain pageDomain,SysUser sysUser){

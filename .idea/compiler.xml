@@ -13,6 +13,7 @@
         <module name="pear-entrance" />
         <module name="pear-generator" />
         <module name="pear-system" />
+        <module name="pear-action" />
         <module name="pear-operate" />
         <module name="pear-common" />
         <module name="pear-netty" />
@@ -28,6 +29,7 @@
       <module name="pear-entrance" target="1.8" />
       <module name="pear-generate" target="1.8" />
       <module name="pear-generator" target="1.8" />
+      <module name="pear-logging" target="1.8" />
       <module name="pear-mission" target="1.8" />
       <module name="pear-modules" target="1.8" />
       <module name="pear-netty" target="1.8" />
@@ -52,6 +54,7 @@
       <module name="pear-entrance" options="-parameters" />
       <module name="pear-generate" options="-parameters" />
       <module name="pear-generator" options="-parameters" />
+      <module name="pear-logging" options="-parameters" />
       <module name="pear-mission" options="-parameters" />
       <module name="pear-modules" options="-parameters" />
       <module name="pear-netty" options="-parameters" />

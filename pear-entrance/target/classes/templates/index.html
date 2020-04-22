@@ -40,11 +40,27 @@
     <!-- Side Start -->
     <div class="layui-side layui-bg-black">
         <div class="layui-logo">
-            <img src="admin/images/logo.png" />
+            <img class="logo" src="admin/images/logo.png" />
+            <span class="title">Pear Admin</span>
         </div>
         <div class="layui-side-scroll">
             <div id="sideMenu"></div>
         </div>
+        <ul class="bottom-nav">
+            <li class="head-nav-item">
+                <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i></a>
+            </li>
+            <li class="head-nav-item">
+                <a href="javascript:;"><i class="layui-icon layui-icon-username"></i></a>
+            </li>
+
+            <li class="head-nav-item">
+                <a href="javascript:;"><i class="layui-icon layui-icon-help"></i></a>
+            </li>
+            <li class="head-nav-item">
+                <a href="javascript:;"><i class="layui-icon layui-icon-set-fill"></i></a>
+            </li>
+        </ul>
     </div>
     <!-- Side End -->
 
@@ -55,7 +71,10 @@
     <!-- Body End -->
 
 </div>
-<div class="preloader"><div class="preloader-inner"></div></div>
+
+<div class="preloader">
+    <div class="preloader-inner"></div>
+</div>
 
 <script src="component/layui/layui.js"></script>
 <script th:inline="javascript">
@@ -84,7 +103,7 @@
                 success:function(result){
                     layer.close(loader);
                     if(result.success){
-                        layer.msg("注销成功",{time:1000,icon:1},function(){
+                        layer.msg("注销成功",{icon:1},function(){
                             location.href = "/login";
                         });
                     }

@@ -352,8 +352,8 @@ layui.define(['table', 'jquery', 'element','form','pearTab','pearMenu','pearFram
 	function openMessage(html){
 		layer.open({
 			type: 1,
-			offset: 'r',
-			area: ['340px', '100%'],
+			offset: 'rb',
+			area: ['340px', 'calc(100% - 60px)'],
 			title: false,
 			shade: 0.1,
 			closeBtn:0,
@@ -389,8 +389,7 @@ layui.define(['table', 'jquery', 'element','form','pearTab','pearMenu','pearFram
 			move: false,
 			content: html,
 		    success:function(layero,index){
-			
-			    $('#layui-layer-shade' + index).click(function(){
+				$('#layui-layer-shade' + index).click(function(){
 					var $layero = $('#layui-layer' + index);
 					$layero.animate({
 						left: $layero.offset().left + $layero.width()

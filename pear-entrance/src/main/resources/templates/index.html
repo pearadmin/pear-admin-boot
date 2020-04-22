@@ -50,14 +50,15 @@
             <li class="head-nav-item">
                 <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i></a>
             </li>
-            <li class="head-nav-item theme">
-                <a href="javascript:;"><i class="layui-icon layui-icon-theme"></i></a>
-            </li>
             <li class="head-nav-item">
                 <a href="javascript:;"><i class="layui-icon layui-icon-username"></i></a>
             </li>
+
             <li class="head-nav-item">
-                <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i></a>
+                <a href="javascript:;"><i class="layui-icon layui-icon-help"></i></a>
+            </li>
+            <li class="head-nav-item">
+                <a href="javascript:;"><i class="layui-icon layui-icon-set-fill"></i></a>
             </li>
         </ul>
     </div>
@@ -70,7 +71,10 @@
     <!-- Body End -->
 
 </div>
-<div class="preloader"><div class="preloader-inner"></div></div>
+
+<div class="preloader">
+    <div class="preloader-inner"></div>
+</div>
 
 <script src="component/layui/layui.js"></script>
 <script th:inline="javascript">
@@ -99,7 +103,7 @@
                 success:function(result){
                     layer.close(loader);
                     if(result.success){
-                        layer.msg("注销成功",{time:1000,icon:1},function(){
+                        layer.msg("注销成功",{icon:1},function(){
                             location.href = "/login";
                         });
                     }

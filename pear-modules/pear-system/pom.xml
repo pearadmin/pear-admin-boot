@@ -43,5 +43,10 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>2.2.6.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-operate</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
