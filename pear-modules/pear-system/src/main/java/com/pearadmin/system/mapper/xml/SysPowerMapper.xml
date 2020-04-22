@@ -18,6 +18,7 @@
         <result column="power_name" property="title"></result>
         <result column="power_type" property="type"></result>
         <result column="icon" property="icon"></result>
+        <result column="open_type" property="openType"></result>
         <result column="power_url" property="href"></result>
         <collection property="children" select="selectMenuByParentId" column="power_id"></collection>
     </resultMap>

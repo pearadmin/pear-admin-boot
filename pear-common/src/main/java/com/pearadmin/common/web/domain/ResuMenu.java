@@ -28,6 +28,8 @@ public class ResuMenu {
      * */
     private String type;
 
+    private String openType;
+
     /**
      * 图标
      * */

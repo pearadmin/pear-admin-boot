@@ -1,4 +1,4 @@
-package com.pearadmin.controller.schedule;
+package com.pearadmin.schedule.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.Resource;
 
 /**

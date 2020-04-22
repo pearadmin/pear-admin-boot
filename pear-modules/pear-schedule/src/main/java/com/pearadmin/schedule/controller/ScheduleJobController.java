@@ -1,4 +1,4 @@
-package com.pearadmin.controller.schedule;
+package com.pearadmin.schedule.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.MessageConstants;
@@ -11,6 +11,7 @@ import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.service.IScheduleJobService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.Resource;
 import java.util.Date;
 

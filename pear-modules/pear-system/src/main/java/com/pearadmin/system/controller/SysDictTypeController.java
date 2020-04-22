@@ -1,4 +1,4 @@
-package com.pearadmin.controller.system;
+package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.MessageConstants;

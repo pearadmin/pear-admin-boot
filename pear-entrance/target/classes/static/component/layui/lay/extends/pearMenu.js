@@ -174,9 +174,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 	
 	
 	function createMenu(option){
-	
-	
-		// 声 明 头 部
+	    // 声 明 头 部
 		var menuHtml = '<ul lay-filter="'+option.elem+'" class="layui-nav arrow   pear-menu layui-nav-tree pear-nav-tree">'
 		// 开 启 同 步 操 作
 		    $.each(option.data, function(i, item) {
@@ -189,15 +187,25 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 					content = '<li class="layui-nav-item layui-nav-itemed" >';
 				}
 				
+				var href = "javascript:;";
+				var target = "";
+				var calss = "site-demo-active"
+				
+				if(item.openType == "_blank" && item.type == 1){
+					href = item.href;
+					target = "target='_blank'";
+					calss = "";
+				}
+				
 				// 判 断 菜 单 类 型 0 是 不可跳转的目录 1 是 可 点 击 跳 转 的 菜 单
 				if (item.type == 0) {
 					// 创 建 目 录 结 构
-					content += '<a  href="javascript:;" menu-type="'+item.type+'" menu-id="'+item.id+'" href="javascript:;"><i class="layui-icon ' + item.icon + '"></i><span>' + item.title +
+					content += '<a  href="javascript:;" menu-type="'+item.type+'" menu-id="'+item.id+'" href="'+ href +'" '+ target +'><i class="' + item.icon + '"></i><span>' + item.title +
 						'</span></a>';
 				} else if (item.type == 1) {
 					// 创 建 菜 单 结 构
-					content += '<a class="site-demo-active" menu-type="'+item.type+'" menu-url="' + item.href + '" menu-id="' + item.id +
-						'" menu-title="' + item.title + '" href="javascript:;" href="javascript:;"><i class="layui-icon ' + item.icon +
+					content += '<a class="'+calss+'" menu-type="'+item.type+'" menu-url="' + item.href + '" menu-id="' + item.id +
+						'" menu-title="' + item.title + '"  href="'+href+'"  '+ target +'><i class="' + item.icon +
 						'"></i><span>' + item.title + '</span></a>';
 				}
 				// 调 用 递 归 方 法 加 载 无 限 层 级 的 子 菜 单 
@@ -231,9 +239,9 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			
 			var controlItem = '';
 			
+			
 			if(index === option.defaultMenu){
 	              
-				
 				controlItem  = '<li pear-id="'+item.id+'" class="layui-this layui-nav-item"><a href="#">'+item.title+'</a></li>';
 				  			
 				menuItem = '<ul  pear-id="'+item.id+'" lay-filter="'+option.elem+'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
@@ -249,21 +257,34 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			
 			index ++;
 			
-	
-			
 			$.each(item.children,function(i,note){
 				
 				// 创 建 每 一 个 菜 单 项
 				var content = '<li class="layui-nav-item" >';
-				// 判 断 菜 单 类 型 0 是 不可跳转的目录 1 是 可 点 击 跳 转 的 菜 单
+				
+				var href = "javascript:;";
+				
+				var target = "";
+				
+				var calss = "site-demo-active";
+				
+				if(note.openType == "_blank" && note.type == 1){
+					
+					href = note.href;
+					target = "target='_blank'";
+					calss = "";
+				}
+				
+			
+			    // 判 断 菜 单 类 型 0 是 不可跳转的目录 1 是 可 点 击 跳 转 的 菜 单
 				if (note.type == 0) {
 					// 创 建 目 录 结 构
-					content += '<a  href="javascript:;" menu-type="'+note.type+'" menu-id="'+note.id+'" href="javascript:;"><i class="layui-icon ' + note.icon + '"></i><span>' + note.title +
+					content += '<a  href="'+href+'" '+ target +' menu-type="'+note.type+'" menu-id="'+note.id+'" ><i class="' + note.icon + '"></i><span>' + note.title +
 						'</span></a>';
 				} else if (note.type == 1) {
 					// 创 建 菜 单 结 构
-					content += '<a class="site-demo-active" menu-type="'+note.type+'" menu-url="' + note.href + '" menu-id="' + note.id +
-						'" menu-title="' + note.title + '" href="javascript:;" href="javascript:;"><i class="layui-icon ' + note.icon +
+					content += '<a '+ target +' class="'+calss+'" menu-type="'+note.type+'" menu-url="' + note.href + '" menu-id="' + note.id +
+						'" menu-title="' + note.title + '" href="'+href+'"><i class="' + note.icon +
 						'"></i><span>' + note.title + '</span></a>';
 				}
 				// 调 用 递 归 方 法 加 载 无 限 层 级 的 子 菜 单 
@@ -318,13 +339,26 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			$.each(obj.children, function(i, note) {
 				// 创 建 子 项 结 构
 				content += '<dd>';
+				
+				var href = "javascript:;";
+				
+				var target = "";
+				
+				var calss = "site-demo-active";
+				
+				if(note.openType == "_blank" && note.type == 1){
+					href = note.href;
+					target = "target='_blank'";
+					calss = "";
+				}
+				
 	            // 判 断 子 项 类 型
 				if (note.type == 0) {
 					// 创 建 目 录 结 构
-	                content += '<a  href="javascript:;" menu-type="'+note.type+'" menu-id="'+note.id+'"><i class="layui-icon ' + note.icon + '"></i><span>' + note.title + '</span></a>';
+	                content += '<a '+ target +'  href="'+href+'" menu-type="'+note.type+'" menu-id="'+note.id+'"><i class="' + note.icon + '"></i><span>' + note.title + '</span></a>';
 				} else if (note.type == 1) {
 					// 创 建 菜 单 结 构
-					content += '<a class="site-demo-active" menu-type="'+note.type+'" menu-url="' + note.href + '" menu-id="' + note.id +'" menu-title="' + note.title + '" menu-icon="' + note.icon + '" href="javascript:;"><i class="layui-icon ' + note.icon +'"></i><span>' + note.title + '</span></a>';
+					content += '<a '+ target +' class="'+calss+'" menu-type="'+note.type+'" menu-url="' + note.href + '" menu-id="' + note.id +'" menu-title="' + note.title + '" menu-icon="' + note.icon + '" href="'+href+'" ><i class="' + note.icon +'"></i><span>' + note.title + '</span></a>';
 				}
 				// 加 载 子 项 目 录
 				content += loadchild(note);
@@ -334,7 +368,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 	        // 封 装
 			
 		}else{
-			content += '<div class="toast"><i class="layui-icon layui-icon-more"></i></div>';
+			content += '<div class="toast"> 无 内 容 </div>';
 		
 		   /* 暂 无 数 据&nbsp;&nbsp;&nbsp;&nbsp; */
 		}

@@ -1,4 +1,4 @@
-package com.pearadmin.controller.system;
+package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.MessageConstants;
@@ -9,7 +9,6 @@ import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.service.ISysDictDataService;
-import org.hibernate.validator.internal.engine.MessageInterpolatorContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 

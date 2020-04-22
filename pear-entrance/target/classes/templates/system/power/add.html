@@ -125,6 +125,9 @@
         });
 
         form.on('submit(power-save)', function(data){
+
+            data.icon = "layui-icon "+data.icon;
+
             $.ajax({
                 url:'/system/power/save',
                 data:JSON.stringify(data.field),
