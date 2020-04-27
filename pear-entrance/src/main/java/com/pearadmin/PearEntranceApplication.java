@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class PearEntranceApplication {
 

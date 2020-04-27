@@ -1,6 +1,6 @@
 # Tomcat 端口
 server:
-  port: 8888
+  port: 9191
 
 spring:
   # Druid Pool 运行环境
@@ -19,6 +19,7 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
 
+# logging 配置
 logging:
   level:
     com.pearadmin.*: DEBUG
