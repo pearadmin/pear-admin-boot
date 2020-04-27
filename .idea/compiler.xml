@@ -16,6 +16,7 @@
         <module name="pear-action" />
         <module name="pear-operate" />
         <module name="pear-common" />
+        <module name="pear-process" />
         <module name="pear-netty" />
       </profile>
     </annotationProcessing>

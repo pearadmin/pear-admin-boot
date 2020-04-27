@@ -355,7 +355,7 @@ layui.define(['table', 'jquery', 'element','form','pearTab','pearMenu','pearFram
 			offset: 'rb',
 			area: ['340px', 'calc(100% - 60px)'],
 			title: false,
-			shade: 0.1,
+			shade: 0,
 			closeBtn:0,
 			shadeClose:false,
 			anim: -1,

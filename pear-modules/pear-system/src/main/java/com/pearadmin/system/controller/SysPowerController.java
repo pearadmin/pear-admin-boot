@@ -137,24 +137,33 @@ public class SysPowerController extends BaseController {
         return dataTree(list);
     }
 
-
+    /**
+     * Describe: 根据 Id 开启用户
+     * Param powerId
+     * Return ResuTree
+     * */
     @PutMapping("enable")
     public ResuBean enable(@RequestBody SysPower sysPower){
         sysPower.setEnable("0");
         boolean result = sysPowerService.update(sysPower);
         return decide(
-                result,                           // 响应结果
+                result,                            // 响应结果
                 MessageConstants.UPDATE_SUCCESS,   // 成功消息
                 MessageConstants.UPDATE_FAILURE    // 失败消息
         );
     }
 
+    /**
+     * Describe: 根据 Id 禁用用户
+     * Param powerId
+     * Return ResuTree
+     * */
     @PutMapping("disable")
     public ResuBean disable(@RequestBody SysPower sysPower){
         sysPower.setEnable("1");
         boolean result = sysPowerService.update(sysPower);
         return decide(
-                result,                           // 响应结果
+                result,                            // 响应结果
                 MessageConstants.UPDATE_SUCCESS,   // 成功消息
                 MessageConstants.UPDATE_FAILURE    // 失败消息
         );

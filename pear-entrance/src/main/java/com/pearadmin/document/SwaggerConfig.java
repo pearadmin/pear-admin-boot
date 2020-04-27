@@ -15,11 +15,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
+    /**
+     * Describe: 接口文档配置
+     * */
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -30,10 +32,14 @@ public class SwaggerConfig {
                 .build();
     }
 
+    /**
+     * Describe: 生成 API 文档信息
+     * */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Pear Admin 文档")
                 .version("2.0")
                 .build();
     }
+
 }

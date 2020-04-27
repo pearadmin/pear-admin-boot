@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("login")
 public class LoginController {
-
     /**
      * Describe: 获取登录视图
      * Param: ModelAndView
@@ -24,5 +23,4 @@ public class LoginController {
         modelAndView.setViewName("login");
         return modelAndView;
     }
-
 }

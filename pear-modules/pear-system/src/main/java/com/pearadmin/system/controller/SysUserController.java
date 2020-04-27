@@ -18,7 +18,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Set;
@@ -71,9 +70,7 @@ public class SysUserController extends BaseController {
     @GetMapping("data")
     @ApiOperation(value="获取用户列表数据")
     public ResuTable data(PageDomain pageDomain,SysUser sysUser){
-
         PageInfo<SysUser> pageInfo = sysUserService.page(sysUser,pageDomain);
-
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
@@ -186,7 +183,11 @@ public class SysUserController extends BaseController {
         return sysUserService.getUserMenu(username);
     }
 
-
+    /**
+     * Describe: 根据 userId 开启用户
+     * Param: SysUser
+     * Return: 执行结果
+     * */
     @PutMapping("enable")
     @ApiOperation(value = "开启用户登录")
     public ResuBean enable(@RequestBody SysUser sysUser){
@@ -199,15 +200,21 @@ public class SysUserController extends BaseController {
         );
     }
 
+    /**
+     * Describe: 根据 userId 禁用用户
+     * Param: SysUser
+     * Return: 执行结果
+     * */
     @PutMapping("disable")
     @ApiOperation(value = "禁用用户登录")
     public ResuBean disable(@RequestBody SysUser sysUser){
         sysUser.setEnable("1");
         boolean result = sysUserService.update(sysUser);
         return decide(
-                result,                            // 响应结果
+                result,                             // 响应结果
                 MessageConstants.UPDATE_SUCCESS,    // 成功消息
                 MessageConstants.UPDATE_FAILURE     // 失败消息
         );
     }
+
 }

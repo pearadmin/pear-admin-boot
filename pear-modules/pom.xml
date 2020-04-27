@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!-- 仓库信息 -->
     <parent>
         <groupId>com</groupId>
         <artifactId>pearadmin</artifactId>
@@ -14,6 +15,7 @@
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
+    <!-- 依赖管理 -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -35,12 +37,14 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- 模块管理 -->
     <modules>
         <module>pear-system</module>    <!-- 系统业务模块 -->
         <module>pear-security</module>  <!-- 权限控制模块 -->
         <module>pear-schedule</module>  <!-- 定时任务模块 -->
         <module>pear-generator</module> <!-- 代码生成模块 -->
         <module>pear-operate</module>   <!-- 系统日志模块 -->
+        <module>pear-process</module>   <!-- 工作任务模块 -->
     </modules>
 
 </project>

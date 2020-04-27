@@ -163,6 +163,11 @@ public class SysRoleController extends BaseController {
         );
     }
 
+    /**
+     * Describe: 根据 Id 启用角色
+     * Param: roleId
+     * Return: ResuBean
+     * */
     @PutMapping("enable")
     public ResuBean enable(@RequestBody SysRole sysRole){
         sysRole.setEnable("0");
@@ -174,6 +179,11 @@ public class SysRoleController extends BaseController {
         );
     }
 
+    /**
+     * Describe: 根据 Id 禁用角色
+     * Param: roleId
+     * Return: ResuBean
+     * */
     @PutMapping("disable")
     public ResuBean disable(@RequestBody SysRole sysRole){
         sysRole.setEnable("1");
@@ -184,5 +194,4 @@ public class SysRoleController extends BaseController {
                 MessageConstants.UPDATE_FAILURE     // 失败消息
         );
     }
-
 }

@@ -91,7 +91,6 @@
         let iconPicker = layui.iconPicker;
         let dtree = layui.dtree;
 
-
         dtree.renderSelect({
             elem: "#selectParent",
             url: "/system/power/selectParent",
@@ -125,8 +124,6 @@
         });
 
         form.on('submit(power-save)', function(data){
-
-            data.icon = "layui-icon "+data.icon;
 
             $.ajax({
                 url:'/system/power/save',

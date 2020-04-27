@@ -47,19 +47,10 @@
             <div id="sideMenu"></div>
         </div>
         <ul class="bottom-nav">
-            <li class="head-nav-item">
-                <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i></a>
-            </li>
-            <li class="head-nav-item">
-                <a href="javascript:;"><i class="layui-icon layui-icon-username"></i></a>
-            </li>
-
-            <li class="head-nav-item">
-                <a href="javascript:;"><i class="layui-icon layui-icon-help"></i></a>
-            </li>
-            <li class="head-nav-item">
-                <a href="javascript:;"><i class="layui-icon layui-icon-set-fill"></i></a>
-            </li>
+            <li class="head-nav-item"><a href="javascript:;"><i class="layui-icon layui-icon-notice"></i></a></li>
+            <li class="head-nav-item"><a href="javascript:;"><i class="layui-icon layui-icon-username"></i></a></li>
+            <li class="head-nav-item"><a href="javascript:;"><i class="layui-icon layui-icon-help"></i></a></li>
+            <li class="head-nav-item"><a href="javascript:;"><i class="layui-icon layui-icon-set-fill"></i></a></li>
         </ul>
     </div>
     <!-- Side End -->
@@ -84,14 +75,15 @@
         let layer = layui.layer;
 
         let config = {
-            keepLoad:false,                        // 主 页 加 载 过 度 时 长
-            muiltTab:true,                        // 是 否 开 启 多 标 签 页 true 开启 false 关闭
-            control:false,                        // 是 否 开 启 多 系 统 菜 单 true 开启 false 关闭
-            theme:"dark-theme",                   // 默 认 主 题 样 式 dark-theme 默认主题 light-theme 亮主题
-            index:'/home',   // 默 认 加 载 主 页
-            data:'/system/user/getUserMenu?username=admin'           // 菜 单 数 据 加 载 地 址
+            keepLoad:false,                                  // 主 页 加 载 过 度 时 长
+            muiltTab:true,                                   // 是 否 开 启 多 标 签 页 true 开启 false 关闭
+            control:false,                                   // 是 否 开 启 多 系 统 菜 单 true 开启 false 关闭
+            theme:"dark-theme",                              // 默 认 主 题 样 式 dark-theme 默认主题 light-theme 亮主题
+            index:'/home',                                   // 默 认 加 载 主 页
+            data:'/system/user/getUserMenu?username=admin'   // 菜 单 数 据 加 载 地 址
         };
 
+        // 初 始 化 框 架 配 置
         pearAdmin.render(config);
 
         $("body").on("click",".logout",function(){
@@ -110,6 +102,8 @@
                 }
             })
         })
+
+
     })
 </script>
 </body>

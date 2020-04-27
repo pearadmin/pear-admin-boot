@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-generator/pear-generator.iml" filepath="$PROJECT_DIR$/pear-modules/pear-generator/pear-generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-modules.iml" filepath="$PROJECT_DIR$/pear-modules/pear-modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-operate/pear-operate.iml" filepath="$PROJECT_DIR$/pear-modules/pear-operate/pear-operate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-process/pear-process.iml" filepath="$PROJECT_DIR$/pear-modules/pear-process/pear-process.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-schedule/pear-schedule.iml" filepath="$PROJECT_DIR$/pear-modules/pear-schedule/pear-schedule.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-security/pear-security.iml" filepath="$PROJECT_DIR$/pear-modules/pear-security/pear-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-system/pear-system.iml" filepath="$PROJECT_DIR$/pear-modules/pear-system/pear-system.iml" />

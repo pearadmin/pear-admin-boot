@@ -102,7 +102,11 @@ public class SysDictTypeController extends BaseController {
         );
     }
 
-
+    /**
+     * Describe: 根据 Id 启用字典
+     * Param dictId
+     * Return ResuTree
+     * */
     @PutMapping("enable")
     public ResuBean enable(@RequestBody SysDictType sysDictType){
         sysDictType.setEnable("0");
@@ -114,6 +118,11 @@ public class SysDictTypeController extends BaseController {
         );
     }
 
+    /**
+     * Describe: 根据 Id 禁用字典
+     * Param dictId
+     * Return ResuTree
+     * */
     @PutMapping("disable")
     public ResuBean disable(@RequestBody SysDictType sysDIctType){
         sysDIctType.setEnable("1");
