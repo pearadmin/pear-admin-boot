@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.pearadmin</groupId>
-            <artifactId>pear-framework</artifactId>
+            <artifactId>pear-security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>com.pearadmin</groupId>
-            <artifactId>pear-generator</artifactId>
+            <artifactId>pear-generate</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -65,7 +65,6 @@
         <module>pear-common</module>        <!-- 公共模块 -->
         <module>pear-entrance</module>      <!-- 入口模块 -->
         <module>pear-modules</module>       <!-- 业务模块 -->
-        <module>pear-framework</module>     <!-- 核心模块 -->
     </modules>
 
     <!-- 构建工具 -->

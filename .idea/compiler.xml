@@ -7,24 +7,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="pear-generate" />
+        <module name="pear-security" />
         <module name="pear-datasource" />
         <module name="pear-schedule" />
         <module name="pear-entrance" />
-        <module name="pear-generator" />
+        <module name="pear-activiti" />
         <module name="pear-system" />
-        <module name="pear-framework" />
         <module name="pear-action" />
         <module name="pear-common" />
-        <module name="pear-process" />
         <module name="pear-netty" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="pear-action" target="1.8" />
+      <module name="pear-activiti" target="1.5" />
       <module name="Pear-Admin-Boot" target="1.8" />
       <module name="pear-common" target="1.8" />
       <module name="pear-component" target="1.8" />
-      <module name="pear-datasource" target="1.5" />
+      <module name="pear-datasource" target="1.8" />
       <module name="pear-encode" target="1.8" />
       <module name="pear-entrance" target="1.8" />
       <module name="pear-framework" target="1.8" />
@@ -48,6 +49,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Pear-Admin-Boot" options="-parameters" />
       <module name="pear-action" options="-parameters" />
+      <module name="pear-activiti" options="-parameters" />
       <module name="pear-common" options="-parameters" />
       <module name="pear-component" options="-parameters" />
       <module name="pear-datasource" options="-parameters" />

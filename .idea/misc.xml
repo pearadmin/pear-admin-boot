@@ -12,14 +12,16 @@
         <option value="$PROJECT_DIR$/pear-component/pear-security/pom.xml" />
         <option value="$PROJECT_DIR$/pear-component/pear-source/pom.xml" />
         <option value="$PROJECT_DIR$/pear-modules/pear-schedule/pom.xml" />
-        <option value="$PROJECT_DIR$/pear-modules/pear-process/pom.xml" />
-        <option value="$PROJECT_DIR$/pear-framework/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-modules/pear-generate/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-modules/pear-security/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-modules/pear-datasource/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/pear-component/pear-operate/pom.xml" />
         <option value="$PROJECT_DIR$/pear-component/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-modules/pear-generator/pom.xml" />
         <option value="$PROJECT_DIR$/pear-modules/pear-logging/pom.xml" />
       </set>
     </option>
