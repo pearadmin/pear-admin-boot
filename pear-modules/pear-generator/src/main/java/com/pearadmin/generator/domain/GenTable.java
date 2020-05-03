@@ -39,7 +39,7 @@ public class GenTable extends BaseDomain {
 	private String functionName;
 	//表的主键
 	private GenTableColumn primaryKey;
-	//表的列名(不包含主键)
+
 	private List<GenTableColumn> columns;
 
 	public String getTableId() {

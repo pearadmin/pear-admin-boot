@@ -1,6 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.annotation.OperLog;
 import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
@@ -8,7 +9,6 @@ import com.pearadmin.common.web.domain.ResuBean;
 import com.pearadmin.common.web.domain.ResuMenu;
 import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.operate.aspect.lang.annotation.OperLog;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
@@ -27,7 +27,6 @@ import java.util.Set;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @RestController
 @RequestMapping("system/user")
 @Api(value="用户controller",tags={"用户操作接口"})
@@ -44,6 +43,9 @@ public class SysUserController extends BaseController {
     @Resource
     private ISysUserService sysUserService;
 
+    /**
+     * Describe: 角色模块服务
+     * */
     @Resource
     private ISysRoleService sysRoleService;
 
@@ -100,11 +102,7 @@ public class SysUserController extends BaseController {
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         Boolean result = sysUserService.save(sysUser);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.SAVE_SUCCESS,     // 成功消息
-                MessageConstants.SAVE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -131,11 +129,7 @@ public class SysUserController extends BaseController {
     public ResuBean update(@RequestBody SysUser sysUser){
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         boolean result = sysUserService.update(sysUser);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.UPDATE_SUCCESS,    // 成功消息
-                MessageConstants.UPDATE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -147,11 +141,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value="批量删除用户")
     public ResuBean batchRemove(@PathVariable String ids){
         boolean result = sysUserService.batchRemove(ids.split(","));
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.REMOVE_SUCCESS,    // 成功消息
-                MessageConstants.REMOVE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -164,12 +154,7 @@ public class SysUserController extends BaseController {
     @PreAuthorize("hasPermission('/system/user/remove','sys:user:remove')")
     public ResuBean remove(@PathVariable String id){
         boolean result  = sysUserService.remove(id);
-        // 根据 userId 删除 映射关系
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.REMOVE_SUCCESS,    // 成功消息
-                MessageConstants.REMOVE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -193,11 +178,7 @@ public class SysUserController extends BaseController {
     public ResuBean enable(@RequestBody SysUser sysUser){
         sysUser.setEnable("0");
         boolean result = sysUserService.update(sysUser);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.UPDATE_SUCCESS,    // 成功消息
-                MessageConstants.UPDATE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -210,11 +191,7 @@ public class SysUserController extends BaseController {
     public ResuBean disable(@RequestBody SysUser sysUser){
         sysUser.setEnable("1");
         boolean result = sysUserService.update(sysUser);
-        return decide(
-                result,                             // 响应结果
-                MessageConstants.UPDATE_SUCCESS,    // 成功消息
-                MessageConstants.UPDATE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
 }

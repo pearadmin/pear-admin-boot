@@ -27,37 +27,36 @@
     <!-- 依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- 数据库连接工具 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.19</version>
             </dependency>
+            <!-- 数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>1.1.21</version>
             </dependency>
+            <!-- 数据库操作框架 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>1.1.1</version>
             </dependency>
+            <!-- 接口文档 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>2.9.2</version>
             </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.9.2</version>
-            </dependency>
+            <!-- JSON解析工具 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.2.68</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -66,8 +65,10 @@
         <module>pear-common</module>        <!-- 公共模块 -->
         <module>pear-entrance</module>      <!-- 入口模块 -->
         <module>pear-modules</module>       <!-- 业务模块 -->
+        <module>pear-framework</module>     <!-- 核心模块 -->
     </modules>
 
+    <!-- 构建工具 -->
     <build>
         <resources>
             <resource>

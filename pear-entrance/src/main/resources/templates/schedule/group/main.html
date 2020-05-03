@@ -85,14 +85,13 @@
         let $ = layui.jquery;
         let dtree = layui.dtree;
 
-        let MODULE_PATH = "/schedule/job/";
+        let MODULE_PATH = "/schedule/group/";
 
         let cols = [
             [
                 {type:'checkbox'},
-                {title: '组名称', field: 'jobName', align:'center',width:100},
-                {title: '状态', field: 'beanName', align:'center'},
-                {title: '描述', field: 'params', align:'center'},
+                {title: '组名称', field: 'groupName', align:'center',width:100},
+                {title: '描述', field: 'remark', align:'center'},
                 {title: '操作', toolbar: '#job-bar', align:'center', width:220}
             ]
         ]
@@ -182,7 +181,7 @@
                     layer.close(loading);
                     if(result.success){
                         layer.msg(result.msg,{icon:1,time:1000},function(){
-                            table.reload("job-table");
+                            table.reload("group-table");
                         });
                     }else{
                         layer.msg(result.msg,{icon:2,time:1000});

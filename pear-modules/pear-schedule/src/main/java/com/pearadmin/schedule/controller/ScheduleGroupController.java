@@ -1,8 +1,17 @@
 package com.pearadmin.schedule.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.MessageConstants;
+import com.pearadmin.common.tools.serial.SnowFlake;
+import com.pearadmin.common.web.base.BaseController;
+import com.pearadmin.common.web.domain.ResuBean;
+import com.pearadmin.common.web.domain.ResuTable;
+import com.pearadmin.common.web.domain.request.PageDomain;
+import com.pearadmin.schedule.domain.ScheduleGroupBean;
+import com.pearadmin.schedule.service.IScheduleGroupService;
+import org.hibernate.validator.internal.engine.MessageInterpolatorContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -12,9 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
  * */
 @RestController
 @RequestMapping("schedule/group")
-public class ScheduleGroupController {
+public class ScheduleGroupController extends BaseController {
 
     private String path = "schedule/group/";
+
+    @Autowired
+    private IScheduleGroupService scheduleGroupService;
 
     /**
      * Describe: 获取任务组列表视图
@@ -28,6 +40,17 @@ public class ScheduleGroupController {
     }
 
     /**
+     * Describe: 任务列表数据
+     * Param: PageDomain
+     * Return ResuTable
+     * */
+    @GetMapping("data")
+    public ResuTable data(ScheduleGroupBean scheduleGroupBean, PageDomain pageDomain){
+        PageInfo<ScheduleGroupBean> pageInfo = scheduleGroupService.page(scheduleGroupBean,pageDomain);
+        return pageTable(pageInfo.getList(),pageInfo.getTotal());
+    }
+
+    /**
      * Describe: 获取任务组新增视图
      * Param ModelAndView
      * Return ModelAndView
@@ -36,5 +59,30 @@ public class ScheduleGroupController {
     public ModelAndView add(ModelAndView modelAndView){
         modelAndView.setViewName(path + "add");
         return modelAndView;
+    }
+
+    /**
+     * Describe: 修改任务组视图
+     * Param: ModelAndView
+     * Return: ModelAndView
+     * */
+    @GetMapping("edit")
+    public ModelAndView edit(ModelAndView modelAndView){
+        modelAndView.setViewName(path + "edit");
+        return modelAndView;
+    }
+
+    /**
+     * Describe: 新增任务组
+     * Param: ModelAndView
+     * Return: ModelAndView
+     * */
+    @PostMapping("save")
+    public ResuBean save(@RequestBody ScheduleGroupBean scheduleGroupBean){
+        scheduleGroupBean.setGroupId("" + new SnowFlake().nextId());
+        Boolean result = scheduleGroupService.save(scheduleGroupBean);
+        return decide(result,
+                MessageConstants.SAVE_SUCCESS,
+                MessageConstants.SAVE_FAILURE);
     }
 }

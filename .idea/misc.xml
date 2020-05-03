@@ -11,10 +11,9 @@
         <option value="$PROJECT_DIR$/pear-component/pom.xml" />
         <option value="$PROJECT_DIR$/pear-component/pear-security/pom.xml" />
         <option value="$PROJECT_DIR$/pear-component/pear-source/pom.xml" />
-        <option value="$PROJECT_DIR$/pear-modules/pear-security/pom.xml" />
         <option value="$PROJECT_DIR$/pear-modules/pear-schedule/pom.xml" />
-        <option value="$PROJECT_DIR$/pear-modules/pear-operate/pom.xml" />
         <option value="$PROJECT_DIR$/pear-modules/pear-process/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-framework/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

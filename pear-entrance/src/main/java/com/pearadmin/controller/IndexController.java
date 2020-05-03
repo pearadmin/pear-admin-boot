@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("index")
 public class IndexController {
+
     /**
      * Describe: 获取主页视图
      * Param: ModelAndView

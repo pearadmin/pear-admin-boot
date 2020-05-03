@@ -1,5 +1,6 @@
 package com.pearadmin.common.web.base;
 
+import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.web.domain.ResuBean;
 import com.pearadmin.common.web.domain.ResuTable;
 import com.pearadmin.common.web.domain.ResuTree;
@@ -97,4 +98,16 @@ public class BaseController {
         }
     }
 
+    /**
+     * Describe: 根据 Boolean 自主返回 Success Failure 封装
+     * Param msg
+     * Return ResuBean
+     * */
+    public static ResuBean  decide(Boolean result){
+        if(result){
+            return success(MessageConstants.OPERATE_SUCCESS);
+        }else{
+            return failure(MessageConstants.OPERATE_FAILURE);
+        }
+    }
 }

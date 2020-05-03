@@ -84,7 +84,6 @@ public class ScheduleJobController extends BaseController {
      * */
     @RequestMapping("/save")
     public ResuBean save (@RequestBody ScheduleJobBean scheduleJob){
-        System.out.println(scheduleJob.toString());
         scheduleJob.setJobId("" + new SnowFlake().nextId());
         scheduleJob.setCreateTime(new Date());
         Boolean result = scheduleJobService.save(scheduleJob);
@@ -143,9 +142,7 @@ public class ScheduleJobController extends BaseController {
      * */
     @RequestMapping("/resume")
     public ResuBean resumeJob (String jobId){
-
         Boolean result = scheduleJobService.resume(jobId);
-
         return decide(result,"恢复成功","恢复失败");
     }
 

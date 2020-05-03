@@ -19,4 +19,8 @@ public class MessageConstants {
 
     public static String UPDATE_FAILURE = "修改失败";
 
+    public static String OPERATE_SUCCESS = "操作成功";
+
+    public static String OPERATE_FAILURE = "操作失败";
+
 }

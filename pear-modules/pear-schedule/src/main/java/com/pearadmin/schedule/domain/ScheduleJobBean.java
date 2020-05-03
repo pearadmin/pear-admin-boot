@@ -53,5 +53,4 @@ public class ScheduleJobBean extends BaseDomain {
 	 * */
 	private String groupId;
 
-
 }

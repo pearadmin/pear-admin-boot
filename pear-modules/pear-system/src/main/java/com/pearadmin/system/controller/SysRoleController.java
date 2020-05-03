@@ -1,7 +1,6 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.ResuBean;
@@ -75,11 +74,7 @@ public class SysRoleController extends BaseController {
     public ResuBean save(@RequestBody SysRole sysRole){
         sysRole.setRoleId("" + new SnowFlake().nextId());
         boolean result = sysRoleService.save(sysRole);
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.SAVE_SUCCESS,     // 成功消息
-                MessageConstants.SAVE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -103,11 +98,7 @@ public class SysRoleController extends BaseController {
     public ResuBean update(@RequestBody  SysRole sysRole){
 
        boolean result = sysRoleService.update(sysRole);
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.UPDATE_SUCCESS,   // 成功消息
-                MessageConstants.UPDATE_FAILURE    // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -130,11 +121,7 @@ public class SysRoleController extends BaseController {
     @PutMapping("saveRolePower")
     public ResuBean saveRolePower(String roleId,String powerIds){
         boolean result = sysRoleService.saveRolePower(roleId, Arrays.asList(powerIds.split(",")));
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.SAVE_SUCCESS,     // 成功消息
-                MessageConstants.SAVE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -156,11 +143,7 @@ public class SysRoleController extends BaseController {
     @DeleteMapping("remove/{id}")
     public ResuBean remove(@PathVariable String id){
         boolean result  = sysRoleService.remove(id);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.REMOVE_SUCCESS,    // 成功消息
-                MessageConstants.REMOVE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -172,11 +155,7 @@ public class SysRoleController extends BaseController {
     public ResuBean enable(@RequestBody SysRole sysRole){
         sysRole.setEnable("0");
         boolean result =  sysRoleService.update(sysRole);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.UPDATE_SUCCESS,    // 成功消息
-                MessageConstants.UPDATE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -188,10 +167,6 @@ public class SysRoleController extends BaseController {
     public ResuBean disable(@RequestBody SysRole sysRole){
         sysRole.setEnable("1");
         boolean result =  sysRoleService.update(sysRole);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.UPDATE_SUCCESS,    // 成功消息
-                MessageConstants.UPDATE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 }
