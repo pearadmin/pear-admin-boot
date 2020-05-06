@@ -113,4 +113,9 @@
         </set>
         where id = #{id}
     </update>
+
+    <!-- 根据 Id 删除用户数据 -->
+    <delete id="deleteById" parameterType="string">
+          delete from sys_dict_type where id = #{id}
+    </delete>
 </mapper>

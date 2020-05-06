@@ -39,4 +39,25 @@ public class ScheduleGroupServiceImpl implements IScheduleGroupService {
             return false;
         }
     }
+
+    @Override
+    public Boolean remove(String groupId) {
+        Integer result = scheduleGroupMapper.deleteById(groupId);
+        if(result>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean batchRemove(String groupIds) {
+        return null;
+    }
+
+    @Override
+    public ScheduleGroupBean getById(String groupId) {
+        ScheduleGroupBean scheduleGroupBean = scheduleGroupMapper.selectById(groupId);
+        return scheduleGroupBean;
+    }
 }

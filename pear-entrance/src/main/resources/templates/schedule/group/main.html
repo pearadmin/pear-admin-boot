@@ -15,7 +15,7 @@
     <div class="layui-card-body">
         <form class="layui-form" action="">
             <div class="layui-form-item">
-                <label class="layui-form-label">任务名称</label>
+                <label class="layui-form-label">任务组</label>
                 <div class="layui-input-inline">
                     <input type="text" name="realName" placeholder="" class="layui-input">
                 </div>
@@ -47,22 +47,9 @@
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
-    <button class="pear-btn pear-btn-warming pear-btn-md" lay-event="runLog">
-        <i class="layui-icon layui-icon-file"></i>
-        日志
-    </button>
 </script>
 
 <script type="text/html" id="job-bar">
-    {{#if (d.status == 0) { }}
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="pear-icon pear-icon-tingzhi"></i>
-    </button>
-    {{# }else if(d.status == 1){ }}
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="pear-icon pear-icon-kaiqi"></i>
-    </button>
-    {{# } }}
-    <button class="pear-btn pear-btn-success pear-btn-sm" lay-event="run"><i class="pear-icon pear-icon-kaiqi"></i>
-    </button>
     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
@@ -155,8 +142,30 @@
                 type: 2,
                 title: '修改',
                 shade: 0.1,
-                area: ['500px', '500px'],
-                content: MODULE_PATH + 'edit?jobId='+obj.data['jobId']
+                area: ['500px', '300px'],
+                content: MODULE_PATH + 'edit?groupId='+obj.data['groupId']
+            });
+        }
+
+        window.remove = function(obj){
+            layer.confirm('确定要删除该分组', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH+"remove/"+obj.data['groupId'],
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                obj.del();
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
             });
         }
 
@@ -228,27 +237,6 @@
             })
         }
 
-        window.remove = function(obj){
-            layer.confirm('确定要删除该用户', {icon: 3, title:'提示'}, function(index){
-                layer.close(index);
-                let loading = layer.load();
-                $.ajax({
-                    url: MODULE_PATH+"remove/"+obj.data['userId'],
-                    dataType:'json',
-                    type:'delete',
-                    success:function(result){
-                        layer.close(loading);
-                        if(result.success){
-                            layer.msg(result.msg,{icon:1,time:1000},function(){
-                                obj.del();
-                            });
-                        }else{
-                            layer.msg(result.msg,{icon:2,time:1000});
-                        }
-                    }
-                })
-            });
-        }
 
         window.batchRemove = function(obj){
             let data = table.checkStatus(obj.config.id).data;

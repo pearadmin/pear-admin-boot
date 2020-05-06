@@ -1,7 +1,7 @@
 package com.pearadmin.common.constant;
 
 /**
- * Describe: 返回消息 静态配置类
+ * Describe: 返 回 消 息 静 态 配 置 类
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

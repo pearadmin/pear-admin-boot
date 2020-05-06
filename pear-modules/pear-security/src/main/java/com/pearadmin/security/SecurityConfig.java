@@ -1,7 +1,7 @@
-package com.pearadmin.security.config;
+package com.pearadmin.security;
 
 import com.pearadmin.common.constant.SecurityConstants;
-import com.pearadmin.security.hander.*;
+import com.pearadmin.security.handler.*;
 import com.pearadmin.security.service.CustomAuthenticationProvider;
 import com.pearadmin.security.service.CustomPermissionEvaluator;
 import org.springframework.context.annotation.Bean;

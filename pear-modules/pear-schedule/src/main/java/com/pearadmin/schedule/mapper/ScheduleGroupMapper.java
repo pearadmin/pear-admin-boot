@@ -11,4 +11,8 @@ public interface ScheduleGroupMapper {
     List<ScheduleGroupBean> selectList(ScheduleGroupBean scheduleGroupBean);
 
     Integer insert(ScheduleGroupBean scheduleGroupBean);
+
+    Integer deleteById(String groupId);
+
+    ScheduleGroupBean selectById(String groupId);
 }

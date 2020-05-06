@@ -15,4 +15,5 @@ public interface SysDictTypeMapper {
 
     public Integer updateById(SysDictType sysDictType);
 
+    public Integer deleteById(String id);
 }

@@ -16,6 +16,10 @@
         select * from schedule_group
     </select>
 
+    <select id="selectById" resultMap="ScheduleGroupMap">
+        select * from schedule_group where group_id = #{groupId}
+    </select>
+
     <insert id="insert" parameterType="ScheduleGroup">
         insert into schedule_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -66,4 +70,8 @@
         </trim>
     </insert>
 
+    <!-- 根据标识删除定时任务组 -->
+    <delete id="deleteById" parameterType="string">
+        delete from schedule_group where group_id = #{groupId}
+    </delete>
 </mapper>

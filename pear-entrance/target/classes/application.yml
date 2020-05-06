@@ -9,7 +9,9 @@ spring:
 
 # mybatis 配置
 mybatis:
+  # 配置扫描
   mapper-locations: classpath*:**/xml/**.xml
+  # 别名扫描
   type-aliases-package: com.pearadmin
 
 # pageHelper 配置
@@ -22,4 +24,5 @@ pagehelper:
 # logging 配置
 logging:
   level:
+    # 日志级别
     com.pearadmin.*: DEBUG

@@ -14,6 +14,8 @@ public class PearEntranceApplication {
      * Describe: 程 序 入 口
      * */
     public static void main(String[] args) {
+
         SpringApplication.run(PearEntranceApplication.class, args);
+
     }
 }

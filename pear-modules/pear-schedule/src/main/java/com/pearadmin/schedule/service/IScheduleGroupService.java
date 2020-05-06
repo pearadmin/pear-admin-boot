@@ -14,4 +14,9 @@ public interface IScheduleGroupService {
 
     Boolean save(ScheduleGroupBean scheduleGroupBean);
 
+    Boolean remove(String groupId);
+
+    Boolean batchRemove(String groupIds);
+
+    ScheduleGroupBean getById(String groupId);
 }

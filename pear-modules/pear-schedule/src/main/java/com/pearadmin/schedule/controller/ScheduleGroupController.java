@@ -67,7 +67,8 @@ public class ScheduleGroupController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("edit")
-    public ModelAndView edit(ModelAndView modelAndView){
+    public ModelAndView edit(ModelAndView modelAndView,String groupId){
+        modelAndView.addObject("scheduleGroup",scheduleGroupService.getById(groupId));
         modelAndView.setViewName(path + "edit");
         return modelAndView;
     }
@@ -84,5 +85,16 @@ public class ScheduleGroupController extends BaseController {
         return decide(result,
                 MessageConstants.SAVE_SUCCESS,
                 MessageConstants.SAVE_FAILURE);
+    }
+
+    /**
+     * Describe: 删除任务组
+     * Param: groupId
+     * Return: ResuBean
+     * */
+    @DeleteMapping("remove/{id}")
+    public ResuBean remove(@PathVariable("id")String id){
+        Boolean result = scheduleGroupService.remove(id);
+        return decide(result);
     }
 }

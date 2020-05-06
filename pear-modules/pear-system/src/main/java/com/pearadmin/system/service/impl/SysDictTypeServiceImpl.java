@@ -81,4 +81,14 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
             return false;
         }
     }
+
+    @Override
+    public Boolean remove(String id) {
+        Integer result = sysDictTypeMapper.deleteById(id);
+        if(result>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

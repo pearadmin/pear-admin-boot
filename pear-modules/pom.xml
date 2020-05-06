@@ -8,6 +8,8 @@
         <artifactId>pearadmin</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
+    <!-- 仓库地址 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-modules</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -34,16 +36,17 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>1.1.1</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <!-- 模块管理 -->
     <modules>
-        <module>pear-system</module>    <!-- 系统业务模块 -->
-        <module>pear-schedule</module>  <!-- 定时任务模块 -->
-        <module>pear-generate</module>  <!-- 代码生成模块 -->
-        <module>pear-security</module>  <!-- 系统安全模块 -->
-        <module>pear-datasource</module><!-- 多数据源模块 -->
+        <module>pear-system</module>     <!-- 系统业务模块 -->
+        <module>pear-schedule</module>   <!-- 定时任务模块 -->
+        <module>pear-generate</module>   <!-- 代码生成模块 -->
+        <module>pear-security</module>   <!-- 系统安全模块 -->
+        <module>pear-datasource</module> <!-- 多数据源模块 -->
     </modules>
 
 </project>

@@ -1,4 +1,4 @@
-package com.pearadmin.security.hander;
+package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.common.web.domain.ResuBean;

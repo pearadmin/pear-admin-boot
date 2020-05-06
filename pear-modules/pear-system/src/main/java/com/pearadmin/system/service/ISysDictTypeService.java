@@ -49,4 +49,6 @@ public interface ISysDictTypeService {
      * Return: Boolean
      * */
     Boolean updateById(SysDictType sysDictType);
+
+    Boolean remove(String id);
 }

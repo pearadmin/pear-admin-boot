@@ -1,7 +1,7 @@
 package com.pearadmin.common.constant;
 
 /**
- * Describe: 安全框架 静态配置类
+ * Describe: 安 全 框 架 静 态 配 置 类
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

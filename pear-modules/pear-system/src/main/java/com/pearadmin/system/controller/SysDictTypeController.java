@@ -95,11 +95,13 @@ public class SysDictTypeController extends BaseController {
     @PutMapping("update")
     public ResuBean update(@RequestBody SysDictType sysDictType){
         boolean result =  sysDictTypeService.updateById(sysDictType);
-        return decide(
-                result,                             // 响应结果
-                MessageConstants.UPDATE_SUCCESS,     // 成功消息
-                MessageConstants.UPDATE_FAILURE      // 失败消息
-        );
+        return decide(result);
+    }
+
+    @DeleteMapping("remove/{id}")
+    public ResuBean remove(@PathVariable("id")String id){
+        Boolean result = sysDictTypeService.remove(id);
+        return decide(result);
     }
 
     /**
@@ -111,11 +113,7 @@ public class SysDictTypeController extends BaseController {
     public ResuBean enable(@RequestBody SysDictType sysDictType){
         sysDictType.setEnable("0");
         boolean result = sysDictTypeService.updateById(sysDictType);
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.UPDATE_SUCCESS,     // 成功消息
-                MessageConstants.UPDATE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
 
     /**

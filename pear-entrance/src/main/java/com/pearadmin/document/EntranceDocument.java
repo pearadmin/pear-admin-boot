@@ -9,15 +9,14 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 /**
- * Describe: API 文档
+ * Describe: API 文 档
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class EntranceDocument {
 
     /**
      * Describe: 接口文档配置
