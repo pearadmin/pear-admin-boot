@@ -6,8 +6,6 @@ public class ParamMap extends HashMap {
 
     public ParamMap(){
 
-
-
     }
 
 }

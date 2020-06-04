@@ -16,6 +16,5 @@ public class PearEntranceApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(PearEntranceApplication.class, args);
-
     }
 }

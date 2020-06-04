@@ -56,6 +56,7 @@ public class EntranceController extends BaseController {
         modelAndView.setViewName("error/403");
         return modelAndView;
     }
+
     /**
      * Describe:找不带页面
      * Return:返回404页面
