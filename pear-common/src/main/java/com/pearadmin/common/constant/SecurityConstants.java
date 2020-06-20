@@ -10,5 +10,5 @@ public class SecurityConstants {
     /**
      * 不需要认证的地方
      */
-    public static final String ANT_MATCHERS = "/login/**,/admin/**,/component/**,/favicon.ico";
+    public static final String ANT_MATCHERS = "/login/**,/assets/**,/admin/**,/component/**,/favicon.ico";
 }

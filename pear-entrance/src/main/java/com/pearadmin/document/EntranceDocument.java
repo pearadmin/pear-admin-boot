@@ -35,6 +35,7 @@ public class EntranceDocument {
      * Describe: 生成 API 文档信息
      * */
     private ApiInfo apiInfo() {
+
         return new ApiInfoBuilder().title("接口文档").version("2.0").build();
     }
 
