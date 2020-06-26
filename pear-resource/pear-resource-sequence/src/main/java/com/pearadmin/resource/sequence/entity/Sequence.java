@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Sequence Id 存储对象 -- [就眠仪式]
+ *
  * */
 @Data
 @NoArgsConstructor

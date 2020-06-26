@@ -59,6 +59,10 @@
         </dependency>
         <dependency>
             <groupId>com.pearadmin</groupId>
+            <artifactId>pear-resource-sequence</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.pearadmin</groupId>
             <artifactId>pear-resource-datasource</artifactId>
         </dependency>
         <dependency>

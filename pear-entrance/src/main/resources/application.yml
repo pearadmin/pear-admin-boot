@@ -17,6 +17,16 @@ mybatis:
 # Pear 插 件 配 置 信 息
 pear:
   plugin:
+    # Sequence 配 置 信 息
+    sequence:
+      # 数 据 中 心
+      center-id: 1
+      # 机 器 编 码
+      worker-id: 1
+      # 最 小 空 闲
+      min-idle: 50
+      # 初 始 化 数 量
+      init-size: 360
     # Document 配 置 信 息
     document:
       # 文 档 标 题
