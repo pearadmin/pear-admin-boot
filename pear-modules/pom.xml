@@ -46,7 +46,6 @@
         <module>pear-schedule</module>   <!-- 定时任务模块 -->
         <module>pear-generate</module>   <!-- 代码生成模块 -->
         <module>pear-security</module>   <!-- 系统安全模块 -->
-        <module>pear-datasource</module> <!-- 多数据源模块 -->
     </modules>
 
 </project>

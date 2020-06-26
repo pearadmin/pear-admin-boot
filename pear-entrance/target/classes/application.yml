@@ -17,7 +17,7 @@ mybatis:
 # Pear 插 件 配 置 信 息
 pear:
   plugin:
-    # Sequence 配 置 信 息
+    # Document 配 置 信 息
     document:
       # 文 档 标 题
       title: Pear Admin API
@@ -35,7 +35,6 @@ pear:
       terms-of-service-url: https://gitee.com/pear_community
       # 版 本 信 息
       version: Release 2.0.0
-
       # 扩 展 信 息
       contact:
         # 作 者

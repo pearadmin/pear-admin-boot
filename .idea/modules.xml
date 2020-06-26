@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/pearadmin.iml" filepath="$PROJECT_DIR$/pearadmin.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-common/pear-common.iml" filepath="$PROJECT_DIR$/pear-common/pear-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-datasource/pear-datasource.iml" filepath="$PROJECT_DIR$/pear-modules/pear-datasource/pear-datasource.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-entrance/pear-entrance.iml" filepath="$PROJECT_DIR$/pear-entrance/pear-entrance.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-generate/pear-generate.iml" filepath="$PROJECT_DIR$/pear-modules/pear-generate/pear-generate.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-modules.iml" filepath="$PROJECT_DIR$/pear-modules/pear-modules.iml" />

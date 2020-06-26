@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="pear-generate" />
         <module name="pear-security" />
-        <module name="pear-datasource" />
         <module name="pear-schedule" />
         <module name="pear-entrance" />
         <module name="pear-system" />

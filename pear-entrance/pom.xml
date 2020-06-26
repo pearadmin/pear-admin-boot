@@ -44,11 +44,6 @@
             <artifactId>pear-generate</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-datasource</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <!-- 三方依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,6 +58,10 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-resource-datasource</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
@@ -70,11 +69,6 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.22</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
