@@ -72,13 +72,12 @@
 <script src="component/layui/layui.js"></script>
 <script>
     layui.use(['pearAdmin', 'jquery', 'pearSocial', 'layer'], function() {
-        var pearAdmin = layui.pearAdmin;
-        var $ = layui.jquery;
-        var layer = layui.layer;
-        var pearSocial = layui.pearSocial;
-        var pearAuth = layui.pearAuth;
+        let pearAdmin = layui.pearAdmin;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+        let pearSocial = layui.pearSocial;
 
-        var config = {
+        let config = {
             keepLoad: 2000, // 主 页 加 载 过 度 时 长 可为 false
             muiltTab: true, // 是 否 开 启 多 标 签 页 true 开启 false 关闭
             control: false, // 是 否 开 启 多 系 统 菜 单 true 开启 false 关闭
