@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../admin/css/pearCommon.css" />
+    <link rel="stylesheet" href="../../component/layui/css/layui.css" />
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">字典名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="realName" placeholder="" class="layui-input">
+                </div>
+                <label class="layui-form-label">字典标识</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" placeholder="" class="layui-input">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dict-type-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="dict-type-table" lay-filter="dict-type-table"></table>
+    </div>
+</div>
+</body>
+<script type="text/html" id="dict-type-toolbar">
+    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+        新增
+    </button>
+    <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+        删除
+    </button>
+</script>
+
+<script type="text/html" id="dict-type-bar">
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
+    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="details"><i class="layui-icon layui-icon-list"></i></button>
+    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
+</script>
+
+<script type="text/html" id="dict-type-enable">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dict-type-enable" {{d.enable == '0' ? 'checked' : '' }}>
+</script>
+
+<script src="../../component/layui/layui.js"></script>
+<script>
+    layui.use(['table','form','jquery'],function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+
+        let cols = [
+            [
+                {type:'checkbox'},
+                {title: '字典名称', field: 'typeName', align:'center', width:120},
+                {title: '字典标识', field: 'typeCode', align:'center'},
+                {title: '描述', field: 'description', align:'center'},
+                {title: '字典状态', field: 'enable', align:'center', templet:'#dict-type-enable'},
+                {title: '操作', toolbar: '#dict-type-bar', align:'center', width:180}
+            ]
+        ]
+
+        table.render({
+            elem: '#dict-type-table',
+            url: '/system/dictType/data',
+            page: true ,
+            cols: cols ,
+            skin: 'line',
+            toolbar: '#dict-type-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports']
+        });
+
+        table.on('tool(dict-type-table)', function(obj){
+            if(obj.event === 'remove'){
+                window.remove(obj);
+            } else if(obj.event === 'edit'){
+                window.edit(obj);
+            } else if(obj.event === 'details'){
+                window.details(obj);
+            }
+        });
+
+        table.on('toolbar(dict-type-table)', function(obj){
+            if(obj.event === 'add'){
+                window.add();
+            } else if(obj.event === 'refresh'){
+                window.refresh();
+            } else if(obj.event === 'batchRemove'){
+                layer.msg("批量删除")
+            }
+        });
+
+        form.on('switch(dict-type-enable)', function(obj){
+            let operate;
+
+            if(obj.elem.checked){
+                operate = "enable";
+            }else{
+                operate = "disable";
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url:'/system/dictType/'+operate,
+                data:JSON.stringify({id:this.value}),
+                dataType:'json',
+                contentType:'application/json',
+                type:'put',
+                success:function(result){
+                    layer.close(loading);
+                    if(result.success){
+                        layer.msg(result.msg,{icon:1,time:1000},function(){});
+                    }else{
+                        layer.msg(result.msg,{icon:2,time:1000});
+                    }
+                }
+            })
+        });
+
+        window.add = function(){
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: '/system/dictType/add'
+            });
+        }
+
+        window.details = function(obj){
+            location.href = "/system/dictData/main?type=" + obj.data['typeCode'];
+        }
+
+        window.edit = function(obj){
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: '/system/dictType/edit?dictTypeId='+obj.data['id']
+            });
+        }
+
+        window.remove = function(obj){
+            layer.confirm('确定要删除该字典分类', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: "/system/dictType/remove/"+obj.data['id'],
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                obj.del();
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        window.refresh = function(){
+            table.reload('dict-type-table');
+        }
+    })
+</script>
+</html>
