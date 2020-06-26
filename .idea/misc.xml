@@ -5,6 +5,8 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/pear-resource/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-resource/pear-resource-sequence/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-resource/pear-resource-datasource/pom.xml" />
       </list>
     </option>
   </component>
