@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/pearadmin.iml" filepath="$PROJECT_DIR$/pearadmin.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-common/pear-common.iml" filepath="$PROJECT_DIR$/pear-common/pear-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-datasource/pear-datasource.iml" filepath="$PROJECT_DIR$/pear-modules/pear-datasource/pear-datasource.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-entrance/pear-entrance.iml" filepath="$PROJECT_DIR$/pear-entrance/pear-entrance.iml" />
@@ -9,11 +10,11 @@
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-modules.iml" filepath="$PROJECT_DIR$/pear-modules/pear-modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-resource/pear-resource.iml" filepath="$PROJECT_DIR$/pear-resource/pear-resource.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-resource/pear-resource-datasource/pear-resource-datasource.iml" filepath="$PROJECT_DIR$/pear-resource/pear-resource-datasource/pear-resource-datasource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pear-resource/pear-resource-document/pear-resource-document.iml" filepath="$PROJECT_DIR$/pear-resource/pear-resource-document/pear-resource-document.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-resource/pear-resource-sequence/pear-resource-sequence.iml" filepath="$PROJECT_DIR$/pear-resource/pear-resource-sequence/pear-resource-sequence.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-schedule/pear-schedule.iml" filepath="$PROJECT_DIR$/pear-modules/pear-schedule/pear-schedule.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-security/pear-security.iml" filepath="$PROJECT_DIR$/pear-modules/pear-security/pear-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/pear-modules/pear-system/pear-system.iml" filepath="$PROJECT_DIR$/pear-modules/pear-system/pear-system.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pearadmin.iml" filepath="$PROJECT_DIR$/pearadmin.iml" />
     </modules>
   </component>
 </project>
