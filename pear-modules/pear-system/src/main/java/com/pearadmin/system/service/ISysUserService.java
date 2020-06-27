@@ -79,6 +79,6 @@ public interface ISysUserService {
      * Param: SysUser
      * Return: 操作结果
      * */
-    Set<ResuMenu> getUserMenu(String username);
+    List<ResuMenu> getUserMenu(String username);
 }
 

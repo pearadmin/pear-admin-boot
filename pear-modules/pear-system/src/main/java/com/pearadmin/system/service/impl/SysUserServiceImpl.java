@@ -174,7 +174,7 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     @Override
-    public Set<ResuMenu> getUserMenu(String username) {
+    public List<ResuMenu> getUserMenu(String username) {
 
         return sysPowerMapper.selectMenuByUsername(username);
     }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -151,7 +152,6 @@ public class SysUserController extends BaseController {
      * */
     @DeleteMapping("remove/{id}")
     @ApiOperation(value="删除用户数据")
-    @PreAuthorize("hasPermission('/system/user/remove','sys:user:remove')")
     public ResuBean remove(@PathVariable String id){
         boolean result  = sysUserService.remove(id);
         return decide(result);
@@ -164,7 +164,7 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("getUserMenu")
     @ApiOperation(value = "获取用户菜单数据")
-    public Set<ResuMenu> getUserMenu(String username){
+    public List<ResuMenu> getUserMenu(String username){
         return sysUserService.getUserMenu(username);
     }
 

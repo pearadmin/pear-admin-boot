@@ -35,9 +35,14 @@ public interface SysPowerMapper {
      * Param: username
      * Return: ResuMenu
      * */
-    Set<ResuMenu> selectMenuByUsername(String username);
+    List<ResuMenu> selectMenuByUsername(String username);
 
-    Set<ResuMenu> selectMenuByParentId(String parentId);
+    /**
+     * Describe: 根据 ParentId 查询子菜单
+     * Param: parentId
+     * Return: ResuMenu
+     * */
+    List<ResuMenu> selectMenuByParentId(String parentId);
 
     int updateById(SysPower sysPower);
 
