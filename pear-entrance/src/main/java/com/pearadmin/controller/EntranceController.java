@@ -41,9 +41,9 @@ public class EntranceController extends BaseController {
      * Param: ModelAndView
      * Return: 主页视图
      * */
-    @GetMapping("home")
+    @GetMapping("console")
     public ModelAndView home(ModelAndView modelAndView){
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("console");
         return modelAndView;
     }
 
