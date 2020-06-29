@@ -32,10 +32,15 @@ public class SequenceAutoConfiguration {
     public SequencePool sequencePool(SequencePoolConfig sequencePoolConfig){
         try {
             SequencePool sequencePool = new SequencePool(sequencePoolConfig);
+
             sequencePool.init();
+
             log.info("剩 余 可 用 : " + sequencePool.getCount() + " Sequence ID");
+
             return sequencePool;
+
         }catch (Exception e){
+
             e.printStackTrace();
         }
         return null;
@@ -46,13 +51,15 @@ public class SequenceAutoConfiguration {
      * */
     @Bean
     public SequencePoolConfig sequencePoolConfig(){
+
         SequencePoolConfig config = new SequencePoolConfig();
+
         config.setCenterId(sequenceAutoProperties.getCenterId());
         config.setWorkerId(sequenceAutoProperties.getWorkerId());
         config.setMinIdle(sequenceAutoProperties.getMinIdle());
         config.setInitSize(sequenceAutoProperties.getInitSize());
+
         log.info("Read sequence configuration information");
-        //log.info("读 取 分 布 式 ID 配 置 信 息");
         log.info("初 始 容 量 : " + sequenceAutoProperties.getInitSize());
         log.info("最 小 闲 置 : " + sequenceAutoProperties.getMinIdle());
         log.info("机 器 编 号 : " + sequenceAutoProperties.getWorkerId());
