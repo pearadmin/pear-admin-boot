@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pearadmin.schedule.mapper.ScheduleGroupMapper">
+
+    <resultMap id="ScheduleGroupMap" type="ScheduleGroup">
+          <id  column="group_id" property="groupId"></id>
+          <result column="group_name" property="groupName"></result>
+          <result column="update_by" property="updateBy"></result>
+          <result column="update_time" property="updateTime"></result>
+          <result column="create_by" property="createBy"></result>
+          <result column="create_time" property="createTime"></result>
+          <result column="remark" property="remark"></result>
+    </resultMap>
+
+    <select id="selectList" resultMap="ScheduleGroupMap">
+        select * from schedule_group
+    </select>
+
+    <select id="selectById" resultMap="ScheduleGroupMap">
+        select * from schedule_group where group_id = #{groupId}
+    </select>
+
+    <insert id="insert" parameterType="ScheduleGroup">
+        insert into schedule_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupId!=null">
+                group_id,
+            </if>
+            <if test="groupName!=null">
+                group_name,
+            </if>
+            <if test="createBy!=null">
+                create_by,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="updateBy!=null">
+                update_by,
+            </if>
+            <if test="updateTime!=null">
+                update_time,
+            </if>
+            <if test="remark!=null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="groupId!=null">
+                 #{groupId},
+            </if>
+            <if test="groupName!=null">
+                #{groupName},
+            </if>
+            <if test="createBy!=null">
+                #{createBy},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="updateBy!=null">
+                #{updateBy},
+            </if>
+            <if test="updateTime!=null">
+                #{updateTime},
+            </if>
+            <if test="remark!=null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据标识删除定时任务组 -->
+    <delete id="deleteById" parameterType="string">
+        delete from schedule_group where group_id = #{groupId}
+    </delete>
+</mapper>

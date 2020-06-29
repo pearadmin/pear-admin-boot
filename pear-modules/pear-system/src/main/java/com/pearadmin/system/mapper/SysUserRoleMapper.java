@@ -14,5 +14,4 @@ public interface SysUserRoleMapper {
     int deleteByUserId(String userId);
 
     List<SysUserRole> selectByUserId(String userId);
-
 }

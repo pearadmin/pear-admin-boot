@@ -1,0 +1,44 @@
+# 多 数 据 源 配 置
+pear:
+  plugin:
+    # 动 态 数 据 源 配 置 信 息
+    datasource:
+      # 默 认 使 用 数 据 源
+      primary: salves
+      # Druid 数 据 源 连 接 池
+      druid:
+        # 数 据 源 项
+        master:
+          # 是 否 启 动
+          enable: true
+          # 连 接 信 息
+          url: jdbc:mariadb://mariadb.legu.co:3306/saas-manager?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+          # 登 录 账 户
+          username: developer
+          # 账 户 密 码
+          password: iamadeveloper
+          # 初 始 化 连 接
+          initialSize: 6
+          # 最 小 空 闲 连 接
+          minIdle: 10
+          # 最 大 连 接
+          maxActive: 30
+          # 最 大 等 待 时 长
+          maxWait: 60000
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          maxEvictableIdleTimeMillis: 900000
+          validationQuery: SELECT 1 FROM DUAL
+        salves:
+          enable: true
+          url: jdbc:mysql://localhost:3306/pear-admin?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+          username: root
+          password: root
+          initialSize: 6
+          minIdle: 10
+          maxActive: 30
+          maxWait: 60000
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          maxEvictableIdleTimeMillis: 900000
+          validationQuery: SELECT 1 FROM DUAL

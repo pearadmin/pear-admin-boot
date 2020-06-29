@@ -29,8 +29,13 @@ public interface ISysUserService {
      * */
     PageInfo<SysUser> page(SysUser sysUser, PageDomain pageDomain);
 
-
+    /**
+     * Describe: 根据 id 获取用户数据
+     * Param: id
+     * Return: SysUser
+     * */
     SysUser getById(String id);
+
     /**
      * Describe: 根据 id 删除用户数据
      * Param: id

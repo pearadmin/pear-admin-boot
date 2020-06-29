@@ -193,5 +193,4 @@ public class SysUserController extends BaseController {
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }
-
 }

@@ -39,9 +39,9 @@
         let $ = layui.jquery;
         let layer = layui.layer;
 
-        //监听提交
         form.on('submit(login)', function(data){
             let loader = layer.load();
+            $(".login").html("<i class='layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading' />");
             $.ajax({
                 url:'/login',
                 data:data.field,
@@ -56,6 +56,7 @@
                     }else{
                         layer.msg(result.msg,{icon:2,time:1000});
                     }
+                    $(".login").html("登 入")
                 }
             });
             return false;

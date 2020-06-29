@@ -134,7 +134,6 @@ public class SysRoleController extends BaseController {
         return dataTree(sysRoleService.getRolePower(roleId));
     }
 
-
     /**
      * Describe: 用户删除接口
      * Param: id

@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "name": "pear.plugin.sequence",
+      "type": "com.pearadmin.resource.sequence.SequenceAutoProperties",
+      "sourceType": "com.pearadmin.resource.sequence.SequenceAutoProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "pear.plugin.sequence.center-id",
+      "type": "java.lang.Integer",
+      "description": "数 据 中 心 , 默认 0",
+      "sourceType": "com.pearadmin.resource.sequence.SequenceAutoProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "pear.plugin.sequence.init-size",
+      "type": "java.lang.Integer",
+      "description": "初 始 化 数 量 , 默认 100",
+      "sourceType": "com.pearadmin.resource.sequence.SequenceAutoProperties",
+      "defaultValue": 300
+    },
+    {
+      "name": "pear.plugin.sequence.min-idle",
+      "type": "java.lang.Integer",
+      "description": "最 小 闲 置 , 默认 100",
+      "sourceType": "com.pearadmin.resource.sequence.SequenceAutoProperties",
+      "defaultValue": 100
+    },
+    {
+      "name": "pear.plugin.sequence.worker-id",
+      "type": "java.lang.Integer",
+      "description": "工 作 中 心 , 默认 0",
+      "sourceType": "com.pearadmin.resource.sequence.SequenceAutoProperties",
+      "defaultValue": 0
+    }
+  ],
+  "hints": []
+}

@@ -27,13 +27,11 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
         </dependency>
-
         <!-- Spring Boot Jdbc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-
         <!-- Spring Boot Aop -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
