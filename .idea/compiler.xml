@@ -10,7 +10,9 @@
         <module name="pear-security" />
         <module name="pear-schedule" />
         <module name="pear-entrance" />
+        <module name="pear-resource-security" />
         <module name="pear-system" />
+        <module name="pear-resource-logging" />
         <module name="pear-resource-sequence" />
         <module name="pear-common" />
         <module name="pear-resource-datasource" />
@@ -27,7 +29,9 @@
       <module name="pear-resource" target="1.8" />
       <module name="pear-resource-datasource" target="1.8" />
       <module name="pear-resource-document" target="1.8" />
+      <module name="pear-resource-logging" target="1.8" />
       <module name="pear-resource-pageable" target="1.8" />
+      <module name="pear-resource-security" target="1.8" />
       <module name="pear-resource-sequence" target="1.8" />
       <module name="pear-schedule" target="1.8" />
       <module name="pear-security" target="1.8" />
@@ -41,7 +45,9 @@
       <module name="pear-generate" options="-parameters" />
       <module name="pear-resource-datasource" options="-parameters" />
       <module name="pear-resource-document" options="-parameters" />
+      <module name="pear-resource-logging" options="-parameters" />
       <module name="pear-resource-pageable" options="-parameters" />
+      <module name="pear-resource-security" options="-parameters" />
       <module name="pear-resource-sequence" options="-parameters" />
       <module name="pear-schedule" options="-parameters" />
       <module name="pear-security" options="-parameters" />

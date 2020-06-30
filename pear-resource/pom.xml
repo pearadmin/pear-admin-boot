@@ -22,6 +22,7 @@
         <module>pear-resource-sequence</module>   <!-- 分 布 式 发 号 器 -->
         <module>pear-resource-document</module>   <!-- 接 口 文 档 集 成 -->
         <module>pear-resource-pageable</module>   <!-- 表 格 分 页 -->
+        <module>pear-resource-security</module>   <!-- 安 全 组 件 -->
     </modules>
 
     <!-- 依 赖 管 理 -->

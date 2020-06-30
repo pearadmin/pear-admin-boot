@@ -8,8 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.pearadmin</groupId>
-    <artifactId>pear-resource-pageable</artifactId>
+    <artifactId>pear-resource-security</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pear-resource-pageable</name>
+    <name>pear-resource-security</name>
     <description>Demo project for Spring Boot</description>
+
+
 </project>

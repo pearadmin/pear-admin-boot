@@ -8,6 +8,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/pear-resource/pear-resource-pageable/pom.xml" />
+        <option value="$PROJECT_DIR$/pear-resource/pear-resource-security/pom.xml" />
       </list>
     </option>
   </component>
