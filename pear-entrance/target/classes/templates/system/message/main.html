@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../admin/css/pearCommon.css" />
+    <link rel="stylesheet" href="../../component/layui/css/layui.css" />
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">我的消息</li>
+                <li>系统公告</li>
+            </ul>
+            <div class="layui-tab-content"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../component/layui/layui.js"></script>
+<script>
+    layui.use(['table','form','jquery','element'],function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let element = layui.element;
+
+        let MODULE_PATH = "/system/role/";
+
+        let cols = [
+            [
+                {type:'checkbox'},
+                {title: '角色名', field: 'roleName', align:'center', width:100},
+                {title: 'Key值', field: 'roleCode', align:'center'},
+                {title: '描述', field: 'details', align:'center'},
+                {title: '是否可用', field: 'enable', align:'center', templet:'#role-enable'},
+                {title: '操作', toolbar: '#role-bar', align:'center', width:195}
+            ]
+        ]
+
+        table.render({
+            elem: '#role-table',
+            url: MODULE_PATH + 'data',
+            page: true ,
+            cols: cols ,
+            skin: 'line',
+            toolbar: '#role-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports']
+        });
+
+        table.on('tool(role-table)', function(obj){
+            if(obj.event === 'remove'){
+                window.remove(obj);
+            } else if(obj.event === 'edit'){
+                window.edit(obj);
+            } else if(obj.event === 'power'){
+                window.power(obj);
+            }
+        });
+
+        table.on('toolbar(role-table)', function(obj){
+            if(obj.event === 'add'){
+                window.add();
+            } else if(obj.event === 'refresh'){
+                window.refresh();
+            } else if(obj.event === 'batchRemove'){
+                window.batchRemove(obj);
+            }
+        });
+
+        form.on('submit(role-query)', function(data){
+            table.reload('role-table',{where:data.field})
+            return false;
+        });
+
+        form.on('switch(role-enable)', function(obj){
+            let operate;
+
+            if(obj.elem.checked){
+                operate = "enable";
+            }else{
+                operate = "disable";
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url:'/system/role/'+operate,
+                data:JSON.stringify({roleId:this.value}),
+                dataType:'json',
+                contentType:'application/json',
+                type:'put',
+                success:function(result){
+                    layer.close(loading);
+                    if(result.success){
+                        layer.msg(result.msg,{icon:1,time:1000},function(){});
+                    }else{
+                        layer.msg(result.msg,{icon:2,time:1000});
+                    }
+                }
+            })
+        });
+
+        window.add = function(){
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: MODULE_PATH + 'add'
+            });
+        }
+
+        window.power = function(obj){
+            layer.open({
+                type: 2,
+                title: '授权',
+                shade: 0.1,
+                area: ['320px', '400px'],
+                content: MODULE_PATH + 'power?roleId='+obj.data["roleId"]
+            });
+        }
+
+        window.edit = function(obj){
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: MODULE_PATH + 'edit?roleId='+obj.data['roleId']
+            });
+        }
+
+        window.remove = function(obj){
+            layer.confirm('确定要删除该角色', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH+"remove/"+obj.data['roleId'],
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                obj.del();
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        window.batchRemove = function(obj){
+            let data = table.checkStatus(obj.config.id).data;
+            if(data.length === 0){
+                layer.msg("未选中数据",{icon:3,time:1000});
+                return false;
+            }
+            let ids = "";
+            for(let i = 0;i<data.length;i++){
+                ids += data[i].userId+",";
+            }
+            ids = ids.substr(0,ids.length-1);
+            layer.confirm('确定要删除这些用户', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH+"batchRemove/"+ids,
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                table.reload('user-table');
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        window.refresh = function(){
+            table.reload('role-table');
+        }
+    })
+</script>
+</html>
