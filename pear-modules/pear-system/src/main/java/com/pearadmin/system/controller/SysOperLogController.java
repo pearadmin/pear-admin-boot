@@ -2,7 +2,7 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
-import com.pearadmin.common.web.domain.ResuTable;
+import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysOperLog;
 import com.pearadmin.system.service.ISysOperLogService;

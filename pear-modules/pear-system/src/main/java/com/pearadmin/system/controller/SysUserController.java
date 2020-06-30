@@ -2,12 +2,11 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.annotation.OperLog;
-import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
-import com.pearadmin.common.web.domain.ResuBean;
-import com.pearadmin.common.web.domain.ResuMenu;
-import com.pearadmin.common.web.domain.ResuTable;
+import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.ResuMenu;
+import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysRoleService;
@@ -21,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Describe: 用户控制器

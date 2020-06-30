@@ -1,9 +1,9 @@
 package com.pearadmin.common.web.base;
 
 import com.pearadmin.common.constant.MessageConstants;
-import com.pearadmin.common.web.domain.ResuBean;
-import com.pearadmin.common.web.domain.ResuTable;
-import com.pearadmin.common.web.domain.ResuTree;
+import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResuTree;
 
 public class BaseController {
 

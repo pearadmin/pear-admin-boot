@@ -1,13 +1,11 @@
 package com.pearadmin.system.mapper;
 
-import com.pearadmin.common.web.domain.ResuMenu;
+import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.system.domain.SysPower;
-import com.pearadmin.system.domain.SysRole;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Set;
 
 @Mapper
 public interface SysPowerMapper {
