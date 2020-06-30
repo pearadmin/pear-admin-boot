@@ -9,8 +9,6 @@
     <file url="file://$PROJECT_DIR$/pear-modules/pear-system/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pear-resource/pear-resource-datasource/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pear-resource/pear-resource-document/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pear-resource/pear-resource-pageable/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pear-resource/pear-resource-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pear-resource/pear-resource-sequence/src/main/java" charset="UTF-8" />
   </component>
 </project>
