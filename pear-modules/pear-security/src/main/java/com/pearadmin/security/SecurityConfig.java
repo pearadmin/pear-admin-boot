@@ -82,6 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      @Override
      protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers(SecurityConstants.ANT_MATCHERS.split(",")).permitAll()
                 // 其他的需要登录后才能访问
                 .anyRequest().authenticated()
                 .and()
@@ -110,11 +111,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
          http.headers().frameOptions().disable();
      }
-
-    @Override
-    public void configure(WebSecurity web) {
-        // 不进行权限验证的请求或资源 (从配置文件中读取)
-        web.ignoring().antMatchers(SecurityConstants.ANT_MATCHERS.split(","));
-    }
 
 }
