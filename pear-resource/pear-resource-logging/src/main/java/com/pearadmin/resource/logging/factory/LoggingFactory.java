@@ -2,14 +2,12 @@ package com.pearadmin.resource.logging.factory;
 
 import com.pearadmin.resource.logging.domain.Logging;
 import com.pearadmin.resource.logging.service.LoggingService;
-import org.apache.ibatis.type.JdbcType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 
 /**
- * 实 现 一 部 工 厂 机 制
+ * 实 现 一 部 工 厂 机 制 -- [就眠仪式]
  * */
 @Component
 public class LoggingFactory {

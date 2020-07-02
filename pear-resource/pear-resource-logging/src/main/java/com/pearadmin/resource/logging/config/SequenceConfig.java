@@ -14,8 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SequenceConfig {
 
+    /**
+     * 机 器 编 号
+     * */
     private long workerId = 2;
 
+    /**
+     * 数 据 中 心
+     * */
     private long centerId = 2;
 
 }

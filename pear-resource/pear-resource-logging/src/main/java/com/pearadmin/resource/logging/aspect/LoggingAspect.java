@@ -28,11 +28,6 @@ public class LoggingAspect {
 
     private boolean enable;
 
-    public LoggingAspect(SequenceFactory sequenceFactory,boolean enable){
-        this.sequenceFactory = sequenceFactory;
-        this.enable = enable;
-    }
-
 
     @Pointcut("@annotation(com.pearadmin.resource.logging.annotation.Logging) || @within(com.pearadmin.resource.logging.annotation.Logging)")
     public void dsPointCut() {
@@ -118,6 +113,14 @@ public class LoggingAspect {
             Logging logging = method.getAnnotation(Logging.class);
             return logging;
         }
+    }
+
+    /**
+     * 构 造 方 法
+     * */
+    public LoggingAspect(SequenceFactory sequenceFactory,boolean enable){
+        this.sequenceFactory = sequenceFactory;
+        this.enable = enable;
     }
 
 }

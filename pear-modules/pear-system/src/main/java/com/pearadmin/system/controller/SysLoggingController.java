@@ -1,9 +1,11 @@
 package com.pearadmin.system.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.request.PageDomain;
+import com.pearadmin.resource.logging.domain.Logging;
 import com.pearadmin.resource.logging.service.LoggingService;
 import com.pearadmin.system.domain.SysOperLog;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +32,10 @@ public class SysLoggingController extends BaseController {
     }
 
     @GetMapping("data")
-    public ResuTable data()
+    public ResuTable data(PageDomain pageDomain)
     {
-        return dataTable(loggingService.data());
+        PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
+        PageInfo<Logging> pageInfo = new PageInfo<>(loggingService.data());
+        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 }

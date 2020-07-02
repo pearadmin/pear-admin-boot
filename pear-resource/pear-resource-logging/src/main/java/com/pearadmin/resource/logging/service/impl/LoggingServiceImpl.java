@@ -4,7 +4,6 @@ import com.pearadmin.resource.logging.domain.Logging;
 import com.pearadmin.resource.logging.mapper.LoggingMapper;
 import com.pearadmin.resource.logging.service.LoggingService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
