@@ -1,6 +1,8 @@
 package com.pearadmin.controller;
 
 import com.pearadmin.common.web.base.BaseController;
+import com.pearadmin.resource.logging.annotation.Logging;
+import com.pearadmin.resource.logging.enums.BusinessType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +33,7 @@ public class EntranceController extends BaseController {
      * Return: 登录视图
      * */
     @GetMapping("index")
+    @Logging(title = "主页",describe = "返回 Index 主页视图",type = BusinessType.ADD)
     public ModelAndView index(ModelAndView modelAndView){
         modelAndView.setViewName("index");
         return modelAndView;

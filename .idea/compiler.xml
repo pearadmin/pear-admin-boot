@@ -8,11 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="pear-generate" />
         <module name="pear-security" />
-        <module name="pear-resource-sequence" />
         <module name="pear-schedule" />
         <module name="pear-entrance" />
         <module name="pear-system" />
         <module name="pear-resource-logging" />
+        <module name="pear-resource-sequence" />
         <module name="pear-common" />
         <module name="pear-resource-datasource" />
         <module name="pear-resource-document" />
@@ -34,6 +34,7 @@
       <module name="pear-schedule" target="1.8" />
       <module name="pear-security" target="1.8" />
       <module name="pear-system" target="1.8" />
+      <module name="pearadmin" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

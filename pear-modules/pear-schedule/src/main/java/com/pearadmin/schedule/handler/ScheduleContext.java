@@ -1,7 +1,7 @@
 package com.pearadmin.schedule.handler;
 
 import com.pearadmin.common.tools.serial.SnowFlake;
-import com.pearadmin.common.tools.spring.SpringContextUtil;
+import com.pearadmin.common.tools.spring.SpringContext;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.service.IScheduleLogService;
@@ -30,7 +30,7 @@ public class ScheduleContext extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) {
         ScheduleJobBean jobBean = (ScheduleJobBean) context.getMergedJobDataMap().get(ScheduleJobBean.JOB_PARAM_KEY) ;
-        IScheduleLogService scheduleJobLogService = (IScheduleLogService) SpringContextUtil.getBean("scheduleLogService") ;
+        IScheduleLogService scheduleJobLogService = (IScheduleLogService) SpringContext.getBean("scheduleLogService") ;
         // 定时器日志记录
         ScheduleLogBean logBean = new ScheduleLogBean() ;
         logBean.setLogId("" + new SnowFlake().nextId());
@@ -40,7 +40,7 @@ public class ScheduleContext extends QuartzJobBean {
         logBean.setCreateTime(new Date());
         long beginTime = System.currentTimeMillis() ;
         try {
-            Object target = SpringContextUtil.getBean(jobBean.getBeanName());
+            Object target = SpringContext.getBean(jobBean.getBeanName());
             Method method = target.getClass().getDeclaredMethod("run", String.class);
             method.invoke(target, jobBean.getParams());
             long executeTime = System.currentTimeMillis() - beginTime;

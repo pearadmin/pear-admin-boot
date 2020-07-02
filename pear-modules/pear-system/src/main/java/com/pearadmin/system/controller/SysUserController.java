@@ -1,7 +1,6 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.annotation.OperLog;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.ResuBean;
@@ -53,7 +52,6 @@ public class SysUserController extends BaseController {
      * Param ModelAndView
      * Return 用户列表视图
      * */
-    @OperLog(title = "列表视图")
     @GetMapping("main")
     @ApiOperation(value="获取用户列表视图")
     @PreAuthorize("hasPermission('/system/user/main','sys:user:main')")
@@ -67,7 +65,6 @@ public class SysUserController extends BaseController {
      * Param ModelAndView
      * Return 用户列表数据
      * */
-    @OperLog(title = "用户数据")
     @GetMapping("data")
     @ApiOperation(value="获取用户列表数据")
     public ResuTable data(PageDomain pageDomain,SysUser sysUser){
