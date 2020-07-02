@@ -1,6 +1,6 @@
-package com.pearadmin.resource.logging.utils;
+package com.pearadmin.resource.logging.factory;
 
-public class IdWorker {
+public class SequenceFactory {
 
     private final long twepoch = 1288834974657L;
     private final long workerIdBits = 5L;
@@ -18,7 +18,7 @@ public class IdWorker {
     private long sequence = 0L;
     private long lastTimestamp = -1L;
 
-    public IdWorker(long workerId, long datacenterId) {
+    public SequenceFactory(long workerId, long datacenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
         }
@@ -27,6 +27,10 @@ public class IdWorker {
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
+    }
+
+    public String nextStringId(){
+        return nextId()+"";
     }
 
     public synchronized long nextId() {
@@ -61,7 +65,7 @@ public class IdWorker {
     }
 
     public static void main(String[] args) {
-        IdWorker idWorker = new IdWorker(0, 0);
+        SequenceFactory idWorker = new SequenceFactory(0, 0);
         for (int i = 0; i < 100; i++) {
             long id = idWorker.nextId();
             System.out.println(id);

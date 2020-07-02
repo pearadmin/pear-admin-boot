@@ -18,6 +18,13 @@ mybatis:
 # Pear 插 件 配 置 信 息
 pear:
   plugin:
+    logging:
+      # 日 志 ID 的 生 成 方 式
+      sequence:
+        worker: 3
+        center: 3
+      # 是 否 开 启 日 志 记 录
+      enable: true
     # Sequence 配 置 信 息
     sequence:
       # 数 据 中 心
@@ -67,4 +74,6 @@ logging:
   level:
     # 日志级别
     com.pearadmin.*: DEBUG
+
+
 

@@ -3,14 +3,14 @@ package com.pearadmin.resource.logging.aspect;
 import com.pearadmin.resource.logging.annotation.Logging;
 import com.pearadmin.resource.logging.enums.RequestMethod;
 import com.pearadmin.resource.logging.factory.LoggingFactory;
-import com.pearadmin.resource.logging.utils.IdWorker;
+import com.pearadmin.resource.logging.factory.SequenceFactory;
 import com.pearadmin.resource.logging.utils.ServletContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -19,19 +19,22 @@ import java.util.Date;
  * 切 面 编 程 实 现 -- [就眠仪式]
  * */
 @Aspect
-@Component
 public class LoggingAspect {
 
     @Resource
     private LoggingFactory loggingFactory;
 
+    private SequenceFactory sequenceFactory;
 
-    IdWorker idWorker = new IdWorker(1,1);
-    /**
-     * Logging Record
-     */
-    @Pointcut("@annotation(com.pearadmin.resource.logging.annotation.Logging)"
-            + "|| @within(com.pearadmin.resource.logging.annotation.Logging)")
+    private boolean enable;
+
+    public LoggingAspect(SequenceFactory sequenceFactory,boolean enable){
+        this.sequenceFactory = sequenceFactory;
+        this.enable = enable;
+    }
+
+
+    @Pointcut("@annotation(com.pearadmin.resource.logging.annotation.Logging) || @within(com.pearadmin.resource.logging.annotation.Logging)")
     public void dsPointCut() {
 
     }
@@ -49,7 +52,7 @@ public class LoggingAspect {
         try {
             Logging loggingAnnotation = getLogging(joinPoint);
             // 日 志 编 号
-            logging.setId(idWorker.nextId()+"");
+            logging.setId(sequenceFactory.nextStringId());
             // 模 块 标 题
             logging.setTitle(loggingAnnotation.value());
             // 模 块 标 题
@@ -92,9 +95,11 @@ public class LoggingAspect {
 
         }finally {
 
-            System.out.println(logging.toString());
-            // 插入日志
-            loggingFactory.record(logging);
+            if(enable) {
+                loggingFactory.record(logging);
+            }else{
+                System.out.println("日志组件关闭服务");
+            }
         }
 
         return result;
