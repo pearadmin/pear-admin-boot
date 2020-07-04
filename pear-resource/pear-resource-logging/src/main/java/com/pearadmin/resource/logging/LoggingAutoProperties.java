@@ -4,13 +4,11 @@ import lombok.Data;
 import com.pearadmin.resource.logging.config.SequenceConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * 自 动 配 置 属 性
  * */
 @Data
-@Configuration
 @ConfigurationProperties("pear.plugin.logging")
 public class LoggingAutoProperties {
 

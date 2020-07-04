@@ -533,7 +533,8 @@ layui.define(['jquery', 'element'], function(exports) {
 		$(".layui-tab[lay-filter='" + option.elem + "']").on("click", ".layui-tab-close", function() {
 
 			var layid = $(this).parent().attr("lay-id")
-			element.tabDelete(option.elem, layid);
+
+			tabDelete(option.elem, layid);
 		})
 	}
 

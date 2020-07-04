@@ -1,7 +1,7 @@
 package com.pearadmin.resource.sequence.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**
