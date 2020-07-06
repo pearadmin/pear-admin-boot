@@ -21,7 +21,6 @@
         <module>pear-resource-datasource</module> <!-- 动 态 数 据 源 -->
         <module>pear-resource-sequence</module>   <!-- 分 布 式 发 号 器 -->
         <module>pear-resource-document</module>   <!-- 接 口 文 档 集 成 -->
-        <module>pear-resource-pageable</module>   <!-- 新 增 分 页 组 件 -->
         <module>pear-resource-logging</module>    <!-- 日 志 组 件 -->
     </modules>
 

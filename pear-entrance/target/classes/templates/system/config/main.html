@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../admin/css/pearCommon.css" />
+    <link rel="stylesheet" href="../../component/layui/css/layui.css" />
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-header">
+        系统配置
+    </div>
+    <div class="layui-card-body" style="height: 200px;">
+        <form class="layui-form" action="">
+            <div class="mainBox">
+                <div class="main-container">
+                    <div class="main-container">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">网站名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="configName" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">技术支持</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="configName" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="button-container">
+                    <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="config-save">
+                        <i class="layui-icon layui-icon-ok"></i>
+                        提交
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                        <i class="layui-icon layui-icon-refresh"></i>
+                        重置
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-header">
+        自定义配置
+    </div>
+    <div class="layui-card-body">
+        <table id="config-table" lay-filter="config-table"></table>
+    </div>
+</div>
+</body>
+<script type="text/html" id="config-toolbar">
+    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+        新增
+    </button>
+    <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+        删除
+    </button>
+</script>
+
+<script type="text/html" id="config-bar">
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
+    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
+</script>
+
+<script type="text/html" id="config-enable">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dict-type-enable" {{d.enable == '0' ? 'checked' : '' }}>
+</script>
+
+<script src="../../component/layui/layui.js"></script>
+<script>
+    layui.use(['table','form','jquery'],function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+
+        let cols = [
+            [
+                {type:'checkbox'},
+                {title: '配置名称', field: 'configName', align:'center', width:120},
+                {title: '配置标识', field: 'configCode', align:'center'},
+                {title: '配置值', field: 'configValue', align:'center'},
+                {title: '描述', field: 'remark', align:'center'},
+                {title: '操作', toolbar: '#config-bar', align:'center', width:120}
+            ]
+        ]
+
+        table.render({
+            elem: '#config-table',
+            url: '/system/config/data',
+            page: true ,
+            cols: cols ,
+            skin: 'line',
+            toolbar: '#config-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports']
+        });
+
+        table.on('tool(config-table)', function(obj){
+            if(obj.event === 'remove'){
+                window.remove(obj);
+            } else if(obj.event === 'edit'){
+                window.edit(obj);
+            } else if(obj.event === 'details'){
+                window.details(obj);
+            }
+        });
+
+        table.on('toolbar(config-table)', function(obj){
+            if(obj.event === 'add'){
+                window.add();
+            } else if(obj.event === 'refresh'){
+                window.refresh();
+            } else if(obj.event === 'batchRemove'){
+                layer.msg("批量删除")
+            }
+        });
+
+        form.on('switch(config-enable)', function(obj){
+            let operate;
+
+            if(obj.elem.checked){
+                operate = "enable";
+            }else{
+                operate = "disable";
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url:'/system/config/'+operate,
+                data:JSON.stringify({id:this.value}),
+                dataType:'json',
+                contentType:'application/json',
+                type:'put',
+                success:function(result){
+                    layer.close(loading);
+                    if(result.success){
+                        layer.msg(result.msg,{icon:1,time:1000},function(){});
+                    }else{
+                        layer.msg(result.msg,{icon:2,time:1000});
+                    }
+                }
+            })
+        });
+
+        window.add = function(){
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: '/system/config/add'
+            });
+        }
+
+        window.edit = function(obj){
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: '/system/config/edit?configId='+obj.data['configId']
+            });
+        }
+
+        window.remove = function(obj){
+            layer.confirm('确定要删除配置', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: "/system/config/remove/"+obj.data['configId'],
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                obj.del();
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        window.refresh = function(){
+            table.reload('config-table');
+        }
+    })
+</script>
+</html>
