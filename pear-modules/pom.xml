@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- 仓库信息 -->
     <parent>
-        <groupId>com</groupId>
-        <artifactId>pearadmin</artifactId>
+        <groupId>com.pearadmin</groupId>
+        <artifactId>pear-admin-boot</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

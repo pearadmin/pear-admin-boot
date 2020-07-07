@@ -30,7 +30,8 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      */
     @PostConstruct
     public void init (){
-        List<ScheduleJobBean> scheduleJobList = scheduleJobMapper.selectList(null);
+        // TODO 项目启动是 产生异常
+ /*       List<ScheduleJobBean> scheduleJobList = scheduleJobMapper.selectList(null);
         for (ScheduleJobBean scheduleJob : scheduleJobList) {
             CronTrigger cronTrigger = ScheduleHandler.getCronTrigger(scheduler,Long.parseLong(scheduleJob.getJobId())) ;
             if (cronTrigger == null){
@@ -38,7 +39,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
             } else {
                 ScheduleHandler.updateJob(scheduler,scheduleJob);
             }
-        }
+        }*/
     }
 
     @Override
