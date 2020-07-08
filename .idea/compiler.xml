@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pear-resource-document" />
+        <module name="pear-resource-configure" />
+        <module name="pear-entrance" />
+        <module name="pear-security" />
+        <module name="pear-common" />
+        <module name="pear-modules-activiti" />
+        <module name="pear-resource-framework-swagger" />
+        <module name="pear-schedule" />
+        <module name="pear-resource-sequence" />
+        <module name="pear-resource-datasource" />
+        <module name="pear-system" />
+        <module name="pear-resource-pageable" />
+        <module name="pear-resource-dictionary" />
+        <module name="pear-resource-logging" />
+        <module name="pear-resource-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Pear-Admin-Boot" target="1.8" />
+      <module name="pear-common" target="1.8" />
+      <module name="pear-entrance" target="1.8" />
+      <module name="pear-generate" target="1.8" />
+      <module name="pear-modules" target="1.8" />
+      <module name="pear-modules-activiti" target="1.8" />
+      <module name="pear-modules-quartz" target="1.8" />
+      <module name="pear-modules-security" target="1.8" />
+      <module name="pear-modules-system" target="1.8" />
+      <module name="pear-resource" target="1.8" />
+      <module name="pear-resource-autoconfigure" target="1.8" />
+      <module name="pear-resource-common" target="1.8" />
+      <module name="pear-resource-configure" target="1.8" />
+      <module name="pear-resource-datasource" target="1.8" />
+      <module name="pear-resource-dictionary" target="1.8" />
+      <module name="pear-resource-document" target="1.8" />
+      <module name="pear-resource-framework" target="1.8" />
+      <module name="pear-resource-framework-configure" target="1.8" />
+      <module name="pear-resource-framework-datasource" target="1.8" />
+      <module name="pear-resource-framework-logging" target="1.8" />
+      <module name="pear-resource-framework-sequence" target="1.8" />
+      <module name="pear-resource-framework-swagger" target="1.8" />
+      <module name="pear-resource-logging" target="1.8" />
+      <module name="pear-resource-pageable" target="1.8" />
+      <module name="pear-resource-sequence" target="1.8" />
+      <module name="pear-resource-starter" target="1.8" />
+      <module name="pear-resource-starter-configure" target="1.8" />
+      <module name="pear-resource-starter-datasource" target="1.8" />
+      <module name="pear-resource-starter-logging" target="1.8" />
+      <module name="pear-resource-starter-sequence" target="1.8" />
+      <module name="pear-resource-starter-swagger" target="1.8" />
+      <module name="pear-resource-web" target="11" />
+      <module name="pear-schedule" target="1.8" />
+      <module name="pear-security" target="1.8" />
+      <module name="pear-system" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="pear-common" options="-parameters" />
+      <module name="pear-entrance" options="-parameters" />
+      <module name="pear-generate" options="-parameters" />
+      <module name="pear-modules-activiti" options="-parameters" />
+      <module name="pear-modules-quartz" options="-parameters" />
+      <module name="pear-modules-security" options="-parameters" />
+      <module name="pear-modules-system" options="-parameters" />
+      <module name="pear-resource-autoconfigure" options="-parameters" />
+      <module name="pear-resource-common" options="-parameters" />
+      <module name="pear-resource-configure" options="-parameters" />
+      <module name="pear-resource-datasource" options="-parameters" />
+      <module name="pear-resource-dictionary" options="-parameters" />
+      <module name="pear-resource-document" options="-parameters" />
+      <module name="pear-resource-framework" options="-parameters" />
+      <module name="pear-resource-framework-configure" options="-parameters" />
+      <module name="pear-resource-framework-datasource" options="-parameters" />
+      <module name="pear-resource-framework-logging" options="-parameters" />
+      <module name="pear-resource-framework-sequence" options="-parameters" />
+      <module name="pear-resource-framework-swagger" options="-parameters" />
+      <module name="pear-resource-logging" options="-parameters" />
+      <module name="pear-resource-pageable" options="-parameters" />
+      <module name="pear-resource-sequence" options="-parameters" />
+      <module name="pear-resource-starter" options="-parameters" />
+      <module name="pear-resource-starter-configure" options="-parameters" />
+      <module name="pear-resource-starter-datasource" options="-parameters" />
+      <module name="pear-resource-starter-logging" options="-parameters" />
+      <module name="pear-resource-starter-sequence" options="-parameters" />
+      <module name="pear-resource-starter-swagger" options="-parameters" />
+      <module name="pear-resource-web" options="-parameters" />
+      <module name="pear-schedule" options="-parameters" />
+      <module name="pear-security" options="-parameters" />
+      <module name="pear-system" options="-parameters" />
+    </option>
+  </component>
+</project>

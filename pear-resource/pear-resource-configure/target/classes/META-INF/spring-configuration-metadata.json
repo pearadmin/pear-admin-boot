@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "pear.plugin.configure",
+      "type": "com.pearadmin.resource.configure.ConfigureAutoProperties",
+      "sourceType": "com.pearadmin.resource.configure.ConfigureAutoProperties"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
