@@ -1,0 +1,25 @@
+{
+  "groups": [
+    {
+      "name": "pear.plugin.logging",
+      "type": "com.pearadmin.resource.logging.LoggingAutoProperties",
+      "sourceType": "com.pearadmin.resource.logging.LoggingAutoProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "pear.plugin.logging.enable",
+      "type": "java.lang.Boolean",
+      "description": "是 否 开 启 日 志 服 务",
+      "sourceType": "com.pearadmin.resource.logging.LoggingAutoProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "pear.plugin.logging.sequence",
+      "type": "com.pearadmin.resource.logging.config.SequenceConfig",
+      "description": "日志 Id 的 相 关 配 置",
+      "sourceType": "com.pearadmin.resource.logging.LoggingAutoProperties"
+    }
+  ],
+  "hints": []
+}
