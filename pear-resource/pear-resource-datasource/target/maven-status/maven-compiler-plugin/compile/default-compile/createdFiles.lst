@@ -1,0 +1,17 @@
+com\pearadmin\resource\datasource\entity\DruidDataSourceConfig$DruidDataSourceConfigBuilder.class
+com\pearadmin\resource\datasource\entity\DruidDataSourceConfig.class
+com\pearadmin\resource\datasource\routing\DynamicDataSource.class
+com\pearadmin\resource\datasource\aspect\DataSourceAspect.class
+com\pearadmin\resource\datasource\routing\DynamicDataSourceContextHolder$1.class
+com\pearadmin\resource\datasource\routing\DynamicDataSourceContextHolder.class
+com\pearadmin\resource\datasource\entity\HikariDataSourceConfig.class
+com\pearadmin\resource\datasource\support\BaseDataSourceSupport.class
+com\pearadmin\resource\datasource\annotation\DataSource.class
+META-INF\spring-configuration-metadata.json
+com\pearadmin\resource\datasource\entity\BaseDataSourceConfig.class
+com\pearadmin\resource\datasource\DataSourceAutoConfiguration.class
+com\pearadmin\resource\datasource\entity\HikariDataSourceConfig$HikariDataSourceConfigBuilder.class
+com\pearadmin\resource\datasource\support\DruidDataSourceSupport.class
+com\pearadmin\resource\datasource\factory\DynamicDataSourceFactory.class
+com\pearadmin\resource\datasource\support\HikariDataSourceSupport.class
+com\pearadmin\resource\datasource\DataSourceAutoProperties.class

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../admin/css/pearCommon.css" />
+    <link rel="stylesheet" href="../../component/layui/css/layui.css" />
+</head>
+<body class="pear-container">
+
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="table-table" lay-filter="table-table"></table>
+    </div>
+</div>
+</body>
+
+<script type="text/html" id="user-bar">
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="import"><i class="layui-icon layui-icon-edit"></i>&nbsp;导入</button>
+</script>
+
+<script type="text/html" id="user-enable">
+    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable" {{ d.enable == '0' ? 'checked' : '' }} />
+</script>
+
+<script type="text/html" id="generator-createTime">
+    {{layui.util.toDateString(d.createTime, 'yyyy-MM-dd')}}
+</script>
+
+<script src="../../component/layui/layui.js"></script>
+<script>
+    layui.use(['table','form','jquery'],function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+
+        let MODULE_PATH = "/generator/";
+
+        let cols = [
+            [
+                {type:'checkbox'},
+                {title: '表明', field: 'tableName', align:'center',width:120},
+                {title: '备注', field: 'tableComment', align:'center'},
+                {title: '引擎', field: 'ENGINE', align:'center'},
+                {title: '创建时间', field: 'createTime', align:'center',templet:'#generator-createTime'},
+                {title: '操作', toolbar: '#user-bar', align:'center', width:100}
+            ]
+        ]
+
+        table.render({
+            elem: '#table-table',
+            url: MODULE_PATH + 'importData',
+            page: true ,
+            cols: cols ,
+            skin: 'line'
+        });
+
+        table.on('tool(table-table)', function(obj){
+            if(obj.event === 'import'){
+                $.ajax({
+                    url:"/generator/import?tableName="+obj.data['tableName'],
+                    dataType:'json',
+                    type:'post',
+                    success:function(result){
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭
+                                parent.layui.table.reload("table-table");
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            }
+        });
+
+        table.on('toolbar(table-table)', function(obj){
+            if(obj.event === 'add'){
+                window.add();
+            } else if(obj.event === 'refresh'){
+                window.refresh();
+            } else if(obj.event === 'batchRemove'){
+                window.batchRemove(obj);
+            }
+        });
+
+        form.on('submit(user-query)', function(data){
+            window.refresh(data.field);
+            return false;
+        });
+
+
+
+        window.add = function(){
+            layer.open({
+                type: 2,
+                title: '导入',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: MODULE_PATH + 'import'
+            });
+        }
+
+        window.edit = function(obj){
+            /*layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: MODULE_PATH + 'edit?userId='+obj.data['userId']
+            });*/
+
+            layer.tab({
+                area: ['600px', '300px'],
+                tab: [{
+                    title: 'TAB1',
+                    content: '内容1'
+                }, {
+                    title: 'TAB2',
+                    content: '内容2'
+                }, {
+                    title: 'TAB3',
+                    content: '内容3'
+                }]
+            });
+        }
+
+        window.remove = function(obj){
+            layer.confirm('确定要删除该用户', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH+"remove/"+obj.data['userId'],
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                obj.del();
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        window.batchRemove = function(obj){
+            let data = table.checkStatus(obj.config.id).data;
+            if(data.length === 0){
+                layer.msg("未选中数据",{icon:3,time:1000});
+                return false;
+            }
+            let ids = "";
+            for(let i = 0;i<data.length;i++){
+                ids += data[i].userId+",";
+            }
+            ids = ids.substr(0,ids.length-1);
+            layer.confirm('确定要删除这些用户', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: MODULE_PATH+"batchRemove/"+ids,
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                table.reload('user-table');
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            });
+        }
+
+        window.refresh = function(param){
+            table.reload('user-table',{where:param});
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../admin/css/pearCommon.css" />
+    <link rel="stylesheet" href="../../component/layui/css/layui.css" />
+</head>
+<body>
+<div class="layui-tab layui-tab-card">
+    <ul class="layui-tab-title">
+        <li class="layui-this">网站设置</li>
+        <li>用户管理</li>
+        <li>权限分配</li>
+        <li>商品管理</li>
+        <li>订单管理</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">默认宽度是相对于父元素100%适应的，你也可以固定宽度。</div>
+        <div class="layui-tab-item">2</div>
+        <div class="layui-tab-item">3</div>
+        <div class="layui-tab-item">4</div>
+        <div class="layui-tab-item">5</div>
+        <div class="layui-tab-item">6</div>
+    </div>
+</div>
+<script src="../../component/layui/layui.js"></script>
+<script>
+    layui.use(['table','form','jquery','element'],function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let element = layui.element;
+
+    });
+</script>
+</body>
+</html>

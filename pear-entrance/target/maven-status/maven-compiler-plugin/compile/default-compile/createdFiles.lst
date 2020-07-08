@@ -1,0 +1,12 @@
+com\pearadmin\controller\system\SysRoleController.class
+com\pearadmin\controller\schedule\ScheduleGroupController.class
+com\pearadmin\controller\system\SysLoggingController.class
+com\pearadmin\controller\system\SysConfigController.class
+com\pearadmin\controller\system\SysDictTypeController.class
+com\pearadmin\controller\EntranceController.class
+com\pearadmin\controller\system\SysPowerController.class
+com\pearadmin\controller\system\SysDictDataController.class
+com\pearadmin\controller\schedule\ScheduleJobController.class
+com\pearadmin\PearEntranceApplication.class
+com\pearadmin\controller\schedule\ScheduleLogController.class
+com\pearadmin\controller\system\SysUserController.class
