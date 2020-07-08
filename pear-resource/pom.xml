@@ -18,24 +18,21 @@
 
     <!-- 模 块 管 理 -->
     <modules>
+        <module>pear-resource-common</module>
         <module>pear-resource-datasource</module> <!-- 动 态 数 据 源 -->
         <module>pear-resource-sequence</module>   <!-- 分 布 式 发 号 器 -->
         <module>pear-resource-document</module>   <!-- 接 口 文 档 集 成 -->
         <module>pear-resource-logging</module>    <!-- 日 志 组 件 -->
+        <module>pear-resource-pageable</module>   <!-- 分 页 组 件 -->
     </modules>
 
     <!-- 依 赖 管 理 -->
     <dependencies>
+
         <!-- Spring Boot Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <!-- Lombok Project-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
         <!-- Auto Configure -->
         <dependency>
@@ -47,6 +44,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

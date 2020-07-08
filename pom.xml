@@ -57,13 +57,6 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.2.68</version>
             </dependency>
-            <!-- Lombok -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.12</version>
-                <scope>provided</scope>
-            </dependency>
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-resource-datasource</artifactId>
@@ -91,6 +84,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <!-- 模块管理 -->
     <modules>

@@ -1,8 +1,8 @@
 package com.pearadmin.resource.document;
 
-import com.pearadmin.resource.document.bean.Contact;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import springfox.documentation.service.Contact;
 
 /**
  * 自 动 配 置 属 性

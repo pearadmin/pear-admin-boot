@@ -40,12 +40,11 @@ public class DocumentAutoConfiguration {
     }
 
     private ApiInfo apiInfo(){
-        Contact contact = new Contact(documentAutoProperties.getContact().getName(), documentAutoProperties.getContact().getUrl(), documentAutoProperties.getContact().getEmail());
-        return new ApiInfo(
+         return new ApiInfo(
                 documentAutoProperties.getTitle(),
                 documentAutoProperties.getDescribe() ,
                 documentAutoProperties.getVersion(),
-                documentAutoProperties.getTermsOfServiceUrl(),contact,documentAutoProperties.getLicence(),documentAutoProperties.getLicenceUrl(),
+                documentAutoProperties.getTermsOfServiceUrl(),documentAutoProperties.getContact(),documentAutoProperties.getLicence(),documentAutoProperties.getLicenceUrl(),
                 new ArrayList<>()
         );
     }
