@@ -132,6 +132,7 @@
     <orderEntry type="module" module-name="pear-resource-document" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-swagger-ui:2.9.2" level="project" />
     <orderEntry type="module" module-name="pear-resource-logging" />
+    <orderEntry type="module" module-name="pear-resource-configure" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
   </component>
 </module>

@@ -1,16 +1,13 @@
-package com.pearadmin.system.domain;
+package com.pearadmin.resource.configure.domain;
 
-import com.pearadmin.common.web.base.BaseDomain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.ibatis.type.Alias;
 
 @Data
-@Alias("SysConfig")
 @AllArgsConstructor
 @NoArgsConstructor
-public class SysConfig extends BaseDomain {
+public class Configure {
 
     /**
      * 配置标识

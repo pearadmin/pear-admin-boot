@@ -81,5 +81,10 @@
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-resource-logging</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-resource-configure</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
