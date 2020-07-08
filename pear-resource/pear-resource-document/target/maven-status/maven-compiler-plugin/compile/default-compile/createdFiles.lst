@@ -1,5 +1,0 @@
-com\pearadmin\resource\document\bean\Contact.class
-com\pearadmin\resource\document\DocumentAutoConfiguration.class
-com\pearadmin\resource\document\DocumentAutoProperties.class
-com\pearadmin\resource\document\bean\Contact$ContactBuilder.class
-META-INF\spring-configuration-metadata.json
