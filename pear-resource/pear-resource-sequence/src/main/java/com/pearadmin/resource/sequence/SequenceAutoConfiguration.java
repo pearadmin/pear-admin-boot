@@ -60,6 +60,7 @@ public class SequenceAutoConfiguration {
         config.setInitSize(sequenceAutoProperties.getInitSize());
 
         log.info("Read sequence configuration information");
+        log.info("组 件 名 称 : 分布式 ID 工厂");
         log.info("初 始 容 量 : " + sequenceAutoProperties.getInitSize());
         log.info("最 小 闲 置 : " + sequenceAutoProperties.getMinIdle());
         log.info("机 器 编 号 : " + sequenceAutoProperties.getWorkerId());

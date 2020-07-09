@@ -50,6 +50,7 @@ public class DataSourceAutoConfiguration {
     @Bean
     public DynamicDataSourceFactory dataSourceFactory() {
         log.info("Read datasource configuration information");
+        log.info("组 件 名 称 : 动 态 数 据 源 切 换");
         //log.info("读 取 数 据 库 连 接 池 配 置 信 息");
         Map<String, BaseDataSourceConfig> dataSourceConfigMap = new HashMap<>();
         dataSourceConfigMap.putAll(properties.getDruid());

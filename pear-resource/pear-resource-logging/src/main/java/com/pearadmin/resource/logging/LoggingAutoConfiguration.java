@@ -20,9 +20,10 @@ public class LoggingAutoConfiguration {
     public LoggingAspect loggingAspect(){
 
         SequenceFactory sequenceFactory = new SequenceFactory(loggingAutoProperties.getSequence().getWorkerId(), loggingAutoProperties.getSequence().getCenterId());
-        log.info("日志开启 : "+loggingAutoProperties.getEnable());
-        log.info("日志编号 : "+loggingAutoProperties.getSequence().getWorkerId());
-        log.info("日志中心 : "+loggingAutoProperties.getSequence().getCenterId());
+        log.info("组 件 名 称 : 系统日志");
+        log.info("是 否 开 启 : "+(loggingAutoProperties.getEnable()?"开 启":"关 闭"));
+        log.info("日 志 编 号 : "+loggingAutoProperties.getSequence().getWorkerId());
+        log.info("日 志 中 心 : "+loggingAutoProperties.getSequence().getCenterId());
 
         return new LoggingAspect(sequenceFactory,loggingAutoProperties.getEnable());
     }

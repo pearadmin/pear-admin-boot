@@ -30,6 +30,7 @@ public class DocumentAutoConfiguration {
     @Bean
     public Docket docker(){
         log.info("Read document configuration information");
+        printConfig();
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .groupName(documentAutoProperties.getGroupName())
@@ -47,5 +48,15 @@ public class DocumentAutoConfiguration {
                 documentAutoProperties.getTermsOfServiceUrl(),documentAutoProperties.getContact(),documentAutoProperties.getLicence(),documentAutoProperties.getLicenceUrl(),
                 new ArrayList<>()
         );
+    }
+
+    public void printConfig(){
+        log.info("组 件 名 称 : 接口文档" );
+        log.info("是 否 开 启 : " + ( documentAutoProperties.getEnable() ? "开 启" : "关 闭"));
+        log.info("文 档 标 题 : " + documentAutoProperties.getTitle());
+        log.info("描 述 信 息 : " + documentAutoProperties.getDescribe());
+        log.info("文 档 版 本 : " + documentAutoProperties.getVersion());
+        log.info("扫 包 路 径 : " + documentAutoProperties.getScanPackage());
+        log.info("开 源 协 议 : " + documentAutoProperties.getLicence());
     }
 }
