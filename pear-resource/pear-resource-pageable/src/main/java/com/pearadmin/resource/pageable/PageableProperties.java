@@ -13,7 +13,6 @@ public class PageableProperties {
     private PageParam limit;
 
     @Data
-    @Builder
     public class PageParam{
 
         private String name;
