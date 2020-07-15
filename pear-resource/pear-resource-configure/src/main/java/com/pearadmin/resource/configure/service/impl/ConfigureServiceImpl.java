@@ -19,7 +19,6 @@ public class ConfigureServiceImpl implements IConfigureService {
 
     @Override
     public Boolean save(Configure sysConfig) {
-        sysConfig.setConfigId("1");
        Integer result = sysConfigMapper.insert(sysConfig);
        if(result>0){
            return true;

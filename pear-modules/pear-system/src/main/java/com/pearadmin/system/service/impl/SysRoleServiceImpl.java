@@ -2,8 +2,8 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.domain.request.PageDomain;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysRolePower;
@@ -29,6 +29,9 @@ public class SysRoleServiceImpl implements ISysRoleService {
 
     @Resource
     private SysRolePowerMapper sysRolePowerMapper;
+
+    @Resource
+    private SequencePool sequencePool;
 
     @Override
     public List<SysRole> list(SysRole sysRole) {
@@ -109,10 +112,9 @@ public class SysRoleServiceImpl implements ISysRoleService {
     public Boolean saveRolePower(String roleId, List<String> powerIds) {
         sysRolePowerMapper.deleteByRoleId(roleId);
         List<SysRolePower> rolePowers = new ArrayList<>();
-        SnowFlake snowFlake = new SnowFlake();
         powerIds.forEach(powerId->{
             SysRolePower sysRolePower = new SysRolePower();
-            sysRolePower.setId("" + snowFlake.nextId());
+            sysRolePower.setId(sequencePool.getStringId());
             sysRolePower.setRoleId(roleId);
             sysRolePower.setPowerId(powerId);
             rolePowers.add(sysRolePower);

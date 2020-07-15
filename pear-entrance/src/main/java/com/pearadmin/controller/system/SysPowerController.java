@@ -1,11 +1,12 @@
 package com.pearadmin.controller.system;
 
 import com.pearadmin.common.constant.MessageConstants;
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
+import com.pearadmin.resource.sequence.entity.Sequence;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.service.ISysPowerService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,6 +31,9 @@ public class SysPowerController extends BaseController {
      * */
     @Resource
     private ISysPowerService sysPowerService;
+
+    @Resource
+    private SequencePool sequencePool;
 
     /**
      * Describe: 获取权限列表视图
@@ -80,7 +84,7 @@ public class SysPowerController extends BaseController {
      * */
     @PostMapping("save")
     public Result save(@RequestBody SysPower sysPower){
-        sysPower.setPowerId(""+new SnowFlake().nextId());
+        sysPower.setPowerId(sequencePool.getStringId());
         boolean result = sysPowerService.save(sysPower);
         return decide(
                 result,                           // 响应结果

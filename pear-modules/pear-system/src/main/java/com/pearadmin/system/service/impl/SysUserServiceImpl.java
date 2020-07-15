@@ -2,9 +2,9 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.request.PageDomain;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.domain.SysUserRole;
@@ -37,6 +37,9 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Resource
     private SysPowerMapper sysPowerMapper;
+
+    @Resource
+    private SequencePool sequencePool;
 
     /**
      * Describe: 根据条件查询用户列表数据
@@ -139,11 +142,10 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public boolean saveUserRole(String userId, List<String> roleIds) {
         sysUserRoleMapper.deleteByUserId(userId);
-        SnowFlake snowFlake = new SnowFlake();
         List<SysUserRole> sysUserRoles = new ArrayList<>();
         roleIds.forEach(roleId->{
             SysUserRole sysUserRole = new SysUserRole();
-            sysUserRole.setId(snowFlake.nextId()+"");
+            sysUserRole.setId(sequencePool.getStringId());
             sysUserRole.setRoleId(roleId);
             sysUserRole.setUserId(userId);
             sysUserRoles.add(sysUserRole);

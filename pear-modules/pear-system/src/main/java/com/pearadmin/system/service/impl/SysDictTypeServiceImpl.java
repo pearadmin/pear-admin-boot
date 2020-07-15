@@ -2,7 +2,6 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.mapper.SysDictTypeMapper;
@@ -47,7 +46,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
      * */
     @Override
     public Boolean save(SysDictType sysDictType) {
-        sysDictType.setId("" + new SnowFlake().nextId());
         Integer result = sysDictTypeMapper.insert(sysDictType);
         if(result > 0){
             return true;

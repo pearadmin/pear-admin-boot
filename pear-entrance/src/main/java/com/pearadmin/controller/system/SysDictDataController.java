@@ -2,11 +2,11 @@ package com.pearadmin.controller.system;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.MessageConstants;
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.service.ISysDictDataService;
 import org.springframework.ui.Model;
@@ -29,6 +29,9 @@ public class SysDictDataController extends BaseController {
     @Resource
     private ISysDictDataService sysDictDataService;
 
+    @Resource
+    private SequencePool sequencePool;
+
     @GetMapping("main")
     public ModelAndView main(Model model, String type){
         model.addAttribute("type",type);
@@ -50,7 +53,7 @@ public class SysDictDataController extends BaseController {
 
     @PostMapping("save")
     public Result save(@RequestBody SysDictData sysDictData){
-        sysDictData.setDataId("" + new SnowFlake().nextId());
+        sysDictData.setDataId(sequencePool.getStringId());
         Boolean result = sysDictDataService.save(sysDictData);
         return decide(result,
                 MessageConstants.SAVE_SUCCESS,

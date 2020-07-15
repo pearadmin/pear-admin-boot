@@ -9,6 +9,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.resource.configure.domain.Configure;
 import com.pearadmin.resource.configure.service.IConfigureService;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,9 @@ public class SysConfigController extends BaseController {
 
     @Resource
     private IConfigureService configureService;
+
+    @Resource
+    private SequencePool sequencePool;
 
     /**
      * Describe：系统配置视图
@@ -81,6 +85,7 @@ public class SysConfigController extends BaseController {
      * */
     @PostMapping("save")
     public Result save(@RequestBody Configure sysConfig){
+        sysConfig.setConfigId(sequencePool.getStringId());
         Boolean result = configureService.save(sysConfig);
         return decide(result,
                 MessageConstants.SAVE_SUCCESS,

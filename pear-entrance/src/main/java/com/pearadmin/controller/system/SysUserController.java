@@ -1,12 +1,12 @@
 package com.pearadmin.controller.system;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
@@ -48,6 +48,9 @@ public class SysUserController extends BaseController {
      * */
     @Resource
     private ISysRoleService sysRoleService;
+
+    @Resource
+    private SequencePool sequencePool;
 
     /**
      * Describe: 获取用户列表视图
@@ -94,7 +97,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value="保存用户数据")
     public Result save(@RequestBody SysUser sysUser){
         sysUser.setLogin("0");
-        sysUser.setUserId("" + new SnowFlake().nextId());
+        sysUser.setUserId(sequencePool.getStringId());
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         Boolean result = sysUserService.save(sysUser);

@@ -1,12 +1,12 @@
 package com.pearadmin.controller.system;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.service.ISysRoleService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,6 +31,9 @@ public class SysRoleController extends BaseController {
      * */
     @Resource
     private ISysRoleService sysRoleService;
+
+    @Resource
+    private SequencePool sequencePool;
 
     /**
      * Describe: 获取角色列表视图
@@ -71,7 +74,7 @@ public class SysRoleController extends BaseController {
      * */
     @PostMapping("save")
     public Result save(@RequestBody SysRole sysRole){
-        sysRole.setRoleId("" + new SnowFlake().nextId());
+        sysRole.setRoleId(sequencePool.getStringId());
         boolean result = sysRoleService.save(sysRole);
         return decide(result);
     }

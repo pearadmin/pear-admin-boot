@@ -6,6 +6,7 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.service.ISysDictTypeService;
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ public class SysDictTypeController extends BaseController {
 
     @Resource
     private ISysDictTypeService sysDictTypeService;
+
+    @Resource
+    private SequencePool sequencePool;
 
     private String MODULE_PATH = "system/dictType/";
 
@@ -66,6 +70,7 @@ public class SysDictTypeController extends BaseController {
      * */
     @PostMapping("save")
     public Result save(@RequestBody SysDictType sysDictType){
+        sysDictType.setId(sequencePool.getStringId());
         boolean result = sysDictTypeService.save(sysDictType);
         return decide(
                 result,                           // 响应结果

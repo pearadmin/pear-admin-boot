@@ -1,6 +1,5 @@
 package com.pearadmin.schedule.handler;
 
-import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.tools.spring.SpringContext;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.domain.ScheduleLogBean;
@@ -22,6 +21,7 @@ public class ScheduleContext extends QuartzJobBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(ScheduleContext.class) ;
 
+
     /**
      * Describe: 执行任务并记录日志
      * Param: JobExecutionContext
@@ -33,7 +33,7 @@ public class ScheduleContext extends QuartzJobBean {
         IScheduleLogService scheduleJobLogService = (IScheduleLogService) SpringContext.getBean("scheduleLogService") ;
         // 定时器日志记录
         ScheduleLogBean logBean = new ScheduleLogBean() ;
-        logBean.setLogId("" + new SnowFlake().nextId());
+        logBean.setLogId("1");
         logBean.setJobId(jobBean.getJobId());
         logBean.setBeanName(jobBean.getBeanName());
         logBean.setParams(jobBean.getParams());
