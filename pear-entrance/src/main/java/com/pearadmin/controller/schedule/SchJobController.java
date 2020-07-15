@@ -12,7 +12,6 @@ import com.pearadmin.schedule.service.IScheduleJobService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 import java.util.Date;
 

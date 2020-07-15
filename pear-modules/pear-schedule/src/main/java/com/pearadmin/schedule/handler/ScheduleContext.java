@@ -1,6 +1,7 @@
 package com.pearadmin.schedule.handler;
 
 import com.pearadmin.common.tools.spring.SpringContext;
+import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.service.IScheduleLogService;
@@ -8,6 +9,7 @@ import org.quartz.JobExecutionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.Date;
 
@@ -20,7 +22,8 @@ public class ScheduleContext extends QuartzJobBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(ScheduleContext.class) ;
 
-
+    @Resource
+    private SequencePool sequencePool;
 
     /**
      * Describe: 执行任务并记录日志
@@ -33,7 +36,7 @@ public class ScheduleContext extends QuartzJobBean {
         IScheduleLogService scheduleJobLogService = (IScheduleLogService) SpringContext.getBean("scheduleLogService") ;
         // 定时器日志记录
         ScheduleLogBean logBean = new ScheduleLogBean() ;
-        logBean.setLogId("1");
+        logBean.setLogId(sequencePool.getStringId());
         logBean.setJobId(jobBean.getJobId());
         logBean.setBeanName(jobBean.getBeanName());
         logBean.setParams(jobBean.getParams());
