@@ -5,7 +5,7 @@ import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.service.ISysDictDataService;
@@ -39,7 +39,7 @@ public class SysDictDataController extends BaseController {
     }
 
     @GetMapping("data")
-    public ResuTable data (SysDictData sysDictData, PageDomain pageDomain){
+    public ResultTable data (SysDictData sysDictData, PageDomain pageDomain){
        System.out.println(sysDictData.toString());
        PageInfo<SysDictData> pageInfo = sysDictDataService.page(sysDictData,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());

@@ -5,7 +5,7 @@ import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.service.IScheduleJobService;
@@ -50,7 +50,7 @@ public class SchJobController extends BaseController {
      * Return 定时任务列表数据
      * */
     @GetMapping("data")
-    public ResuTable data(PageDomain pageDomain){
+    public ResultTable data(PageDomain pageDomain){
        PageInfo<ScheduleJobBean> pageInfo =  scheduleJobService.page(null,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

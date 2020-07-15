@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
 import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysRole;
@@ -52,7 +52,7 @@ public class SysRoleController extends BaseController {
      * */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/system/role/data','sys:role:data')")
-    public ResuTable data(PageDomain pageDomain){
+    public ResultTable data(PageDomain pageDomain){
        PageInfo<SysRole> pageInfo = sysRoleService.page(null,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.resource.logging.domain.Logging;
 import com.pearadmin.resource.logging.service.LoggingService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +36,7 @@ public class SysLogController extends BaseController {
      * 日 志 数 据
      * */
     @GetMapping("data")
-    public ResuTable data(PageDomain pageDomain)
+    public ResultTable data(PageDomain pageDomain)
     {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
         PageInfo<Logging> pageInfo = new PageInfo<>(loggingService.data());

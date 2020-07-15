@@ -25,6 +25,9 @@ public enum ResultCode {
     @Getter
     private final String message;
 
+    /**
+     * 构 造 方 法
+     * */
     ResultCode(int code, String message) {
 
         this.code = code;

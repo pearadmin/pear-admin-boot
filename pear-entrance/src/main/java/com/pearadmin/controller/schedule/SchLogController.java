@@ -3,7 +3,7 @@ package com.pearadmin.controller.schedule;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.service.IScheduleLogService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +44,7 @@ public class SchLogController extends BaseController {
      * Return: ResuTable
      * */
     @GetMapping("data")
-    public ResuTable data(ScheduleLogBean scheduleLogBean, PageDomain pageDomain){
+    public ResultTable data(ScheduleLogBean scheduleLogBean, PageDomain pageDomain){
         PageInfo<ScheduleLogBean> pageInfo = scheduleLogService.page(scheduleLogBean,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

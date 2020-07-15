@@ -6,7 +6,7 @@ import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.resource.configure.domain.Configure;
 import com.pearadmin.resource.configure.service.IConfigureService;
 import com.pearadmin.resource.sequence.pool.SequencePool;
@@ -50,7 +50,7 @@ public class SysConfigController extends BaseController {
      * Return: ResuBean
      * */
     @GetMapping("data")
-    public ResuTable data(Configure configure, PageDomain pageDomain){
+    public ResultTable data(Configure configure, PageDomain pageDomain){
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
         List<Configure> list = configureService.list(configure);
         PageInfo pageInfo = new PageInfo<>(list);

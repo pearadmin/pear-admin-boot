@@ -5,7 +5,7 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuMenu;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysRoleService;
@@ -71,7 +71,7 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("data")
     @ApiOperation(value="获取用户列表数据")
-    public ResuTable data(PageDomain pageDomain,SysUser sysUser){
+    public ResultTable data(PageDomain pageDomain, SysUser sysUser){
         PageInfo<SysUser> pageInfo = sysUserService.page(sysUser,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

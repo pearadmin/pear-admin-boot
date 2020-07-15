@@ -3,9 +3,8 @@ package com.pearadmin.controller.system;
 import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
-import com.pearadmin.resource.sequence.entity.Sequence;
 import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.service.ISysPowerService;
@@ -52,7 +51,7 @@ public class SysPowerController extends BaseController {
      * Return 权限列表数据
      * */
     @GetMapping("data")
-    public ResuTable data(SysPower sysPower){
+    public ResultTable data(SysPower sysPower){
         return treeTable(sysPowerService.list(sysPower));
     }
 

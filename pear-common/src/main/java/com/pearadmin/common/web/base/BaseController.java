@@ -1,7 +1,7 @@
 package com.pearadmin.common.web.base;
 
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResuTable;
+import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -132,13 +132,19 @@ public class BaseController {
      * Param data
      * Return 表格分页数据
      * */
-    protected  static ResuTable pageTable(Object data,long count){
-        ResuTable resuTable = new ResuTable();
-        resuTable.setData(data);
-        resuTable.setCount(count);
-        resuTable.setCode(0);
-        resuTable.setMsg("...");
-        return resuTable;
+    protected  static ResultTable pageTable(Object data, long count){
+
+        return ResultTable.pageTable(count,data);
+    }
+
+    /**
+     * Describe: 返回数据表格数据
+     * Param data
+     * Return 表格分页数据
+     * */
+    protected  static ResultTable dataTable(Object data){
+
+        return ResultTable.dataTable(data);
     }
 
     /**
@@ -146,12 +152,9 @@ public class BaseController {
      * Param data
      * Return 表格分页数据
      * */
-    protected  static ResuTable treeTable(Object data){
-        ResuTable resuTable = new ResuTable();
-        resuTable.setData(data);
-        resuTable.setCode(0);
-        resuTable.setMsg("...");
-        return resuTable;
+    protected  static ResultTable treeTable(Object data){
+
+        return ResultTable.dataTable(data);
     }
 
 }
