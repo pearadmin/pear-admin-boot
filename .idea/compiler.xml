@@ -10,6 +10,7 @@
         <module name="pear-resource-configure" />
         <module name="pear-schedule" />
         <module name="pear-entrance" />
+        <module name="pear-generator" />
         <module name="pear-system" />
         <module name="pear-resource-logging" />
         <module name="pear-resource-sequence" />
@@ -23,6 +24,7 @@
       <module name="pear-admin-boot" target="1.8" />
       <module name="pear-common" target="1.8" />
       <module name="pear-entrance" target="1.8" />
+      <module name="pear-generator" target="1.8" />
       <module name="pear-modules" target="1.8" />
       <module name="pear-resource" target="1.8" />
       <module name="pear-resource-configure" target="1.8" />
@@ -41,6 +43,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="pear-common" options="-parameters" />
       <module name="pear-entrance" options="-parameters" />
+      <module name="pear-generator" options="-parameters" />
       <module name="pear-resource-configure" options="-parameters" />
       <module name="pear-resource-datasource" options="-parameters" />
       <module name="pear-resource-dictionary" options="-parameters" />
