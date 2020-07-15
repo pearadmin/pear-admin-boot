@@ -1,7 +1,0 @@
-com\pearadmin\resource\configure\service\IConfigureService.class
-com\pearadmin\resource\configure\domain\Configure.class
-com\pearadmin\resource\configure\service\impl\ConfigureServiceImpl.class
-com\pearadmin\resource\configure\mapper\ConfigureMapper.class
-com\pearadmin\resource\configure\ConfigureAutoConfiguration.class
-META-INF\spring-configuration-metadata.json
-com\pearadmin\resource\configure\ConfigureAutoProperties.class
