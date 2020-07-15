@@ -1,24 +1,119 @@
 package com.pearadmin.common.web.base;
 
-import com.pearadmin.common.constant.MessageConstants;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 public class BaseController {
 
     /**
-     * Describe: 返回数据表格数据
-     * Param data
-     * Return 表格数据
+     * 成功操作
      * */
-    protected  static ResuTable dataTable(Object data){
-        ResuTable resuTable = new ResuTable();
-        resuTable.setCode(0);
-        resuTable.setMsg("...");
-        resuTable.setCount(0L);
-        resuTable.setData(data);
-        return resuTable;
+    public Result success(){
+
+        return Result.success();
+    }
+
+    /**
+     * 成功操作
+     * */
+    public Result success(String msg){
+
+        return Result.success(msg);
+    }
+
+    /**
+     * 成功操作
+     * */
+    public Result success(Object data){
+
+        return Result.success(data);
+    }
+
+    /**
+     * 成功操作
+     * */
+    public Result success(String msg,Object data){
+
+        return Result.success(msg,data);
+    }
+
+    /**
+     * 成功操作
+     * */
+    public Result success(int code,String message,Object data){
+
+        return Result.success(code,message,data);
+    }
+
+    /**
+     * 失败操作
+     * */
+    public Result failure(){
+
+        return Result.failure();
+    }
+
+    /**
+     * 失败操作
+     * */
+    public Result failure(String msg){
+
+        return Result.failure(msg);
+    }
+
+    /**
+     * 失败操作
+     * */
+    public Result failure(String msg,Object data){
+
+        return Result.failure(msg,data);
+    }
+
+    /**
+     * 失败操作
+     * */
+    public Result failure(int code,String msg,Object data){
+
+        return Result.failure(code,msg,data);
+    }
+
+    /**
+     * 选择返回
+     * */
+    public Result decide(Boolean b){
+
+        return Result.decide(b);
+    }
+
+    /**
+     * 选择返回
+     * */
+    public Result decide(Boolean b,String success,String failure){
+
+        return Result.decide(b,success,failure);
+    }
+
+    /**
+     * 页面跳转
+     * */
+    public ModelAndView JumpPage(String path){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(path);
+        return modelAndView;
+    }
+
+    /**
+     * 带参数的页面跳转
+     * */
+    public ModelAndView JumpPage(String path, Map<String,?> params){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(path);
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
     /**
@@ -59,55 +154,4 @@ public class BaseController {
         return resuTable;
     }
 
-    /**
-     * Describe: 返回 ajax 接收成功消息
-     * Param msg
-     * Return ResuBean
-     * */
-    public static ResuBean success(String msg){
-        ResuBean resuBean = new ResuBean();
-        resuBean.setCode(200);
-        resuBean.setSuccess(true);
-        resuBean.setMsg(msg);
-        return resuBean;
-    }
-
-    /**
-     * Describe: 返回 ajax 接收失败消息
-     * Param msg
-     * Return ResuBean
-     * */
-    public static ResuBean failure(String msg){
-        ResuBean resuBean = new ResuBean();
-        resuBean.setCode(500);
-        resuBean.setSuccess(false);
-        resuBean.setMsg(msg);
-        return resuBean;
-    }
-
-    /**
-     * Describe: 根据 Boolean 自主返回 Success Failure 封装
-     * Param msg
-     * Return ResuBean
-     * */
-    public static ResuBean  decide(Boolean result,String success,String failure){
-        if(result){
-            return success(success);
-        }else{
-            return failure(failure);
-        }
-    }
-
-    /**
-     * Describe: 根据 Boolean 自主返回 Success Failure 封装
-     * Param msg
-     * Return ResuBean
-     * */
-    public static ResuBean  decide(Boolean result){
-        if(result){
-            return success(MessageConstants.OPERATE_SUCCESS);
-        }else{
-            return failure(MessageConstants.OPERATE_FAILURE);
-        }
-    }
 }

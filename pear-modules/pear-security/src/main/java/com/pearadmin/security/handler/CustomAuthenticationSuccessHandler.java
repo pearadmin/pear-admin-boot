@@ -1,7 +1,7 @@
 package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -25,7 +25,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        ResuBean resuBean = new ResuBean();
+        Result resuBean = new Result();
         resuBean.setSuccess(true);
         resuBean.setMsg("登陆成功");
         resuBean.setCode(200);

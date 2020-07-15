@@ -24,7 +24,6 @@
         <module>pear-resource-document</module>   <!-- 接 口 文 档 集 成 -->
         <module>pear-resource-logging</module>    <!-- 日 志 组 件 -->
         <module>pear-resource-pageable</module>   <!-- 分 页 组 件 -->
-        <module>pear-resource-dictionary</module> <!-- 数 据 字 典-->
     </modules>
 
     <!-- 依 赖 管 理 -->

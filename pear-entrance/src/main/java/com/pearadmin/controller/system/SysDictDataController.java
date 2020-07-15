@@ -5,10 +5,11 @@ import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.service.ISysDictDataService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
@@ -29,10 +30,9 @@ public class SysDictDataController extends BaseController {
     private ISysDictDataService sysDictDataService;
 
     @GetMapping("main")
-    public ModelAndView main(ModelAndView modelAndView,String type){
-        modelAndView.addObject("type",type);
-        modelAndView.setViewName(MODULE_PATH + "main");
-        return modelAndView;
+    public ModelAndView main(Model model, String type){
+        model.addAttribute("type",type);
+        return JumpPage(MODULE_PATH + "main");
     }
 
     @GetMapping("data")
@@ -43,14 +43,13 @@ public class SysDictDataController extends BaseController {
     }
 
     @GetMapping("add")
-    public ModelAndView add(ModelAndView modelAndView,String type){
-        modelAndView.addObject("type",type);
-        modelAndView.setViewName(MODULE_PATH+"add");
-        return modelAndView;
+    public ModelAndView add(Model model,String type){
+        model.addAttribute("type",type);
+        return JumpPage(MODULE_PATH+"add");
     }
 
     @PostMapping("save")
-    public ResuBean save(@RequestBody SysDictData sysDictData){
+    public Result save(@RequestBody SysDictData sysDictData){
         sysDictData.setDataId("" + new SnowFlake().nextId());
         Boolean result = sysDictDataService.save(sysDictData);
         return decide(result,
@@ -59,10 +58,9 @@ public class SysDictDataController extends BaseController {
     }
 
     @GetMapping("edit")
-    public ModelAndView edit(ModelAndView modelAndView,String dataId){
-        modelAndView.addObject("sysDictData",sysDictDataService.getById(dataId));
-        modelAndView.setViewName(MODULE_PATH+"edit");
-        return modelAndView;
+    public ModelAndView edit(Model model,String dataId){
+        model.addAttribute("sysDictData",sysDictDataService.getById(dataId));
+        return JumpPage(MODULE_PATH+"edit");
     }
 
 }

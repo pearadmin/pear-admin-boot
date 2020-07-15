@@ -34,11 +34,6 @@
             <artifactId>pear-schedule</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-generate</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <!-- 三方依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -4,12 +4,13 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.service.ISysRoleService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,9 +38,8 @@ public class SysRoleController extends BaseController {
      * Return 用户列表视图
      * */
     @GetMapping("main")
-    public ModelAndView main(ModelAndView modelAndView){
-        modelAndView.setViewName(MODULE_PATH + "main");
-        return modelAndView;
+    public ModelAndView main(){
+        return JumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -61,8 +61,7 @@ public class SysRoleController extends BaseController {
      * */
     @GetMapping("add")
     public ModelAndView add(ModelAndView modelAndView){
-        modelAndView.setViewName(MODULE_PATH + "add");
-        return modelAndView;
+        return JumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -71,7 +70,7 @@ public class SysRoleController extends BaseController {
      * Return 执行结果
      * */
     @PostMapping("save")
-    public ResuBean save(@RequestBody SysRole sysRole){
+    public Result save(@RequestBody SysRole sysRole){
         sysRole.setRoleId("" + new SnowFlake().nextId());
         boolean result = sysRoleService.save(sysRole);
         return decide(result);
@@ -95,9 +94,8 @@ public class SysRoleController extends BaseController {
      * Return 执行结果
      * */
     @PutMapping("update")
-    public ResuBean update(@RequestBody  SysRole sysRole){
-
-       boolean result = sysRoleService.update(sysRole);
+    public Result update(@RequestBody  SysRole sysRole){
+        boolean result = sysRoleService.update(sysRole);
         return decide(result);
     }
 
@@ -107,10 +105,9 @@ public class SysRoleController extends BaseController {
      * Return ModelAndView
      * */
     @GetMapping("power")
-    public ModelAndView power(ModelAndView modelAndView,String roleId){
-        modelAndView.setViewName(MODULE_PATH + "power");
-        modelAndView.addObject("roleId",roleId);
-        return modelAndView;
+    public ModelAndView power(Model model, String roleId){
+        model.addAttribute("roleId",roleId);
+        return JumpPage(MODULE_PATH + "power");
     }
 
     /**
@@ -119,7 +116,7 @@ public class SysRoleController extends BaseController {
      * Return ResuBean
      * */
     @PutMapping("saveRolePower")
-    public ResuBean saveRolePower(String roleId,String powerIds){
+    public Result saveRolePower(String roleId, String powerIds){
         boolean result = sysRoleService.saveRolePower(roleId, Arrays.asList(powerIds.split(",")));
         return decide(result);
     }
@@ -140,7 +137,7 @@ public class SysRoleController extends BaseController {
      * Return: ResuBean
      * */
     @DeleteMapping("remove/{id}")
-    public ResuBean remove(@PathVariable String id){
+    public Result remove(@PathVariable String id){
         boolean result  = sysRoleService.remove(id);
         return decide(result);
     }
@@ -151,7 +148,7 @@ public class SysRoleController extends BaseController {
      * Return: ResuBean
      * */
     @PutMapping("enable")
-    public ResuBean enable(@RequestBody SysRole sysRole){
+    public Result enable(@RequestBody SysRole sysRole){
         sysRole.setEnable("0");
         boolean result =  sysRoleService.update(sysRole);
         return decide(result);
@@ -163,7 +160,7 @@ public class SysRoleController extends BaseController {
      * Return: ResuBean
      * */
     @PutMapping("disable")
-    public ResuBean disable(@RequestBody SysRole sysRole){
+    public Result disable(@RequestBody SysRole sysRole){
         sysRole.setEnable("1");
         boolean result =  sysRoleService.update(sysRole);
         return decide(result);

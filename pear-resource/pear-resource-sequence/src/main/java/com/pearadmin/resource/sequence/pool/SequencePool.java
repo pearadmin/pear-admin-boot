@@ -111,6 +111,11 @@ public class SequencePool {
         return id;
     }
 
+    public String getStringId(){
+
+        return "" + getId();
+    }
+
     /**
      * 批 量 队 列  Id
      * */

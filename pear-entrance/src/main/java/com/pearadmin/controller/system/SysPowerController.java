@@ -3,12 +3,13 @@ package com.pearadmin.controller.system;
 import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.common.web.domain.response.ResuTree;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.service.ISysPowerService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,8 +39,7 @@ public class SysPowerController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/power/main','sys:power:main')")
     public ModelAndView main(ModelAndView modelAndView){
-        modelAndView.setViewName(MODULE_PATH + "main");
-        return modelAndView;
+        return JumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -58,9 +58,8 @@ public class SysPowerController extends BaseController {
      * Return 权限新增视图
      * */
     @GetMapping("add")
-    public ModelAndView add(ModelAndView modelAndView){
-        modelAndView.setViewName(MODULE_PATH + "add");
-        return modelAndView;
+    public ModelAndView add(){
+        return JumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -69,10 +68,9 @@ public class SysPowerController extends BaseController {
      * Return 权限修改视图
      * */
     @GetMapping("edit")
-    public ModelAndView edit(ModelAndView modelAndView,String powerId){
-        modelAndView.addObject("sysPower",sysPowerService.getById(powerId));
-        modelAndView.setViewName(MODULE_PATH + "edit");
-        return modelAndView;
+    public ModelAndView edit(Model model, String powerId){
+        model.addAttribute("sysPower",sysPowerService.getById(powerId));
+        return JumpPage(MODULE_PATH + "edit");
     }
 
     /**
@@ -81,7 +79,7 @@ public class SysPowerController extends BaseController {
      * Return: ResuBean
      * */
     @PostMapping("save")
-    public ResuBean save(@RequestBody SysPower sysPower){
+    public Result save(@RequestBody SysPower sysPower){
         sysPower.setPowerId(""+new SnowFlake().nextId());
         boolean result = sysPowerService.save(sysPower);
         return decide(
@@ -97,7 +95,7 @@ public class SysPowerController extends BaseController {
      * Return 执行结果
      * */
     @PutMapping("update")
-    public ResuBean update(@RequestBody SysPower sysPower){
+    public Result update(@RequestBody SysPower sysPower){
         boolean result = sysPowerService.update(sysPower);
         return decide(
                 result,                           // 响应结果
@@ -112,7 +110,7 @@ public class SysPowerController extends BaseController {
      * Return ResuTree
      * */
     @DeleteMapping("remove/{id}")
-    public ResuBean remove(@PathVariable String id){
+    public Result remove(@PathVariable String id){
         boolean result = sysPowerService.remove(id);
         return decide(
                 result,                           // 响应结果
@@ -143,7 +141,7 @@ public class SysPowerController extends BaseController {
      * Return ResuTree
      * */
     @PutMapping("enable")
-    public ResuBean enable(@RequestBody SysPower sysPower){
+    public Result enable(@RequestBody SysPower sysPower){
         sysPower.setEnable("0");
         boolean result = sysPowerService.update(sysPower);
         return decide(
@@ -159,7 +157,7 @@ public class SysPowerController extends BaseController {
      * Return ResuTree
      * */
     @PutMapping("disable")
-    public ResuBean disable(@RequestBody SysPower sysPower){
+    public Result disable(@RequestBody SysPower sysPower){
         sysPower.setEnable("1");
         boolean result = sysPowerService.update(sysPower);
         return decide(

@@ -24,9 +24,8 @@ public class EntranceController extends BaseController {
      * Return: 登录视图
      * */
     @GetMapping("login")
-    public ModelAndView login(ModelAndView modelAndView){
-        modelAndView.setViewName("login");
-        return modelAndView;
+    public ModelAndView login(){
+        return JumpPage("login");
     }
 
     /**
@@ -36,9 +35,8 @@ public class EntranceController extends BaseController {
      * */
     @GetMapping("index")
     @Logging(title = "主页",describe = "返回 Index 主页视图",type = BusinessType.ADD)
-    public ModelAndView index(ModelAndView modelAndView){
-        modelAndView.setViewName("index");
-        return modelAndView;
+    public ModelAndView index(){
+        return JumpPage("index");
     }
 
     /**
@@ -47,9 +45,8 @@ public class EntranceController extends BaseController {
      * Return: 主页视图
      * */
     @GetMapping("console")
-    public ModelAndView home(ModelAndView modelAndView){
-        modelAndView.setViewName("console");
-        return modelAndView;
+    public ModelAndView home(){
+        return JumpPage("console");
     }
 
     /**
@@ -57,9 +54,8 @@ public class EntranceController extends BaseController {
      * Return:返回403页面
      * */
     @GetMapping("error/403")
-    public ModelAndView noPermission(ModelAndView modelAndView){
-        modelAndView.setViewName("error/403");
-        return modelAndView;
+    public ModelAndView noPermission(){
+        return JumpPage("error/403");
     }
 
     /**
@@ -67,9 +63,8 @@ public class EntranceController extends BaseController {
      * Return:返回404页面
      * */
     @GetMapping("error/404")
-    public ModelAndView notFound(ModelAndView modelAndView){
-        modelAndView.setViewName("error/404");
-        return modelAndView;
+    public ModelAndView notFound(){
+        return JumpPage("error/404");
     }
 
     /**
@@ -77,8 +72,7 @@ public class EntranceController extends BaseController {
      * Return:返回500界面
      * */
     @GetMapping("error/500")
-    public ModelAndView onException(ModelAndView modelAndView){
-        modelAndView.setViewName("error/500");
-        return modelAndView;
+    public ModelAndView onException(){
+        return JumpPage("error/500");
     }
 }

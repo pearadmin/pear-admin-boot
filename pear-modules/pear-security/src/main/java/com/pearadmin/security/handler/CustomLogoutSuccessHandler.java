@@ -1,7 +1,7 @@
 package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -22,7 +22,7 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        ResuBean resuBean = new ResuBean();
+        Result resuBean = new Result();
         resuBean.setCode(200);
         resuBean.setMsg("注销成功");
         resuBean.setSuccess(true);

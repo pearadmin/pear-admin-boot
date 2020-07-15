@@ -1,0 +1,72 @@
+{
+  "groups": [
+    {
+      "name": "pear.plugin.document",
+      "type": "com.pearadmin.resource.document.DocumentAutoProperties",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "pear.plugin.document.contact",
+      "type": "springfox.documentation.service.Contact",
+      "description": "扩 展 信 息",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.describe",
+      "type": "java.lang.String",
+      "description": "描 述 信 息",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.enable",
+      "type": "java.lang.Boolean",
+      "description": "是 否 开 启",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.group-name",
+      "type": "java.lang.String",
+      "description": "分 组 名 称",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.licence",
+      "type": "java.lang.String",
+      "description": "协 议",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.licence-url",
+      "type": "java.lang.String",
+      "description": "协 议 链 接",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.scan-package",
+      "type": "java.lang.String",
+      "description": "扫 描 路 径",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.terms-of-service-url",
+      "type": "java.lang.String",
+      "description": "组 织 链 接",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.title",
+      "type": "java.lang.String",
+      "description": "系 统 标 题",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    },
+    {
+      "name": "pear.plugin.document.version",
+      "type": "java.lang.String",
+      "description": "版 本 信 息",
+      "sourceType": "com.pearadmin.resource.document.DocumentAutoProperties"
+    }
+  ],
+  "hints": []
+}

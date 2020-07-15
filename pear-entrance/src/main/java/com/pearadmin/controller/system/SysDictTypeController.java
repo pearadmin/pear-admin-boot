@@ -4,10 +4,11 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.service.ISysDictTypeService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,9 +34,8 @@ public class SysDictTypeController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("main")
-    public ModelAndView main(ModelAndView modelAndView){
-        modelAndView.setViewName(MODULE_PATH + "main");
-        return modelAndView;
+    public ModelAndView main(){
+        return JumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -55,9 +55,8 @@ public class SysDictTypeController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("add")
-    public ModelAndView add(ModelAndView modelAndView){
-        modelAndView.setViewName(MODULE_PATH + "add");
-        return modelAndView;
+    public ModelAndView add(){
+        return JumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -66,7 +65,7 @@ public class SysDictTypeController extends BaseController {
      * Return: ResuBean
      * */
     @PostMapping("save")
-    public ResuBean save(@RequestBody SysDictType sysDictType){
+    public Result save(@RequestBody SysDictType sysDictType){
         boolean result = sysDictTypeService.save(sysDictType);
         return decide(
                 result,                           // 响应结果
@@ -81,10 +80,9 @@ public class SysDictTypeController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("edit")
-    public ModelAndView edit(ModelAndView modelAndView,String dictTypeId){
-        modelAndView.addObject("sysDictType",sysDictTypeService.getById(dictTypeId));
-        modelAndView.setViewName(MODULE_PATH + "edit");
-        return modelAndView;
+    public ModelAndView edit(Model model, String dictTypeId){
+        model.addAttribute("sysDictType",sysDictTypeService.getById(dictTypeId));
+        return JumpPage(MODULE_PATH + "edit");
     }
 
     /**
@@ -93,13 +91,13 @@ public class SysDictTypeController extends BaseController {
      * Return: ModelAndView
      * */
     @PutMapping("update")
-    public ResuBean update(@RequestBody SysDictType sysDictType){
+    public Result update(@RequestBody SysDictType sysDictType){
         boolean result =  sysDictTypeService.updateById(sysDictType);
         return decide(result);
     }
 
     @DeleteMapping("remove/{id}")
-    public ResuBean remove(@PathVariable("id")String id){
+    public Result remove(@PathVariable("id")String id){
         Boolean result = sysDictTypeService.remove(id);
         return decide(result);
     }
@@ -110,7 +108,7 @@ public class SysDictTypeController extends BaseController {
      * Return ResuTree
      * */
     @PutMapping("enable")
-    public ResuBean enable(@RequestBody SysDictType sysDictType){
+    public Result enable(@RequestBody SysDictType sysDictType){
         sysDictType.setEnable("0");
         boolean result = sysDictTypeService.updateById(sysDictType);
         return decide(result);
@@ -122,11 +120,11 @@ public class SysDictTypeController extends BaseController {
      * Return ResuTree
      * */
     @PutMapping("disable")
-    public ResuBean disable(@RequestBody SysDictType sysDIctType){
+    public Result disable(@RequestBody SysDictType sysDIctType){
         sysDIctType.setEnable("1");
         boolean result = sysDictTypeService.updateById(sysDIctType);
         return decide(
-                result,                           // 响应结果
+                result,                              // 响应结果
                 MessageConstants.UPDATE_SUCCESS,     // 成功消息
                 MessageConstants.UPDATE_FAILURE      // 失败消息
         );

@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.serial.SnowFlake;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.response.ResuTable;
 import com.pearadmin.system.domain.SysUser;
@@ -14,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,9 +57,8 @@ public class SysUserController extends BaseController {
     @GetMapping("main")
     @ApiOperation(value="获取用户列表视图")
     @PreAuthorize("hasPermission('/system/user/main','sys:user:main')")
-    public ModelAndView main(ModelAndView modelAndView){
-        modelAndView.setViewName(MODULE_PATH + "main");
-        return modelAndView;
+    public ModelAndView main( ){
+        return JumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -80,10 +80,9 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("add")
     @ApiOperation(value="获取用户新增视图")
-    public ModelAndView add(ModelAndView modelAndView){
-        modelAndView.addObject("sysRoles",sysRoleService.list(null));
-        modelAndView.setViewName(MODULE_PATH+"add");
-        return modelAndView;
+    public ModelAndView add(Model model){
+        model.addAttribute("sysRoles",sysRoleService.list(null));
+        return JumpPage(MODULE_PATH+"add");
     }
 
     /**
@@ -93,7 +92,7 @@ public class SysUserController extends BaseController {
      * */
     @PostMapping("save")
     @ApiOperation(value="保存用户数据")
-    public ResuBean save(@RequestBody SysUser sysUser){
+    public Result save(@RequestBody SysUser sysUser){
         sysUser.setLogin("0");
         sysUser.setUserId("" + new SnowFlake().nextId());
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
@@ -109,11 +108,10 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("edit")
     @ApiOperation(value="获取用户修改视图")
-    public  ModelAndView edit(ModelAndView modelAndView,String userId){
-        modelAndView.addObject("sysRoles",sysUserService.getUserRole(userId));
-        modelAndView.addObject("sysUser",sysUserService.getById(userId));
-        modelAndView.setViewName(MODULE_PATH + "edit");
-        return modelAndView;
+    public  ModelAndView edit(Model model,String userId){
+        model.addAttribute("sysRoles",sysUserService.getUserRole(userId));
+        model.addAttribute("sysUser",sysUserService.getById(userId));
+        return JumpPage(MODULE_PATH + "edit");
     }
 
     /**
@@ -123,7 +121,7 @@ public class SysUserController extends BaseController {
      * */
     @PutMapping("update")
     @ApiOperation(value="修改用户数据")
-    public ResuBean update(@RequestBody SysUser sysUser){
+    public Result update(@RequestBody SysUser sysUser){
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         boolean result = sysUserService.update(sysUser);
         return decide(result);
@@ -136,7 +134,7 @@ public class SysUserController extends BaseController {
      * */
     @DeleteMapping("batchRemove/{ids}")
     @ApiOperation(value="批量删除用户")
-    public ResuBean batchRemove(@PathVariable String ids){
+    public Result batchRemove(@PathVariable String ids){
         boolean result = sysUserService.batchRemove(ids.split(","));
         return decide(result);
     }
@@ -148,7 +146,7 @@ public class SysUserController extends BaseController {
      * */
     @DeleteMapping("remove/{id}")
     @ApiOperation(value="删除用户数据")
-    public ResuBean remove(@PathVariable String id){
+    public Result remove(@PathVariable String id){
         boolean result  = sysUserService.remove(id);
         return decide(result);
     }
@@ -171,7 +169,7 @@ public class SysUserController extends BaseController {
      * */
     @PutMapping("enable")
     @ApiOperation(value = "开启用户登录")
-    public ResuBean enable(@RequestBody SysUser sysUser){
+    public Result enable(@RequestBody SysUser sysUser){
         sysUser.setEnable("0");
         boolean result = sysUserService.update(sysUser);
         return decide(result);
@@ -184,7 +182,7 @@ public class SysUserController extends BaseController {
      * */
     @PutMapping("disable")
     @ApiOperation(value = "禁用用户登录")
-    public ResuBean disable(@RequestBody SysUser sysUser){
+    public Result disable(@RequestBody SysUser sysUser){
         sysUser.setEnable("1");
         boolean result = sysUserService.update(sysUser);
         return decide(result);

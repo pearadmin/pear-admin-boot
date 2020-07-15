@@ -1,7 +1,7 @@
 package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.web.domain.response.ResuBean;
+import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
@@ -27,7 +27,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
-        ResuBean resuBean = new ResuBean();
+        Result resuBean = new Result();
         resuBean.setCode(500);
         resuBean.setSuccess(false);
         resuBean.setMsg("登陆失败");
