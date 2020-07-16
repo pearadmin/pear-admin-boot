@@ -15,7 +15,9 @@ public class PearEntranceApplication {
     /**
      * 启 动 程 序
      * */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+
+    {
         SpringApplication.run(PearEntranceApplication.class, args);
     }
 

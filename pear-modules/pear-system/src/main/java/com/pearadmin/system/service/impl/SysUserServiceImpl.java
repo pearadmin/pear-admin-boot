@@ -2,9 +2,9 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.resource.sequence.pool.SequencePool;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.domain.SysUserRole;
@@ -38,8 +38,6 @@ public class SysUserServiceImpl implements ISysUserService {
     @Resource
     private SysPowerMapper sysPowerMapper;
 
-    @Resource
-    private SequencePool sequencePool;
 
     /**
      * Describe: 根据条件查询用户列表数据
@@ -145,7 +143,7 @@ public class SysUserServiceImpl implements ISysUserService {
         List<SysUserRole> sysUserRoles = new ArrayList<>();
         roleIds.forEach(roleId->{
             SysUserRole sysUserRole = new SysUserRole();
-            sysUserRole.setId(sequencePool.getStringId());
+            sysUserRole.setId(SequenceUtil.makeStringId());
             sysUserRole.setRoleId(roleId);
             sysUserRole.setUserId(userId);
             sysUserRoles.add(sysUserRole);

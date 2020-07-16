@@ -32,8 +32,6 @@ public class ScheduleConfig {
         prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
         prop.put("org.quartz.threadPool.threadCount", "20");
         prop.put("org.quartz.threadPool.threadPriority", "5");
-        // JobStore配置:Scheduler在运行时用来存储相关的信息
-        // JDBCJobStore和JobStoreTX都使用关系数据库来存储Schedule相关的信息。
         // JobStoreTX在每次执行任务后都使用commit或者rollback来提交更改。
         prop.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
         // 集群配置：如果有多个调度器实体的话则必须设置为true
@@ -41,7 +39,7 @@ public class ScheduleConfig {
         // 集群配置：检查集群下的其他调度器实体的时间间隔
         prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
         // 设置一个频度(毫秒)，用于实例报告给集群中的其他实例
-        prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
+        prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "5000");
         // 触发器触发失败后再次触犯的时间间隔
         prop.put("org.quartz.jobStore.misfireThreshold", "12000");
         // 数据库表前缀

@@ -48,10 +48,5 @@
             <version>1.18.12</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-resource-sequence</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>

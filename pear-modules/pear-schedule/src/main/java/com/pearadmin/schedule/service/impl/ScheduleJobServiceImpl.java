@@ -25,23 +25,6 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Resource
     private ScheduleJobMapper scheduleJobMapper ;
 
-    /**
-     * 定时器初始化
-     */
-    @PostConstruct
-    public void init (){
-        // TODO 项目启动是 产生异常
- /*       List<ScheduleJobBean> scheduleJobList = scheduleJobMapper.selectList(null);
-        for (ScheduleJobBean scheduleJob : scheduleJobList) {
-            CronTrigger cronTrigger = ScheduleHandler.getCronTrigger(scheduler,Long.parseLong(scheduleJob.getJobId())) ;
-            if (cronTrigger == null){
-                ScheduleHandler.createJob(scheduler,scheduleJob);
-            } else {
-                ScheduleHandler.updateJob(scheduler,scheduleJob);
-            }
-        }*/
-    }
-
     @Override
     public ScheduleJobBean getById(String jobId) {
         return scheduleJobMapper.selectById(jobId);

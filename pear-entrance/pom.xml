@@ -48,14 +48,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-resource-sequence</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-resource-datasource</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
@@ -67,19 +59,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-resource-document</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-resource-logging</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-resource-configure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
