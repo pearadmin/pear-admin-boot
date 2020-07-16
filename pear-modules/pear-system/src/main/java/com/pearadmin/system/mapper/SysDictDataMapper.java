@@ -14,4 +14,5 @@ public interface SysDictDataMapper {
     Integer insert(SysDictData sysDictData);
 
     SysDictData selectById(String id);
+
 }

@@ -40,8 +40,8 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
         Set<String> permissions = new HashSet<>();
 
         for (SysPower sysPower :powerList) {
-            permissions.add(sysPower.getPowerCode());
 
+            permissions.add(sysPower.getPowerCode());
         }
 
         if(permissions.contains(o1)){

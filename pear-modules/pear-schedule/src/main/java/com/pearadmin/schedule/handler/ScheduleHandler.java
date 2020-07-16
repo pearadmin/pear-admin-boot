@@ -56,9 +56,9 @@ public class ScheduleHandler {
                     .withMisfireHandlingInstructionDoNothing() ;
             CronTrigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity(getTriggerKey(Long.parseLong(scheduleJob.getJobId())))
-                    .withSchedule(scheduleBuilder).build() ;
+                    .withSchedule(scheduleBuilder).build();
             jobDetail.getJobDataMap().put(ScheduleJobBean.JOB_PARAM_KEY,scheduleJob);
-            scheduler.scheduleJob(jobDetail,trigger) ;
+            scheduler.scheduleJob(jobDetail,trigger);
             // 如果该定时器处于暂停状态
             if (scheduleJob.getStatus().equals("1")){
                 pauseJob(scheduler,Long.parseLong(scheduleJob.getJobId())) ;
