@@ -1,7 +1,6 @@
 package com.pearadmin.schedule.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
@@ -82,11 +81,7 @@ public class ScheduleJobController extends BaseController {
         scheduleJob.setJobId(SequenceUtil.makeStringId());
         scheduleJob.setCreateTime(new Date());
         Boolean result = scheduleJobService.save(scheduleJob);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.SAVE_SUCCESS,     // 成功消息
-                MessageConstants.SAVE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -108,11 +103,7 @@ public class ScheduleJobController extends BaseController {
     @RequestMapping("/update")
     public Result update (@RequestBody ScheduleJobBean scheduleJob){
         Boolean result = scheduleJobService.update(scheduleJob) ;
-        return decide(
-                result,                             // 响应结果
-                MessageConstants.UPDATE_SUCCESS,    // 成功消息
-                MessageConstants.UPDATE_FAILURE     // 失败消息
-        );
+        return decide(result);
     }
 
     /**

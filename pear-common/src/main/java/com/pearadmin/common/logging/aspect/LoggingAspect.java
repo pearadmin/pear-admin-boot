@@ -86,15 +86,15 @@ public class LoggingAspect {
             throw exception;
 
         }finally {
-
                 loggingFactory.record(logging);
         }
 
         return result;
     }
+
     /**
-     * Get a solution to the current method or class label
-     */
+     * 获 取 注 解
+     * */
     public com.pearadmin.common.logging.annotation.Logging getLogging(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();

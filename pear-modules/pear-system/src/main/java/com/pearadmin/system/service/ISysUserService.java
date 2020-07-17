@@ -42,7 +42,6 @@ public interface ISysUserService {
      * */
     boolean remove(String id);
 
-
     /**
      * Describe: 根据 id 修改用户数据
      * Param: ids

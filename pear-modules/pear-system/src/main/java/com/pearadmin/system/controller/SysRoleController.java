@@ -32,7 +32,6 @@ public class SysRoleController extends BaseController {
     @Resource
     private ISysRoleService sysRoleService;
 
-
     /**
      * Describe: 获取角色列表视图
      * Param ModelAndView

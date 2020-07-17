@@ -23,7 +23,6 @@ public interface ISysDictDataService {
      * */
     PageInfo<SysDictData> page(SysDictData sysDictData, PageDomain pageDomain);
 
-
     /**
      * Describe: 插入 SysDictData 数据
      * Param: SysDictData

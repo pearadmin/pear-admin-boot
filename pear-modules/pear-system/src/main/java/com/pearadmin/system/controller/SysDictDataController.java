@@ -1,7 +1,6 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
@@ -12,7 +11,6 @@ import com.pearadmin.system.service.ISysDictDataService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 
 /**
@@ -54,9 +52,7 @@ public class SysDictDataController extends BaseController {
     public Result save(@RequestBody SysDictData sysDictData){
         sysDictData.setDataId(SequenceUtil.makeStringId());
         Boolean result = sysDictDataService.save(sysDictData);
-        return decide(result,
-                MessageConstants.SAVE_SUCCESS,
-                MessageConstants.SAVE_FAILURE);
+        return decide(result);
     }
 
     @GetMapping("edit")

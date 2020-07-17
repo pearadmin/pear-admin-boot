@@ -38,7 +38,6 @@ public class SysUserServiceImpl implements ISysUserService {
     @Resource
     private SysPowerMapper sysPowerMapper;
 
-
     /**
      * Describe: 根据条件查询用户列表数据
      * Param: username

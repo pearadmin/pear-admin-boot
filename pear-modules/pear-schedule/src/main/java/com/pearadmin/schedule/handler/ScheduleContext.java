@@ -21,7 +21,6 @@ public class ScheduleContext extends QuartzJobBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(ScheduleContext.class) ;
 
-
     /**
      * Describe: 执行任务并记录日志
      * Param: JobExecutionContext

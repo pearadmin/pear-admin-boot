@@ -1,7 +1,6 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
@@ -12,7 +11,6 @@ import com.pearadmin.system.service.ISysDictTypeService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 
 /**
@@ -70,11 +68,7 @@ public class SysDictTypeController extends BaseController {
     public Result save(@RequestBody SysDictType sysDictType){
         sysDictType.setId(SequenceUtil.makeStringId());
         boolean result = sysDictTypeService.save(sysDictType);
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.SAVE_SUCCESS,     // 成功消息
-                MessageConstants.SAVE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -126,12 +120,6 @@ public class SysDictTypeController extends BaseController {
     public Result disable(@RequestBody SysDictType sysDIctType){
         sysDIctType.setEnable("1");
         boolean result = sysDictTypeService.updateById(sysDIctType);
-        return decide(
-                result,                              // 响应结果
-                MessageConstants.UPDATE_SUCCESS,     // 成功消息
-                MessageConstants.UPDATE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
-
-
 }

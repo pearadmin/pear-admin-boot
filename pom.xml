@@ -69,16 +69,19 @@
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+            <!-- 公 用 模 块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-common</artifactId>
                 <version>${pear.common.version}</version>
             </dependency>
+            <!-- 接口文档 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <!--Apache 工具包-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
@@ -90,16 +93,19 @@
                 <artifactId>pear-system</artifactId>
                 <version>${pear.system.version}</version>
             </dependency>
+            <!-- 权限模块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-security</artifactId>
                 <version>${pear.security.version}</version>
             </dependency>
+            <!-- 定时模块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-schedule</artifactId>
                 <version>${pear.schedule.version}</version>
             </dependency>
+            <!-- 分页组件 -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -128,12 +134,14 @@
     <!-- 构建工具 -->
     <build>
         <resources>
+            <!-- 加载 .Java 下的 XML 文件 -->
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
             </resource>
+            <!-- 加载 .Java 下的 XML 文件 -->
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>

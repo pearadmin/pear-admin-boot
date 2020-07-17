@@ -1,6 +1,5 @@
 package com.pearadmin.system.controller;
 
-import com.pearadmin.common.constant.MessageConstants;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.ResuTree;
@@ -83,11 +82,7 @@ public class SysPowerController extends BaseController {
     public Result save(@RequestBody SysPower sysPower){
         sysPower.setPowerId(SequenceUtil.makeStringId());
         boolean result = sysPowerService.save(sysPower);
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.SAVE_SUCCESS,     // 成功消息
-                MessageConstants.SAVE_FAILURE      // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -98,11 +93,7 @@ public class SysPowerController extends BaseController {
     @PutMapping("update")
     public Result update(@RequestBody SysPower sysPower){
         boolean result = sysPowerService.update(sysPower);
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.UPDATE_SUCCESS,   // 成功消息
-                MessageConstants.UPDATE_FAILURE    // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -113,11 +104,7 @@ public class SysPowerController extends BaseController {
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable String id){
         boolean result = sysPowerService.remove(id);
-        return decide(
-                result,                           // 响应结果
-                MessageConstants.REMOVE_SUCCESS,   // 成功消息
-                MessageConstants.REMOVE_FAILURE    // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -145,11 +132,7 @@ public class SysPowerController extends BaseController {
     public Result enable(@RequestBody SysPower sysPower){
         sysPower.setEnable("0");
         boolean result = sysPowerService.update(sysPower);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.UPDATE_SUCCESS,   // 成功消息
-                MessageConstants.UPDATE_FAILURE    // 失败消息
-        );
+        return decide(result);
     }
 
     /**
@@ -161,10 +144,6 @@ public class SysPowerController extends BaseController {
     public Result disable(@RequestBody SysPower sysPower){
         sysPower.setEnable("1");
         boolean result = sysPowerService.update(sysPower);
-        return decide(
-                result,                            // 响应结果
-                MessageConstants.UPDATE_SUCCESS,   // 成功消息
-                MessageConstants.UPDATE_FAILURE    // 失败消息
-        );
+        return decide(result);
     }
 }

@@ -27,5 +27,4 @@ public interface ScheduleLogMapper {
      * Return: Integer 影响条数
      * */
     List<ScheduleLogBean> selectList(ScheduleLogBean scheduleLogBean);
-
 }

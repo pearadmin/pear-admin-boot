@@ -26,7 +26,6 @@ public interface ISysPowerService {
 
     boolean update(SysPower sysPower);
 
-
     /**
      * Describe: 根据 id 删除用户数据
      * Param: id

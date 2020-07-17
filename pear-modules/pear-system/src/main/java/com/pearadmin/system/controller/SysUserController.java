@@ -49,7 +49,6 @@ public class SysUserController extends BaseController {
     @Resource
     private ISysRoleService sysRoleService;
 
-
     /**
      * Describe: 获取用户列表视图
      * Param ModelAndView

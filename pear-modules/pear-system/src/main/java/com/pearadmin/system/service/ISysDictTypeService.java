@@ -28,7 +28,6 @@ public interface ISysDictTypeService {
      * */
     PageInfo<SysDictType> page(SysDictType sysDictType, PageDomain pageDomain);
 
-
     /**
      * Describe: 根据 Id 查询字典类型
      * Param: SysDictType

@@ -30,7 +30,6 @@ public interface ISysRoleService {
      * */
     boolean update(SysRole sysRole);
 
-
     List<SysPower> getRolePower(String roleId);
 
     Boolean saveRolePower(String roleId,List<String> powerIds);
