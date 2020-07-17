@@ -22,7 +22,18 @@
     <!-- 版本管理 -->
     <properties>
         <java.version>1.8</java.version>
-        <druid.version>1.1.14</druid.version>
+        <druid.version>1.1.21</druid.version>
+        <mysql.version>8.0.19</mysql.version>
+        <mybatis.version>2.1.3</mybatis.version>
+        <swagger.version>2.9.2</swagger.version>
+        <fastjson.version>1.2.68</fastjson.version>
+        <lombok.version>1.18.12</lombok.version>
+        <pear.common.version>0.0.1-SNAPSHOT</pear.common.version>
+        <pear.system.version>0.0.1-SNAPSHOT</pear.system.version>
+        <pear.security.version>0.0.1-SNAPSHOT</pear.security.version>
+        <pear.schedule.version>0.0.1-SNAPSHOT</pear.schedule.version>
+        <commons.lang3.version>3.10</commons.lang3.version>
+        <pagehelper.version>1.2.10</pagehelper.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -32,52 +43,67 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.19</version>
+                <version>${mysql.version}</version>
             </dependency>
             <!-- 数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.21</version>
+                <version>${druid.version}</version>
             </dependency>
             <!-- 数据库操作框架 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.1.3</version>
+                <version>${mybatis.version}</version>
             </dependency>
             <!-- 接口文档 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
-                <version>2.9.2</version>
+                <version>${swagger.version}</version>
             </dependency>
             <!-- JSON解析工具 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.68</version>
+                <version>${fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.9.2</version>
+                <version>${pear.common.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.9.2</version>
+                <version>${swagger.version}</version>
             </dependency>
-            <!--阿里数据库连接池 -->
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+            <!-- 模块引用 -->
+            <dependency>
+                <groupId>com.pearadmin</groupId>
+                <artifactId>pear-system</artifactId>
+                <version>${pear.system.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.pearadmin</groupId>
+                <artifactId>pear-security</artifactId>
+                <version>${pear.security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.pearadmin</groupId>
+                <artifactId>pear-schedule</artifactId>
+                <version>${pear.schedule.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -87,7 +113,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

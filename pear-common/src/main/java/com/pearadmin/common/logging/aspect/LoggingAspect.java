@@ -3,15 +3,14 @@ package com.pearadmin.common.logging.aspect;
 import com.pearadmin.common.logging.domain.Logging;
 import com.pearadmin.common.logging.enums.RequestMethod;
 import com.pearadmin.common.logging.factory.LoggingFactory;
-import com.pearadmin.common.logging.utils.ServletContext;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -55,21 +54,21 @@ public class LoggingAspect {
             // 业 务 类 型
             logging.setBusinessType(loggingAnnotation.type());
             // 操 作 地 址
-            logging.setOperateAddress(ServletContext.getRemoteHost());
+            logging.setOperateAddress(ServletUtil.getRemoteHost());
             // 请 求 方 式
-            logging.setMethod(ServletContext.getRequestURI());
+            logging.setMethod(ServletUtil.getRequestURI());
             // 创 建 时 间
             logging.setCreateTime(new Date());
             // 请 求 方 法
-            logging.setRequestMethod(RequestMethod.valueOf(ServletContext.getMethod()));
+            logging.setRequestMethod(RequestMethod.valueOf(ServletUtil.getMethod()));
             // 访 问 方 法
-            logging.setOperateUrl(ServletContext.getRequestURI());
+            logging.setOperateUrl(ServletUtil.getRequestURI());
             // 浏 览 器 类 型
-            logging.setBrowser(ServletContext.getBrowser());
+            logging.setBrowser(ServletUtil.getBrowser());
             // 请 求 参 数
-            logging.setRequestBody(ServletContext.getBody());
+            logging.setRequestBody(ServletUtil.getBody());
             // 操 作 系 统
-            logging.setSystemOs(ServletContext.getSystem());
+            logging.setSystemOs(ServletUtil.getSystem());
             // 写 死 用 户
             logging.setOperateName("就眠仪式");
             // 是 否 成 功
@@ -108,6 +107,4 @@ public class LoggingAspect {
             return logging;
         }
     }
-
-
 }
