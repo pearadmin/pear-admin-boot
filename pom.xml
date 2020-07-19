@@ -21,18 +21,31 @@
 
     <!-- 版本管理 -->
     <properties>
+        <!-- JDK 版本 -->
         <java.version>1.8</java.version>
+        <!-- 数 据 源 版 本 -->
         <druid.version>1.1.21</druid.version>
+        <!-- Mysql 版 本 -->
         <mysql.version>8.0.19</mysql.version>
+        <!-- MyBatis 版 本 -->
         <mybatis.version>2.1.3</mybatis.version>
+        <!-- Swagger 版 本 -->
         <swagger.version>2.9.2</swagger.version>
+        <!-- Fast Json 序 列 化 版 本 -->
         <fastjson.version>1.2.68</fastjson.version>
+        <!-- Lombok 版 本 -->
         <lombok.version>1.18.12</lombok.version>
+        <!-- 公 用 模 块 版 本 -->
         <pear.common.version>0.0.1-SNAPSHOT</pear.common.version>
+        <!-- 系 统 模 块 版 本 -->
         <pear.system.version>0.0.1-SNAPSHOT</pear.system.version>
+        <!-- 安 全 模 块 版 本 -->
         <pear.security.version>0.0.1-SNAPSHOT</pear.security.version>
+        <!-- 定 时 任 务 模 块 -->
         <pear.schedule.version>0.0.1-SNAPSHOT</pear.schedule.version>
+        <!-- apache 工 具 类 -->
         <commons.lang3.version>3.10</commons.lang3.version>
+        <!-- 分 页 工 具 类 -->
         <pagehelper.version>1.2.10</pagehelper.version>
     </properties>
 
