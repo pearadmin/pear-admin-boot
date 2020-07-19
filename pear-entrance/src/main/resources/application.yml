@@ -15,18 +15,6 @@ mybatis:
   # 别 名 扫 描
   type-aliases-package: com.pearadmin
 
-# Pear 插 件 配 置 信 息
-pear:
-  plugin:
-    logging:
-      # 日 志 ID 的 生 成 方 式
-      sequence:
-        worker: 3
-        center: 3
-      # 是 否 开 启 日 志 记 录
-      enable: true
-
-
 # Page Helper
 pagehelper:
   # 方 言
