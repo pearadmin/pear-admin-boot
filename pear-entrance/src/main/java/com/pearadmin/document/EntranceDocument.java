@@ -31,7 +31,7 @@ public class EntranceDocument {
                 "Pear Admin Boot",
                 "企业级快速开发平台",
                  "2.2.0",
-                "www.pearadmin.com",new Contact("","",""),"apache","",
+                "www.pearadmin.com",new Contact("就眠仪式","www.pearadmin,com","jmys1992@gmail.com"),"apache","",
                 new ArrayList<>()
         );
     }
