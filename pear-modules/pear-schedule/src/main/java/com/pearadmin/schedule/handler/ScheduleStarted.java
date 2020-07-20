@@ -9,6 +9,11 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * Describe: 定时任务启动处理类
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
 @Component
 public class ScheduleStarted {
 

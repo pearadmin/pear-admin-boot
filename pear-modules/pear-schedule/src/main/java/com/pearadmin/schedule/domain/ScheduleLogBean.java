@@ -6,10 +6,9 @@ import org.apache.ibatis.type.Alias;
 
 /**
  * Describe: 定时任务日志记录
- * Author: 就免仪式
+ * Author: 就眠仪式
  * CreateTime: 2019/10/23
  * */
-
 @Data
 @Alias("ScheduleLog")
 public class ScheduleLogBean extends BaseDomain {

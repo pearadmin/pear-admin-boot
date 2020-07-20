@@ -25,11 +25,21 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Resource
     private ScheduleJobMapper scheduleJobMapper ;
 
+    /**
+     * Describe: 根据编号获取定时任务
+     * Param: JobId
+     * Return: Schedule
+     * */
     @Override
     public ScheduleJobBean getById(String jobId) {
         return scheduleJobMapper.selectById(jobId);
     }
 
+    /**
+     * Describe: 定时任务列表 分页
+     * Param: ScheduleJob PageDomain
+     * Return: pageInfo
+     * */
     @Override
     public PageInfo<ScheduleJobBean> page(ScheduleJobBean scheduleJob, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
@@ -37,11 +47,21 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
         return new PageInfo<>(list);
     }
 
+    /**
+     * Describe: 定时任务列表
+     * Param: ScheduleJob
+     * Return: list
+     * */
     @Override
     public List<ScheduleJobBean> list(ScheduleJobBean scheduleJob) {
         return scheduleJobMapper.selectList(scheduleJob);
     }
 
+    /**
+     * Describe: 新增定时任务
+     * Param: ScheduleJob
+     * Return: Boolean 执行结果
+     * */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean save(ScheduleJobBean record) {
@@ -54,6 +74,11 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
         }
     }
 
+    /**
+     * Describe: 修改定时任务
+     * Param: ScheduleJob
+     * Return: Boolean 执行结果
+     * */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean update(ScheduleJobBean record) {
@@ -66,6 +91,11 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
         }
     }
 
+    /**
+     * Describe: 停止定时任务
+     * Param: JobId
+     * Return: Boolean 执行结果
+     * */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean pause(String jobId) {
@@ -80,6 +110,11 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
         }
     }
 
+    /**
+     * Describe: 恢复定时任务
+     * Param: JobId
+     * Return: Boolean 执行结果
+     * */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean resume(String jobId) {
@@ -94,6 +129,11 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
         }
     }
 
+    /**
+     * Describe: 运行一次定时任务
+     * Param: JobId
+     * Return: 无返回值
+     * */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void run(String jobId) {
@@ -101,6 +141,11 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
         ScheduleHandler.run(scheduler,scheduleJob);
     }
 
+    /**
+     * Describe: 删除定时任务
+     * Param: JobId
+     * Return: Boolean 执行结果
+     * */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean delete(String jobId) {

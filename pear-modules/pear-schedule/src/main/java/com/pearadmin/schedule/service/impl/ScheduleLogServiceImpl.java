@@ -18,6 +18,11 @@ public class ScheduleLogServiceImpl implements IScheduleLogService {
     @Resource
     private ScheduleLogMapper scheduleLogMapper ;
 
+    /**
+     * Describe: 定时任务日志入库
+     * Param: ScheduleJob
+     * Return: Boolean 执行结果
+     * */
     @Override
     public Boolean insert(ScheduleLogBean scheduleLogBean) {
         int  i = scheduleLogMapper.insert(scheduleLogBean);
@@ -28,11 +33,21 @@ public class ScheduleLogServiceImpl implements IScheduleLogService {
         }
     }
 
+    /**
+     * Describe: 定时任务列表
+     * Param: ScheduleJob
+     * Return: List
+     * */
     @Override
     public List<ScheduleLogBean> list(ScheduleLogBean scheduleLogBean) {
         return scheduleLogMapper.selectList(scheduleLogBean);
     }
 
+    /**
+     * Describe: 定时任务列表  分页
+     * Param: ScheduleJob
+     * Return: pageInfo
+     * */
     @Override
     public PageInfo<ScheduleLogBean> page(ScheduleLogBean scheduleLogBean, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
