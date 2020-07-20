@@ -23,8 +23,6 @@ import javax.annotation.Resource;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    public static final Logger log = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
-
     @Resource
     private SecurityUserDetailsService securityUserDetailsService;
 

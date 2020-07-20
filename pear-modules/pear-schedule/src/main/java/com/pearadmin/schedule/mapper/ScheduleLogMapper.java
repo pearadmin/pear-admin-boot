@@ -10,7 +10,6 @@ import java.util.List;
  * Author: 就免仪式
  * CreateTime: 2019/10/23
  * */
-
 @Mapper
 public interface ScheduleLogMapper {
 

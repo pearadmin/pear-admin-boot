@@ -5,9 +5,7 @@ package com.pearadmin.schedule.task;
  * Author: 就眠仪式
  * CreateTime: 2019/10/23
  * */
-
 public interface BaseTaskService {
 
     void run(String params) ;
-
 }

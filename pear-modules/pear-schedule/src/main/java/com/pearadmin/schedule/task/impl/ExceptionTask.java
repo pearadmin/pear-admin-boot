@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Describe: 测试定时任务,用于演示
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
 @Slf4j
 @Component("exceptionTask")
 public class ExceptionTask implements BaseTaskService {

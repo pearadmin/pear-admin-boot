@@ -26,7 +26,7 @@ public class ScheduleStarted {
     /**
      * Describe: 加载定时任务到内存
      * Param: Scheduler ScheduleJobBean
-     * Return: null
+     * Return: 无返回值
      * */
     @PostConstruct
     public void init (){

@@ -5,9 +5,8 @@ import com.pearadmin.common.tools.spring.SpringUtil;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.service.IScheduleLogService;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -17,9 +16,8 @@ import java.util.Date;
  * Author: 就免仪式
  * CreateTime: 2019/10/23
  * */
+@Slf4j
 public class ScheduleContext extends QuartzJobBean {
-
-    private static final Logger LOG = LoggerFactory.getLogger(ScheduleContext.class) ;
 
     /**
      * Describe: 执行任务并记录日志
@@ -44,7 +42,7 @@ public class ScheduleContext extends QuartzJobBean {
             long executeTime = System.currentTimeMillis() - beginTime;
             logBean.setTimes((int) executeTime);
             logBean.setStatus(0);
-            LOG.info("定时器 === >> " + jobBean.getJobName() + "执行成功,耗时 === >> " + executeTime);
+            log.info("定时器 === >> " + jobBean.getJobName() + "执行成功,耗时 === >> " + executeTime);
         } catch (Exception e){
             // 异常信息
             long executeTime = System.currentTimeMillis() - beginTime;
