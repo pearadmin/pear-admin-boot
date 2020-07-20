@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 数据源切换处理
- * 
- * @author ruoyi
- */
+ * Describe: 多数据源切换处理
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class DynamicDataSourceContextHolder
 {
     public static final Logger log = LoggerFactory.getLogger(DynamicDataSourceContextHolder.class);

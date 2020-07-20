@@ -5,10 +5,10 @@ import com.pearadmin.common.datasource.enums.DataSourceType;
 import java.lang.annotation.*;
 
 /**
- * 自定义多数据源切换注解
- * 
- * @author ruoyi
- */
+ * Describe: 数 据 源 切 换 注 解
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

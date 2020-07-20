@@ -14,11 +14,12 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
+
 /**
- * 多数据源处理
- * 
- * @author ruoyi
- */
+ * Describe: 多数据源处理
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Aspect
 @Order(1)
 @Component

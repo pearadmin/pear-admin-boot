@@ -1,10 +1,11 @@
 package com.pearadmin.common.datasource.enums;
 
+
 /**
- * 数据源
- * 
- * @author ruoyi
- */
+ * Describe: 数据源类型
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public enum DataSourceType
 {
     /**
