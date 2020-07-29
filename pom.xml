@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 基本信息 -->
+    <!-- 基 本 信 息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-admin-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -11,7 +11,7 @@
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
-    <!-- 依赖项目 -->
+    <!-- 依 赖 项 目 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -19,7 +19,7 @@
         <relativePath/>
     </parent>
 
-    <!-- 版本管理 -->
+    <!-- 版 本 管 理 -->
     <properties>
         <!-- JDK 版本 -->
         <java.version>1.8</java.version>
@@ -49,34 +49,34 @@
         <pagehelper.version>1.2.10</pagehelper.version>
     </properties>
 
-    <!-- 依赖管理 -->
+    <!-- 依 赖 管 理 -->
     <dependencyManagement>
         <dependencies>
-            <!-- 数据库连接工具 -->
+            <!-- 数 据 库 连 接 工 具 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
-            <!-- 数据库连接池 -->
+            <!-- 数 据 库 连 接 池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-            <!-- 数据库操作框架 -->
+            <!-- 数 据 库 操 作 框 架 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
-            <!-- 接口文档 -->
+            <!-- 接 口 文 档 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-            <!-- JSON解析工具 -->
+            <!-- JSON 解 析 工 具 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -88,37 +88,37 @@
                 <artifactId>pear-common</artifactId>
                 <version>${pear.common.version}</version>
             </dependency>
-            <!-- 接口文档 -->
+            <!-- 接 口 文 档 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-            <!--Apache 工具包-->
+            <!--Apache 工 具 包-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang3.version}</version>
             </dependency>
-            <!-- 模块引用 -->
+            <!-- 模 块 引 用 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-system</artifactId>
                 <version>${pear.system.version}</version>
             </dependency>
-            <!-- 权限模块 -->
+            <!-- 权 限 模 块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-security</artifactId>
                 <version>${pear.security.version}</version>
             </dependency>
-            <!-- 定时模块 -->
+            <!-- 定 时 模 块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-schedule</artifactId>
                 <version>${pear.schedule.version}</version>
             </dependency>
-            <!-- 分页组件 -->
+            <!-- 分 页 组 件 -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -127,6 +127,7 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- 继 承 依 赖 -->
     <dependencies>
         <!-- Lombok -->
         <dependency>
@@ -137,11 +138,11 @@
         </dependency>
     </dependencies>
 
-    <!-- 模块管理 -->
+    <!-- 模 块 管 理 -->
     <modules>
-        <module>pear-common</module>        <!-- 公共模块 -->
-        <module>pear-entrance</module>      <!-- 入口模块 -->
-        <module>pear-modules</module>       <!-- 业务模块 -->
+        <module>pear-common</module>        <!-- 公 共 模 块 -->
+        <module>pear-entrance</module>      <!-- 入 口 模 块 -->
+        <module>pear-modules</module>       <!-- 业 务 模 块 -->
     </modules>
 
     <!-- 构建工具 -->
