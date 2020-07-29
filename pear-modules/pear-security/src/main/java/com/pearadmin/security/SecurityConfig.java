@@ -1,6 +1,5 @@
 package com.pearadmin.security;
 
-import com.pearadmin.common.constant.SecurityConstants;
 import com.pearadmin.security.handler.*;
 import com.pearadmin.security.service.CustomAuthenticationProvider;
 import com.pearadmin.security.service.CustomPermissionEvaluator;
@@ -81,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      @Override
      protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(SecurityConstants.ANT_MATCHERS.split(",")).permitAll()
+                .antMatchers("/login/**,/assets/**,/admin/**,/component/**,/favicon.ico".split(",")).permitAll()
                 // 其他的需要登录后才能访问
                 .anyRequest().authenticated()
                 .and()

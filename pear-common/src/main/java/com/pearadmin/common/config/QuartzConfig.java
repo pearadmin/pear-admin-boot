@@ -1,4 +1,4 @@
-package com.pearadmin.schedule.config;
+package com.pearadmin.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,14 +6,8 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Describe: 定时任务配置文件
- * Author: 就眠仪式
- * CreateTime: 2019/10/23
- * */
-
 @Configuration
-public class ScheduleConfig {
+public class QuartzConfig {
 
     /**
      * Describe: 定时任务工厂

@@ -1,4 +1,4 @@
-package com.pearadmin.document;
+package com.pearadmin.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 @Configuration
 @EnableSwagger2
-public class EntranceDocument {
+public class SwaggerConfig {
 
     @Bean
     public Docket docker(){
@@ -30,7 +30,7 @@ public class EntranceDocument {
         return new ApiInfo(
                 "Pear Admin Boot",
                 "企业级快速开发平台",
-                 "2.2.0",
+                "2.2.0",
                 "www.pearadmin.com",new Contact("就眠仪式","www.pearadmin,com","jmys1992@gmail.com"),"apache","",
                 new ArrayList<>()
         );
