@@ -4,11 +4,10 @@ import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
 
 /**
- * Describe: 前端表格数据封装
+ * Describe: 前 端 表 格 数 据 封 装
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @Data
 public class ResultTable extends BaseDomain {
 

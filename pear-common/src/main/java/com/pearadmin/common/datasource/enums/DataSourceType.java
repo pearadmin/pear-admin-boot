@@ -2,7 +2,7 @@ package com.pearadmin.common.datasource.enums;
 
 
 /**
- * Describe: 数据源类型
+ * Describe: 数 据 源 类 型
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

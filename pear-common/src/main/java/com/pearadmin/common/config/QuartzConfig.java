@@ -6,6 +6,11 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Describe: 定 时 任 务 配 置 文 件
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Configuration
 public class QuartzConfig {
 
@@ -29,7 +34,7 @@ public class QuartzConfig {
         // JobStoreTX在每次执行任务后都使用commit或者rollback来提交更改。
         prop.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
         // 集群配置：如果有多个调度器实体的话则必须设置为true
-        prop.put("org.quartz.jobStore.isClustered", "true");
+        prop.put("org.quartz.jobStore.isClustered", "false");
         // 集群配置：检查集群下的其他调度器实体的时间间隔
         prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
         // 设置一个频度(毫秒)，用于实例报告给集群中的其他实例

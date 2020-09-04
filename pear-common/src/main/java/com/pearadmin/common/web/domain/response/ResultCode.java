@@ -2,6 +2,11 @@ package com.pearadmin.common.web.domain.response;
 
 import lombok.Getter;
 
+/**
+ * Describe: 统 一 返 回 状 态 码
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public enum ResultCode {
 
     /**

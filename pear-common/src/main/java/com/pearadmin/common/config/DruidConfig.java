@@ -15,6 +15,11 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Describe: 数 据 源 配 置 类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Configuration
 public class DruidConfig {
 

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../component/layui/css/layui.css" />
 </head>
 <body class="pear-container">
-
 <div class="layui-card">
     <div class="layui-card-body">
         <form class="layui-form" action="">
@@ -55,20 +54,19 @@
 
 <script type="text/html" id="job-bar">
     {{#if (d.status == 0) { }}
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="layui-icon layui-icon-edit"></i>
+    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="layui-icon layui-icon-play"></i>
     </button>
     {{# }else if(d.status == 1){ }}
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="layui-icon layui-icon-edit"></i>
+    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="layui-icon layui-icon-pause"></i>
     </button>
     {{# } }}
-    <button class="pear-btn pear-btn-success pear-btn-sm" lay-event="run"><i class="layui-icon layui-icon-edit"></i>
+    <button class="pear-btn pear-btn-success pear-btn-sm" lay-event="run"><i class="layui-icon layui-icon-release"></i>
     </button>
     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
-
 <script type="text/html" id="job-status">
     {{#if (d.status == 0) { }}
     <span>运行中</span>
@@ -76,7 +74,6 @@
     <span>已挂起</span>
     {{# } }}
 </script>
-
 <script src="../../component/layui/layui.js"></script>
 <script>
     layui.use(['table','form','jquery','dtree'],function () {

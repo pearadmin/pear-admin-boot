@@ -140,10 +140,10 @@ public class ServletUtil {
         }
     }
 
-
-
+    /**
+     * 获取 Request 请求 Body
+     * */
     public static String getBody(){
-
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder("");
         try

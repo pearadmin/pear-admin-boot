@@ -11,6 +11,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 
+/**
+ * Describe: 接 口 文 档 配 置 文 件
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

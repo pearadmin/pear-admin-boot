@@ -6,11 +6,10 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * Describe: Ajax 返回 JSON 结果封装数据
+ * Describe: Ajax 返 回 JSON 结 果 封 装 数 据
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @Data
 @Accessors(chain = true)
 public class Result<T> implements Serializable {

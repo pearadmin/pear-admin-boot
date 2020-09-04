@@ -28,6 +28,9 @@ public class ResuMenu {
      * */
     private String type;
 
+    /**
+     * 打 开 类 型
+     * */
     private String openType;
 
     /**

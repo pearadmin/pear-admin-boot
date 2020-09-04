@@ -4,6 +4,11 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Describe: 基 础 实 体 类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Data
 public class BaseDomain implements Serializable {
 
