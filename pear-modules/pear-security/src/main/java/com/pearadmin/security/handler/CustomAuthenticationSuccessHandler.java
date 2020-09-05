@@ -2,6 +2,7 @@ package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.common.web.domain.response.Result;
+import com.pearadmin.system.domain.SysUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -29,7 +30,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         result.setSuccess(true);
         result.setMsg("登陆成功");
         result.setCode(200);
-        System.out.println("用户信息:"+JSON.toJSONString(authentication));
+        httpServletRequest.getSession().setAttribute("currentUser",authentication.getPrincipal());
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.getWriter().write(JSON.toJSONString(result));

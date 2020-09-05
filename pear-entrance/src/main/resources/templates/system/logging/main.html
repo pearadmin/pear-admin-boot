@@ -35,10 +35,10 @@
 
 <script type="text/html" id="log-bar">
     {{#if (d.success == true) { }}
-    <button class="pear-btn pear-btn-success pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-ok"></i>
+    <button class="pear-btn pear-btn-sm pear-btn-success" lay-event="edit"><i class="layui-icon layui-icon-ok"></i>
         成功</button>
     {{# }else if(d.success == false){ }}
-    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="error"><i class="layui-icon layui-icon-help"></i>
+    <button class="pear-btn pear-btn-sm pear-btn-danger" lay-event="error"><i class="layui-icon layui-icon-help"></i>
         异常</button>
     {{# } }}
 </script>
@@ -66,7 +66,7 @@
                 {title: '操作系统', field: 'systemOs', align:'center'},
                 {title: '访问时间', field: 'createTime',templet:'#log-createTime', align:'center'},
                 {title: '操作人', field: 'operateName', align:'center'},
-                {title: '状态', toolbar: '#log-bar', align:'center', width:150}
+                {title: '访问状态', toolbar: '#log-bar', align:'center', width:150}
             ]
         ]
 
