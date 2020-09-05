@@ -46,7 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private CustomAccessDeniedHandler securityAccessDeniedHander;
 
-
     /**
      * Describe: 自定义权限注解实现
      */

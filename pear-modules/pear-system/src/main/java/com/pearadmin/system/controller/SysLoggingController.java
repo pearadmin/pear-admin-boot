@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("system/logging")
-public class SysLogController extends BaseController {
+public class SysLoggingController extends BaseController {
 
     /**
      * 引 入 日 志 组 件  的 日 志 服 务

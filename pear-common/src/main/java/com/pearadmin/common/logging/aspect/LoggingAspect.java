@@ -3,6 +3,7 @@ package com.pearadmin.common.logging.aspect;
 import com.pearadmin.common.logging.domain.Logging;
 import com.pearadmin.common.logging.enums.RequestMethod;
 import com.pearadmin.common.logging.factory.LoggingFactory;
+import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -70,7 +71,7 @@ public class LoggingAspect {
             // 操 作 系 统
             logging.setSystemOs(ServletUtil.getSystem());
             // 写 死 用 户
-            logging.setOperateName("就眠仪式");
+            logging.setOperateName(SecurityUtil.currentUser().getName());
             // 是 否 成 功
             logging.setSuccess(true);
 
@@ -78,17 +79,13 @@ public class LoggingAspect {
             result = joinPoint.proceed();
 
         }catch (Exception exception){
-
             logging.setSuccess(false);
-
             logging.setErrorMsg(exception.getMessage());
 
             throw exception;
-
         }finally {
                 loggingFactory.record(logging);
         }
-
         return result;
     }
 
