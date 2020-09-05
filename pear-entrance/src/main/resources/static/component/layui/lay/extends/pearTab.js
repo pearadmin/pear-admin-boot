@@ -9,7 +9,6 @@ layui.define(['jquery', 'element'], function(exports) {
 		this.option = opt;
 	};
 
-
 	pearTab.prototype.render = function(opt) {
 		//默认配置值
 		var option = {

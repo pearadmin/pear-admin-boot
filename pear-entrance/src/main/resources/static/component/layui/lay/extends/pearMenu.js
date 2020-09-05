@@ -436,41 +436,28 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 		return content;
 	}
 
-
-
 	function downShow(option) {
-
 		$("body #" + option.elem).on("click", "a[menu-type='0']", function() {
-
 			if (!$("#" + option.elem).is(".pear-nav-mini")) {
-
 				var superEle = $(this).parent();
 				var ele = $(this).next('.layui-nav-child');
-				var height = ele.height();
+				var heights = ele.children("dd").length * 48;
+
 				if ($(this).parent().is(".layui-nav-itemed")) {
-
-
 					if (option.accordion) {
-						// 手 风 琴 实 现
 						$(this).parent().parent().find(".layui-nav-itemed").removeClass("layui-nav-itemed");
 						$(this).parent().addClass("layui-nav-itemed");
-
 					}
-
 					ele.height(0);
-
 					ele.animate({
-						height: height + "px"
+						height: heights + "px"
 					}, 200, function() {
 						ele.css({
 							height: "auto"
 						});
 					});
-
 				} else {
-
 					$(this).parent().addClass("layui-nav-itemed");
-
 					ele.animate({
 						height: "0px"
 					}, 200, function() {
@@ -479,12 +466,9 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 						});
 						$(this).parent().removeClass("layui-nav-itemed");
 					});
-
 				}
 			}
 		})
-
-
 	}
 
 	/** 二 级 悬 浮 菜 单*/

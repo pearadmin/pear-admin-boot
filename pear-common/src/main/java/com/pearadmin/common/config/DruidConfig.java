@@ -23,6 +23,9 @@ import java.util.Map;
 @Configuration
 public class DruidConfig {
 
+    /**
+     * 主数据源
+     * */
     @Bean
     @ConfigurationProperties("spring.datasource.druid.master")
     public DataSource masterDataSource(DruidProperty druidProperties)
@@ -31,6 +34,9 @@ public class DruidConfig {
         return druidProperties.dataSource(dataSource);
     }
 
+    /**
+     * 从数据源
+     * */
     @Bean
     @ConfigurationProperties("spring.datasource.druid.slave")
     @ConditionalOnProperty(prefix = "spring.datasource.druid.slave", name = "enabled", havingValue = "true")
@@ -40,6 +46,9 @@ public class DruidConfig {
         return druidProperties.dataSource(dataSource);
     }
 
+    /**
+     * 动态数据源
+     * */
     @Bean(name = "dynamicDataSource")
     @Primary
     public DynamicDataSource dataSource(DataSource masterDataSource)

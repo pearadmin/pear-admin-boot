@@ -11,7 +11,9 @@
 			.layui-header .layui-nav-more{
 				display: none!important;
 			}
-			
+			.pear-admin .layui-side-scroll{
+				width: 230px;
+			}
 			.pe-collaspe{
 				position: absolute;
 				width: 50px;
@@ -26,10 +28,7 @@
 				color: white;
 				box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
 			}
-			
-			/**
-			 * 风格
-			 * */
+
 			 .light-theme .layui-logo{
 				 background-color: white!important;
 				 color: black!important;
@@ -52,8 +51,8 @@
 			
 		    /** 通 用 框 架 布 局 */
             .pear-admin .layui-header {
-				left: 220px;
-				width: calc(100% - 220px);
+				left: 230px;
+				width: calc(100% - 230px);
 				background-color: white;
 				border-bottom: 1px solid whitesmoke;
 			}
@@ -66,7 +65,7 @@
 				position: absolute;
 			}
 			.pear-admin .layui-logo{
-				width: 220px;
+				width: 230px;
 			    height: 60px;
 				position: relative;
 				background-color: #28333E;
@@ -95,7 +94,7 @@
 			}
 			.pear-admin .layui-side {
 				top: 0px;
-				width: 220px;
+				width: 230px;
 				box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
 				z-index: 9999;
 			}
@@ -113,7 +112,7 @@
 				font-size: 15px;
 			}
 			.pear-admin .layui-body {
-				left: 220px;
+				left: 230px;
 				bottom: 0px;
 			}
             .pear-admin .layui-layout-left {

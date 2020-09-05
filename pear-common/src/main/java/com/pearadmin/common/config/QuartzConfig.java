@@ -45,7 +45,7 @@ public class QuartzConfig {
         prop.put("org.quartz.jobStore.tablePrefix", "schedule_");
         // 从 LOCKS 表查询一行并对这行记录加锁的 SQL 语句
         prop.put("org.quartz.jobStore.selectWithLockSQL", "SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?");
-        // 定时器工厂配置
+        // 定时工厂配置
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setDataSource(dataSource);
         factory.setQuartzProperties(prop);
