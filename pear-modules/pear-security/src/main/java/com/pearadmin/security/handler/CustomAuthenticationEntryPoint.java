@@ -22,12 +22,12 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        Result resuBean = new Result();
-        resuBean.setSuccess(false);
-        resuBean.setMsg("未知账户");
-        resuBean.setCode(401);
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setMsg("未知账户");
+        result.setCode(401);
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+        httpServletResponse.getWriter().write(JSON.toJSONString(result));
     }
 }

@@ -158,8 +158,8 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("getUserMenu")
     @ApiOperation(value = "获取用户菜单数据")
-    public List<ResuMenu> getUserMenu(String username){
-        return sysUserService.getUserMenu(username);
+    public List<ResuMenu> getUserMenu(String currentUser){
+        return sysUserService.getUserMenu(currentUser);
     }
 
     /**

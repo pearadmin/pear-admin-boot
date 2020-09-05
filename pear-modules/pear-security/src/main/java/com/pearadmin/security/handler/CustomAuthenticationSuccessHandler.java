@@ -25,13 +25,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        Result resuBean = new Result();
-        resuBean.setSuccess(true);
-        resuBean.setMsg("登陆成功");
-        resuBean.setCode(200);
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setMsg("登陆成功");
+        result.setCode(200);
+        System.out.println("用户信息:"+JSON.toJSONString(authentication));
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+        httpServletResponse.getWriter().write(JSON.toJSONString(result));
 
     }
 }

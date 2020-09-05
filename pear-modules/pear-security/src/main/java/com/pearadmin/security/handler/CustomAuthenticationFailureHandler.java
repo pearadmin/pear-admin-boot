@@ -26,25 +26,25 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
-        Result resuBean = new Result();
-        resuBean.setCode(500);
-        resuBean.setSuccess(false);
-        resuBean.setMsg("登陆失败");
+        Result result = new Result();
+        result.setCode(500);
+        result.setSuccess(false);
+        result.setMsg("登陆失败");
         if(e instanceof UsernameNotFoundException){
-            resuBean.setMsg("用户名不存在");
-            httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+            result.setMsg("用户名不存在");
+            httpServletResponse.getWriter().write(JSON.toJSONString(result));
             return;
         }
         if(e instanceof LockedException){
-            resuBean.setMsg("用户冻结");
-            httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+            result.setMsg("用户冻结");
+            httpServletResponse.getWriter().write(JSON.toJSONString(result));
             return;
         }
         if(e instanceof BadCredentialsException){
-            resuBean.setMsg("账户密码不正确");
-            httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+            result.setMsg("账户密码不正确");
+            httpServletResponse.getWriter().write(JSON.toJSONString(result));
             return;
         }
-        httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+        httpServletResponse.getWriter().write(JSON.toJSONString(result));
     }
 }

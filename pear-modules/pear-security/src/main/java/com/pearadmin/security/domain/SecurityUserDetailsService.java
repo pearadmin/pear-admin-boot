@@ -17,13 +17,10 @@ public class SecurityUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-
         SysUser sysUser = sysUserMapper.selectByUsername(s);
-
         if(sysUser==null){
             throw new UsernameNotFoundException("Account Not");
         }
-
         SecurityUserDetails securityUserDetails = new SecurityUserDetails();
         securityUserDetails.setUserId(sysUser.getUserId());
         securityUserDetails.setUsername(sysUser.getUsername());

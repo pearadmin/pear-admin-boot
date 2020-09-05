@@ -27,13 +27,13 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         if(ServletUtil.isAjax(httpServletRequest)){
-            Result resuBean = new Result();
-            resuBean.setSuccess(false);
-            resuBean.setMsg("暂无权限");
-            resuBean.setCode(403);
+            Result result = new Result();
+            result.setSuccess(false);
+            result.setMsg("暂无权限");
+            result.setCode(403);
             httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
             httpServletResponse.setCharacterEncoding("UTF-8");
-            httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+            httpServletResponse.getWriter().write(JSON.toJSONString(result));
         }else{
             httpServletResponse.sendRedirect("/error/403");
         }

@@ -22,13 +22,13 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        Result resuBean = new Result();
-        resuBean.setCode(200);
-        resuBean.setMsg("注销成功");
-        resuBean.setSuccess(true);
+        Result result = new Result();
+        result.setCode(200);
+        result.setMsg("注销成功");
+        result.setSuccess(true);
         SecurityContextHolder.clearContext();
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(resuBean));
+        httpServletResponse.getWriter().write(JSON.toJSONString(result));
     }
 }
