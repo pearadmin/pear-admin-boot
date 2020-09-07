@@ -26,11 +26,11 @@ public class LoggingAspect {
     @Resource
     private LoggingFactory loggingFactory;
 
-
+    /**
+     * 切 面 编 程
+     * */
     @Pointcut("@annotation(com.pearadmin.common.logging.annotation.Logging) || @within(com.pearadmin.common.logging.annotation.Logging)")
-    public void dsPointCut() {
-
-    }
+    public void dsPointCut() { }
 
     /**
      * 处 理 系 统 日 志

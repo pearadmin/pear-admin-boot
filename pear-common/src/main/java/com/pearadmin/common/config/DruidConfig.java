@@ -6,6 +6,7 @@ import com.pearadmin.common.config.proprety.DruidProperty;
 import com.pearadmin.common.datasource.DynamicDataSource;
 import com.pearadmin.common.datasource.enums.DataSourceType;
 import com.pearadmin.common.tools.spring.SpringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
