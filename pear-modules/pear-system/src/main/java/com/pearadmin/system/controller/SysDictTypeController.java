@@ -93,6 +93,11 @@ public class SysDictTypeController extends BaseController {
         return decide(result);
     }
 
+    /**
+     * Describe: 数据字典删除
+     * Param: sysDictType
+     * Return: ModelAndView
+     * */
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable("id")String id){
         Boolean result = sysDictTypeService.remove(id);

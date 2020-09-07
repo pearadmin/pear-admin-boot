@@ -18,7 +18,6 @@ import javax.annotation.Resource;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @RestController
 @RequestMapping("system/dictData")
 public class SysDictDataController extends BaseController {
@@ -28,13 +27,22 @@ public class SysDictDataController extends BaseController {
     @Resource
     private ISysDictDataService sysDictDataService;
 
-
+    /**
+     * Describe: 数据字典列表视图
+     * Param: ModelAndView
+     * Return: ModelAndView
+     * */
     @GetMapping("main")
-    public ModelAndView main(Model model, String type){
-        model.addAttribute("type",type);
+    public ModelAndView main(Model model, String typeCode){
+        model.addAttribute("typeCode",typeCode);
         return JumpPage(MODULE_PATH + "main");
     }
 
+    /**
+     * Describe: 数据字典列表数据
+     * Param: sysDictType
+     * Return: ResuTable
+     * */
     @GetMapping("data")
     public ResultTable data (SysDictData sysDictData, PageDomain pageDomain){
        System.out.println(sysDictData.toString());
@@ -42,12 +50,22 @@ public class SysDictDataController extends BaseController {
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
+    /**
+     * Describe: 数据字典类型新增视图
+     * Param: sysDictType
+     * Return: ModelAndView
+     * */
     @GetMapping("add")
-    public ModelAndView add(Model model,String type){
-        model.addAttribute("type",type);
+    public ModelAndView add(Model model,String typeCode){
+        model.addAttribute("typeCode",typeCode);
         return JumpPage(MODULE_PATH+"add");
     }
 
+    /**
+     * Describe: 新增字典类型接口
+     * Param: sysDictType
+     * Return: ResuBean
+     * */
     @PostMapping("save")
     public Result save(@RequestBody SysDictData sysDictData){
         sysDictData.setDataId(SequenceUtil.makeStringId());
@@ -55,10 +73,14 @@ public class SysDictDataController extends BaseController {
         return decide(result);
     }
 
+    /**
+     * Describe: 数据字典类型修改视图
+     * Param: sysDictType
+     * Return: ModelAndView
+     * */
     @GetMapping("edit")
     public ModelAndView edit(Model model,String dataId){
         model.addAttribute("sysDictData",sysDictDataService.getById(dataId));
         return JumpPage(MODULE_PATH+"edit");
     }
-
 }

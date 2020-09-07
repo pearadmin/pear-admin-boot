@@ -83,7 +83,7 @@
 
         table.render({
             elem: '#dict-data-table',
-            url: '/system/dictData/data?type='+[[${type}]],
+            url: '/system/dictData/data?typeCode='+[[${typeCode}]],
             page: true ,
             cols: cols ,
             skin: 'line',
@@ -149,7 +149,7 @@
                 title: '新增',
                 shade: 0.1,
                 area: ['500px', '400px'],
-                content: '/system/dictData/add?type='+[[${type}]]
+                content: '/system/dictData/add?typeCode='+[[${typeCode}]]
             });
         }
 
