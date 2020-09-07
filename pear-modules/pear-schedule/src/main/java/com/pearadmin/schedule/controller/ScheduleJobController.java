@@ -16,7 +16,7 @@ import java.util.Date;
 
 /**
  * Describe: 定时任务控制器
- * Auther: 就眠仪式
+ * author: 就眠仪式
  * createTime: 2019/10/23
  * */
 @RestController
