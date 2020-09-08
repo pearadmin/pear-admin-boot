@@ -43,6 +43,8 @@
         <pear.security.version>0.0.1-SNAPSHOT</pear.security.version>
         <!-- 定 时 任 务 模 块 -->
         <pear.schedule.version>0.0.1-SNAPSHOT</pear.schedule.version>
+        <!-- 代 码 生 成 模 块 -->
+        <pear.generator.version>0.0.1-SNAPSHOT</pear.generator.version>
         <!-- apache 工 具 类 -->
         <commons.lang3.version>3.10</commons.lang3.version>
         <!-- apache io 工具类 -->
@@ -107,6 +109,12 @@
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-system</artifactId>
                 <version>${pear.system.version}</version>
+            </dependency>
+            <!-- 代 码 生 成 -->
+            <dependency>
+                <groupId>com.pearadmin</groupId>
+                <artifactId>pear-generator</artifactId>
+                <version>${pear.generator.version}</version>
             </dependency>
             <!-- 权 限 模 块 -->
             <dependency>

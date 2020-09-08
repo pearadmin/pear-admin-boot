@@ -21,7 +21,7 @@
         request_body as requestBody,
         browser as browser,
         system_os as systemOs
-        from sys_logging
+        from sys_logging order by create_time desc
     </select>
 
     <insert id="insert" parameterType="com.pearadmin.common.logging.domain.Logging">

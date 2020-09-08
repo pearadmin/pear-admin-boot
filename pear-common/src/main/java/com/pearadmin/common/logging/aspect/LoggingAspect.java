@@ -55,7 +55,7 @@ public class LoggingAspect {
             // 业 务 类 型
             logging.setBusinessType(loggingAnnotation.type());
             // 操 作 地 址
-            logging.setOperateAddress(ServletUtil.getRemoteHost());
+            logging.setOperateAddress(ServletUtil.getRemoteHost().equals("0:0:0:0:0:0:0:1") ? "127.0.0.1":ServletUtil.getRemoteHost());
             // 请 求 方 式
             logging.setMethod(ServletUtil.getRequestURI());
             // 创 建 时 间
@@ -74,17 +74,15 @@ public class LoggingAspect {
             logging.setOperateName(SecurityUtil.currentUser().getName());
             // 是 否 成 功
             logging.setSuccess(true);
-
             // 执 行 方 法
             result = joinPoint.proceed();
 
         }catch (Exception exception){
             logging.setSuccess(false);
             logging.setErrorMsg(exception.getMessage());
-
             throw exception;
         }finally {
-                loggingFactory.record(logging);
+            loggingFactory.record(logging);
         }
         return result;
     }

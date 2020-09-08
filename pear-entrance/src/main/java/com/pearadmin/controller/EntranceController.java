@@ -74,4 +74,5 @@ public class EntranceController extends BaseController {
     public ModelAndView onException(){
         return JumpPage("error/500");
     }
+
 }

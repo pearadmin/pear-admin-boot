@@ -23,7 +23,6 @@ public class ExceptionTask implements BaseTaskService {
     public void run(String params) {
         log.info("Params === >> " + params);
         log.info("当前时间::::" + format.format(new Date()));
-        log.info("异常定时任务");
         throw new RuntimeException("发生异常");
     }
 }
