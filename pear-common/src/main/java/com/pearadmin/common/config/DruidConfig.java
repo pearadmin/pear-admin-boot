@@ -6,6 +6,8 @@ import com.pearadmin.common.config.proprety.DruidProperty;
 import com.pearadmin.common.datasource.DynamicDataSource;
 import com.pearadmin.common.datasource.enums.DataSourceType;
 import com.pearadmin.common.tools.spring.SpringUtil;
+import lombok.extern.flogger.Flogger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,6 +23,7 @@ import java.util.Map;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
+@Slf4j
 @Configuration
 public class DruidConfig {
 
@@ -69,13 +72,11 @@ public class DruidConfig {
      */
     public void setDataSource(Map<Object, Object> targetDataSources, String sourceName, String beanName)
     {
-        try
-        {
+        try {
             DataSource dataSource = (DataSource) SpringUtil.getBean(beanName);
             targetDataSources.put(sourceName, dataSource);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
+            log.info("datasource switch exception");
         }
     }
 }

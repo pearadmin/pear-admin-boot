@@ -8,7 +8,6 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import java.util.ArrayList;
 
 /**
@@ -20,6 +19,9 @@ import java.util.ArrayList;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    /**
+     * 基 本 信 息
+     * */
     @Bean
     public Docket docker(){
         return new Docket(DocumentationType.SWAGGER_2)
@@ -31,6 +33,9 @@ public class SwaggerConfig {
                 .build();
     }
 
+    /**
+     * 扩 展 信 息
+     * */
     private ApiInfo apiInfo(){
         return new ApiInfo(
                 "Pear Admin Boot",

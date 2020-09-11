@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 
 /**
  * Describe: 定时任务日志控制器
- * Auther: 就眠仪式
+ * Author: 就眠仪式
  * createTime: 2019/10/23
  * */
 @RestController

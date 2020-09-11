@@ -8,7 +8,11 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+/**
+ * Describe: 演 示 环 境 过 滤 器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class DemoFilter implements Filter {
 
     @Override
