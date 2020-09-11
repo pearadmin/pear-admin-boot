@@ -26,6 +26,11 @@ public interface SysPowerMapper {
      * */
     SysPower selectById(@Param("id") String id);
 
+    /**
+     * Describe: 根据 username 查询用户权限
+     * Param: username
+     * Return: SysPower
+     * */
     List<SysPower> selectByUsername(String username);
 
     /**
@@ -42,7 +47,17 @@ public interface SysPowerMapper {
      * */
     List<ResuMenu> selectMenuByParentId(String parentId);
 
+    /**
+     * Describe: 修改权限信息
+     * Param: SysPower
+     * Return: int
+     * */
     int updateById(SysPower sysPower);
 
+    /**
+     * Describe: 删除权限信息
+     * Param: id
+     * Return: int
+     * */
     int deleteById(String id);
 }

@@ -129,7 +129,7 @@
 
 
     <!-- 根据 Id 修改用户数据 -->
-    <update id="updateById" parameterType="SysUser">
+    <update id="updateById" parameterType="SysPower">
         update sys_power
         <set>
             <if test="powerId!=null">
@@ -155,6 +155,9 @@
             </if>
             <if test="enable!=null">
                 enable = #{enable},
+            </if>
+            <if test="parentId!=null">
+                parent_id = #{parentId},
             </if>
         </set>
         where power_id = #{powerId}
