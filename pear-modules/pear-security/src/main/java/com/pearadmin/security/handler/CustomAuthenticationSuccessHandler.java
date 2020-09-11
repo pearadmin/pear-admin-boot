@@ -1,6 +1,14 @@
 package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.pearadmin.common.logging.domain.Logging;
+import com.pearadmin.common.logging.enums.BusinessType;
+import com.pearadmin.common.logging.enums.LoggingType;
+import com.pearadmin.common.logging.enums.RequestMethod;
+import com.pearadmin.common.logging.service.LoggingService;
+import com.pearadmin.common.tools.security.SecurityUtil;
+import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.system.domain.SysUser;
 import org.slf4j.Logger;
@@ -9,10 +17,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Describe: 自定义 Security 用户未登陆处理类
@@ -24,8 +34,21 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     public static final Logger log = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
 
+    @Resource
+    private LoggingService loggingService;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+
+        Logging logging = new Logging();
+        logging.setId(SequenceUtil.makeStringId());
+        logging.setTitle("登录");
+        logging.setDescription("登录成功");
+        logging.setBusinessType(BusinessType.OTHER);
+        logging.setSuccess(true);
+        logging.setLoggingType(LoggingType.LOGIN);
+        loggingService.save(logging);
+
         Result result = new Result();
         result.setSuccess(true);
         result.setMsg("登陆成功");
@@ -34,6 +57,5 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.getWriter().write(JSON.toJSONString(result));
-
     }
 }

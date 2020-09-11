@@ -1,8 +1,11 @@
 package com.pearadmin.common.logging.enums;
 
 /**
- * 业 务 类 型
+ * Describe: 日 志 业 务 类 型
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
+
 public enum  BusinessType {
 
      /**

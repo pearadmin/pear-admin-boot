@@ -5,7 +5,9 @@ import com.pearadmin.common.logging.enums.BusinessType;
 import java.lang.annotation.*;
 
 /**
- * 系 统 日 志 注 解
+ * Describe: 系 统 日 志 注 解
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})

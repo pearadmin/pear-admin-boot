@@ -1,6 +1,7 @@
 package com.pearadmin.common.logging.aspect;
 
 import com.pearadmin.common.logging.domain.Logging;
+import com.pearadmin.common.logging.enums.LoggingType;
 import com.pearadmin.common.logging.enums.RequestMethod;
 import com.pearadmin.common.logging.factory.LoggingFactory;
 import com.pearadmin.common.tools.security.SecurityUtil;
@@ -17,8 +18,11 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
- * 切 面 编 程 实 现 -- [就眠仪式]
+ * Describe: 日 志 切 面 实 现
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
+
 @Aspect
 @Component
 public class LoggingAspect {
@@ -54,26 +58,10 @@ public class LoggingAspect {
             logging.setDescription(loggingAnnotation.describe());
             // 业 务 类 型
             logging.setBusinessType(loggingAnnotation.type());
-            // 操 作 地 址
-            logging.setOperateAddress(ServletUtil.getRemoteHost().equals("0:0:0:0:0:0:0:1") ? "127.0.0.1":ServletUtil.getRemoteHost());
-            // 请 求 方 式
-            logging.setMethod(ServletUtil.getRequestURI());
-            // 创 建 时 间
-            logging.setCreateTime(new Date());
-            // 请 求 方 法
-            logging.setRequestMethod(RequestMethod.valueOf(ServletUtil.getMethod()));
-            // 访 问 方 法
-            logging.setOperateUrl(ServletUtil.getRequestURI());
-            // 浏 览 器 类 型
-            logging.setBrowser(ServletUtil.getBrowser());
-            // 请 求 参 数
-            logging.setRequestBody(ServletUtil.getBody());
-            // 操 作 系 统
-            logging.setSystemOs(ServletUtil.getSystem());
-            // 写 死 用 户
-            logging.setOperateName(SecurityUtil.currentUser().getName());
             // 是 否 成 功
             logging.setSuccess(true);
+            // 日 志 类 型
+            logging.setLoggingType(LoggingType.OPERATE);
             // 执 行 方 法
             result = joinPoint.proceed();
 

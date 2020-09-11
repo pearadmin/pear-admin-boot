@@ -1,6 +1,7 @@
 package com.pearadmin.common.logging.domain;
 
 import com.pearadmin.common.logging.enums.BusinessType;
+import com.pearadmin.common.logging.enums.LoggingType;
 import com.pearadmin.common.logging.enums.RequestMethod;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 日志组件
+ * 日 志 组 件
  * */
 @Data
 @NoArgsConstructor
@@ -76,6 +77,11 @@ public class Logging {
      * 接 口 执 行 状 态
      * */
     private boolean success;
+
+    /**
+     * 日 志 类 型
+     * */
+    private LoggingType loggingType;
 
     /**
      * 异 常 信 息

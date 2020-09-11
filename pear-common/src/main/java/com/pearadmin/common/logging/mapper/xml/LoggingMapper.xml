@@ -19,9 +19,12 @@
         create_time as createTime,
         description as description,
         request_body as requestBody,
+        logging_type as loggingType,
         browser as browser,
         system_os as systemOs
-        from sys_logging order by create_time desc
+        from sys_logging
+        where logging_type = #{loggingType}
+        order by create_time desc
     </select>
 
     <insert id="insert" parameterType="com.pearadmin.common.logging.domain.Logging">
@@ -78,6 +81,9 @@
             <if test="systemOs != null">
                 system_os,
             </if>
+            <if test="loggingType != null">
+                logging_type
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -130,6 +136,9 @@
             </if>
             <if test="systemOs != null">
                 #{systemOs},
+            </if>
+            <if test="loggingType != null">
+                #{loggingType},
             </if>
         </trim>
     </insert>

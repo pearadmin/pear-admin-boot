@@ -80,7 +80,11 @@ public class ServletUtil {
      * 获取客户端地址
      * */
     public static String getRemoteHost(){
-        return getRequest().getRemoteHost();
+        String remoteHost = getRequest().getRemoteHost();
+        if(remoteHost.equals("0:0:0:0:0:0:0:1")){
+            remoteHost = "127.0.0.1";
+        }
+        return remoteHost ;
     }
 
     /**
