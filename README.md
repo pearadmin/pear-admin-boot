@@ -12,14 +12,16 @@ Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 
 #### 模块划分
 
-
-
 |功能名称     |实现方式     |完成度     |功能名称     |实现方式     |完成度     |
 | --- | --- | --- | --- | --- | --- |
 |核心框架     |Spring Boot     |已完成     |接口文档     |Swagger     |已完成     |
 |权限管理     |Spring Security     |已完成     |定时任务     |Quartz     |已完成     |
-|流程控制     |Activiti     |未开始     |代码生成     |MyBatis Plus     |未开始     |
+|流程控制     |Activiti     |未开始     |代码生成     |MyBatis Plus     |开发中     |
 
+开源地址
+Gitee 开源地址 : https://gitee.com/Jmysy/Pear-Admin-Layui
+
+GitHub 开源地址 ：https://github.com/Jmysy/Pear-Admin-Layui
 
 #### 软件截图
 
@@ -30,6 +32,8 @@ Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0409/232408_9bd7fff2_4835367.png "FH1)%5~7(Q8$@%69D0D20$5.png")
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0409/232417_fd3a4c75_4835367.png "}_QW$N(7@_O]%(3U@ES~XGM.png")
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0912/000746_282ce497_4835367.png "QQ图片20200912000740.png")
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0409/232427_f20eecfd_4835367.png "_HYELQRSQ(B8]8BXK[0J}@T.png")
 
