@@ -18,10 +18,11 @@ Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 |权限管理     |Spring Security     |已完成     |定时任务     |Quartz     |已完成     |
 |流程控制     |Activiti     |未开始     |代码生成     |MyBatis Plus     |开发中     |
 
-开源地址
-Gitee 开源地址 : https://gitee.com/Jmysy/Pear-Admin-Layui
+#### 开源共建
 
-GitHub 开源地址 ：https://github.com/Jmysy/Pear-Admin-Layui
+1. 欢迎提交 [pull request](https://gitee.com/Jmysy/Pear-Admin-Boot/pulls)，注意对应提交对应 `master` 分支
+
+2. 欢迎提交 [issue](https://gitee.com/Jmysy/Pear-Admin-Boot/issues)，请写清楚遇到问题的原因、开发环境、复显步骤。
 
 #### 软件截图
 
