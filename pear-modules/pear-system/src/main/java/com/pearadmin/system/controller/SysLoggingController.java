@@ -20,7 +20,6 @@ import javax.annotation.Resource;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @RestController
 @RequestMapping("system/logging")
 public class SysLoggingController extends BaseController {
@@ -32,7 +31,9 @@ public class SysLoggingController extends BaseController {
     private LoggingService loggingService;
 
     /**
-     * 主 页
+     * Describe: 行为日志视图
+     * Param: null
+     * Return: ModelAndView
      * */
     @GetMapping("main")
     public ModelAndView main(){
@@ -40,7 +41,9 @@ public class SysLoggingController extends BaseController {
     }
 
     /**
-     * 操 作 日 志 数 据
+     * Describe: 操作日志数据
+     * Param: null
+     * Return: ResultTable
      * */
     @GetMapping("operateLog")
     public ResultTable operateLog(PageDomain pageDomain)
@@ -51,7 +54,9 @@ public class SysLoggingController extends BaseController {
     }
 
     /**
-     * 登 录 日 志 数 据
+     * Describe: 登录日志数据
+     * Param: null
+     * Return: ModelAndView
      * */
     @GetMapping("loginLog")
     public ResultTable loginLog(PageDomain pageDomain)
@@ -60,4 +65,5 @@ public class SysLoggingController extends BaseController {
         PageInfo<Logging> pageInfo = new PageInfo<>(loggingService.data(LoggingType.LOGIN));
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
+
 }

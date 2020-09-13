@@ -29,14 +29,14 @@
     </select>
 
     <!-- 根据 SysUser 条件查询用户列表 -->
-    <select id="selectList" parameterType="SysUser" resultMap="SysUserMap">
+    <select id="selectList" parameterType="com.pearadmin.system.param.QueryUserParam" resultMap="SysUserMap">
         select * from sys_user
         <where>
             <if test="username!=null and username!=''">
-                and username = #{username}
+                and username like "%"#{username}"%"
             </if>
             <if test="realName!=null and realName!=''">
-                and real_name = #{realName}
+                and real_name like "%"#{realName}"%"
             </if>
         </where>
     </select>

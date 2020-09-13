@@ -8,6 +8,7 @@ import com.pearadmin.common.web.domain.response.ResuTree;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysRole;
+import com.pearadmin.system.param.QueryRoleParam;
 import com.pearadmin.system.service.ISysRoleService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -49,8 +50,8 @@ public class SysRoleController extends BaseController {
      * */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/system/role/data','sys:role:data')")
-    public ResultTable data(PageDomain pageDomain){
-       PageInfo<SysRole> pageInfo = sysRoleService.page(null,pageDomain);
+    public ResultTable data(PageDomain pageDomain, QueryRoleParam queryRoleParam){
+       PageInfo<SysRole> pageInfo = sysRoleService.page(queryRoleParam,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 

@@ -5,6 +5,8 @@ import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
+import com.pearadmin.system.param.QueryUserParam;
+
 import java.util.List;
 
 /**
@@ -19,14 +21,14 @@ public interface ISysUserService {
      * Param: username
      * Return: 返回用户列表数据
      * */
-    List<SysUser> list(SysUser sysUser);
+    List<SysUser> list(QueryUserParam param);
 
     /**
      * Describe: 根据条件查询用户列表数据  分页
      * Param: username
      * Return: 返回分页用户列表数据
      * */
-    PageInfo<SysUser> page(SysUser sysUser, PageDomain pageDomain);
+    PageInfo<SysUser> page(QueryUserParam param, PageDomain pageDomain);
 
     /**
      * Describe: 根据 id 获取用户数据

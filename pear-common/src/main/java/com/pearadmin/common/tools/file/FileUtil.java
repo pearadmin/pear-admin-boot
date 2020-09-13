@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools;
+package com.pearadmin.common.tools.file;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

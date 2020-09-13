@@ -2,6 +2,7 @@ package com.pearadmin.system.mapper;
 
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
+import com.pearadmin.system.param.QueryRoleParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface SysRoleMapper {
 
-     List<SysRole> selectList(SysRole sysRole);
+     List<SysRole> selectList(QueryRoleParam queryRoleParam);
 
     /**
      * Describe: 添加角色数据

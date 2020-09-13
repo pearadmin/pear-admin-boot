@@ -8,6 +8,7 @@ import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysUser;
+import com.pearadmin.system.param.QueryUserParam;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
 import io.swagger.annotations.Api;
@@ -68,8 +69,8 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("data")
     @ApiOperation(value="获取用户列表数据")
-    public ResultTable data(PageDomain pageDomain, SysUser sysUser){
-        PageInfo<SysUser> pageInfo = sysUserService.page(sysUser,pageDomain);
+    public ResultTable data(PageDomain pageDomain, QueryUserParam param){
+        PageInfo<SysUser> pageInfo = sysUserService.page(param,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
@@ -187,4 +188,16 @@ public class SysUserController extends BaseController {
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }
+
+    /**
+     * Describe: 跳转用户个人资料
+     * Param: null
+     * Return: ModelAndView
+     * */
+    @GetMapping("center")
+    @ApiOperation(value = "个人资料")
+    public ModelAndView center(){
+        return JumpPage(MODULE_PATH + "center");
+    }
+    
 }

@@ -5,14 +5,15 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
+import com.pearadmin.system.param.QueryRoleParam;
 
 import java.util.List;
 
 public interface ISysRoleService {
 
-    public List<SysRole> list(SysRole sysRole);
+    public List<SysRole> list(QueryRoleParam queryRoleParam);
 
-    public PageInfo<SysRole> page(SysRole sysRole, PageDomain pageDomain);
+    public PageInfo<SysRole> page(QueryRoleParam queryRoleParam, PageDomain pageDomain);
 
     /**
      * Describe: 保存角色数据
