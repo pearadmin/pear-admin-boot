@@ -1,5 +1,6 @@
 package com.pearadmin.common.file.service.impl;
 
+import com.pearadmin.common.constant.FileConstant;
 import com.pearadmin.common.file.domain.File;
 import com.pearadmin.common.file.mapper.FileMapper;
 import com.pearadmin.common.file.service.IFileService;
@@ -30,7 +31,7 @@ public class FileServiceImpl implements IFileService {
             String suffixName = name.substring(name.lastIndexOf("."));
             String hash = fileId;
             String fileName = hash + suffixName;
-            java.io.File filepath = new java.io.File("D://file", fileName);
+            java.io.File filepath = new java.io.File(FileConstant.FILE_PATH, fileName);
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();
             }
