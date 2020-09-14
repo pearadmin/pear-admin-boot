@@ -1,11 +1,11 @@
 package com.pearadmin.system.service;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.param.QueryUserParam;
+import com.pearadmin.system.result.Menu;
 
 import java.util.List;
 
@@ -84,6 +84,6 @@ public interface ISysUserService {
      * Param: SysUser
      * Return: 操作结果
      * */
-    List<ResuMenu> getUserMenu(String username);
+    List<Menu> getUserMenu(String username);
 }
 

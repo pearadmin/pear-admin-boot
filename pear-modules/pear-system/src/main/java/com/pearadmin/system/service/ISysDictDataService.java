@@ -36,4 +36,11 @@ public interface ISysDictDataService {
      * Return: List<SysDictData>
      * */
     SysDictData getById(String id);
+
+    /**
+     * Describe: 删除 SysDictData 数据
+     * Param: SysDictData
+     * Return: Boolean
+     * */
+    Boolean remove(String id);
 }

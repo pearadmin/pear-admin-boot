@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * Describe: 字典值服务实现类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Service
 public class SysDictDataServiceImpl implements ISysDictDataService {
 
@@ -42,5 +47,15 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     @Override
     public SysDictData getById(String id) {
        return  sysDictDataMapper.selectById(id);
+    }
+
+    @Override
+    public Boolean remove(String id) {
+        int result = sysDictDataMapper.deleteById(id);
+        if(result>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

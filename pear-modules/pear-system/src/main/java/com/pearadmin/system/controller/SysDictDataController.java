@@ -22,6 +22,9 @@ import javax.annotation.Resource;
 @RequestMapping("system/dictData")
 public class SysDictDataController extends BaseController {
 
+    /**
+     * 基础路径
+     * */
     private String MODULE_PATH = "system/dictData/";
 
     @Resource
@@ -41,7 +44,7 @@ public class SysDictDataController extends BaseController {
     /**
      * Describe: 数据字典列表数据
      * Param: sysDictType
-     * Return: ResuTable
+     * Return: Result
      * */
     @GetMapping("data")
     public ResultTable data (SysDictData sysDictData, PageDomain pageDomain){
@@ -64,7 +67,7 @@ public class SysDictDataController extends BaseController {
     /**
      * Describe: 新增字典类型接口
      * Param: sysDictType
-     * Return: ResuBean
+     * Return: Result
      * */
     @PostMapping("save")
     public Result save(@RequestBody SysDictData sysDictData){
@@ -82,5 +85,16 @@ public class SysDictDataController extends BaseController {
     public ModelAndView edit(Model model,String dataId){
         model.addAttribute("sysDictData",sysDictDataService.getById(dataId));
         return JumpPage(MODULE_PATH+"edit");
+    }
+
+    /**
+     * Describe: 数据字典删除
+     * Param: id
+     * Return: Result
+     * */
+    @DeleteMapping("remove/{id}")
+    public Result remove(@PathVariable("id")String id){
+        Boolean result = sysDictDataService.remove(id);
+        return decide(result);
     }
 }

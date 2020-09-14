@@ -4,11 +4,11 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.param.QueryUserParam;
+import com.pearadmin.system.result.Menu;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
 import io.swagger.annotations.Api;
@@ -159,7 +159,7 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("getUserMenu")
     @ApiOperation(value = "获取用户菜单数据")
-    public List<ResuMenu> getUserMenu(String currentUser){
+    public List<Menu> getUserMenu(String currentUser){
         return sysUserService.getUserMenu(currentUser);
     }
 

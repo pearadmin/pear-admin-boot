@@ -1,0 +1,4 @@
+com\pearadmin\generator\controller\GeneratorController.class
+com\pearadmin\generator\mapper\GeneratorMapper.class
+com\pearadmin\generator\service\impl\GenerateServiceImpl.class
+com\pearadmin\generator\service\IGeneratorService.class

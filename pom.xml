@@ -51,6 +51,10 @@
         <commons.io.version>2.5</commons.io.version>
         <!-- 分 页 工 具 类 -->
         <pagehelper.version>1.2.10</pagehelper.version>
+        <!-- 代 码 生 成 依 赖 -->
+        <mybatis.plus.generator.version>3.0.1</mybatis.plus.generator.version>
+        <!-- freemarker 版本 -->
+        <freemarker.version>2.3.30</freemarker.version>
     </properties>
 
     <!-- 依 赖 管 理 -->
@@ -140,6 +144,17 @@
                 <artifactId>commons-io</artifactId>
                 <version>${commons.io.version}</version>
             </dependency>
+            <!-- 代码生成 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis.plus.generator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -180,4 +195,5 @@
             </resource>
         </resources>
     </build>
+
 </project>

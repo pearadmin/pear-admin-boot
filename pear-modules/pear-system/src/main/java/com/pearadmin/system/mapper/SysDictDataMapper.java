@@ -15,4 +15,6 @@ public interface SysDictDataMapper {
 
     SysDictData selectById(String id);
 
+    Integer deleteById(String id);
+
 }

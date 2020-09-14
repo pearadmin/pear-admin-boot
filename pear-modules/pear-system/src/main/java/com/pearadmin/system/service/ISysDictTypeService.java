@@ -49,5 +49,10 @@ public interface ISysDictTypeService {
      * */
     Boolean updateById(SysDictType sysDictType);
 
+    /**
+     * Describe: 删除 SysDictType 数据
+     * Param: SysDictType
+     * Return: Boolean
+     * */
     Boolean remove(String id);
 }

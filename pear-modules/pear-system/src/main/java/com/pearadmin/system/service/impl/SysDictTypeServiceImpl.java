@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * Describe: 字典类型服务实现类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService {
 
@@ -80,6 +85,11 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
         }
     }
 
+    /**
+     * Describe: 根据 ID 删除字典类型
+     * Param: id
+     * Return: Boolean
+     * */
     @Override
     public Boolean remove(String id) {
         Integer result = sysDictTypeMapper.deleteById(id);

@@ -3,7 +3,6 @@ package com.pearadmin.system.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
-import com.pearadmin.common.web.domain.response.ResuMenu;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
@@ -13,6 +12,7 @@ import com.pearadmin.system.mapper.SysRoleMapper;
 import com.pearadmin.system.mapper.SysUserMapper;
 import com.pearadmin.system.mapper.SysUserRoleMapper;
 import com.pearadmin.system.param.QueryUserParam;
+import com.pearadmin.system.result.Menu;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -190,7 +190,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * Return: Result
      * */
     @Override
-    public List<ResuMenu> getUserMenu(String username) {
+    public List<Menu> getUserMenu(String username) {
         return sysPowerMapper.selectMenuByUsername(username);
     }
 
