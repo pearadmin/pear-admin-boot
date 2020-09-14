@@ -27,15 +27,27 @@ import java.util.List;
 @Service
 public class SysUserServiceImpl implements ISysUserService {
 
+    /**
+     * 注入用户服务
+     * */
     @Resource
     private SysUserMapper sysUserMapper;
 
+    /**
+     * 注入用户角色服务
+     * */
     @Resource
     private SysUserRoleMapper sysUserRoleMapper;
 
+    /**
+     * 注入角色服务
+     * */
     @Resource
     private SysRoleMapper sysRoleMapper;
 
+    /**
+     * 注入权限服务
+     * */
     @Resource
     private SysPowerMapper sysPowerMapper;
 
@@ -172,9 +184,13 @@ public class SysUserServiceImpl implements ISysUserService {
         return allRole;
     }
 
+    /**
+     * Describe: 获取用户菜单
+     * Param: username
+     * Return: Result
+     * */
     @Override
     public List<ResuMenu> getUserMenu(String username) {
-
         return sysPowerMapper.selectMenuByUsername(username);
     }
 

@@ -1,16 +1,12 @@
 package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.logging.domain.Logging;
-import com.pearadmin.common.logging.enums.BusinessType;
-import com.pearadmin.common.logging.enums.LoggingType;
-import com.pearadmin.common.logging.enums.RequestMethod;
-import com.pearadmin.common.logging.service.LoggingService;
-import com.pearadmin.common.tools.security.SecurityUtil;
+import com.pearadmin.common.plugin.logging.domain.Logging;
+import com.pearadmin.common.plugin.logging.enums.BusinessType;
+import com.pearadmin.common.plugin.logging.enums.LoggingType;
+import com.pearadmin.common.plugin.logging.service.LoggingService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
-import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.system.domain.SysUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -22,7 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * Describe: 自定义 Security 用户未登陆处理类

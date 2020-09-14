@@ -1,7 +1,7 @@
 package com.pearadmin.controller;
 
-import com.pearadmin.common.logging.annotation.Logging;
-import com.pearadmin.common.logging.enums.BusinessType;
+import com.pearadmin.common.plugin.logging.annotation.Logging;
+import com.pearadmin.common.plugin.logging.enums.BusinessType;
 import com.pearadmin.common.web.base.BaseController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

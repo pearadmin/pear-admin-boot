@@ -61,7 +61,6 @@
                     let tr = $(['<tr id="upload-'+ index +'">'
                         ,'<td>'+ file.name +'</td>'
                         ,'<td>'+ (file.size/1024).toFixed(1) +'kb</td>'
-                        ,'<td>等待上传</td>'
                         ,'<td>'
                         ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
                         ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
@@ -84,7 +83,7 @@
                 if(res.success){
                     let tr = demoListView.find('tr#upload-'+ index)
                         ,tds = tr.children();
-                    tds.eq(3).html('&nbsp;<button class="layui-btn layui-btn-xs">完成</button>'); //清空操作
+                    tds.eq(2).html('&nbsp;<button class="layui-btn layui-btn-xs">完成</button>'); //清空操作
                     return delete this.files[index];
                 }
                 this.error(index, upload);
@@ -92,7 +91,7 @@
             ,error: function(index){
                 let tr = demoListView.find('tr#upload-'+ index)
                     ,tds = tr.children();
-                tds.eq(3).find('.demo-reload').removeClass('layui-hide');
+                tds.eq(2).find('.demo-reload').removeClass('layui-hide');
             }
             ,allDone: function(){
                 layer.close(layerIndex);

@@ -19,24 +19,48 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Describe: 角色服务实现类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Service
 public class SysRoleServiceImpl implements ISysRoleService {
 
+    /**
+     * 注入角色服务
+     * */
     @Resource
     private SysRoleMapper sysRoleMapper;
 
+    /**
+     * 注入权限服务
+     * */
     @Resource
     private SysPowerMapper sysPowerMapper;
 
+    /**
+     * 注入角色权限服务
+     * */
     @Resource
     private SysRolePowerMapper sysRolePowerMapper;
 
-
+    /**
+     * Describe: 查询角色数据
+     * Param: QueryRoleParam
+     * Return: 操作结果
+     * */
     @Override
     public List<SysRole> list(QueryRoleParam queryRoleParam) {
         return sysRoleMapper.selectList(queryRoleParam);
     }
 
+    /**
+     * Describe: 查询角色数据 分页
+     * Param: QueryRoleParam
+     * Return: 操作结果
+     * */
     @Override
     public PageInfo<SysRole> page(QueryRoleParam queryRoleParam, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());

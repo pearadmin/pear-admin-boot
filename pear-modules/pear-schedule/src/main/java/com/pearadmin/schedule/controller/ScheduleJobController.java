@@ -27,7 +27,7 @@ public class ScheduleJobController extends BaseController {
      * Describe: 定时任务服务
      * */
     @Resource
-    private IScheduleJobService scheduleJobService ;
+    private IScheduleJobService scheduleJobService;
 
     /**
      * Describe: 获取定时任务列表视图
@@ -115,9 +115,9 @@ public class ScheduleJobController extends BaseController {
     public Result pauseJob (String jobId){
         Boolean result = scheduleJobService.pause(jobId);
         return decide(
-                result,            // 响应结果
-                "停止成功",  // 成功消息
-                "停止失败"    // 失败消息
+                result,
+                "停止成功",
+                "停止失败"
         );
     }
 
