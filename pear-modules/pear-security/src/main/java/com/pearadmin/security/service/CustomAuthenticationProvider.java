@@ -1,6 +1,8 @@
 package com.pearadmin.security.service;
 
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
+import com.wf.captcha.utils.CaptchaUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -39,9 +42,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-
         UserDetails userInfo = securityUserDetailsService.loadUserByUsername(username);
-
         if(!passwordEncoder.matches(password,userInfo.getPassword())){
             throw new BadCredentialsException(" Password Not Found ");
         }

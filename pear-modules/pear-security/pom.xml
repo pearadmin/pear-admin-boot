@@ -31,6 +31,11 @@
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-system</artifactId>
         </dependency>
+        <!-- 验证码 -->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

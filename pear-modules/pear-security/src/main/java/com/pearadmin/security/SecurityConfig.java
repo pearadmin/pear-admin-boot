@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 
 import javax.annotation.Resource;
+import javax.annotation.Resources;
 
 /**
  * Describe: Security 安全配置
@@ -45,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     private CustomAccessDeniedHandler securityAccessDeniedHander;
+
 
     /**
      * Describe: 自定义权限注解实现
@@ -78,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      @Override
      protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login/**,/assets/**,/admin/**,/component/**,/favicon.ico".split(",")).permitAll()
+                .antMatchers("/login/**,/system/captcha/**,/assets/**,/admin/**,/component/**,/favicon.ico".split(",")).permitAll()
                 // 其他的需要登录后才能访问
                 .anyRequest().authenticated()
                 .and()

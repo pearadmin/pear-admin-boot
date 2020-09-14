@@ -55,6 +55,8 @@
         <mybatis.plus.generator.version>3.0.1</mybatis.plus.generator.version>
         <!-- freemarker 版本 -->
         <freemarker.version>2.3.30</freemarker.version>
+        <!-- 验 证 码 版 本 -->
+        <captcha.version>1.6.2</captcha.version>
     </properties>
 
     <!-- 依 赖 管 理 -->
@@ -155,6 +157,12 @@
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
             </dependency>
+            <!-- 验证码 -->
+            <dependency>
+                <groupId>com.github.whvcse</groupId>
+                <artifactId>easy-captcha</artifactId>
+                <version>${captcha.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -195,5 +203,28 @@
             </resource>
         </resources>
     </build>
+
+    <repositories>
+        <repository>
+            <id>aliyun-spring</id>
+            <url>https://maven.aliyun.com/repository/spring</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>aliyun-central</id>
+            <url>https://maven.aliyun.com/repository/central</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>

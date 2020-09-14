@@ -1,5 +1,6 @@
-# Tomcat 端口
+# Tomcat
 server:
+  # 端 口
   port: 8080
 
 spring:
@@ -8,7 +9,7 @@ spring:
     # 运 行 环 境
     active: druid
 
-# mybatis 配置
+# mybatis 配 置
 mybatis:
   # 配 置 扫 描
   mapper-locations: classpath*:**/xml/**.xml
