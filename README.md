@@ -32,6 +32,8 @@ Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0409/232408_9bd7fff2_4835367.png "FH1)%5~7(Q8$@%69D0D20$5.png")
 
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0913/162014_9f59485b_4835367.png "文件管理.png")
+
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0409/232417_fd3a4c75_4835367.png "}_QW$N(7@_O]%(3U@ES~XGM.png")
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0912/000746_282ce497_4835367.png "QQ图片20200912000740.png")
