@@ -40,7 +40,7 @@ public class ScheduleLogController extends BaseController {
     /**
      * Describe: 获取定时任务日志列表数据
      * Param: PageDomain
-     * Return: ResuTable
+     * Return: Result
      * */
     @GetMapping("data")
     public ResultTable data(ScheduleLogBean scheduleLogBean, PageDomain pageDomain){

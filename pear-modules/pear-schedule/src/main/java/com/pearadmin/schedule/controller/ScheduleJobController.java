@@ -74,7 +74,7 @@ public class ScheduleJobController extends BaseController {
     /**
      * Describe: 保存定时任务数据
      * Param ScheduleJob
-     * Return ResuBean
+     * Return Result
      * */
     @RequestMapping("/save")
     public Result save (@RequestBody ScheduleJobBean scheduleJob){
@@ -87,7 +87,7 @@ public class ScheduleJobController extends BaseController {
     /**
      * Describe: 执行一次定时任务
      * Param ScheduleJob
-     * Return ResuBean 执行结果
+     * Return Result 执行结果
      * */
     @RequestMapping("/run")
     public Result run (String jobId){
@@ -98,7 +98,7 @@ public class ScheduleJobController extends BaseController {
     /**
      * Describe: 更新定时任务数据
      * Param ScheduleJob
-     * Return ResuBean
+     * Return Result
      * */
     @RequestMapping("/update")
     public Result update (@RequestBody ScheduleJobBean scheduleJob){
@@ -109,7 +109,7 @@ public class ScheduleJobController extends BaseController {
     /**
      * Describe: 停止定时任务
      * Param jobId
-     * Return ResuBean 执行结果
+     * Return Result 执行结果
      * */
     @PutMapping("/pause")
     public Result pauseJob (String jobId){
@@ -135,7 +135,7 @@ public class ScheduleJobController extends BaseController {
     /**
      * Describe: 删除定时任务
      * Param: jobId
-     * Return ResuBean
+     * Return Result
      * */
     @RequestMapping("/deleteJob")
     public Result deleteJob (String jobId){
