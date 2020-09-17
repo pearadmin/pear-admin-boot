@@ -18,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
@@ -199,5 +198,5 @@ public class SysUserController extends BaseController {
     public ModelAndView center(){
         return JumpPage(MODULE_PATH + "center");
     }
-    
+
 }

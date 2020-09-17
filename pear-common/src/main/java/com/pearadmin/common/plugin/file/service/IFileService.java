@@ -5,7 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 /**
- * 文件服务接口
+ * Describe: 文件服务接口
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 public interface IFileService {
 

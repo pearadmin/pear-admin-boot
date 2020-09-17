@@ -8,6 +8,5 @@ public class GeneratorUtil {
     public static void autoCode(){
 
 
-
     }
 }

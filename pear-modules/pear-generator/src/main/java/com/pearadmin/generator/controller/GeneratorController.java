@@ -20,6 +20,9 @@ import javax.annotation.Resource;
 @RequestMapping("generator")
 public class GeneratorController extends BaseController {
 
+    /**
+     * 引入服务
+     * */
     @Resource
     private IGeneratorService generatorService;
 

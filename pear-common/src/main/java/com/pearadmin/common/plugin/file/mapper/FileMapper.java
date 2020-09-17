@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 文件数据库接口
+ * Describe: 文件服务接口
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 @Mapper
 public interface FileMapper {

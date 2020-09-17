@@ -15,7 +15,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 文件服务接口实现
+ * Describe: 文件服务接口实现
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 @Service
 public class FileServiceImpl implements IFileService {
