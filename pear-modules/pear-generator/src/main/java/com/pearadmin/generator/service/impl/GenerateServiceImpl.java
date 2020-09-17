@@ -15,6 +15,9 @@ import java.util.Map;
 @Service
 public class GenerateServiceImpl implements IGeneratorService {
 
+    /**
+     * 接口注入
+     * */
     @Resource
     private GeneratorMapper generatorMapper;
 

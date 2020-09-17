@@ -61,5 +61,4 @@ public class GeneratorController extends BaseController {
     public void autoCode(){
 
     }
-
 }
