@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">字典名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="realName" placeholder="" class="layui-input">
+                </div>
+                <label class="layui-form-label">字典标识</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" placeholder="" class="layui-input">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="role-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="dict-data-table" lay-filter="dict-data-table"></table>
+    </div>
+</div>
+</body>
+
+<script type="text/html" id="dict-data-toolbar">
+    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+        新增
+    </button>
+    <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+        删除
+    </button>
+    <button class="pear-btn pear-btn-warming pear-btn-md" lay-event="return">
+        <i class="layui-icon layui-icon-return"></i>
+        返回
+    </button>
+</script>
+
+<script type="text/html" id="dict-data-bar">
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
+    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
+</script>
+
+<script type="text/html" id="dict-data-enable">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dict-type-enable" checked = "{{ d.enable == 0 ? 'true' : 'false' }}">
+</script>
+
+<script src="../../component/layui/layui.js"></script>
+<script src="../../component/pear/pear.js"></script>
+<script th:inline="javascript">
+    layui.use(['table','form','jquery'],function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+
+        let cols = [
+            [
+                {type:'checkbox'},
+                {title: '标签', field: 'dataLabel', align:'center', width:120},
+                {title: '对应值', field: 'dataValue', align:'center'},
+                {title: '所属字典', field: 'typeCode', align:'center'},
+                {title: '是否默认', field: 'isDefault', align:'center'},
+                {title: '状态', field: 'enable', align:'center',templet:'#dict-data-enable'},
+                {title: '操作', toolbar: '#dict-data-bar', align:'center', width:180}
+            ]
+        ]
+
+        table.render({
+            elem: '#dict-data-table',
+            url: '/system/dictData/data?typeCode='+[[${typeCode}]],
+            page: true ,
+            cols: cols ,
+            skin: 'line',
+            toolbar: '#dict-data-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports']
+        });
+
+        table.on('tool(dict-data-table)', function(obj){
+            if(obj.event === 'remove'){
+                window.remove(obj);
+            } else if(obj.event === 'edit'){
+                window.edit(obj);
+            }
+        });
+
+        table.on('toolbar(dict-data-table)', function(obj){
+            if(obj.event === 'add'){
+                window.add();
+            } else if(obj.event === 'refresh'){
+                layer.msg("刷新");
+            } else if(obj.event === 'batchRemove'){
+                layer.msg("批量删除")
+            } else if(obj.event === 'return'){
+                window.history.back();
+            }
+        });
+
+        form.on('switch(dict-type-enable)', function(obj){
+            let operate;
+
+            if(obj.elem.checked){
+                operate = "enable";
+            }else{
+                operate = "disable";
+            }
+
+            let loading = layer.load()
+
+            $.ajax({
+                url:'/system/dictData/'+operate,
+                data:JSON.stringify({id:this.value}),
+                dataType:'json',
+                contentType:'application/json',
+                type:'put',
+                success:function(result){
+                    layer.close(loading);
+                    if(result.success){
+                        layer.msg(result.msg,{icon:1,time:1000},function(){});
+                    }else{
+                        layer.msg(result.msg,{icon:2,time:1000});
+                    }
+                }
+            })
+        });
+
+        window.add = function(){
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: '/system/dictData/add?typeCode='+[[${typeCode}]]
+            });
+        }
+
+        window.edit = function(obj){
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['500px', '400px'],
+                content: '/system/dictData/edit?dataId='+obj.data['dataId']
+            });
+        }
+
+        window.remove = function(obj){
+            layer.confirm('确定要删除该字典值', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: "/system/dictData/remove/"+obj.data['dataId'],
+                    dataType:'json',
+                    type:'delete',
+                    success:function(result){
+                        layer.close(loading);
+                        if(result.success){
+                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                                obj.del();
+                            });
+                        }else{
+                            layer.msg(result.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            });
+        }
+    })
+</script>
+</html>

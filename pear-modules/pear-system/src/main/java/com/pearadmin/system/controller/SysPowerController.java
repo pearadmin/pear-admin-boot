@@ -15,6 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * Describe: 权 限 控 制 器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
+
 @RestController
 @RequestMapping("system/power")
 public class SysPowerController extends BaseController {

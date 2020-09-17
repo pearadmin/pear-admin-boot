@@ -18,6 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.util.Arrays;
 
+/**
+ * Describe: 角 色 控 制 器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping("system/role")
 public class SysRoleController extends BaseController {

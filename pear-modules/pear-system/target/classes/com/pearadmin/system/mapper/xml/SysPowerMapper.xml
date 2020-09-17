@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pearadmin.system.mapper.SysPowerMapper">
+
+    <resultMap id="SysPowerMap" type="SysPower">
+        <id column="power_id" property="powerId"></id>
+        <result column="power_name" property="powerName"></result>
+        <result column="power_code" property="powerCode"></result>
+        <result column="power_url" property="powerUrl"></result>
+        <result column="parent_id" property="parentId"></result>
+        <result column="power_type" property="powerType"></result>
+        <result column="open_type" property="openType"></result>
+        <result column="icon" property="icon"></result>
+        <result column="sort" property="sort"></result>
+    </resultMap>
+
+    <resultMap id="ResuMenuMap" type="com.pearadmin.system.result.Menu">
+        <id column="power_id" property="id"></id>
+        <result column="power_name" property="title"></result>
+        <result column="power_type" property="type"></result>
+        <result column="icon" property="icon"></result>
+        <result column="open_type" property="openType"></result>
+        <result column="power_url" property="href"></result>
+        <collection property="children" select="selectMenuByParentId" column="power_id"></collection>
+    </resultMap>
+
+    <select id="selectMenuByUsername" parameterType="string" resultMap="ResuMenuMap">
+        select DISTINCT a.power_id,a.* from sys_power a
+        left join sys_role_power b on a.power_id = b.power_id
+        left join sys_role c on b.role_id = c.role_id
+        left join sys_user_role d on d.role_id = d.role_id
+        left join sys_user f on d.user_id = f.user_id
+        where
+        f.username = #{username} and
+        a.parent_id = '0'  order by a.sort;
+    </select>
+
+    <select id="selectMenuByParentId" parameterType="string" resultMap="ResuMenuMap">
+        select DISTINCT a.power_id,a.* from sys_power a where a.parent_id = #{parentId} order by a.sort;
+    </select>
+
+
+    <select id="selectList" parameterType="SysPower" resultMap="SysPowerMap">
+        select * from sys_power order by sort asc
+    </select>
+
+    <!-- 根据 Id 查询权限-->
+    <select id="selectById" parameterType="string" resultMap="SysPowerMap">
+        select * from sys_power where power_id = #{id}
+    </select>
+
+    <select id="selectByUsername" parameterType="string" resultMap="SysPowerMap">
+        select * from sys_power a
+        left join sys_role_power b on a.power_id = b.power_id
+        left join sys_role c on b.role_id = c.role_id
+        left join sys_user_role d on c.role_id = c.role_id
+        left join sys_user f on d.user_id = f.user_id
+        where f.username = #{username} order by a.sort asc
+    </select>
+
+    <insert id="insert" parameterType="SysPower">
+        insert into sys_power
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="powerId!=null">
+                power_id,
+            </if>
+            <if test="powerName!=null">
+                power_name,
+            </if>
+            <if test="powerCode!=null">
+                power_code,
+            </if>
+            <if test="powerType!=null">
+                power_type,
+            </if>
+            <if test="powerUrl!=null">
+                power_url,
+            </if>
+            <if test="openType!=null">
+                open_type,
+            </if>
+            <if test="sort!=null">
+                sort,
+            </if>
+            <if test="parentId!=null">
+                parent_id,
+            </if>
+            <if test="icon!=null">
+                icon,
+            </if>
+            <if test="enable!=null">
+                enable,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="powerId!=null">
+                #{powerId},
+            </if>
+            <if test="powerName!=null">
+                #{powerName},
+            </if>
+            <if test="powerCode!=null">
+                #{powerCode},
+            </if>
+            <if test="powerType!=null">
+                #{powerType},
+            </if>
+            <if test="powerUrl!=null">
+                #{powerUrl},
+            </if>
+            <if test="openType!=null">
+                #{openType},
+            </if>
+            <if test="sort!=null">
+                #{sort},
+            </if>
+            <if test="parentId!=null">
+                #{parentId},
+            </if>
+            <if test="icon!=null">
+                #{icon},
+            </if>
+            <if test="enable!=null">
+                #{enable},
+            </if>
+        </trim>
+
+    </insert>
+
+
+
+    <!-- 根据 Id 修改用户数据 -->
+    <update id="updateById" parameterType="SysPower">
+        update sys_power
+        <set>
+            <if test="powerId!=null">
+                power_id = #{powerId},
+            </if>
+            <if test="powerName!=null">
+                power_name = #{powerName},
+            </if>
+            <if test="powerCode!=null">
+                power_code = #{powerCode},
+            </if>
+            <if test="powerUrl!=null">
+                power_url = #{powerUrl},
+            </if>
+            <if test="icon!=null">
+                icon = #{icon},
+            </if>
+            <if test="powerType!=null">
+                power_type = #{powerType},
+            </if>
+            <if test="sort!=null">
+                sort = #{sort},
+            </if>
+            <if test="enable!=null">
+                enable = #{enable},
+            </if>
+            <if test="parentId!=null">
+                parent_id = #{parentId},
+            </if>
+        </set>
+        where power_id = #{powerId}
+    </update>
+
+    <!-- 根据 Id 删除用户数据 -->
+    <delete id="deleteById" parameterType="string">
+          delete from sys_power where power_id = #{id}
+    </delete>
+
+</mapper>
