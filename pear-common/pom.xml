@@ -13,7 +13,7 @@
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pear-common</name>
+    <name>公共模块</name>
     <description>Demo project for Spring Boot</description>
 
     <!-- 依赖管理 -->

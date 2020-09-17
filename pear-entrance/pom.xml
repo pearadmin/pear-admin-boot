@@ -13,7 +13,7 @@
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-entrance</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pear-entrance</name>
+    <name>启动模块</name>
     <description>Demo project for Spring Boot</description>
 
     <!-- 依赖管理 -->

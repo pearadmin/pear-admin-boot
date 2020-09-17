@@ -15,7 +15,7 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <!-- 模块描述 -->
-    <name>pear-schedule</name>
+    <name>定时任务</name>
     <description>Demo project for Spring Boot</description>
 
     <!-- 依赖管理 -->
