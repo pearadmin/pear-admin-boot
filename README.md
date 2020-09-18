@@ -10,6 +10,8 @@ Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 
 官方网站 : http://www.pearadmin.com
 
+如需 Maven 聚合模块代码，请前往 [Pear Admin Fast](https://gitee.com/Jmysy/Pear-Admin-Fast)
+
 #### 模块划分
 
 |功能名称     |实现方式     |完成度     |功能名称     |实现方式     |完成度     |
