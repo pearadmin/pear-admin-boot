@@ -1,20 +1,22 @@
-package com.pearadmin.security;
+package com.pearadmin.common.config;
 
-import com.pearadmin.security.handler.*;
-import com.pearadmin.security.service.CustomAuthenticationProvider;
-import com.pearadmin.security.service.CustomPermissionEvaluator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.PermissionEvaluator;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
-
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import javax.annotation.Resource;
-import javax.annotation.Resources;
 
 /**
  * Describe: Security 安全配置
@@ -27,25 +29,25 @@ import javax.annotation.Resources;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
-    private CustomPermissionEvaluator securityPowerEvaluator;
+    private PermissionEvaluator securityPowerEvaluator;
 
     @Resource
-    private CustomAuthenticationProvider securityAccessProvider;
+    private AuthenticationProvider securityAccessProvider;
 
     @Resource
-    private CustomAuthenticationEntryPoint securityAccessEmptyHander;
+    private AuthenticationEntryPoint securityAccessEmptyHander;
 
     @Resource
-    private CustomAuthenticationSuccessHandler securityAccessSuccessHander;
+    private AuthenticationSuccessHandler securityAccessSuccessHander;
 
     @Resource
-    private CustomAuthenticationFailureHandler securityAccessFailureHander;
+    private AuthenticationFailureHandler securityAccessFailureHander;
 
     @Resource
-    private CustomLogoutSuccessHandler securityAccessLogoutHander;
+    private LogoutSuccessHandler securityAccessLogoutHander;
 
     @Resource
-    private CustomAccessDeniedHandler securityAccessDeniedHander;
+    private AccessDeniedHandler securityAccessDeniedHander;
 
 
     /**
