@@ -1,6 +1,6 @@
 # Pear Admin Boot
 
-[预览地址](http://boot.pearadmin.com/#)
+[预览地址](http://boot.pearadmin.com/#) |  [官方网站](http://www.pearadmin.com)
 
 #### 项目介绍  :jack_o_lantern: 
 
@@ -8,7 +8,7 @@ Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
 
 项目不定时更新，建议 Star watch 一份
 
-官方网站 : http://www.pearadmin.com
+如需非Maven聚合模块代码，请前往 [Pear Admin Fast](https://gitee.com/Jmysy/Pear-Admin-Fast)
 
 #### 模块划分
 
