@@ -4,7 +4,7 @@
 
 #### 项目介绍  :jack_o_lantern: 
 
-Spring Boot Security MyBatis Thymeleaf 后端权限流程脚手框架
+Spring Boot + Security + MyBatis + Thymeleaf + Activiti 快速开发平台
 
 项目不定时更新，建议 Star watch 一份
 
