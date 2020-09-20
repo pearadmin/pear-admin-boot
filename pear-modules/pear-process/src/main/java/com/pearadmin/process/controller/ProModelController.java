@@ -7,6 +7,7 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.process.param.CreateModelParam;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.editor.language.json.converter.BpmnJsonConverter;
@@ -61,24 +62,21 @@ public class ProModelController extends BaseController {
     }
 
     @PostMapping("create")
-    public void create(HttpServletResponse response, String name, String key, String description) throws IOException {
-        System.out.println("创建模型入参name："+name+",key:"+key);
+    public Result create(@RequestBody CreateModelParam param) throws IOException {
         Model model = repositoryService.newModel();
         ObjectNode modelNode = objectMapper.createObjectNode();
-        modelNode.put(ModelDataJsonConstants.MODEL_NAME, name);
-        modelNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, "");
-        modelNode.put(ModelDataJsonConstants.MODEL_REVISION, 1);
-        model.setName(name);
-        model.setKey(key);
+        modelNode.put(ModelDataJsonConstants.MODEL_NAME, param.getName());
+        modelNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, param.getDescription());
+        modelNode.put(ModelDataJsonConstants.MODEL_REVISION, param.getVersion());
+        model.setName(param.getName());
+        model.setKey(param.getKey());
         model.setMetaInfo(modelNode.toString());
         repositoryService.saveModel(model);
         createObjectNode(model.getId());
-        response.sendRedirect("/process/model/editor?modelId="+ model.getId());
-        System.out.println("创建模型结束，返回模型ID:"+model.getId());
+        return success("创建成功", model.getId());
     }
 
     private void createObjectNode(String modelId){
-        System.out.println("创建模型完善ModelEditorSource入参模型ID:"+modelId);
         ObjectNode editorNode = objectMapper.createObjectNode();
         editorNode.put("id", "canvas");
         editorNode.put("resourceId", "canvas");

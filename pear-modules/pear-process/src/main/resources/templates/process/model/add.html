@@ -46,9 +46,10 @@
 </form>
 <script src="../../component/layui/layui.js"></script>
 <script>
-    layui.use(['form','jquery'],function(){
+    layui.use(['form','jquery','layer'],function(){
         let form = layui.form;
         let $ = layui.jquery;
+        let layer = layui.layer;
 
         form.on('submit(role-save)', function(data){
             $.ajax({
@@ -60,6 +61,7 @@
                 success:function(result){
                     if(result.success){
                         layer.msg(result.msg,{icon:1,time:1000},function(){
+                            top.layui.tab.addTabOnlyByElem("content",{id:result.data,title:"流程编辑器",url:"/process/model/editor?modelId="+result.data,close:true})
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("model-table");
                         });
