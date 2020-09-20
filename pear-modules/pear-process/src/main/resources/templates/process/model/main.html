@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../component/pear/css/pear.css">
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-header">模型列表</div>
+    <div class="layui-card-body">
+        <table class="layui-hide" id="model-table" lay-filter="model-table"></table>
+        <script type="text/html" id="barDemo">
+            <a class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish">发布</a>
+            <a class="pear-btn pear-btn-sm pear-btn-warming"  lay-event="design">流程设计</a>
+            <a class="pear-btn pear-btn-sm pear-btn-success" lay-event="edit">编辑</a>
+            <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">删除</a>
+        </script>
+    </div>
+</div>
+<script src="../../component/layui/layui.js"></script>
+<script src="../../component/pear/pear.js"></script>
+<script>
+    layui.use(['table','layer','jquery'], function(){
+        let layer = layui.layer;
+        let table = layui.table;
+        let $ = layui.jquery;
+
+        table.render({
+            elem: '#model-table'
+            ,method:'get'
+            ,url: '/process/model/data'
+            ,title: '模型列表'
+            ,skin: 'line'
+            ,toolbar: 'default'
+            ,page: true
+            ,cols: [
+                [
+                     {type: 'checkbox', fixed: 'left'}
+                    ,{field: 'id', title: '流程编号', width:80, sort: true}
+                    ,{field: 'name', title: '流程名称'}
+                    ,{field: 'key', title: '流程标识', sort: true}
+                    ,{field: 'version', title: '流程版本',  sort: true}
+                    ,{fixed: 'right', width: 300, align:'center', toolbar: '#barDemo'}
+                ]
+            ]
+        });
+
+        table.on('toolbar(model-table)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id)
+                ,data = checkStatus.data; //获取选中的数据
+            switch(obj.event){
+                case 'add':
+                    window.add();
+                    break;
+                case 'update':
+                    if(data.length === 0){
+                        layer.msg('请选择一行');
+                    } else if(data.length > 1){
+                        layer.msg('只能同时编辑一个');
+                    } else {
+                        layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+                    }
+                    break;
+                case 'delete':
+                    if(data.length === 0){
+                        layer.msg('请选择一行');
+                    } else {
+                        layer.msg('删除');
+                    }
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            let data = obj.data
+                ,layEvent = obj.event;
+            if(layEvent === 'detail'){
+                layer.msg('查看操作');
+            } else if(layEvent === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url:'/act/model/deleteById',
+                        data:{modelId:obj.data.id},
+                        dataType:'json',
+                        type:'post',
+                        success:function(data){
+                            if(data.success){
+                                layer.msg(data.msg,{icon:1,time:1000},function(){
+                                    obj.del();
+                                    layer.close(index);
+                                })
+                            }else{
+                                layer.msg(data.msg,{icon:2,time:1000});
+                            }
+                        }
+                    })
+                });
+            } else if(layEvent === 'edit'){
+                layer.msg('编辑操作');
+            } else if(layEvent === 'design'){
+                location.href = "/process/model/editor?modelId="+obj.data.id;
+            } else if(layEvent === 'publish'){
+
+                $.ajax({
+                    url:'/process/model/publish',
+                    data:{modelId:obj.data.id},
+                    dataType:'json',
+                    type:'post',
+                    success:function(data){
+                        if(data.success){
+                            layer.msg(data.msg,{icon:1,time:1000});
+                        }else{
+                            layer.msg(data.msg,{icon:2,time:1000});
+                        }
+                    }
+                })
+            }
+        });
+
+        window.add = function(){
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['550px', '500px'],
+                content: '/process/model/add'
+            });
+        }
+    });
+</script>
+</body>
+</html>

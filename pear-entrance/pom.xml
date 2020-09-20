@@ -36,6 +36,11 @@
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-generator</artifactId>
         </dependency>
+        <!-- 工 作 流 程 -->
+        <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-process</artifactId>
+        </dependency>
         <!-- 三方依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -75,7 +80,6 @@
             <groupId>com.github.whvcse</groupId>
             <artifactId>easy-captcha</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>

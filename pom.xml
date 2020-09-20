@@ -35,6 +35,8 @@
         <fastjson.version>1.2.68</fastjson.version>
         <!-- Lombok 版 本 -->
         <lombok.version>1.18.12</lombok.version>
+        <!-- 工 作 流 程 模 块 -->
+        <pear.process.version>0.0.1-SNAPSHOT</pear.process.version>
         <!-- 公 用 模 块 版 本 -->
         <pear.common.version>0.0.1-SNAPSHOT</pear.common.version>
         <!-- 系 统 模 块 版 本 -->
@@ -57,6 +59,9 @@
         <freemarker.version>2.3.30</freemarker.version>
         <!-- 验 证 码 版 本 -->
         <captcha.version>1.6.2</captcha.version>
+        <!-- 工 作 流 版 本 -->
+        <activiti.version>6.0.0</activiti.version>
+        <apache.xmlgraphics.version>1.13</apache.xmlgraphics.version>
     </properties>
 
     <!-- 依 赖 管 理 -->
@@ -116,6 +121,12 @@
                 <artifactId>pear-system</artifactId>
                 <version>${pear.system.version}</version>
             </dependency>
+            <!-- 工 作 流 程 -->
+            <dependency>
+                <groupId>com.pearadmin</groupId>
+                <artifactId>pear-process</artifactId>
+                <version>${pear.process.version}</version>
+            </dependency>
             <!-- 代 码 生 成 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
@@ -163,6 +174,43 @@
                 <groupId>com.github.whvcse</groupId>
                 <artifactId>easy-captcha</artifactId>
                 <version>${captcha.version}</version>
+            </dependency>
+            <!-- 工作流 -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring-boot-starter-basic</artifactId>
+                <version>${activiti.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-json-converter</artifactId>
+                <version>${activiti.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.activiti</groupId>
+                        <artifactId>activiti-bpmn-model</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-codec</artifactId>
+                <version>${apache.xmlgraphics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-css</artifactId>
+                <version>${apache.xmlgraphics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-svg-dom</artifactId>
+                <version>${apache.xmlgraphics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-svggen</artifactId>
+                <version>${apache.xmlgraphics.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

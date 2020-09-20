@@ -20,4 +20,18 @@ public class PageDomain {
      * */
     private Integer limit;
 
+    /**
+     * 获取开始的数据行
+     * */
+    public Integer start(){
+        return (this.page-1)*this.limit;
+    }
+
+    /**
+     * 获取结束的数据行
+     * */
+    public Integer end(){
+        return this.page*this.limit;
+    }
+
 }
