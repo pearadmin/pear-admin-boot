@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>模型列表</title>
     <link rel="stylesheet" href="../../component/pear/css/pear.css">
 </head>
 <body class="pear-container">
@@ -17,14 +17,12 @@
         </script>
     </div>
 </div>
-
 <script type="text/html" id="model-toolbar">
     <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         创建流程图
     </button>
 </script>
-
 <script src="../../component/layui/layui.js"></script>
 <script src="../../component/pear/pear.js"></script>
 <script>
@@ -48,7 +46,7 @@
                     ,{field: 'name', title: '流程名称'}
                     ,{field: 'key', title: '流程标识', sort: true}
                     ,{field: 'version', title: '流程版本',  sort: true}
-                    ,{title: '操作',width: 300, align:'center', toolbar: '#barDemo'}
+                    ,{title: '操作',width: 250, align:'center', toolbar: '#barDemo'}
                 ]
             ]
         });

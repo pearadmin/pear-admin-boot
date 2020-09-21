@@ -35,11 +35,11 @@
 
 <script type="text/html" id="log-bar">
     {{#if (d.status == 0) { }}
-    <button class="pear-btn pear-btn-success pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-ok"></i>
-        成功</button>
+    <i class="layui-icon layui-icon-ok"></i>
+    <span style="color: green">成功</span>
     {{# }else if(d.status == 1){ }}
-    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="error"><i class="layui-icon layui-icon-help"></i>
-        异常</button>
+    <i class="layui-icon layui-icon-help"></i>
+    <span style="color: red">异常</span>
     {{# } }}
 </script>
 
