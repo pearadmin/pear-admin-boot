@@ -49,7 +49,7 @@
 
 <script type="text/html" id="dict-type-bar">
     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="details"><i class="layui-icon layui-icon-list"></i></button>
+    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="details"><i class="layui-icon layui-icon-transfer"></i></button>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
 </script>
 
@@ -107,6 +107,11 @@
             } else if(obj.event === 'batchRemove'){
                 layer.msg("批量删除")
             }
+        });
+
+        form.on('submit(dict-type-query)', function(data){
+            table.reload('dict-type-table',{where:data.field})
+            return false;
         });
 
         form.on('switch(dict-type-enable)', function(obj){

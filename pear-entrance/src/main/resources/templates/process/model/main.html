@@ -86,7 +86,7 @@
         }
 
         window.design = function(obj){
-            top.layui.tab.addTabOnlyByElem("content",{id:obj.data.id,title:obj.data.name,url:"/process/model/editor?modelId="+obj.data.id,close:true})
+            location.href = "/process/model/editor?modelId="+obj.data.id;
         }
 
         window.publish = function(obj){

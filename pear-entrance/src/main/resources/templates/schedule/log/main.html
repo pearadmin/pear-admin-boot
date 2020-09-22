@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>任务日志</title>
     <link rel="stylesheet" href="../../component/pear/css/pear.css" />
 </head>
 <body class="pear-container">
@@ -35,10 +35,8 @@
 
 <script type="text/html" id="log-bar">
     {{#if (d.status == 0) { }}
-    <i class="layui-icon layui-icon-ok"></i>
     <span style="color: green">成功</span>
     {{# }else if(d.status == 1){ }}
-    <i class="layui-icon layui-icon-help"></i>
     <span style="color: red">异常</span>
     {{# } }}
 </script>
@@ -67,7 +65,6 @@
                 {title: '状态', toolbar: '#log-bar', align:'center', width:150}
             ]
         ]
-
 
         table.render({
             elem: '#user-table',
