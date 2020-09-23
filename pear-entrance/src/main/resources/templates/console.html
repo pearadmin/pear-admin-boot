@@ -246,11 +246,8 @@
 <script src="/component/pear/pear.js"></script>
 <script>
     layui.use(['layer', 'echarts', 'element', 'count','topBar'], function() {
-        var $ = layui.jquery,
-            layer = layui.layer,
-            element = layui.element,
-            count = layui.count,
-            echarts = layui.echarts;
+            let count = layui.count,
+                echarts = layui.echarts;
 
         count.up("value1", {
             time: 4000,

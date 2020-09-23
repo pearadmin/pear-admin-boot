@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>模型列表</title>
+    <title>流程定义</title>
     <link rel="stylesheet" href="../../component/pear/css/pear.css">
 </head>
 <body class="pear-container">
@@ -10,9 +10,9 @@
     <div class="layui-card-body">
         <form class="layui-form" action="">
             <div class="layui-form-item">
-                <label class="layui-form-label">模型名称</label>
+                <label class="layui-form-label">定义名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="realName" placeholder="" class="layui-input">
+                    <input type="text" name="name" placeholder="" class="layui-input">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="model-query">
                     <i class="layui-icon layui-icon-search"></i>
@@ -30,18 +30,10 @@
     <div class="layui-card-body">
         <table  id="model-table" lay-filter="model-table"></table>
         <script type="text/html" id="barDemo">
-            <a class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish">发布</a>
-            <a class="pear-btn pear-btn-sm pear-btn-warming"  lay-event="design">流程设计</a>
             <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">删除</a>
         </script>
     </div>
 </div>
-<script type="text/html" id="model-toolbar">
-    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
-        <i class="layui-icon layui-icon-add-1"></i>
-        新增
-    </button>
-</script>
 <script src="../../component/layui/layui.js"></script>
 <script src="../../component/pear/pear.js"></script>
 <script>
@@ -54,19 +46,22 @@
         table.render({
             elem: '#model-table'
             ,method:'get'
-            ,url: '/process/model/data'
+            ,url: '/process/defined/data'
             ,title: '模型列表'
             ,skin: 'line'
-            ,toolbar: '#model-toolbar'
+            ,toolbar: false
             ,page: true
             ,cols: [
                 [
-                     {type: 'checkbox'}
-                    ,{field: 'id', title: '流程编号',  sort: true}
+                    {type: 'checkbox'}
+                    ,{field: 'id', title: '流程编号', sort: true}
                     ,{field: 'name', title: '流程名称'}
                     ,{field: 'key', title: '流程标识', sort: true}
                     ,{field: 'version', title: '流程版本',  sort: true}
-                    ,{title: '操作',width: 250, align:'center', toolbar: '#barDemo'}
+                    ,{field: 'bpmn', title: '资源文件', sort: true}
+                    ,{field: 'png', title: '流程图',  sort: true}
+                    ,{field: 'deploymentId',title: '部署 ID', sort: true}
+                    ,{title: '操作',width: 100, align:'center', toolbar: '#barDemo'}
                 ]
             ]
         });
@@ -134,12 +129,13 @@
 
         window.remove = function(obj){
             layer.confirm('确认删除该流程图吗', function(index){
+                let loading = layer.load();
                 $.ajax({
-                    url:'/process/model/deleteById',
-                    data:{modelId:obj.data.id},
+                    url:'/process/defined/remove/'+obj.data.deploymentId,
                     dataType:'json',
-                    type:'post',
+                    type:'delete',
                     success:function(data){
+                        layer.close(loading);
                         if(data.success){
                             layer.msg(data.msg,{icon:1,time:1000},function(){
                                 obj.del();

@@ -75,20 +75,17 @@ public class ScheduleHandler {
      * */
     public static void updateJob(Scheduler scheduler, ScheduleJobBean scheduleJob) {
         try {
-            // 构建定时器
             TriggerKey triggerKey = getTriggerKey(Long.parseLong(scheduleJob.getJobId()));
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
-                    .withMisfireHandlingInstructionDoNothing();
+            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression()).withMisfireHandlingInstructionDoNothing();
             CronTrigger trigger = getCronTrigger(scheduler, Long.parseLong(scheduleJob.getJobId()));
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
             trigger.getJobDataMap().put(ScheduleJobBean.JOB_PARAM_KEY, scheduleJob);
             scheduler.rescheduleJob(triggerKey, trigger);
-            // 如果该定时器处于暂停状态
             if(scheduleJob.getStatus().equals("1")){
                 pauseJob(scheduler, Long.parseLong(scheduleJob.getJobId()));
             }
         } catch (SchedulerException e) {
-            throw new RuntimeException("updateJob Fail",e) ;
+            throw new RuntimeException("updateJob Fail",e);
         }
     }
 
@@ -101,7 +98,7 @@ public class ScheduleHandler {
         try {
             scheduler.pauseJob(getJobKey(jobId));
         } catch (SchedulerException e){
-            throw new RuntimeException("pauseJob Fail",e) ;
+            throw new RuntimeException("pauseJob Fail",e);
         }
     }
 
@@ -114,7 +111,7 @@ public class ScheduleHandler {
         try {
             scheduler.resumeJob(getJobKey(jobId));
         } catch (SchedulerException e){
-            throw new RuntimeException("resumeJob Fail",e) ;
+            throw new RuntimeException("resumeJob Fail",e);
         }
     }
 
@@ -127,7 +124,7 @@ public class ScheduleHandler {
         try {
             scheduler.deleteJob(getJobKey(jobId));
         } catch (SchedulerException e){
-            throw new RuntimeException("deleteJob Fail",e) ;
+            throw new RuntimeException("deleteJob Fail",e);
         }
     }
 

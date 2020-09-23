@@ -1,10 +1,6 @@
 package com.pearadmin.security.service;
 
-import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
-import com.wf.captcha.utils.CaptchaUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,10 +9,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 
 /**
  * Describe: 自定义 Security 登陆认证实现
@@ -39,7 +32,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
      * */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
         UserDetails userInfo = securityUserDetailsService.loadUserByUsername(username);

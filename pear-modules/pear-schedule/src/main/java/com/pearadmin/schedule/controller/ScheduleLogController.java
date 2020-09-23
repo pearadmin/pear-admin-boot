@@ -47,4 +47,5 @@ public class ScheduleLogController extends BaseController {
         PageInfo<ScheduleLogBean> pageInfo = scheduleLogService.page(scheduleLogBean,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
+
 }

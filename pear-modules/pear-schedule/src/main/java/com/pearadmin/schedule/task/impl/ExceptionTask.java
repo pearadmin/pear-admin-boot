@@ -25,4 +25,5 @@ public class ExceptionTask implements BaseTaskService {
         log.info("当前时间::::" + format.format(new Date()));
         throw new RuntimeException("发生异常");
     }
+
 }

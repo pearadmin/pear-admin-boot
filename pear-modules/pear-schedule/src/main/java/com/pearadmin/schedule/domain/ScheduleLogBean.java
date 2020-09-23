@@ -10,7 +10,7 @@ import org.apache.ibatis.type.Alias;
  * CreateTime: 2019/10/23
  * */
 @Data
-@Alias("ScheduleLog")
+@Alias("ScheduleLogBean")
 public class ScheduleLogBean extends BaseDomain {
 
 	/**
