@@ -24,18 +24,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Describe: 流程模型控制器
+ * Author: 就眠仪式
+ * createTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping("/process/model/")
 public class ProModelController extends BaseController {
 
+    /**
+     * thymeleaf 基础路径配置
+     * */
     private String modelPath = "process/model/";
 
+    /**
+     * 工作流程服务
+     * */
     @Resource
     private RepositoryService repositoryService;
 
     @Resource
     private ObjectMapper objectMapper;
 
+    /**
+     * Describe: 获取流程模型列表视图
+     * Param: modelAndView
+     * Return: 流程模型列表视图
+     * */
     @GetMapping("main")
     public ModelAndView view(ModelAndView modelAndView)
     {
@@ -43,24 +59,44 @@ public class ProModelController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * Describe: 获取流程编辑器视图
+     * Param: modelAndView
+     * Return: 流程编辑视图
+     * */
     @GetMapping("editor")
     public ModelAndView editor(ModelAndView modelAndView){
-        modelAndView.setViewName("process/model/editor");
+        modelAndView.setViewName(modelPath+"editor");
         return modelAndView;
     }
 
+    /**
+     * Describe: 获取流程模型列表数据
+     * Param: modelAndView
+     * Return: ResultTable
+     * */
     @GetMapping("data")
     public ResultTable list(PageDomain pageDomain){
         List<Model> list = repositoryService.createModelQuery().listPage(pageDomain.start(),pageDomain.end());
         return pageTable(list,repositoryService.createModelQuery().list().size());
     }
 
+    /**
+     * Describe: 流程创建视图
+     * Param: modelAndView
+     * Return: 流程创建视图
+     * */
     @GetMapping("add")
     public ModelAndView add(ModelAndView modelAndView){
         modelAndView.setViewName(modelPath+"add");
         return modelAndView;
     }
 
+    /**
+     * Describe: 创建流程图
+     * Param: createModelParam
+     * Return: Result
+     * */
     @PostMapping("create")
     public Result create(@RequestBody CreateModelParam param) throws IOException {
         Model model = repositoryService.newModel();
@@ -91,16 +127,25 @@ public class ProModelController extends BaseController {
         System.out.println("创建模型完善ModelEditorSource结束");
     }
 
+    /**
+     * Describe: 根据 Id 删除流程图
+     * Param: modelId
+     * Return: Result
+     * */
     @PostMapping("deleteById")
     public Result deleteById(String modelId){
         repositoryService.deleteModel(modelId);
         return success("删除成功");
     }
 
+    /**
+     * Describe: 发布流程
+     * Param: modelId
+     * Return: Result
+     * */
     @ResponseBody
     @RequestMapping("/publish")
-    public Object publish(String modelId){
-        Map<String, String> map = new HashMap<String, String>();
+    public Result publish(String modelId){
         try {
             Model modelData = repositoryService.getModel(modelId);
             byte[] bytes = repositoryService.getModelEditorSource(modelData.getId());

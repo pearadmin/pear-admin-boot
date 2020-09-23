@@ -33,7 +33,7 @@
             <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">删除</a>
         </script>
         <script type="text/html" id="xml">
-            <a download="{{d.bpmn}}" href='/process/defined/xml?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
+            <a download="{{d.bpmn}}" href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
         </script>
         <script type="text/html" id="png">
             <a  lay-event="png">{{d.png}}</a>
@@ -67,7 +67,7 @@
                     ,{field: 'bpmn', title: '资源文件',templet:'#xml' ,sort: true}
                     ,{field: 'png', title: '流程图片', templet:'#png',  sort: true}
                     ,{field: 'deploymentId',title: '部署 ID', sort: true}
-                    ,{title: '操作',width: 100, align:'center', toolbar: '#barDemo'}
+                    ,{title: '操作',width: 80, align:'center', toolbar: '#barDemo'}
                 ]
             ]
         });
@@ -94,7 +94,7 @@
                 title: 'png',
                 shade: 0.1,
                 area: ['800px', '500px'],
-                content: '<img src="/process/defined/png?definedId='+obj.data.deploymentId+'&resourceName='+obj.data.png+'">'
+                content: '<img src="/process/defined/resource?definedId='+obj.data.deploymentId+'&resourceName='+obj.data.png+'">'
             });
         }
 

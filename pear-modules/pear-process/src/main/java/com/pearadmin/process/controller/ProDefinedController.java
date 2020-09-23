@@ -18,20 +18,41 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Describe: 流程定义控制器
+ * Author: 就眠仪式
+ * createTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping("/process/defined")
 public class ProDefinedController extends BaseController {
 
+    /**
+     * 基础路径
+     * */
     private String modelPath = "process/defined/";
 
+    /**
+     * 工作流程服务
+     * */
     @Resource
     private RepositoryService repositoryService;
 
+    /**
+     * Describe: 获取流程定义列表视图
+     * Param: modelAndView
+     * Return: 流程定义列表视图
+     * */
     @GetMapping("main")
     public ModelAndView main(){
         return JumpPage(modelPath + "main");
     }
 
+    /**
+     * Describe: 获取流程定义列表数据
+     * Param: modelAndView
+     * Return: 流程定义列表数据
+     * */
     @GetMapping("data")
     public ResultTable data(PageDomain pageDomain){
 
@@ -62,42 +83,38 @@ public class ProDefinedController extends BaseController {
                 .count());
     }
 
+    /**
+     * Describe: 根据 Id 删除流程定义
+     * Param: deploymentId
+     * Return: Result
+     * */
     @DeleteMapping("remove/{deploymentId}")
     public Result remove(@PathVariable String deploymentId){
         repositoryService.deleteDeployment(deploymentId,true);
         return Result.success("删除成功");
     }
 
-
+    /**
+     * Describe: 获取流程资源文件
+     * Param: processDefineId
+     * Param: resourceName
+     * Return: InputStream
+     * */
     private InputStream getProcessDefineResource(String processDefineId, String resourceName) {
-
         return repositoryService.getResourceAsStream(processDefineId, resourceName);
     }
 
-    @GetMapping("/png")
-    public void getProcessDefineImge(HttpServletResponse response,
+    /**
+     * Describe: 获取流程模型列表视图
+     * Param: processDefineId
+     * Param: resourceName
+     * Return: 流程模型列表视图
+     * */
+    @GetMapping("/resource")
+    public void getProcessDefineResource(HttpServletResponse response,
                                      @RequestParam("definedId") String processDefineId,String resourceName){
         InputStream inputStream = getProcessDefineResource(processDefineId, resourceName);
         byte[] bytes = new byte[1024];
-        response.setContentType("image/png");
-        try {
-            OutputStream outputStream = response.getOutputStream();
-            while (inputStream.read(bytes) != -1) {
-                outputStream.write(bytes);
-            }
-
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @GetMapping("/xml")
-    public void getProcessDefineXML(HttpServletResponse response,
-                                    @RequestParam("definedId") String processDefineId,String resourceName){
-        InputStream inputStream = getProcessDefineResource(processDefineId, resourceName);
-        byte[] bytes = new byte[1024];
-        response.setContentType("text/xml");
         try {
             OutputStream outputStream = response.getOutputStream();
             while (inputStream.read(bytes) != -1) {
