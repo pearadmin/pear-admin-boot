@@ -72,7 +72,6 @@
         });
 
         table.on('toolbar(model-table)', function(obj){
-            let checkStatus = table.checkStatus(obj.config.id)
             switch(obj.event){
                 case 'add':
                     window.add();

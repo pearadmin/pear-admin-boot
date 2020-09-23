@@ -32,6 +32,12 @@
         <script type="text/html" id="barDemo">
             <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">删除</a>
         </script>
+        <script type="text/html" id="xml">
+            <a download="{{d.bpmn}}" href='/process/defined/xml?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
+        </script>
+        <script type="text/html" id="png">
+            <a  lay-event="png">{{d.png}}</a>
+        </script>
     </div>
 </div>
 <script src="../../component/layui/layui.js"></script>
@@ -58,35 +64,22 @@
                     ,{field: 'name', title: '流程名称'}
                     ,{field: 'key', title: '流程标识', sort: true}
                     ,{field: 'version', title: '流程版本',  sort: true}
-                    ,{field: 'bpmn', title: '资源文件', sort: true}
-                    ,{field: 'png', title: '流程图',  sort: true}
+                    ,{field: 'bpmn', title: '资源文件',templet:'#xml' ,sort: true}
+                    ,{field: 'png', title: '流程图片', templet:'#png',  sort: true}
                     ,{field: 'deploymentId',title: '部署 ID', sort: true}
                     ,{title: '操作',width: 100, align:'center', toolbar: '#barDemo'}
                 ]
             ]
         });
 
-        table.on('toolbar(model-table)', function(obj){
-            let checkStatus = table.checkStatus(obj.config.id)
-            switch(obj.event){
-                case 'add':
-                    window.add();
-                    break;
-                case 'update':
-                    break;
-                case 'delete':
-                    break;
-            };
-        });
-
         table.on('tool(model-table)', function(obj){
             let layEvent = obj.event;
             if(layEvent === 'del'){
                 window.remove(obj);
-            } else if(layEvent === 'design'){
-                window.design(obj);
-            } else if(layEvent === 'publish'){
-                window.publish(obj);
+            } else if(layEvent === 'xml'){
+                window.xml(obj);
+            } else if(layEvent === 'png'){
+                window.png(obj);
             }
         });
 
@@ -95,36 +88,14 @@
             return false;
         });
 
-        window.add = function(){
+        window.png = function(obj){
             layer.open({
-                type: 2,
-                title: '新增',
+                type: 1,
+                title: 'png',
                 shade: 0.1,
-                area: ['550px', '500px'],
-                content: '/process/model/add'
+                area: ['800px', '500px'],
+                content: '<img src="/process/defined/png?definedId='+obj.data.deploymentId+'&resourceName='+obj.data.png+'">'
             });
-        }
-
-        window.design = function(obj){
-            location.href = "/process/model/editor?modelId="+obj.data.id;
-        }
-
-        window.publish = function(obj){
-            let loading = layer.load();
-            $.ajax({
-                url:'/process/model/publish',
-                data:{modelId:obj.data.id},
-                dataType:'json',
-                type:'post',
-                success:function(data){
-                    layer.close(loading);
-                    if(data.success){
-                        layer.msg(data.msg,{icon:1,time:1000});
-                    }else{
-                        layer.msg(data.msg,{icon:2,time:1000});
-                    }
-                }
-            })
         }
 
         window.remove = function(obj){
