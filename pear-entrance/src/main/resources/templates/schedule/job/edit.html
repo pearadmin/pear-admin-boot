@@ -77,7 +77,6 @@
         let $ = layui.jquery;
 
         form.on('submit(job-save)', function(data){
-
             $.ajax({
                 url:'/schedule/job/update',
                 data:JSON.stringify(data.field),

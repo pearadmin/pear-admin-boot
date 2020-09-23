@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -79,7 +80,7 @@ public class ScheduleJobController extends BaseController {
     @RequestMapping("/save")
     public Result save (@RequestBody ScheduleJobBean scheduleJob){
         scheduleJob.setJobId(SequenceUtil.makeStringId());
-        scheduleJob.setCreateTime(new Date());
+        scheduleJob.setCreateTime(LocalDateTime.now());
         Boolean result = scheduleJobService.save(scheduleJob);
         return decide(result);
     }

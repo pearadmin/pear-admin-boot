@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -75,7 +76,7 @@ public class SysConfigController extends BaseController {
     @PostMapping("save")
     public Result save(@RequestBody SysConfig sysConfig){
         sysConfig.setConfigId(SequenceUtil.makeStringId());
-        sysConfig.setCreateTime(new Date());
+        sysConfig.setCreateTime(LocalDateTime.now());
         boolean result = sysConfigService.save(sysConfig);
         return decide(result);
     }
@@ -98,7 +99,7 @@ public class SysConfigController extends BaseController {
      * */
     @PutMapping("update")
     public Result update(@RequestBody SysConfig sysConfig){
-        sysConfig.setUpdateTime(new Date());
+        sysConfig.setUpdateTime(LocalDateTime.now());
         boolean result = sysConfigService.updateById(sysConfig);
         return decide(result);
     }

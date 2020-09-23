@@ -11,6 +11,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.FileInputStream;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class FileServiceImpl implements IFileService {
             fileDomain.setFileName(fileName);
             fileDomain.setFilePath(filepath.getPath());
             fileDomain.setFileType(suffixName);
-            fileDomain.setCreateTime(new Date());
+            fileDomain.setCreateTime(LocalDateTime.now());
             file.transferTo(filepath);
             int result = fileMapper.insert(fileDomain);
             if (result > 0) {
