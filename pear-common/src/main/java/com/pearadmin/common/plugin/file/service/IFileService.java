@@ -26,4 +26,9 @@ public interface IFileService {
      * */
     List<File> data();
 
+    /**
+     * 删 除 文 件
+     * */
+    boolean remove(String id);
+
 }

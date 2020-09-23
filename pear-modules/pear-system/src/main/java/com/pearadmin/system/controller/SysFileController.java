@@ -85,4 +85,15 @@ public class SysFileController extends BaseController {
         fileService.download(id);
     }
 
+    /**
+     * Describe: 文件删除接口
+     * Param: id
+     * Return: 文件流
+     * */
+    @DeleteMapping("remove/{id}")
+    public Result remove(@PathVariable("id") String id){
+       boolean result = fileService.remove(id);
+       return Result.decide(result,"删除成功","删除失败");
+    }
+
 }

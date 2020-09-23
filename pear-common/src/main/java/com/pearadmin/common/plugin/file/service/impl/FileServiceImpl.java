@@ -76,4 +76,20 @@ public class FileServiceImpl implements IFileService {
         return fileMapper.selectList();
     }
 
+
+    @Override
+    public boolean remove(String id) {
+
+        File file = fileMapper.selectById(id);
+
+        new java.io.File(file.getFilePath()).delete();
+
+        int removeInfo = fileMapper.deleteById(id);
+
+        if(removeInfo>0){
+
+            return true;
+        }
+        return false;
+    }
 }

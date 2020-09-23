@@ -34,4 +34,11 @@ public interface FileMapper {
      * */
     File selectById(@Param("id") String id);
 
+    /**
+     * Describe: 根据 Id 删除文件信息
+     * Param: id
+     * Return: File
+     * */
+    int deleteById(@Param("id") String id);
+
 }

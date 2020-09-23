@@ -81,4 +81,8 @@
         </trim>
     </insert>
 
+    <delete id="deleteById" parameterType="string">
+    delete from sys_file where id = #{id}
+  </delete>
+
 </mapper>
