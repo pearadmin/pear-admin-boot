@@ -26,6 +26,11 @@ public class FileServiceImpl implements IFileService {
     @Resource
     private FileMapper fileMapper;
 
+    /**
+     * Describe: 文件上传
+     * Param: File
+     * Return: id
+     * */
     @Override
     public String upload(MultipartFile file) {
         try {
@@ -58,6 +63,11 @@ public class FileServiceImpl implements IFileService {
         }
     }
 
+    /**
+     * Describe: 根据 Id 下载文件
+     * Param: id
+     * Return: IO
+     * */
     @Override
     public void download(String id) {
         try {
@@ -71,12 +81,22 @@ public class FileServiceImpl implements IFileService {
         }
     }
 
+    /**
+     * Describe: 查 询 文 件 列 表
+     * Param: id
+     * Return: File
+     * */
     @Override
     public List<File> data() {
         return fileMapper.selectList();
     }
 
 
+    /**
+     * Describe: 根据 Id 删除文件信息
+     * Param: id
+     * Return: int
+     * */
     @Override
     public boolean remove(String id) {
 

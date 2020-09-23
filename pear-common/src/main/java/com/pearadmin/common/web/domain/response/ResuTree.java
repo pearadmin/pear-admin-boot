@@ -29,5 +29,7 @@ public class ResuTree {
         private Integer code = 200;
 
         private String message = "默认";
+
     }
+
 }
