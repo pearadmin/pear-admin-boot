@@ -8,4 +8,5 @@ public class QueryConfigParam {
     private String configName;
 
     private String configCode;
+
 }

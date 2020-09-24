@@ -7,6 +7,7 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.param.QueryJobParam;
 import com.pearadmin.schedule.service.IScheduleJobService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +47,8 @@ public class ScheduleJobController extends BaseController {
      * Return 定时任务列表数据
      * */
     @GetMapping("data")
-    public ResultTable data(PageDomain pageDomain){
-       PageInfo<ScheduleJobBean> pageInfo =  scheduleJobService.page(null,pageDomain);
+    public ResultTable data(PageDomain pageDomain, QueryJobParam param){
+       PageInfo<ScheduleJobBean> pageInfo =  scheduleJobService.page(param,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
@@ -138,8 +139,8 @@ public class ScheduleJobController extends BaseController {
      * Param: jobId
      * Return Result
      * */
-    @RequestMapping("/deleteJob")
-    public Result deleteJob (String jobId){
+    @RequestMapping("/remove/{id}")
+    public Result deleteJob (@PathVariable("id") String jobId){
         Boolean result = scheduleJobService.delete(jobId);
         return decide(result,"删除成功","删除失败");
     }

@@ -12,7 +12,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">任务名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="realName" placeholder="" class="layui-input">
+                    <input type="text" name="jobName" placeholder="" class="layui-input">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="job-query">
                     <i class="layui-icon layui-icon-search"></i>
@@ -225,11 +225,11 @@
         }
 
         window.remove = function(obj){
-            layer.confirm('确定要删除该用户', {icon: 3, title:'提示'}, function(index){
+            layer.confirm('确定要删除该任务', {icon: 3, title:'提示'}, function(index){
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: MODULE_PATH+"remove/"+obj.data['userId'],
+                    url: MODULE_PATH+"remove/"+obj.data['jobId'],
                     dataType:'json',
                     type:'delete',
                     success:function(result){

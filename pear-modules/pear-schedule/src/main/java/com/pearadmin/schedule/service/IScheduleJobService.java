@@ -3,6 +3,7 @@ package com.pearadmin.schedule.service;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.param.QueryJobParam;
 
 import java.util.List;
 
@@ -60,14 +61,14 @@ public interface IScheduleJobService {
      * Param: ScheduleJob
      * Return: list
      * */
-    List<ScheduleJobBean> list(ScheduleJobBean scheduleJob);
+    List<ScheduleJobBean> list(QueryJobParam param);
 
     /**
      * Describe: 定时任务列表 分页
      * Param: ScheduleJob PageDomain
      * Return: pageInfo
      * */
-    PageInfo<ScheduleJobBean> page(ScheduleJobBean scheduleJob, PageDomain pageDomain);
+    PageInfo<ScheduleJobBean> page(QueryJobParam param, PageDomain pageDomain);
 
     /**
      * Describe: 根据编号获取定时任务

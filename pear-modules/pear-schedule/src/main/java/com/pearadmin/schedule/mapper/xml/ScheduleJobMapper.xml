@@ -15,8 +15,13 @@
   </resultMap>
 
   <!-- 根据条件查询所有定时任务 -->
-  <select id="selectList" parameterType="ScheduleJob" resultMap="ScheduleJobMap">
+  <select id="selectList"  resultMap="ScheduleJobMap">
     select * from schedule_job
+    <where>
+      <if test="jobName!=null and jobName!=''">
+        and job_name like "%"#{jobName}"%"
+      </if>
+    </where>
   </select>
 
   <!-- 根据标识查询定时任务 -->

@@ -1,6 +1,7 @@
 package com.pearadmin.schedule.mapper;
 
 import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.param.QueryJobParam;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface ScheduleJobMapper {
      * Param: ScheduleJob
      * Return: ScheduleJob 列表
      * */
-    List<ScheduleJobBean> selectList(ScheduleJobBean scheduleJob);
+    List<ScheduleJobBean> selectList(QueryJobParam param);
 
     /**
      * Describe: 根据 jobId 查询定时任务

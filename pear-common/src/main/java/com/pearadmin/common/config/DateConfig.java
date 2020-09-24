@@ -20,6 +20,9 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class DateConfig {
 
+    /**
+     * 全 局 日 期 处 理
+     * */
     @Bean
     public Module dateTime(){
         JavaTimeModule javaTimeModule = new JavaTimeModule();

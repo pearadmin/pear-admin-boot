@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.mapper.ScheduleJobMapper;
+import com.pearadmin.schedule.param.QueryJobParam;
 import com.pearadmin.schedule.service.IScheduleJobService;
 import com.pearadmin.schedule.handler.ScheduleHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -41,9 +42,9 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      * Return: pageInfo
      * */
     @Override
-    public PageInfo<ScheduleJobBean> page(ScheduleJobBean scheduleJob, PageDomain pageDomain) {
+    public PageInfo<ScheduleJobBean> page(QueryJobParam param, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
-        List<ScheduleJobBean> list = scheduleJobMapper.selectList(scheduleJob);
+        List<ScheduleJobBean> list = scheduleJobMapper.selectList(param);
         return new PageInfo<>(list);
     }
 
@@ -53,8 +54,8 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      * Return: list
      * */
     @Override
-    public List<ScheduleJobBean> list(ScheduleJobBean scheduleJob) {
-        return scheduleJobMapper.selectList(scheduleJob);
+    public List<ScheduleJobBean> list(QueryJobParam param) {
+        return scheduleJobMapper.selectList(param);
     }
 
     /**
