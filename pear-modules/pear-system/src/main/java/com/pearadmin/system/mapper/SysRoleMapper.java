@@ -8,6 +8,12 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * Describe: 系统角色接口
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
+
 @Mapper
 public interface SysRoleMapper {
 

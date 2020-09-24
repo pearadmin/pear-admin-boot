@@ -18,7 +18,10 @@ import java.util.List;
  * */
 @Service
 public class SysConfigServiceImpl implements ISysConfigService {
-   
+
+    /**
+     * 系统配置数据库操作接口
+     * */
     @Resource
     private SysConfigMapper sysConfigMapper;
 
@@ -99,5 +102,4 @@ public class SysConfigServiceImpl implements ISysConfigService {
             return false;
         }
     }
-    
 }
