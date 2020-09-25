@@ -8,6 +8,7 @@ import com.pearadmin.common.plugin.logging.service.LoggingService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +29,9 @@ import java.io.IOException;
 @Component
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
+    /**
+     * 日 志 服 务
+     * */
     @Resource
     private LoggingService loggingService;
 
@@ -51,6 +55,11 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
         }
         if(e instanceof BadCredentialsException){
             result.setMsg("账户密码不正确");
+            httpServletResponse.getWriter().write(JSON.toJSONString(result));
+            return;
+        }
+        if(e instanceof DisabledException){
+            result.setMsg("用户未启用");
             httpServletResponse.getWriter().write(JSON.toJSONString(result));
             return;
         }

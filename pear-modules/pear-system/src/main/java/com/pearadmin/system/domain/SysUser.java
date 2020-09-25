@@ -68,7 +68,7 @@ public class SysUser extends BaseDomain {
     /**
      * 是否启用
      * */
-    private String enable;
+    private Boolean enable;
 
     /**
      * 是否登录

@@ -1,15 +1,14 @@
 package com.pearadmin.security.support;
 
 import com.pearadmin.security.domain.SecurityUserDetailsService;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
+import javax.security.auth.login.AccountLockedException;
 
 /**
  * Describe: 自定义 Security 登陆认证实现
@@ -37,6 +36,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         UserDetails userInfo = securityUserDetailsService.loadUserByUsername(username);
         if(!passwordEncoder.matches(password,userInfo.getPassword())){
             throw new BadCredentialsException(" Password Not Found ");
+        }
+        if(!userInfo.isEnabled()){
+            throw new DisabledException(" account is disable ");
         }
         return new UsernamePasswordAuthenticationToken(userInfo,password,userInfo.getAuthorities());
     }

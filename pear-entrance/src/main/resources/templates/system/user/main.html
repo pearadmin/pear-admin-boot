@@ -54,7 +54,7 @@
 </script>
 
 <script type="text/html" id="user-enable">
-    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable" {{ d.enable == '0' ? 'checked' : '' }} />
+    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable" {{ d.enable == true ? 'checked' : '' }} />
 </script>
 
 <script type="text/html" id="user-sex">

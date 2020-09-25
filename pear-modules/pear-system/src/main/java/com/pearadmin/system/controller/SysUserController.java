@@ -170,7 +170,7 @@ public class SysUserController extends BaseController {
     @PutMapping("enable")
     @ApiOperation(value = "开启用户登录")
     public Result enable(@RequestBody SysUser sysUser){
-        sysUser.setEnable("0");
+        sysUser.setEnable(true);
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }
@@ -183,7 +183,7 @@ public class SysUserController extends BaseController {
     @PutMapping("disable")
     @ApiOperation(value = "禁用用户登录")
     public Result disable(@RequestBody SysUser sysUser){
-        sysUser.setEnable("1");
+        sysUser.setEnable(false);
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }

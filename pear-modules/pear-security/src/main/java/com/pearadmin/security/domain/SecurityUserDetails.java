@@ -39,7 +39,8 @@ public class SecurityUserDetails extends SysUser implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-        return false;
+
+        return getEnable();
     }
 
 }

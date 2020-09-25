@@ -31,9 +31,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
     @Override
     public boolean hasPermission(Authentication authentication, Object o, Object o1)
     {
-        // 根据用户账户查询权限信息
         SecurityUserDetails securityUserDetails = (SecurityUserDetails) authentication.getPrincipal();
-        // 根据用户账户查询权限信息
         List<SysPower> powerList = sysPowerMapper.selectByUsername(securityUserDetails.getUsername());
         Set<String> permissions = new HashSet<>();
         for (SysPower sysPower :powerList) {
