@@ -8,7 +8,7 @@
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form class="layui-form" action="javascript:void(0);">
             <div class="layui-form-item">
                 <label class="layui-form-label">模型名称</label>
                 <div class="layui-input-inline">
@@ -30,18 +30,33 @@
     <div class="layui-card-body">
         <table  id="model-table" lay-filter="model-table"></table>
         <script type="text/html" id="barDemo">
-            <a class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish">发布</a>
-            <a class="pear-btn pear-btn-sm pear-btn-warming"  lay-event="design">流程设计</a>
-            <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">删除</a>
+            <a class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish"><i class="pear-icon pear-icon-print"></i></a>
+            <a class="pear-btn pear-btn-sm pear-btn-warming"  lay-event="design"><i class="layui-icon layui-icon-edit"></i></a>
+            <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i></a>
         </script>
     </div>
 </div>
-<script type="text/html" id="model-toolbar">
-    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
-        <i class="layui-icon layui-icon-add-1"></i>
-        新增
-    </button>
-</script>
+<div class="createModel">
+    <i class="layui-icon layui-icon-add-1"></i>
+</div>
+<style>
+    .createModel{
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: #5FB878;
+        text-align: center;
+        font-size: 22px;
+        line-height: 50px;
+    }
+    .createModel i{
+        font-size: 23px;
+        color: white;
+    }
+</style>
 <script src="../../component/layui/layui.js"></script>
 <script src="../../component/pear/pear.js"></script>
 <script>
@@ -57,7 +72,7 @@
             ,url: '/process/model/data'
             ,title: '模型列表'
             ,skin: 'line'
-            ,toolbar: '#model-toolbar'
+            ,toolbar: false
             ,page: true
             ,cols: [
                 [
@@ -71,17 +86,15 @@
             ]
         });
 
-        table.on('toolbar(model-table)', function(obj){
-            switch(obj.event){
-                case 'add':
-                    window.add();
-                    break;
-                case 'update':
-                    break;
-                case 'delete':
-                    break;
-            };
-        });
+        $(".createModel").click(function(){
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['550px', '500px'],
+                content: '/process/model/add'
+            });
+        })
 
         table.on('tool(model-table)', function(obj){
             let layEvent = obj.event;
@@ -98,16 +111,6 @@
             table.reload('model-table',{where:data.field})
             return false;
         });
-
-        window.add = function(){
-            layer.open({
-                type: 2,
-                title: '新增',
-                shade: 0.1,
-                area: ['550px', '500px'],
-                content: '/process/model/add'
-            });
-        }
 
         window.design = function(obj){
             location.href = "/process/model/editor?modelId="+obj.data.id;
