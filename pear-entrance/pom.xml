@@ -13,7 +13,7 @@
     <!-- 仓库信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-entrance</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${pear.entrance.version}</version>
 
     <!-- 项目信息 -->
     <name>启动模块</name>

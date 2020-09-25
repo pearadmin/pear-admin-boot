@@ -12,7 +12,7 @@
     <!-- 仓 库 地 址 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-system</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${pear.system.version}</version>
     <name>系统模块</name>
     <description>Demo project for Spring Boot</description>
 

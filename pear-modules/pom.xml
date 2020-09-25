@@ -13,7 +13,7 @@
     <!-- 仓 库 地 址 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-modules</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${pear.modules.version}</version>
     <name>业务逻辑</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>

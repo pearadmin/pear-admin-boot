@@ -35,6 +35,12 @@
         <fastjson.version>1.2.68</fastjson.version>
         <!-- Lombok 版 本 -->
         <lombok.version>1.18.12</lombok.version>
+        <!-- 项 目 版 本 -->
+        <pear.boot.version>0.0.1-SNAPSHOT</pear.boot.version>
+        <!-- 业 务 模 块 -->
+        <pear.modules.version>0.0.1-SNAPSHOT</pear.modules.version>
+        <!-- 启 动 模 块 版 本 -->
+        <pear.entrance.version>0.0.1-SNAPSHOT</pear.entrance.version>
         <!-- 工 作 流 程 模 块 -->
         <pear.process.version>0.0.1-SNAPSHOT</pear.process.version>
         <!-- 公 用 模 块 版 本 -->
