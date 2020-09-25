@@ -2,6 +2,7 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -195,7 +196,9 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("center")
     @ApiOperation(value = "个人资料")
-    public ModelAndView center(){
+    public ModelAndView center(Model model){
+        SysUser sysUser = (SysUser) ServletUtil.getSession().getAttribute("currentUser");
+        model.addAttribute("userInfo",sysUserService.getById(sysUser.getUserId()));
         return JumpPage(MODULE_PATH + "center");
     }
 

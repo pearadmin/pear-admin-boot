@@ -15,7 +15,7 @@
 							<div class="user-info-head" id="userInfoHead">
 								<img src="../../admin/images/avatar.jpg" width="115px" height="115px" alt="">
 							</div>
-							<h2 style="padding-top: 20px;font-size: 20px;" th:text="${session.currentUser.realName}">就眠仪式</h2>
+							<h2 style="padding-top: 20px;font-size: 20px;" th:text="${userInfo.realName}"></h2>
 							<p style="padding-top: 8px;margin-top: 10px;font-size: 13.5px;">China ， 中国</p>
 						</div>
 					</div>
@@ -145,7 +145,6 @@
 		<script src="../../component/layui/layui.js"></script>
 		<script>
 			layui.use(['element'], function() {
-				var element = layui.element;
 
 			})
 		</script>
