@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 public class DateConfig {
 
     /**
-     * 全 局 日 期 处 理
+     * 日 期 转 换
      * */
     @Bean
     public Module dateTime(){

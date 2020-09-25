@@ -1,4 +1,4 @@
-package com.pearadmin.security.service;
+package com.pearadmin.security.support;
 
 import com.pearadmin.security.domain.SecurityUserDetailsService;
 import org.springframework.security.authentication.AuthenticationProvider;

@@ -14,14 +14,17 @@
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
+        <!-- 公 共 模 块 -->
         <dependency>
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-common</artifactId>
         </dependency>
+        <!-- Web 模 块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- 工 作 流 -->
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-spring-boot-starter-basic</artifactId>
