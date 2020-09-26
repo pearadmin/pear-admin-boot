@@ -54,8 +54,7 @@ public class SysRoleController extends BaseController {
      * Return 角色列表数据
      * */
     @GetMapping("data")
-    @PreAuthorize("hasPermission('/system/role/data','sys:role:data')")
-    public ResultTable data(PageDomain pageDomain, QueryRoleParam queryRoleParam){
+     public ResultTable data(PageDomain pageDomain, QueryRoleParam queryRoleParam){
        PageInfo<SysRole> pageInfo = sysRoleService.page(queryRoleParam,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

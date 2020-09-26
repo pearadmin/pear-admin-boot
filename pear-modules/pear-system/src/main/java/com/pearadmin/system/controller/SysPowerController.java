@@ -43,7 +43,6 @@ public class SysPowerController extends BaseController {
      * Return 权限列表视图
      * */
     @GetMapping("main")
-    @PreAuthorize("hasPermission('/system/power/main','sys:power:main')")
     public ModelAndView main(ModelAndView modelAndView){
         return JumpPage(MODULE_PATH + "main");
     }

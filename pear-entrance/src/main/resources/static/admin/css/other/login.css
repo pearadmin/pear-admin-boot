@@ -72,12 +72,12 @@ body {
 	height: 100%;
 }
 
-.code {
+.captcha {
 	margin-right: 13px;
 	border: #e6e6e6 1px solid;
 }
 
-.codeImage {
+.captchaImage {
 	height: 42px;
 	border: #e6e6e6 1px solid;
 }

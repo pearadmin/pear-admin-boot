@@ -1,6 +1,10 @@
 package com.pearadmin.security.support;
 
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
+import com.pearadmin.security.exception.CaptchaException;
+import com.wf.captcha.base.Captcha;
+import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -34,6 +38,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
         UserDetails userInfo = securityUserDetailsService.loadUserByUsername(username);
+        System.out.println("验证码:"+ServletUtil.getRequest().getParameter("captcha"));
+        if(!CaptchaUtil.ver(ServletUtil.getRequest().getParameter("captcha"),ServletUtil.getRequest())){
+            throw new CaptchaException(" captcha is bad ");
+        }
         if(!passwordEncoder.matches(password,userInfo.getPassword())){
             throw new BadCredentialsException(" Password Not Found ");
         }

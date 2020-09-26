@@ -71,6 +71,15 @@
             <if test="sex!=null">
                 sex,
             </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="remark!=null">
+                remark,
+            </if>
+            <if test="enable">
+                enable,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="userId!=null">
@@ -93,6 +102,15 @@
             </if>
             <if test="sex!=null">
                 #{sex},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="remark!=null">
+                #{remark},
+            </if>
+            <if test="enable!=null">
+                #{enable},
             </if>
         </trim>
     </insert>

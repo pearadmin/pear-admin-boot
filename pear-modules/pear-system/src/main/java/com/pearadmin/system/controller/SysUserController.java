@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -95,7 +96,9 @@ public class SysUserController extends BaseController {
     @ApiOperation(value="保存用户数据")
     public Result save(@RequestBody SysUser sysUser){
         sysUser.setLogin("0");
+        sysUser.setEnable(true);
         sysUser.setUserId(SequenceUtil.makeStringId());
+        sysUser.setCreateTime(LocalDateTime.now());
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         Boolean result = sysUserService.save(sysUser);

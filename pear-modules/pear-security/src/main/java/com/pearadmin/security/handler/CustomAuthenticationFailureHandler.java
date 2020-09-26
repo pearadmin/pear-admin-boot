@@ -7,6 +7,7 @@ import com.pearadmin.common.plugin.logging.enums.LoggingType;
 import com.pearadmin.common.plugin.logging.service.LoggingService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.domain.response.Result;
+import com.pearadmin.security.exception.CaptchaException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -43,6 +44,11 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
         result.setCode(500);
         result.setSuccess(false);
         result.setMsg("登陆失败");
+        if(e instanceof CaptchaException){
+            result.setMsg("验证码有误");
+            httpServletResponse.getWriter().write(JSON.toJSONString(result));
+            return;
+        }
         if(e instanceof UsernameNotFoundException){
             result.setMsg("用户名不存在");
             httpServletResponse.getWriter().write(JSON.toJSONString(result));
