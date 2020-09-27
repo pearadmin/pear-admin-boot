@@ -1,6 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.plugin.repeat.annotation.RepeatSubmit;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.base.BaseController;
@@ -92,6 +93,7 @@ public class SysUserController extends BaseController {
      * Param ModelAndView
      * Return 操作结果
      * */
+    @RepeatSubmit
     @PostMapping("save")
     @ApiOperation(value="保存用户数据")
     public Result save(@RequestBody SysUser sysUser){
