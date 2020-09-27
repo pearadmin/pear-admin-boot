@@ -1,6 +1,6 @@
-package com.pearadmin.common.plugin.file.mapper;
+package com.pearadmin.common.plugin.resource.mapper;
 
-import com.pearadmin.common.plugin.file.domain.File;
+import com.pearadmin.common.plugin.resource.domain.File;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;

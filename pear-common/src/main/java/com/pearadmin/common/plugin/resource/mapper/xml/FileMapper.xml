@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.pearadmin.common.plugin.file.mapper.FileMapper">
+<mapper namespace="com.pearadmin.common.plugin.resource.mapper.FileMapper">
 
     <!-- 列 表 查 询 -->
-    <select id="selectList" resultType="com.pearadmin.common.plugin.file.domain.File">
+    <select id="selectList" resultType="com.pearadmin.common.plugin.resource.domain.File">
         select
         id as id,
         file_name as fileName,
@@ -17,7 +17,7 @@
     </select>
 
     <!-- 根据 ID 查询 -->
-    <select id="selectById" resultType="com.pearadmin.common.plugin.file.domain.File">
+    <select id="selectById" resultType="com.pearadmin.common.plugin.resource.domain.File">
         select
         id as id,
         file_name as fileName,

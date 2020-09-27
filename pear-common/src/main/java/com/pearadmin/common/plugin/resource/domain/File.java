@@ -1,4 +1,4 @@
-package com.pearadmin.common.plugin.file.domain;
+package com.pearadmin.common.plugin.resource.domain;
 
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package com.pearadmin.common.plugin.file.service;
+package com.pearadmin.common.plugin.resource.service;
 
-import com.pearadmin.common.plugin.file.domain.File;
+import com.pearadmin.common.plugin.resource.domain.File;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package com.pearadmin.common.plugin.file.service.impl;
+package com.pearadmin.common.plugin.resource.service.impl;
 
 import com.pearadmin.common.constant.FileConstant;
-import com.pearadmin.common.plugin.file.domain.File;
-import com.pearadmin.common.plugin.file.mapper.FileMapper;
-import com.pearadmin.common.plugin.file.service.IFileService;
+import com.pearadmin.common.plugin.resource.domain.File;
+import com.pearadmin.common.plugin.resource.mapper.FileMapper;
+import com.pearadmin.common.plugin.resource.service.IFileService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.FileInputStream;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
