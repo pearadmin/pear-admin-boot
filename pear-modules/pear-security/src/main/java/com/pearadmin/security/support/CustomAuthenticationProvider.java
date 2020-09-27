@@ -22,9 +22,15 @@ import javax.security.auth.login.AccountLockedException;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
+    /**
+     * 用户详情服务
+     * */
     @Resource
     private SecurityUserDetailsService securityUserDetailsService;
 
+    /**
+     * 密码加密服务
+     * */
     @Resource
     private PasswordEncoder passwordEncoder;
 
@@ -38,7 +44,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
         UserDetails userInfo = securityUserDetailsService.loadUserByUsername(username);
-        System.out.println("验证码:"+ServletUtil.getRequest().getParameter("captcha"));
         if(!CaptchaUtil.ver(ServletUtil.getRequest().getParameter("captcha"),ServletUtil.getRequest())){
             throw new CaptchaException(" captcha is bad ");
         }
