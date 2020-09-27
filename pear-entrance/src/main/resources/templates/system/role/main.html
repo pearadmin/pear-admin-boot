@@ -205,7 +205,7 @@
             }
             let ids = "";
             for(let i = 0;i<data.length;i++){
-                ids += data[i].userId+",";
+                ids += data[i].roleId+",";
             }
             ids = ids.substr(0,ids.length-1);
             layer.confirm('确定要删除这些用户', {icon: 3, title:'提示'}, function(index){
@@ -219,7 +219,7 @@
                         layer.close(loading);
                         if(result.success){
                             layer.msg(result.msg,{icon:1,time:1000},function(){
-                                table.reload('user-table');
+                                table.reload('role-table');
                             });
                         }else{
                             layer.msg(result.msg,{icon:2,time:1000});

@@ -9,6 +9,7 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +35,7 @@ public class SysFileController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("main")
+    @PreAuthorize("hasPermission('/system/file/main','sys:file:main')")
     public ModelAndView main(){
         return JumpPage(MODULE_PATH + "main");
     }
@@ -44,6 +46,7 @@ public class SysFileController extends BaseController {
      * Return: 文件资源列表
      * */
     @GetMapping("data")
+    @PreAuthorize("hasPermission('/system/file/data','sys:file:data')")
     public ResultTable data(PageDomain pageDomain){
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
         PageInfo<File> pageInfo = new PageInfo<>(fileService.data());
@@ -56,6 +59,7 @@ public class SysFileController extends BaseController {
      * Return: 执行结果
      * */
     @GetMapping("add")
+    @PreAuthorize("hasPermission('/system/file/add','sys:file:add')")
     public ModelAndView add(){
         return JumpPage(MODULE_PATH + "add");
     }
@@ -91,6 +95,7 @@ public class SysFileController extends BaseController {
      * Return: 文件流
      * */
     @DeleteMapping("remove/{id}")
+    @PreAuthorize("hasPermission('/system/file/remove','sys:file:remove')")
     public Result remove(@PathVariable("id") String id){
        boolean result = fileService.remove(id);
        return Result.decide(result,"删除成功","删除失败");

@@ -151,13 +151,28 @@ public class SysRoleServiceImpl implements ISysRoleService {
     }
 
     /**
-     * Describe: 根据 id 删除用户数据
+     * Describe: 根据 id 删除角色数据
      * Param: id
      * Return: Boolean
      * */
     @Override
     public Boolean remove(String id) {
         int result = sysRoleMapper.deleteById(id);
+        if(result>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Describe: 根据 id 批量删除角色数据
+     * Param: ids
+     * Return: Boolean
+     * */
+    @Override
+    public boolean batchRemove(String[] ids) {
+        int result = sysRoleMapper.deleteByIds(ids);
         if(result>0){
             return true;
         }else{

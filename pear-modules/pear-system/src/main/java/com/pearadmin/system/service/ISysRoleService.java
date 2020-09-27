@@ -36,4 +36,11 @@ public interface ISysRoleService {
     Boolean saveRolePower(String roleId,List<String> powerIds);
 
     Boolean remove(String id);
+
+    /**
+     * Describe: 根据 id 删除角色数据
+     * Param: ids
+     * Return: 操作结果
+     * */
+    boolean batchRemove(String[] ids);
 }

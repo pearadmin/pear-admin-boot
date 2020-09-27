@@ -1,6 +1,8 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.plugin.logging.annotation.Logging;
+import com.pearadmin.common.plugin.logging.enums.BusinessType;
 import com.pearadmin.common.plugin.repeat.annotation.RepeatSubmit;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
@@ -71,6 +73,8 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("data")
     @ApiOperation(value="获取用户列表数据")
+    @PreAuthorize("hasPermission('/system/user/data','sys:user:data')")
+    @Logging(title = "查询用户",describe = "查询用户",type = BusinessType.QUERY)
     public ResultTable data(PageDomain pageDomain, QueryUserParam param){
         PageInfo<SysUser> pageInfo = sysUserService.page(param,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
@@ -83,6 +87,7 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("add")
     @ApiOperation(value="获取用户新增视图")
+    @PreAuthorize("hasPermission('/system/user/add','sys:user:add')")
     public ModelAndView add(Model model){
         model.addAttribute("sysRoles",sysRoleService.list(null));
         return JumpPage(MODULE_PATH+"add");
@@ -96,6 +101,8 @@ public class SysUserController extends BaseController {
     @RepeatSubmit
     @PostMapping("save")
     @ApiOperation(value="保存用户数据")
+    @PreAuthorize("hasPermission('/system/user/add','sys:user:add')")
+    @Logging(title = "新增用户",describe = "新增用户",type = BusinessType.ADD)
     public Result save(@RequestBody SysUser sysUser){
         sysUser.setLogin("0");
         sysUser.setEnable(true);
@@ -114,6 +121,7 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("edit")
     @ApiOperation(value="获取用户修改视图")
+    @PreAuthorize("hasPermission('/system/user/edit','sys:user:edit')")
     public  ModelAndView edit(Model model,String userId){
         model.addAttribute("sysRoles",sysUserService.getUserRole(userId));
         model.addAttribute("sysUser",sysUserService.getById(userId));
@@ -127,6 +135,8 @@ public class SysUserController extends BaseController {
      * */
     @PutMapping("update")
     @ApiOperation(value="修改用户数据")
+    @PreAuthorize("hasPermission('/system/user/edit','sys:user:edit')")
+    @Logging(title = "修改用户",describe = "修改用户",type = BusinessType.EDIT)
     public Result update(@RequestBody SysUser sysUser){
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         boolean result = sysUserService.update(sysUser);
@@ -140,6 +150,8 @@ public class SysUserController extends BaseController {
      * */
     @DeleteMapping("batchRemove/{ids}")
     @ApiOperation(value="批量删除用户")
+    @PreAuthorize("hasPermission('/system/user/remove','sys:user:remove')")
+    @Logging(title = "删除用户",describe = "删除用户",type = BusinessType.REMOVE)
     public Result batchRemove(@PathVariable String ids){
         boolean result = sysUserService.batchRemove(ids.split(","));
         return decide(result);
@@ -152,6 +164,8 @@ public class SysUserController extends BaseController {
      * */
     @DeleteMapping("remove/{id}")
     @ApiOperation(value="删除用户数据")
+    @PreAuthorize("hasPermission('/system/user/remove','sys:user:remove')")
+    @Logging(title = "删除用户",describe = "删除用户",type = BusinessType.REMOVE)
     public Result remove(@PathVariable String id){
         boolean result  = sysUserService.remove(id);
         return decide(result);

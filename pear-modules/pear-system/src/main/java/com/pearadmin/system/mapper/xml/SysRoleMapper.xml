@@ -94,4 +94,13 @@
     <delete id="deleteById" parameterType="string">
           delete from sys_role where role_id = #{id}
     </delete>
+
+    <!-- 根据 Id 批量删除用户数据 -->
+    <delete id="deleteByIds" parameterType="string">
+        delete from sys_role where role_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
 </mapper>

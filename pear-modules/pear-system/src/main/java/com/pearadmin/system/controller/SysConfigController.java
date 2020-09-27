@@ -9,6 +9,7 @@ import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysConfig;
 import com.pearadmin.system.param.QueryConfigParam;
 import com.pearadmin.system.service.ISysConfigService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,6 +44,7 @@ public class SysConfigController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("main")
+    @PreAuthorize("hasPermission('/system/config/main','sys:config:main')")
     public ModelAndView main(){
         return JumpPage(MODULE_PATH + "main");
     }
@@ -53,6 +55,7 @@ public class SysConfigController extends BaseController {
      * Return: ResultTable
      * */
     @GetMapping("data")
+    @PreAuthorize("hasPermission('/system/config/data','sys:config:data')")
     public ResultTable data(QueryConfigParam param, PageDomain pageDomain){
         PageInfo<SysConfig> pageInfo = sysConfigService.page(param,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
@@ -64,6 +67,7 @@ public class SysConfigController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("add")
+    @PreAuthorize("hasPermission('/system/config/add','sys:config:add')")
     public ModelAndView add(){
         return JumpPage(MODULE_PATH + "add");
     }
@@ -74,6 +78,7 @@ public class SysConfigController extends BaseController {
      * Return: ResultBean
      * */
     @PostMapping("save")
+    @PreAuthorize("hasPermission('/system/config/add','sys:config:add')")
     public Result save(@RequestBody SysConfig sysConfig){
         sysConfig.setConfigId(SequenceUtil.makeStringId());
         sysConfig.setCreateTime(LocalDateTime.now());
@@ -87,6 +92,7 @@ public class SysConfigController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("edit")
+    @PreAuthorize("hasPermission('/system/config/edit','sys:config:edit')")
     public ModelAndView edit(Model model, String configId){
         model.addAttribute("sysConfig",sysConfigService.getById(configId));
         return JumpPage(MODULE_PATH + "edit");
@@ -98,6 +104,7 @@ public class SysConfigController extends BaseController {
      * Return: ModelAndView
      * */
     @PutMapping("update")
+    @PreAuthorize("hasPermission('/system/config/edit','sys:config:edit')")
     public Result update(@RequestBody SysConfig sysConfig){
         sysConfig.setUpdateTime(LocalDateTime.now());
         boolean result = sysConfigService.updateById(sysConfig);
@@ -110,6 +117,7 @@ public class SysConfigController extends BaseController {
      * Return: ModelAndView
      * */
     @DeleteMapping("remove/{id}")
+    @PreAuthorize("hasPermission('/system/config/remove','sys:config:remove')")
     public Result remove(@PathVariable("id")String id){
         Boolean result = sysConfigService.remove(id);
         return decide(result);

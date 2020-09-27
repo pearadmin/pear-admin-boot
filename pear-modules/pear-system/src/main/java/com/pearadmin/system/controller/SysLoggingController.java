@@ -8,6 +8,7 @@ import com.pearadmin.common.plugin.logging.service.LoggingService;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.ResultTable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,7 @@ public class SysLoggingController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("main")
+    @PreAuthorize("hasPermission('/system/logging/main','sys:logging:main')")
     public ModelAndView main(){
         return JumpPage("system/logging/main");
     }
@@ -46,6 +48,7 @@ public class SysLoggingController extends BaseController {
      * Return: ResultTable
      * */
     @GetMapping("operateLog")
+    @PreAuthorize("hasPermission('/system/logging/operateLog','sys:logging:operateLog')")
     public ResultTable operateLog(PageDomain pageDomain)
     {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
@@ -59,6 +62,7 @@ public class SysLoggingController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("loginLog")
+    @PreAuthorize("hasPermission('/system/logging/loginLog','sys:logging:loginLog')")
     public ResultTable loginLog(PageDomain pageDomain)
     {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
