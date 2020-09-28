@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysConfig;
 import com.pearadmin.system.param.QueryConfigParam;
-
 import java.util.List;
 
 /**

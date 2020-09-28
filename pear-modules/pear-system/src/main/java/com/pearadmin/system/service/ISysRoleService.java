@@ -11,8 +11,19 @@ import java.util.List;
 
 public interface ISysRoleService {
 
+    /**
+     * Describe: 查询角色数据
+     * Param: queryRoleParam
+     * Return: 操作结果
+     * */
     public List<SysRole> list(QueryRoleParam queryRoleParam);
 
+    /**
+     * Describe: 分页查询角色数据
+     * Param: queryRoleParam
+     * Param: pageDomain
+     * Return: 操作结果
+     * */
     public PageInfo<SysRole> page(QueryRoleParam queryRoleParam, PageDomain pageDomain);
 
     /**
@@ -22,6 +33,11 @@ public interface ISysRoleService {
      * */
     boolean save(SysRole sysRole);
 
+    /**
+     * Describe: 根据 id 获取角色信息
+     * Param: id
+     * Return: 操作结果
+     * */
     SysRole getById(String id);
 
     /**
@@ -31,10 +47,25 @@ public interface ISysRoleService {
      * */
     boolean update(SysRole sysRole);
 
+    /**
+     * Describe: 获取角色权限
+     * Param: roleId
+     * Return: 操作结果
+     * */
     List<SysPower> getRolePower(String roleId);
 
+    /**
+     * Describe: 保存角色权限
+     * Param: roleId , powerIds
+     * Return: 操作结果
+     * */
     Boolean saveRolePower(String roleId,List<String> powerIds);
 
+    /**
+     * Describe: 根据 id 删除角色数据
+     * Param: id
+     * Return: 操作结果
+     * */
     Boolean remove(String id);
 
     /**

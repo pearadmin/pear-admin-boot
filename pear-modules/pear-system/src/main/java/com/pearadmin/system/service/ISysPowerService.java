@@ -22,8 +22,18 @@ public interface ISysPowerService {
      * */
     boolean save(SysPower sysPower);
 
+    /**
+     * Describe: 根据 id 获取权限数据
+     * Param: SysPower
+     * Return: 操作结果
+     * */
     SysPower getById(String id);
 
+    /**
+     * Describe: 修改权限数据
+     * Param: SysPower
+     * Return: 操作结果
+     * */
     boolean update(SysPower sysPower);
 
     /**

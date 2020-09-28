@@ -142,7 +142,7 @@ public class SysPowerController extends BaseController {
      * */
     @PutMapping("enable")
     public Result enable(@RequestBody SysPower sysPower){
-        sysPower.setEnable("0");
+        sysPower.setEnable(true);
         boolean result = sysPowerService.update(sysPower);
         return decide(result);
     }
@@ -154,7 +154,7 @@ public class SysPowerController extends BaseController {
      * */
     @PutMapping("disable")
     public Result disable(@RequestBody SysPower sysPower){
-        sysPower.setEnable("1");
+        sysPower.setEnable(false);
         boolean result = sysPowerService.update(sysPower);
         return decide(result);
     }
