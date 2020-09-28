@@ -9,6 +9,7 @@ import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.param.QueryJobParam;
 import com.pearadmin.schedule.service.IScheduleJobService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,6 +38,7 @@ public class ScheduleJobController extends BaseController {
      * Return 定时任务列表视图
      * */
     @GetMapping("main")
+    @PreAuthorize("hasPermission('/schdule/job/main','sch:job:main')")
     public ModelAndView main(){
         return JumpPage("schedule/job/main");
     }
@@ -47,6 +49,7 @@ public class ScheduleJobController extends BaseController {
      * Return 定时任务列表数据
      * */
     @GetMapping("data")
+    @PreAuthorize("hasPermission('/schdule/job/data','sch:job:data')")
     public ResultTable data(PageDomain pageDomain, QueryJobParam param){
        PageInfo<ScheduleJobBean> pageInfo =  scheduleJobService.page(param,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
@@ -58,6 +61,7 @@ public class ScheduleJobController extends BaseController {
      * Return ModelAndView
      * */
     @GetMapping("add")
+    @PreAuthorize("hasPermission('/schdule/job/add','sch:job:add')")
     public ModelAndView add(){
         return JumpPage("schedule/job/add");
     }
@@ -68,6 +72,7 @@ public class ScheduleJobController extends BaseController {
      * Return ModelAndView
      * */
     @GetMapping("edit")
+    @PreAuthorize("hasPermission('/schdule/job/edit','sch:job:edit')")
     public ModelAndView edit(Model model, String jobId){
         model.addAttribute("scheduleJob",scheduleJobService.getById(jobId));
         return JumpPage("schedule/job/edit");
@@ -79,6 +84,7 @@ public class ScheduleJobController extends BaseController {
      * Return Result
      * */
     @RequestMapping("/save")
+    @PreAuthorize("hasPermission('/schdule/job/add','sch:job:add')")
     public Result save (@RequestBody ScheduleJobBean scheduleJob){
         scheduleJob.setJobId(SequenceUtil.makeStringId());
         scheduleJob.setCreateTime(LocalDateTime.now());
@@ -92,6 +98,7 @@ public class ScheduleJobController extends BaseController {
      * Return Result 执行结果
      * */
     @RequestMapping("/run")
+    @PreAuthorize("hasPermission('/schdule/job/run','sch:job:run')")
     public Result run (String jobId){
         scheduleJobService.run(jobId);
         return success("运行成功") ;
@@ -103,6 +110,7 @@ public class ScheduleJobController extends BaseController {
      * Return Result
      * */
     @RequestMapping("/update")
+    @PreAuthorize("hasPermission('/schdule/job/edit','sch:job:edit')")
     public Result update (@RequestBody ScheduleJobBean scheduleJob){
         Boolean result = scheduleJobService.update(scheduleJob) ;
         return decide(result);
@@ -114,6 +122,7 @@ public class ScheduleJobController extends BaseController {
      * Return Result 执行结果
      * */
     @PutMapping("/pause")
+    @PreAuthorize("hasPermission('/schdule/job/pause','sch:job:pause')")
     public Result pauseJob (String jobId){
         Boolean result = scheduleJobService.pause(jobId);
         return decide(
@@ -129,6 +138,7 @@ public class ScheduleJobController extends BaseController {
      * Return: 恢复定时任务
      * */
     @RequestMapping("/resume")
+    @PreAuthorize("hasPermission('/schdule/job/resume','sch:job:resume')")
     public Result resumeJob (String jobId){
         Boolean result = scheduleJobService.resume(jobId);
         return decide(result,"恢复成功","恢复失败");
@@ -140,6 +150,7 @@ public class ScheduleJobController extends BaseController {
      * Return Result
      * */
     @RequestMapping("/remove/{id}")
+    @PreAuthorize("hasPermission('/schdule/job/remove','sch:job:remove')")
     public Result deleteJob (@PathVariable("id") String jobId){
         Boolean result = scheduleJobService.delete(jobId);
         return decide(result,"删除成功","删除失败");

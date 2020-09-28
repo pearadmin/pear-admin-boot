@@ -6,6 +6,7 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.service.IScheduleLogService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,7 @@ public class ScheduleLogController extends BaseController {
      * Return: 定时任务日志列表视图
      * */
     @GetMapping("main")
+    @PreAuthorize("hasPermission('/schdule/log/main','sch:log:main')")
     public ModelAndView main(){
         return JumpPage("schedule/log/main");
     }
@@ -43,6 +45,7 @@ public class ScheduleLogController extends BaseController {
      * Return: Result
      * */
     @GetMapping("data")
+    @PreAuthorize("hasPermission('/schdule/log/data','sch:log:data')")
     public ResultTable data(ScheduleLogBean scheduleLogBean, PageDomain pageDomain){
         PageInfo<ScheduleLogBean> pageInfo = scheduleLogService.page(scheduleLogBean,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());

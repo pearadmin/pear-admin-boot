@@ -8,6 +8,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.service.ISysDictDataService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,6 +37,7 @@ public class SysDictDataController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("main")
+    @PreAuthorize("hasPermission('/system/dictData/main','sys:dictData:main')")
     public ModelAndView main(Model model, String typeCode){
         model.addAttribute("typeCode",typeCode);
         return JumpPage(MODULE_PATH + "main");
@@ -47,6 +49,7 @@ public class SysDictDataController extends BaseController {
      * Return: Result
      * */
     @GetMapping("data")
+    @PreAuthorize("hasPermission('/system/dictData/data','sys:dictData:data')")
     public ResultTable data (SysDictData sysDictData, PageDomain pageDomain){
        System.out.println(sysDictData.toString());
        PageInfo<SysDictData> pageInfo = sysDictDataService.page(sysDictData,pageDomain);
@@ -59,6 +62,7 @@ public class SysDictDataController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("add")
+    @PreAuthorize("hasPermission('/system/dictData/add','sys:dictData:add')")
     public ModelAndView add(Model model,String typeCode){
         model.addAttribute("typeCode",typeCode);
         return JumpPage(MODULE_PATH+"add");
@@ -70,6 +74,7 @@ public class SysDictDataController extends BaseController {
      * Return: Result
      * */
     @PostMapping("save")
+    @PreAuthorize("hasPermission('/system/dictData/add','sys:dictData:add')")
     public Result save(@RequestBody SysDictData sysDictData){
         sysDictData.setDataId(SequenceUtil.makeStringId());
         Boolean result = sysDictDataService.save(sysDictData);
@@ -82,6 +87,7 @@ public class SysDictDataController extends BaseController {
      * Return: ModelAndView
      * */
     @GetMapping("edit")
+    @PreAuthorize("hasPermission('/system/dictData/edit','sys:dictData:edit')")
     public ModelAndView edit(Model model,String dataId){
         model.addAttribute("sysDictData",sysDictDataService.getById(dataId));
         return JumpPage(MODULE_PATH+"edit");
@@ -93,6 +99,7 @@ public class SysDictDataController extends BaseController {
      * Return: Result
      * */
     @DeleteMapping("remove/{id}")
+    @PreAuthorize("hasPermission('/system/dictData/remove','sys:dictData:remove')")
     public Result remove(@PathVariable("id")String id){
         Boolean result = sysDictDataService.remove(id);
         return decide(result);

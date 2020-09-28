@@ -22,6 +22,9 @@ import java.util.List;
 @Service
 public class FileServiceImpl implements IFileService {
 
+    /**
+     * 文 明 服 务
+     * */
     @Resource
     private FileMapper fileMapper;
 
