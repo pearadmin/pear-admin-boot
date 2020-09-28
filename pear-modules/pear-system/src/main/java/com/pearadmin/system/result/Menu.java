@@ -48,4 +48,8 @@ public class Menu {
      * */
     private List<Menu> children = new ArrayList<>();
 
+    /**
+     * 用于参数传递
+     * */
+    private String username;
 }

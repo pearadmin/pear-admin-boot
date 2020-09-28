@@ -163,6 +163,7 @@ public class ServletUtil {
         catch (IOException e)
         {
             e.printStackTrace();
+            return "";
         }
         finally
         {

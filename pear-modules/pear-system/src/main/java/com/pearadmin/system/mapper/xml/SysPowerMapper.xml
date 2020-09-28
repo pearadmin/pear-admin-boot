@@ -17,28 +17,30 @@
     <resultMap id="ResuMenuMap" type="com.pearadmin.system.result.Menu">
         <id column="power_id" property="id"></id>
         <result column="power_name" property="title"></result>
+        <result column="username" property="username"></result>
         <result column="power_type" property="type"></result>
         <result column="icon" property="icon"></result>
         <result column="open_type" property="openType"></result>
         <result column="power_url" property="href"></result>
-        <collection property="children" select="selectMenuByParentId" column="power_id"></collection>
-    </resultMap>
+   </resultMap>
 
     <select id="selectMenuByUsername" parameterType="string" resultMap="ResuMenuMap">
-        select DISTINCT a.power_id,a.* from sys_power a
-        left join sys_role_power b on a.power_id = b.power_id
-        left join sys_role c on b.role_id = c.role_id
-        left join sys_user_role d on d.role_id = d.role_id
-        left join sys_user f on d.user_id = f.user_id
-        where
-        f.username = #{username} and
-        a.parent_id = '0'  order by a.sort;
+        	 select DISTINCT sp.power_id,sp.* from sys_power sp
+			 left join sys_role_power srp on srp.power_id = sp.power_id
+			 left join sys_role sr on sr.role_id = srp.role_id
+			 left join  sys_user_role sur on sur.role_id = sr.role_id
+			 left join sys_user su on su.user_id = sur.user_id
+			 where su.username = #{username} and sp.parent_id = '0' order by sp.sort
     </select>
 
-    <select id="selectMenuByParentId" parameterType="string" resultMap="ResuMenuMap">
-        select DISTINCT a.power_id,a.* from sys_power a where a.parent_id = #{parentId} order by a.sort;
+    <select id="selectMenuByParentId" resultMap="ResuMenuMap">
+        select DISTINCT sp.power_id,sp.* from sys_power sp
+			 left join sys_role_power srp on srp.power_id = sp.power_id
+			 left join sys_role sr on sr.role_id = srp.role_id
+			 left join  sys_user_role sur on sur.role_id = sr.role_id
+			 left join sys_user su on su.user_id = sur.user_id
+			 where su.username = #{username} and sp.parent_id = #{parentId} order by sp.sort
     </select>
-
 
     <select id="selectList" parameterType="SysPower" resultMap="SysPowerMap">
         select * from sys_power order by sort asc
@@ -124,10 +126,7 @@
                 #{enable},
             </if>
         </trim>
-
     </insert>
-
-
 
     <!-- 根据 Id 修改用户数据 -->
     <update id="updateById" parameterType="SysPower">

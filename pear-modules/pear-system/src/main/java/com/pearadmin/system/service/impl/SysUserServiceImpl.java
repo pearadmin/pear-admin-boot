@@ -191,7 +191,22 @@ public class SysUserServiceImpl implements ISysUserService {
      * */
     @Override
     public List<Menu> getUserMenu(String username) {
-        return sysPowerMapper.selectMenuByUsername(username);
+        List<Menu> menus = sysPowerMapper.selectMenuByUsername(username);
+        buildMenu(menus,username);
+        return menus;
+    }
+
+    /**
+     * Describe: 菜单递归构建
+     * Param: menus username
+     * Return: null
+     * */
+    private void buildMenu(List<Menu> menus,String username){
+        if(menus.size()<=0) return;
+        for (Menu menu : menus) {
+            menu.setChildren(sysPowerMapper.selectMenuByParentId(username,menu.getId()));
+            buildMenu(menu.getChildren(),username);
+        }
     }
 
 }
