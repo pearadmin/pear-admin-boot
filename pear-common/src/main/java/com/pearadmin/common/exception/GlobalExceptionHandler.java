@@ -4,6 +4,7 @@ import com.pearadmin.common.exception.base.BusinessException;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -31,11 +32,29 @@ public class GlobalExceptionHandler {
     /**
      * 拦截未知的运行时异常
      */
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler({RuntimeException.class})
     public Result notFount(RuntimeException e)
     {
         log.error("运行时异常:", e);
         return Result.failure("运行时异常:" + e.getMessage());
+    }
+
+    /**
+     * 权限异常处理
+     * */
+    @ExceptionHandler({AccessDeniedException.class})
+    public Object access(HttpServletRequest request,AccessDeniedException e){
+        if (ServletUtil.isAjax(request))
+        {
+            return Result.failure("暂无权限");
+        }
+        else
+        {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.addObject("errorMessage", e.getMessage());
+            modelAndView.setViewName("error/403");
+            return modelAndView;
+        }
     }
 
     /**

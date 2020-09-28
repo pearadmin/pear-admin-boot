@@ -52,12 +52,18 @@
     </select>
 
     <select id="selectByUsername" parameterType="string" resultMap="SysPowerMap">
-        select * from sys_power a
-        left join sys_role_power b on a.power_id = b.power_id
-        left join sys_role c on b.role_id = c.role_id
-        left join sys_user_role d on c.role_id = c.role_id
-        left join sys_user f on d.user_id = f.user_id
-        where f.username = #{username} order by a.sort asc
+      SELECT
+	*
+FROM
+	sys_power sp
+	LEFT JOIN sys_role_power srp ON sp.power_id = srp.power_id
+	LEFT JOIN sys_role sr ON sr.role_id = srp.role_id
+	LEFT JOIN sys_user_role sur ON sur.role_id = sr.role_id
+	LEFT JOIN sys_user su ON su.user_id = sur.user_id
+WHERE
+	su.username = #{username}
+ORDER BY
+	sp.sort ASC
     </select>
 
     <insert id="insert" parameterType="SysPower">
