@@ -20,9 +20,15 @@ import java.util.List;
 @Service
 public class LoggingServiceImpl implements LoggingService {
 
+    /**
+     * 日 志 服 务
+     * */
     @Resource
     private LoggingMapper loggingMapper;
 
+    /**
+     * 日 志 存 储
+     * */
     @Override
     public boolean save(Logging logging) {
         logging.setOperateAddress(ServletUtil.getRemoteHost());
@@ -31,7 +37,7 @@ public class LoggingServiceImpl implements LoggingService {
         logging.setRequestMethod(RequestMethod.valueOf(ServletUtil.getMethod()));
         logging.setOperateUrl(ServletUtil.getRequestURI());
         logging.setBrowser(ServletUtil.getBrowser());
-        logging.setRequestBody(ServletUtil.getBody());
+        logging.setRequestBody(ServletUtil.getQueryParam());
         logging.setSystemOs(ServletUtil.getSystem());
         logging.setOperateName(SecurityUtil.currentUser().getName());
         int result = loggingMapper.insert(logging);
@@ -42,6 +48,9 @@ public class LoggingServiceImpl implements LoggingService {
         }
     }
 
+    /**
+     * 日 志 数 据
+     * */
     @Override
     public List<Logging> data(LoggingType loggingType) {
         return loggingMapper.selectList(loggingType);

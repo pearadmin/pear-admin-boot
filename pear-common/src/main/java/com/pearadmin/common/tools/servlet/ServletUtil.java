@@ -144,43 +144,4 @@ public class ServletUtil {
         }
     }
 
-    /**
-     * 获取 Request 请求 Body
-     * */
-    public static String getBody(){
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder("");
-        try
-        {
-            br = getRequest().getReader();
-            String str;
-            while ((str = br.readLine()) != null)
-            {
-                sb.append(str);
-            }
-            br.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return "";
-        }
-        finally
-        {
-            if (null != br)
-            {
-                try
-                {
-                    br.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return sb.toString();
-    }
-
-
 }
