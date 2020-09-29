@@ -11,12 +11,14 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysUser;
+import com.pearadmin.system.param.EditPasswordParam;
 import com.pearadmin.system.param.QueryUserParam;
 import com.pearadmin.system.result.Menu;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
@@ -126,6 +128,36 @@ public class SysUserController extends BaseController {
         model.addAttribute("sysRoles",sysUserService.getUserRole(userId));
         model.addAttribute("sysUser",sysUserService.getById(userId));
         return JumpPage(MODULE_PATH + "edit");
+    }
+
+    /**
+     * Describe: 用户密码修改视图
+     * Param ModelAndView
+     * Return 返回用户密码修改视图
+     * */
+    @GetMapping("editPassword")
+    public ModelAndView editPasswordView(Model model,String userId){
+        return JumpPage(MODULE_PATH + "editPassword");
+    }
+
+    @PutMapping("editPassword")
+    public Result editPassword(@RequestBody EditPasswordParam editPasswordParam){
+        SysUser sysUser = (SysUser) ServletUtil.getSession().getAttribute("currentUser");
+        SysUser editUser = sysUserService.getById(sysUser.getUserId());
+        if(Strings.isBlank(editPasswordParam.getConfirmPassword())
+        || Strings.isBlank(editPasswordParam.getNewPassword())
+        || Strings.isBlank(editPasswordParam.getOldPassword())){
+            return failure("输入不能为空");
+        }
+        if(!new BCryptPasswordEncoder().matches(editPasswordParam.getOldPassword(),editUser.getPassword())){
+            return failure("密码验证失败");
+        }
+        if(!editPasswordParam.getNewPassword().equals(editPasswordParam.getConfirmPassword())){
+            return failure("两次密码输入不一致");
+        }
+        editUser.setPassword(new BCryptPasswordEncoder().encode(editPasswordParam.getNewPassword()));
+        boolean result = sysUserService.update(editUser);
+        return decide(result,"修改成功","修改失败");
     }
 
     /**

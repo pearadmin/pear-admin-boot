@@ -134,6 +134,9 @@
              <if test="phone!=null and phone!=''">
                  phone = #{phone},
              </if>
+             <if test="password!=null and password!=''">
+                 password = #{password},
+             </if>
          </set>
          where user_id = #{userId}
     </update>
