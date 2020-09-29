@@ -23,6 +23,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
         }
         SecurityUserDetails securityUserDetails = new SecurityUserDetails();
         securityUserDetails.setUserId(sysUser.getUserId());
+        securityUserDetails.setRealName(sysUser.getRealName());
         securityUserDetails.setUsername(sysUser.getUsername());
         securityUserDetails.setPassword(sysUser.getPassword());
         securityUserDetails.setEnable(sysUser.getEnable());

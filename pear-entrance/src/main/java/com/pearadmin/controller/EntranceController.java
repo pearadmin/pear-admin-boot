@@ -2,7 +2,9 @@ package com.pearadmin.controller;
 
 import com.pearadmin.common.plugin.logging.annotation.Logging;
 import com.pearadmin.common.plugin.logging.enums.BusinessType;
+import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.web.base.BaseController;
+import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysNoticeService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +43,10 @@ public class EntranceController extends BaseController {
      * */
     @GetMapping("index")
     @Logging(title = "主页",describe = "返回 Index 主页视图",type = BusinessType.ADD)
-    public ModelAndView index(){
+    public ModelAndView index(Model model)
+    {
+        SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
+        model.addAttribute("userInfo",sysUser);
         return JumpPage("index");
     }
 

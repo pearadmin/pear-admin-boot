@@ -1,9 +1,7 @@
 layui.define(['jquery', 'element'], function(exports) {
 	"use strict";
 
-	var MOD_NAME = 'document',
-		$ = layui.jquery,
-		element = layui.element;
+	var MOD_NAME = 'document';
 
 	var document = function(opt) {
 		this.option = opt;

@@ -27,12 +27,9 @@ public class DataSourceAspect
 {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Pointcut("@annotation(com.pearadmin.common.plugin.datasource.annotation.DataSource)"
-            + "|| @within(com.pearadmin.common.plugin.datasource.annotation.DataSource)")
+    @Pointcut("@annotation(com.pearadmin.common.plugin.datasource.annotation.DataSource) || @within(com.pearadmin.common.plugin.datasource.annotation.DataSource)")
     public void dsPointCut()
-    {
-
-    }
+    { }
 
     @Around("dsPointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable
@@ -50,7 +47,6 @@ public class DataSourceAspect
         }
         finally
         {
-            // 销毁数据源 在执行方法之后
             DynamicDataSourceContextHolder.clearDataSourceType();
         }
     }
