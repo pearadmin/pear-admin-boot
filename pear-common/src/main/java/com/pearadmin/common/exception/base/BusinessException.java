@@ -26,4 +26,5 @@ public class BusinessException extends RuntimeException {
     public String getMessage() {
         return message;
     }
+
 }

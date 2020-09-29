@@ -24,6 +24,11 @@ public class BaseDomain implements Serializable {
     private String createBy;
 
     /**
+     * 创建人名称
+     * */
+    private String createName;
+
+    /**
      * 修改时间
      * */
     private LocalDateTime updateTime;
@@ -32,6 +37,11 @@ public class BaseDomain implements Serializable {
      * 修改时间
      * */
     private String updateBy;
+
+    /**
+     * 修改名称
+     * */
+    private String updateName;
 
     /**
      * 备注

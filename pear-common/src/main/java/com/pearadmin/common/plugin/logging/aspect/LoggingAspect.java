@@ -18,7 +18,6 @@ import java.lang.reflect.Method;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @Aspect
 @Component
 public class LoggingAspect {

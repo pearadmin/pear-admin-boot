@@ -22,7 +22,6 @@ import java.util.Date;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @RestController
 @RequestMapping("system/config")
 public class SysConfigController extends BaseController {
@@ -122,4 +121,5 @@ public class SysConfigController extends BaseController {
         Boolean result = sysConfigService.remove(id);
         return decide(result);
     }
+
 }

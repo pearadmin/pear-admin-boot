@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pearadmin.system.mapper.SysNoticeMapper">
+
+    <resultMap id="SysNoticeMap" type="SysNotice">
+        <id column="id" property="id"></id>
+        <result column="title" property="title"></result>
+        <result column="context" property="context"></result>
+        <result column="create_by" property="createBy"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="real_name" property="createName"></result>
+        <result column="update_by" property="updateBy"></result>
+        <result column="update_time" property="updateTime"></result>
+        <result column="remark" property="remark"></result>
+    </resultMap>
+
+    <select id="selectList" parameterType="com.pearadmin.system.param.QueryNoticeParam" resultMap="SysNoticeMap">
+        select
+        sn.*,
+        su.real_name
+        from sys_notice sn
+        left join sys_user  su on su.user_id = sn.create_by
+        <where>
+            <if test="title!=null and title!=''">
+                and sn.title like "%"#{title}"%"
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTop"  resultMap="SysNoticeMap">
+        select
+        sn.*,
+        su.real_name
+        from sys_notice sn
+        left join sys_user  su on su.user_id = sn.create_by
+        order by sn.create_time limit ${size}
+    </select>
+
+    <select id="selectById" parameterType="string" resultMap="SysNoticeMap">
+        select * from sys_notice where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="SysNotice">
+        insert into sys_notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="title!=null">
+                title,
+            </if>
+            <if test="context!=null">
+                context,
+            </if>
+            <if test="createBy!=null">
+                create_by,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="title!=null">
+                #{title},
+            </if>
+            <if test="context!=null">
+                #{context},
+            </if>
+            <if test="createBy!=null">
+                #{createBy},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据 Id 修改角色数据 -->
+    <update id="updateById" parameterType="SysNotice">
+        update sys_notice
+        <set>
+            <if test="title!=null and title!=''">
+                title = #{title},
+            </if>
+            <if test="context!=null and context!=''">
+                context = #{context},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 根据 Id 删除用户数据 -->
+    <delete id="deleteById" parameterType="string">
+          delete from sys_notice where id = #{id}
+    </delete>
+
+    <!-- 根据 Id 批量删除用户数据 -->
+    <delete id="deleteByIds" parameterType="string">
+        delete from sys_notice where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
