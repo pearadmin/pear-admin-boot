@@ -15,38 +15,38 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 
 		var pearAdmin = new function() {
 			this.render = function(option) {
-				readConfig().then(function(param){
+				readConfig().then(function(param) {
 					pearAdmin.logoRender(param);
-					pearAdmin.menuRender(param,option);
+					pearAdmin.menuRender(param, option);
 					pearAdmin.bodyRender(param);
 					pearAdmin.themeRender(param);
 					pearAdmin.keepLoad(param);
-				}) 
+				})
 			}
-			
+
 			this.logoRender = function(param) {
 				$(".layui-logo .logo").attr("src", param.logo.image);
 				$(".layui-logo .title").html(param.logo.title);
 			}
-			
-			this.menuRender = function(param,option) {
+
+			this.menuRender = function(param, option) {
 				sideMenu = pearMenu.render({
 					elem: 'sideMenu',
 					async: true,
 					theme: "dark-theme",
 					height: '100%',
-					control: param.menu.control ? 'control' : false, // control 
+					control: param.menu.control ? 'control' : false, // control
 					defaultMenu: 0,
 					accordion: param.menu.accordion,
-					url: param.menu.data+"?currentUser="+option.currentUser,
+					url: param.menu.data + "?currentUser=" + option.currentUser,
 					parseData: false,
-					change:function(){
+					change: function() {
 						compatible();
 					}
 				})
 				sideMenu.selectItem(param.menu.select);
 			}
-			
+
 			this.bodyRender = function(param) {
 				if (param.tab.muiltTab) {
 					bodyTab = pearTab.render({
@@ -68,8 +68,8 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 						}]
 					});
 					bodyTab.click(function(id) {
-						if(!param.tab.keepState){
-						   bodyTab.refresh(false);
+						if (!param.tab.keepState) {
+							bodyTab.refresh(false);
 						}
 						bodyTab.positionTab();
 						sideMenu.selectItem(id);
@@ -128,42 +128,56 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 					})
 				}
 			}
-			
+
 			this.keepLoad = function(param) {
 				compatible()
 				setTimeout(function() {
 					$(".loader-main").fadeOut(200);
 				}, param.other.keepLoad)
 			}
-			
+
 			this.themeRender = function(option) {
 				if (option.theme.allowCustom == false) {
 					$(".setting").remove();
 				}
 				var colorId = localStorage.getItem("theme-color");
 				var menu = localStorage.getItem("theme-menu");
-				console.log("主题标识:"+colorId);
-				console.log("菜单主题:"+menu);
-				var color = getColorById(colorId);
-				if (menu == "null") {
-					menu = option.theme.defaultMenu;
-				} else {
-					if (option.theme.allowCustom == false) {
-						menu = option.theme.defaultMenu;
+				var color;
+				var flag = false;
+				readConfig().then(function(data) {
+					$.each(data.colors, function(i, value) {
+						if (value.id == colorId) {
+							color = value;
+							flag = true;
+						}
+					})
+					if (flag == false || data.theme.allowCustom == false) {
+						$.each(data.colors, function(i, value) {
+							if (value.id == data.theme.defaultColor) {
+								color = value;
+							}
+						})
 					}
-				}
-				localStorage.setItem("theme-color", color.id);
-				localStorage.setItem("theme-menu", menu);
-				this.colorSet(color.color);
-				this.menuSkin(menu);
+					if (menu == "null") {
+						menu = option.theme.defaultMenu;
+					} else {
+						if (option.theme.allowCustom == false) {
+							menu = option.theme.defaultMenu;
+						}
+					}
+					localStorage.setItem("theme-color", color.id);
+					localStorage.setItem("theme-menu", menu);
+					pearAdmin.colorSet(color.color);
+					pearAdmin.menuSkin(menu);
+				});
 			}
-			
+
 			this.menuSkin = function(theme) {
 				$(".pear-admin").removeClass("light-theme");
 				$(".pear-admin").removeClass("dark-theme");
 				$(".pear-admin").addClass(theme);
 			}
-			
+
 			this.colorSet = function(color) {
 				var style = '';
 				// 自 定 义 菜 单 配 色
@@ -172,20 +186,17 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 					color + '!important;}';
 
 				// 自定义 Logo 标题演示
-				style +=
-					'.pear-admin .layui-logo .title{color:' +
-					color + '!important;}';
+				style += '.pear-admin .layui-logo .title{color:' + color + '!important;}';
 
 				// 自 定 义 标 签 配 色
 				style += '.pear-frame-title .dot,.pear-tab .layui-this .pear-tab-active{background-color: ' + color +
 					'!important;}';
 
 				// 自 定 义 快 捷 菜 单
-				style += '.bottom-nav li a:hover{background-color:' +
-					color + '!important;}';
+				style += '.bottom-nav li a:hover{background-color:' + color + '!important;}';
 
 				// 自 定 义 顶 部 配 色
-				style += '.pear-admin .layui-header .layui-nav .layui-nav-bar{background-color: ' + color + '!important;}'
+				style += '.pear-admin .layui-header .layui-nav .layui-nav-bar{background-color: ' + color + '!important;}';
 
 				// 自 定 义 加 载 配 色
 				style += '.ball-loader>span,.signal-loader>span {background-color: ' + color + '!important;}';
@@ -238,23 +249,27 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 				});
 			}
 		});
-		
-		$("body").on("click",'[user-menu-id]',function(){
-			if(getData().tab.muiltTab){
-				bodyTab.addTabOnly({
-					id: $(this).attr("user-menu-id"),
-					title: $(this).attr("user-menu-title"),
-					url: $(this).attr("user-menu-url"),
-					icon: "",
-					close: true
-				}, 300);
-			}else{
-				bodyFrame.changePage($(this).attr("user-menu-url"), "", true);
-			}
+
+		$("body").on("click", '[user-menu-id]', function() {
+			var _this = $(this);
+			readConfig().then(function(data) {
+				if (data.tab.muiltTab) {
+					bodyTab.addTabOnly({
+						id: _this.attr("user-menu-id"),
+						title: _this.attr("user-menu-title"),
+						url: _this.attr("user-menu-url"),
+						icon: "",
+						close: true
+					}, 300);
+				} else {
+					bodyFrame.changePage($(this).attr("user-menu-url"), "", true);
+				}
+			})
 		})
 
 
 		$("body").on("click", ".setting", function() {
+
 			var bgColorHtml =
 				'<li class="layui-this" data-select-bgcolor="dark-theme" >' +
 				'<a href="javascript:;" data-skin="skin-blue" style="" class="clearfix full-opacity-hover">' +
@@ -278,46 +293,68 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 				'<ul>\n' + bgColorHtml + '</ul>\n' +
 				'</div>\n' +
 				'</div>';
-				
-			layer.open({
-				type: 1,
-				offset: 'r',
-				area: ['340px', '100%'],
-				title: false,
-				shade: 0.1,
-				closeBtn: 0,
-				shadeClose: false,
-				anim: -1,
-				skin: 'layer-anim-right',
-				move: false,
-				content: html + buildColorHtml() + buildLinkHtml(),
-				success: function(layero, index) {
-					form.render();
-					var color = localStorage.getItem("theme-color");
-					var menu = localStorage.getItem("theme-menu");
 
-					if (color != "null") {
-						$(".select-color-item").removeClass("layui-icon")
-							.removeClass("layui-icon-ok");
-						$("*[color-id='" + color + "']").addClass("layui-icon")
-							.addClass("layui-icon-ok");
+			var links = "";
+			var colors = "";
+			readConfig().then(function(data) {
+
+				$.each(data.links, function(i, value) {
+					links += '<a class="more-menu-item" href="' + value.href + '" target="_blank">' +
+						'<i class="' + value.icon + '" style="font-size: 19px;"></i> ' + value.title +
+						'</a>'
+				})
+
+				$.each(data.colors, function(i, value) {
+					colors += "<span class='select-color-item' color-id='" + value.id + "' style='background-color:" + value.color +
+						";'></span>";
+				})
+				var colorHtml =
+					"<div class='select-color'><div class='select-color-title'>主题色</div><div class='select-color-content'>" +
+					colors + "</div></div>";
+
+				var linkHtml = '<div class="more-menu-list">' + links + '</div>';
+
+				layer.open({
+					type: 1,
+					offset: 'r',
+					area: ['340px', '100%'],
+					title: false,
+					shade: 0.1,
+					closeBtn: 0,
+					shadeClose: false,
+					anim: -1,
+					skin: 'layer-anim-right',
+					move: false,
+					content: html + colorHtml + linkHtml,
+					success: function(layero, index) {
+						form.render();
+						var color = localStorage.getItem("theme-color");
+						var menu = localStorage.getItem("theme-menu");
+
+						if (color != "null") {
+							$(".select-color-item").removeClass("layui-icon")
+								.removeClass("layui-icon-ok");
+							$("*[color-id='" + color + "']").addClass("layui-icon")
+								.addClass("layui-icon-ok");
+						}
+						if (menu != "null") {
+							$("*[data-select-bgcolor]").removeClass("layui-this");
+							$("[data-select-bgcolor='" + menu + "']").addClass("layui-this");
+						}
+						$('#layui-layer-shade' + index).click(function() {
+							var $layero = $('#layui-layer' + index);
+							$layero.animate({
+								left: $layero.offset().left + $layero.width()
+							}, 200, function() {
+								layer.close(index);
+							});
+						})
 					}
-					if (menu != "null") {
-						$("*[data-select-bgcolor]").removeClass("layui-this");
-						$("[data-select-bgcolor='" + menu + "']").addClass("layui-this");
-					}
-					$('#layui-layer-shade' + index).click(function() {
-						var $layero = $('#layui-layer' + index);
-						$layero.animate({
-							left: $layero.offset().left + $layero.width()
-						}, 200, function() {
-							layer.close(index);
-						});
-					})
-				}
-			});
+				});
+
+			})
 		})
-		
+
 		$('body').on('click', '[data-select-bgcolor]', function() {
 			var theme = $(this).attr('data-select-bgcolor');
 			$('[data-select-bgcolor]').removeClass("layui-this");
@@ -325,7 +362,7 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 			localStorage.setItem("theme-menu", theme);
 			pearAdmin.menuSkin(theme);
 		});
-		
+
 		$('body').on('click', '.select-color-item', function() {
 			$(".select-color-item").removeClass("layui-icon").removeClass("layui-icon-ok");
 			$(this).addClass("layui-icon").addClass("layui-icon-ok");
@@ -335,81 +372,34 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 			pearAdmin.colorSet(color.color);
 		});
 
-		$("body").on("click",".logout",function(){
+		$("body").on("click", ".logout", function() {
 			let loader = layer.load();
 			$.ajax({
-				url:'/logout',
-				dataType:'json',
-				type:'post',
-				success:function(result){
+				url: '/logout',
+				dataType: 'json',
+				type: 'post',
+				success: function(result) {
 					layer.close(loader);
-					if(result.success){
-						layer.msg("注销成功",{icon:1,time:1200},function(){
+					if (result.success) {
+						layer.msg("注销成功", {
+							icon: 1,
+							time: 1200
+						}, function() {
 							location.href = "/login";
 						});
 					}
 				}
 			})
 		})
-		
-		function getData() {
-			$.ajaxSettings.async = false;
-			var data = null;
+
+		function readConfig() {
+			var defer = $.Deferred();
 			$.getJSON("pear.config.json?fresh=" + Math.random(), function(result) {
-				data = result;
+				defer.resolve(result)
 			});
-			$.ajaxSettings.async = true;
-			return data;
-		}
-		
-		function readConfig(){
-		    var defer = $.Deferred();
-			$.getJSON("pear.config.json?fresh=" + Math.random(), function(result) {
-				 defer.resolve(result)
-			});
-		    return defer.promise();
+			return defer.promise();
 		}
 
-		function getColorById(id) {
-			var color;
-			var flag = false;
-			var data = getData();
-			$.each(data.colors, function(i, value) {
-				if (value.id == id) {
-					color = value;
-					flag = true;
-				}
-			})
-			if (flag == false || data.theme.allowCustom == false) {
-				$.each(data.colors, function(i, value) {
-					if (value.id == data.theme.defaultColor) {
-						color = value;
-					}
-				})
-			}
-			return color;
-		}
-
-		function buildLinkHtml() {
-			var links = "";
-			$.each(getData().links, function(i, value) {
-				links += '<a class="more-menu-item" href="' + value.href + '" target="_blank">' +
-					'<i class="' + value.icon + '" style="font-size: 19px;"></i> ' + value.title +
-					'</a>'
-			})
-			return '<div class="more-menu-list">' + links + '</div>';
-		}
-
-		function buildColorHtml() {
-			var colors = "";
-			$.each(getData().colors, function(i, value) {
-				colors += "<span class='select-color-item' color-id='" + value.id + "' style='background-color:" + value.color +
-					";'></span>";
-			})
-			return "<div class='select-color'><div class='select-color-title'>主题色</div><div class='select-color-content'>" +
-				colors + "</div></div>"
-		}
-		
 		function compatible() {
 			if ($(window).width() <= 768) {
 				sideMenu.collaspe();
@@ -424,7 +414,7 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 				}
 			}
 		}
-		
+
 		function screenFun(num) {
 			num = num || 1;
 			num = num * 1;
@@ -457,7 +447,6 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 				res("返回值");
 			});
 		}
-		
+
 		exports('admin', pearAdmin);
 	})
-	
