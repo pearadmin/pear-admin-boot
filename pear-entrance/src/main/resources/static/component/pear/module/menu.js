@@ -10,7 +10,6 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 	};
 
 	pearMenu.prototype.render = function(opt) {
-		//默认配置值
 		var option = {
 			elem: opt.elem,
 			async: opt.async ? opt.async : false,
@@ -25,37 +24,35 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			theme: opt.theme,
 			data: opt.data ? opt.data : [],
 			change: opt.change ? opt.change : function() {
-				console.log("切换")
 			},
 			done: opt.done ? opt.done : function() {}
 		}
 
-		// 根 据 请 求 方 式 获 取 数 据
 		if (option.async) {
-			option.data = getData(option.url);
-			if (option.parseData != false) {
-				option.parseData(option.data);
-			}
+			getData(option.url).then(function(data){
+				option.data = data;
+				if (option.parseData != false) {
+					option.parseData(option.data);
+				}
+				if (option.data.length > 0) {
+					if (option.control != false) {
+						createMenuAndControl(option);
+					} else {
+						createMenu(option);
+					}
+				}
+				element.init();
+				downShow(option);
+				option.done();
+			});
 		}
-
-		if (option.data.length > 0) {
-			if (option.control != false) {
-
-				createMenuAndControl(option);
-			} else {
-				createMenu(option);
-			}
-		}
-		element.init();
-		downShow(option);
-		option.done();
-		return new pearMenu(option);
+		return new pearMenu(opt);
 	}
 
 	pearMenu.prototype.click = function(clickEvent) {
 		var _this = this;
-		$("#" + _this.option.elem + " .site-demo-active").parent().click(function() {
-			var dom = $(this).children(".site-demo-active");
+		$("body").on("click","#" + _this.option.elem + " .site-demo-active",function(){
+			var dom = $(this);
 			var data = {
 				menuId: dom.attr("menu-id"),
 				menuTitle: dom.attr("menu-title"),
@@ -76,7 +73,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 				data['menuPath'] = domsss.find("span").text() + " / " + data['menuPath'];
 			}
 			clickEvent(dom, data);
-		});
+		})
 	}
 
 	function hash(dom) {
@@ -91,7 +88,6 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 	}
 
 	pearMenu.prototype.selectItem = function(pearId) {
-
 		if (this.option.control != false) {
 			$("#" + this.option.elem + " a[menu-id='" + pearId + "']").parents(".layui-side-scroll ").find("ul").css({
 				display: "none"
@@ -145,17 +141,13 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 		}
 	}
 
-	/** 同 步 请 求 获 取 数 据 */
-	function getData(url) {
-		$.ajaxSettings.async = false;
-		var data = null;
-		$.get(url+"&fresh=" + Math.random(), function(result) {
-			data = result;
+	function getData(url){
+		var defer = $.Deferred();
+		$.get(url+"?fresh=" + Math.random(), function(result) {
+			defer.resolve(result)
 		});
-		$.ajaxSettings.async = true;
-		return data;
+		return defer.promise();
 	}
-
 
 	function createMenu(option) {
 		var menuHtml = '<ul lay-filter="' + option.elem +
@@ -212,17 +204,17 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 					'" class="layui-this layui-nav-item"><a href="#">' + item.title + '</a></li>';
 				menuItem = '<ul  pear-id="' + item.id + '" lay-filter="' + option.elem +
 					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
-			    // 兼容移动端
-			    controlPe += '<li class="layui-nav-item"><a class="pe-title" href="javascript:;" >'+ item.title +'</a>';
+				// 兼容移动端
+				controlPe += '<li class="layui-nav-item"><a class="pe-title" href="javascript:;" >'+ item.title +'</a>';
 				controlItemPe += '<dd  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +'"><a href="javascript:void(0);">'+ item.title +'</a></dd>';
 			} else {
 				controlItem = '<li  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
 					'" class="layui-nav-item"><a href="#">' + item.title + '</a></li>';
 				menuItem = '<ul style="display:none" pear-id="' + item.id + '" lay-filter="' + option.elem +
 					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
-					
+
 				controlItemPe += '<dd pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +'"><a href="javascript:void(0);">'+ item.title +'</a></dd>';
-					
+
 			}
 			index++;
 			$.each(item.children, function(i, note) {
@@ -327,7 +319,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 				var superEle = $(this).parent();
 				var ele = $(this).next('.layui-nav-child');
 				var heights = ele.children("dd").length * 48;
-				
+
 				if ($(this).parent().is(".layui-nav-itemed")) {
 					if (option.accordion) {
 						$(this).parent().parent().find(".layui-nav-itemed").removeClass("layui-nav-itemed");
@@ -361,18 +353,18 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 		if (b) {
 			$("#" + option.elem + ".pear-nav-mini .layui-nav-item,#" + option.elem + ".pear-nav-mini dd").hover(function() {
 				$(this).children(".layui-nav-child").addClass("layui-nav-hover");
-				
+
 				var top = $(this).offset().top + 5;
 				var y = window.document.body.clientHeight;
-				
+
 				var height = $(window).height();
-				
+
 				var topLength = $(this).offset().top;
-				
+
 				var thisHeight = $(this).children(".layui-nav-child").height();
-				
+
 				if((thisHeight+topLength)>height){
-				      topLength = height-thisHeight-10;	
+					topLength = height-thisHeight-10;
 				}
 				if (!$(this).is(".layui-nav-item")) {
 					var left = $(this).offset().left + $(this).width()+2;

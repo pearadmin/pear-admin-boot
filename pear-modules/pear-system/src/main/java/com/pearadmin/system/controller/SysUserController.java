@@ -210,8 +210,9 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("getUserMenu")
     @ApiOperation(value = "获取用户菜单数据")
-    public List<Menu> getUserMenu(String currentUser){
-        List<Menu> menus = sysUserService.getUserMenu(currentUser);
+    public List<Menu> getUserMenu(){
+        SysUser sysUser = (SysUser) ServletUtil.getSession().getAttribute("currentUser");
+        List<Menu> menus = sysUserService.getUserMenu(sysUser.getUsername());
         return menus;
     }
 
