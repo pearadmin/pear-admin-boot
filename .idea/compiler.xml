@@ -16,15 +16,15 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="pear-admin-boot" target="1.8" />
-      <module name="pear-common" target="1.8" />
-      <module name="pear-entrance" target="1.8" />
-      <module name="pear-generator" target="1.8" />
-      <module name="pear-modules" target="1.8" />
-      <module name="pear-process" target="1.8" />
-      <module name="pear-schedule" target="1.8" />
-      <module name="pear-security" target="1.8" />
-      <module name="pear-system" target="1.8" />
+      <module name="pear-admin-boot" target="1.5" />
+      <module name="pear-common" target="1.5" />
+      <module name="pear-entrance" target="1.5" />
+      <module name="pear-generator" target="1.5" />
+      <module name="pear-modules" target="1.5" />
+      <module name="pear-process" target="1.5" />
+      <module name="pear-schedule" target="1.5" />
+      <module name="pear-security" target="1.5" />
+      <module name="pear-system" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
