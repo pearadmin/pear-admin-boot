@@ -1,4 +1,4 @@
-package com.pearadmin.system.result;
+package com.pearadmin.system.domain;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @Data
-public class Menu {
+public class SysMenu {
 
     /**
      * 菜单编号
@@ -46,7 +46,7 @@ public class Menu {
     /**
      * 子菜单
      * */
-    private List<Menu> children = new ArrayList<>();
+    private List<SysMenu> children = new ArrayList<>();
 
     /**
      * 用于参数传递

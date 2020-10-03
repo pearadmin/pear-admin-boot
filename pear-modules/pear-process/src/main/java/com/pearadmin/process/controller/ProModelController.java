@@ -33,14 +33,8 @@ import java.util.Map;
 @RequestMapping("/process/model/")
 public class ProModelController extends BaseController {
 
-    /**
-     * thymeleaf 基础路径配置
-     * */
     private String modelPath = "process/model/";
 
-    /**
-     * 工作流程服务
-     * */
     @Resource
     private RepositoryService repositoryService;
 

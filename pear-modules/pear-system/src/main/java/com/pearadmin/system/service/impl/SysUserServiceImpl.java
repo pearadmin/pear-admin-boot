@@ -12,7 +12,7 @@ import com.pearadmin.system.mapper.SysRoleMapper;
 import com.pearadmin.system.mapper.SysUserMapper;
 import com.pearadmin.system.mapper.SysUserRoleMapper;
 import com.pearadmin.system.param.QueryUserParam;
-import com.pearadmin.system.result.Menu;
+import com.pearadmin.system.domain.SysMenu;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -190,8 +190,8 @@ public class SysUserServiceImpl implements ISysUserService {
      * Return: Result
      * */
     @Override
-    public List<Menu> getUserMenu(String username) {
-        List<Menu> menus = sysPowerMapper.selectMenuByUsername(username);
+    public List<SysMenu> getUserMenu(String username) {
+        List<SysMenu> menus = sysPowerMapper.selectMenuByUsername(username);
         buildMenu(menus,username);
         return menus;
     }
@@ -201,9 +201,9 @@ public class SysUserServiceImpl implements ISysUserService {
      * Param: menus username
      * Return: null
      * */
-    private void buildMenu(List<Menu> menus,String username){
+    private void buildMenu(List<SysMenu> menus, String username){
         if(menus.size()<=0) return;
-        for (Menu menu : menus) {
+        for (SysMenu menu : menus) {
             menu.setChildren(sysPowerMapper.selectMenuByParentId(username,menu.getId()));
             buildMenu(menu.getChildren(),username);
         }

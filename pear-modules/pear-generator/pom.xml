@@ -11,7 +11,7 @@
     <!-- 仓 库 地 址 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-generator</artifactId>
-    <version>${pear.generator.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <!-- 模 块 描 述 -->
     <name>代码生成</name>
@@ -35,4 +35,5 @@
             <artifactId>freemarker</artifactId>
         </dependency>
     </dependencies>
+
 </project>

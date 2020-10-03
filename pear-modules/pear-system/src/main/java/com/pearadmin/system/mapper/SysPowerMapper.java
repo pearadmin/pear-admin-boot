@@ -1,12 +1,11 @@
 package com.pearadmin.system.mapper;
 
 import com.pearadmin.system.domain.SysPower;
-import com.pearadmin.system.result.Menu;
+import com.pearadmin.system.domain.SysMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Describe: 系统权限接口
@@ -44,14 +43,14 @@ public interface SysPowerMapper {
      * Param: username
      * Return: ResuMenu
      * */
-    List<Menu> selectMenuByUsername(String username);
+    List<SysMenu> selectMenuByUsername(String username);
 
     /**
      * Describe: 根据 ParentId 查询子菜单
      * Param: parentId
      * Return: ResuMenu
      * */
-    List<Menu> selectMenuByParentId(@Param("username") String username,@Param("parentId") String parentId);
+    List<SysMenu> selectMenuByParentId(@Param("username") String username, @Param("parentId") String parentId);
 
     /**
      * Describe: 修改权限信息

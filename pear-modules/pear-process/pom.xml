@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-process</artifactId>
-    <version>${pear.process.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>工作流程</name>
     <description>Demo project for Spring Boot</description>
 

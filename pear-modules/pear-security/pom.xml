@@ -13,7 +13,7 @@
     <!-- Maven 配置 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-security</artifactId>
-    <version>${pear.security.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <!-- 模块描述 -->
     <name>安全模块</name>

@@ -5,7 +5,7 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.param.QueryUserParam;
-import com.pearadmin.system.result.Menu;
+import com.pearadmin.system.domain.SysMenu;
 
 import java.util.List;
 
@@ -84,6 +84,6 @@ public interface ISysUserService {
      * Param: SysUser
      * Return: 操作结果
      * */
-    List<Menu> getUserMenu(String username);
+    List<SysMenu> getUserMenu(String username);
 }
 

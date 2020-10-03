@@ -14,7 +14,7 @@
         <result column="sort" property="sort"></result>
     </resultMap>
 
-    <resultMap id="ResuMenuMap" type="com.pearadmin.system.result.Menu">
+    <resultMap id="ResuMenuMap" type="com.pearadmin.system.domain.SysMenu">
         <id column="power_id" property="id"></id>
         <result column="power_name" property="title"></result>
         <result column="username" property="username"></result>

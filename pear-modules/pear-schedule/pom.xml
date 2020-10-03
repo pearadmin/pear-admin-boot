@@ -12,7 +12,7 @@
     <!-- Maven 配置信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-schedule</artifactId>
-    <version>${pear.schedule.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <!-- 模块描述 -->
     <name>定时任务</name>

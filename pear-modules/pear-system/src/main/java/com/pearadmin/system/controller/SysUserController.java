@@ -13,7 +13,7 @@ import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.param.EditPasswordParam;
 import com.pearadmin.system.param.QueryUserParam;
-import com.pearadmin.system.result.Menu;
+import com.pearadmin.system.domain.SysMenu;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
 import io.swagger.annotations.Api;
@@ -210,9 +210,9 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("getUserMenu")
     @ApiOperation(value = "获取用户菜单数据")
-    public List<Menu> getUserMenu(){
+    public List<SysMenu> getUserMenu(){
         SysUser sysUser = (SysUser) ServletUtil.getSession().getAttribute("currentUser");
-        List<Menu> menus = sysUserService.getUserMenu(sysUser.getUsername());
+        List<SysMenu> menus = sysUserService.getUserMenu(sysUser.getUsername());
         return menus;
     }
 
