@@ -23,11 +23,6 @@ public class ScheduleStarted {
     @Resource
     private ScheduleJobMapper scheduleJobMapper;
 
-    /**
-     * Describe: 加载定时任务到内存
-     * Param: Scheduler ScheduleJobBean
-     * Return: 无返回值
-     * */
     @PostConstruct
     public void init (){
         List<ScheduleJobBean> scheduleJobList = scheduleJobMapper.selectList(null);

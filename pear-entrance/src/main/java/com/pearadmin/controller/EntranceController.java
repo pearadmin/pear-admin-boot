@@ -1,7 +1,7 @@
 package com.pearadmin.controller;
 
-import com.pearadmin.common.plugin.logging.annotation.Logging;
-import com.pearadmin.common.plugin.logging.enums.BusinessType;
+import com.pearadmin.common.plugins.logging.annotation.Logging;
+import com.pearadmin.common.plugins.logging.enums.BusinessType;
 import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.system.domain.SysUser;

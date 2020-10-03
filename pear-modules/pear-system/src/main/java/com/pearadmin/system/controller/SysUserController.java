@@ -1,9 +1,9 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.plugin.logging.annotation.Logging;
-import com.pearadmin.common.plugin.logging.enums.BusinessType;
-import com.pearadmin.common.plugin.repeat.annotation.RepeatSubmit;
+import com.pearadmin.common.plugins.logging.annotation.Logging;
+import com.pearadmin.common.plugins.logging.enums.BusinessType;
+import com.pearadmin.common.plugins.repeat.annotation.RepeatSubmit;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.base.BaseController;

@@ -1,10 +1,10 @@
 package com.pearadmin.security.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.plugin.logging.domain.Logging;
-import com.pearadmin.common.plugin.logging.enums.BusinessType;
-import com.pearadmin.common.plugin.logging.enums.LoggingType;
-import com.pearadmin.common.plugin.logging.service.LoggingService;
+import com.pearadmin.common.plugins.logging.domain.Logging;
+import com.pearadmin.common.plugins.logging.enums.BusinessType;
+import com.pearadmin.common.plugins.logging.enums.LoggingType;
+import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.security.exception.CaptchaException;

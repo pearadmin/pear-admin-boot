@@ -15,9 +15,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
                                   SecurityAutoConfiguration.class})
 public class PearEntranceApplication {
 
-    /**
-     * 启 动 程 序
-     * */
     public static void main(String[] args)
 
     {

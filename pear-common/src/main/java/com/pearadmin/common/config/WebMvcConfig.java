@@ -1,6 +1,6 @@
 package com.pearadmin.common.config;
 
-import com.pearadmin.common.plugin.repeat.RepeatSubmitInterceptor;
+import com.pearadmin.common.plugins.repeat.RepeatSubmitInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
