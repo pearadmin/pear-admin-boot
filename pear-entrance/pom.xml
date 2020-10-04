@@ -36,11 +36,6 @@
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-schedule</artifactId>
         </dependency>
-        <!-- 代 码 生 成 -->
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-generator</artifactId>
-        </dependency>
         <!-- 工 作 流 程 -->
         <dependency>
             <groupId>com.pearadmin</groupId>

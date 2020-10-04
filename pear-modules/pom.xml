@@ -23,7 +23,6 @@
         <module>pear-system</module>     <!-- 系统业务模块 -->
         <module>pear-schedule</module>   <!-- 定时任务模块 -->
         <module>pear-security</module>   <!-- 系统安全模块 -->
-        <module>pear-generator</module>  <!-- 代码生成模块 -->
         <module>pear-process</module>    <!-- 工作流程模块 -->
     </modules>
 

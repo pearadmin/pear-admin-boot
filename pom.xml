@@ -133,12 +133,6 @@
                 <artifactId>pear-process</artifactId>
                 <version>${pear.process.version}</version>
             </dependency>
-            <!-- 代 码 生 成 -->
-            <dependency>
-                <groupId>com.pearadmin</groupId>
-                <artifactId>pear-generator</artifactId>
-                <version>${pear.generator.version}</version>
-            </dependency>
             <!-- 权 限 模 块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>

@@ -4,7 +4,6 @@ import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.mapper.ScheduleJobMapper;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
-import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
  * Author: 就眠仪式
  * CreateTime: 2019/10/23
  * */
-@Component
 public class ScheduleStarted {
 
     @Resource
