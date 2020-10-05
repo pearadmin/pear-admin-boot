@@ -1,4 +1,4 @@
-package com.pearadmin.security.support;
+package com.pearadmin.security.service;
 
 import com.pearadmin.security.domain.SecurityUserDetails;
 import com.pearadmin.system.domain.SysPower;

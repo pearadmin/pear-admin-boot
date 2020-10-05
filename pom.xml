@@ -133,12 +133,6 @@
                 <artifactId>pear-process</artifactId>
                 <version>${pear.process.version}</version>
             </dependency>
-            <!-- 权 限 模 块 -->
-            <dependency>
-                <groupId>com.pearadmin</groupId>
-                <artifactId>pear-security</artifactId>
-                <version>${pear.security.version}</version>
-            </dependency>
             <!-- 定 时 模 块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>

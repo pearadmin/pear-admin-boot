@@ -1,4 +1,4 @@
-package com.pearadmin.security.exception;
+package com.pearadmin.common.exception.auth;
 
 import org.springframework.security.core.AuthenticationException;
 

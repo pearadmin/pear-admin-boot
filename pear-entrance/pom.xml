@@ -26,11 +26,6 @@
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-system</artifactId>
         </dependency>
-        <!-- 权 限 安 全 -->
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-security</artifactId>
-        </dependency>
         <!-- 定 时 任 务 -->
         <dependency>
             <groupId>com.pearadmin</groupId>

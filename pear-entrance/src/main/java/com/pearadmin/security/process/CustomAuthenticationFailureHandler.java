@@ -1,4 +1,4 @@
-package com.pearadmin.security.handler;
+package com.pearadmin.security.process;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.common.plugins.logging.domain.Logging;
@@ -7,7 +7,7 @@ import com.pearadmin.common.plugins.logging.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.security.exception.CaptchaException;
+import com.pearadmin.common.exception.auth.CaptchaException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
