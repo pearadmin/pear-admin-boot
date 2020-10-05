@@ -28,7 +28,7 @@ import java.io.IOException;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
+public class SecurityAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     /**
      * 日 志 服 务

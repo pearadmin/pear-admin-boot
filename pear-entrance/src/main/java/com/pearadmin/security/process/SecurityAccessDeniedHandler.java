@@ -20,9 +20,9 @@ import java.io.IOException;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
 
-    public static final Logger log = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
+    public static final Logger log = LoggerFactory.getLogger(SecurityAccessDeniedHandler.class);
 
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {

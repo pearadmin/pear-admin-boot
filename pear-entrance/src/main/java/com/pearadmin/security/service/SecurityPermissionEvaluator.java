@@ -18,7 +18,7 @@ import java.util.Set;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class CustomPermissionEvaluator implements PermissionEvaluator {
+public class SecurityPermissionEvaluator implements PermissionEvaluator {
 
     @Resource
     private SysPowerMapper sysPowerMapper;

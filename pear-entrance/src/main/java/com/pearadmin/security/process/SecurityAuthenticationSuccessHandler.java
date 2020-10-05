@@ -25,9 +25,9 @@ import java.io.IOException;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class SecurityAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-    public static final Logger log = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
+    public static final Logger log = LoggerFactory.getLogger(SecurityAccessDeniedHandler.class);
 
     @Resource
     private LoggingService loggingService;

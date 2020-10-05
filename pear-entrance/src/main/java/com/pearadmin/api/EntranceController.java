@@ -1,4 +1,4 @@
-package com.pearadmin.controller;
+package com.pearadmin.api;
 
 import com.pearadmin.common.plugins.logging.annotation.Logging;
 import com.pearadmin.common.plugins.logging.enums.BusinessType;

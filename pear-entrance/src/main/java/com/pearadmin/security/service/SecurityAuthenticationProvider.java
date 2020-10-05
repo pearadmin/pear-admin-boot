@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class CustomAuthenticationProvider implements AuthenticationProvider {
+public class SecurityAuthenticationProvider implements AuthenticationProvider {
 
     /**
      * 用户详情服务
