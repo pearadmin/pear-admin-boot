@@ -11,11 +11,85 @@
  Target Server Version : 50727
  File Encoding         : 65001
 
- Date: 28/09/2020 15:20:24
+ Date: 06/10/2020 00:18:38
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for gen_table
+-- ----------------------------
+DROP TABLE IF EXISTS `gen_table`;
+CREATE TABLE `gen_table`  (
+  `table_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `table_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '表名称',
+  `table_comment` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '表描述',
+  `sub_table_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关联子表的表名',
+  `sub_table_fk_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '子表关联的外键名',
+  `class_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '实体类名称',
+  `tpl_category` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'crud' COMMENT '使用的模板（crud单表操作 tree树表操作 sub主子表操作）',
+  `package_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成包路径',
+  `module_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成模块名',
+  `business_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成业务名',
+  `function_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成功能名',
+  `function_author` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成功能作者',
+  `gen_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '生成代码方式（0zip压缩包 1自定义路径）',
+  `gen_path` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '/' COMMENT '生成路径（不填默认项目路径）',
+  `options` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '其它生成选项',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`table_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of gen_table
+-- ----------------------------
+INSERT INTO `gen_table` VALUES (1, 'code', '激活码', NULL, NULL, 'Code', 'crud', 'com.ruoyi.system', 'system', 'code', '激活码', 'ruoyi', '0', '/', '{\"parentMenuId\":\"1\",\"parentMenuName\":\"系统管理\"}', 'admin', '2020-10-05 20:39:44', '', '2020-10-05 23:21:54', '');
+
+-- ----------------------------
+-- Table structure for gen_table_column
+-- ----------------------------
+DROP TABLE IF EXISTS `gen_table_column`;
+CREATE TABLE `gen_table_column`  (
+  `column_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `table_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '归属表编号',
+  `column_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '列名称',
+  `column_comment` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '列描述',
+  `column_type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '列类型',
+  `java_type` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'JAVA类型',
+  `java_field` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'JAVA字段名',
+  `is_pk` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否主键（1是）',
+  `is_increment` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否自增（1是）',
+  `is_required` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否必填（1是）',
+  `is_insert` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否为插入字段（1是）',
+  `is_edit` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否编辑字段（1是）',
+  `is_list` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否列表字段（1是）',
+  `is_query` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否查询字段（1是）',
+  `query_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'EQ' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
+  `html_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
+  `dict_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '字典类型',
+  `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`column_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of gen_table_column
+-- ----------------------------
+INSERT INTO `gen_table_column` VALUES (1, '1', 'id', 'w', 'int', 'Long', 'id', '1', '1', NULL, '1', NULL, '1', NULL, 'NE', 'input', NULL, 1, 'admin', '2020-10-05 20:39:44', NULL, '2020-10-05 23:21:54');
+INSERT INTO `gen_table_column` VALUES (2, '1', 'code', 'wa', 'char(255)', 'String', 'code', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', NULL, 2, 'admin', '2020-10-05 20:39:44', NULL, '2020-10-05 23:21:54');
+INSERT INTO `gen_table_column` VALUES (3, '1', 'expiration_time', 'null', 'datetime', 'Date', 'expirationTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', NULL, 3, 'admin', '2020-10-05 20:39:44', NULL, '2020-10-05 23:21:54');
+INSERT INTO `gen_table_column` VALUES (4, '1', 'user_id', 'null', 'int', 'Long', 'userId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'textarea', NULL, 4, 'admin', '2020-10-05 20:39:44', NULL, '2020-10-05 23:21:54');
+INSERT INTO `gen_table_column` VALUES (5, '1', 'packagess', 'null', 'int', 'Long', 'packagess', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', NULL, 5, 'admin', '2020-10-05 20:39:44', NULL, '2020-10-05 23:21:54');
+INSERT INTO `gen_table_column` VALUES (6, '1', 'active', 'null', 'int', 'Long', 'active', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', NULL, 6, 'admin', '2020-10-05 20:39:44', NULL, '2020-10-05 23:21:54');
+INSERT INTO `gen_table_column` VALUES (7, '1', 'last_time', 'null', 'datetime', 'Date', 'lastTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', NULL, 7, 'admin', '2020-10-05 20:39:44', NULL, '2020-10-05 23:21:54');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -3285,6 +3359,190 @@ INSERT INTO `sys_logging` VALUES ('1310479224259215360', '主页', '/index', 'AD
 INSERT INTO `sys_logging` VALUES ('1310479246455472128', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-09-28 15:19:35', '查询用户', '', '谷歌浏览器', 'Windows', 'OPERATE');
 INSERT INTO `sys_logging` VALUES ('1311023483328659456', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-09-30 03:22:11', '登录成功', '', '谷歌浏览器', 'Windows', 'LOGIN');
 INSERT INTO `sys_logging` VALUES ('1311023489351680000', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-09-30 03:22:12', '返回 Index 主页视图', '', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313106358161113088', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:18:47', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313106359406821376', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:18:47', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313106402557820928', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:18:57', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313106774852632576', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:20:26', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313106893765345280', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:20:55', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313107943113097216', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:25:05', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313107948922208256', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:25:06', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313107980530483200', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:25:14', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313110197949956096', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:34:02', '登录成功', '', '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313110203389968384', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:34:04', '返回 Index 主页视图', '', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313116088053006336', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:57:27', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313116093702733824', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:57:28', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313116115479560192', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:57:33', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313116120386895872', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 21:57:34', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313117308213788672', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:02:17', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313117313771241472', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:02:19', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313117744295575552', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:04:01', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313117749873999872', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:04:03', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313118218482614272', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:05:55', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313118224220422144', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:05:56', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313118520401199104', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:07:06', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313118526025760768', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:07:08', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313118544610721792', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:07:12', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313118903487954944', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:08:38', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313118909154459648', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:08:39', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313119219419709440', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:09:53', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313119225044271104', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:09:54', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313119909865062400', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:12:38', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313119915426709504', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:12:39', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313120438829711360', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:14:44', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313120444479438848', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:14:45', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313120658334416896', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:15:36', '登录成功', '', '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313120663698931712', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:15:37', '返回 Index 主页视图', '', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313120786550095872', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:16:07', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313120792149491712', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:16:08', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313122125036388352', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:21:26', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313122130816139264', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:21:27', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313122439831486464', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:22:41', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313122445447659520', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:22:42', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313122650784006144', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:23:31', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313122656333070336', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:23:33', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313123248912728064', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:25:54', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313123254285631488', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:25:55', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313124704990527488', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:31:41', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313124710615089152', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:31:42', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313125740400607232', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:35:48', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313125745949671424', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:35:49', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313126053828362240', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:37:03', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313126059155128320', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:37:04', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313126078226628608', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:37:08', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313126305587265536', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:38:03', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313126355440762880', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:38:15', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313126604087492608', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:39:14', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313126609846272000', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:39:15', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313126657208352768', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:39:26', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313126844672770048', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:40:11', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313126850226028544', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:40:12', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313127428993843200', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:42:30', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313127434492575744', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:42:32', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313127734808936448', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:43:43', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313127740378972160', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:43:45', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313127834335576064', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:44:07', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313128541897883648', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:46:56', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313128547493085184', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:46:57', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313128798111137792', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:47:57', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313128803748282368', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:47:58', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313129221958139904', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:49:38', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313129227691753472', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:49:39', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313129578868244480', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:51:03', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313129584564109312', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:51:04', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313129603656581120', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:51:09', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313130179274473472', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:53:26', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313130184924200960', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:53:28', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313130301592961024', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:53:55', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313130306919727104', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:53:57', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313130670444249088', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:55:23', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313130675997507584', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:55:25', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313131155158990848', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:57:19', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313131759180709888', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:59:43', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313131764838825984', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 22:59:44', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313132187427536896', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:01:25', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313132193068875776', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:01:26', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313132498112217088', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:02:39', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313132503690641408', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:02:40', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313132921426542592', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:04:20', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313132927285985280', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:04:21', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313133324067143680', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:05:56', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313133329779785728', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:05:57', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313133691295236096', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:07:24', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313133696835911680', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:07:25', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313134277390499840', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:09:43', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313134282956341248', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:09:45', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313134693599674368', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:11:22', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313134699245207552', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:11:24', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313134981404426240', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:12:31', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313134987016404992', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:12:32', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313135009158135808', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:12:38', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313135649632550912', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:15:10', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313135655202586624', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:15:12', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313136095428345856', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:16:57', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313136101002575872', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:16:58', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313136760678514688', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:19:35', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313136766290493440', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:19:37', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313137183401443328', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:21:16', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313137188967284736', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:21:17', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313141831948566528', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:39:44', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313141837615071232', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:39:46', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313141876865368064', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:39:55', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313142222710898688', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:41:18', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313142278662914048', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:41:31', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313142576332668928', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:42:42', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313142577305747456', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:42:42', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313142659778347008', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:43:02', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313142663997816832', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:43:03', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313142725662474240', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:43:18', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313143177191882752', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:45:05', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313143182585757696', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:45:06', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313143216672866304', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:45:15', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313144386984345600', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:49:54', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313144844582912000', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:51:43', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313144850220056576', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:51:44', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313145057330593792', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:52:33', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313145063030652928', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:52:35', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313145095775584256', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:52:43', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146619914354688', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:58:46', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313146625434058752', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:58:47', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146645726101504', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:58:52', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146704979034112', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:59:06', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146727443726336', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:59:12', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146832511041536', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:59:37', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146833693835264', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:59:37', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146852463345664', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:59:41', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146892644777984', '修改用户', '/system/user/update', 'EDIT', 'PUT', 'admin', '/system/user/update', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:59:51', '修改用户', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146898994954240', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-05 23:59:53', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146938182336512', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:00:02', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313146957597769728', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:00:07', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147118864564224', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:00:45', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147187839893504', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:01:01', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147193846136832', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:01:03', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147215987867648', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:01:08', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147419591966720', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:01:57', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147420560850944', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:01:57', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147497127870464', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:02:15', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147513837977600', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:02:19', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313147711746211840', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:03:06', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150008693882880', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:12:14', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313150014515576832', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:12:15', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150038683156480', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:12:21', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150067837763584', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:12:28', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150194623184896', '修改用户', '/system/user/update', 'EDIT', 'PUT', 'admin', '/system/user/update', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:12:58', '修改用户', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150201044664320', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:13:00', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150577751883776', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:14:30', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313150583607132160', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:14:31', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150625164296192', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:14:41', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150643686342656', '修改用户', '/system/user/update', 'EDIT', 'PUT', 'admin', '/system/user/update', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:14:45', '修改用户', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150650288177152', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:14:47', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313150849379205120', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:15:34', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1313150854777274368', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:15:36', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313151290917781504', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:17:20', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1313151296202604544', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2020-10-06 00:17:21', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+
+-- ----------------------------
+-- Table structure for sys_notice
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_notice`;
+CREATE TABLE `sys_notice`  (
+  `id` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '系统公告',
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题',
+  `context` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '内容',
+  `create_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_notice
+-- ----------------------------
+INSERT INTO `sys_notice` VALUES ('1310809390831370240', '正式开源', '随着 Pear Admin 的体系的完善，我们随之推出 Pear Admin 的 Java 版本，该项目基于 Spring Boot 开发', '1309861917694623744', '2020-09-29 13:11:27', NULL, NULL, NULL);
+INSERT INTO `sys_notice` VALUES ('1310813739498340352', '开源共建', '欢迎提交 pull request，注意对应提交对应 master 分支，欢迎提交 issue，请写清楚遇到问题的原因、开发环境、复显步骤', '1309861917694623744', '2020-09-29 13:28:44', NULL, NULL, NULL);
+INSERT INTO `sys_notice` VALUES ('1310814268412657664', '加入我们', '基于Layui的后台管理系统模板，扩展Layui原生UI样式，整合第三方开源组件，提供便捷快速的开发方式，延续LayuiAdmin的设计风格', '1309861917694623744', '2020-09-29 13:30:50', NULL, NULL, NULL);
+INSERT INTO `sys_notice` VALUES ('1310884450757771264', '更新公告', '经过长期迭代 与 使用，Pear Admin Boot 系统公告，行为日志等基础模块，低代码的代码生成工具已紧急开发中', '1309861917694623744', '2020-09-29 18:09:43', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_power
@@ -3312,70 +3570,72 @@ CREATE TABLE `sys_power`  (
 -- ----------------------------
 -- Records of sys_power
 -- ----------------------------
-INSERT INTO `sys_power` VALUES ('1', '系统管理', '0', '', '', NULL, '0', 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1284020948269268992', '用户列表', '2', 'sys:user:data', '', '', '2', 'layui-icon-username', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1284022967767924736', '用户保存', '2', 'sys:user:add', '', '', '2', 'layui-icon-username', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1302180351979814912', '布局构建', '1', 'generator:from:main', 'component/code/index.html', '_iframe', '442417411065516032', 'layui-icon-senior', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1304387665067507712', '数据字典', '1', 'sys:dictType:main', '/system/dictType/main', '_iframe', '1', 'layui-icon-flag', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1304793451996381184', '文件管理', '1', 'sys:file:main', '/system/file/main', '_iframe', '1', 'layui-icon-read', 5, NULL, NULL, NULL, NULL, NULL, '0');
+INSERT INTO `sys_power` VALUES ('1', '系统管理', '0', '', '', NULL, '0', 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1284020948269268992', '用户列表', '2', 'sys:user:data', '', '', '2', 'layui-icon-username', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1284022967767924736', '用户保存', '2', 'sys:user:add', '', '', '2', 'layui-icon-username', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1302180351979814912', '布局构建', '1', 'generator:from:main', 'component/code/index.html', '_iframe', '442417411065516032', 'layui-icon-senior', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1304387665067507712', '数据字典', '1', 'sys:dictType:main', '/system/dictType/main', '_iframe', '1', 'layui-icon-flag', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1304793451996381184', '文件管理', '1', 'sys:file:main', '/system/file/main', '_iframe', '1', 'layui-icon-read', 5, NULL, NULL, NULL, NULL, NULL, '1');
 INSERT INTO `sys_power` VALUES ('1305870685385523200', '百度一下', '1', '', 'http://www.baidu.com', '0', '474356044148117504', 'layui-icon-search', 2, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_power` VALUES ('1305875436139446272', '百度一下', '1', 'http://www.baidu.com', 'http://www.baidu.com', '0', '451002662209589248', 'layui-icon-search', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1307299332784914432', '系统配置', '1', 'sys:config:main', '/system/config/main', '0', '1', 'layui-icon-note', 6, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1307562196556840960', '工作流程', '0', '', '', '0', '0', 'layui-icon layui-icon-chat', 5, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1307562519451140096', '模型管理', '1', '/process/model/main', '/process/model/main', '0', '1307562196556840960', 'layui-icon-circle', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1308571483794046976', '流程定义', '1', 'process:defined:main', '/process/defined/main', '0', '1307562196556840960', 'layui-icon-chart-screen', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310206853057085440', '用户修改', '2', 'sys:user:edit', '', '', '2', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310208636370288640', '用户删除', '2', 'sys:user:remove', '', '', '2', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310209696916832256', '角色新增', '2', 'sys:role:add', '', '', '3', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310209900478988288', '角色删除', '2', 'sys:role:remove', '', '', '3', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310210054728712192', '角色修改', '2', 'sys:role:edit', '', '', '3', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310211965188046848', '角色授权', '2', 'sys:role:power', '', '', '3', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310226416867999744', '权限列表', '2', 'sys:power:data', '', '', '4', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310226976593674240', '权限新增', '2', 'sys:power:add', '', '', '4', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310227130998587392', '权限修改', '2', 'sys:power:edit', '', '', '4', 'layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310227300935008256', '权限删除', '2', 'sys:power:remove', '', '', '4', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310232350285627392', '操作日志', '2', 'sys:logging:operateLog', '', '', '450300705362808832', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310232462562951168', '登录日志', '2', 'sys:logging:loginLog', '', '', '450300705362808832', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310238229588344832', '配置列表', '2', 'sys:config:data', '', '', '1307299332784914432', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310238417082122240', '配置新增', '2', 'sys:config:add', '', '', '1307299332784914432', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310238574355939328', '配置修改', '2', 'sys:config:edit', '', '', '1307299332784914432', 'layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310238700705153024', '配置删除', '2', 'sys:config:remove', '', '', '1307299332784914432', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310243862937075712', '文件列表', '2', 'sys:file:data', '', '', '1304793451996381184', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310244103824343040', '文件新增', '2', 'sys:file:add', '', '', '1304793451996381184', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310244248884346880', '文件删除', '2', 'sys:file:remove', '', '', '1304793451996381184', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310390699333517312', '任务列表', '2', 'sch:job:data', '', '', '442650770626711552', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310390994826428416', '任务新增', '2', 'sch:job:add', '', '', '442650770626711552', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310391095670079488', '任务修改', '2', 'sch:job:edit', '', '', '442650770626711552', 'layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310391707069579264', '任务删除', '2', 'sch:job:remove', '', '', '442650770626711552', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310395250908332032', '日志列表', '2', 'sch:log:data', '', '', '442651158935375872', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310397832091402240', '任务恢复', '2', 'sch:job:resume', '', '', '442650770626711552', 'layui-icon-vercode', NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310398020692475904', '任务停止', '2', 'sch:job:resume', '', '', '442650770626711552', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310398158974484480', '任务运行', '2', 'sch:job:run', '', '', '442650770626711552', 'layui-icon-vercode', 4, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310402491631796224', '数据类型列表', '2', 'sys:dictType:data', '', '', '1304387665067507712', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310402688881524736', '数据类型新增', '2', 'sys:dictType:add', '', '', '1304387665067507712', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310402817776680960', '数据类型修改', '2', 'sys:dictType:edit', '', '', '1304387665067507712', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('1310403004406431744', '数据类型删除', '2', 'sys:dictType:remove', '', '', '1304387665067507712', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_power` VALUES ('1310404584291696640', '数据字典视图', '2', 'sys:dictData:main', '', '', '1304387665067507712', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_power` VALUES ('1310404705934901248', '数据字典列表', '2', 'sys:dictData:data', '', '', '1304387665067507712', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_power` VALUES ('1310404831407505408', '数据字典新增', '2', 'sys:dictData:add', '', '', '1304387665067507712', 'layui-icon-vercode', 5, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_power` VALUES ('1310404999599095808', '数据字典删除', '2', 'sys:dictData:remove', '', '', '1304387665067507712', 'layui-icon-vercode', 6, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_power` VALUES ('1310405161587310592', '数据字典修改', '2', 'sys:dictData:edit', '', '', '1304387665067507712', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_power` VALUES ('2', '用户管理', '1', 'sys:user:main', '/system/user/main', '_iframe', '1', 'layui-icon layui-icon-username', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('3', '角色管理', '1', 'sys:role:main', '/system/role/main', '_iframe', '1', 'layui-icon layui-icon-user', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('4', '权限管理', '1', 'sys:power:main', '/system/power/main', '_iframe', '1', 'layui-icon layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('442359447487123456', '角色列表', '2', 'sys:role:data', '', '', '3', 'layui-icon layui-icon-rate', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('442417411065516032', '敏捷开发', '0', '', '', '', '0', 'layui-icon layui-icon-senior', 4, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('442418188639145984', '代码生成', '1', 'exp:template:main', '/generator/main', '_iframe', '442417411065516032', 'layui-icon layui-icon-template-1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('442520236248403968', '数据监控', '1', '/druid/index.html', '/druid/index.html', '_iframe', '694203021537574912', 'layui-icon  layui-icon-chart', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('442650387514789888', '定时任务', '0', '', '', '', '0', 'layui-icon  layui-icon-log', 2, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('442650770626711552', '任务管理', '1', 'sch:job:main', '/schedule/job/main', '_iframe', '442650387514789888', 'layui-icon  layui-icon-chat', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('442651158935375872', '任务日志', '1', 'sch:log:main', '/schedule/log/main', '_iframe', '442650387514789888', 'layui-icon  layui-icon-file', 2, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('450300705362808832', '行为日志', '1', 'sys:logging:main', '/system/logging/main', '_iframe', '1', 'layui-icon  layui-icon-chart', 4, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('451002662209589248', '工作空间', '0', '', '', '', '0', 'layui-icon  layui-icon-home', 0, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('451003242072117248', '项目总览', '1', 'process:model:main', '/console', '_iframe', '451002662209589248', 'layui-icon  layui-icon-component', 0, NULL, NULL, NULL, NULL, NULL, '0');
+INSERT INTO `sys_power` VALUES ('1305875436139446272', '百度一下', '1', 'http://www.baidu.com', 'http://www.baidu.com', '0', '451002662209589248', 'layui-icon-search', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1307299332784914432', '系统配置', '1', 'sys:config:main', '/system/config/main', '0', '1', 'layui-icon-note', 6, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1307562196556840960', '工作流程', '0', '', '', '0', '0', 'layui-icon layui-icon-chat', 5, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1307562519451140096', '模型管理', '1', '/process/model/main', '/process/model/main', '0', '1307562196556840960', 'layui-icon-circle', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1308571483794046976', '流程定义', '1', 'process:defined:main', '/process/defined/main', '0', '1307562196556840960', 'layui-icon-chart-screen', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310206853057085440', '用户修改', '2', 'sys:user:edit', '', '', '2', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310208636370288640', '用户删除', '2', 'sys:user:remove', '', '', '2', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310209696916832256', '角色新增', '2', 'sys:role:add', '', '', '3', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310209900478988288', '角色删除', '2', 'sys:role:remove', '', '', '3', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310210054728712192', '角色修改', '2', 'sys:role:edit', '', '', '3', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310211965188046848', '角色授权', '2', 'sys:role:power', '', '', '3', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310226416867999744', '权限列表', '2', 'sys:power:data', '', '', '4', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310226976593674240', '权限新增', '2', 'sys:power:add', '', '', '4', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310227130998587392', '权限修改', '2', 'sys:power:edit', '', '', '4', 'layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310227300935008256', '权限删除', '2', 'sys:power:remove', '', '', '4', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310232350285627392', '操作日志', '2', 'sys:logging:operateLog', '', '', '450300705362808832', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310232462562951168', '登录日志', '2', 'sys:logging:loginLog', '', '', '450300705362808832', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310238229588344832', '配置列表', '2', 'sys:config:data', '', '', '1307299332784914432', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310238417082122240', '配置新增', '2', 'sys:config:add', '', '', '1307299332784914432', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310238574355939328', '配置修改', '2', 'sys:config:edit', '', '', '1307299332784914432', 'layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310238700705153024', '配置删除', '2', 'sys:config:remove', '', '', '1307299332784914432', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310243862937075712', '文件列表', '2', 'sys:file:data', '', '', '1304793451996381184', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310244103824343040', '文件新增', '2', 'sys:file:add', '', '', '1304793451996381184', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310244248884346880', '文件删除', '2', 'sys:file:remove', '', '', '1304793451996381184', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310390699333517312', '任务列表', '2', 'sch:job:data', '', '', '442650770626711552', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310390994826428416', '任务新增', '2', 'sch:job:add', '', '', '442650770626711552', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310391095670079488', '任务修改', '2', 'sch:job:edit', '', '', '442650770626711552', 'layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310391707069579264', '任务删除', '2', 'sch:job:remove', '', '', '442650770626711552', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310395250908332032', '日志列表', '2', 'sch:log:data', '', '', '442651158935375872', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310397832091402240', '任务恢复', '2', 'sch:job:resume', '', '', '442650770626711552', 'layui-icon-vercode', NULL, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310398020692475904', '任务停止', '2', 'sch:job:resume', '', '', '442650770626711552', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310398158974484480', '任务运行', '2', 'sch:job:run', '', '', '442650770626711552', 'layui-icon-vercode', 4, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310402491631796224', '数据类型列表', '2', 'sys:dictType:data', '', '', '1304387665067507712', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310402688881524736', '数据类型新增', '2', 'sys:dictType:add', '', '', '1304387665067507712', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310402817776680960', '数据类型修改', '2', 'sys:dictType:edit', '', '', '1304387665067507712', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310403004406431744', '数据类型删除', '2', 'sys:dictType:remove', '', '', '1304387665067507712', 'layui-icon-vercode', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310404584291696640', '数据字典视图', '2', 'sys:dictData:main', '', '', '1304387665067507712', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310404705934901248', '数据字典列表', '2', 'sys:dictData:data', '', '', '1304387665067507712', 'layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310404831407505408', '数据字典新增', '2', 'sys:dictData:add', '', '', '1304387665067507712', 'layui-icon-vercode', 5, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310404999599095808', '数据字典删除', '2', 'sys:dictData:remove', '', '', '1304387665067507712', 'layui-icon-vercode', 6, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1310405161587310592', '数据字典修改', '2', 'sys:dictData:edit', '', '', '1304387665067507712', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1313142171393589248', '系统公告', '1', 'sys:notice:main', '/system/notice/main', '0', '1', 'layui-icon-notice', 7, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1313142510486290432', '公告列表', '1', 'sys:notice:data', '/system/notice/data', '0', '1313142171393589248', 'layui-icon-notice', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('2', '用户管理', '1', 'sys:user:main', '/system/user/main', '_iframe', '1', 'layui-icon layui-icon-username', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('3', '角色管理', '1', 'sys:role:main', '/system/role/main', '_iframe', '1', 'layui-icon layui-icon-user', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('4', '权限管理', '1', 'sys:power:main', '/system/power/main', '_iframe', '1', 'layui-icon layui-icon-vercode', 2, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('442359447487123456', '角色列表', '2', 'sys:role:data', '', '', '3', 'layui-icon layui-icon-rate', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('442417411065516032', '敏捷开发', '0', '', '', '', '0', 'layui-icon layui-icon-senior', 4, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('442418188639145984', '代码生成', '1', 'exp:template:main', '/tool/gen', '_iframe', '442417411065516032', 'layui-icon layui-icon-template-1', NULL, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('442520236248403968', '数据监控', '1', '/druid/index.html', '/druid/index.html', '_iframe', '694203021537574912', 'layui-icon  layui-icon-chart', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('442650387514789888', '定时任务', '0', '', '', '', '0', 'layui-icon  layui-icon-log', 2, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('442650770626711552', '任务管理', '1', 'sch:job:main', '/schedule/job/main', '_iframe', '442650387514789888', 'layui-icon  layui-icon-chat', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('442651158935375872', '任务日志', '1', 'sch:log:main', '/schedule/log/main', '_iframe', '442650387514789888', 'layui-icon  layui-icon-file', 2, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('450300705362808832', '行为日志', '1', 'sys:logging:main', '/system/logging/main', '_iframe', '1', 'layui-icon  layui-icon-chart', 4, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('451002662209589248', '工作空间', '0', '', '', '', '0', 'layui-icon  layui-icon-home', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('451003242072117248', '项目总览', '1', 'process:model:main', '/console', '_iframe', '451002662209589248', 'layui-icon  layui-icon-component', 0, NULL, NULL, NULL, NULL, NULL, '1');
 INSERT INTO `sys_power` VALUES ('474356363552755712', '项目介绍', '1', 'home', '/console', '_iframe', '474356044148117504', 'layui-icon layui-icon-home', 1, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('694203021537574912', '系统监控', '0', '', '', '', '0', 'layui-icon  layui-icon-console', 3, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_power` VALUES ('694203311615639552', '接口文档', '1', '', '/swagger-ui.html', '_iframe', '694203021537574912', 'layui-icon  layui-icon-chart', 1, NULL, NULL, NULL, NULL, NULL, '0');
+INSERT INTO `sys_power` VALUES ('694203021537574912', '系统监控', '0', '', '', '', '0', 'layui-icon  layui-icon-console', 3, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('694203311615639552', '接口文档', '1', '', '/swagger-ui.html', '_iframe', '694203021537574912', 'layui-icon  layui-icon-chart', 1, NULL, NULL, NULL, NULL, NULL, '1');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -3401,7 +3661,6 @@ CREATE TABLE `sys_role`  (
 INSERT INTO `sys_role` VALUES ('1309851245195821056', '超级管理员', 'admin', '0', NULL, NULL, NULL, NULL, NULL, '超级管理员');
 INSERT INTO `sys_role` VALUES ('1310215420371795968', '开发角色', 'develop', '0', NULL, NULL, NULL, NULL, NULL, '开发角色');
 INSERT INTO `sys_role` VALUES ('1310215521433550848', '测试角色', 'test', '0', NULL, NULL, NULL, NULL, NULL, '测试角色');
-INSERT INTO `sys_role` VALUES ('1310421428759166976', '空角色', 'space', '0', NULL, NULL, NULL, NULL, NULL, '空角色');
 
 -- ----------------------------
 -- Table structure for sys_role_power
@@ -3483,76 +3742,79 @@ INSERT INTO `sys_role_power` VALUES ('1308571532737380374', '1', '13021803519798
 INSERT INTO `sys_role_power` VALUES ('1308571532737380375', '1', '1307562196556840960', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('1308571532737380376', '1', '1307562519451140096', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('1308571532737380377', '1', '1308571483794046976', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582784', '1309851245195821056', '451002662209589248', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582785', '1309851245195821056', '451003242072117248', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582786', '1309851245195821056', '1305875436139446272', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582787', '1309851245195821056', '1', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582788', '1309851245195821056', '2', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582789', '1309851245195821056', '1284020948269268992', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582790', '1309851245195821056', '1310206853057085440', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582791', '1309851245195821056', '1310208636370288640', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582792', '1309851245195821056', '1284022967767924736', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582793', '1309851245195821056', '3', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582794', '1309851245195821056', '1310209696916832256', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582795', '1309851245195821056', '1310209900478988288', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582796', '1309851245195821056', '1310210054728712192', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582797', '1309851245195821056', '1310211965188046848', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582798', '1309851245195821056', '442359447487123456', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582799', '1309851245195821056', '4', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582800', '1309851245195821056', '1310226416867999744', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582801', '1309851245195821056', '1310226976593674240', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582802', '1309851245195821056', '1310227130998587392', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582803', '1309851245195821056', '1310227300935008256', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582804', '1309851245195821056', '1304387665067507712', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582805', '1309851245195821056', '1310402491631796224', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582806', '1309851245195821056', '1310402688881524736', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582807', '1309851245195821056', '1310402817776680960', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582808', '1309851245195821056', '1310403004406431744', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582809', '1309851245195821056', '450300705362808832', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582810', '1309851245195821056', '1310232350285627392', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582811', '1309851245195821056', '1310232462562951168', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582812', '1309851245195821056', '1304793451996381184', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582813', '1309851245195821056', '1310243862937075712', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582814', '1309851245195821056', '1310244103824343040', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582815', '1309851245195821056', '1310244248884346880', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582816', '1309851245195821056', '1307299332784914432', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582817', '1309851245195821056', '1310238229588344832', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582818', '1309851245195821056', '1310238417082122240', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582819', '1309851245195821056', '1310238574355939328', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582820', '1309851245195821056', '1310238700705153024', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582821', '1309851245195821056', '442650387514789888', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582822', '1309851245195821056', '442650770626711552', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582823', '1309851245195821056', '1310397832091402240', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582824', '1309851245195821056', '1310390699333517312', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582825', '1309851245195821056', '1310390994826428416', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582826', '1309851245195821056', '1310391095670079488', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582827', '1309851245195821056', '1310391707069579264', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582828', '1309851245195821056', '1310398020692475904', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582829', '1309851245195821056', '1310398158974484480', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582830', '1309851245195821056', '442651158935375872', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582831', '1309851245195821056', '1310395250908332032', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582832', '1309851245195821056', '694203021537574912', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582833', '1309851245195821056', '442520236248403968', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582834', '1309851245195821056', '694203311615639552', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582835', '1309851245195821056', '442417411065516032', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582836', '1309851245195821056', '442418188639145984', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582837', '1309851245195821056', '1302180351979814912', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582838', '1309851245195821056', '1307562196556840960', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582839', '1309851245195821056', '1307562519451140096', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310468260478582840', '1309851245195821056', '1308571483794046976', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214080', '1310215420371795968', '451002662209589248', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214081', '1310215420371795968', '1', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214082', '1310215420371795968', '2', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214083', '1310215420371795968', '3', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214084', '1310215420371795968', '4', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214085', '1310215420371795968', '1304387665067507712', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214086', '1310215420371795968', '450300705362808832', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214087', '1310215420371795968', '1304793451996381184', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214088', '1310215420371795968', '1307299332784914432', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214089', '1310215420371795968', '442650387514789888', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214090', '1310215420371795968', '694203021537574912', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214091', '1310215420371795968', '442417411065516032', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_role_power` VALUES ('1310471398967214092', '1310215420371795968', '1307562196556840960', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688448', '1309851245195821056', '451002662209589248', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688449', '1309851245195821056', '451003242072117248', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688450', '1309851245195821056', '1305875436139446272', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688451', '1309851245195821056', '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688452', '1309851245195821056', '2', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688453', '1309851245195821056', '1284020948269268992', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688454', '1309851245195821056', '1310206853057085440', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688455', '1309851245195821056', '1310208636370288640', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688456', '1309851245195821056', '1284022967767924736', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688457', '1309851245195821056', '3', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688458', '1309851245195821056', '1310209696916832256', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688459', '1309851245195821056', '1310209900478988288', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688460', '1309851245195821056', '1310210054728712192', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688461', '1309851245195821056', '1310211965188046848', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688462', '1309851245195821056', '442359447487123456', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688463', '1309851245195821056', '4', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688464', '1309851245195821056', '1310226416867999744', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688465', '1309851245195821056', '1310226976593674240', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688466', '1309851245195821056', '1310227130998587392', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688467', '1309851245195821056', '1310227300935008256', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688468', '1309851245195821056', '1304387665067507712', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688469', '1309851245195821056', '1310402491631796224', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688470', '1309851245195821056', '1310402688881524736', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688471', '1309851245195821056', '1310402817776680960', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688472', '1309851245195821056', '1310403004406431744', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688473', '1309851245195821056', '450300705362808832', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688474', '1309851245195821056', '1310232350285627392', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688475', '1309851245195821056', '1310232462562951168', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688476', '1309851245195821056', '1304793451996381184', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688477', '1309851245195821056', '1310243862937075712', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688478', '1309851245195821056', '1310244103824343040', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688479', '1309851245195821056', '1310244248884346880', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688480', '1309851245195821056', '1307299332784914432', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688481', '1309851245195821056', '1310238229588344832', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688482', '1309851245195821056', '1310238417082122240', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688483', '1309851245195821056', '1310238574355939328', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688484', '1309851245195821056', '1310238700705153024', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688485', '1309851245195821056', '1313142171393589248', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688486', '1309851245195821056', '442650387514789888', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688487', '1309851245195821056', '442650770626711552', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688488', '1309851245195821056', '1310397832091402240', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688489', '1309851245195821056', '1310390699333517312', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688490', '1309851245195821056', '1310390994826428416', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688491', '1309851245195821056', '1310391095670079488', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688492', '1309851245195821056', '1310391707069579264', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688493', '1309851245195821056', '1310398020692475904', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688494', '1309851245195821056', '1310398158974484480', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688495', '1309851245195821056', '442651158935375872', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688496', '1309851245195821056', '1310395250908332032', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688497', '1309851245195821056', '694203021537574912', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688498', '1309851245195821056', '442520236248403968', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688499', '1309851245195821056', '694203311615639552', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688500', '1309851245195821056', '442417411065516032', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688501', '1309851245195821056', '442418188639145984', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688502', '1309851245195821056', '1302180351979814912', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688503', '1309851245195821056', '1307562196556840960', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688504', '1309851245195821056', '1307562519451140096', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147371491688505', '1309851245195821056', '1308571483794046976', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897792', '1310215420371795968', '451002662209589248', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897793', '1310215420371795968', '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897794', '1310215420371795968', '2', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897795', '1310215420371795968', '3', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897796', '1310215420371795968', '4', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897797', '1310215420371795968', '1304387665067507712', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897798', '1310215420371795968', '450300705362808832', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897799', '1310215420371795968', '1304793451996381184', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897800', '1310215420371795968', '1307299332784914432', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897801', '1310215420371795968', '1313142171393589248', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897802', '1310215420371795968', '1313142510486290432', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897803', '1310215420371795968', '442650387514789888', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897804', '1310215420371795968', '694203021537574912', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897805', '1310215420371795968', '442417411065516032', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1313147486356897806', '1310215420371795968', '1307562196556840960', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('442062615250866176', '693913251020275712', '1', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('442062615250866177', '693913251020275712', '2', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('442062615250866178', '693913251020275712', '3', NULL, NULL, NULL, NULL, NULL);
@@ -3586,7 +3848,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1304491590080790528', 'baobao', '$2a$10$90HTG.GJ4reN9P55ZOyHdeQYQTjYuafAvEeOG/a6HPm8ddShzsktS', NULL, NULL, '海绵宝宝', 'baobao@gmail.com', NULL, '1', '13668673160', '2000-02-09 00:00:00', NULL, NULL, NULL, '被岁月镂空，亦受其雕琢', '1', NULL);
+INSERT INTO `sys_user` VALUES ('1304491590080790528', 'baobao', '$2a$10$90HTG.GJ4reN9P55ZOyHdeQYQTjYuafAvEeOG/a6HPm8ddShzsktS', NULL, NULL, '海绵宝宝', 'baobao@gmail.com', NULL, '0', '13668673160', '2000-02-09 00:00:00', NULL, NULL, NULL, '被岁月镂空，亦受其雕琢', '1', NULL);
 INSERT INTO `sys_user` VALUES ('1306229606205882368', 'pikaqiu', '$2a$10$PQo17xHctlmR9t89qAjem.Uw9.92s7e0W22Uj/0uMNQ2e2sPn744u', NULL, NULL, '皮卡丘', 'pikaqiu@gmail.com', NULL, '0', '15553726531', '2000-02-09 00:00:00', NULL, NULL, NULL, NULL, '1', NULL);
 INSERT INTO `sys_user` VALUES ('1306230031168569344', 'feng', '$2a$10$jjf2h8Cx2lkFMKy3NY9pguADYAMewyPr2IJw8YAI5zSH2/0R/9Kra', NULL, NULL, '风筝', 'feng@gmail.com', NULL, '0', '15553726531', '2000-02-09 00:00:00', NULL, NULL, NULL, '被岁月镂空，亦受其雕琢', '1', NULL);
 INSERT INTO `sys_user` VALUES ('1309861917694623744', 'admin', '$2a$10$6T.NGloFO.mD/QOAUelMTOcjAH8N49h34TsXduDVlnNMrASIGBNz6', NULL, NULL, '就眠仪式', 'Jmys1992@qq.com', NULL, '0', '15553726531', '2020-09-26 22:26:32', NULL, NULL, NULL, '被岁月镂空，亦受其雕琢', '1', NULL);
@@ -3648,7 +3910,6 @@ INSERT INTO `sys_user_role` VALUES ('1309860016655695872', '1309860016043327488'
 INSERT INTO `sys_user_role` VALUES ('1309860554432577536', '1309860553891512320', '1309851245195821056');
 INSERT INTO `sys_user_role` VALUES ('1309861324494209024', '1309861323898617856', '1309851245195821056');
 INSERT INTO `sys_user_role` VALUES ('1309861325593116672', '1309861324909445120', '1309851245195821056');
-INSERT INTO `sys_user_role` VALUES ('1309861918256660480', '1309861917694623744', '1309851245195821056');
 INSERT INTO `sys_user_role` VALUES ('1310080380040118272', '1310080379331280896', '1306230258952830976');
 INSERT INTO `sys_user_role` VALUES ('1310080380589572096', '1310080379935260672', '1306230258952830976');
 INSERT INTO `sys_user_role` VALUES ('1310080718918909952', '1310080718256209920', '1306230258952830976');
@@ -3662,11 +3923,13 @@ INSERT INTO `sys_user_role` VALUES ('1310201251174023168', '1310201250637152256'
 INSERT INTO `sys_user_role` VALUES ('1310208453033066496', '1310208452424892416', '1309121036125470720');
 INSERT INTO `sys_user_role` VALUES ('1310209026096627712', '1310209025576534016', '1306230258952830976');
 INSERT INTO `sys_user_role` VALUES ('1310209026096627713', '1310209025576534016', '1309121036125470720');
-INSERT INTO `sys_user_role` VALUES ('1310381696905904128', '1304491590080790528', '1309851245195821056');
 INSERT INTO `sys_user_role` VALUES ('1310381721815875584', '1306229381332467712', '1309851245195821056');
 INSERT INTO `sys_user_role` VALUES ('1310409950215798784', '1310409555649232897', '1310215521433550848');
 INSERT INTO `sys_user_role` VALUES ('1310424875067768832', '1310421836906889217', '1310421428759166976');
 INSERT INTO `sys_user_role` VALUES ('1310471136550584320', '1310200691628703744', '1310215420371795968');
+INSERT INTO `sys_user_role` VALUES ('1313146892858687488', '1309861917694623744', '1309851245195821056');
+INSERT INTO `sys_user_role` VALUES ('1313146892858687489', '1309861917694623744', '1310215420371795968');
+INSERT INTO `sys_user_role` VALUES ('1313150643921223680', '1304491590080790528', '1309851245195821056');
 INSERT INTO `sys_user_role` VALUES ('442110794142978048', NULL, '1');
 INSERT INTO `sys_user_role` VALUES ('442110794142978049', NULL, '2');
 INSERT INTO `sys_user_role` VALUES ('442110794142978050', NULL, '3');
