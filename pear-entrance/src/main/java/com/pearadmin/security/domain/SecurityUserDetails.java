@@ -42,8 +42,11 @@ public class SecurityUserDetails extends SysUser implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-
-        return getEnable();
+        if(getEnable().equals("1")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override

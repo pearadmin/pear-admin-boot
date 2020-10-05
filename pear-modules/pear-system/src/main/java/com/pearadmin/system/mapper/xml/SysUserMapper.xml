@@ -131,6 +131,9 @@
              <if test="email!=null and email!=''">
                  email = #{email},
              </if>
+             <if test="sex!=null and sex!=''">
+                 sex = #{sex},
+             </if>
              <if test="phone!=null and phone!=''">
                  phone = #{phone},
              </if>

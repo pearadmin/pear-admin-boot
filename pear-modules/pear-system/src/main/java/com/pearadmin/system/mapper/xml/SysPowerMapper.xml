@@ -30,7 +30,7 @@
 			 left join sys_role sr on sr.role_id = srp.role_id
 			 left join  sys_user_role sur on sur.role_id = sr.role_id
 			 left join sys_user su on su.user_id = sur.user_id
-			 where su.username = #{username} and sp.parent_id = '0' order by sp.sort
+			 where su.username = #{username} and sp.parent_id = '0'  and sp.enable = 1 order by sp.sort
     </select>
 
     <select id="selectMenuByParentId" resultMap="ResuMenuMap">
@@ -39,7 +39,7 @@
 			 left join sys_role sr on sr.role_id = srp.role_id
 			 left join  sys_user_role sur on sur.role_id = sr.role_id
 			 left join sys_user su on su.user_id = sur.user_id
-			 where su.username = #{username} and sp.parent_id = #{parentId} order by sp.sort
+			 where su.username = #{username} and sp.parent_id = #{parentId} and sp.enable = 1 order by sp.sort
     </select>
 
     <select id="selectList" parameterType="SysPower" resultMap="SysPowerMap">
@@ -52,18 +52,19 @@
     </select>
 
     <select id="selectByUsername" parameterType="string" resultMap="SysPowerMap">
-      SELECT
-	*
-FROM
-	sys_power sp
-	LEFT JOIN sys_role_power srp ON sp.power_id = srp.power_id
-	LEFT JOIN sys_role sr ON sr.role_id = srp.role_id
-	LEFT JOIN sys_user_role sur ON sur.role_id = sr.role_id
-	LEFT JOIN sys_user su ON su.user_id = sur.user_id
-WHERE
-	su.username = #{username}
-ORDER BY
-	sp.sort ASC
+        SELECT
+	    *
+        FROM
+	    sys_power sp
+	    LEFT JOIN sys_role_power srp ON sp.power_id = srp.power_id
+	    LEFT JOIN sys_role sr ON sr.role_id = srp.role_id
+	    LEFT JOIN sys_user_role sur ON sur.role_id = sr.role_id
+	    LEFT JOIN sys_user su ON su.user_id = sur.user_id
+        WHERE
+	    su.username = #{username}
+	    and sp.enable = 1
+        ORDER BY
+	    sp.sort ASC
     </select>
 
     <insert id="insert" parameterType="SysPower">

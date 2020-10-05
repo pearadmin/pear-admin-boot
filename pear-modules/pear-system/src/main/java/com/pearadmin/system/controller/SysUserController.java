@@ -107,7 +107,7 @@ public class SysUserController extends BaseController {
     @Logging(title = "新增用户",describe = "新增用户",type = BusinessType.ADD)
     public Result save(@RequestBody SysUser sysUser){
         sysUser.setLogin("0");
-        sysUser.setEnable(true);
+        sysUser.setEnable("1");
         sysUser.setUserId(SequenceUtil.makeStringId());
         sysUser.setCreateTime(LocalDateTime.now());
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
@@ -224,7 +224,7 @@ public class SysUserController extends BaseController {
     @PutMapping("enable")
     @ApiOperation(value = "开启用户登录")
     public Result enable(@RequestBody SysUser sysUser){
-        sysUser.setEnable(true);
+        sysUser.setEnable("1");
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }
@@ -237,7 +237,7 @@ public class SysUserController extends BaseController {
     @PutMapping("disable")
     @ApiOperation(value = "禁用用户登录")
     public Result disable(@RequestBody SysUser sysUser){
-        sysUser.setEnable(false);
+        sysUser.setEnable("0");
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }
