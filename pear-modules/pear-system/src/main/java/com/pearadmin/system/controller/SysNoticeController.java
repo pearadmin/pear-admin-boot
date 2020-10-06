@@ -30,18 +30,33 @@ public class SysNoticeController extends BaseController {
     @Resource
     private ISysNoticeService sysNoticeService;
 
+    /**
+     * Describe: 公告列表视图
+     * Param ModelAndView
+     * Return 公告列表视图
+     * */
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/notice/main','sys:notice:main')")
     public ModelAndView main(){
         return JumpPage("system/notice/main");
     }
 
+    /**
+     * Describe: 新增公告视图
+     * Param ModelAndView
+     * Return 新增公告视图
+     * */
     @GetMapping("add")
     @PreAuthorize("hasPermission('/system/notice/add','sys:notice:add')")
     public ModelAndView add(){
         return JumpPage("system/notice/add");
     }
 
+    /**
+     * Describe: 公告数据
+     * Param ModelAndView
+     * Return List<SysNotice>
+     * */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/system/notice/data','sys:notice:data')")
     public ResultTable data(QueryNoticeParam param, PageDomain pageDomain){
