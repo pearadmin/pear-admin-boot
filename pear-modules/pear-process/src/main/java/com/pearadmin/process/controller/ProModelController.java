@@ -7,6 +7,7 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.process.domain.ProModel;
 import com.pearadmin.process.param.CreateModelParam;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +74,19 @@ public class ProModelController extends BaseController {
     @GetMapping("data")
     public ResultTable list(PageDomain pageDomain){
         List<Model> list = repositoryService.createModelQuery().listPage(pageDomain.start(),pageDomain.end());
-        return pageTable(list,repositoryService.createModelQuery().list().size());
+        List<ProModel> data = new ArrayList<>();
+
+        list.forEach(model -> {
+            ProModel proModel = new ProModel();
+            proModel.setId(model.getId());
+            proModel.setKey(model.getKey());
+            proModel.setName(model.getName());
+            proModel.setVersion(model.getVersion());
+            data.add(proModel);
+        });
+
+        long count = repositoryService.createModelQuery().list().size();
+        return pageTable(data,count);
     }
 
     /**

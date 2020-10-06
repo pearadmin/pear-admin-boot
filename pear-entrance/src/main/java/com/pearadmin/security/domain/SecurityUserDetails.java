@@ -1,7 +1,6 @@
 package com.pearadmin.security.domain;
 
 import com.pearadmin.system.domain.SysUser;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;

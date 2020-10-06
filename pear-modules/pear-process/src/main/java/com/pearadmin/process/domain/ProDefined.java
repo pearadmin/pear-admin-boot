@@ -3,7 +3,9 @@ package com.pearadmin.process.domain;
 import lombok.Data;
 
 /**
- * 流程定义实体
+ * Describe: 流程定义实体
+ * Author: 就眠仪式
+ * createTime: 2019/10/23
  * */
 @Data
 public class ProDefined {

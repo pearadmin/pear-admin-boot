@@ -76,11 +76,9 @@ public class ProDefinedController extends BaseController {
             data.add(defined);
         });
 
-        return pageTable(data,repositoryService
-                .createProcessDefinitionQuery()
-                .orderByProcessDefinitionVersion()
-                .asc()
-                .count());
+        long count = repositoryService.createProcessDefinitionQuery().orderByProcessDefinitionVersion().asc().count();
+
+        return pageTable(data,count);
     }
 
     /**
