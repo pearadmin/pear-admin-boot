@@ -7,7 +7,6 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
-import com.pearadmin.schedule.param.QueryJobParam;
 import com.pearadmin.schedule.service.IScheduleJobService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Describe: 定时任务控制器
@@ -50,7 +48,7 @@ public class ScheduleJobController extends BaseController {
      * */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/schdule/job/data','sch:job:data')")
-    public ResultTable data(PageDomain pageDomain, QueryJobParam param){
+    public ResultTable data(PageDomain pageDomain, ScheduleJobBean param){
        PageInfo<ScheduleJobBean> pageInfo =  scheduleJobService.page(param,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

@@ -2,6 +2,7 @@ package com.pearadmin.common.exception;
 
 import com.pearadmin.common.exception.base.BusinessException;
 import com.pearadmin.common.tools.servlet.ServletUtil;
+import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
@@ -47,9 +48,9 @@ public class GlobalExceptionHandler {
         if (ServletUtil.isAjax(request))
         {
             return Result.failure("暂无权限");
-        }
-        else
-        {
+
+        } else {
+
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.addObject("errorMessage", e.getMessage());
             modelAndView.setViewName("error/403");
