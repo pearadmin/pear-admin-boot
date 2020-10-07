@@ -8,7 +8,6 @@ import com.pearadmin.common.web.domain.response.ResuTree;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysRole;
-import com.pearadmin.system.param.QueryRoleParam;
 import com.pearadmin.system.service.ISysRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -61,8 +60,8 @@ public class SysRoleController extends BaseController {
     @GetMapping("data")
     @ApiOperation(value="获取角色列表数据")
     @PreAuthorize("hasPermission('/system/role/data','sys:role:data')")
-     public ResultTable data(PageDomain pageDomain, QueryRoleParam queryRoleParam){
-       PageInfo<SysRole> pageInfo = sysRoleService.page(queryRoleParam,pageDomain);
+     public ResultTable data(PageDomain pageDomain, SysRole param){
+       PageInfo<SysRole> pageInfo = sysRoleService.page(param,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
@@ -74,7 +73,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("add")
     @ApiOperation(value="获取角色新增视图")
     @PreAuthorize("hasPermission('/system/role/add','sys:role:add')")
-    public ModelAndView add(ModelAndView modelAndView){
+    public ModelAndView add(){
         return JumpPage(MODULE_PATH + "add");
     }
 

@@ -11,8 +11,6 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysUser;
-import com.pearadmin.system.param.EditPasswordParam;
-import com.pearadmin.system.param.QueryUserParam;
 import com.pearadmin.system.domain.SysMenu;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
@@ -77,7 +75,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value="获取用户列表数据")
     @PreAuthorize("hasPermission('/system/user/data','sys:user:data')")
     @Logging(title = "查询用户",describe = "查询用户",type = BusinessType.QUERY)
-    public ResultTable data(PageDomain pageDomain, QueryUserParam param){
+    public ResultTable data(PageDomain pageDomain, SysUser param){
         PageInfo<SysUser> pageInfo = sysUserService.page(param,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
@@ -136,26 +134,26 @@ public class SysUserController extends BaseController {
      * Return 返回用户密码修改视图
      * */
     @GetMapping("editPassword")
-    public ModelAndView editPasswordView(Model model,String userId){
+    public ModelAndView editPasswordView(){
         return JumpPage(MODULE_PATH + "editPassword");
     }
 
     @PutMapping("editPassword")
-    public Result editPassword(@RequestBody EditPasswordParam editPasswordParam){
+    public Result editPassword(String oldPassword,String newPassword,String confirmPassword){
         SysUser sysUser = (SysUser) ServletUtil.getSession().getAttribute("currentUser");
         SysUser editUser = sysUserService.getById(sysUser.getUserId());
-        if(Strings.isBlank(editPasswordParam.getConfirmPassword())
-        || Strings.isBlank(editPasswordParam.getNewPassword())
-        || Strings.isBlank(editPasswordParam.getOldPassword())){
+        if(Strings.isBlank(confirmPassword)
+        || Strings.isBlank(newPassword)
+        || Strings.isBlank(oldPassword)){
             return failure("输入不能为空");
         }
-        if(!new BCryptPasswordEncoder().matches(editPasswordParam.getOldPassword(),editUser.getPassword())){
+        if(!new BCryptPasswordEncoder().matches(oldPassword,editUser.getPassword())){
             return failure("密码验证失败");
         }
-        if(!editPasswordParam.getNewPassword().equals(editPasswordParam.getConfirmPassword())){
+        if(!newPassword.equals(confirmPassword)){
             return failure("两次密码输入不一致");
         }
-        editUser.setPassword(new BCryptPasswordEncoder().encode(editPasswordParam.getNewPassword()));
+        editUser.setPassword(new BCryptPasswordEncoder().encode(newPassword));
         boolean result = sysUserService.update(editUser);
         return decide(result,"修改成功","修改失败");
     }

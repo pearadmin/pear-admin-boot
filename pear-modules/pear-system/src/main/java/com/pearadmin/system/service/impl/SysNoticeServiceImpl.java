@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysNotice;
 import com.pearadmin.system.mapper.SysNoticeMapper;
-import com.pearadmin.system.param.QueryNoticeParam;
 import com.pearadmin.system.service.ISysNoticeService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -23,14 +22,14 @@ public class SysNoticeServiceImpl implements ISysNoticeService {
     }
 
     @Override
-    public List<SysNotice> list(QueryNoticeParam queryNoticeParam) {
-        return sysNoticeMapper.selectList(queryNoticeParam);
+    public List<SysNotice> list(SysNotice param) {
+        return sysNoticeMapper.selectList(param);
     }
 
     @Override
-    public PageInfo<SysNotice> page(QueryNoticeParam queryNoticeParam, PageDomain pageDomain) {
+    public PageInfo<SysNotice> page(SysNotice param, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
-        List<SysNotice> list = sysNoticeMapper.selectList(queryNoticeParam);
+        List<SysNotice> list = sysNoticeMapper.selectList(param);
         return new PageInfo<>(list);
     }
 

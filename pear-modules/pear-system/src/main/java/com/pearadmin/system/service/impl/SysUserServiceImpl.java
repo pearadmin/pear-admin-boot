@@ -11,7 +11,6 @@ import com.pearadmin.system.mapper.SysPowerMapper;
 import com.pearadmin.system.mapper.SysRoleMapper;
 import com.pearadmin.system.mapper.SysUserMapper;
 import com.pearadmin.system.mapper.SysUserRoleMapper;
-import com.pearadmin.system.param.QueryUserParam;
 import com.pearadmin.system.domain.SysMenu;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * Return: 返回用户列表数据
      * */
     @Override
-    public List<SysUser> list(QueryUserParam param) {
+    public List<SysUser> list(SysUser param) {
         List<SysUser> sysUsers = sysUserMapper.selectList(param);
         return sysUsers;
     }
@@ -68,7 +67,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * Return: 返回分页用户列表数据
      * */
     @Override
-    public PageInfo<SysUser> page(QueryUserParam param, PageDomain pageDomain) {
+    public PageInfo<SysUser> page(SysUser param, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
         List<SysUser> sysUsers = sysUserMapper.selectList(param);
         return new PageInfo<>(sysUsers);

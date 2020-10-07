@@ -16,7 +16,7 @@
     </resultMap>
 
     <!-- 查询系统配置列表 -->
-    <select id="selectList" parameterType="com.pearadmin.system.param.QueryRoleParam" resultMap="SysConfigMap">
+    <select id="selectList" resultMap="SysConfigMap">
         select * from sys_config
         <where>
             <if test="configCode!=null and configCode!=''">

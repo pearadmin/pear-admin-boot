@@ -14,7 +14,7 @@
         <result column="remark" property="remark"></result>
     </resultMap>
 
-    <select id="selectList" parameterType="com.pearadmin.system.param.QueryRoleParam" resultMap="SysRoleMap">
+    <select id="selectList" resultMap="SysRoleMap">
         select * from sys_role
         <where>
             <if test="roleCode!=null and roleCode!=''">

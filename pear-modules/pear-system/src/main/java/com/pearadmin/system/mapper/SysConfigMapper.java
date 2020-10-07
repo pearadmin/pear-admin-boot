@@ -1,7 +1,6 @@
 package com.pearadmin.system.mapper;
 
 import com.pearadmin.system.domain.SysConfig;
-import com.pearadmin.system.param.QueryConfigParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -19,7 +18,7 @@ public interface SysConfigMapper {
      * Param: SysConfig
      * Return: 执行结果
      * */
-    List<SysConfig> selectList(QueryConfigParam queryConfigParam);
+    List<SysConfig> selectList(SysConfig param);
 
     /**
      * Describe: 添加系统配置

@@ -7,7 +7,6 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysConfig;
-import com.pearadmin.system.param.QueryConfigParam;
 import com.pearadmin.system.service.ISysConfigService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Describe: 系 统 配 置 控 制 器
@@ -55,7 +53,7 @@ public class SysConfigController extends BaseController {
      * */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/system/config/data','sys:config:data')")
-    public ResultTable data(QueryConfigParam param, PageDomain pageDomain){
+    public ResultTable data(SysConfig param, PageDomain pageDomain){
         PageInfo<SysConfig> pageInfo = sysConfigService.page(param,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

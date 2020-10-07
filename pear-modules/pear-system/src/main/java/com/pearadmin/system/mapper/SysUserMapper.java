@@ -1,7 +1,6 @@
 package com.pearadmin.system.mapper;
 
 import com.pearadmin.system.domain.SysUser;
-import com.pearadmin.system.param.QueryUserParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -34,7 +33,7 @@ public interface SysUserMapper {
      * Param: username
      * Return: SysUser
      * */
-    List<SysUser> selectList(QueryUserParam param);
+    List<SysUser> selectList(SysUser param);
 
     /**
      * Describe: 添加用户数据

@@ -3,7 +3,7 @@ package com.pearadmin.system.service;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysConfig;
-import com.pearadmin.system.param.QueryConfigParam;
+
 import java.util.List;
 
 /**
@@ -19,14 +19,14 @@ public interface ISysConfigService {
      * Param: SysConfig
      * Return: List<SysConfig>
      * */
-    List<SysConfig> list(QueryConfigParam param);
+    List<SysConfig> list(SysConfig param);
 
     /**
      * Describe: 根据条件查询系统配置列表数据 分页
      * Param: SysConfig
      * Return: PageInfo<SysConfig>
      * */
-    PageInfo<SysConfig> page(QueryConfigParam param, PageDomain pageDomain);
+    PageInfo<SysConfig> page(SysConfig param, PageDomain pageDomain);
 
     /**
      * Describe: 根据 Id 查询系统配置

@@ -29,7 +29,7 @@
     </select>
 
     <!-- 根据 SysUser 条件查询用户列表 -->
-    <select id="selectList" parameterType="com.pearadmin.system.param.QueryUserParam" resultMap="SysUserMap">
+    <select id="selectList" resultMap="SysUserMap">
         select * from sys_user
         <where>
             <if test="username!=null and username!=''">

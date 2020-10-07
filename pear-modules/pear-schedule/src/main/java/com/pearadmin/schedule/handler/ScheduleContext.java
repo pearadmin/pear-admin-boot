@@ -48,7 +48,7 @@ public class ScheduleContext extends QuartzJobBean {
             long executeTime = System.currentTimeMillis() - beginTime;
             logBean.setTimes((int)executeTime);
             logBean.setStatus(1);
-            logBean.setError(e.getCause().toString());
+            logBean.setError(e.getMessage());
             e.getCause();
         } finally {
             scheduleJobLogService.insert(logBean);

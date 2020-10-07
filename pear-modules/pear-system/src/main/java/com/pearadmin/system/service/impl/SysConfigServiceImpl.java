@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysConfig;
 import com.pearadmin.system.mapper.SysConfigMapper;
-import com.pearadmin.system.param.QueryConfigParam;
 import com.pearadmin.system.service.ISysConfigService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -31,7 +30,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * Return: List<SysConfig>
      * */
     @Override
-    public List<SysConfig> list(QueryConfigParam param) {
+    public List<SysConfig> list(SysConfig param) {
         return sysConfigMapper.selectList(param);
     }
 
@@ -41,7 +40,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * Return: PageInfo<SysConfig>
      * */
     @Override
-    public PageInfo<SysConfig> page(QueryConfigParam param, PageDomain pageDomain) {
+    public PageInfo<SysConfig> page(SysConfig param, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
         List<SysConfig> list = sysConfigMapper.selectList(param);
         return new PageInfo<>(list);

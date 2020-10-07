@@ -10,7 +10,6 @@ import com.pearadmin.system.domain.SysRolePower;
 import com.pearadmin.system.mapper.SysPowerMapper;
 import com.pearadmin.system.mapper.SysRoleMapper;
 import com.pearadmin.system.mapper.SysRolePowerMapper;
-import com.pearadmin.system.param.QueryRoleParam;
 import com.pearadmin.system.service.ISysRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,8 +51,8 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * Return: 操作结果
      * */
     @Override
-    public List<SysRole> list(QueryRoleParam queryRoleParam) {
-        return sysRoleMapper.selectList(queryRoleParam);
+    public List<SysRole> list(SysRole param) {
+        return sysRoleMapper.selectList(param);
     }
 
     /**
@@ -62,9 +61,9 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * Return: 操作结果
      * */
     @Override
-    public PageInfo<SysRole> page(QueryRoleParam queryRoleParam, PageDomain pageDomain) {
+    public PageInfo<SysRole> page(SysRole param, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
-        List<SysRole> list = sysRoleMapper.selectList(queryRoleParam);
+        List<SysRole> list = sysRoleMapper.selectList(param);
         return new PageInfo<>(list);
     }
 

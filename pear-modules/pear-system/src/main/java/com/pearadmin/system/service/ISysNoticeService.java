@@ -4,10 +4,6 @@ package com.pearadmin.system.service;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysNotice;
-import com.pearadmin.system.domain.SysPower;
-import com.pearadmin.system.domain.SysRole;
-import com.pearadmin.system.param.QueryNoticeParam;
-import com.pearadmin.system.param.QueryRoleParam;
 
 import java.util.List;
 
@@ -18,14 +14,14 @@ public interface ISysNoticeService {
      * Param: queryRoleParam
      * Return: 操作结果
      * */
-    public List<SysNotice> list(QueryNoticeParam queryNoticeParam);
+    List<SysNotice> list(SysNotice param);
 
     /**
      * Describe: 查询角色数据
      * Param: queryRoleParam
      * Return: 操作结果
      * */
-    public List<SysNotice> top(Integer size);
+    List<SysNotice> top(Integer size);
 
     /**
      * Describe: 分页查询角色数据
@@ -33,7 +29,7 @@ public interface ISysNoticeService {
      * Param: pageDomain
      * Return: 操作结果
      * */
-    public PageInfo<SysNotice> page(QueryNoticeParam queryNoticeParam, PageDomain pageDomain);
+    PageInfo<SysNotice> page(SysNotice param, PageDomain pageDomain);
 
     /**
      * Describe: 保存角色数据

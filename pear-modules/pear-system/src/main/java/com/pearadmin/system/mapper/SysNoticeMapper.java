@@ -1,8 +1,6 @@
 package com.pearadmin.system.mapper;
 
 import com.pearadmin.system.domain.SysNotice;
-import com.pearadmin.system.param.QueryNoticeParam;
-import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface SysNoticeMapper {
 
-    List<SysNotice> selectList(QueryNoticeParam queryNoticeParam);
+    List<SysNotice> selectList(SysNotice param);
 
 
     List<SysNotice> selectTop(Integer size);

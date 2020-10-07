@@ -9,7 +9,6 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysNotice;
 import com.pearadmin.system.domain.SysUser;
-import com.pearadmin.system.param.QueryNoticeParam;
 import com.pearadmin.system.service.ISysNoticeService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -59,7 +58,7 @@ public class SysNoticeController extends BaseController {
      * */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/system/notice/data','sys:notice:data')")
-    public ResultTable data(QueryNoticeParam param, PageDomain pageDomain){
+    public ResultTable data(SysNotice param, PageDomain pageDomain){
         PageInfo<SysNotice> pageInfo = sysNoticeService.page(param,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }

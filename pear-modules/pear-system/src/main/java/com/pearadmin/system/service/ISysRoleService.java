@@ -4,8 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.domain.SysRole;
-import com.pearadmin.system.domain.SysUser;
-import com.pearadmin.system.param.QueryRoleParam;
 
 import java.util.List;
 
@@ -16,7 +14,7 @@ public interface ISysRoleService {
      * Param: queryRoleParam
      * Return: 操作结果
      * */
-    public List<SysRole> list(QueryRoleParam queryRoleParam);
+    public List<SysRole> list(SysRole queryRoleParam);
 
     /**
      * Describe: 分页查询角色数据
@@ -24,7 +22,7 @@ public interface ISysRoleService {
      * Param: pageDomain
      * Return: 操作结果
      * */
-    public PageInfo<SysRole> page(QueryRoleParam queryRoleParam, PageDomain pageDomain);
+    public PageInfo<SysRole> page(SysRole param, PageDomain pageDomain);
 
     /**
      * Describe: 保存角色数据

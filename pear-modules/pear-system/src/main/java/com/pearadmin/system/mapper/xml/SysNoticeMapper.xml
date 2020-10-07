@@ -14,7 +14,7 @@
         <result column="remark" property="remark"></result>
     </resultMap>
 
-    <select id="selectList" parameterType="com.pearadmin.system.param.QueryNoticeParam" resultMap="SysNoticeMap">
+    <select id="selectList"  resultMap="SysNoticeMap">
         select
         sn.*,
         su.real_name
