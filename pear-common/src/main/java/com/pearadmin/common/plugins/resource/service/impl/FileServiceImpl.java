@@ -10,6 +10,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.FileInputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
 public class FileServiceImpl implements IFileService {
 
     /**
-     * 文 明 服 务
+     * 引 入 服 务
      * */
     @Resource
     private FileMapper fileMapper;
@@ -40,7 +41,9 @@ public class FileServiceImpl implements IFileService {
             String suffixName = name.substring(name.lastIndexOf("."));
             String hash = fileId;
             String fileName = hash + suffixName;
-            java.io.File filepath = new java.io.File("/home/upload", fileName);
+            String fileDir = LocalDate.now().toString();
+            String parentPath = "/home/upload/"+fileDir;
+            java.io.File filepath = new java.io.File(parentPath, fileName);
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();
             }
@@ -100,15 +103,10 @@ public class FileServiceImpl implements IFileService {
      * */
     @Override
     public boolean remove(String id) {
-
         File file = fileMapper.selectById(id);
-
         new java.io.File(file.getFilePath()).delete();
-
         int removeInfo = fileMapper.deleteById(id);
-
         if(removeInfo>0){
-
             return true;
         }
         return false;

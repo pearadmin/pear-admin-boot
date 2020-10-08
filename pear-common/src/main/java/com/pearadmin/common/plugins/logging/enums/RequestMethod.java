@@ -1,7 +1,9 @@
 package com.pearadmin.common.plugins.logging.enums;
 
 /**
- * 请 求 方 式 枚 举
+ * Describe: 请 求 方 式
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 public enum  RequestMethod {
 

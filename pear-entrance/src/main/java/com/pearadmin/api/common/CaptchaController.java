@@ -1,4 +1,4 @@
-package com.pearadmin.system.controller;
+package com.pearadmin.api.common;
 
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * */
 @RestController
 @RequestMapping("system/captcha")
-public class SysCaptchaController extends BaseController {
+public class CaptchaController extends BaseController {
 
     /**
      * 验证码生成
@@ -26,18 +26,5 @@ public class SysCaptchaController extends BaseController {
     @RequestMapping("generate")
     public void generate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         CaptchaUtil.out(request, response);
-    }
-
-    /**
-     * 验证码验证
-     * @param code
-     * @return verify
-     * */
-    @RequestMapping("verify")
-    public Result verify(String code, HttpServletRequest request){
-        if(!CaptchaUtil.ver(code,request)){
-            return failure("验证码有误");
-        }
-        return success();
     }
 }

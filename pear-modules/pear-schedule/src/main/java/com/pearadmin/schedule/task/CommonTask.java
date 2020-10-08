@@ -1,6 +1,6 @@
-package com.pearadmin.schedule.task.impl;
+package com.pearadmin.schedule.task;
 
-import com.pearadmin.schedule.task.BaseTaskService;
+import com.pearadmin.schedule.handler.base.BaseTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 日 志 组 件
+ * Describe: 日 志 实 体 类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 @Data
 @NoArgsConstructor

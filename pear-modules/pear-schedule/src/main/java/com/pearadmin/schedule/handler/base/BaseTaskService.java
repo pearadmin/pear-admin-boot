@@ -1,4 +1,4 @@
-package com.pearadmin.schedule.task;
+package com.pearadmin.schedule.handler.base;
 
 /**
  * Describe: 定时任务服务接口

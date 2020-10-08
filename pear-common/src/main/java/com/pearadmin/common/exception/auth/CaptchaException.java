@@ -15,4 +15,5 @@ public class CaptchaException extends AuthenticationException {
     public CaptchaException(String message){
         super(message);
     }
+
 }

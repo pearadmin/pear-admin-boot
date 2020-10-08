@@ -6,4 +6,9 @@ package com.pearadmin.common.constant;
  * CreateTime: 2019/10/23
  * */
 public class CharsetConstant {
+
+    public static String UTF8 ="UTF-8";
+
+    public static String GBK = "GBK";
+
 }
