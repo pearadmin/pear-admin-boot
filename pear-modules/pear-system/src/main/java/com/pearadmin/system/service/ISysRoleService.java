@@ -4,9 +4,13 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.domain.SysRole;
-
 import java.util.List;
 
+/**
+ * Describe: 角色服务接口类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public interface ISysRoleService {
 
     /**
@@ -14,7 +18,7 @@ public interface ISysRoleService {
      * Param: queryRoleParam
      * Return: 操作结果
      * */
-    public List<SysRole> list(SysRole queryRoleParam);
+    List<SysRole> list(SysRole queryRoleParam);
 
     /**
      * Describe: 分页查询角色数据
@@ -22,7 +26,7 @@ public interface ISysRoleService {
      * Param: pageDomain
      * Return: 操作结果
      * */
-    public PageInfo<SysRole> page(SysRole param, PageDomain pageDomain);
+    PageInfo<SysRole> page(SysRole param, PageDomain pageDomain);
 
     /**
      * Describe: 保存角色数据

@@ -6,6 +6,11 @@ import com.pearadmin.system.domain.SysUser;
 
 import java.util.List;
 
+/**
+ * Describe: 权限服务接口类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public interface ISysPowerService {
 
     /**

@@ -7,39 +7,44 @@ import com.pearadmin.system.domain.SysNotice;
 
 import java.util.List;
 
+/**
+ * Describe: 公告服务接口类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public interface ISysNoticeService {
 
     /**
-     * Describe: 查询角色数据
-     * Param: queryRoleParam
+     * Describe: 查询公告数据
+     * Param: queryNoticeParam
      * Return: 操作结果
      * */
     List<SysNotice> list(SysNotice param);
 
     /**
-     * Describe: 查询角色数据
-     * Param: queryRoleParam
+     * Describe: 查询公告数据
+     * Param: queryNoticeParam
      * Return: 操作结果
      * */
     List<SysNotice> top(Integer size);
 
     /**
-     * Describe: 分页查询角色数据
-     * Param: queryRoleParam
+     * Describe: 分页查询公告数据
+     * Param: queryNoticeParam
      * Param: pageDomain
      * Return: 操作结果
      * */
     PageInfo<SysNotice> page(SysNotice param, PageDomain pageDomain);
 
     /**
-     * Describe: 保存角色数据
-     * Param: SysRole
+     * Describe: 保存公告数据
+     * Param: SysNotice
      * Return: 操作结果
      * */
     boolean save(SysNotice sysNotice);
 
     /**
-     * Describe: 根据 id 获取角色信息
+     * Describe: 根据 id 获取公告信息
      * Param: id
      * Return: 操作结果
      * */
@@ -53,14 +58,14 @@ public interface ISysNoticeService {
     boolean update(SysNotice sysNotice);
 
     /**
-     * Describe: 根据 id 删除角色数据
+     * Describe: 根据 id 删除公告数据
      * Param: id
      * Return: 操作结果
      * */
     Boolean remove(String id);
 
     /**
-     * Describe: 根据 id 删除角色数据
+     * Describe: 根据 id 删除公告数据
      * Param: ids
      * Return: 操作结果
      * */

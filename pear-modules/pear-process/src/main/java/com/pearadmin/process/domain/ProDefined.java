@@ -1,5 +1,6 @@
 package com.pearadmin.process.domain;
 
+import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Data;
  * createTime: 2019/10/23
  * */
 @Data
-public class ProDefined {
+public class ProDefined extends BaseDomain {
 
     /**
      * 流程定义编号
