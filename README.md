@@ -2,7 +2,6 @@
 <div align="center">
 <br/>
 <br/>
-<img src="admin/images/logo.png" width="90px" style="margin-top:30px;"/>
   <h1 align="center">
     Pear Admin Boot
   </h1>
@@ -27,11 +26,6 @@
     </a>
 </p>
 <br>
-<div align="center">
-  <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="admin/images/show.png" />
-</div>
-<br>
-
 
 #### 项目介绍  :jack_o_lantern: 
 
