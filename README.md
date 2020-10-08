@@ -8,8 +8,6 @@ Spring Boot + Security + MyBatis + Thymeleaf + Activiti 快速开发平台
 
 项目不定时更新，建议 Star watch 一份
 
-如需非Maven聚合模块代码，请前往 [Pear Admin Fast](https://gitee.com/Jmysy/Pear-Admin-Fast)
-
 #### 模块划分
 
 |功能名称     |实现方式     |完成度     |功能名称     |实现方式     |完成度     |
