@@ -1,6 +1,37 @@
-# Pear Admin Boot
 
-[预览地址](http://boot.pearadmin.com/#) |  [官方网站](http://www.pearadmin.com)
+<div align="center">
+<br/>
+<br/>
+<img src="admin/images/logo.png" width="90px" style="margin-top:30px;"/>
+  <h1 align="center">
+    Pear Admin Boot
+  </h1>
+  <h4 align="center">
+    开 箱 即 用 的 Spring 快 速 开 发 平 台
+  </h4> 
+
+  [预 览](http://boot.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
+
+
+</div>
+
+<p align="center">
+    <a href="#">
+        <img src="https://img.shields.io/badge/Pear Admin Layui-3.1.0+-green.svg" alt="Pear Admin Layui Version">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/Spring Boot-2.3.0+-green.svg" alt="Jquery Version">
+    </a>
+      <a href="#">
+        <img src="https://img.shields.io/badge/Layui-2.5.6+-green.svg" alt="Layui Version">
+    </a>
+</p>
+<br>
+<div align="center">
+  <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="admin/images/show.png" />
+</div>
+<br>
+
 
 #### 项目介绍  :jack_o_lantern: 
 
