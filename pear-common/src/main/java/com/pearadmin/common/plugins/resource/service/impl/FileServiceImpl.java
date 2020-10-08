@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,28 @@ public class FileServiceImpl implements IFileService {
      * */
     @Resource
     private FileMapper fileMapper;
+
+    /**
+     * Describe: 文 件 夹 列 表
+     * Param: File
+     * Return: id
+     * */
+    public List<String> fileDirs(){
+        List<String> fileDirs = new ArrayList<>();
+        java.io.File file = new java.io.File("/home/upload");
+        if(file.isDirectory()){
+          java.io.File[] files = file.listFiles();
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+
+                   String dirName = files[i].getName();
+
+                   fileDirs.add(dirName);
+                }
+            }
+        }
+        return fileDirs;
+    }
 
     /**
      * Describe: 文件上传

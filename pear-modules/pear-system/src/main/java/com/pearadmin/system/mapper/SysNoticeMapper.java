@@ -5,12 +5,26 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
+/**
+ * Describe: 公告接口
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Mapper
 public interface SysNoticeMapper {
 
+    /**
+     * Describe: 公告列表
+     * Param: SysNotice
+     * Return: List<SysNotice>
+     * */
     List<SysNotice> selectList(SysNotice param);
 
-
+    /**
+     * Describe: 查询 Top 排行，最新公告
+     * Param: SysNotice
+     * Return: 执行结果
+     * */
     List<SysNotice> selectTop(Integer size);
 
     /**

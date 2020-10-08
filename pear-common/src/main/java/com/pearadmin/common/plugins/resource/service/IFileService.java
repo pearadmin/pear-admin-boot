@@ -31,4 +31,8 @@ public interface IFileService {
      * */
     boolean remove(String id);
 
+    /**
+     * 文 件 夹 列 表
+     * */
+    List<String> fileDirs();
 }
