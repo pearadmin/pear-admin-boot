@@ -1,7 +1,7 @@
 
 <div align="center">
 <br/>
-<br/>
+
   <h1 align="center">
     Pear Admin Boot
   </h1>
@@ -10,7 +10,6 @@
   </h4> 
 
   [预 览](http://boot.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
-
 
 </div>
 
@@ -25,7 +24,6 @@
         <img src="https://img.shields.io/badge/Layui-2.5.6+-green.svg" alt="Layui Version">
     </a>
 </p>
-<br>
 
 #### 项目介绍  :jack_o_lantern: 
 
