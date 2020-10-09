@@ -52,12 +52,12 @@ pear:
   security:
     # 不 需 要 权 限 拦 截 的 接 口 配 置
     open-api:
-      - /login/**
-      - /system/captcha/**
-      - /assets/**
-      - /admin/**
-      - /component/**
-      - /favicon.ico
+      - /login/**  # 开放 登录 接口
+      - /system/captcha/** # 开放 验证码生成 接口
+      - /assets/** # 开放 静态资源
+      - /admin/** # 开放 静态资源
+      - /component/** # 开放 静态资源
+      - /favicon.ico # 开放 Logo
 
 # Page Helper
 pagehelper:
