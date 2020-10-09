@@ -24,8 +24,14 @@ import javax.annotation.Resource;
 @RequestMapping("system/file")
 public class SysFileController extends BaseController {
 
+    /**
+     * 系 统 文 件
+     * */
     private String MODULE_PATH = "system/file/";
 
+    /**
+     * 移 除 服 务
+     * */
     @Resource
     private IFileService fileService;
 

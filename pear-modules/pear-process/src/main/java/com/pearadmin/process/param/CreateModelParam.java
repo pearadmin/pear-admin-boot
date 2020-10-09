@@ -2,6 +2,11 @@ package com.pearadmin.process.param;
 
 import lombok.Data;
 
+/**
+ * Describe: 模型创建实体
+ * Author: 就眠仪式
+ * createTime: 2019/10/23
+ * */
 @Data
 public class CreateModelParam {
 

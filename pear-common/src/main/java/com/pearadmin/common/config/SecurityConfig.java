@@ -1,5 +1,8 @@
 package com.pearadmin.common.config;
 
+import com.pearadmin.common.config.proprety.SecurityProperty;
+import com.pearadmin.common.config.proprety.SwaggerProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.PermissionEvaluator;
@@ -26,6 +29,7 @@ import javax.annotation.Resource;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableConfigurationProperties(SecurityProperty.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
@@ -48,6 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     private AccessDeniedHandler securityAccessDeniedHander;
+
+    @Resource
+    private SecurityProperty securityProperty;
 
 
     /**
@@ -82,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      @Override
      protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login/**,/system/captcha/**,/assets/**,/admin/**,/component/**,/favicon.ico".split(",")).permitAll()
+                .antMatchers(securityProperty.getOpenApi()).permitAll()
                 // 其他的需要登录后才能访问
                 .anyRequest().authenticated()
                 .and()

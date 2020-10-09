@@ -84,5 +84,6 @@ public interface ISysUserService {
      * Return: 操作结果
      * */
     List<SysMenu> getUserMenu(String username);
+
 }
 
