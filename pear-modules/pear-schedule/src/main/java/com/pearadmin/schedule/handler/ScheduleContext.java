@@ -44,7 +44,6 @@ public class ScheduleContext extends QuartzJobBean {
             logBean.setStatus(0);
             log.info("定时器 === >> " + jobBean.getJobName() + "执行成功,耗时 === >> " + executeTime);
         } catch (Exception e){
-            // 异常信息
             long executeTime = System.currentTimeMillis() - beginTime;
             logBean.setTimes((int)executeTime);
             logBean.setStatus(1);
