@@ -5,27 +5,31 @@
 </head>
 <body class="pear-container">
 <div class="layui-card">
-    <form class="layui-form layui-card-header layuiadmin-card-header-auto search-form" id="searchForm">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">表名称</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="tableName" placeholder="" autocomplete="off">
+    <div class="layui-card-body">
+        <form class="layui-form  search-form" id="searchForm">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">表名称</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" name="tableName" placeholder="" autocomplete="off">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">表描述</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" name="tableComment" placeholder="" autocomplete="off">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button type="button" class="pear-btn pear-btn-primary pear-btn-md" data-type="reload" lay-submit
+                            lay-filter="form-search" id="form-search"><i class="layui-icon">&#xe615;</i>搜索
+                    </button>
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">表描述</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="tableComment" placeholder="" autocomplete="off">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <button type="button" class="pear-btn pear-btn-primary pear-btn-md" data-type="reload" lay-submit
-                        lay-filter="form-search" id="form-search"><i class="layui-icon">&#xe615;</i>搜索
-                </button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
     <div class="layui-card-body">
         <table id="table_import" lay-filter="table_import"></table>
     </div>
@@ -60,6 +64,7 @@
             , url: prefix + "/db/list"
             , defaultToolbar: []
             , autoSort: false
+            , skin: 'line'
             , page: true
             , cols: new Array([
                 {type: 'checkbox', width: 40}
@@ -78,7 +83,6 @@
         });
     });
 
-    //表格查询
     function search(isResetCurr) {
         let field = JSON.stringify($('#searchForm'));
         let sortParam = getSort('table_import');

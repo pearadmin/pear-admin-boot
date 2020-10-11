@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.text.Convert;
 import com.pearadmin.common.tools.text.StringUtils;
 import com.pearadmin.common.web.base.BaseController;
+import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.ResultSelect;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
@@ -51,9 +55,11 @@ public class GenController extends BaseController {
      */
     @PostMapping("/list")
     @ResponseBody
-    public ResultTable genList(GenTable genTable) {
-        List<GenTable> list = genTableService.selectGenTableList(genTable);
-        return dataTable(list);
+    public ResultTable genList(GenTable genTable, PageDomain pageDomain) {
+        PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
+        List<GenTable> data = genTableService.selectGenTableList(genTable);
+        PageInfo<GenTable> pageInfo = new PageInfo<>(data);
+        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
     /**
@@ -61,10 +67,11 @@ public class GenController extends BaseController {
      */
     @PostMapping("/db/list")
     @ResponseBody
-    public ResultTable dataList(GenTable genTable) {
-
-        List<GenTable> list = genTableService.selectDbTableList(genTable);
-        return dataTable(list);
+    public ResultTable dataList(GenTable genTable,PageDomain pageDomain) {
+        PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
+        List<GenTable> data =genTableService.selectDbTableList(genTable);
+        PageInfo<GenTable> pageInfo = new PageInfo<>(data);
+        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
     /**
@@ -129,10 +136,6 @@ public class GenController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public Result editSave(@Validated GenTable genTable) {
-
-        System.out.println("修改数据:"+genTable.toString());
-
-        System.out.println("修改参数:"+genTable.getParams());
         genTableService.validateEdit(genTable);
         genTableService.updateGenTable(genTable);
         return success();

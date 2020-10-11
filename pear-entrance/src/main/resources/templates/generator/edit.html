@@ -56,7 +56,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">备注：</label>
                                 <div class="layui-input-block">
-                                <textarea class="layui-textarea" rows="5" name="remark" maxlength="500"
+                                <textarea class="layui-textarea" rows="5" th:field="*{remark}" name="remark" maxlength="500"
                                           autocomplete="off"></textarea>
                                 </div>
                             </div>
@@ -384,6 +384,7 @@
                         dataType: 'json',
                         success: function (res) {
                             if (res.code == 0) {
+                                html += '<option value="input" >空</option>';
                                 $.each(res.data, function (i, item) {
                                     html += '<option value="input" ' + (dictType === item.typeCode ? ' selected' : '') + '>' + item
                                         .typeName + '</option>\n';

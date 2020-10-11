@@ -51,7 +51,6 @@ public class SysDictDataController extends BaseController {
     @GetMapping("data")
     @PreAuthorize("hasPermission('/system/dictData/data','sys:dictData:data')")
     public ResultTable data (SysDictData sysDictData, PageDomain pageDomain){
-       System.out.println(sysDictData.toString());
        PageInfo<SysDictData> pageInfo = sysDictDataService.page(sysDictData,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
