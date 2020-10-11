@@ -13,7 +13,7 @@
     <!-- 仓库信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-entrance</artifactId>
-    <version>${pear.entrance.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <!-- 项目信息 -->
     <name>启动模块</name>
@@ -21,6 +21,10 @@
 
     <!-- 依赖管理 -->
     <dependencies>
+        <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-generator</artifactId>
+        </dependency>
         <!-- 模块引用 -->
         <dependency>
             <groupId>com.pearadmin</groupId>

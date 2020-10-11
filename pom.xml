@@ -24,7 +24,7 @@
         <!-- JDK 版本 -->
         <java.version>1.8</java.version>
         <!-- 数 据 源 版 本 -->
-        <druid.version>1.1.21</druid.version>
+        <druid.version>1.1.22</druid.version>
         <!-- Mysql 版 本 -->
         <mysql.version>8.0.19</mysql.version>
         <!-- MyBatis 版 本 -->
@@ -67,7 +67,10 @@
         <captcha.version>1.6.2</captcha.version>
         <!-- 工 作 流 版 本 -->
         <activiti.version>6.0.0</activiti.version>
+        <!-- Xml 解 析 依 赖 -->
         <apache.xmlgraphics.version>1.13</apache.xmlgraphics.version>
+        <!-- 模 板 引 擎 版 本 -->
+        <velocity.version>1.7</velocity.version>
     </properties>
 
     <!-- 依 赖 管 理 -->
@@ -151,7 +154,7 @@
                 <artifactId>commons-io</artifactId>
                 <version>${commons.io.version}</version>
             </dependency>
-            <!-- 代码生成 -->
+            <!-- 代 码 生 成 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
@@ -163,13 +166,13 @@
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
             </dependency>
-            <!-- 验证码 -->
+            <!-- 验 证 码 -->
             <dependency>
                 <groupId>com.github.whvcse</groupId>
                 <artifactId>easy-captcha</artifactId>
                 <version>${captcha.version}</version>
             </dependency>
-            <!-- 工作流 -->
+            <!-- 工 作 流 程 依 赖 -->
             <dependency>
                 <groupId>org.activiti</groupId>
                 <artifactId>activiti-spring-boot-starter-basic</artifactId>
@@ -205,6 +208,18 @@
                 <groupId>org.apache.xmlgraphics</groupId>
                 <artifactId>batik-svggen</artifactId>
                 <version>${apache.xmlgraphics.version}</version>
+            </dependency>
+            <!-- 模 板 引 擎 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+            <!-- 代 码 生 成 模 块 -->
+            <dependency>
+                <groupId>com.pearadmin</groupId>
+                <artifactId>pear-generator</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

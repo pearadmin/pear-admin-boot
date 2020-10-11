@@ -31,7 +31,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">表达式</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="cronExpression" lay-verify="title" autocomplete="off" placeholder="执行表达式" class="layui-input">
+                        <input type="text" id="cronExpression"  name="cronExpression" lay-verify="title" autocomplete="off" placeholder="执行表达式" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -66,9 +66,20 @@
 <script src="../../component/layui/layui.js"></script>
 <script src="../../component/pear/pear.js"></script>
 <script>
-    layui.use(['form','jquery'],function(){
+    layui.use(['form','jquery','cron'],function(){
         let form = layui.form;
         let $ = layui.jquery;
+        let cron = layui.cron;
+
+        cron.render({
+            elem: "#cronExpression", // 绑定元素
+            url: "https://www.fastmock.site/mock/58329c0ee61b03d6ce3ba0c1e2f13691/world/cron", // 获取最近运行时间的接口
+            value: $("#cronExpression").val(), // 默认值
+            done: function (cronStr) {
+                console.log(cronStr);
+                $("#cronExpression").val(cronStr);
+            },
+        });
 
         form.on('submit(role-save)', function(data){
             let loading = layer.load();

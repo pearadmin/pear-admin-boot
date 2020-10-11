@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<link href="../component/pear/css/pear.css" rel="stylesheet" />
+</head>
+<body class="pear-container">
+	<div class="layui-card">
+		<form class="layui-form layui-card-header layuiadmin-card-header-auto search-form" id="searchForm">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">表名称</label>
+					<div class="layui-input-inline">
+						<input class="layui-input" type="text" name="tableName" placeholder="" autocomplete="off">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">表描述</label>
+					<div class="layui-input-inline">
+						<input class="layui-input" type="text" name="tableComment" placeholder="" autocomplete="off">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<button  type="button" class="pear-btn pear-btn-primary pear-btn-md" data-type="reload" lay-submit lay-filter="form-search" id="form-search"><i class="layui-icon">&#xe615;</i>搜索</button>
+				</div>
+			</div>
+		</form>
+		<div class="layui-card-body">
+			<table id="table_import" lay-filter="table_import"></table>
+		</div>
+	</div>
+<script src="../component/layui/layui.js"></script>
+<script src="../component/pear/pear.js"></script>
+<script src="../component/jquery.min.js"></script>
+<script>
+	let prefix = "/generator";
+	layui.use(['common','form','jquery','table'], function () {
+		let $ = layui.jquery,
+				form = layui.form,
+				common = layui.common,
+				table = layui.table;
+
+		let active = {
+			reload: function () {
+				search(false);
+			},
+			remove: function (ids) {
+				common.ajaxRemove(prefix + "/remove", ids, function (res) {
+					active['reload'].call(this);
+				});
+			}
+		};
+
+		form.on('submit(form-search)', function (data) {
+			search(true);
+		});
+
+		table.render({
+			elem: '#table_import'
+			, method: 'post'
+			, url: prefix + "/db/list" //数据接口
+			, defaultToolbar:[]
+			, autoSort: false 	//关闭前端排序 使用后端排序
+			, page: true
+			, cols: new Array([
+				{type: 'checkbox', width: 40}
+				, {field: 'tableName', title: '表名称'}
+				, {field: 'tableComment', title: '表描述'}
+				, {field: 'createTime', title: '创建时间', width: 160, sort: true}
+				, {field: 'updateTime', title: '更新时间', width: 160}
+			])
+		});
+		
+		table.on('sort(table_import)', function (obj) {
+			let field = JSON.stringify($('#searchForm'));
+			field.orderByColumn = obj.field ;
+			field.isAsc = obj.type;
+			table.reload('table_import', {where: field,page:{curr: 1}});//执行重载
+		});
+	});
+
+	//表格查询
+	function search(isResetCurr) {
+		let field = JSON.stringify($('#searchForm'));
+		let sortParam = getSort('table_import');
+		if (sortParam) {
+			field.orderByColumn = sortParam.sortField;
+			field.isAsc = sortParam.sortMethod;
+		}
+		let options = {where: field};
+		if (isResetCurr == true) {
+			options.page = {curr: 1};
+		}
+		layui.table.reload('table_import', options);
+	}
+
+	function submitHandler() {
+		let checks = layui.table.checkStatus('table_import');
+		if (checks.data.length == 0) {
+			layui.layer.alert("请至少选择一条记录");
+			return;
+		}
+		let tables = layui.common.joinArray(checks.data, "tableName");
+		let data = {"tables": tables};
+		layui.common.ajax.post(prefix + "/importTable",data,function(res){
+			layui.layer.alert(res.msg);
+			if(res.code==0){
+				parent.layer.closeAll();
+				if(parent.search){
+					parent.search();
+				}else{
+					parent.layui.table.reload();
+				}
+			}
+		});
+	}
+</script>
+</body>
+</html>

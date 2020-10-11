@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="admin/css/other/login.css" />
 </head>
 <!-- 代 码 结 构 -->
-<body background="admin/images/background2.svg" style="background-size: cover;">
+<body background="admin/images/background2.svg">
 <form class="layui-form" action="javascript:void(0);">
     <div class="layui-form-item">
         <img class="logo" src="admin/images/logo.png" />
@@ -70,7 +70,13 @@
         $("#codeImage").click(function(){
             document.getElementById("captchaImage").src="/system/captcha/generate?"+Math.random();
         })
+
     })
 </script>
+<!-- Session 过期处理 -->
+<script>
+    if(window!=top){ top.location.href = location.href; }
+</script>
+
 </body>
 </html>

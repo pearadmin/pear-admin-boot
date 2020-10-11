@@ -3,7 +3,7 @@ package com.pearadmin.common.web.base;
 import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Map;
 
 /**
  * Describe: 基 础 实 体 类
@@ -47,5 +47,10 @@ public class BaseDomain implements Serializable {
      * 备注
      * */
     private String remark;
+
+    /**
+     *  请求参数
+     *  */
+    private Map<String, Object> params;
 
 }

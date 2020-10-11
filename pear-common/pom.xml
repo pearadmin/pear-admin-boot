@@ -12,13 +12,12 @@
     <!-- 基本信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-common</artifactId>
-    <version>${pear.common.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>公共模块</name>
     <description>Demo project for Spring Boot</description>
 
     <!-- 依赖管理 -->
     <dependencies>
-
         <!-- Web 模块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

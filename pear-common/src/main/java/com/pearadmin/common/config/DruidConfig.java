@@ -90,7 +90,6 @@ public class DruidConfig {
      * @param properties 备选数据源集合
      */
     @Bean
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @ConditionalOnProperty(name = "spring.datasource.druid.statViewServlet.enabled", havingValue = "true")
     public FilterRegistrationBean removeDruidFilterRegistrationBean(DruidStatProperties properties)
     {

@@ -95,7 +95,6 @@
         let iconPicker = layui.iconPicker;
         let dtree = layui.dtree;
 
-
         dtree.renderSelect({
             elem: "#selectParent",
             url: "/system/power/selectParent",
@@ -103,7 +102,7 @@
             selectInputName: {nodeId: "parentId", context: "powerName"},
             skin: "layui",
             dataFormat: "list",
-            response:{treeId: "powerId", parentId: "parentId", title: "powerName"},  //修改response中返回数据的定义
+            response:{treeId: "powerId", parentId: "parentId", title: "powerName"},
             selectInitVal:[[${sysPower.parentId}]]
         });
 
@@ -129,6 +128,7 @@
         });
 
         form.on('submit(power-save)', function(data){
+            data.field.icon = "layui-icon " + data.field.icon;
             $.ajax({
                 url:'/system/power/update',
                 data:JSON.stringify(data.field),
@@ -150,17 +150,11 @@
         });
 
         iconPicker.render({
-            // 选择器，推荐使用input
             elem: '#icon',
-            // 数据类型：fontClass/unicode，推荐使用fontClass
             type: 'fontClass',
-            // 是否开启搜索：true/false
             search: true,
-            // 是否开启分页
             page: true,
-            // 每页显示数量，默认12
             limit: 12,
-            // 点击回调
             click: function (data) {
                 console.log(data);
             }

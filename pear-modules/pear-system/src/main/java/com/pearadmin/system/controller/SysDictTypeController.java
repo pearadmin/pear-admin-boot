@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Describe: 数据字典控制器
@@ -49,6 +50,13 @@ public class SysDictTypeController extends BaseController {
     public ResultTable data(SysDictType sysDictType, PageDomain pageDomain){
         PageInfo<SysDictType> pageInfo = sysDictTypeService.page(sysDictType,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
+    }
+
+    @GetMapping("list")
+    @PreAuthorize("hasPermission('/system/dictType/data','sys:dictType:data')")
+    public ResultTable list(SysDictType sysDictType, PageDomain pageDomain){
+        List<SysDictType> list = sysDictTypeService.list(sysDictType);
+        return dataTable(list);
     }
 
     /**

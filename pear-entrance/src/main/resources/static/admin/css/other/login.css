@@ -68,6 +68,7 @@
 }
 
 body {
+	background-size: cover;
 	background-color: whitesmoke;
 	height: 100%;
 }
