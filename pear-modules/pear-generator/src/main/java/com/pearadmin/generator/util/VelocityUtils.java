@@ -60,10 +60,6 @@ public class VelocityUtils
         {
             setTreeVelocityContext(velocityContext, genTable);
         }
-        if (GeneratorConstants.TPL_SUB.equals(tplCategory))
-        {
-            setSubVelocityContext(velocityContext, genTable);
-        }
         return velocityContext;
     }
 
@@ -97,23 +93,6 @@ public class VelocityUtils
         }
     }
 
-    public static void setSubVelocityContext(VelocityContext context, GenTable genTable)
-    {
-        GenTable subTable = genTable.getSubTable();
-        String subTableName = genTable.getSubTableName();
-        String subTableFkName = genTable.getSubTableFkName();
-        String subClassName = genTable.getSubTable().getClassName();
-        String subTableFkClassName = StringUtils.convertToCamelCase(subTableFkName);
-        context.put("subTable", subTable);
-        context.put("subTableName", subTableName);
-        context.put("subTableFkName", subTableFkName);
-        context.put("subTableFkClassName", subTableFkClassName);
-        context.put("subTableFkclassName", StringUtils.uncapitalize(subTableFkClassName));
-        context.put("subClassName", subClassName);
-        context.put("subclassName", StringUtils.uncapitalize(subClassName));
-        context.put("subImportList", getImportList(genTable.getSubTable()));
-    }
-
     /**
      * 获取模板信息
      * 
@@ -136,11 +115,6 @@ public class VelocityUtils
         {
             templates.add("vm/html/tree.html.vm");
             templates.add("vm/html/list-tree.html.vm");
-        }
-        else if (GeneratorConstants.TPL_SUB.equals(tplCategory))
-        {
-            templates.add("vm/html/list.html.vm");
-            templates.add("vm/java/sub-domain.java.vm");
         }
         templates.add("vm/html/add.html.vm");
         templates.add("vm/html/edit.html.vm");

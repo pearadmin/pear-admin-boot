@@ -1,10 +1,8 @@
 package ${packageName}.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 import ${packageName}.domain.${ClassName};
-#if($table.sub)
-import ${packageName}.domain.${subClassName};
-#end
 
 /**
  * ${functionName}Mapper接口
@@ -12,6 +10,7 @@ import ${packageName}.domain.${subClassName};
  * @author ${author}
  * @date ${datetime}
  */
+@Mapper
 public interface ${ClassName}Mapper 
 {
     /**
@@ -28,7 +27,7 @@ public interface ${ClassName}Mapper
      * @param ${className} ${functionName}
      * @return ${functionName}集合
      */
-    public List<${ClassName}> select${ClassName}List(${ClassName} ${className});
+    List<${ClassName}> select${ClassName}List(${ClassName} ${className});
 
     /**
      * 新增${functionName}
@@ -36,7 +35,7 @@ public interface ${ClassName}Mapper
      * @param ${className} ${functionName}
      * @return 结果
      */
-    public int insert${ClassName}(${ClassName} ${className});
+    int insert${ClassName}(${ClassName} ${className});
 
     /**
      * 修改${functionName}
@@ -44,7 +43,7 @@ public interface ${ClassName}Mapper
      * @param ${className} ${functionName}
      * @return 结果
      */
-    public int update${ClassName}(${ClassName} ${className});
+    int update${ClassName}(${ClassName} ${className});
 
     /**
      * 删除${functionName}
@@ -52,7 +51,7 @@ public interface ${ClassName}Mapper
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return 结果
      */
-    public int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
+    int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
 
     /**
      * 批量删除${functionName}
@@ -60,32 +59,6 @@ public interface ${ClassName}Mapper
      * @param ${pkColumn.javaField}s 需要删除的数据ID
      * @return 结果
      */
-    public int delete${ClassName}ByIds(String[] ${pkColumn.javaField}s);
-#if($table.sub)
+    int delete${ClassName}ByIds(String[] ${pkColumn.javaField}s);
 
-    /**
-     * 批量删除${subTable.functionName}
-     * 
-     * @param customerIds 需要删除的数据ID
-     * @return 结果
-     */
-    public int delete${subClassName}By${subTableFkClassName}s(String[] ${pkColumn.javaField}s);
-    
-    /**
-     * 批量新增${subTable.functionName}
-     * 
-     * @param ${subclassName}List ${subTable.functionName}列表
-     * @return 结果
-     */
-    public int batch${subClassName}(List<${subClassName}> ${subclassName}List);
-    
-
-    /**
-     * 通过${functionName}ID删除${subTable.functionName}信息
-     * 
-     * @param roleId 角色ID
-     * @return 结果
-     */
-    public int delete${subClassName}By${subTableFkClassName}(${pkColumn.javaType} ${pkColumn.javaField});
-#end
 }
