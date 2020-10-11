@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>字典值列表</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('字典值列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
@@ -53,41 +51,43 @@
 </script>
 
 <script type="text/html" id="dict-data-bar">
-    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
-    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    </button>
+    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    </button>
 </script>
 
 <script type="text/html" id="dict-data-enable">
-    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dict-type-enable" checked = "{{ d.enable == 0 ? 'true' : 'false' }}">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="dict-type-enable" checked="{{ d.enable == 0 ? 'true' : 'false' }}">
 </script>
 
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 
 <script th:inline="javascript">
 
-    layui.use(['table','form','jquery'],function () {
+    layui.use(['table', 'form', 'jquery'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
 
         let cols = [
             [
-                {type:'checkbox'},
-                {title: '标签', field: 'dataLabel', align:'center', width:120},
-                {title: '对应值', field: 'dataValue', align:'center'},
-                {title: '所属字典', field: 'typeCode', align:'center'},
-                {title: '是否默认', field: 'isDefault', align:'center'},
-                {title: '状态', field: 'enable', align:'center',templet:'#dict-data-enable'},
-                {title: '操作', toolbar: '#dict-data-bar', align:'center', width:180}
+                {type: 'checkbox'},
+                {title: '标签', field: 'dataLabel', align: 'center', width: 120},
+                {title: '对应值', field: 'dataValue', align: 'center'},
+                {title: '所属字典', field: 'typeCode', align: 'center'},
+                {title: '是否默认', field: 'isDefault', align: 'center'},
+                {title: '状态', field: 'enable', align: 'center', templet: '#dict-data-enable'},
+                {title: '操作', toolbar: '#dict-data-bar', align: 'center', width: 180}
             ]
         ]
 
         table.render({
             elem: '#dict-data-table',
-            url: '/system/dictData/data?typeCode='+[[${typeCode}]],
-            page: true ,
-            cols: cols ,
+            url: '/system/dictData/data?typeCode=' + [[${typeCode}]],
+            page: true,
+            cols: cols,
             skin: 'line',
             toolbar: '#dict-data-toolbar',
             defaultToolbar: [{
@@ -96,90 +96,91 @@
             }, 'filter', 'print', 'exports']
         });
 
-        table.on('tool(dict-data-table)', function(obj){
-            if(obj.event === 'remove'){
+        table.on('tool(dict-data-table)', function (obj) {
+            if (obj.event === 'remove') {
                 window.remove(obj);
-            } else if(obj.event === 'edit'){
+            } else if (obj.event === 'edit') {
                 window.edit(obj);
             }
         });
 
-        table.on('toolbar(dict-data-table)', function(obj){
-            if(obj.event === 'add'){
+        table.on('toolbar(dict-data-table)', function (obj) {
+            if (obj.event === 'add') {
                 window.add();
-            } else if(obj.event === 'refresh'){
+            } else if (obj.event === 'refresh') {
                 layer.msg("刷新");
-            } else if(obj.event === 'batchRemove'){
+            } else if (obj.event === 'batchRemove') {
                 layer.msg("批量删除")
-            } else if(obj.event === 'return'){
+            } else if (obj.event === 'return') {
                 window.history.back();
             }
         });
 
-        form.on('switch(dict-type-enable)', function(obj){
+        form.on('switch(dict-type-enable)', function (obj) {
             let operate;
 
-            if(obj.elem.checked){
+            if (obj.elem.checked) {
                 operate = "enable";
-            }else{
+            } else {
                 operate = "disable";
             }
 
             let loading = layer.load()
 
             $.ajax({
-                url:'/system/dictData/'+operate,
-                data:JSON.stringify({id:this.value}),
-                dataType:'json',
-                contentType:'application/json',
-                type:'put',
-                success:function(result){
+                url: '/system/dictData/' + operate,
+                data: JSON.stringify({id: this.value}),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
                     layer.close(loading);
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){});
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })
         });
 
-        window.add = function(){
+        window.add = function () {
             layer.open({
                 type: 2,
                 title: '新增',
                 shade: 0.1,
                 area: ['500px', '400px'],
-                content: '/system/dictData/add?typeCode='+[[${typeCode}]]
+                content: '/system/dictData/add?typeCode=' + [[${typeCode}]]
             });
         }
 
-        window.edit = function(obj){
+        window.edit = function (obj) {
             layer.open({
                 type: 2,
                 title: '修改',
                 shade: 0.1,
                 area: ['500px', '400px'],
-                content: '/system/dictData/edit?dataId='+obj.data['dataId']
+                content: '/system/dictData/edit?dataId=' + obj.data['dataId']
             });
         }
 
-        window.remove = function(obj){
-            layer.confirm('确定要删除该字典值', {icon: 3, title:'提示'}, function(index){
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该字典值', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: "/system/dictData/remove/"+obj.data['dataId'],
-                    dataType:'json',
-                    type:'delete',
-                    success:function(result){
+                    url: "/system/dictData/remove/" + obj.data['dataId'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
                         layer.close(loading);
-                        if(result.success){
-                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                        if (result.success) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                                 obj.del();
                             });
-                        }else{
-                            layer.msg(result.msg,{icon:2,time:1000});
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
                         }
                     }
                 })

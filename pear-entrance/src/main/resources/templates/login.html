@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>登录</title>
-    <link rel="stylesheet" href="component/pear/css/pear.css" />
+    <th:block th:include="include :: header('登录')"/>
     <link rel="stylesheet" href="admin/css/other/login.css" />
 </head>
 <!-- 代 码 结 构 -->
@@ -35,7 +33,7 @@
         </button>
     </div>
 </form>
-<script src="component/layui/layui.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
     layui.use(['form','jquery','layer'], function() {
         let form = layui.form;

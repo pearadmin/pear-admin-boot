@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>权限修改</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('权限修改')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,39 +11,46 @@
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">编号</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysPower.powerId}"  name="powerId" lay-verify="title" autocomplete="off"  class="layui-input">
+                        <input type="text" th:value="${sysPower.powerId}" name="powerId" lay-verify="title"
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">父级</label>
                     <div class="layui-input-block">
-                        <ul id="selectParent" name="parentId" class="dtree" data-id="-1" ></ul>
+                        <ul id="selectParent" name="parentId" class="dtree" data-id="-1"></ul>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysPower.powerName}"  name="powerName" lay-verify="title" autocomplete="off" placeholder="权限名称" class="layui-input">
+                        <input type="text" th:value="${sysPower.powerName}" name="powerName" lay-verify="title"
+                               autocomplete="off" placeholder="权限名称" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item" id="powerCodeItem">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" id="powerCode" th:value="${sysPower.powerCode}" name="powerCode"  autocomplete="off" placeholder="权限标识" class="layui-input">
+                        <input type="text" id="powerCode" th:value="${sysPower.powerCode}" name="powerCode"
+                               autocomplete="off" placeholder="权限标识" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '0'}" name="powerType" value="0" title="目录">
-                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '1'}" name="powerType" value="1" title="菜单">
-                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '2'}" name="powerType" value="2" title="按钮">
+                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '0'}"
+                               name="powerType" value="0" title="目录">
+                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '1'}"
+                               name="powerType" value="1" title="菜单">
+                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '2'}"
+                               name="powerType" value="2" title="按钮">
                     </div>
                 </div>
                 <div class="layui-form-item" id="powerUrlItem">
                     <label class="layui-form-label">路径</label>
                     <div class="layui-input-block">
-                        <input type="text" id="powerUrl" th:value="${sysPower.powerUrl}" name="powerUrl"  autocomplete="off" placeholder="菜单路径" class="layui-input">
+                        <input type="text" id="powerUrl" th:value="${sysPower.powerUrl}" name="powerUrl"
+                               autocomplete="off" placeholder="菜单路径" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item" id="openTypeItem">
@@ -59,15 +64,17 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label  class="layui-form-label">图标</label>
+                    <label class="layui-form-label">图标</label>
                     <div class="layui-input-block">
-                        <input type="text" id="icon" th:value="${sysPower.icon}" name="icon" lay-filter="icon" class="layui-input">
+                        <input type="text" id="icon" th:value="${sysPower.icon}" name="icon" lay-filter="icon"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">排序</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysPower.sort}"  name="sort" lay-verify="title" autocomplete="off" placeholder="排序" class="layui-input">
+                        <input type="text" th:value="${sysPower.sort}" name="sort" lay-verify="title" autocomplete="off"
+                               placeholder="排序" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -86,10 +93,9 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    layui.use(['form','jquery','iconPicker','dtree'],function(){
+    layui.use(['form', 'jquery', 'iconPicker', 'dtree'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let iconPicker = layui.iconPicker;
@@ -98,12 +104,12 @@
         dtree.renderSelect({
             elem: "#selectParent",
             url: "/system/power/selectParent",
-            method:'get',
+            method: 'get',
             selectInputName: {nodeId: "parentId", context: "powerName"},
             skin: "layui",
             dataFormat: "list",
-            response:{treeId: "powerId", parentId: "parentId", title: "powerName"},
-            selectInitVal:[[${sysPower.parentId}]]
+            response: {treeId: "powerId", parentId: "parentId", title: "powerName"},
+            selectInitVal: [[${sysPower.parentId}]]
         });
 
         form.on("radio(powerType)", function (data) {
@@ -118,7 +124,7 @@
                 $("#powerUrlItem").show();
                 $("#powerCodeItem").show();
                 $("#openTypeItem").show();
-            } else if (this.value == '2'){
+            } else if (this.value == '2') {
                 $("#powerUrlItem").hide();
                 $("#openTypeItem").hide();
                 $("#powerCodeItem").show();
@@ -127,22 +133,22 @@
             }
         });
 
-        form.on('submit(power-save)', function(data){
+        form.on('submit(power-save)', function (data) {
             data.field.icon = "layui-icon " + data.field.icon;
             $.ajax({
-                url:'/system/power/update',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'put',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                url: '/system/power/update',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.render();
                         });
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })
@@ -160,9 +166,9 @@
             }
         });
 
-        iconPicker.checkIcon("icon",[[${sysPower.icon}]]);
+        iconPicker.checkIcon("icon", [[${sysPower.icon}]]);
 
-        window.init = function(type){
+        window.init = function (type) {
             if (type == '0') {
                 $("#powerUrlItem").hide();
                 $("#powerCodeItem").hide();
@@ -174,7 +180,7 @@
                 $("#powerUrlItem").show();
                 $("#powerCodeItem").show();
                 $("#openTypeItem").show();
-            } else if (type == '2'){
+            } else if (type == '2') {
                 $("#powerUrlItem").hide();
                 $("#openTypeItem").hide();
                 $("#powerCodeItem").show();

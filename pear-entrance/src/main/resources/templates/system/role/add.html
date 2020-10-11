@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>角色新增</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('角色新增')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,13 +11,15 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="roleName" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="roleName" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="roleCode" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="roleCode" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -51,27 +51,27 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery'],function(){
+    layui.use(['form', 'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
 
-        form.on('submit(role-save)', function(data){
+        form.on('submit(role-save)', function (data) {
             $.ajax({
-                url:'/system/role/save',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'post',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                url: '/system/role/save',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("role-table");
                         });
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })

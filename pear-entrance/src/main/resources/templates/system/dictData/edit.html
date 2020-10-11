@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>字典值修改</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('字典值修改')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,32 +11,38 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">标签</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysDictData.dataLabel}" name="dataLabel" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysDictData.dataLabel}" name="dataLabel" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">值</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysDictData.dataValue}" name="dataValue" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysDictData.dataValue}" name="dataValue" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysDictData.typeCode}" readonly="readonly"  name="typeCode" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysDictData.typeCode}" readonly="readonly" name="typeCode"
+                               lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" th:checked="${sysDictData.enable eq '0'}" name="enable" value="0" title="开启">
-                        <input type="radio" th:checked="${sysDictData.enable eq '1'}" name="enable" value="1" title="关闭">
+                        <input type="radio" th:checked="${sysDictData.enable eq '0'}" name="enable" value="0"
+                               title="开启">
+                        <input type="radio" th:checked="${sysDictData.enable eq '1'}" name="enable" value="1"
+                               title="关闭">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入描述" th:text="${sysDictData.remark}" name="remark" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入描述" th:text="${sysDictData.remark}" name="remark"
+                                  class="layui-textarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -46,7 +50,8 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="dict-data-save">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="dict-data-save">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
@@ -57,28 +62,27 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery'],function(){
+    layui.use(['form', 'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
 
-        form.on('submit(dict-data-save)', function(data){
+        form.on('submit(dict-data-save)', function (data) {
             $.ajax({
-                url:'/system/dictData/update',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'put',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                url: '/system/dictData/update',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("dict-data-table");
                         });
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })

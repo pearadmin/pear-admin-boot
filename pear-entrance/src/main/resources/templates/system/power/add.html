@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>权限新增</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('权限新增')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,19 +11,21 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">父级</label>
                     <div class="layui-input-block">
-                        <ul id="selectParent" name="parentId" class="dtree" data-id="-1" ></ul>
+                        <ul id="selectParent" name="parentId" class="dtree" data-id="-1"></ul>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="powerName" lay-verify="title" autocomplete="off" placeholder="权限名称" class="layui-input">
+                        <input type="text" name="powerName" lay-verify="title" autocomplete="off" placeholder="权限名称"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item" id="powerCodeItem">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" id="powerCode" name="powerCode"  autocomplete="off" placeholder="权限标识" class="layui-input">
+                        <input type="text" id="powerCode" name="powerCode" autocomplete="off" placeholder="权限标识"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -39,7 +39,8 @@
                 <div class="layui-form-item" id="powerUrlItem">
                     <label class="layui-form-label">路径</label>
                     <div class="layui-input-block">
-                        <input type="text" id="powerUrl" name="powerUrl"  autocomplete="off" placeholder="菜单路径" class="layui-input">
+                        <input type="text" id="powerUrl" name="powerUrl" autocomplete="off" placeholder="菜单路径"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item" id="openTypeItem">
@@ -53,7 +54,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label  class="layui-form-label">图标</label>
+                    <label class="layui-form-label">图标</label>
                     <div class="layui-input-block">
                         <input type="text" id="icon" name="icon" lay-filter="icon" class="layui-input">
                     </div>
@@ -61,7 +62,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">排序</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="sort" lay-verify="title" autocomplete="off" placeholder="排序" class="layui-input">
+                        <input type="text" name="sort" lay-verify="title" autocomplete="off" placeholder="排序"
+                               class="layui-input">
                     </div>
                 </div>
             </div>
@@ -80,10 +82,9 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery','iconPicker','dtree'],function(){
+    layui.use(['form', 'jquery', 'iconPicker', 'dtree'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let iconPicker = layui.iconPicker;
@@ -92,11 +93,11 @@
         dtree.renderSelect({
             elem: "#selectParent",
             url: "/system/power/selectParent",
-            method:'get',
+            method: 'get',
             selectInputName: {nodeId: "parentId", context: "powerName"},
             skin: "layui",
             dataFormat: "list",
-            response:{treeId: "powerId", parentId: "parentId", title: "powerName"},  //修改response中返回数据的定义
+            response: {treeId: "powerId", parentId: "parentId", title: "powerName"},  //修改response中返回数据的定义
             selectInitVal: "0"
         });
 
@@ -112,7 +113,7 @@
                 $("#powerUrlItem").show();
                 $("#powerCodeItem").show();
                 $("#openTypeItem").show();
-            } else if (this.value == '2'){
+            } else if (this.value == '2') {
                 $("#powerUrlItem").hide();
                 $("#openTypeItem").hide();
                 $("#powerCodeItem").show();
@@ -121,22 +122,22 @@
             }
         });
 
-        form.on('submit(power-save)', function(data){
+        form.on('submit(power-save)', function (data) {
             data.field.icon = "layui-icon " + data.field.icon;
             $.ajax({
-                url:'/system/power/save',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'post',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                url: '/system/power/save',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.render();
                         });
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })

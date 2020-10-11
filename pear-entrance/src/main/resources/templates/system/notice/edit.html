@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>公告修改</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('公告修改')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,19 +11,22 @@
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">编号</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysNotice.id}" name="id" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysNotice.id}" name="id" lay-verify="title" autocomplete="off"
+                               placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标题</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysNotice.title}" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysNotice.title}" name="title" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">内容</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容"  style="height: 200px;"  name="context" th:text="${sysNotice.context}" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容" style="height: 200px;" name="context"
+                                  th:text="${sysNotice.context}" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -33,7 +34,8 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="notice-update">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="notice-update">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
@@ -44,29 +46,28 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery'],function(){
+    layui.use(['form', 'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
 
-        form.on('submit(notice-update)', function(data){
+        form.on('submit(notice-update)', function (data) {
             $.ajax({
-                url:'/system/notice/update',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'put',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                url: '/system/notice/update',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("notice-table");
                         });
-                    }else{
+                    } else {
 
-                        layer.msg(result.msg,{icon:2,time:1000});
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })

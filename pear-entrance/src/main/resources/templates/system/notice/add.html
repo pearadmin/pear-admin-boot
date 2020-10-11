@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>公告新增</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('公告新增')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,13 +11,15 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">标题</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">内容</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入描述" style="height: 200px;" name="context" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入描述" style="height: 200px;" name="context"
+                                  class="layui-textarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,8 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="notice-save">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="notice-save">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
@@ -38,27 +39,27 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery'],function(){
+    layui.use(['form', 'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
 
-        form.on('submit(notice-save)', function(data){
+        form.on('submit(notice-save)', function (data) {
             $.ajax({
-                url:'/system/notice/save',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'post',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                url: '/system/notice/save',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("notice-table");
                         });
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })

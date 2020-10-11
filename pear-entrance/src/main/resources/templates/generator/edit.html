@@ -1,6 +1,7 @@
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="../component/pear/css/pear.css" rel="stylesheet"/>
+    <th:block th:include="include :: header('代码生成修改')"/>
     <link href="../admin/css/other/generator.css" rel="stylesheet"/>
 </head>
 <body class="pear-container">
@@ -107,7 +108,7 @@
                                 <label class="layui-form-label" title="分配到指定菜单下，例如 系统管理"><span
                                         class="required-msg ">*</span>上级菜单：</label>
                                 <div class="layui-input-block">
-                                    <ul id="selectParent" name="parentMenuId" class="dtree" data-id="-1" ></ul>
+                                    <ul id="selectParent" name="parentMenuId" class="dtree" data-id="-1"></ul>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -122,7 +123,8 @@
                                 <label class="layui-form-label" title="填写磁盘绝对路径，若不填写，则生成到当前Web项目下"><span
                                         class="required-msg ">*</span>生成路径：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" id="genPath" name="genPath" type="text" th:field="*{genPath}"
+                                    <input class="layui-input" id="genPath" name="genPath" type="text"
+                                           th:field="*{genPath}"
                                            placeholder="请输入项目路径"
                                            maxlength="200">
                                 </div>
@@ -150,13 +152,11 @@
         </div>
     </div>
 </form>
-<script src="../component/layui/layui.js"></script>
-<script src="../component/pear/pear.js"></script>
-<script src="../component/jquery.min.js"></script>
-<script  th:inline="javascript">
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
     let prefix = "/generator";
     let menuTree;
-    layui.use(['dtree','common', 'table', 'form'], function () {
+    layui.use(['dtree', 'common', 'table', 'form'], function () {
 
         let $ = layui.jquery,
             common = layui.common,
@@ -186,12 +186,12 @@
         dtree.renderSelect({
             elem: "#selectParent",
             url: "/system/power/selectParent",
-            method:'get',
+            method: 'get',
             skin: 'layui',
             selectInputName: {nodeId: "parentMenuId", context: "parentMenuName"},
             dataFormat: "list",
-            response:{treeId: "powerId", parentId: "parentId", title: "powerName"},
-            selectInitVal:[[${table.parentMenuId}]]
+            response: {treeId: "powerId", parentId: "parentId", title: "powerName"},
+            selectInitVal: [[${table.parentMenuId}]]
         });
 
         table.render({
@@ -386,7 +386,7 @@
                             if (res.code == 0) {
                                 $.each(res.data, function (i, item) {
                                     html += '<option value="input" ' + (dictType === item.typeCode ? ' selected' : '') + '>' + item
-                                        .typeName + '</option>\n' ;
+                                        .typeName + '</option>\n';
                                 });
                             }
                         }

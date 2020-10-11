@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>流程模型新增</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('流程模型新增')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,13 +11,15 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="key" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="key" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
@@ -44,29 +44,34 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery','layer'],function(){
+    layui.use(['form', 'jquery', 'layer'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let layer = layui.layer;
 
-        form.on('submit(role-save)', function(data){
+        form.on('submit(role-save)', function (data) {
             $.ajax({
-                url:'/process/model/create',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'post',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
-                            top.layui.tab.addTabOnlyByElem("content",{id:result.data,title:"流程编辑器",url:"/process/model/editor?modelId="+result.data,close:true})
+                url: '/process/model/create',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            top.layui.tab.addTabOnlyByElem("content", {
+                                id: result.data,
+                                title: "流程编辑器",
+                                url: "/process/model/editor?modelId=" + result.data,
+                                close: true
+                            })
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("model-table");
                         });
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })

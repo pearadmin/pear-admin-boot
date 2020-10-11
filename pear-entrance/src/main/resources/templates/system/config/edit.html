@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>系统配置修改</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('系统配置修改')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,13 +11,15 @@
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">编号</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysConfig.configId}" name="configId" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysConfig.configId}" name="configId" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysConfig.configName}" name="configName" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysConfig.configName}" name="configName" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -29,20 +29,23 @@
                             <option value="STRING" th:selected="${sysConfig.configType eq 'STRING'}">STRING</option>
                             <option value="DOUBLE" th:selected="${sysConfig.configType eq 'DOUBLE'}">DOUBLE</option>
                             <option value="INTEGER" th:selected="${sysConfig.configType eq 'INTEGER'}">INTEGER</option>
-                            <option value="DATETIME" th:selected="${sysConfig.configType eq 'DATETIME'}">DATETIME</option>
+                            <option value="DATETIME" th:selected="${sysConfig.configType eq 'DATETIME'}">DATETIME
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysConfig.configCode}" name="configCode" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysConfig.configCode}" name="configCode" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">值</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysConfig.configValue}"  name="configValue" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" th:value="${sysConfig.configValue}" name="configValue" lay-verify="title"
+                               autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -50,7 +53,8 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="dict-type-update">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="dict-type-update">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
@@ -61,28 +65,27 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery'],function(){
+    layui.use(['form', 'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
 
-        form.on('submit(dict-type-update)', function(data){
+        form.on('submit(dict-type-update)', function (data) {
             $.ajax({
-                url:'/system/config/update',
-                data:JSON.stringify(data.field),
-                dataType:'json',
-                contentType:'application/json',
-                type:'put',
-                success:function(result){
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){
+                url: '/system/config/update',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("config-table");
                         });
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })

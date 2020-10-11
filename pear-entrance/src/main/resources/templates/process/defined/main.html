@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>流程定义列表</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css">
+    <th:block th:include="include :: header('流程定义列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
@@ -28,22 +26,22 @@
 </div>
 <div class="layui-card">
     <div class="layui-card-body">
-        <table  id="model-table" lay-filter="model-table"></table>
+        <table id="model-table" lay-filter="model-table"></table>
         <script type="text/html" id="barDemo">
             <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">删除</a>
         </script>
         <script type="text/html" id="xml">
-            <a download="{{d.bpmn}}" href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
+            <a download="{{d.bpmn}}"
+               href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
         </script>
         <script type="text/html" id="png">
-            <a  lay-event="png">{{d.png}}</a>
+            <a lay-event="png">{{d.png}}</a>
         </script>
     </div>
 </div>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table','layer','jquery','form'], function(){
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
         let layer = layui.layer;
         let table = layui.table;
         let $ = layui.jquery;
@@ -51,69 +49,69 @@
 
         table.render({
             elem: '#model-table'
-            ,method:'get'
-            ,url: '/process/defined/data'
-            ,title: '模型列表'
-            ,skin: 'line'
-            ,toolbar: false
-            ,page: true
-            ,cols: [
+            , method: 'get'
+            , url: '/process/defined/data'
+            , title: '模型列表'
+            , skin: 'line'
+            , toolbar: false
+            , page: true
+            , cols: [
                 [
                     {type: 'checkbox'}
-                    ,{field: 'id', title: '流程编号', sort: true}
-                    ,{field: 'name', title: '流程名称'}
-                    ,{field: 'key', title: '流程标识', sort: true}
-                    ,{field: 'version', title: '流程版本',  sort: true}
-                    ,{field: 'bpmn', title: '资源文件',templet:'#xml' ,sort: true}
-                    ,{field: 'png', title: '流程图片', templet:'#png',  sort: true}
-                    ,{field: 'deploymentId',title: '部署 ID', sort: true}
-                    ,{title: '操作',width: 80, align:'center', toolbar: '#barDemo'}
+                    , {field: 'id', title: '流程编号', sort: true}
+                    , {field: 'name', title: '流程名称'}
+                    , {field: 'key', title: '流程标识', sort: true}
+                    , {field: 'version', title: '流程版本', sort: true}
+                    , {field: 'bpmn', title: '资源文件', templet: '#xml', sort: true}
+                    , {field: 'png', title: '流程图片', templet: '#png', sort: true}
+                    , {field: 'deploymentId', title: '部署 ID', sort: true}
+                    , {title: '操作', width: 80, align: 'center', toolbar: '#barDemo'}
                 ]
             ]
         });
 
-        table.on('tool(model-table)', function(obj){
+        table.on('tool(model-table)', function (obj) {
             let layEvent = obj.event;
-            if(layEvent === 'del'){
+            if (layEvent === 'del') {
                 window.remove(obj);
-            } else if(layEvent === 'xml'){
+            } else if (layEvent === 'xml') {
                 window.xml(obj);
-            } else if(layEvent === 'png'){
+            } else if (layEvent === 'png') {
                 window.png(obj);
             }
         });
 
-        form.on('submit(model-query)', function(data){
-            table.reload('model-table',{where:data.field})
+        form.on('submit(model-query)', function (data) {
+            table.reload('model-table', {where: data.field})
             return false;
         });
 
-        window.png = function(obj){
+        window.png = function (obj) {
             layer.open({
                 type: 1,
                 title: 'png',
                 shade: 0.1,
                 area: ['800px', '500px'],
-                content: '<img src="/process/defined/resource?definedId='+obj.data.deploymentId+'&resourceName='+obj.data.png+'">'
+                content: '<img src="/process/defined/resource?definedId=' + obj.data.deploymentId + '&resourceName=' + obj.data.png + '">'
             });
         }
 
-        window.remove = function(obj){
-            layer.confirm('确认删除该流程图吗', function(index){
+        window.remove = function (obj) {
+            layer.confirm('确认删除该流程图吗', function (index) {
                 let loading = layer.load();
                 $.ajax({
-                    url:'/process/defined/remove/'+obj.data.deploymentId,
-                    dataType:'json',
-                    type:'delete',
-                    success:function(data){
+                    url: '/process/defined/remove/' + obj.data.deploymentId,
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (data) {
                         layer.close(loading);
-                        if(data.success){
-                            layer.msg(data.msg,{icon:1,time:1000},function(){
+                        if (data.success) {
+                            layer.msg(data.msg, {icon: 1, time: 1000}, function () {
                                 obj.del();
                                 layer.close(index);
                             })
-                        }else{
-                            layer.msg(data.msg,{icon:2,time:1000});
+                        } else {
+                            layer.msg(data.msg, {icon: 2, time: 1000});
                         }
                     }
                 })

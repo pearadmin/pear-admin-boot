@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>文件新增</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('文件新增')"/>
 </head>
 <body>
 <form class="layui-form" action="javascript:void(0);">
@@ -14,10 +12,12 @@
                 <div class="layui-upload-list">
                     <table class="layui-table">
                         <thead>
-                        <tr><th>文件名</th>
+                        <tr>
+                            <th>文件名</th>
                             <th>大小</th>
                             <th>操作</th>
-                        </tr></thead>
+                        </tr>
+                        </thead>
                         <tbody id="demoList"></tbody>
                     </table>
                 </div>
@@ -37,73 +37,73 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','jquery','upload','layer'],function(){
+    layui.use(['form', 'jquery', 'upload', 'layer'], function () {
         let upload = layui.upload;
         let $ = layui.jquery;
         let layer = layui.layer;
 
-        let layerIndex ;
+        let layerIndex;
 
         let demoListView = $('#demoList')
-            ,uploadListIns = upload.render({
+            , uploadListIns = upload.render({
             elem: '#testList'
-            ,url: '/system/file/upload' //改成您自己的上传接口
-            ,accept: 'file'
-            ,method: 'post'
-            ,multiple: true
-            ,auto: false
-            ,bindAction: '#testListAction'
-            ,choose: function(obj){
+            , url: '/system/file/upload' //改成您自己的上传接口
+            , accept: 'file'
+            , method: 'post'
+            , multiple: true
+            , auto: false
+            , bindAction: '#testListAction'
+            , choose: function (obj) {
                 let files = this.files = obj.pushFile();
-                obj.preview(function(index, file){
-                    let tr = $(['<tr id="upload-'+ index +'">'
-                        ,'<td>'+ file.name +'</td>'
-                        ,'<td>'+ (file.size/1024).toFixed(1) +'kb</td>'
-                        ,'<td>'
-                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-                        ,'</td>'
-                        ,'</tr>'].join(''));
+                obj.preview(function (index, file) {
+                    let tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>' + (file.size / 1024).toFixed(1) + 'kb</td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
 
-                    tr.find('.demo-reload').on('click', function(){
+                    tr.find('.demo-reload').on('click', function () {
                         obj.upload(index, file);
                     });
 
-                    tr.find('.demo-delete').on('click', function(){
-                        delete files[index]; 
+                    tr.find('.demo-delete').on('click', function () {
+                        delete files[index];
                         tr.remove();
                         uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
                     });
                     demoListView.append(tr);
                 });
             }
-            ,done: function(res, index, upload){
-                if(res.success){
-                    let tr = demoListView.find('tr#upload-'+ index)
-                        ,tds = tr.children();
+            , done: function (res, index, upload) {
+                if (res.success) {
+                    let tr = demoListView.find('tr#upload-' + index)
+                        , tds = tr.children();
                     tds.eq(2).html('&nbsp;<button class="layui-btn layui-btn-xs">完成</button>'); //清空操作
                     return delete this.files[index];
                 }
                 this.error(index, upload);
             }
-            ,error: function(index){
-                let tr = demoListView.find('tr#upload-'+ index)
-                    ,tds = tr.children();
+            , error: function (index) {
+                let tr = demoListView.find('tr#upload-' + index)
+                    , tds = tr.children();
                 tds.eq(2).find('.demo-reload').removeClass('layui-hide');
             }
-            ,allDone: function(){
+            , allDone: function () {
                 layer.close(layerIndex);
-                layer.msg("上传成功",{icon:1,time:1200},function(){
+                layer.msg("上传成功", {icon: 1, time: 1200}, function () {
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
                     parent.layui.table.reload("file-table");
                 })
-            },progress: function(n, elem){
+            }, progress: function (n, elem) {
                 let percent = n + '%'
                 console.log(elem);
                 console.log(percent);
-            },before: function(){
+            }, before: function () {
                 layerIndex = layer.load();
             }
         });

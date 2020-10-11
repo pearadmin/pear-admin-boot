@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>用户新增</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('用户新增')"/>
 </head>
 <body>
 <form class="layui-form" action="">
@@ -13,31 +11,36 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">账号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="realName" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="realName" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="email" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="email" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="password" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="password" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="phone" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -50,7 +53,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">角色</label>
                     <div class="layui-input-block">
-                        <input th:each="sysRole:${sysRoles}" th:value="${sysRole.roleId}" th:title="${sysRole.roleName}"  type="checkbox" name="roleIds" lay-skin="primary">
+                        <input th:each="sysRole:${sysRoles}" th:value="${sysRole.roleId}" th:title="${sysRole.roleName}"
+                               type="checkbox" name="roleIds" lay-skin="primary">
                     </div>
                 </div>
             </div>
@@ -69,41 +73,40 @@
         </div>
     </div>
 </form>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-layui.use(['form','jquery'],function(){
-    let form = layui.form;
-    let $ = layui.jquery;
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
 
-    form.on('submit(user-save)', function(data){
-        let roleIds = "";
-        $('input[type=checkbox]:checked').each(function() {
-            roleIds += $(this).val()+",";
-        });
-        roleIds = roleIds.substr(0,roleIds.length-1);
-        data.field.roleIds = roleIds;
+        form.on('submit(user-save)', function (data) {
+            let roleIds = "";
+            $('input[type=checkbox]:checked').each(function () {
+                roleIds += $(this).val() + ",";
+            });
+            roleIds = roleIds.substr(0, roleIds.length - 1);
+            data.field.roleIds = roleIds;
 
-        $.ajax({
-            url:'/system/user/save',
-            data:JSON.stringify(data.field),
-            dataType:'json',
-            contentType:'application/json',
-            type:'post',
-            success:function(result){
-                if(result.success){
-                    layer.msg(result.msg,{icon:1,time:1000},function(){
-                        parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
-                        parent.layui.table.reload("user-table");
-                    });
-                }else{
-                    layer.msg(result.msg,{icon:2,time:1000});
+            $.ajax({
+                url: '/system/user/save',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("user-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
                 }
-            }
-        })
-        return false;
-    });
-})
+            })
+            return false;
+        });
+    })
 </script>
 <script>
 </script>

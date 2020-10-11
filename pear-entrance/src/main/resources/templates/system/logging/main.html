@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>日志列表</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('日志列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
@@ -41,11 +39,9 @@
 <script type="text/html" id="log-createTime">
     {{util.toDateString(d.createTime,  "yyyy-MM-dd HH:mm:ss")}}
 </script>
-
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table','form','jquery','element','util'],function () {
+    layui.use(['table', 'form', 'jquery', 'element', 'util'], function () {
         let table = layui.table;
         let form = layui.form;
         let util = layui.util;
@@ -54,24 +50,24 @@
 
         let cols = [
             [
-                {title: '模块', field: 'title', align:'center'},
-                {title: '请求方式', field: 'requestMethod', align:'center'},
-                {title: '接口', field: 'method', align:'center'},
-                {title: '浏览器', field: 'browser', align:'center'},
-                {title: '操作地址', field: 'operateAddress',align:'center'},
-                {title: '操作系统', field: 'systemOs', align:'center'},
-                {title: '访问时间', field: 'createTime',templet:'#log-createTime', align:'center'},
-                {title: '操作人', field: 'operateName', align:'center'},
-                {title: '访问状态', templet: '#log-status', align:'center'},
-                {title: '操作', templet: '#log-bar', align:'center', width:120}
+                {title: '模块', field: 'title', align: 'center'},
+                {title: '请求方式', field: 'requestMethod', align: 'center'},
+                {title: '接口', field: 'method', align: 'center'},
+                {title: '浏览器', field: 'browser', align: 'center'},
+                {title: '操作地址', field: 'operateAddress', align: 'center'},
+                {title: '操作系统', field: 'systemOs', align: 'center'},
+                {title: '访问时间', field: 'createTime', templet: '#log-createTime', align: 'center'},
+                {title: '操作人', field: 'operateName', align: 'center'},
+                {title: '访问状态', templet: '#log-status', align: 'center'},
+                {title: '操作', templet: '#log-bar', align: 'center', width: 120}
             ]
         ]
 
         table.render({
             elem: '#log-operate-table',
             url: MODULE_PATH + 'operateLog',
-            page: true ,
-            cols: cols ,
+            page: true,
+            cols: cols,
             skin: 'line',
             toolbar: false
         });
@@ -79,24 +75,24 @@
         table.render({
             elem: '#log-login-table',
             url: MODULE_PATH + 'loginLog',
-            page: true ,
-            cols: cols ,
+            page: true,
+            cols: cols,
             skin: 'line',
             toolbar: false
         });
 
-        form.on('submit(dict-type-query)', function(data){
-            table.reload('dict-type-table',{where:data.field})
+        form.on('submit(dict-type-query)', function (data) {
+            table.reload('dict-type-table', {where: data.field})
             return false;
         });
 
-        window.error = function(obj){
+        window.error = function (obj) {
             layer.open({
                 type: 1,
                 title: '异常信息',
                 shade: 0,
                 area: ['450px', '350px'],
-                content: '<div class="pear-container"><div class="layui-card"><div class="layui-card-body">'+obj.data['error']+'</div></div></div>'
+                content: '<div class="pear-container"><div class="layui-card"><div class="layui-card-body">' + obj.data['error'] + '</div></div></div>'
             });
         }
     })

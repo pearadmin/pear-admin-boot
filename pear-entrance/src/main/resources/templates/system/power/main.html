@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>权限列表</title>
-    <link rel="stylesheet" href="../../component/pear/css/pear.css" />
+    <th:block th:include="include :: header('权限列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
@@ -48,8 +46,10 @@
 </script>
 
 <script type="text/html" id="power-bar">
-    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
-    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    </button>
+    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    </button>
 </script>
 
 <script type="text/html" id="power-type">
@@ -63,7 +63,8 @@
 </script>
 
 <script type="text/html" id="power-enable">
-    <input type="checkbox" name="enable" value="{{d.powerId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="power-enable" {{ d.enable == true ? 'checked' : '' }}>
+    <input type="checkbox" name="enable" value="{{d.powerId}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="power-enable" {{ d.enable== true ? 'checked' : '' }}>
 </script>
 
 <script type="text/html" id="icon">
@@ -71,10 +72,9 @@
 </script>
 
 </body>
-<script src="../../component/layui/layui.js"></script>
-<script src="../../component/pear/pear.js"></script>
+<th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table','form','jquery','treetable'],function () {
+    layui.use(['table', 'form', 'jquery', 'treetable'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -82,28 +82,28 @@
 
         let MODULE_PATH = "/system/power/";
 
-        window.render = function(){
+        window.render = function () {
             treetable.render({
                 treeColIndex: 1,
                 treeSpid: 0,
                 treeIdName: 'powerId',
                 treePidName: 'parentId',
-                skin:'line',
-                method:'post',
+                skin: 'line',
+                method: 'post',
                 treeDefaultClose: true,
-                toolbar:'#power-toolbar',
+                toolbar: '#power-toolbar',
                 elem: '#power-table',
                 url: '/system/power/data',
                 page: false,
                 cols: [
                     [
-                    {type: 'checkbox'},
-                    {field: 'powerName', minWidth: 200, title: '权限名称'},
-                    {field: 'icon', title: '图标',templet:'#icon'},
-                    {field: 'powerType', title: '权限类型',templet:'#power-type'},
-                    {field: 'enable', title: '是否可用',templet:'#power-enable'},
-                    {field: 'sort', title: '排序'},
-                    {title: '操作',templet: '#power-bar', width: 150, align: 'center'}
+                        {type: 'checkbox'},
+                        {field: 'powerName', minWidth: 200, title: '权限名称'},
+                        {field: 'icon', title: '图标', templet: '#icon'},
+                        {field: 'powerType', title: '权限类型', templet: '#power-type'},
+                        {field: 'enable', title: '是否可用', templet: '#power-enable'},
+                        {field: 'sort', title: '排序'},
+                        {title: '操作', templet: '#power-bar', width: 150, align: 'center'}
                     ]
                 ]
             });
@@ -111,7 +111,7 @@
 
         render();
 
-        table.on('tool(power-table)',function(obj){
+        table.on('tool(power-table)', function (obj) {
             if (obj.event === 'remove') {
                 window.remove(obj);
             } else if (obj.event === 'edit') {
@@ -120,46 +120,47 @@
         })
 
 
-        table.on('toolbar(power-table)', function(obj){
-            if(obj.event === 'add'){
+        table.on('toolbar(power-table)', function (obj) {
+            if (obj.event === 'add') {
                 window.add();
-            } else if(obj.event === 'refresh'){
+            } else if (obj.event === 'refresh') {
                 window.refresh();
-            } else if(obj.event === 'batchRemove'){
+            } else if (obj.event === 'batchRemove') {
                 window.batchRemove(obj);
             }
         });
 
-        form.on('switch(power-enable)', function(obj){
+        form.on('switch(power-enable)', function (obj) {
             let operate;
 
-            if(obj.elem.checked){
+            if (obj.elem.checked) {
                 operate = "enable";
-            }else{
+            } else {
                 operate = "disable";
             }
 
             let loading = layer.load()
 
             $.ajax({
-                url:'/system/power/'+operate,
-                data:JSON.stringify({powerId:this.value}),
-                dataType:'json',
-                contentType:'application/json',
-                type:'put',
-                success:function(result){
+                url: '/system/power/' + operate,
+                data: JSON.stringify({powerId: this.value}),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
                     layer.close(loading);
-                    if(result.success){
-                        layer.msg(result.msg,{icon:1,time:1000},function(){});
-                    }else{
-                        layer.msg(result.msg,{icon:2,time:1000});
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })
         });
 
 
-        window.add = function(){
+        window.add = function () {
             layer.open({
                 type: 2,
                 title: '新增',
@@ -169,32 +170,32 @@
             });
         }
 
-        window.edit = function(obj){
+        window.edit = function (obj) {
             layer.open({
                 type: 2,
                 title: '修改',
                 shade: 0.1,
                 area: ['450px', '500px'],
-                content: MODULE_PATH + 'edit?powerId='+obj.data['powerId']
+                content: MODULE_PATH + 'edit?powerId=' + obj.data['powerId']
             });
         }
 
-        window.remove = function(obj){
-            layer.confirm('确定要删除该权限', {icon: 3, title:'提示'}, function(index){
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该权限', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: MODULE_PATH+"remove/"+obj.data['powerId'],
-                    dataType:'json',
-                    type:'delete',
-                    success:function(result){
+                    url: MODULE_PATH + "remove/" + obj.data['powerId'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
                         layer.close(loading);
-                        if(result.success){
-                            layer.msg(result.msg,{icon:1,time:1000},function(){
+                        if (result.success) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                                 obj.del();
                             });
-                        }else{
-                            layer.msg(result.msg,{icon:2,time:1000});
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
                         }
                     }
                 })
