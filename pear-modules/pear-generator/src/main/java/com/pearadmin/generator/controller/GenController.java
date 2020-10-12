@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import com.github.pagehelper.PageHelper;
@@ -39,10 +40,10 @@ import com.pearadmin.generator.service.IGenTableColumnService;
 public class GenController extends BaseController {
     private String prefix = "generator";
 
-    @Autowired
+    @Resource
     private IGenTableService genTableService;
 
-    @Autowired
+    @Resource
     private IGenTableColumnService genTableColumnService;
 
     @GetMapping("main")

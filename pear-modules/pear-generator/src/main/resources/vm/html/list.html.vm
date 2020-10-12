@@ -3,13 +3,11 @@
 <head>
     <th:block th:include="include :: header('${functionName}列表')" />
 </head>
-<body class="gray-bg">
-     <div class="container-div">
-        <div class="row">
+<body class="pear-container">
+     <div class="layui-card">
+        <div class="layui-card-body">
             <div class="col-sm-12 search-collapse">
                 <form id="formId">
-                    <div class="select-list">
-                        <ul>
 #foreach($column in $columns)
 #if($column.query)
 #set($dictType=$column.dictType)
@@ -21,129 +19,209 @@
 #set($comment=$column.columnComment)
 #end  
 #if($column.htmlType == "input")
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="${column.javaField}"/>
-                            </li>
-#elseif(($column.htmlType == "select" || $column.htmlType == "radio") && "" != $dictType)
-                            <li>
-                                <label>${comment}：</label>
-                                <select name="${column.javaField}" th:with="type=${@dict.getType('${dictType}')}">
-                                    <option value="">所有</option>
-                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-                                </select>
-                            </li>
-#elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
-                            <li>
-                                <label>${comment}：</label>
-                                <select name="${column.javaField}">
-                                    <option value="">所有</option>
-                                    <option value="-1">代码生成请选择字典属性</option>
-                                </select>
-                            </li>
-#elseif($column.htmlType == "datetime")
-                            <li class="select-time">
-                                <label>${comment}：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[begin${AttrName}]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[end${AttrName}]"/>
-                            </li>
-#end
-#end
-#end
-                            <li>
-                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
-                            </li>
-                        </ul>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">${comment}：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="${javaField}" placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-required#end/>
+                        </div>
                     </div>
+#elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">${comment}：</label>
+                        <div class="layui-input-block">
+                            <select name="${javaField}" #if($column.required) lay-required#end>
+                                <option value="">所有</option>
+                            </select>
+                        </div>
+                    </div>
+#end
+#end
+#end
+                    <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="${businessName}-query">
+                        <i class="layui-icon layui-icon-search"></i>
+                        查询
+                    </button>
+                    <button type="reset" class="pear-btn pear-btn-md">
+                        <i class="layui-icon layui-icon-refresh"></i>
+                        重置
+                    </button>
                 </form>
             </div>
-
-            <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="${permissionPrefix}:add">
-                    <i class="fa fa-plus"></i> 添加
-                </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="${permissionPrefix}:edit">
-                    <i class="fa fa-edit"></i> 修改
-                </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="${permissionPrefix}:remove">
-                    <i class="fa fa-remove"></i> 删除
-                </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="${permissionPrefix}:export">
-                    <i class="fa fa-download"></i> 导出
-                </a>
-            </div>
-            <div class="col-sm-12 select-table table-striped">
-                <table id="bootstrap-table"></table>
-            </div>
         </div>
-    </div>
-    <th:block th:include="include :: footer" />
-    <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('${permissionPrefix}:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('${permissionPrefix}:remove')}]];
-#foreach($column in $columns)
-#if(${column.dictType} != '')
-        var ${column.javaField}Datas = [[${@dict.getType('${column.dictType}')}]];
-#end
-#end
-        var prefix = ctx + "${moduleName}/${businessName}";
+         <div class="layui-card">
+             <div class="layui-card-body">
+                 <table id="${businessName}-table" lay-filter="${businessName}-table"></table>
 
-        $(function() {
-            var options = {
-                url: prefix + "/list",
-                createUrl: prefix + "/add",
-                updateUrl: prefix + "/edit/{id}",
-                removeUrl: prefix + "/remove",
-                exportUrl: prefix + "/export",
-                modalName: "${functionName}",
-                columns: [{
-                    checkbox: true
-                },
-#foreach($column in $columns)
-#set($dictType=$column.dictType)
-#set($javaField=$column.javaField)
-#set($parentheseIndex=$column.columnComment.indexOf("（"))
-#if($parentheseIndex != -1)
-#set($comment=$column.columnComment.substring(0, $parentheseIndex))
-#else
-#set($comment=$column.columnComment)
-#end
-#if($column.pk)
-                {
-                    field: '${javaField}',
-                    title: '${comment}',
-                    visible: false
-                },
-#elseif($column.list && "" != $dictType)
-                {
-                    field: '${javaField}',
-                    title: '${comment}',
-                    formatter: function(value, row, index) {
-                       return $.table.selectDictLabel#if($column.htmlType == "checkbox")s#end(${javaField}Datas, value);
-                    }
-                },
-#elseif($column.list && "" != $javaField)
-                {
-                    field: '${javaField}',
-                    title: '${comment}'
-                },
-#end                
-#end
-                {
-                    title: '操作',
-                    align: 'center',
-                    formatter: function(value, row, index) {
-                        var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.${pkColumn.javaField} + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.${pkColumn.javaField} + '\')"><i class="fa fa-remove"></i>删除</a>');
-                        return actions.join('');
-                    }
-                }]
-            };
-            $.table.init(options);
-        });
-    </script>
+                 <script type="text/html" id="${businessName}-toolbar">
+                     <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+                         <i class="layui-icon layui-icon-add-1"></i>
+                         新增
+                     </button>
+                     <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+                         <i class="layui-icon layui-icon-delete"></i>
+                         删除
+                     </button>
+                 </script>
+
+                 <script type="text/html" id="${businessName}-bar">
+                     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+                     </button>
+                     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+                     </button>
+                 </script>
+             </div>
+         </div>
+    <th:block th:include="include :: footer" />
+         <script>
+             layui.use(['table', 'form', 'jquery'], function () {
+                 let table = layui.table;
+                 let form = layui.form;
+                 let $ = layui.jquery;
+
+                 let prefix = "/${moduleName}/${businessName}";
+
+                 let cols = [
+                     [
+                         {type: 'checkbox'},
+                         #foreach($column in $columns)
+                             #set($dictType=$column.dictType)
+                             #set($javaField=$column.javaField)
+                             #set($parentheseIndex=$column.columnComment.indexOf("（"))
+                             #if($parentheseIndex != -1)
+                                 #set($comment=$column.columnComment.substring(0, $parentheseIndex))
+                             #else
+                                 #set($comment=$column.columnComment)
+                             #end
+                             #if($column.pk)
+                                 {
+                                     field: '${javaField}',
+                                     title: '${comment}'
+                                 },
+                             #elseif($column.list && "" != $javaField)
+                                 {
+                                     field: '${javaField}',
+                                     title: '${comment}'
+                                 },
+                             #end
+                         #end
+                         {title: '操作', toolbar: '#${businessName}-bar', align: 'center', width: 130}
+                     ]
+                 ]
+
+                 table.render({
+                     elem: '#${businessName}-table',
+                     url: prefix + 'data',
+                     page: true,
+                     cols: cols,
+                     skin: 'line',
+                     toolbar: '#${businessName}-toolbar',
+                     defaultToolbar: [{
+                         layEvent: 'refresh',
+                         icon: 'layui-icon-refresh',
+                     }, 'filter', 'print', 'exports']
+                 });
+
+                 table.on('tool(${businessName}-table)', function (obj) {
+                     if (obj.event === 'remove') {
+                         window.remove(obj);
+                     } else if (obj.event === 'edit') {
+                         window.edit(obj);
+                     }
+                 });
+
+                 table.on('toolbar(${businessName}-table)', function (obj) {
+                     if (obj.event === 'add') {
+                         window.add();
+                     } else if (obj.event === 'refresh') {
+                         window.refresh();
+                     } else if (obj.event === 'batchRemove') {
+                         window.batchRemove(obj);
+                     }
+                 });
+
+                 form.on('submit(${businessName}-query)', function (data) {
+                     window.refresh(data.field);
+                     return false;
+                 });
+
+                 window.add = function () {
+                     layer.open({
+                         type: 2,
+                         title: '新增',
+                         shade: 0.1,
+                         area: ['550px', '500px'],
+                         content: prefix + 'add'
+                     });
+                 }
+
+                 window.edit = function (obj) {
+                     layer.open({
+                         type: 2,
+                         title: '修改',
+                         shade: 0.1,
+                         area: ['550px', '500px'],
+                         content: prefix + 'edit?userId=' + obj.data['userId']
+                     });
+                 }
+
+                 window.remove = function (obj) {
+                     layer.confirm('确定要删除该用户', {icon: 3, title: '提示'}, function (index) {
+                         layer.close(index);
+                         let loading = layer.load();
+                         $.ajax({
+                             url: prefix + "remove/" + obj.data['${pkColumn.javaField}'],
+                             dataType: 'json',
+                             type: 'delete',
+                             success: function (result) {
+                                 layer.close(loading);
+                                 if (result.success) {
+                                     layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                         obj.del();
+                                     });
+                                 } else {
+                                     layer.msg(result.msg, {icon: 2, time: 1000});
+                                 }
+                             }
+                         })
+                     });
+                 }
+
+                 window.batchRemove = function (obj) {
+                     let data = table.checkStatus(obj.config.id).data;
+                     if (data.length === 0) {
+                         layer.msg("未选中数据", {icon: 3, time: 1000});
+                         return false;
+                     }
+                     let ids = "";
+                     for (let i = 0; i < data.length; i++) {
+                         ids += data[i].${pkColumn.javaField} + ",";
+                     }
+                     ids = ids.substr(0, ids.length - 1);
+                     layer.confirm('确定要删除这些用户', {icon: 3, title: '提示'}, function (index) {
+                         layer.close(index);
+                         let loading = layer.load();
+                         $.ajax({
+                             url: prefix + "batchRemove/" + ids,
+                             dataType: 'json',
+                             type: 'delete',
+                             success: function (result) {
+                                 layer.close(loading);
+                                 if (result.success) {
+                                     layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                         table.reload('user-table');
+                                     });
+                                 } else {
+                                     layer.msg(result.msg, {icon: 2, time: 1000});
+                                 }
+                             }
+                         })
+                     });
+                 }
+
+                 window.refresh = function (param) {
+                     table.reload('user-table', {where: param});
+                 }
+             })
+         </script>
 </body>
 </html>
