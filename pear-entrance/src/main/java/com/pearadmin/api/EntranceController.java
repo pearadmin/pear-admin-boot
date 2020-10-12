@@ -58,7 +58,7 @@ public class EntranceController extends BaseController {
     public ModelAndView home(Model model)
     {
         model.addAttribute("notices",sysNoticeService.top(5));
-        return JumpPage("console");
+        return JumpPage("console/console");
     }
 
     /**
