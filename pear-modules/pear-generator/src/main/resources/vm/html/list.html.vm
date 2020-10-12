@@ -147,7 +147,7 @@
                  window.add = function () {
                      layer.open({
                          type: 2,
-                         title: '新增',
+                         title: '新增${functionName}',
                          shade: 0.1,
                          area: ['550px', '500px'],
                          content: prefix + 'add'
@@ -157,7 +157,7 @@
                  window.edit = function (obj) {
                      layer.open({
                          type: 2,
-                         title: '修改',
+                         title: '修改${functionName}',
                          shade: 0.1,
                          area: ['550px', '500px'],
                          content: prefix + 'edit?userId=' + obj.data['userId']
@@ -165,7 +165,7 @@
                  }
 
                  window.remove = function (obj) {
-                     layer.confirm('确定要删除该用户', {icon: 3, title: '提示'}, function (index) {
+                     layer.confirm('确定要删除该${functionName}', {icon: 3, title: '提示'}, function (index) {
                          layer.close(index);
                          let loading = layer.load();
                          $.ajax({
@@ -197,7 +197,7 @@
                          ids += data[i].${pkColumn.javaField} + ",";
                      }
                      ids = ids.substr(0, ids.length - 1);
-                     layer.confirm('确定要删除这些用户', {icon: 3, title: '提示'}, function (index) {
+                     layer.confirm('确定要删除这些${functionName}', {icon: 3, title: '提示'}, function (index) {
                          layer.close(index);
                          let loading = layer.load();
                          $.ajax({
