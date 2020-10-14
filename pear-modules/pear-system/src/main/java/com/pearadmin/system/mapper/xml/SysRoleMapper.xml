@@ -7,6 +7,7 @@
         <result column="role_name" property="roleName"></result>
         <result column="role_code" property="roleCode"></result>
         <result column="enable" property="enable"></result>
+        <result column="sort" property="sort"></result>
         <result column="create_by" property="createBy"></result>
         <result column="create_time" property="createTime"></result>
         <result column="update_by" property="updateBy"></result>
@@ -50,6 +51,9 @@
             <if test="details!=null">
                 details,
             </if>
+            <if test="sort!=null">
+                sort,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="roleId!=null">
@@ -66,6 +70,9 @@
             </if>
             <if test="details!=null">
                 #{details},
+            </if>
+            <if test="sort!=null">
+                #{sort},
             </if>
         </trim>
     </insert>
@@ -85,6 +92,9 @@
             </if>
             <if test="details!=null and details!=''">
                 details = #{details},
+            </if>
+            <if test="sort!=null and sort!=''">
+                sort = #{sort},
             </if>
         </set>
         where role_id = #{roleId}

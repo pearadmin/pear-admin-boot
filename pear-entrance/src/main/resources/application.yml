@@ -20,7 +20,6 @@ mybatis:
   # 别 名 扫 描
   type-aliases-package: com.pearadmin
 
-
 # Pear 插 件 配 置 信 息
 pear:
     # Document 配 置 信 息

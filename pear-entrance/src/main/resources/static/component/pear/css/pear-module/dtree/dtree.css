@@ -1,16 +1,16 @@
 
 /**************** 主题换肤  ****************/
 /* 默认风格*/
-.dtree-theme-item-this{background-color: #d2d2d2!important;}
-.dtree-theme-item:hover{background-color: #eaeceb!important;}
+.dtree-theme-item-this{color: green!important;}
+.dtree-theme-item:hover{color: green!important;}
 .dtree-theme-item cite{font-size:12px!important;}
-.dtree-theme-item:hover cite{color:#fe7786!important;}
+.dtree-theme-item:hover cite{color: green!important;}
 
 .dtree-theme-dtreefont{font-size: 16px!important;}
 .dtree-theme-ficon{color:#000!important;}
 .dtree-theme-icon{color:orange!important;}
-.dtree-theme-checkbox:hover{color:#fe7786!important;}
-.dtree-theme-choose{color:#fe7786!important;}
+.dtree-theme-checkbox:hover{color: green!important;}
+.dtree-theme-choose{color: green!important;}
 
 /* layui主题风格*/
 .dtree-layui-item-this{background: none!important;}

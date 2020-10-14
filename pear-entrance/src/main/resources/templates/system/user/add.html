@@ -51,6 +51,12 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label">所属部门</label>
+                    <div class="layui-input-block">
+                        <ul id="selectParent" name="deptId" class="dtree" data-id="0"></ul>
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">角色</label>
                     <div class="layui-input-block">
                         <input th:each="sysRole:${sysRoles}" th:value="${sysRole.roleId}" th:title="${sysRole.roleName}"
@@ -75,9 +81,21 @@
 </form>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form', 'jquery'], function () {
+    layui.use(['form', 'jquery','dtree'], function () {
         let form = layui.form;
         let $ = layui.jquery;
+        let dtree = layui.dtree;
+
+        dtree.renderSelect({
+            elem: "#selectParent",
+            url: "/system/dept/tree",
+            method: 'get',
+            selectInputName: {nodeId: "deptId", context: "deptName"},
+            skin: "layui",
+            dataFormat: "list",
+            response: {treeId: "deptId", parentId: "parentId", title: "deptName"},
+            selectInitVal: "1"
+        });
 
         form.on('submit(user-save)', function (data) {
             let roleIds = "";

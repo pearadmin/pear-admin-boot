@@ -13,6 +13,7 @@
         <result property="email" column="email"></result>
         <result property="avatar" column="avatar"></result>
         <result property="sex" column="sex"></result>
+        <result property="deptId" column="dept_id"></result>
         <result property="phone" column="phone"></result>
         <result property="enable" column="enable"></result>
         <result property="login" column="login"></result>
@@ -37,6 +38,16 @@
             </if>
             <if test="realName!=null and realName!=''">
                 and real_name like "%"#{realName}"%"
+            </if>
+            <if test="deptId!=null and deptId!=''">
+                <choose>
+                    <when  test="deptId=='-1'">
+                        and dept_id is null
+                    </when>
+                    <otherwise>
+                        and dept_id = #{deptId}
+                    </otherwise>
+                </choose>
             </if>
         </where>
     </select>
@@ -80,6 +91,9 @@
             <if test="enable">
                 enable,
             </if>
+            <if test="deptId!=null and deptId!=''">
+                dept_id,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="userId!=null">
@@ -109,8 +123,11 @@
             <if test="remark!=null">
                 #{remark},
             </if>
-            <if test="enable!=null">
+            <if test="enable!=null and enable!=''">
                 #{enable},
+            </if>
+            <if test="deptId!=null and deptId!=''">
+                #{deptId},
             </if>
         </trim>
     </insert>
@@ -139,6 +156,9 @@
              </if>
              <if test="password!=null and password!=''">
                  password = #{password},
+             </if>
+             <if test="deptId!=null and deptId!=''">
+                 dept_id = #{deptId},
              </if>
          </set>
          where user_id = #{userId}

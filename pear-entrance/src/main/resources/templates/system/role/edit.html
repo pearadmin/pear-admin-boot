@@ -37,6 +37,13 @@
                                checked>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sort" th:value="${sysRole.sort}" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
+                    </div>
+                </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">

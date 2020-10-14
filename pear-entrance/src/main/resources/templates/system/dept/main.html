@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('字典类型列表')"/>
+    <th:block th:include="include :: header('部门列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
         <form class="layui-form" action="">
             <div class="layui-form-item">
-                <label class="layui-form-label">字典名称</label>
+                <label class="layui-form-label">部门名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="realName" placeholder="" class="layui-input">
+                    <input type="text" name="deptName" placeholder="" class="layui-input">
                 </div>
-                <label class="layui-form-label">字典标识</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="username" placeholder="" class="layui-input">
-                </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dict-type-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="user-query">
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
@@ -30,11 +26,11 @@
 </div>
 <div class="layui-card">
     <div class="layui-card-body">
-        <table id="dict-type-table" lay-filter="dict-type-table"></table>
+        <table id="dept-table" lay-filter="dept-table"></table>
     </div>
 </div>
-</body>
-<script type="text/html" id="dict-type-toolbar">
+
+<script type="text/html" id="dept-toolbar">
     <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
@@ -45,78 +41,77 @@
     </button>
 </script>
 
-<script type="text/html" id="dict-type-bar">
+<script type="text/html" id="dept-bar">
     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="details"><i
-            class="layui-icon layui-icon-transfer"></i></button>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
-<script type="text/html" id="dict-type-enable">
-    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用"
-           lay-filter="dict-type-enable" {{d.enable== '0' ? 'checked' : '' }}>
+<script type="text/html" id="dept-status">
+    <input type="checkbox" name="enable" value="{{d.deptId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dept-enable" {{ d.enable== true ? 'checked' : '' }}>
 </script>
 
+</body>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery'], function () {
+    layui.use(['table', 'form', 'jquery', 'treetable'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
+        let treetable = layui.treetable;
 
-        let cols = [
-            [
-                {type: 'checkbox'},
-                {title: '字典名称', field: 'typeName', align: 'center', width: 120},
-                {title: '字典标识', field: 'typeCode', align: 'center'},
-                {title: '描述', field: 'description', align: 'center'},
-                {title: '字典状态', field: 'enable', align: 'center', templet: '#dict-type-enable'},
-                {title: '操作', toolbar: '#dict-type-bar', align: 'center', width: 180}
-            ]
-        ]
+        let MODULE_PATH = "/system/dept/";
 
-        table.render({
-            elem: '#dict-type-table',
-            url: '/system/dictType/data',
-            page: true,
-            cols: cols,
-            skin: 'line',
-            height: 'full-146',
-            toolbar: '#dict-type-toolbar',
-            defaultToolbar: [{
-                layEvent: 'refresh',
-                icon: 'layui-icon-refresh',
-            }, 'filter', 'print', 'exports']
-        });
+        window.render = function () {
+            treetable.render({
+                treeColIndex: 1,
+                treeSpid: 0,
+                treeIdName: 'deptId',
+                treePidName: 'parentId',
+                skin: 'line',
+                method: 'post',
+                treeDefaultClose: false,
+                toolbar: '#dept-toolbar',
+                elem: '#dept-table',
+                url: '/system/dept/data',
+                page: false,
+                cols: [
+                    [
+                        {type: 'checkbox'},
+                        {field: 'deptName', minWidth: 200, title: '部门名称'},
+                        {field: 'leader', title: '负责人'},
+                        {field: 'phone', title: '联系方式'},
+                        {field: 'email', title: '邮箱'},
+                        {field: 'address', title: '详细地址'},
+                        {field: 'sort', title: '排序', width: 100},
+                        {title: '操作', templet: '#dept-bar', width: 120, align: 'center'}
+                    ]
+                ]
+            });
+        }
 
-        table.on('tool(dict-type-table)', function (obj) {
+        render();
+
+        table.on('tool(dept-table)', function (obj) {
             if (obj.event === 'remove') {
                 window.remove(obj);
             } else if (obj.event === 'edit') {
                 window.edit(obj);
-            } else if (obj.event === 'details') {
-                window.details(obj);
             }
-        });
+        })
 
-        table.on('toolbar(dict-type-table)', function (obj) {
+        table.on('toolbar(dept-table)', function (obj) {
             if (obj.event === 'add') {
                 window.add();
             } else if (obj.event === 'refresh') {
                 window.refresh();
             } else if (obj.event === 'batchRemove') {
-                layer.msg("批量删除")
+                window.batchRemove(obj);
             }
         });
 
-        form.on('submit(dict-type-query)', function (data) {
-            table.reload('dict-type-table', {where: data.field})
-            return false;
-        });
-
-        form.on('switch(dict-type-enable)', function (obj) {
+        form.on('switch(dept-enable)', function (obj) {
             let operate;
 
             if (obj.elem.checked) {
@@ -124,12 +119,11 @@
             } else {
                 operate = "disable";
             }
-
             let loading = layer.load()
 
             $.ajax({
-                url: '/system/dictType/' + operate,
-                data: JSON.stringify({id: this.value}),
+                url: '/system/dept/' + operate,
+                data: JSON.stringify({deptId: this.value}),
                 dataType: 'json',
                 contentType: 'application/json',
                 type: 'put',
@@ -145,18 +139,15 @@
             })
         });
 
+
         window.add = function () {
             layer.open({
                 type: 2,
                 title: '新增',
                 shade: 0.1,
-                area: ['500px', '400px'],
-                content: '/system/dictType/add'
+                area: ['450px', '500px'],
+                content: MODULE_PATH + 'add'
             });
-        }
-
-        window.details = function (obj) {
-            location.href = "/system/dictData/main?typeCode=" + obj.data['typeCode'];
         }
 
         window.edit = function (obj) {
@@ -164,17 +155,17 @@
                 type: 2,
                 title: '修改',
                 shade: 0.1,
-                area: ['500px', '400px'],
-                content: '/system/dictType/edit?dictTypeId=' + obj.data['id']
+                area: ['450px', '500px'],
+                content: MODULE_PATH + 'edit?deptId=' + obj.data['deptId']
             });
         }
 
         window.remove = function (obj) {
-            layer.confirm('确定要删除该字典分类', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除该部门', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: "/system/dictType/remove/" + obj.data['id'],
+                    url: MODULE_PATH + "remove/" + obj.data['deptId'],
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
@@ -189,10 +180,6 @@
                     }
                 })
             });
-        }
-
-        window.refresh = function () {
-            table.reload('dict-type-table');
         }
     })
 </script>

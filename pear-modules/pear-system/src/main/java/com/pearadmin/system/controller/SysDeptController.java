@@ -1,0 +1,163 @@
+package com.pearadmin.system.controller;
+
+import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.web.base.BaseController;
+import com.pearadmin.common.web.domain.response.ResuTree;
+import com.pearadmin.common.web.domain.response.Result;
+import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.system.domain.SysDept;
+import com.pearadmin.system.service.ISysDeptService;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * Describe: 部门管理
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
+
+@RestController
+@RequestMapping("system/dept")
+public class SysDeptController extends BaseController {
+
+    /**
+     * Describe: 基础路径
+     * */
+    private static String MODULE_PATH = "system/dept/";
+
+    /**
+     * Describe: 部门模块服务
+     * */
+    @Resource
+    private ISysDeptService sysDeptService;
+
+    /**
+     * Describe: 获取部门列表视图
+     * Param ModelAndView
+     * Return 用户列表视图
+     * */
+    @GetMapping("main")
+    public ModelAndView main(){
+        return JumpPage(MODULE_PATH + "main");
+    }
+
+    /**
+     * Describe: 获取部门列表数据
+     * Param SysDept PageDomain
+     * Return 部门列表数据
+     * */
+    @GetMapping("data")
+    public ResultTable data( SysDept param){
+        List<SysDept> data = sysDeptService.list(param);
+        return dataTable(data);
+    }
+
+    /**
+     * Describe: 获取部门树状数据结构
+     * Param ModelAndView
+     * Return ModelAndView
+     * */
+    @GetMapping("tree")
+    public ResuTree tree(SysDept param){
+        List<SysDept> data = sysDeptService.list(param);
+        return dataTree(data);
+    }
+
+    /**
+     * Describe: 获取部门新增视图
+     * Param ModelAndView
+     * Return 部门新增视图
+     * */
+    @GetMapping("add")
+    public ModelAndView add(){
+        return JumpPage(MODULE_PATH + "add");
+    }
+
+    /**
+     * Describe: 保存部门信息
+     * Param SysDept
+     * Return 执行结果
+     * */
+    @PostMapping("save")
+    @ApiOperation(value="保存部门数据")
+    @PreAuthorize("hasPermission('/system/role/add','sys:role:add')")
+    public Result save(@RequestBody SysDept SysDept){
+        SysDept.setDeptId(SequenceUtil.makeStringId());
+        boolean result = sysDeptService.save(SysDept);
+        return decide(result);
+    }
+
+    /**
+     * Describe: 获取部门修改视图
+     * Param ModelAndView
+     * Return 部门修改视图
+     * */
+    @GetMapping("edit")
+    public ModelAndView edit(ModelAndView modelAndView,String deptId){
+        modelAndView.addObject("sysDept",sysDeptService.getById(deptId));
+        modelAndView.setViewName(MODULE_PATH + "edit");
+        return modelAndView;
+    }
+
+    /**
+     * Describe: 修改部门信息
+     * Param SysDept
+     * Return 执行结果
+     * */
+    @PutMapping("update")
+    public Result update(@RequestBody  SysDept SysDept){
+        boolean result = sysDeptService.update(SysDept);
+        return decide(result);
+    }
+
+
+    /**
+     * Describe: 用户删除接口
+     * Param: id
+     * Return: ResuBean
+     * */
+    @DeleteMapping("remove/{id}")
+    public Result remove(@PathVariable String id){
+        boolean result  = sysDeptService.remove(id);
+        return decide(result);
+    }
+
+    /**
+     * Describe: 用户批量删除接口
+     * Param: ids
+     * Return: ResuBean
+     * */
+    @DeleteMapping("batchRemove/{ids}")
+    public Result batchRemove(@PathVariable String ids){
+        boolean result = sysDeptService.batchRemove(ids.split(","));
+        return decide(result);
+    }
+
+    /**
+     * Describe: 根据 Id 启用部门
+     * Param: roleId
+     * Return: ResuBean
+     * */
+    @PutMapping("enable")
+    public Result enable(@RequestBody SysDept SysDept){
+        SysDept.setStatus("0");
+        boolean result =  sysDeptService.update(SysDept);
+        return decide(result);
+    }
+
+    /**
+     * Describe: 根据 Id 禁用部门
+     * Param: roleId
+     * Return: ResuBean
+     * */
+    @PutMapping("disable")
+    public Result disable(@RequestBody SysDept SysDept){
+        SysDept.setStatus("1");
+        boolean result =  sysDeptService.update(SysDept);
+        return decide(result);
+    }
+}

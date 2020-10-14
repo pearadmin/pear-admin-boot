@@ -66,6 +66,11 @@ public class SysUser extends BaseDomain {
     private String phone;
 
     /**
+     * 所属部门
+     * */
+    private String deptId;
+
+    /**
      * 是否启用
      * */
     private String enable;

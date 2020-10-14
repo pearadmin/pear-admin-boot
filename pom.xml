@@ -65,6 +65,8 @@
         <freemarker.version>2.3.30</freemarker.version>
         <!-- 验 证 码 版 本 -->
         <captcha.version>1.6.2</captcha.version>
+        <!-- 代 码 生 成 -->
+        <generator.version>0.0.1-SNAPSHOT</generator.version>
         <!-- 工 作 流 版 本 -->
         <activiti.version>6.0.0</activiti.version>
         <!-- Xml 解 析 依 赖 -->
@@ -219,7 +221,7 @@
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-generator</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${generator.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

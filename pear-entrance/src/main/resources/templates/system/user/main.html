@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('修改密码')"/>
+    <th:block th:include="include :: header('用户列表')"/>
+    <style>
+        .dept-tree {
+            width: 100%;
+            height: -webkit-calc(100vh - 247px);
+            height: -moz-calc(100vh - 247px);
+            height: calc(100vh - 247px);
+            margin-top: 20px;
+        }
+
+        .button{
+            margin-top: 10px;
+            width: 94%;
+            margin-left: 3%;
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 15px;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 14.5px;
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            outline: 0;
+            border-radius: 2px;
+            -webkit-appearance: none;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+        }
+
+        .button-primary{
+            background-color: #5FB878;
+            color: white;
+        }
+
+        .button-default{
+            color: #2f495e;
+            background-color: #edf2f7;
+        }
+    </style>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form class="layui-form" action="" lay-filter="user-query-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
@@ -28,11 +67,27 @@
         </form>
     </div>
 </div>
-<div class="layui-card">
-    <div class="layui-card-body">
-        <table id="user-table" lay-filter="user-table"></table>
+<div class="layui-row layui-col-space10">
+    <div class="layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="button button-primary user-group" user-group=""> 全 部 用 户 </div>
+                <div class="button button-default user-group" user-group="-1"> 默 认 分 组 </div>
+                <div style="overflow: auto">
+                    <ul id="dept-tree" class="dept-tree" data-id="0"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md9">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <table id="user-table" lay-filter="user-table"></table>
+            </div>
+        </div>
     </div>
 </div>
+
 </body>
 
 <script type="text/html" id="user-toolbar">
@@ -54,8 +109,7 @@
 </script>
 
 <script type="text/html" id="user-enable">
-    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用"
-           lay-filter="user-enable" {{ d.enable== true ? 'checked' : '' }} />
+    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable" {{ d.enable== true ? 'checked' : '' }} />
 </script>
 
 <script type="text/html" id="user-sex">
@@ -76,10 +130,11 @@
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery'], function () {
+    layui.use(['table', 'dtree','form', 'jquery'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
+        let dtree = layui.dtree;
 
         let MODULE_PATH = "/system/user/";
 
@@ -88,8 +143,7 @@
                 {type: 'checkbox'},
                 {title: '姓名', field: 'realName', align: 'center', width: 120},
                 {title: '账号', field: 'username', align: 'center'},
-                {title: '性别', field: 'sex', align: 'center', templet: '#user-sex'},
-                {title: '邮箱', field: 'email', align: 'center'},
+                {title: '性别', field: 'sex', align: 'center', templet: '#user-sex',width: 80},
                 {title: '电话', field: 'phone', align: 'center'},
                 {title: '启用', field: 'enable', align: 'center', templet: '#user-enable'},
                 {title: '注册', field: 'createTime', align: 'center'},
@@ -103,12 +157,46 @@
             page: true,
             cols: cols,
             skin: 'line',
+            height: 'full-148',
             toolbar: '#user-toolbar',
-            defaultToolbar: [{
-                layEvent: 'refresh',
-                icon: 'layui-icon-refresh',
-            }, 'filter', 'print', 'exports']
+            text: {none: '暂无人员信息'},
+            defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh'}, 'filter', 'print', 'exports']
         });
+
+        dtree.render({
+            elem: "#dept-tree",
+            method: "get",
+            url: "/system/dept/tree",
+            dataFormat: "list",
+            icon: ["0","-1"],
+            line: true,
+            response: {treeId: "deptId", parentId: "parentId", title: "deptName"},
+        });
+
+        dtree.on("node('dept-tree')" ,function(obj){
+            let field = form.val("user-query-form");
+            field.deptId =  obj.param.nodeId;
+            window.refresh(field);
+        });
+
+        $(".user-group").click(function(){
+            let group =  $(this).attr("user-group");
+            let field = form.val("user-query-form");
+            if(group==="-1"){
+                field.deptId = group;
+                $(this).removeClass("button-default");
+                $(this).prev().removeClass("button-primary");
+                $(this).prev().addClass("button-default");
+                $(this).addClass("button-primary");
+            }else{
+                field.deptId = group;
+                $(this).removeClass("button-default");
+                $(this).next().removeClass("button-primary");
+                $(this).next().addClass("button-default");
+                $(this).addClass("button-primary");
+            }
+            window.refresh(field);
+        })
 
         table.on('tool(user-table)', function (obj) {
             if (obj.event === 'remove') {
@@ -141,7 +229,6 @@
             } else {
                 operate = "disable";
             }
-
             let loading = layer.load()
 
             $.ajax({

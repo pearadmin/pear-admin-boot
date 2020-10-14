@@ -1,49 +1,48 @@
 package com.pearadmin.system.mapper;
 
-import com.pearadmin.system.domain.SysRole;
+import com.pearadmin.system.domain.SysDept;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**
- * Describe: 系统角色接口
+ * Describe: 部门接口
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
 @Mapper
-public interface SysRoleMapper {
+public interface SysDeptMapper {
 
     /**
-     * Describe: 查询角色列表
-     * Param: SysRole
-     * Return: List<SysRole>
+     * Describe: 查询部门列表
+     * Param: SysDept
+     * Return: List<SysDept>
      * */
-     List<SysRole> selectList(SysRole param);
+    List<SysDept> selectList(SysDept param);
 
     /**
-     * Describe: 添加角色数据
-     * Param: SysRole
+     * Describe: 添加部门数据
+     * Param: SysDept
      * Return: 执行结果
      * */
-    Integer insert(SysRole sysRole);
+    Integer insert(SysDept sysDept);
 
     /**
-     * Describe: 根据 Id 查询角色
+     * Describe: 根据 Id 查询部门
      * Param: id
-     * Return: SysRole
+     * Return: SysDept
      * */
-    SysRole selectById(@Param("id") String id);
+    SysDept selectById(@Param("id") String id);
 
     /**
-     * Describe: 根据 Id 修改角色
-     * Param: SysRole
+     * Describe: 根据 Id 修改部门
+     * Param: SysDept
      * Return: Integer
      * */
-    Integer updateById(SysRole sysRole);
+    Integer updateById(SysDept sysDept);
 
     /**
-     * Describe: 根据 Id 删除用户
+     * Describe: 根据 Id 删除部门
      * Param: id
      * Return: Integer
      * */

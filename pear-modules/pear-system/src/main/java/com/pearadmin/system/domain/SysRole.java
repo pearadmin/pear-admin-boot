@@ -39,6 +39,11 @@ public class SysRole extends BaseDomain {
     private String details;
 
     /**
+     * 排序
+     * */
+    private Integer sort;
+
+    /**
      * 提供前端 显示
      * */
     private boolean checked = false;

@@ -76,4 +76,5 @@ public interface ISysRoleService {
      * Return: 操作结果
      * */
     boolean batchRemove(String[] ids);
+
 }

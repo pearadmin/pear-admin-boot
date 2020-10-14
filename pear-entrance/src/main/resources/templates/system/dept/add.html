@@ -9,24 +9,44 @@
         <div class="main-container">
             <div class="main-container">
                 <div class="layui-form-item">
+                    <label class="layui-form-label">上级部门</label>
+                    <div class="layui-input-block">
+                        <ul id="selectParent" name="parentId" class="dtree" data-id="0"></ul>
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="roleName" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                        <input type="text" name="deptName" lay-verify="title" autocomplete="off" placeholder="请输入标题"
                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">标识</label>
+                    <label class="layui-form-label">负责人</label>
                     <div class="layui-input-block">
-                        <input type="text" name="roleCode" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                        <input type="text" name="leader" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="email" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联系方式</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入标题"
                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="enable" value="0" title="开启">
-                        <input type="radio" name="enable" value="1" title="关闭" checked>
+                        <input type="radio" name="status" value="0" title="开启">
+                        <input type="radio" name="status" value="1" title="关闭" checked>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -37,9 +57,9 @@
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">描述</label>
+                    <label class="layui-form-label">详细地址</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入描述" name="details" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入描述" name="address" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -47,7 +67,7 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="role-save">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="dept-save">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
@@ -60,13 +80,25 @@
 </form>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form', 'jquery'], function () {
+    layui.use(['form', 'jquery','dtree'], function () {
         let form = layui.form;
         let $ = layui.jquery;
+        let dtree = layui.dtree;
 
-        form.on('submit(role-save)', function (data) {
+        dtree.renderSelect({
+            elem: "#selectParent",
+            url: "/system/dept/tree",
+            method: 'get',
+            selectInputName: {nodeId: "parentId", context: "parentName"},
+            skin: "layui",
+            dataFormat: "list",
+            response: {treeId: "deptId", parentId: "parentId", title: "deptName"},
+            selectInitVal: "1"
+        });
+
+        form.on('submit(dept-save)', function (data) {
             $.ajax({
-                url: '/system/role/save',
+                url: '/system/dept/save',
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json',
@@ -75,7 +107,7 @@
                     if (result.success) {
                         layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
-                            parent.layui.table.reload("role-table");
+                            parent.layui.table.reload("dept-table");
                         });
                     } else {
                         layer.msg(result.msg, {icon: 2, time: 1000});

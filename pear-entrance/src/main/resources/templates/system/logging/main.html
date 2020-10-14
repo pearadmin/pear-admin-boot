@@ -4,6 +4,7 @@
     <th:block th:include="include :: header('日志列表')"/>
 </head>
 <body class="pear-container">
+
 <div class="layui-card">
     <div class="layui-card-body">
         <div class="layui-tab layui-tab-card">
@@ -37,14 +38,17 @@
 </script>
 
 <script type="text/html" id="log-createTime">
-    {{util.toDateString(d.createTime,  "yyyy-MM-dd HH:mm:ss")}}
+    {{layui.util.toDateString(d.createTime,  "yyyy-MM-dd HH:mm:ss")}}
 </script>
+
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'form', 'jquery', 'element', 'util'], function () {
         let table = layui.table;
+        let element = layui.element;
         let form = layui.form;
         let util = layui.util;
+        let $ = layui.jquery;
 
         let MODULE_PATH = "/system/logging/";
 
@@ -69,6 +73,7 @@
             page: true,
             cols: cols,
             skin: 'line',
+            height: 'full-140',
             toolbar: false
         });
 
@@ -78,6 +83,7 @@
             page: true,
             cols: cols,
             skin: 'line',
+            height: 'full-140',
             toolbar: false
         });
 
