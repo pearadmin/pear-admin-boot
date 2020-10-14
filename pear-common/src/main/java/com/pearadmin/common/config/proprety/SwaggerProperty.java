@@ -4,6 +4,11 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import springfox.documentation.service.Contact;
 
+/**
+ * Describe: 接 口 文 档 配 置 类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Data
 @ConfigurationProperties("pear.swagger")
 public class SwaggerProperty {
