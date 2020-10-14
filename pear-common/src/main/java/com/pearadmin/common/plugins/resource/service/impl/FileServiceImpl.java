@@ -3,9 +3,11 @@ package com.pearadmin.common.plugins.resource.service.impl;
 import com.pearadmin.common.plugins.resource.domain.File;
 import com.pearadmin.common.plugins.resource.mapper.FileMapper;
 import com.pearadmin.common.plugins.resource.service.IFileService;
+import com.pearadmin.common.tools.file.FileUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
@@ -34,6 +36,7 @@ public class FileServiceImpl implements IFileService {
      * Param: File
      * Return: id
      * */
+    @Override
     public List<String> fileDirs(){
         List<String> fileDirs = new ArrayList<>();
         java.io.File file = new java.io.File("/home/upload");
@@ -41,9 +44,7 @@ public class FileServiceImpl implements IFileService {
           java.io.File[] files = file.listFiles();
             for (int i = 0; i < files.length; i++) {
                 if (files[i].isDirectory()) {
-
                    String dirName = files[i].getName();
-
                    fileDirs.add(dirName);
                 }
             }
@@ -57,6 +58,7 @@ public class FileServiceImpl implements IFileService {
      * Return: id
      * */
     @Override
+    @Transactional
     public String upload(MultipartFile file) {
         try {
             String fileId = SequenceUtil.makeStringId();
@@ -65,19 +67,21 @@ public class FileServiceImpl implements IFileService {
             String hash = fileId;
             String fileName = hash + suffixName;
             String fileDir = LocalDate.now().toString();
-            String parentPath = "/home/upload/"+fileDir;
+            String parentPath = "D:/home/upload/"+fileDir;
             java.io.File filepath = new java.io.File(parentPath, fileName);
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();
             }
             File fileDomain = new File();
+            file.transferTo(filepath);
             fileDomain.setId(fileId);
             fileDomain.setFileDesc(name);
             fileDomain.setFileName(fileName);
+            fileDomain.setTargetDate(LocalDate.now());
             fileDomain.setFilePath(filepath.getPath());
-            fileDomain.setFileType(suffixName);
             fileDomain.setCreateTime(LocalDateTime.now());
-            file.transferTo(filepath);
+            fileDomain.setFileSize(FileUtil.getPrintSize(filepath.length()));
+            fileDomain.setFileType(suffixName.replace(".",""));
             int result = fileMapper.insert(fileDomain);
             if (result > 0) {
                 return fileId;

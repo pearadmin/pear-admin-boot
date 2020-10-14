@@ -3,6 +3,8 @@ package com.pearadmin.common.plugins.resource.domain;
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 /**
  * Describe: 文 件 接 口 实 体
  * Author: 就 眠 仪 式
@@ -32,8 +34,18 @@ public class File extends BaseDomain {
     private String fileType;
 
     /**
+     * 文件大小
+     * */
+    private String fileSize;
+
+    /**
      * 文件描述
      * */
     private String fileDesc;
+
+    /**
+     * 所属日期
+     * */
+    private LocalDate targetDate;
 
 }

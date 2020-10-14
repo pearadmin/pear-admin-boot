@@ -10,6 +10,7 @@
         file_desc as fileDesc,
         file_path as filePath,
         file_type as fileType,
+        file_size as fileSize,
         create_by as createBy,
         create_time as createTime
         from
@@ -24,6 +25,7 @@
         file_desc as fileDesc,
         file_path as filePath,
         file_type as fileType,
+        file_size as fileSize,
         create_by as createBy,
         create_time as createTime
         from
@@ -49,11 +51,17 @@
             <if test="fileType != null">
                 file_type,
             </if>
+            <if test="fileSize !=null">
+                file_size,
+            </if>
             <if test="createBy != null">
                 create_by,
             </if>
             <if test="createTime != null">
                 create_time,
+            </if>
+            <if test="targetDate !=null">
+                target_date,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -72,17 +80,23 @@
             <if test="fileType != null">
                 #{fileType},
             </if>
+            <if test="fileSize != null">
+                #{fileSize},
+            </if>
             <if test="createBy != null">
                 #{createBy},
             </if>
             <if test="createTime != null">
                 #{createTime},
             </if>
+            <if test="targetDate != null">
+                #{targetDate},
+            </if>
         </trim>
     </insert>
 
     <delete id="deleteById" parameterType="string">
-    delete from sys_file where id = #{id}
-  </delete>
+        delete from sys_file where id = #{id}
+    </delete>
 
 </mapper>

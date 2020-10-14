@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DruidProperty
 {
-
     @Value("${spring.datasource.druid.initialSize}")
     private int initialSize;
 

@@ -83,8 +83,8 @@
                 {title: '资源名称', field: 'fileName', align: 'center', width: 200},
                 {title: '原名称', field: 'fileDesc', align: 'center', width: 260},
                 {title: '类型', field: 'fileType', align: 'center', width: 80},
+                {title: '文件大小', field: 'fileSize', align: 'center'},
                 {title: '预览', field: 'fileType', align: 'center', templet: "#file-img"},
-                {title: '路径', field: 'filePath', align: 'center'},
                 {title: '创建日期', field: 'createTime', align: 'center', templet: "#file-createTime"},
                 {title: '操作', toolbar: '#role-bar', align: 'center', width: 150}
             ]
@@ -96,6 +96,7 @@
             page: true,
             cols: cols,
             skin: 'line',
+            height: 'full-148',
             toolbar: '#role-toolbar',
             defaultToolbar: [{
                 layEvent: 'refresh',
