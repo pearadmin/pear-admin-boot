@@ -119,5 +119,4 @@ public class SysConfigController extends BaseController {
         Boolean result = sysConfigService.remove(id);
         return decide(result);
     }
-
 }
