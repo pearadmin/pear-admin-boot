@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:include="include :: header('用户列表')"/>
     <style>
@@ -91,20 +91,20 @@
 </body>
 
 <script type="text/html" id="user-toolbar">
-    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+    <button sec:authorize="hasPermission('/system/user/add','sys:user:add')" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="pear-icon pear-icon-add"></i>
         新增
     </button>
-    <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sec:authorize="hasPermission('/system/user/remove','sys:user:remove')" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="pear-icon pear-icon-ashbin"></i>
         删除
     </button>
 </script>
 
 <script type="text/html" id="user-bar">
-    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="pear-icon pear-icon-edit"></i>
+    <button sec:authorize="hasPermission('/system/user/edit','sys:user:edit')" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="pear-icon pear-icon-edit"></i>
     </button>
-    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="pear-icon pear-icon-ashbin"></i>
+    <button sec:authorize="hasPermission('/system/user/remove','sys:user:remove')" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="pear-icon pear-icon-ashbin"></i>
     </button>
 </script>
 
