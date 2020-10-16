@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictData;
+import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.mapper.SysDictDataMapper;
 import com.pearadmin.system.service.ISysDictDataService;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,16 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     @Override
     public SysDictData getById(String id) {
        return  sysDictDataMapper.selectById(id);
+    }
+
+    @Override
+    public Boolean updateById(SysDictData sysDictData) {
+        int result = sysDictDataMapper.updateById(sysDictData);
+        if(result > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override

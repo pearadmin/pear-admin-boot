@@ -7,6 +7,7 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysDictData;
+import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.service.ISysDictDataService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -93,6 +94,18 @@ public class SysDictDataController extends BaseController {
     }
 
     /**
+     * Describe: 数据字典类型修改视图
+     * Param: sysDictData
+     * Return: ModelAndView
+     * */
+    @PutMapping("update")
+    @PreAuthorize("hasPermission('/system/dictData/edit','sys:dictData:edit')")
+    public Result update(@RequestBody SysDictData sysDictData){
+        boolean result =  sysDictDataService.updateById(sysDictData);
+        return decide(result);
+    }
+
+    /**
      * Describe: 数据字典删除
      * Param: id
      * Return: Result
@@ -101,6 +114,30 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("hasPermission('/system/dictData/remove','sys:dictData:remove')")
     public Result remove(@PathVariable("id")String id){
         Boolean result = sysDictDataService.remove(id);
+        return decide(result);
+    }
+
+    /**
+     * Describe: 根据 Id 启用字典
+     * Param dictId
+     * Return ResuTree
+     * */
+    @PutMapping("enable")
+    public Result enable(@RequestBody SysDictData sysDictData){
+        sysDictData.setEnable("0");
+        boolean result = sysDictDataService.updateById(sysDictData);
+        return decide(result);
+    }
+
+    /**
+     * Describe: 根据 Id 禁用字典
+     * Param dictId
+     * Return ResuTree
+     * */
+    @PutMapping("disable")
+    public Result disable(@RequestBody SysDictData sysDictData){
+        sysDictData.setEnable("1");
+        boolean result = sysDictDataService.updateById(sysDictData);
         return decide(result);
     }
 }

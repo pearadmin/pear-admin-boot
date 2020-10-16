@@ -36,6 +36,13 @@ public interface SysDictDataMapper {
     SysDictData selectById(String id);
 
     /**
+     * Describe: 根据 Id 修改数据字典数据
+     * Param: id
+     * Return: Boolean
+     * */
+    Integer updateById(SysDictData sysDictData);
+
+    /**
      * Describe: 根据 Id 删除字典数据
      * Param: id
      * Return: 执行结果

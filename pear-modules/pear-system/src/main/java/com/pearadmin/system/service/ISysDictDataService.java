@@ -48,4 +48,11 @@ public interface ISysDictDataService {
      * Return: Boolean
      * */
     Boolean remove(String id);
+
+    /**
+     * Describe: 修改 SysDictData 数据
+     * Param: SysDictData
+     * Return: Boolean
+     * */
+    Boolean updateById(SysDictData sysDictData);
 }

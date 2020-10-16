@@ -58,8 +58,8 @@
 </script>
 
 <script type="text/html" id="dict-data-enable">
-    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用"
-           lay-filter="dict-type-enable" checked="{{ d.enable == 0 ? 'true' : 'false' }}">
+    <input type="checkbox" name="enable" value="{{d.dataId}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="dict-type-enable" {{d.enable== '0' ? 'checked' : '' }}>
 </script>
 
 <th:block th:include="include :: footer"/>
@@ -129,7 +129,7 @@
 
             $.ajax({
                 url: '/system/dictData/' + operate,
-                data: JSON.stringify({id: this.value}),
+                data: JSON.stringify({dataId: this.value}),
                 dataType: 'json',
                 contentType: 'application/json',
                 type: 'put',

@@ -73,6 +73,31 @@
         </trim>
     </insert>
 
+    <update id="updateById" parameterType="SysDictData">
+        update sys_dict_data
+        <set>
+            <if test="dataLabel!=null and dataLabel!=''">
+                data_label = #{dataLabel},
+            </if>
+            <if test="dataValue!=null and dataValue!=''">
+                data_value = #{dataValue},
+            </if>
+            <if test="typeCode!=null and typeCode!=''">
+                type_code = #{typeCode},
+            </if>
+            <if test="isDefault!=null and isDefault!=''">
+                is_default = #{isDefault},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark = #{remark},
+            </if>
+            <if test="enable!=null and enable!=''">
+                enable = #{enable},
+            </if>
+        </set>
+        where data_id =  #{dataId}
+    </update>
+
     <!-- 根据 Id 删除用户数据 -->
     <delete id="deleteById" parameterType="string">
           delete from sys_dict_data where data_id = #{id}
