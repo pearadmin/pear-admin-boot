@@ -232,11 +232,6 @@
 
     function search(isResetCurr) {
         let field = JSON.stringify($('#searchForm'));
-        let sortParam = getSort('table_gen');
-        if (sortParam) {
-            field.orderByColumn = sortParam.sortField;
-            field.isAsc = sortParam.sortMethod;
-        }
         let options = {
             where: field
         };
