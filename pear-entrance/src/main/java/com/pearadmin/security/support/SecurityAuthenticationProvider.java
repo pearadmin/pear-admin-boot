@@ -1,4 +1,4 @@
-package com.pearadmin.security.service;
+package com.pearadmin.security.support;
 
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.security.domain.SecurityUserDetailsService;

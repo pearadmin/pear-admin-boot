@@ -41,6 +41,7 @@ public class SysDeptController extends BaseController {
      * Return 用户列表视图
      * */
     @GetMapping("main")
+    @PreAuthorize("hasPermission('/system/dept/main','sys:dept:main')")
     public ModelAndView main(){
         return JumpPage(MODULE_PATH + "main");
     }
@@ -51,6 +52,7 @@ public class SysDeptController extends BaseController {
      * Return 部门列表数据
      * */
     @GetMapping("data")
+    @PreAuthorize("hasPermission('/system/dept/data','sys:dept:data')")
     public ResultTable data( SysDept param){
         List<SysDept> data = sysDeptService.list(param);
         return dataTable(data);
@@ -73,6 +75,7 @@ public class SysDeptController extends BaseController {
      * Return 部门新增视图
      * */
     @GetMapping("add")
+    @PreAuthorize("hasPermission('/system/dept/add','sys:dept:add')")
     public ModelAndView add(){
         return JumpPage(MODULE_PATH + "add");
     }
@@ -84,7 +87,7 @@ public class SysDeptController extends BaseController {
      * */
     @PostMapping("save")
     @ApiOperation(value="保存部门数据")
-    @PreAuthorize("hasPermission('/system/role/add','sys:role:add')")
+    @PreAuthorize("hasPermission('/system/dept/add','sys:dept:add')")
     public Result save(@RequestBody SysDept SysDept){
         SysDept.setDeptId(SequenceUtil.makeStringId());
         boolean result = sysDeptService.save(SysDept);
@@ -97,6 +100,7 @@ public class SysDeptController extends BaseController {
      * Return 部门修改视图
      * */
     @GetMapping("edit")
+    @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")
     public ModelAndView edit(ModelAndView modelAndView,String deptId){
         modelAndView.addObject("sysDept",sysDeptService.getById(deptId));
         modelAndView.setViewName(MODULE_PATH + "edit");
@@ -109,6 +113,7 @@ public class SysDeptController extends BaseController {
      * Return 执行结果
      * */
     @PutMapping("update")
+    @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")
     public Result update(@RequestBody  SysDept SysDept){
         boolean result = sysDeptService.update(SysDept);
         return decide(result);
@@ -121,6 +126,7 @@ public class SysDeptController extends BaseController {
      * Return: ResuBean
      * */
     @DeleteMapping("remove/{id}")
+    @PreAuthorize("hasPermission('/system/dept/remove','sys:dept:remove')")
     public Result remove(@PathVariable String id){
         boolean result  = sysDeptService.remove(id);
         return decide(result);
@@ -132,6 +138,7 @@ public class SysDeptController extends BaseController {
      * Return: ResuBean
      * */
     @DeleteMapping("batchRemove/{ids}")
+    @PreAuthorize("hasPermission('/system/dept/remove','sys:dept:remove')")
     public Result batchRemove(@PathVariable String ids){
         boolean result = sysDeptService.batchRemove(ids.split(","));
         return decide(result);
@@ -143,6 +150,7 @@ public class SysDeptController extends BaseController {
      * Return: ResuBean
      * */
     @PutMapping("enable")
+    @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")
     public Result enable(@RequestBody SysDept SysDept){
         SysDept.setStatus("0");
         boolean result =  sysDeptService.update(SysDept);
@@ -155,6 +163,7 @@ public class SysDeptController extends BaseController {
      * Return: ResuBean
      * */
     @PutMapping("disable")
+    @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")
     public Result disable(@RequestBody SysDept SysDept){
         SysDept.setStatus("1");
         boolean result =  sysDeptService.update(SysDept);

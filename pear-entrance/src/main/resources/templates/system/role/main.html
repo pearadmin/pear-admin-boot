@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:include="include :: header('角色列表')"/>
 </head>
@@ -36,28 +36,27 @@
 </body>
 
 <script type="text/html" id="role-toolbar">
-    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+    <button sec:authorize="hasPermission('/system/role/add','sys:role:add')" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
-    <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+    <button sec:authorize="hasPermission('/system/role/remove','sys:role:remove')" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
 </script>
 
 <script type="text/html" id="role-bar">
-    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    <button sec:authorize="hasPermission('/system/role/edit','sys:role:edit')" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
-    <button class="pear-btn pear-btn-warming pear-btn-sm" lay-event="power"><i
-            class="layui-icon layui-icon-vercode"></i></button>
-    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    <button sec:authorize="hasPermission('/system/role/power','sys:role:power')" class="pear-btn pear-btn-warming pear-btn-sm" lay-event="power"><i class="layui-icon layui-icon-vercode"></i>
+    </button>
+    <button sec:authorize="hasPermission('/system/role/remove','sys:role:remove')" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
 <script type="text/html" id="role-enable">
-    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用"
-           lay-filter="role-enable" {{d.enable== '0' ? 'checked' : '' }} >
+    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="role-enable" {{d.enable== '0' ? 'checked' : '' }} >
 </script>
 
 <th:block th:include="include :: footer"/>
