@@ -27,7 +27,7 @@ public class SysDictTypeController extends BaseController {
     @Resource
     private ISysDictTypeService sysDictTypeService;
 
-    private String MODULE_PATH = "system/dictType/";
+    private String MODULE_PATH = "system/dict/";
 
     /**
      * Describe: 数据字典列表视图

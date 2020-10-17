@@ -20,6 +20,9 @@ import java.util.Set;
 @Component
 public class SecurityPermissionEvaluator implements PermissionEvaluator {
 
+    /**
+     * 引 入 服 务
+     * */
     @Resource
     private SysPowerMapper sysPowerMapper;
 

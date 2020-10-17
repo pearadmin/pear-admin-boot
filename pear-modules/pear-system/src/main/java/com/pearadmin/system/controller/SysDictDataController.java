@@ -27,7 +27,7 @@ public class SysDictDataController extends BaseController {
     /**
      * 基础路径
      * */
-    private String MODULE_PATH = "system/dictData/";
+    private String MODULE_PATH = "system/dict/data/";
 
     @Resource
     private ISysDictDataService sysDictDataService;

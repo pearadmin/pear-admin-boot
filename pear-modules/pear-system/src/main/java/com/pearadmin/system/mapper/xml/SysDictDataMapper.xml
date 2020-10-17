@@ -50,6 +50,9 @@
             <if test="remark!=null and remark!=''">
                 remark,
             </if>
+            <if test="enable!=null and enable!=''">
+                enable,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="dataId!=null and dataId!=''">
@@ -69,6 +72,9 @@
             </if>
             <if test="remark!=null and remark!=''">
                 #{remark},
+            </if>
+            <if test="enable!=null and enable!=''">
+                #{enable},
             </if>
         </trim>
     </insert>
