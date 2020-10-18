@@ -54,7 +54,7 @@ public class GenController extends BaseController {
     /**
      * 查询代码生成列表
      */
-    @PostMapping("/list")
+    @GetMapping("/list")
     @ResponseBody
     public ResultTable genList(GenTable genTable, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
@@ -66,7 +66,7 @@ public class GenController extends BaseController {
     /**
      * 查询数据库列表
      */
-    @PostMapping("/db/list")
+    @GetMapping("/db/list")
     @ResponseBody
     public ResultTable dataList(GenTable genTable,PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
@@ -78,7 +78,7 @@ public class GenController extends BaseController {
     /**
      * 查询数据表字段列表
      */
-    @PostMapping("/column/list")
+    @GetMapping("/column/list")
     @ResponseBody
     public ResultTable columnList(GenTableColumn genTableColumn) {
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(genTableColumn);
