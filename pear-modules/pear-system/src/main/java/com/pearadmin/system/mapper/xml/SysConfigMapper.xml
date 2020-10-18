@@ -52,6 +52,9 @@
             <if test="configValue!=null">
                 config_value,
             </if>
+            <if test="remark!=null and remark!=''">
+                remark,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="configId!=null">
@@ -68,6 +71,9 @@
             </if>
             <if test="configValue!=null">
                 #{configValue},
+            </if>
+            <if test="remark!=null and remark!=''">
+                #{remark},
             </if>
         </trim>
     </insert>
@@ -87,6 +93,9 @@
             </if>
             <if test="configType!=null and configType!=''">
                 config_type = #{configType},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark = #{remark},
             </if>
         </set>
         where config_id = #{configId}

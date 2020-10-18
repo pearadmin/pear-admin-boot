@@ -4,6 +4,7 @@
     <th:block th:include="include :: header('系统配置列表')"/>
 </head>
 <body class="pear-container">
+
 <div class="layui-card">
     <div class="layui-card-body">
         <form class="layui-form" action="">
@@ -28,6 +29,7 @@
         </form>
     </div>
 </div>
+
 <div class="layui-card">
     <div class="layui-card-body">
         <table id="config-table" lay-filter="config-table"></table>
@@ -56,6 +58,7 @@
 <script type="text/html" id="user-createTime">
     {{layui.util.toDateString(d.createTime, 'yyyy-MM-dd')}}
 </script>
+
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'form', 'jquery'], function () {
@@ -69,9 +72,9 @@
             [
                 {type: 'checkbox'},
                 {title: '配置名称', field: 'configName', align: 'center', width: 120},
-                {title: '标识', field: 'configCode', align: 'center'},
                 {title: '类型', field: 'configType', align: 'center'},
                 {title: '配置值', field: 'configValue', align: 'center'},
+                {title: '具体描述', field: 'remark', align: 'center'},
                 {title: '创建时间', field: 'createTime', align: 'center', templet: '#user-createTime'},
                 {title: '操作', toolbar: '#user-bar', align: 'center', width: 130}
             ]

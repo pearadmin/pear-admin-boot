@@ -28,15 +28,15 @@
     <div class="layui-card-body">
         <table id="model-table" lay-filter="model-table"></table>
         <script type="text/html" id="barDemo">
-            <a class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish"><i
+            <a  sec:authorize="hasPermission('/process/model/publish','pro:model:publish')" class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish"><i
                     class="pear-icon pear-icon-print"></i></a>
-            <a class="pear-btn pear-btn-sm pear-btn-warming" lay-event="design"><i
+            <a  sec:authorize="hasPermission('/process/model/edit','pro:model:edit')" class="pear-btn pear-btn-sm pear-btn-warming" lay-event="design"><i
                     class="layui-icon layui-icon-edit"></i></a>
-            <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i></a>
+            <a  sec:authorize="hasPermission('/process/model/remove','pro:model:remove')" class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i></a>
         </script>
     </div>
 </div>
-<div class="createModel">
+<div   sec:authorize="hasPermission('/process/model/add','pro:model:add')" class="createModel">
     <i class="layui-icon layui-icon-add-1"></i>
 </div>
 <style>

@@ -21,23 +21,25 @@
                         <select name="configType" id="configType">
                             <option value="STRING">字符串</option>
                             <option value="DOUBLE">小数点</option>
-                            <option value="INTEGER">证书</option>
-                            <option value="DATETIME">日期时间</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" name="configCode" lay-verify="title" autocomplete="off" placeholder="请输入标题"
-                               class="layui-input">
+                        <input type="text" name="configCode" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">值</label>
                     <div class="layui-input-block">
-                        <input type="text" name="configValue" lay-verify="title" autocomplete="off" placeholder="请输入标题"
-                               class="layui-input">
+                        <input type="text" name="configValue" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">描述</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入描述" name="remark" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </div>

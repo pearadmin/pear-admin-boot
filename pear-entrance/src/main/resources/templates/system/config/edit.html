@@ -48,6 +48,12 @@
                                autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入描述" name="remark"  th:text="${sysConfig.remark}" class="layui-textarea"></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
