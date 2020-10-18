@@ -9,8 +9,10 @@ import com.pearadmin.generator.service.IGenTableColumnService;
 import javax.annotation.Resource;
 
 /**
- * 业务字段 服务层实现
- */
+ * Describe: 业务表字段服务实现
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
 @Service
 public class GenTableColumnServiceImpl implements IGenTableColumnService
 {

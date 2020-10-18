@@ -14,10 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * Describe: 定时任务服务
+ * Author: 就免仪式
+ * CreateTime: 2019/10/23
+ * */
 @Slf4j
 @Service
 public class ScheduleJobServiceImpl implements IScheduleJobService {
 
+    /**
+     * 引 入 服 务
+     * */
     @Resource
     private Scheduler scheduler ;
     @Resource

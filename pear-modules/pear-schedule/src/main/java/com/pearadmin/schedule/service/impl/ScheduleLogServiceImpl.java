@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * Describe: 定时任务日志服务
+ * Author: 就免仪式
+ * CreateTime: 2019/10/23
+ * */
 @Slf4j
 @Service("scheduleLogService")
 public class ScheduleLogServiceImpl implements IScheduleLogService {

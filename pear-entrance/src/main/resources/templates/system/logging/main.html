@@ -34,7 +34,7 @@
 </script>
 
 <script type="text/html" id="log-bar">
-    <button class="pear-btn pear-btn-sm pear-btn-primary"><i class="pear-icon pear-icon-edit"></i></button>
+    <button class="pear-btn pear-btn-sm pear-btn-primary"  lay-event="details"><i class="pear-icon pear-icon-edit"></i></button>
 </script>
 
 <script type="text/html" id="log-createTime">
@@ -97,6 +97,28 @@
                 shade: 0,
                 area: ['450px', '350px'],
                 content: '<div class="pear-container"><div class="layui-card"><div class="layui-card-body">' + obj.data['error'] + '</div></div></div>'
+            });
+        }
+
+        table.on('toolbar(log-operate-table)', function (obj) {
+            if (obj.event === 'details') {
+                window.details(obj);
+            }
+        });
+
+        table.on('toolbar(log-login-table)', function (obj) {
+            if (obj.event === 'details') {
+                window.details(obj);
+            }
+        });
+
+        window.details = function(obj){
+            layer.open({
+                type: 2,
+                title: '详细信息',
+                shade: 0,
+                area: ['450px', '550px'],
+                content: MODULE_PATH + "details?id="+obj.data['id']
             });
         }
     })

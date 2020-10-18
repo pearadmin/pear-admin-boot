@@ -5,10 +5,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 业务字段 数据层
- * 
- * @author ruoyi
- */
+ * Describe: 业务表字段接口
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
 @Mapper
 public interface GenTableColumnMapper
 {

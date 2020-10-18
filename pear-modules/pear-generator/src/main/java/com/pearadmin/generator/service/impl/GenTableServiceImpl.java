@@ -39,8 +39,10 @@ import com.pearadmin.generator.util.VelocityUtils;
 import javax.annotation.Resource;
 
 /**
- * 业务 服务层实现
- */
+ * Describe: 业务表服务实现
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
 @Service
 public class GenTableServiceImpl implements IGenTableService
 {

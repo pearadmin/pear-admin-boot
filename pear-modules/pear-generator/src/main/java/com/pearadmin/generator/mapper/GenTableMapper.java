@@ -6,8 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 业务 数据层
- */
+ * Describe: 业务表接口
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
 @Mapper
 public interface GenTableMapper
 {

@@ -7,7 +7,7 @@ import com.pearadmin.schedule.domain.ScheduleLogBean;
 import java.util.List;
 
 /**
- * Describe: 定时任务日志服务
+ * Describe: 定时任务日志服务接口
  * Author: 就免仪式
  * CreateTime: 2019/10/23
  * */
