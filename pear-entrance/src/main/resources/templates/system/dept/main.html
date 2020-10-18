@@ -13,7 +13,7 @@
                 <div class="layui-input-inline">
                     <input type="text" name="deptName" placeholder="" class="layui-input">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="user-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dept-query">
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
@@ -93,6 +93,34 @@
                 ]
             });
         }
+
+        form.on('submit(dept-query)', function (data) {
+            var keyword = data.field.deptName;
+            var $tds = $('#dept-table').next('.treeTable').find('.layui-table-body tbody tr td');
+            if (!keyword) {
+                $tds.css('background-color', 'transparent');
+                layer.msg("请输入关键字", {icon: 5});
+                return;
+            }
+            var searchCount = 0;
+            $tds.each(function () {
+                $(this).css('background-color', 'transparent');
+                if ($(this).text().indexOf(keyword) >= 0) {
+                    $(this).css('background-color', 'rgba(250,230,160,0.5)');
+                    if (searchCount == 0) {
+                        $('body,html').stop(true);
+                        $('body,html').animate({scrollTop: $(this).offset().top - 150}, 500);
+                    }
+                    searchCount++;
+                }
+            });
+            if (searchCount == 0) {
+                layer.msg("没有匹配结果", {icon: 5});
+            } else {
+                treetable.expandAll('#dept-table');
+            }
+            return false;
+        });
 
         render();
 

@@ -10,13 +10,9 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">权限名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="realName" placeholder="" class="layui-input">
+                    <input type="text" name="powerName" placeholder="" class="layui-input">
                 </div>
-                <label class="layui-form-label">权限标识</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="username" placeholder="" class="layui-input">
-                </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="user-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="power-query">
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
@@ -109,6 +105,34 @@
         }
 
         render();
+
+        form.on('submit(power-query)', function (data) {
+            var keyword = data.field.powerName;
+            var $tds = $('#power-table').next('.treeTable').find('.layui-table-body tbody tr td');
+            if (!keyword) {
+                $tds.css('background-color', 'transparent');
+                layer.msg("请输入关键字", {icon: 5});
+                return;
+            }
+            var searchCount = 0;
+            $tds.each(function () {
+                $(this).css('background-color', 'transparent');
+                if ($(this).text().indexOf(keyword) >= 0) {
+                    $(this).css('background-color', 'rgba(250,230,160,0.5)');
+                    if (searchCount == 0) {
+                        $('body,html').stop(true);
+                        $('body,html').animate({scrollTop: $(this).offset().top - 150}, 500);
+                    }
+                    searchCount++;
+                }
+            });
+            if (searchCount == 0) {
+                layer.msg("没有匹配结果", {icon: 5});
+            } else {
+                treetable.expandAll('#power-table');
+            }
+            return false;
+        });
 
         table.on('tool(power-table)', function (obj) {
             if (obj.event === 'remove') {

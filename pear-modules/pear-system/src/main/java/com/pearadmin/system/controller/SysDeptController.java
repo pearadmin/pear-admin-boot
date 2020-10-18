@@ -121,7 +121,7 @@ public class SysDeptController extends BaseController {
 
 
     /**
-     * Describe: 用户删除接口
+     * Describe: 部门删除接口
      * Param: id
      * Return: ResuBean
      * */
@@ -133,7 +133,7 @@ public class SysDeptController extends BaseController {
     }
 
     /**
-     * Describe: 用户批量删除接口
+     * Describe: 部门批量删除接口
      * Param: ids
      * Return: ResuBean
      * */
