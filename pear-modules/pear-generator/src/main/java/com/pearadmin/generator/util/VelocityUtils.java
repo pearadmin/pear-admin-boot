@@ -12,6 +12,11 @@ import com.pearadmin.generator.domain.GenTableColumn;
 import org.apache.velocity.VelocityContext;
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Describe: 模板引擎工具
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class VelocityUtils
 {
     /** 项目空间路径 */

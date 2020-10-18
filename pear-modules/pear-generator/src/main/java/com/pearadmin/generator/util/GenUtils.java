@@ -9,8 +9,10 @@ import com.pearadmin.generator.domain.GenTableColumn;
 import org.apache.commons.lang3.RegExUtils;
 
 /**
- * 代码生成器 工具类
- */
+ * Describe: 代码生成工具类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class GenUtils
 {
     /**

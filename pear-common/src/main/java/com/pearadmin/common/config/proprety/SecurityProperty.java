@@ -12,6 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("pear.security")
 public class SecurityProperty {
 
+    /**
+     * 开 放 接 口 列 表
+     * */
     private String[] openApi;
-
 }

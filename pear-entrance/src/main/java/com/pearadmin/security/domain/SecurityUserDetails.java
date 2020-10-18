@@ -5,6 +5,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
+/**
+ * Describe: Security 用户实体
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class SecurityUserDetails extends SysUser implements UserDetails{
 
     private String realName;

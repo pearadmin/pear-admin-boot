@@ -33,8 +33,10 @@ import com.alibaba.fastjson.JSON;
 import com.pearadmin.generator.service.IGenTableColumnService;
 
 /**
- * 代码生成 操作处理
- */
+ * Describe: 代码生成控制器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Controller
 @RequestMapping("/generator")
 public class GenController extends BaseController {

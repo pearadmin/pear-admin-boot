@@ -5,8 +5,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 代码生成业务字段表 gen_table_column
- */
+ * Describe: 业务表字段实体
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Alias("GenTableColumn")
 public class GenTableColumn extends BaseDomain
 {

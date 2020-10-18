@@ -1,18 +1,20 @@
 package com.pearadmin.generator.domain;
 
 import java.util.List;
+import lombok.ToString;
 import com.pearadmin.common.constant.GeneratorConstants;
 import com.pearadmin.common.web.base.BaseDomain;
-import lombok.ToString;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 业务表 gen_table
- */
-@Alias("GenTable")
+ * Describe: 业务表实体
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @ToString
+@Alias("GenTable")
 public class GenTable extends BaseDomain
 {
     private static final long serialVersionUID = 1L;

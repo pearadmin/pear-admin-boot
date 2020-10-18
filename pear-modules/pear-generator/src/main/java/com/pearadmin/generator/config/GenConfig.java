@@ -6,8 +6,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
- * 读取代码生成相关配置
- */
+ * Describe: 读取代码相关配置
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Component
 @ConfigurationProperties(prefix = "gen")
 @PropertySource(value = { "classpath:generator.yml" })

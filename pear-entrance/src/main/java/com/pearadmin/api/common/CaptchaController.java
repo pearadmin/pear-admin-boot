@@ -1,13 +1,11 @@
 package com.pearadmin.api.common;
 
-import com.pearadmin.common.web.base.BaseController;
-import com.pearadmin.common.web.domain.response.Result;
 import com.wf.captcha.utils.CaptchaUtil;
+import com.pearadmin.common.web.base.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Describe: 验证码控制器

@@ -6,8 +6,10 @@ import com.pearadmin.common.constant.Constants;
 import org.apache.velocity.app.Velocity;
 
 /**
- * VelocityEngine工厂
- */
+ * Describe: 模板引擎工厂
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class VelocityInitializer
 {
     public static void initVelocity()
