@@ -119,6 +119,7 @@ public class DruidConfig {
             @Override
             public void destroy()
             {
+
             }
         };
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();

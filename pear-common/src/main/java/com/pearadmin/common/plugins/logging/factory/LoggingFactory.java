@@ -14,6 +14,9 @@ import javax.annotation.Resource;
 @Component
 public class LoggingFactory {
 
+    /**
+     * 引 入 日 志 服 务
+     * */
     @Resource
     private LoggingService loggingService;
 
@@ -23,7 +26,7 @@ public class LoggingFactory {
     @Async
     public void record(Logging logging){
 
+        // 异 步 操 作 无 返 回 值 处 理
         loggingService.save(logging);
     }
-
 }
