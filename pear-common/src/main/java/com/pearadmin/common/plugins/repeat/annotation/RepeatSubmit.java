@@ -3,8 +3,10 @@ package com.pearadmin.common.plugins.repeat.annotation;
 import java.lang.annotation.*;
 
 /**
- * 自定义注解防止表单重复提交
- */
+ * Describe: 表单重复提交注解
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

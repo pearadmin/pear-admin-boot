@@ -14,11 +14,15 @@ public interface LoggingService {
 
     /**
      * 执 行 插 入 操 作
+     * @param logging 日志实体
+     * @return 执行结果
      * */
     boolean save(Logging logging);
 
     /**
      * 执 行 查 询 操 作
+     * @param loggingType 日志类型
+     * @return 执行结果
      * */
     List<Logging> data(LoggingType loggingType);
 }

@@ -9,9 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 判断请求url和数据是否和上一次相同， 
- * 如果和上次相同，则是重复提交表单。 有效时间为10秒内。
- */
+ * Describe: 判断请求url和数据是否和上一次相同，如果和上次相同，则是重复提交表单。 有效时间为10秒内。
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Component
 public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 {
