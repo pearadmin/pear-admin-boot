@@ -82,33 +82,39 @@ Springboot
 ├─pear-entrance 启动模块
 │  ├─api 通用接口
 │  └─security 框架权限配置
+│
 ├─pear-entrance 启动模块
 │  ├─static 静态资源
 │  ├─templates 页面文件
 │  └─application.yml 配置文件
 │
 ├─pear-modules 业务模块
+│
 │  ├─pear-generator 代码生成
+│  │   ├─ config 配置文件
 │  │   ├─ controller 接口
 │  │   ├─ mapper 数据仓库
 │  │   ├─ service 服务
 │  │   └─ domain 实体
+│  │
 │  ├─pear-system 系统业务
 │  │   ├─ controller 接口
 │  │   ├─ mapper 数据仓库
 │  │   ├─ service 服务
 │  │   └─ domain 实体
+│  │
 │  ├─pear-schedule 定时任务
 │  │   ├─ controller 接口
 │  │   ├─ mapper 数据仓库
+│  │   ├─ handler 操作封装
 │  │   ├─ service 服务
 │  │   ├─ task 任务实现
 │  │   └─ domain 实体
+│  │
 │  └─pear-process 工作流程
 │      ├─ controller 接口
-│      ├─ mapper 数据仓库
-│      ├─ service 服务
 │      ├─ reousrce 编辑器资源接口
+│      ├─ param 参数实体
 │      └─ domain 实体
 │  
 └─pom.xml   maven.xml
