@@ -55,7 +55,9 @@
 </script>
 
 </body>
+
 <th:block th:include="include :: footer"/>
+
 <script>
     layui.use(['table', 'form', 'jquery', 'treetable'], function () {
         let table = layui.table;
@@ -169,7 +171,6 @@
                 }
             })
         });
-
 
         window.add = function () {
             layer.open({

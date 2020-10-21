@@ -51,8 +51,15 @@ public interface ISysConfigService {
 
     /**
      * Describe: 删除 SysConfig 数据
-     * Param: SysConfig
+     * Param: id
      * Return: Boolean
      * */
     Boolean remove(String id);
+
+    /**
+     * Describe: 批量 SysConfig 数据
+     * Param: ids
+     * Return: Boolean
+     * */
+    Boolean batchRemove(String[] ids);
 }

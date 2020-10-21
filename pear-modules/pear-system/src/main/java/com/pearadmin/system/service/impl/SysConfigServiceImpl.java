@@ -101,4 +101,19 @@ public class SysConfigServiceImpl implements ISysConfigService {
             return false;
         }
     }
+
+    /**
+     * Describe: 根据 ID 批量删除系统配置
+     * Param: ids
+     * Return: Boolean
+     * */
+    @Override
+    public Boolean batchRemove(String[] ids) {
+        Integer result = sysConfigMapper.deleteByIds(ids);
+        if(result>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

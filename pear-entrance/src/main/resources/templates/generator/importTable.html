@@ -83,11 +83,6 @@
 
     function search(isResetCurr) {
         let field = JSON.stringify($('#searchForm'));
-        let sortParam = getSort('table_import');
-        if (sortParam) {
-            field.orderByColumn = sortParam.sortField;
-            field.isAsc = sortParam.sortMethod;
-        }
         let options = {where: field};
         if (isResetCurr == true) {
             options.page = {curr: 1};
@@ -105,13 +100,9 @@
         let data = {"tables": tables};
         layui.common.ajax.post(prefix + "/importTable", data, function (res) {
             layui.layer.alert(res.msg);
-            if (res.code == 0) {
-                parent.layer.closeAll();
-                if (parent.search) {
-                    parent.search();
-                } else {
-                    parent.layui.table.reload();
-                }
+            if (res.success) {
+                parent.layui.layer.closeAll();
+                parent.layui.table.reload();
             }
         });
     }

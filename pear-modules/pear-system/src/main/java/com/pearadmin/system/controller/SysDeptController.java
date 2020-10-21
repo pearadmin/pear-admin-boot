@@ -119,11 +119,10 @@ public class SysDeptController extends BaseController {
         return decide(result);
     }
 
-
     /**
      * Describe: 部门删除接口
      * Param: id
-     * Return: ResuBean
+     * Return: Result
      * */
     @DeleteMapping("remove/{id}")
     @PreAuthorize("hasPermission('/system/dept/remove','sys:dept:remove')")
@@ -135,7 +134,7 @@ public class SysDeptController extends BaseController {
     /**
      * Describe: 部门批量删除接口
      * Param: ids
-     * Return: ResuBean
+     * Return: Result
      * */
     @DeleteMapping("batchRemove/{ids}")
     @PreAuthorize("hasPermission('/system/dept/remove','sys:dept:remove')")
@@ -147,7 +146,7 @@ public class SysDeptController extends BaseController {
     /**
      * Describe: 根据 Id 启用部门
      * Param: roleId
-     * Return: ResuBean
+     * Return: Result
      * */
     @PutMapping("enable")
     @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")
@@ -160,7 +159,7 @@ public class SysDeptController extends BaseController {
     /**
      * Describe: 根据 Id 禁用部门
      * Param: roleId
-     * Return: ResuBean
+     * Return: Result
      * */
     @PutMapping("disable")
     @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")

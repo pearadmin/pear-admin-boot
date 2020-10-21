@@ -48,4 +48,12 @@ public interface SysConfigMapper {
      * */
     Integer deleteById(String id);
 
+    /**
+     * Describe: 根据 Id 删除系统配置
+     * Param: id
+     * Return: SysConfig
+     * */
+    Integer deleteByIds(String[] id);
+
+
 }
