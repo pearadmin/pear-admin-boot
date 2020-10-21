@@ -61,6 +61,57 @@ Spring Boot + Security + MyBatis + Thymeleaf + Activiti 快速开发平台
 13. 在线构建器：拖动表单元素生成相应的HTML代码。
 14. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
 
+#### 项目结构
+
+```
+Springboot
+├─annex  项目SQL文件
+│
+├─pear-common 公共模块
+│  ├─config 框架集成配置
+│  ├─constant 通用常量
+│  ├─exception 异常处理
+│  ├─plugins 自定义组件
+│  ├─tools 工具类
+│  └─web WEB 处理封装
+│
+├─pear-entrance 启动模块
+│  ├─api 通用接口
+│  └─security 框架权限配置
+├─pear-entrance 启动模块
+│  ├─static 静态资源
+│  ├─templates 页面文件
+│  └─application.yml 配置文件
+│
+├─pear-modules 业务模块
+│  ├─pear-generator 代码生成
+│  │   ├─ controller 接口
+│  │   ├─ mapper 数据仓库
+│  │   ├─ service 服务
+│  │   └─ domain 实体
+│  ├─pear-system 系统业务
+│  │   ├─ controller 接口
+│  │   ├─ mapper 数据仓库
+│  │   ├─ service 服务
+│  │   └─ domain 实体
+│  ├─pear-schedule 定时任务
+│  │   ├─ controller 接口
+│  │   ├─ mapper 数据仓库
+│  │   ├─ service 服务
+│  │   ├─ task 任务实现
+│  │   └─ domain 实体
+│  └─pear-process 工作流程
+│      ├─ controller 接口
+│      ├─ mapper 数据仓库
+│      ├─ service 服务
+│      ├─ reousrce 编辑器资源接口
+│      └─ domain 实体
+│  
+└─pom.xml   maven.xml
+
+
+```
+
 #### 开源共建
 
 1. 欢迎提交 [pull request](https://gitee.com/Jmysy/Pear-Admin-Boot/pulls)，注意对应提交对应 `master` 分支
