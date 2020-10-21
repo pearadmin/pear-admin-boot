@@ -72,6 +72,10 @@ Springboot
 │  ├─constant 通用常量
 │  ├─exception 异常处理
 │  ├─plugins 自定义组件
+│  │   ├─ datasource 多数据源组件
+│  │   ├─ logging 行为日志组件
+│  │   ├─ repeat 表单重复提交组件
+│  │   └─ resource 文件资源池组件
 │  ├─tools 工具类
 │  └─web WEB 处理封装
 │
