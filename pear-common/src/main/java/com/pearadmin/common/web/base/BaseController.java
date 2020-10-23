@@ -103,6 +103,28 @@ public class BaseController {
     }
 
     /**
+     * 选择返回
+     * */
+    public Result decide(int result){
+        if(result>0){
+            return Result.decide(true);
+        }else{
+            return Result.decide(false);
+        }
+    }
+
+    /**
+     * 选择返回
+     * */
+    public Result decide(int result,String success,String failure){
+        if(result>0){
+            return Result.decide(true,success,failure);
+        }else{
+            return Result.decide(false,success,failure);
+        }
+    }
+
+    /**
      * 页面跳转
      * */
     public ModelAndView JumpPage(String path){
