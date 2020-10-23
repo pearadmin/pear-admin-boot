@@ -106,7 +106,7 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @GetMapping("/remove/{${pkColumn.javaField}}")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
-    public AjaxResult remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
+    public Result remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
     {
         return decide(${className}Service.delete${ClassName}ById(${pkColumn.javaField}));
     }
