@@ -27,6 +27,7 @@ public class ${ClassName}Controller extends BaseController
     private I${ClassName}Service ${className}Service;
 
     @GetMapping("/main")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/main','${permissionPrefix}:main')")
     public ModelAndView main()
     {
         return JumpPage(prefix + "/main");
@@ -35,8 +36,9 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 查询${functionName}列表
      */
-    @GetMapping("/list")
     @ResponseBody
+    @GetMapping("/data")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/data','${permissionPrefix}:data')")
     public ResultTable list(${ClassName} ${className})
     {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
@@ -47,6 +49,7 @@ public class ${ClassName}Controller extends BaseController
      * 新增${functionName}
      */
     @GetMapping("/add")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
     public ModelAndView add()
     {
         return JumpPage(prefix + "/add");
@@ -55,8 +58,9 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 新增保存${functionName}
      */
-    @PostMapping("/save")
     @ResponseBody
+    @PostMapping("/save")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
     public Result save(${ClassName} ${className})
     {
         return decide(${className}Service.insert${ClassName}(${className}));
@@ -66,6 +70,7 @@ public class ${ClassName}Controller extends BaseController
      * 修改${functionName}
      */
     @GetMapping("/edit}")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
     public ModelAndView edit(${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap)
     {
         ${ClassName} ${className} = ${className}Service.select${ClassName}ById(${pkColumn.javaField});
@@ -76,8 +81,9 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 修改保存${functionName}
      */
-    @PutMapping("/update")
     @ResponseBody
+    @PutMapping("/update")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
     public Result update(${ClassName} ${className})
     {
         return decide(${className}Service.update${ClassName}(${className}));
@@ -86,8 +92,9 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 删除${functionName}
      */
-    @PostMapping( "/remove")
     @ResponseBody
+    @PostMapping( "/remove")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
     public Result remove(String ids)
     {
         return decide(${className}Service.delete${ClassName}ByIds(Convert.toStrArray(ids)));
@@ -96,8 +103,9 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 删除
      */
-    @GetMapping("/remove/{${pkColumn.javaField}}")
     @ResponseBody
+    @GetMapping("/remove/{${pkColumn.javaField}}")
+    @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
     public AjaxResult remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
     {
         return decide(${className}Service.delete${ClassName}ById(${pkColumn.javaField}));

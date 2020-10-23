@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:include="include :: header('${functionName}列表')" />
 </head>
@@ -48,20 +48,20 @@
                  <table id="${businessName}-table" lay-filter="${businessName}-table"></table>
 
                  <script type="text/html" id="${businessName}-toolbar">
-                     <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+                     <button  sec:authorize="hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')"  class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
                          <i class="layui-icon layui-icon-add-1"></i>
                          新增
                      </button>
-                     <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+                     <button  sec:authorize="hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')"   class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
                          <i class="layui-icon layui-icon-delete"></i>
                          删除
                      </button>
                  </script>
 
                  <script type="text/html" id="${businessName}-bar">
-                     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+                     <button  sec:authorize="hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')"   class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
                      </button>
-                     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+                     <button  sec:authorize="hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')"   class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
                      </button>
                  </script>
              </div>
@@ -197,7 +197,7 @@
                                  layer.close(loading);
                                  if (result.success) {
                                      layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                                         table.reload('user-table');
+                                         table.reload('${businessName}-table');
                                      });
                                  } else {
                                      layer.msg(result.msg, {icon: 2, time: 1000});
@@ -208,7 +208,7 @@
                  }
 
                  window.refresh = function (param) {
-                     table.reload('user-table', {where: param});
+                     table.reload('${businessName}-table', {where: param});
                  }
              })
          </script>
