@@ -6,7 +6,7 @@
     <!-- 基 本 信 息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-admin-boot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <name>Pear-Admin-Boot</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
@@ -35,24 +35,20 @@
         <fastjson.version>1.2.68</fastjson.version>
         <!-- Lombok 版 本 -->
         <lombok.version>1.18.12</lombok.version>
-        <!-- 项 目 版 本 -->
-        <pear.boot.version>0.0.1-SNAPSHOT</pear.boot.version>
         <!-- 业 务 模 块 -->
-        <pear.modules.version>0.0.1-SNAPSHOT</pear.modules.version>
+        <pear.modules.version>1.0.0-RELEASE</pear.modules.version>
         <!-- 启 动 模 块 版 本 -->
-        <pear.entrance.version>0.0.1-SNAPSHOT</pear.entrance.version>
+        <pear.entrance.version>1.0.0-RELEASE</pear.entrance.version>
         <!-- 工 作 流 程 模 块 -->
-        <pear.process.version>0.0.1-SNAPSHOT</pear.process.version>
+        <pear.process.version>1.0.0-RELEASE</pear.process.version>
         <!-- 公 用 模 块 版 本 -->
-        <pear.common.version>0.0.1-SNAPSHOT</pear.common.version>
+        <pear.common.version>1.0.0-RELEASE</pear.common.version>
         <!-- 系 统 模 块 版 本 -->
-        <pear.system.version>0.0.1-SNAPSHOT</pear.system.version>
-        <!-- 安 全 模 块 版 本 -->
-        <pear.security.version>0.0.1-SNAPSHOT</pear.security.version>
+        <pear.system.version>1.0.0-RELEASE</pear.system.version>
         <!-- 定 时 任 务 模 块 -->
-        <pear.schedule.version>0.0.1-SNAPSHOT</pear.schedule.version>
+        <pear.schedule.version>1.0.0-RELEASE</pear.schedule.version>
         <!-- 代 码 生 成 模 块 -->
-        <pear.generator.version>0.0.1-SNAPSHOT</pear.generator.version>
+        <pear.generator.version>1.0.0-RELEASE</pear.generator.version>
         <!-- apache 工 具 类 -->
         <commons.lang3.version>3.10</commons.lang3.version>
         <!-- apache io 工具类 -->
@@ -65,8 +61,6 @@
         <freemarker.version>2.3.30</freemarker.version>
         <!-- 验 证 码 版 本 -->
         <captcha.version>1.6.2</captcha.version>
-        <!-- 代 码 生 成 -->
-        <generator.version>0.0.1-SNAPSHOT</generator.version>
         <!-- 工 作 流 版 本 -->
         <activiti.version>6.0.0</activiti.version>
         <!-- Xml 解 析 依 赖 -->
@@ -221,7 +215,7 @@
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-generator</artifactId>
-                <version>${generator.version}</version>
+                <version>${pear.generator.version}</version>
             </dependency>
             <!-- 权 限 标 签 依 赖 -->
             <dependency>

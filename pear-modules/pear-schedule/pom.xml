@@ -7,12 +7,12 @@
     <parent>
         <groupId>com.pearadmin</groupId>
         <artifactId>pear-modules</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
     <!-- Maven 配置信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-schedule</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
 
     <!-- 模块描述 -->
     <name>定时任务</name>

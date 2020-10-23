@@ -7,13 +7,13 @@
     <parent>
         <groupId>com.pearadmin</groupId>
         <artifactId>pear-admin-boot</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <!-- 仓库信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-entrance</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
 
     <!-- 项目信息 -->
     <name>启动模块</name>
