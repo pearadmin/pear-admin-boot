@@ -14,14 +14,14 @@
     #set($comment=$column.columnComment)
     #if($column.htmlType == "input")
                     <div class="layui-form-item">
-                        <label class="layui-form-label">${column}：</label>
+                        <label class="layui-form-label">${comment}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="${javaField}" placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-required#end/>
                         </div>
                     </div>
     #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
                     <div class="layui-form-item">
-                        <label class="layui-form-label">${column}：</label>
+                        <label class="layui-form-label">${comment}：</label>
                         <div class="layui-input-block">
                         <select name="${javaField}" #if($column.required) lay-required#end>
                             <option value="">所有</option>
