@@ -120,6 +120,11 @@ public class ProModelController extends BaseController {
         return success("创建成功", model.getId());
     }
 
+    /**
+     * Describe: 创建流程图节点信息
+     * Param: modelId
+     * Return: null
+     * */
     private void createObjectNode(String modelId){
         ObjectNode editorNode = objectMapper.createObjectNode();
         editorNode.put("id", "canvas");

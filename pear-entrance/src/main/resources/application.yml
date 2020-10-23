@@ -1,7 +1,7 @@
 # Tomcat
 server:
   # 端 口
-  port: 8080
+  port: 8181
 
 # Spring 配置
 spring:
