@@ -1,6 +1,8 @@
 package com.pearadmin.common.tools.sequence;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -73,6 +75,15 @@ public class SequenceUtil {
      * */
     public static String makeStringId(){
         return "" + makeId();
+    }
+
+    public static List<String> makeStringIds(int size){
+
+        List<String> ids = new ArrayList<>();
+        for (int i = 0;i<size;i++){
+            ids.add(makeStringId());
+        }
+        return ids;
     }
 
     /**
