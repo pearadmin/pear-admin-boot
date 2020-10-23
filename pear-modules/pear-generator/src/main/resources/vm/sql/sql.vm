@@ -1,6 +1,6 @@
 -- 菜单 SQL
 INSERT INTO `sys_power`
-VALUES ('1', '${functionName}菜单', '1', '${permissionPrefix}:main', '/${moduleName}/${businessName}/main', '_iframe‘, '${parentMenuId}', 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
+VALUES (replace(uuid(), '-', ''), '${functionName}菜单', '1', '${permissionPrefix}:main', '/${moduleName}/${businessName}/main', '_iframe‘, '${parentMenuId}', 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();
@@ -8,13 +8,13 @@ SELECT @parentId := LAST_INSERT_ID();
 -- 按钮 SQL
 
 INSERT INTO `sys_power`
-VALUES ('1', '${functionName}列表', '2', '${permissionPrefix}:data', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
+VALUES (replace(uuid(), '-', ''), '${functionName}列表', '2', '${permissionPrefix}:data', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
 
 INSERT INTO `sys_power`
-VALUES ('1', '${functionName}新增', '2', '${permissionPrefix}:add', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
+VALUES (replace(uuid(), '-', ''), '${functionName}新增', '2', '${permissionPrefix}:add', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
 
 INSERT INTO `sys_power`
-VALUES ('1', '${functionName}修改', '2', '${permissionPrefix}:edit', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
+VALUES (replace(uuid(), '-', ''), '${functionName}修改', '2', '${permissionPrefix}:edit', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
 
 INSERT INTO `sys_power`
-VALUES ('1', '${functionName}删除', '2', '${permissionPrefix}:remove', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
+VALUES (replace(uuid(), '-', ''), '${functionName}删除', '2', '${permissionPrefix}:remove', '', NULL, @parentId, 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
