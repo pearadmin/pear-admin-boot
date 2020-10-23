@@ -27,9 +27,9 @@ public class ${ClassName}Controller extends BaseController
     private I${ClassName}Service ${className}Service;
 
     @GetMapping("/main")
-    public String main()
+    public ModelAndView main()
     {
-        return prefix + "/main";
+        return JumpPage(prefix + "/main");
     }
 
     /**
@@ -47,9 +47,9 @@ public class ${ClassName}Controller extends BaseController
      * 新增${functionName}
      */
     @GetMapping("/add")
-    public String add()
+    public ModelAndView add()
     {
-        return prefix + "/add";
+        return JumpPage(prefix + "/add");
     }
 
     /**

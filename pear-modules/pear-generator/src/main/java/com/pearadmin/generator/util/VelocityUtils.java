@@ -173,19 +173,19 @@ public class VelocityUtils
         }
         else if (template.contains("mapper.xml.vm"))
         {
-            fileName = StringUtils.format("{}/{}Mapper.xml", mybatisPath, className);
+            fileName = StringUtils.format("{}/mapper/xml/{}Mapper.xml", javaPath, className);
         }
         else if (template.contains("list.html.vm"))
         {
-            fileName = StringUtils.format("{}/{}.html", htmlPath, businessName);
+            fileName = StringUtils.format("{}/main.html", htmlPath, businessName);
         }
         else if (template.contains("list-tree.html.vm"))
         {
-            fileName = StringUtils.format("{}/{}.html", htmlPath, businessName);
+            fileName = StringUtils.format("{}/main.html", htmlPath, businessName);
         }
         else if (template.contains("tree.html.vm"))
         {
-            fileName = StringUtils.format("{}/tree.html", htmlPath);
+            fileName = StringUtils.format("{}/main.html", htmlPath);
         }
         else if (template.contains("add.html.vm"))
         {
@@ -269,7 +269,6 @@ public class VelocityUtils
     public static String getPermissionPrefix(String moduleName, String businessName)
     {
         return StringUtils.format("{}:{}", moduleName, businessName);
-
     }
 
     /**
