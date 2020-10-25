@@ -43,7 +43,7 @@
                     </label>
                 </div>
             </div>
-#elseif($column.htmlType == "radio" && $dictType)
+#elseif($column.htmlType == "radio")
             <div class="layui-form-item">
                 <label class="layui-form-label">${comment}：</label>
                 <div class="layui-input-block">

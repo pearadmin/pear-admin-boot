@@ -383,7 +383,7 @@
                             if (res.code == 0) {
                                 html += '<option value="input" >空</option>';
                                 $.each(res.data, function (i, item) {
-                                    html += '<option value="input" ' + (dictType === item.typeCode ? ' selected' : '') + '>' + item
+                                    html += '<option value="'+item.typeCode+'" ' + (dictType === item.typeCode ? ' selected' : '') + '>' + item
                                         .typeName + '</option>\n';
                                 });
                             }
