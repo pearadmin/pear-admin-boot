@@ -93,9 +93,9 @@ public class ${ClassName}Controller extends BaseController
      * 删除${functionName}
      */
     @ResponseBody
-    @PostMapping( "/remove")
+    @PostMapping( "/batchRemove")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
-    public Result remove(String ids)
+    public Result batchRemove(String ids)
     {
         return decide(${className}Service.delete${ClassName}ByIds(Convert.toStrArray(ids)));
     }
