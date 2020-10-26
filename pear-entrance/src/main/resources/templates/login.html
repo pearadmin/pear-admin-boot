@@ -69,6 +69,11 @@
             document.getElementById("captchaImage").src="/system/captcha/generate?"+Math.random();
         })
 
+        // 定时验证码刷新
+        setInterval(function(){
+            document.getElementById("captchaImage").src="/system/captcha/generate?"+Math.random();
+        },10000)
+
     })
 </script>
 <!-- Session 过期处理 -->
