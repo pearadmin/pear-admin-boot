@@ -18,6 +18,9 @@ import java.lang.reflect.Method;
 @Component
 public abstract class RepeatSubmitInterceptor extends HandlerInterceptorAdapter
 {
+    /**
+     * 前置拦截,进入处理活力前判断当前提交的内容是否重复
+     * */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
     {

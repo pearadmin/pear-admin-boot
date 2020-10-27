@@ -16,6 +16,9 @@ import java.util.Map;
 @Component
 public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 {
+    /**
+     * 常用字符串标识
+     * */
     public final String REPEAT_PARAMS = "repeatParams";
 
     public final String REPEAT_TIME = "repeatTime";
@@ -69,6 +72,9 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 
     /**
      * 判断参数是否相同
+     * @param nowMap 本次参数
+     * @param preMap 上次参数
+     * @return boolean 是否相同
      */
     private boolean compareParams(Map<String, Object> nowMap, Map<String, Object> preMap)
     {
@@ -79,6 +85,9 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 
     /**
      * 判断两次间隔时间
+     * @param nowMap 本次时间
+     * @param preMap 上次时间
+     * @return 注释
      */
     private boolean compareTime(Map<String, Object> nowMap, Map<String, Object> preMap)
     {

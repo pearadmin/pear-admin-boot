@@ -10,7 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 public class CaptchaException extends AuthenticationException {
 
     /**
-     * 构 造 函 数
+     * 验 证 码 异 常
      * */
     public CaptchaException(String message){
         super(message);

@@ -7,8 +7,14 @@ package com.pearadmin.common.constant;
  * */
 public class CharsetConstant {
 
+    /**
+     * UTF-8 编码格式
+     * */
     public static String UTF8 ="UTF-8";
 
+    /**
+     * GBK 编码格式
+     * */
     public static String GBK = "GBK";
 
 }
