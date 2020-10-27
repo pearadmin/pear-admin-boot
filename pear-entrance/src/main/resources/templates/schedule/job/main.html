@@ -250,10 +250,10 @@
             }
             let ids = "";
             for (let i = 0; i < data.length; i++) {
-                ids += data[i].userId + ",";
+                ids += data[i].jobId + ",";
             }
             ids = ids.substr(0, ids.length - 1);
-            layer.confirm('确定要删除这些用户', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除这些任务', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
