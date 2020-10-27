@@ -61,7 +61,7 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @PostMapping("/save")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
-    public Result save(${ClassName} ${className})
+    public Result save(@RequestBody ${ClassName} ${className})
     {
         return decide(${className}Service.insert${ClassName}(${className}));
     }
@@ -84,7 +84,7 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @PutMapping("/update")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
-    public Result update(${ClassName} ${className})
+    public Result update(@RequestBody ${ClassName} ${className})
     {
         return decide(${className}Service.update${ClassName}(${className}));
     }
