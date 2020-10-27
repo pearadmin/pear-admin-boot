@@ -69,7 +69,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 修改${functionName}
      */
-    @GetMapping("/edit}")
+    @GetMapping("/edit")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
     public ModelAndView edit(${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap)
     {

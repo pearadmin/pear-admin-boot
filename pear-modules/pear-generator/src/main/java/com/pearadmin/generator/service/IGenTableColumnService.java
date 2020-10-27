@@ -5,8 +5,10 @@ import com.pearadmin.generator.domain.GenTableColumn;
 import java.util.List;
 
 /**
- * 业务字段 服务层
- */
+ * Describe: 业务表字段服务层
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ * */
 public interface IGenTableColumnService
 {
     /**

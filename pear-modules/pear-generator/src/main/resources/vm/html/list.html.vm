@@ -149,7 +149,7 @@
                          title: '修改${functionName}',
                          shade: 0.1,
                          area: ['550px', '500px'],
-                         content: prefix + 'edit?userId=' + obj.data['userId']
+                         content: prefix + 'edit?${pkColumn.javaField}=' + obj.data['${pkColumn.javaField}']
                      });
                  }
 

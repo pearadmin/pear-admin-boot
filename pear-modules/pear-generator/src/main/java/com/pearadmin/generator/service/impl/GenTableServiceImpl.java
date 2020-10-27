@@ -12,6 +12,7 @@ import java.util.zip.ZipOutputStream;
 import com.pearadmin.common.constant.Constants;
 import com.pearadmin.common.constant.GeneratorConstants;
 import com.pearadmin.common.exception.base.BusinessException;
+import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.text.CharsetKit;
 import com.pearadmin.common.tools.text.Convert;
 import com.pearadmin.common.tools.text.StringUtils;
@@ -61,7 +62,7 @@ public class GenTableServiceImpl implements IGenTableService
      * @return 业务信息
      */
     @Override
-    public GenTable selectGenTableById(Long id)
+    public GenTable selectGenTableById(String id)
     {
         GenTable genTable = genTableMapper.selectGenTableById(id);
         setTableFromOptions(genTable);
@@ -147,8 +148,8 @@ public class GenTableServiceImpl implements IGenTableService
     @Transactional
     public void deleteGenTableByIds(String ids)
     {
-        genTableMapper.deleteGenTableByIds(Convert.toLongArray(ids));
-        genTableColumnMapper.deleteGenTableColumnByIds(Convert.toLongArray(ids));
+        genTableMapper.deleteGenTableByIds(Convert.toStrArray(ids));
+        genTableColumnMapper.deleteGenTableColumnByIds(Convert.toStrArray(ids));
     }
 
     /**
@@ -174,6 +175,7 @@ public class GenTableServiceImpl implements IGenTableService
                     List<GenTableColumn> genTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
                     for (GenTableColumn column : genTableColumns)
                     {
+                        column.setColumnId(SequenceUtil.makeStringId());
                         GenUtils.initColumnField(column, table);
                         genTableColumnMapper.insertGenTableColumn(column);
                     }
@@ -193,7 +195,7 @@ public class GenTableServiceImpl implements IGenTableService
      * @return 预览数据列表
      */
     @Override
-    public Map<String, String> previewCode(Long tableId)
+    public Map<String, String> previewCode(String tableId)
     {
         Map<String, String> dataMap = new LinkedHashMap<>();
         // 查询表信息
@@ -434,7 +436,6 @@ public class GenTableServiceImpl implements IGenTableService
             String treeName = paramsObj.getString(GeneratorConstants.TREE_NAME);
             String parentMenuId = paramsObj.getString(GeneratorConstants.PARENT_MENU_ID);
             String parentMenuName = paramsObj.getString(GeneratorConstants.PARENT_MENU_NAME);
-            
             genTable.setTreeCode(treeCode);
             genTable.setTreeParentCode(treeParentCode);
             genTable.setTreeName(treeName);

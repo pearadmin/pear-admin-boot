@@ -15,10 +15,10 @@ public class GenTableColumn extends BaseDomain
     private static final long serialVersionUID = 1L;
 
     /** 编号 */
-    private Long columnId;
+    private String columnId;
 
     /** 归属表编号 */
-    private Long tableId;
+    private String tableId;
 
     /** 列名称 */
     private String columnName;
@@ -68,22 +68,22 @@ public class GenTableColumn extends BaseDomain
     /** 排序 */
     private Integer sort;
 
-    public void setColumnId(Long columnId)
+    public void setColumnId(String columnId)
     {
         this.columnId = columnId;
     }
 
-    public Long getColumnId()
+    public String getColumnId()
     {
         return columnId;
     }
 
-    public void setTableId(Long tableId)
+    public void setTableId(String tableId)
     {
         this.tableId = tableId;
     }
 
-    public Long getTableId()
+    public String getTableId()
     {
         return tableId;
     }

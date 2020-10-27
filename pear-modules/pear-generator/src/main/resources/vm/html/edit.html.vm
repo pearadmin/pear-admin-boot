@@ -87,10 +87,10 @@
             </button>
         </div>
     </div>
-        </form>
-    <th:block th:include="include :: footer" />
-    <script th:inline="javascript">
-
+</form>
+</body>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
     layui.use(['form', 'jquery','laydate'], function () {
         let form = layui.form;
         let $ = layui.jquery;
@@ -99,10 +99,22 @@
         let prefix = "/${moduleName}/${businessName}";
 
         #foreach($column in $columns)
-            #if($column.htmlType == "datetime" && $column.edit)
-                laydate.render({
-                    elem: '#${field}'
-                });
+            #if($column.edit && !$column.pk)
+                #if(($column.usableColumn) || (!$column.superColumn))
+                    #set($parentheseIndex=$column.columnComment.indexOf("（"))
+                    #if($parentheseIndex != -1)
+                        #set($comment=$column.columnComment.substring(0, $parentheseIndex))
+                    #else
+                        #set($comment=$column.columnComment)
+                    #end
+                    #set($field=$column.javaField)
+                    #set($dictType=$column.dictType)
+                    #if($column.htmlType == "datetime")
+                        laydate.render({
+                            elem: '#$column.javaField'
+                        });
+                    #end
+                #end
             #end
         #end
 
@@ -134,5 +146,4 @@
     });
 
 </script>
-</body>
 </html>

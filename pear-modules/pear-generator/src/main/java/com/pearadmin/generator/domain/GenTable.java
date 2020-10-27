@@ -20,7 +20,7 @@ public class GenTable extends BaseDomain
     private static final long serialVersionUID = 1L;
 
     /** 编号 */
-    private Long tableId;
+    private String tableId;
 
     /** 表名称 */
     private String tableName;
@@ -88,12 +88,12 @@ public class GenTable extends BaseDomain
     /** 上级菜单名称字段 */
     private String parentMenuName;
 
-    public Long getTableId()
+    public String getTableId()
     {
         return tableId;
     }
 
-    public void setTableId(Long tableId)
+    public void setTableId(String tableId)
     {
         this.tableId = tableId;
     }

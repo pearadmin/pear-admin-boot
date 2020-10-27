@@ -64,6 +64,6 @@ public class GenTableColumnServiceImpl implements IGenTableColumnService
     @Override
     public int deleteGenTableColumnByIds(String ids)
     {
-        return genTableColumnMapper.deleteGenTableColumnByIds(Convert.toLongArray(ids));
+        return genTableColumnMapper.deleteGenTableColumnByIds(Convert.toStrArray(ids));
     }
 }

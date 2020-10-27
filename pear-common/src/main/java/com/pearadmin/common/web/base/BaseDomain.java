@@ -52,5 +52,4 @@ public class BaseDomain implements Serializable {
      *  请求参数
      *  */
     private Map<String, Object> params;
-
 }

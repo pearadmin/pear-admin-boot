@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.text.Convert;
 import com.pearadmin.common.tools.text.StringUtils;
 import com.pearadmin.common.web.base.BaseController;
@@ -102,9 +103,10 @@ public class GenController extends BaseController {
     @ResponseBody
     public Result importTableSave(String tables) {
         String[] tableNames = Convert.toStrArray(tables);
-        // 查询表信息
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
-
+        tableList.forEach(table->{
+            table.setTableId(SequenceUtil.makeStringId());
+        });
         genTableService.importGenTable(tableList, "");
         return success();
     }
@@ -113,7 +115,8 @@ public class GenController extends BaseController {
      * 修改代码生成业务
      */
     @GetMapping("/edit")
-    public String edit(Long tableId, ModelMap mmap) {
+    public String edit(String tableId, ModelMap mmap) {
+        System.out.println("表格编号:"+tableId);
         GenTable table = genTableService.selectGenTableById(tableId);
         List<GenTable> genTables = genTableService.selectGenTableAll();
         List<ResultSelect> cxSelect = new ArrayList<ResultSelect>();
@@ -156,7 +159,7 @@ public class GenController extends BaseController {
      */
     @GetMapping("/preview/{tableId}")
     @ResponseBody
-    public Result preview(@PathVariable("tableId") Long tableId) throws IOException {
+    public Result preview(@PathVariable("tableId") String tableId) throws IOException {
         Map<String, String> dataMap = genTableService.previewCode(tableId);
         return success(dataMap);
     }

@@ -47,7 +47,7 @@ public interface IGenTableService
      * @param id 业务ID
      * @return 业务信息
      */
-    GenTable selectGenTableById(Long id);
+    GenTable selectGenTableById(String id);
 
     /**
      * 修改业务
@@ -79,7 +79,7 @@ public interface IGenTableService
      * @param tableId 表编号
      * @return 预览数据列表
      */
-    Map<String, String> previewCode(Long tableId);
+    Map<String, String> previewCode(String tableId);
 
     /**
      * 生成代码（下载方式）
