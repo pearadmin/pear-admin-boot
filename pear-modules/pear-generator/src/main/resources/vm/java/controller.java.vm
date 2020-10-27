@@ -93,7 +93,7 @@ public class ${ClassName}Controller extends BaseController
      * 删除${functionName}
      */
     @ResponseBody
-    @PostMapping( "/batchRemove")
+    @DeleteMapping( "/batchRemove")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
     public Result batchRemove(String ids)
     {
@@ -104,7 +104,7 @@ public class ${ClassName}Controller extends BaseController
      * 删除
      */
     @ResponseBody
-    @GetMapping("/remove/{${pkColumn.javaField}}")
+    @DeleteMapping("/remove/{${pkColumn.javaField}}")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
     public Result remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
     {
