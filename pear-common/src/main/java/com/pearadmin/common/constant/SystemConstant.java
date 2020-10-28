@@ -7,4 +7,13 @@ package com.pearadmin.common.constant;
  * */
 public class SystemConstant {
 
+    /**
+     * Windows 系统常量标识
+     * */
+    public static String WINDOWS = "windows";
+
+    /**
+     * Linux 系统常量标识
+     * */
+    private static String Linux = "linux";
 }

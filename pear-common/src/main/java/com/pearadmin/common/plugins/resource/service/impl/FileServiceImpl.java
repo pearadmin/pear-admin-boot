@@ -1,5 +1,6 @@
 package com.pearadmin.common.plugins.resource.service.impl;
 
+import com.pearadmin.common.config.proprety.UploadProperty;
 import com.pearadmin.common.plugins.resource.domain.File;
 import com.pearadmin.common.plugins.resource.mapper.FileMapper;
 import com.pearadmin.common.plugins.resource.service.IFileService;
@@ -9,6 +10,7 @@ import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.FileInputStream;
@@ -30,6 +32,9 @@ public class FileServiceImpl implements IFileService {
      * */
     @Resource
     private FileMapper fileMapper;
+
+    @Resource
+    private UploadProperty uploadProperty;
 
     /**
      * Describe: 文 件 夹 列 表
@@ -67,7 +72,10 @@ public class FileServiceImpl implements IFileService {
             String hash = fileId;
             String fileName = hash + suffixName;
             String fileDir = LocalDate.now().toString();
-            String parentPath = "D:/home/upload/"+fileDir;
+            String parentPath = uploadProperty.getUploadPath() +fileDir;
+
+            System.out.println("文件路径"+uploadProperty);
+
             java.io.File filepath = new java.io.File(parentPath, fileName);
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();

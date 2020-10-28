@@ -48,6 +48,7 @@ pear:
       url: www.pearadmin.cn
         # 邮 箱
       email: Jmys1992@gmail.com
+  # 权 限 配 置
   security:
     # 不 需 要 权 限 拦 截 的 接 口 配 置
     open-api:
@@ -57,6 +58,14 @@ pear:
       - /admin/** # 开放 静态资源
       - /component/** # 开放 静态资源
       - /favicon.ico # 开放 Logo
+  # 上 传 配 置
+  upload:
+    # 当前系统环境
+    os: windows
+    # windows 上传路径
+    windows-path: D:\home\uploads\
+    # linux 上传路径
+    linux-path: /home/uploads/
 
 # Page Helper
 pagehelper:
