@@ -23,10 +23,10 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">${comment}：</label>
                         <div class="layui-input-block">
-                        <select name="${javaField}" #if($column.required) lay-required#end>
-                            <option value="">所有</option>
-                        </select>
-                    </div>
+                            <select name="${javaField}" #if($column.required) lay-required#end>
+                                <option value="">所有</option>
+                            </select>
+                        </div>
                     </div>
 #end
 #end

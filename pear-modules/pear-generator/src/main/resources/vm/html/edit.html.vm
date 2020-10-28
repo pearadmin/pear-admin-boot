@@ -138,12 +138,6 @@
             })
             return false;
         });
-
-        #if($table.tree)
-
-
-        #end
     });
-
 </script>
 </html>

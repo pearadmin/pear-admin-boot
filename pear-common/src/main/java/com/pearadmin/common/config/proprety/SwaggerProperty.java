@@ -42,5 +42,4 @@ public class SwaggerProperty {
 
     /** 组 织 链 接 */
     private String termsOfServiceUrl;
-
 }
