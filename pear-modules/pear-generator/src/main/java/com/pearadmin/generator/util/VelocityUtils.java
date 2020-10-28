@@ -76,8 +76,10 @@ public class VelocityUtils
     public static void setMenuVelocityContext(VelocityContext context, GenTable genTable)
     {
         String options = genTable.getOptions();
-        JSONObject paramsObj = JSONObject.parseObject(options);
-        String parentMenuId = getParentMenuId(paramsObj);
+        // 说明，parentMenu没有保存在options中
+        //        JSONObject paramsObj = JSONObject.parseObject(options);
+        //        String parentMenuId = getParentMenuId(paramsObj);
+        String parentMenuId = genTable.getParentMenuId();
         context.put("parentMenuId", parentMenuId);
     }
 
