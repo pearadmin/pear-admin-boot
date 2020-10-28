@@ -171,7 +171,6 @@ public class GenTableServiceImpl implements IGenTableService
                 int row = genTableMapper.insertGenTable(table);
                 if (row > 0)
                 {
-                    // 保存列信息
                     List<GenTableColumn> genTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
                     for (GenTableColumn column : genTableColumns)
                     {

@@ -69,5 +69,4 @@ public class SysLoggingController extends BaseController {
         PageInfo<Logging> pageInfo = new PageInfo<>(loggingService.data(LoggingType.LOGIN));
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
-
 }

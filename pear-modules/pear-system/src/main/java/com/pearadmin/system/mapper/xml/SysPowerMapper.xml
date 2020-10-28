@@ -44,6 +44,11 @@
 
     <select id="selectList" parameterType="SysPower" resultMap="SysPowerMap">
         select * from sys_power
+        <where>
+            <if test="parentId!=null and parentId!=''">
+               and parent_id = #{parentId}
+            </if>
+        </where>
         order by sort asc
     </select>
 
