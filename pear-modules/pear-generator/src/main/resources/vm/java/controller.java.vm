@@ -1,8 +1,11 @@
 package ${packageName}.controller;
 
 import java.util.List;
+
+import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.text.Convert;
 import com.pearadmin.common.web.base.BaseController;
+import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +42,12 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @GetMapping("/data")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/data','${permissionPrefix}:data')")
-    public ResultTable list(${ClassName} ${className})
+    public ResultTable list(${ClassName} ${className}, PageDomain pageDomain)
     {
-        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return dataTable(list);
+        PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
+        List<${ClassName}> data = ${className}Service.select${ClassName}List(${className});
+        PageInfo<${ClassName}> pageInfo = new PageInfo(data);
+        return dataTable(pageInfo);
     }
 
     /**
