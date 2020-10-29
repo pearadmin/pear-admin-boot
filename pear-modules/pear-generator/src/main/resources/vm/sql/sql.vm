@@ -1,6 +1,6 @@
 -- 菜单 SQL
 INSERT INTO `sys_power`
-VALUES ('${ids.get(0)}', '${functionName}菜单', '1', '${permissionPrefix}:main', '/${moduleName}/${businessName}/main', '_iframe‘, '${parentMenuId}', 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
+VALUES ('${ids.get(0)}', '${functionName}菜单', '1', '${permissionPrefix}:main', '/${moduleName}/${businessName}/main', '_iframe', '${parentMenuId}', 'layui-icon layui-icon-set-fill', 1, NULL, NULL, NULL, NULL, NULL, '1');
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();
