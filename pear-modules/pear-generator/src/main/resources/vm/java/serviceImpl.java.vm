@@ -54,7 +54,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
      * @return ${functionName} 分页集合
      * */
     @Override
-    public PageInfo<${ClassName}> select${ClassName}List(${ClassName} ${className}, PageDomain pageDomain)
+    public PageInfo<${ClassName}> select${ClassName}Page(${ClassName} ${className}, PageDomain pageDomain)
     {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
         List<${ClassName}> data = ${className}Mapper.select${ClassName}List(${className});
