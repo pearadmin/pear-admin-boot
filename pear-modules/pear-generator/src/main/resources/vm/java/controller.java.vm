@@ -44,10 +44,8 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/data','${permissionPrefix}:data')")
     public ResultTable list(${ClassName} ${className}, PageDomain pageDomain)
     {
-        PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
-        List<${ClassName}> data = ${className}Service.select${ClassName}List(${className});
-        PageInfo<${ClassName}> pageInfo = new PageInfo(data);
-        return dataTable(pageInfo);
+        PageInfo<${ClassName}> pageInfo = ${className}Service.select${ClassName}List(${className});
+        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 
     /**

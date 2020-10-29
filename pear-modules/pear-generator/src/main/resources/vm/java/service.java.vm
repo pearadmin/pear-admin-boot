@@ -1,7 +1,9 @@
 package ${packageName}.service;
 
 import java.util.List;
-import ${packageName}.domain.${ClassName};
+import
+import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.web.domain.request.PageDomain; ${packageName}.domain.${ClassName};
 
 /**
  * ${functionName}Service接口
@@ -18,6 +20,15 @@ public interface I${ClassName}Service
      * @return ${functionName}
      */
     ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
+
+
+    /**
+    * 查询${functionName}
+     * @param ${classsName} ${functionName}
+     * @param pageDomain
+     * @return ${functionName} 分页集合
+     * */
+    PageInfo<${ClassName}> select${ClassName}Page(${ClassName} ${className}, PageDomain pageDomain);
 
     /**
      * 查询${functionName}列表
