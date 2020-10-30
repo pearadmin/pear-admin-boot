@@ -59,30 +59,14 @@ public class DruidConfig {
      * */
     @Primary
     @Bean(name = "dynamicDataSource")
-    public DynamicDataSource dataSource(DataSource masterDataSource)
+    public DynamicDataSource dataSource(DataSource masterDataSource,DataSource slaveDataSource)
     {
         Map<Object, Object> targetDataSources = new HashMap<>();
         targetDataSources.put(DataSourceType.MASTER.name(), masterDataSource);
-        setDataSource(targetDataSources, DataSourceType.SLAVE.name(), "slaveDataSource");
+        targetDataSources.put(DataSourceType.SLAVE.name(),slaveDataSource);
         return new DynamicDataSource(masterDataSource, targetDataSources);
     }
 
-    /**
-     * 设置数据源
-     *
-     * @param targetDataSources 备选数据源集合
-     * @param sourceName 数据源名称
-     * @param beanName bean名称
-     */
-    public void setDataSource(Map<Object, Object> targetDataSources, String sourceName, String beanName)
-    {
-        try {
-            DataSource dataSource = (DataSource) SpringUtil.getBean(beanName);
-            targetDataSources.put(sourceName, dataSource);
-        } catch (Exception e) {
-            log.info("datasource switch exception");
-        }
-    }
 
     /**
      * 去除监控页面底部的广告

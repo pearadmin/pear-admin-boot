@@ -45,6 +45,7 @@ public class GlobalExceptionHandler {
      * */
     @ExceptionHandler({AccessDeniedException.class})
     public Object access(HttpServletRequest request,AccessDeniedException e){
+        e.printStackTrace();
         if (ServletUtil.isAjax(request))
         {
             return Result.failure("暂无权限");

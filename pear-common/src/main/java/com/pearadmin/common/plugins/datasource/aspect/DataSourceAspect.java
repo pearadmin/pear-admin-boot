@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
  * CreateTime: 2019/10/23
  * */
 @Aspect
-@Order(1)
+@Order(1000)
 @Component
 public class DataSourceAspect
 {
