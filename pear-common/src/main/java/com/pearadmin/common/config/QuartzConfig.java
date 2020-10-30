@@ -21,7 +21,6 @@ public class QuartzConfig {
      * */
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
-
         Properties prop = new Properties();
         prop.put("org.quartz.scheduler.instanceName", "PearScheduler");
         // 设置为AUTO时使用，默认的实现org.quartz.scheduler.SimpleInstanceGenerator是基于主机名称和时间戳生成。
@@ -44,7 +43,6 @@ public class QuartzConfig {
         prop.put("org.quartz.jobStore.tablePrefix", "schedule_");
         // 从 LOCKS 表查询一行并对这行记录加锁的 SQL 语句
         prop.put("org.quartz.jobStore.selectWithLockSQL", "SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?");
-
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setDataSource(dataSource);
         factory.setQuartzProperties(prop);

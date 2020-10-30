@@ -57,8 +57,8 @@ public class DruidConfig {
     /**
      * 动态数据源
      * */
-    @Bean(name = "dynamicDataSource")
     @Primary
+    @Bean(name = "dynamicDataSource")
     public DynamicDataSource dataSource(DataSource masterDataSource)
     {
         Map<Object, Object> targetDataSources = new HashMap<>();
