@@ -1,5 +1,8 @@
 package com.pearadmin.api;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +30,13 @@ public class EntranceController extends BaseController {
      * */
     @GetMapping("login")
     public ModelAndView login(){
-        return JumpPage("login");
+        // if security session eq s-id is not null to index
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            return JumpPage("index");
+        }else{
+            return JumpPage("login");
+        }
     }
 
     /**
