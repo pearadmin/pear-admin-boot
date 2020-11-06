@@ -33,6 +33,9 @@ public class FileServiceImpl implements IFileService {
     @Resource
     private FileMapper fileMapper;
 
+    /**
+     * 上 传 可 读 配 置
+     * */
     @Resource
     private UploadProperty uploadProperty;
 
@@ -73,9 +76,6 @@ public class FileServiceImpl implements IFileService {
             String fileName = hash + suffixName;
             String fileDir = LocalDate.now().toString();
             String parentPath = uploadProperty.getUploadPath() +fileDir;
-
-            System.out.println("文件路径"+uploadProperty);
-
             java.io.File filepath = new java.io.File(parentPath, fileName);
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();

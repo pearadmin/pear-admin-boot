@@ -18,6 +18,8 @@ public class CaptchaController extends BaseController {
 
     /**
      * 验证码生成
+     * @param request
+     * @param response
      * */
     @RequestMapping("generate")
     public void generate(HttpServletRequest request, HttpServletResponse response) throws Exception {

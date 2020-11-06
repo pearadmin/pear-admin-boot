@@ -34,7 +34,6 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-
         Logging logging = new Logging();
         logging.setId(SequenceUtil.makeStringId());
         logging.setTitle("登录");
@@ -43,12 +42,10 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
         logging.setSuccess(true);
         logging.setLoggingType(LoggingType.LOGIN);
         loggingService.save(logging);
-
         Result result = new Result();
         result.setSuccess(true);
         result.setMsg("登陆成功");
         result.setCode(200);
-
         // 将当前用户存入 Session 缓存
         httpServletRequest.getSession().setAttribute("currentUser",authentication.getPrincipal());
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
