@@ -78,12 +78,6 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
-            <!-- 数 据 库 连 接 池 -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
             <!-- 数 据 库 操 作 框 架 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -223,6 +217,12 @@
                 <artifactId>thymeleaf-extras-springsecurity5</artifactId>
                 <version>3.0.4.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>3.2.1</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

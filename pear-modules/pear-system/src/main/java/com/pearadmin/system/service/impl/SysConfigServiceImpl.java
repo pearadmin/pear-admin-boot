@@ -2,8 +2,6 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.plugins.datasource.annotation.DataSource;
-import com.pearadmin.common.plugins.datasource.enums.DataSourceType;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysConfig;
 import com.pearadmin.system.mapper.SysConfigMapper;

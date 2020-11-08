@@ -1,8 +1,6 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.plugins.datasource.annotation.DataSource;
-import com.pearadmin.common.plugins.datasource.enums.DataSourceType;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;

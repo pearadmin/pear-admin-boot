@@ -8,7 +8,7 @@ spring:
   # Druid Pool 运行环境
   profiles:
     # 运 行 环 境
-    active: druid
+    active: datasource
   activiti:
     # 检 查 流 程 定 义 文 件
     check-process-definitions: false
