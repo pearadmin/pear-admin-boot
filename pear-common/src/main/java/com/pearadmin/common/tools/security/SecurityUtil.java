@@ -13,6 +13,7 @@ public class SecurityUtil {
 
     /**
      * 获取当前登录用户的信息
+     * return Authentication 权鉴对象
      * */
     public static Authentication currentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -20,6 +21,20 @@ public class SecurityUtil {
             return authentication;
         }
         return null;
+    }
+
+    /**
+     * 验证当前用户是否登录
+     * @return boolean 是否登录
+     * */
+    public static boolean isAuthentication(){
+        // if security session eq s-id is not null to index
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
