@@ -99,7 +99,9 @@
         let tables = layui.common.joinArray(checks.data, "tableName");
         let data = {"tables": tables};
         layui.common.ajax.post(prefix + "/importTable", data, function (res) {
-            layui.layer.alert(res.msg);
+            if(res.msg!=null){
+                layui.layer.alert(res.msg);
+            }
             if (res.success) {
                 parent.layui.layer.closeAll();
                 parent.layui.table.reload();
