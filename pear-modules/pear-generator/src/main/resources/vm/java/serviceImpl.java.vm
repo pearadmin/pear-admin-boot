@@ -3,6 +3,7 @@ package ${packageName}.service.impl;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 查询${functionName}
-     * @param ${classsName} ${functionName}
+     * @param ${className} ${functionName}
      * @param pageDomain
      * @return ${functionName} 分页集合
      * */

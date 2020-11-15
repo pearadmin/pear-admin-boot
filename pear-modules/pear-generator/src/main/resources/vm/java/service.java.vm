@@ -1,9 +1,9 @@
 package ${packageName}.service;
 
 import java.util.List;
-import
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.web.domain.request.PageDomain; ${packageName}.domain.${ClassName};
+import com.pearadmin.common.web.domain.request.PageDomain;
+import ${packageName}.domain.${ClassName};
 
 /**
  * ${functionName}Service接口

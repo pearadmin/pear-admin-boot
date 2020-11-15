@@ -96,7 +96,7 @@
         let $ = layui.jquery;
         let laydate = layui.laydate;
 
-        let prefix = "/${moduleName}/${businessName}"
+        let prefix = "/${moduleName}/${businessName}/"
 
         #foreach($column in $columns)
             #set($field=$column.javaField)
