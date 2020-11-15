@@ -7,9 +7,9 @@ import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 #if($table.crud || $table.sub)
-com.pearadmin.common.web.base.BaseDomain;
+import com.pearadmin.common.web.base.BaseDomain;
 #elseif($table.tree)
-com.pearadmin.common.web.base.TreeDomain;
+import com.pearadmin.common.web.base.TreeDomain;
 #end
 
 /**

@@ -7,7 +7,7 @@
      <div class="layui-card">
         <div class="layui-card-body">
             <div class="col-sm-12 search-collapse">
-                <form id="formId">
+                <form id="formId" class="layui-form">
 #foreach($column in $columns)
 #if($column.query)
     #set($javaField=$column.javaField)
@@ -73,7 +73,7 @@
                  let form = layui.form;
                  let $ = layui.jquery;
 
-                 let prefix = "/${moduleName}/${businessName}";
+                 let prefix = "/${moduleName}/${businessName}/";
 
                  let cols = [
                      [
@@ -129,7 +129,7 @@
                  });
 
                  form.on('submit(${businessName}-query)', function (data) {
-                     window.refresh(data.field);
+                     table.reload('${businessName}-table', {where: data.field})
                      return false;
                  });
 
