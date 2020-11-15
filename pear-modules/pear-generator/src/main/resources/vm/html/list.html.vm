@@ -8,30 +8,28 @@
         <div class="layui-card-body">
             <div class="col-sm-12 search-collapse">
                 <form id="formId" class="layui-form">
+
+                    <div class="layui-form-item">
 #foreach($column in $columns)
 #if($column.query)
     #set($javaField=$column.javaField)
     #set($comment=$column.columnComment)
     #if($column.htmlType == "input")
-                    <div class="layui-form-item">
                         <label class="layui-form-label">${comment}：</label>
                         <div class="layui-input-inline">
                             <input type="text" name="${javaField}" placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-required#end/>
                         </div>
-                    </div>
     #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
-                    <div class="layui-form-item">
+               
                         <label class="layui-form-label">${comment}：</label>
                         <div class="layui-input-inline">
                             <select name="${javaField}" #if($column.required) lay-required#end>
                                 <option value="">所有</option>
                             </select>
                         </div>
-                    </div>
 #end
 #end
 #end
-         <div class="layui-form-item">
                     <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="${businessName}-query">
                         <i class="layui-icon layui-icon-search"></i>
                         查询
