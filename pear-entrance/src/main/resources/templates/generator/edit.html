@@ -173,9 +173,10 @@
                 data: data.field,
                 async: false,
                 success: function (data) {
-                    layui.layer.alert(data.msg);
-                    if (data.code == 0) {
-                        window.location.href = prefix;
+
+                    if (data.code == 200) {
+                        console.log("保存成功");
+                        layui.layer.msg("保存成功",{icon:1,time:1000})
                     }
                 }
             });
