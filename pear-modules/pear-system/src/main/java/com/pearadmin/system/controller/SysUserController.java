@@ -249,7 +249,7 @@ public class SysUserController extends BaseController {
     @GetMapping("center")
     @ApiOperation(value = "个人资料")
     public ModelAndView center(Model model){
-        SysUser sysUser = (SysUser) ServletUtil.getSession().getAttribute("currentUser");
+        SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
         model.addAttribute("userInfo",sysUserService.getById(sysUser.getUserId()));
         return JumpPage(MODULE_PATH + "center");
     }

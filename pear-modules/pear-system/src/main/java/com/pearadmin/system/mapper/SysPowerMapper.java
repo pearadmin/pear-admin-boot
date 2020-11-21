@@ -45,12 +45,6 @@ public interface SysPowerMapper {
      * */
     List<SysMenu> selectMenuByUsername(String username);
 
-    /**
-     * Describe: 根据 ParentId 查询子菜单
-     * Param: parentId
-     * Return: ResuMenu
-     * */
-    List<SysMenu> selectAdminsMenu();
 
     /**
      * Describe: 修改权限信息
