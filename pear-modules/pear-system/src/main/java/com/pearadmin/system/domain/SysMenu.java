@@ -19,6 +19,11 @@ public class SysMenu {
     private String id;
 
     /**
+     * 父节点
+     * */
+    private String parentId;
+
+    /**
      * 标题
      * */
     private String title;

@@ -27,8 +27,8 @@
             <li class="layui-nav-item">
                 <!-- 头 像 -->
                 <a href="javascript:;">
-                    <img src="admin/images/avatar.jpg" class="layui-nav-img">
-                    <span>就眠仪式</span>
+                    <img src="" id="headImg" class="layui-nav-img">
+                    <span th:text="${userInfo.realName}"></span>
                 </a>
                 <!-- 功 能 菜 单 -->
                 <dl class="layui-nav-child">
@@ -63,11 +63,18 @@
 </div>
 <!-- 依 赖 脚 本 -->
 <th:block th:include="include :: footer"/>
+<script th:src="@{/admin/js/headImg.js}"></script>
+
 <script th:inline="javascript">
     layui.use(['admin'], function () {
         let admin = layui.admin;
-
         admin.render();
+
+        // 按名设置头像
+        /*<![CDATA[*/
+        $('#headImg').attr("src",makeHeadImgByUserName([[${userInfo.realName}]]));
+        /*]]>*/
+
     })
 </script>
 </body>

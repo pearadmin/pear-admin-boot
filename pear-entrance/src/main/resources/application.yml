@@ -50,6 +50,12 @@ pear:
       email: Jmys1992@gmail.com
   # 权 限 配 置
   security:
+    #开启超级管理员账号--配置之后不需要验证权限
+    super-auth-open: true
+    #超级管理员账号--配置之后不需要验证权限
+    super-admin: admin
+    #记住密码key
+    remember-key: oanus_admins_2020_perar_admins_springboot
     # 不 需 要 权 限 拦 截 的 接 口 配 置
     open-api:
       - /login/**  # 开放 登录 接口

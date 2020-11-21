@@ -50,7 +50,7 @@ public interface SysPowerMapper {
      * Param: parentId
      * Return: ResuMenu
      * */
-    List<SysMenu> selectMenuByParentId(@Param("username") String username, @Param("parentId") String parentId);
+    List<SysMenu> selectAdminsMenu();
 
     /**
      * Describe: 修改权限信息

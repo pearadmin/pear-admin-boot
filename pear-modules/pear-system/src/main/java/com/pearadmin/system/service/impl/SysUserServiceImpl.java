@@ -2,6 +2,7 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysRole;
@@ -49,6 +50,12 @@ public class SysUserServiceImpl implements ISysUserService {
      * */
     @Resource
     private SysPowerMapper sysPowerMapper;
+
+    /**
+     * 超级管理员配置
+     * */
+    @Resource
+    private SecurityProperty securityProperty;
 
     /**
      * Describe: 根据条件查询用户列表数据
@@ -190,22 +197,24 @@ public class SysUserServiceImpl implements ISysUserService {
      * */
     @Override
     public List<SysMenu> getUserMenu(String username) {
-        List<SysMenu> menus = sysPowerMapper.selectMenuByUsername(username);
-        buildMenu(menus,username);
-        return menus;
+        if (securityProperty.isSuperAuthOpen() && username.equals(securityProperty.getSuperAdmin())) return sysPowerMapper.selectAdminsMenu();
+        return sysPowerMapper.selectMenuByUsername(username);
     }
-
     /**
-     * Describe: 菜单递归构建
-     * Param: menus username
-     * Return: null
+     * Describe: 递归获取菜单tree
+     * Param: sysMenus
+     * Return: 操作结果
      * */
-    private void buildMenu(List<SysMenu> menus, String username){
-        if(menus.size()<=0) return;
-        for (SysMenu menu : menus) {
-            menu.setChildren(sysPowerMapper.selectMenuByParentId(username,menu.getId()));
-            buildMenu(menu.getChildren(),username);
+    @Override
+    public List<SysMenu> toUserMenu(List<SysMenu> sysMenus,String parentId) {
+        List<SysMenu> list = new ArrayList<>();
+        for (SysMenu menu : sysMenus) {
+            if (parentId.equals(menu.getParentId())) {
+                menu.setChildren(toUserMenu(sysMenus, menu.getId()));
+                list.add(menu);
+            }
         }
+        return list;
     }
 
 }
