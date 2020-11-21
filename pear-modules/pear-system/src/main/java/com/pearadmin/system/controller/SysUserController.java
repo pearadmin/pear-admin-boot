@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.plugins.logging.annotation.Logging;
 import com.pearadmin.common.plugins.logging.enums.BusinessType;
 import com.pearadmin.common.plugins.repeat.annotation.RepeatSubmit;
+import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.base.BaseController;
@@ -209,9 +210,9 @@ public class SysUserController extends BaseController {
     @GetMapping("getUserMenu")
     @ApiOperation(value = "获取用户菜单数据")
     public List<SysMenu> getUserMenu(){
-        SysUser sysUser = (SysUser) ServletUtil.getSession().getAttribute("currentUser");
+        SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
         List<SysMenu> menus = sysUserService.getUserMenu(sysUser.getUsername());
-        return menus;
+        return sysUserService.toUserMenu(menus,"0");
     }
 
     /**

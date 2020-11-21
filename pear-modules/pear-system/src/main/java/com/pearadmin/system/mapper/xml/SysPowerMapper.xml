@@ -16,6 +16,7 @@
 
     <resultMap id="ResuMenuMap" type="com.pearadmin.system.domain.SysMenu">
         <id column="power_id" property="id"></id>
+        <result column="parent_id" property="parentId"></result>
         <result column="power_name" property="title"></result>
         <result column="username" property="username"></result>
         <result column="power_type" property="type"></result>
@@ -30,16 +31,16 @@
 			 left join sys_role sr on sr.role_id = srp.role_id
 			 left join  sys_user_role sur on sur.role_id = sr.role_id
 			 left join sys_user su on su.user_id = sur.user_id
-			 where su.username = #{username} and sp.parent_id = '0'  and sp.enable = 1 order by sp.sort
+			 where su.username = #{username}  and sp.enable = 1 order by sp.sort
     </select>
 
-    <select id="selectMenuByParentId" resultMap="ResuMenuMap">
+    <select id="selectAdminsMenu" resultMap="ResuMenuMap">
         select DISTINCT sp.power_id,sp.* from sys_power sp
 			 left join sys_role_power srp on srp.power_id = sp.power_id
 			 left join sys_role sr on sr.role_id = srp.role_id
 			 left join  sys_user_role sur on sur.role_id = sr.role_id
 			 left join sys_user su on su.user_id = sur.user_id
-			 where su.username = #{username} and sp.parent_id = #{parentId} and sp.enable = 1 order by sp.sort
+			 where  sp.enable = 1 order by sp.sort
     </select>
 
     <select id="selectList" parameterType="SysPower" resultMap="SysPowerMap">

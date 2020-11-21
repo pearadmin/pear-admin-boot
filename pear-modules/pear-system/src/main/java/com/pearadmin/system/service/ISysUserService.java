@@ -85,5 +85,12 @@ public interface ISysUserService {
      * */
     List<SysMenu> getUserMenu(String username);
 
+    /**
+     * Describe: 递归获取菜单tree
+     * Param: sysMenus
+     * Return: 操作结果
+     * */
+    List<SysMenu> toUserMenu(List<SysMenu> sysMenus,String parentId);
+
 }
 

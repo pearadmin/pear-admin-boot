@@ -6,9 +6,9 @@ spring:
       strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
       datasource:
         master:
-          url: jdbc:mysql://mysql.pearadmin.com:3306/pear-admin?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
-          username: root
-          password: root
+          url: jdbc:mysql://192.168.0.110:33061/oanus_admins?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+          username: oanus_admins
+          password: 123456
           druid:
             # 初始连接数
             initialSize: 5
