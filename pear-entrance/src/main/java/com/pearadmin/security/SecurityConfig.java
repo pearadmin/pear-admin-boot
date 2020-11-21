@@ -3,6 +3,7 @@ package com.pearadmin.security;
 import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
 import com.pearadmin.security.process.*;
+import com.pearadmin.security.support.RedisTokenRepositor;
 import com.pearadmin.security.support.SecurityPermissionEvaluator;
 import com.pearadmin.security.support.SecurityVerifyCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,6 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -62,8 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SecurityUserDetailsService securityUserDetailsService; //实现userservice
-    @Resource
-    private DataSource dataSource; // 数据源
+
+    @Autowired
+    private RedisTokenRepositor redisTokenRepositor;
+
+//    @Resource
+//    private DataSource dataSource; // 数据源
 
     /**
      * Describe: 自定义权限注解实现
@@ -92,19 +95,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    /**
-     * 持久化token
-     *
-     * Security中，默认是使用PersistentTokenRepository的子类InMemoryTokenRepositoryImpl，将token放在内存中
-     * 如果使用JdbcTokenRepositoryImpl，会创建表persistent_logins，将token持久化到数据库
-     */
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-        tokenRepository.setDataSource(dataSource); // 设置数据源
-//    tokenRepository.setCreateTableOnStartup(true); // 启动创建表，创建成功后注释掉
-        return tokenRepository;
-    }
+//    /**
+//     * 持久化token
+//     *
+//     * Security中，默认是使用PersistentTokenRepository的子类InMemoryTokenRepositoryImpl，将token放在内存中
+//     * 如果使用JdbcTokenRepositoryImpl，会创建表persistent_logins，将token持久化到数据库
+//     */
+//    @Bean
+//    public PersistentTokenRepository persistentTokenRepository() {
+//        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+//        tokenRepository.setDataSource(dataSource); // 设置数据源
+////    tokenRepository.setCreateTableOnStartup(true); // 启动创建表，创建成功后注释掉
+//        return tokenRepository;
+//    }
 
     /** 注册SessionRegistry*/
     @Bean
@@ -141,12 +144,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 //配置用户登出自定义处理类
                 .logoutSuccessHandler(securityAccessLogoutHander)
+                .deleteCookies("remember-me") //退出登录删除 cookie缓存的rememberMe
                 .and()
                 //配置没有权限自定义处理类
                 .exceptionHandling().accessDeniedHandler(securityAccessDeniedHander)
                 .and()
                 .rememberMe().rememberMeParameter("remember-me")
-                .tokenRepository(persistentTokenRepository())
+                .tokenRepository(redisTokenRepositor)
                 .key(securityProperty.getRememberKey())
                 .and()
                 // 防止iframe 造成跨域
@@ -157,12 +161,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 取消跨站请求伪造防护
                 .csrf().disable()
                 .sessionManagement()
-                .invalidSessionUrl("/login") //无效session要跳转到login
+                .invalidSessionUrl("/login?kickout=1") //无效session要跳转到login
                 .maximumSessions(1)//同时登陆多个只保留一个
                 .expiredUrl("/login")//过期session跳转
-                .sessionRegistry(sessionRegistry())
-
-;
+                .sessionRegistry(sessionRegistry());
         http.headers().frameOptions().disable();
     }
 

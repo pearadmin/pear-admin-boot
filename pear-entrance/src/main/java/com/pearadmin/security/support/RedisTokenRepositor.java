@@ -1,4 +1,4 @@
-package com.pearadmin.common.config;
+package com.pearadmin.security.support;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * CreateTime: 2020/11/22
  * */
 @Component
-public class RedisTokenRepositoryConfig implements PersistentTokenRepository {
+public class RedisTokenRepositor implements PersistentTokenRepository {
 
     private final static String USERNAME_KEY = "spring:security:rememberMe:username_key:";
     private final static String SERIES_KEY = "spring:security:rememberMe:series_key:";

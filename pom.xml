@@ -67,6 +67,12 @@
         <apache.xmlgraphics.version>1.13</apache.xmlgraphics.version>
         <!-- 模 板 引 擎 版 本 -->
         <velocity.version>1.7</velocity.version>
+        <!-- security thymeleaf -->
+        <thymeleaf-extras.version>3.0.4.RELEASE</thymeleaf-extras.version>
+        <!-- dynamic 动态数据库  -->
+        <dynamic.verion>3.2.1</dynamic.verion>
+        <!-- jackson -->
+        <jackson.version>2.9.9</jackson.version>
     </properties>
 
     <!-- 依 赖 管 理 -->
@@ -215,12 +221,17 @@
             <dependency>
                 <groupId>org.thymeleaf.extras</groupId>
                 <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-                <version>3.0.4.RELEASE</version>
+                <version>${thymeleaf-extras.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>3.2.1</version>
+                <version>${dynamic.verion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
         </dependencies>
