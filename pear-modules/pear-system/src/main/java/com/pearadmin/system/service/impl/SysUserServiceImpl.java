@@ -197,10 +197,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * */
     @Override
     public List<SysMenu> getUserMenu(String username) {
-        String name = "";
-        if (!(securityProperty.isSuperAuthOpen() && username.equals(securityProperty.getSuperAdmin()))){
-            name = username;
-        }
+        String name = !(securityProperty.isSuperAuthOpen() && username.equals(securityProperty.getSuperAdmin()))?username:"";
         return sysPowerMapper.selectMenuByUsername(name);
     }
     /**
