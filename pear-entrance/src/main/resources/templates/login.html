@@ -96,6 +96,15 @@
                     //关闭弹窗
                     layer.close(index);
                 });
+        }else if(getParam("sessionout") == 1){
+            layer.alert("<font color='red'>登录已过期，请重新登录</font>", {
+                    icon: 0,
+                    title: "系统提示"
+                },
+                function(index) {
+                    //关闭弹窗
+                    layer.close(index);
+                });
         }
     }
 

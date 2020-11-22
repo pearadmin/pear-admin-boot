@@ -13,6 +13,12 @@
 
  Date: 21/11/2020 17:26:49
 */
+/**
+
+  可不用 目前采用redis做持久化
+
+ */
+
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;

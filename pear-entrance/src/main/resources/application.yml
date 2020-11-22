@@ -2,9 +2,13 @@
 server:
   # 端 口
   port: 8383
-
+  servlet:
+    session:
+      timeout: 120m
 # Spring 配置
 spring:
+  session:
+    timeout: 120m
   # Druid Pool 运行环境
   profiles:
     # 运 行 环 境

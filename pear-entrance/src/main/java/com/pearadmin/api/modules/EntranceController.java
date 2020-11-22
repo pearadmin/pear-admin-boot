@@ -29,8 +29,10 @@ public class EntranceController extends BaseController {
      * Return: 登录视图
      * */
     @GetMapping("login")
-    public ModelAndView login(){
+    public ModelAndView login(Model model){
         if (SecurityUtil.isAuthentication()) {
+            SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
+            model.addAttribute("userInfo",sysUser);
             return JumpPage("index");
         }else{
             return JumpPage("login");
