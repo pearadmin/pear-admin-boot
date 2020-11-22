@@ -3,6 +3,7 @@ package com.pearadmin.security;
 import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
 import com.pearadmin.security.process.*;
+import com.pearadmin.security.domain.RedisTokenRepositor;
 import com.pearadmin.security.support.SecurityPermissionEvaluator;
 import com.pearadmin.security.support.SecurityVerifyCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +15,20 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
 
 /**
  * Describe: Security 安全配置
  * Author: 就免仪式
  * CreateTime: 2019/10/23
- * */
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -58,18 +57,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityProperty securityProperty; //配置不拦截url
 
     @Autowired
-    private SecurityVerifyCodeFilter securityVerifyCodeFilter; //自定义验证码验证
+    private SecurityUserDetailsService securityUserDetailsService; //实现userservice
 
     @Autowired
-    private SecurityUserDetailsService securityUserDetailsService; //实现userservice
+    private RedisTokenRepositor redisTokenRepositor;//remember me redis持久化
+
+    @Autowired
+    private SecurityVerifyCodeFilter securityVerifyCodeFilter; //自定义验证码验证
+
     @Resource
-    private DataSource dataSource; // 数据源
+    private SecurityExpiredSessionStrategy securityExpiredSessionStrategy;
+
 
     /**
      * Describe: 自定义权限注解实现
      */
     @Bean
-    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler(){
+    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler() {
         DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
         handler.setPermissionEvaluator(securityPermissionEvaluator);
         return handler;
@@ -79,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * Describe: 加密方式
      */
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -93,23 +97,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     /**
-     * 持久化token
-     *
-     * Security中，默认是使用PersistentTokenRepository的子类InMemoryTokenRepositoryImpl，将token放在内存中
-     * 如果使用JdbcTokenRepositoryImpl，会创建表persistent_logins，将token持久化到数据库
+     * 注册SessionRegistry
      */
     @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-        tokenRepository.setDataSource(dataSource); // 设置数据源
-//    tokenRepository.setCreateTableOnStartup(true); // 启动创建表，创建成功后注释掉
-        return tokenRepository;
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
     }
 
 
     /**
      * Describe: 配置 Security 控制逻辑
-     * */
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -117,53 +115,50 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 其他的需要登录后才能访问
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(securityVerifyCodeFilter, UsernamePasswordAuthenticationFilter.class) //验证码验证类
-                //配置未登录自定义处理类
-                .httpBasic().authenticationEntryPoint(securityAuthenticationEntryPoint)
+                .addFilterBefore(securityVerifyCodeFilter, UsernamePasswordAuthenticationFilter.class)//验证码验证类
+            .httpBasic()
+                .authenticationEntryPoint(securityAuthenticationEntryPoint)      //配置未登录自定义处理类
                 .and()
-                //配置登录地址
-                .formLogin()
+            .formLogin()
+                //登录页面
                 .loginPage("/login")
+                //登录接口
                 .loginProcessingUrl("/login")
                 //配置登录成功自定义处理类
                 .successHandler(securityAccessSuccessHander)
                 //配置登录失败自定义处理类
                 .failureHandler(securityAccessFailureHander)
                 .and()
-                //配置登出地址
-                .logout()
-                .logoutUrl("/logout")
+            .logout()
+                .deleteCookies("JSESSIONID") //退出登录删除 cookie缓存
                 //配置用户登出自定义处理类
                 .logoutSuccessHandler(securityAccessLogoutHander)
                 .and()
-                //配置没有权限自定义处理类
-                .exceptionHandling().accessDeniedHandler(securityAccessDeniedHander)
+            .exceptionHandling()
+                .accessDeniedHandler(securityAccessDeniedHander) //配置没有权限自定义处理类
                 .and()
-                .rememberMe().rememberMeParameter("remember-me")
-                .tokenRepository(persistentTokenRepository())
+            .rememberMe()
+                .rememberMeParameter("remember-me")
+                .rememberMeCookieName("rememberme-token")
+                .tokenRepository(redisTokenRepositor)
                 .key(securityProperty.getRememberKey())
                 .and()
-                // 防止iframe 造成跨域
-                .headers()
-                .frameOptions()
-                .disable()
-                .and()
-                // 取消跨站请求伪造防护
-                .csrf().disable()
-                .sessionManagement()
-                .invalidSessionUrl("/login") //无效session要跳转到login
+            .sessionManagement()
+                //每次登录都更换sessionid
+                .sessionFixation()
+                .migrateSession()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //在需要使用到session时才创建session
+//                .invalidSessionUrl("/login?sessionout=1") //SESSION 过期或者非法请求
                 .maximumSessions(1)//同时登陆多个只保留一个
-                .expiredUrl("/login")//过期session跳转
-                .sessionRegistry(sessionRegistry())
+                .maxSessionsPreventsLogin(false)
+                .expiredSessionStrategy(securityExpiredSessionStrategy) // //踢出用户操作
+                .sessionRegistry(sessionRegistry()); //用于统计在线
 
-;
+        // 取消跨站请求伪造防护
+        http.csrf().disable();
+        // 防止iframe 造成跨域
         http.headers().frameOptions().disable();
     }
 
-    /** 注册SessionRegistry*/
-    @Bean
-    public SessionRegistry sessionRegistry(){
-        return new SessionRegistryImpl();
-    }
 
 }
