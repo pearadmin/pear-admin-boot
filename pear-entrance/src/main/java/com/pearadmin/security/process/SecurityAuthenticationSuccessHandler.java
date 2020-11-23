@@ -46,7 +46,6 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
         result.setSuccess(true);
         result.setMsg("登陆成功");
         result.setCode(200);
-        // 将当前用户存入 Session 缓存
         httpServletRequest.getSession().setAttribute("currentUser",authentication.getPrincipal());
         httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");

@@ -33,7 +33,6 @@ public class SecurityPermissionEvaluator implements PermissionEvaluator {
     {
         SysUser securityUserDetails = (SysUser) authentication.getPrincipal();
 
-        //超级管理员不需要验证权限
         if (securityProperty.isSuperAuthOpen() && securityProperty.getSuperAdmin().equals(securityUserDetails.getUsername())) {
             return true;
         }

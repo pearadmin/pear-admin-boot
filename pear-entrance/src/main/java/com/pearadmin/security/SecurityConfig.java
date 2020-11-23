@@ -26,7 +26,7 @@ import javax.annotation.Resource;
 
 /**
  * Describe: Security 安全配置
- * Author: 就免仪式
+ * Author: 就眠仪式
  * CreateTime: 2019/10/23
  */
 @Configuration
@@ -148,7 +148,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionFixation()
                 .migrateSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //在需要使用到session时才创建session
-//                .invalidSessionUrl("/login?sessionout=1") //SESSION 过期或者非法请求
                 .maximumSessions(1)//同时登陆多个只保留一个
                 .maxSessionsPreventsLogin(false)
                 .expiredSessionStrategy(securityExpiredSessionStrategy) // //踢出用户操作

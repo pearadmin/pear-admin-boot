@@ -31,10 +31,7 @@ public class CaptchaController extends BaseController {
     @RequestMapping("generate")
     public void generate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Captcha captcha = new ArithmeticCaptcha();
-        /**
-         * 生成验证码字符串并保存到session中
-         */
-        String createText = captcha.text();  // 获取运算的结果
+        String createText = captcha.text();
         Cookie[] cookies = request.getCookies();
         if (cookies!=null) {
             for (Cookie cookie : cookies) {
@@ -53,8 +50,7 @@ public class CaptchaController extends BaseController {
      * @return 验证结果
      * */
     @RequestMapping("verify")
-    public Result verify(HttpServletRequest request,
-                         String captcha){
+    public Result verify(HttpServletRequest request, String captcha){
         if(CaptchaUtil.ver(captcha,request)){
             return success();
         }

@@ -123,6 +123,4 @@ public class SysUser extends BaseDomain implements UserDetails {
         return "1".equals(this.getEnable())?true:false;
     }
 
-
-
 }

@@ -31,10 +31,8 @@ public class SecurityUserDetailsService implements UserDetailsService {
         if(sysUser==null){
             throw new UsernameNotFoundException("Account Not");
         }
-
         List<SysPower> powerList = sysPowerMapper.selectByUsername(s);
         sysUser.setPowerList(powerList);
         return sysUser;
-
     }
 }
