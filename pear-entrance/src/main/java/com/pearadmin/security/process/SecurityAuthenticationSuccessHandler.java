@@ -27,8 +27,6 @@ import java.io.IOException;
 @Component
 public class SecurityAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-    public static final Logger log = LoggerFactory.getLogger(SecurityAccessDeniedHandler.class);
-
     @Resource
     private LoggingService loggingService;
 

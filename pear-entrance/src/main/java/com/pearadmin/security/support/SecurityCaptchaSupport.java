@@ -20,7 +20,7 @@ import java.io.IOException;
  * @createTime 2020/11/20
  */
 @Component
-public class SecurityVerifyCodeFilter extends OncePerRequestFilter implements Filter {
+public class SecurityCaptchaSupport extends OncePerRequestFilter implements Filter {
 
     private String defaultFilterProcessUrl = "/login";
     private String method = "POST";

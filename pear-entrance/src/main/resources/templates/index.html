@@ -20,10 +20,8 @@
         <!-- 顶 部 右 侧 菜 单 -->
         <div id="control" class="layui-layout-control"></div>
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item layui-hide-xs"><a href="#"
-                                                        class="fullScreen layui-icon layui-icon-screen-full"></a></li>
-            <li class="layui-nav-item layui-hide-xs"><a href="http://www.pearadmin.com"
-                                                        class="layui-icon layui-icon-website"></a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="http://www.pearadmin.com" class="layui-icon layui-icon-website"></a></li>
             <li class="layui-nav-item">
                 <!-- 头 像 -->
                 <a href="javascript:;">
@@ -64,17 +62,12 @@
 <!-- 依 赖 脚 本 -->
 <th:block th:include="include :: footer"/>
 <script th:src="@{/admin/js/headImg.js}"></script>
-
 <script th:inline="javascript">
     layui.use(['admin'], function () {
         let admin = layui.admin;
         admin.render();
 
-        // 按名设置头像
-        /*<![CDATA[*/
         $('#headImg').attr("src",makeHeadImgByUserName([[${userInfo.realName}]]));
-        /*]]>*/
-
     })
 </script>
 </body>

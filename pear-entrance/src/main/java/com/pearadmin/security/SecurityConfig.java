@@ -3,10 +3,9 @@ package com.pearadmin.security;
 import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
 import com.pearadmin.security.process.*;
-import com.pearadmin.security.domain.RedisTokenRepositor;
+import com.pearadmin.security.domain.RedisTokenRepository;
 import com.pearadmin.security.support.SecurityPermissionEvaluator;
-import com.pearadmin.security.support.SecurityVerifyCodeFilter;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pearadmin.security.support.SecurityCaptchaSupport;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +20,6 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import javax.annotation.Resource;
 
 /**
@@ -56,14 +54,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private SecurityProperty securityProperty; //配置不拦截url
 
-    @Autowired
+    @Resource
     private SecurityUserDetailsService securityUserDetailsService; //实现userservice
 
-    @Autowired
-    private RedisTokenRepositor redisTokenRepositor;//remember me redis持久化
+    @Resource
+    private RedisTokenRepository redisTokenRepository;//remember me redis持久化
 
-    @Autowired
-    private SecurityVerifyCodeFilter securityVerifyCodeFilter; //自定义验证码验证
+    @Resource
+    private SecurityCaptchaSupport securityCaptchaSupport; //自定义验证码验证
 
     @Resource
     private SecurityExpiredSessionStrategy securityExpiredSessionStrategy;
@@ -95,7 +93,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(securityUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
-
     /**
      * 注册SessionRegistry
      */
@@ -103,7 +100,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
     }
-
 
     /**
      * Describe: 配置 Security 控制逻辑
@@ -115,9 +111,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 其他的需要登录后才能访问
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(securityVerifyCodeFilter, UsernamePasswordAuthenticationFilter.class)//验证码验证类
+                .addFilterBefore(securityCaptchaSupport, UsernamePasswordAuthenticationFilter.class)//验证码验证类
             .httpBasic()
-                .authenticationEntryPoint(securityAuthenticationEntryPoint)      //配置未登录自定义处理类
+                .authenticationEntryPoint(securityAuthenticationEntryPoint)
                 .and()
             .formLogin()
                 //登录页面
@@ -140,11 +136,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .rememberMe()
                 .rememberMeParameter("remember-me")
                 .rememberMeCookieName("rememberme-token")
-                .tokenRepository(redisTokenRepositor)
+                .tokenRepository(redisTokenRepository)
                 .key(securityProperty.getRememberKey())
                 .and()
             .sessionManagement()
-                //每次登录都更换sessionid
                 .sessionFixation()
                 .migrateSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //在需要使用到session时才创建session

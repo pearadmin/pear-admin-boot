@@ -30,17 +30,7 @@ public class CaptchaController extends BaseController {
      * */
     @RequestMapping("generate")
     public void generate(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Captcha captcha = new ArithmeticCaptcha();
-        String createText = captcha.text();
-        Cookie[] cookies = request.getCookies();
-        if (cookies!=null) {
-            for (Cookie cookie : cookies) {
-                if(cookie.getName().equalsIgnoreCase("JSESSIONID")){
-                    request.getSession().setAttribute("CAPTCHA_SESSION_KEY"+":"+cookie.getValue(), createText);
-                }
-            }
-        }
-        CaptchaUtil.out(captcha,request,response);
+        CaptchaUtil.out(request, response);
     }
 
     /**

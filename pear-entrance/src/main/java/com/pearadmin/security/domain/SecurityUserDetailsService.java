@@ -22,16 +22,17 @@ public class SecurityUserDetailsService implements UserDetailsService {
 
     @Resource
     private SysUserMapper sysUserMapper;
+
     @Resource
     private SysPowerMapper sysPowerMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        SysUser sysUser = sysUserMapper.selectByUsername(s);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        SysUser sysUser = sysUserMapper.selectByUsername(username);
         if(sysUser==null){
-            throw new UsernameNotFoundException("Account Not");
+            throw new UsernameNotFoundException("Account Not Found");
         }
-        List<SysPower> powerList = sysPowerMapper.selectByUsername(s);
+        List<SysPower> powerList = sysPowerMapper.selectByUsername(username);
         sysUser.setPowerList(powerList);
         return sysUser;
     }

@@ -15,7 +15,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,7 @@ import java.io.IOException;
 public class SecurityAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     /**
-     * 日 志 服 务
+     * 引 入 日 志 服 务
      * */
     @Resource
     private LoggingService loggingService;

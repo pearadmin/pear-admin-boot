@@ -32,7 +32,6 @@ public class SecurityPermissionEvaluator implements PermissionEvaluator {
     public boolean hasPermission(Authentication authentication, Object o, Object o1)
     {
         SysUser securityUserDetails = (SysUser) authentication.getPrincipal();
-
         if (securityProperty.isSuperAuthOpen() && securityProperty.getSuperAdmin().equals(securityUserDetails.getUsername())) {
             return true;
         }

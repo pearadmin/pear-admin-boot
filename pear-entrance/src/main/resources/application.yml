@@ -5,6 +5,7 @@ server:
   servlet:
     session:
       timeout: 120m
+
 # Spring 配置
 spring:
   session:

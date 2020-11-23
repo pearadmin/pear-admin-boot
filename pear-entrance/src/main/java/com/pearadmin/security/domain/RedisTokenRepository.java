@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * CreateTime: 2020/11/22
  * */
 @Component
-public class RedisTokenRepositor implements PersistentTokenRepository {
+public class RedisTokenRepository implements PersistentTokenRepository {
 
     private final static String USERNAME_KEY = "spring:security:rememberMe:username_key:";
     private final static String SERIES_KEY = "spring:security:rememberMe:series_key:";
@@ -29,6 +29,7 @@ public class RedisTokenRepositor implements PersistentTokenRepository {
 
     @Resource
     StringRedisTemplate stringRedisTemplate;
+
     @Override
     public void createNewToken(PersistentRememberMeToken persistentRememberMeToken) {
         String series = persistentRememberMeToken.getSeries();

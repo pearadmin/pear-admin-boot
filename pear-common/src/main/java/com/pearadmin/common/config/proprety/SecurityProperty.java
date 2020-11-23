@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class SecurityProperty {
 
     /**
-     * 是否开启超级管理员不验证权限
+     * 超级管理员不认证
      * */
     private boolean superAuthOpen;
 
@@ -23,12 +23,12 @@ public class SecurityProperty {
     private String superAdmin;
 
     /**
-     * 记住密码Key
+     * 记住密码标识
      * */
     private String rememberKey;
 
     /**
-     * 开 放 接 口 列 表
+     * 开放接口列表
      * */
     private String[] openApi;
 }

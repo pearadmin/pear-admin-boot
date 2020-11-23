@@ -10,15 +10,19 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Describe: 在线用户控制器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
+
 @RestController
 @RequestMapping("system/online")
 public class SysOnlineUserController extends BaseController {
-
 
     @Resource
     private SessionRegistry sessionRegistry;
@@ -30,7 +34,6 @@ public class SysOnlineUserController extends BaseController {
         List<Object> allPrincipalsUser = sessionRegistry.getAllPrincipals();
         List<SysOnlineUser>  onlineUser= new ArrayList<>();
         for (Object obj : allPrincipalsUser ){
-            //暂时这样处理，主要是无法将SysUser强制转化为 sysOnline，不能直接返回sysUser 因为包含password 不安全
             SysOnlineUser sysOnlineUser = new SysOnlineUser();
             SysUser objs = (SysUser) obj;
             sysOnlineUser.setUserId(objs.getUserId());
@@ -40,7 +43,4 @@ public class SysOnlineUserController extends BaseController {
         }
         return Result.success(onlineUser);
     }
-
-
-
 }
