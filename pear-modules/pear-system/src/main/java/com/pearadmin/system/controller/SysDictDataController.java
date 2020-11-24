@@ -56,14 +56,15 @@ public class SysDictDataController extends BaseController {
        PageInfo<SysDictData> pageInfo = sysDictDataService.page(sysDictData,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
+
     /**
      * Describe: 根据字典code获取数据字典列表数据
      * Param: typeCode
      * Return: Result
      * */
-    @GetMapping("queryDictItemsByCode")
+    @GetMapping("selectByCode")
     @PreAuthorize("hasPermission('/system/dictData/queryDictItemsByCode','sys:dictData:queryDictItemsByCode')")
-    public Result queryDictItemsByCode (String typeCode){
+    public Result selectByCode (String typeCode){
         List<SysDictData> list = sysDictDataService.queryDictItemsByCode(typeCode);
         return success(list);
     }
