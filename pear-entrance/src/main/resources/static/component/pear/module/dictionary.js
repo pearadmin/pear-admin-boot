@@ -6,7 +6,7 @@ layui.define(['jquery', 'element','form'], function(exports) {
     const form = layui.form;
     const dictionary = new function() {}
 
-    $("select[dict-code]").each(function(item){
+    $("select[dict-code]").each(function(){
         var _that = $(this);
         var dictCode = $(this).attr("dict-code");
         $.ajax({
@@ -19,8 +19,6 @@ layui.define(['jquery', 'element','form'], function(exports) {
                         console.log(result[j]);
                         _that.append("<option value='"+result.data[j].dataValue+"'>"+result.data[j].dataLabel+"</option>");
                     }
-                }else{
-                    console.log("没成功")
                 }
                 form.render();
             }
