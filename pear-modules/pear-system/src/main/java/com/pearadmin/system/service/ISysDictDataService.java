@@ -22,6 +22,18 @@ public interface ISysDictDataService {
     List<SysDictData> list(SysDictData sysDictData);
 
     /**
+     * 根据字典code获取可用的字典列表数据
+     * @param typeCode
+     * @return
+     */
+    List<SysDictData> queryDictItemsByCode(String typeCode);
+
+    /**
+     * 刷新字典缓存
+     * @param typeCode
+     */
+    void refreshChcheTypeCode(String typeCode);
+    /**
      * Describe: 根据条件查询字典类型列表数据 分页
      * Param: SysDictData
      * Return: PageInfo<SysDictType>

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Describe: 主页控制器
@@ -55,7 +56,17 @@ public class SysDictDataController extends BaseController {
        PageInfo<SysDictData> pageInfo = sysDictDataService.page(sysDictData,pageDomain);
        return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
-
+    /**
+     * Describe: 根据字典code获取数据字典列表数据
+     * Param: typeCode
+     * Return: Result
+     * */
+    @GetMapping("queryDictItemsByCode")
+    @PreAuthorize("hasPermission('/system/dictData/queryDictItemsByCode','sys:dictData:queryDictItemsByCode')")
+    public Result queryDictItemsByCode (String typeCode){
+        List<SysDictData> list = sysDictDataService.queryDictItemsByCode(typeCode);
+        return success(list);
+    }
     /**
      * Describe: 数据字典类型新增视图
      * Param: sysDictType

@@ -2,15 +2,23 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.pearadmin.common.tools.spring.SpringUtil;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.mapper.SysDictDataMapper;
 import com.pearadmin.system.service.ISysDictDataService;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Describe: 字典值服务实现类
@@ -22,10 +30,38 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
 
     @Resource
     private SysDictDataMapper sysDictDataMapper;
-
+    //字典缓存 10分钟失效
+    public static LoadingCache<String, List<SysDictData>> loadingCacheSysDictData = CacheBuilder.newBuilder().maximumSize(100).expireAfterWrite(600, TimeUnit.SECONDS).build(new CacheLoader<String,List<SysDictData>>() {
+        @Override
+        public List<SysDictData> load(String typeCode) {
+            SysDictDataMapper tempSysDictDataMapper =SpringUtil.getBean("sysDictDataMapper",SysDictDataMapper.class);
+            return tempSysDictDataMapper.queryDictItemsByCode(typeCode);
+        }
+    });
     @Override
     public List<SysDictData> list(SysDictData sysDictData) {
         return sysDictDataMapper.selectList(sysDictData);
+    }
+
+    @Override
+    public List<SysDictData> queryDictItemsByCode(String typeCode) {
+        try {
+            List<SysDictData>  list=  loadingCacheSysDictData.get(typeCode);
+            return list;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+
+    }
+
+    @Override
+    public void refreshChcheTypeCode(String typeCode) {
+        try {
+            loadingCacheSysDictData.refresh(typeCode);
+        }catch (Exception e){
+
+        }
     }
 
     @Override
@@ -39,6 +75,7 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     public Boolean save(SysDictData sysDictData) {
         Integer result = sysDictDataMapper.insert(sysDictData);
         if(result>0){
+            refreshChcheTypeCode(sysDictData.getTypeCode());
             return true;
         }else{
             return false;
@@ -54,6 +91,7 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     public Boolean updateById(SysDictData sysDictData) {
         int result = sysDictDataMapper.updateById(sysDictData);
         if(result > 0){
+            refreshChcheTypeCode(sysDictData.getTypeCode());
             return true;
         }else{
             return false;
@@ -62,8 +100,13 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
 
     @Override
     public Boolean remove(String id) {
-        int result = sysDictDataMapper.deleteById(id);
+        SysDictData sysDictData=  sysDictDataMapper.selectById(id);
+        int result=0;
+        if(sysDictData!=null) {
+             result = sysDictDataMapper.deleteById(id);
+        }
         if(result>0){
+            refreshChcheTypeCode(sysDictData.getTypeCode());
             return true;
         }else{
             return false;

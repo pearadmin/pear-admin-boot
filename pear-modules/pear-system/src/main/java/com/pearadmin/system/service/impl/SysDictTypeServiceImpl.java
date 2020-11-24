@@ -5,7 +5,9 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.mapper.SysDictTypeMapper;
+import com.pearadmin.system.service.ISysDictDataService;
 import com.pearadmin.system.service.ISysDictTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +23,8 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
 
     @Resource
     private SysDictTypeMapper sysDictTypeMapper;
+    @Autowired
+    ISysDictDataService iSysDictDataService;
 
     /**
      * Describe: 根据条件查询用户列表数据
@@ -53,6 +57,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     public Boolean save(SysDictType sysDictType) {
         Integer result = sysDictTypeMapper.insert(sysDictType);
         if(result > 0){
+            iSysDictDataService.refreshChcheTypeCode(sysDictType.getTypeCode());
             return true;
         }else{
             return false;
@@ -79,6 +84,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     public Boolean updateById(SysDictType sysDictType) {
         int result = sysDictTypeMapper.updateById(sysDictType);
         if(result > 0){
+            iSysDictDataService.refreshChcheTypeCode(sysDictType.getTypeCode());
             return true;
         }else{
             return false;
@@ -92,8 +98,13 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
      * */
     @Override
     public Boolean remove(String id) {
-        Integer result = sysDictTypeMapper.deleteById(id);
+        SysDictType sysDictType =  sysDictTypeMapper.selectById(id);
+        Integer result=0;
+        if(sysDictType!=null) {
+             result = sysDictTypeMapper.deleteById(id);
+        }
         if(result>0){
+            iSysDictDataService.refreshChcheTypeCode(sysDictType.getTypeCode());
             return true;
         }else{
             return false;
