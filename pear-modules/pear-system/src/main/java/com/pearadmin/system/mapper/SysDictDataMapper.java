@@ -3,6 +3,7 @@ package com.pearadmin.system.mapper;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.domain.SysDictType;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,12 @@ import java.util.List;
  * */
 @Mapper
 public interface SysDictDataMapper {
-
+    /**
+     * 通过字典code获取字典数据
+     * @param typeCode
+     * @return
+     */
+    List<SysDictData> queryDictItemsByCode(@Param("typeCode") String typeCode);
     /**
      * Describe: 查询字典数据信息
      * Param: SysDictData
