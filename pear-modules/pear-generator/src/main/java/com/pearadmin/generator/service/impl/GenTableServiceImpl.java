@@ -273,6 +273,11 @@ public class GenTableServiceImpl implements IGenTableService
                 {
                     throw new BusinessException("渲染模板失败，表名：" + table.getTableName());
                 }
+            }else  if (StringUtils.contains(template, "sql.vm")){
+                StringWriter sw = new StringWriter();
+                Template tpl = Velocity.getTemplate(template, Constants.UTF8);
+                tpl.merge(context, sw);
+                System.out.println("生成的sql:--------\n"+sw);
             }
         }
     }

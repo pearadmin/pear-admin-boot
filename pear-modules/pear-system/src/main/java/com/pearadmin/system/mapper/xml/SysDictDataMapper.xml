@@ -28,6 +28,11 @@
     <select id="selectById" parameterType="string" resultMap="SysDictDataMap">
         select * from sys_dict_data where data_id = #{dataId}
     </select>
+    <select id="queryDictItemsByCode" resultType="com.pearadmin.system.domain.SysDictData">
+        select * from sys_dict_data s
+       where s.type_code = (select type_code from sys_dict_type where type_code = #{typeCode})
+       order by s.data_value asc
+    </select>
 
     <insert id="insert" parameterType="SysDictData">
         insert into sys_dict_data
