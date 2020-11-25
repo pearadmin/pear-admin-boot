@@ -1,6 +1,7 @@
 package com.pearadmin.security.process;
 
 import com.alibaba.fastjson.JSON;
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -24,8 +25,6 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
         result.setSuccess(false);
         result.setMsg("未知账户");
         result.setCode(401);
-        httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
-        httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(result));
+        ServletUtil.write(JSON.toJSONString(result));
     }
 }

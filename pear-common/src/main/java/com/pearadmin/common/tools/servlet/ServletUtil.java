@@ -63,6 +63,18 @@ public class ServletUtil {
     }
 
     /**
+     * Describe: Response 对象写出数据
+     * Param: msg 消息数据
+     * Return null
+     * */
+    public static void write(String msg) throws IOException{
+        HttpServletResponse response = getResponse();
+        response.setHeader("Content-type","application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(msg);
+    }
+
+    /**
      * 获取查询参数
      * */
     public static String getQueryParam(){

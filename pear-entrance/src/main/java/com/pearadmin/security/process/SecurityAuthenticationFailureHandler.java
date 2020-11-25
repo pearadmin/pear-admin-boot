@@ -6,6 +6,7 @@ import com.pearadmin.common.plugins.logging.enums.BusinessType;
 import com.pearadmin.common.plugins.logging.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.exception.auth.CaptchaException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -37,36 +38,24 @@ public class SecurityAuthenticationFailureHandler implements AuthenticationFailu
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
-        httpServletResponse.setCharacterEncoding("UTF-8");
         Result result = new Result();
         result.setCode(500);
         result.setSuccess(false);
         result.setMsg("登陆失败");
         if(e instanceof CaptchaException){
             result.setMsg("验证码有误");
-            httpServletResponse.getWriter().write(JSON.toJSONString(result));
-            return;
         }
         if(e instanceof UsernameNotFoundException){
             result.setMsg("用户名不存在");
-            httpServletResponse.getWriter().write(JSON.toJSONString(result));
-            return;
         }
         if(e instanceof LockedException){
             result.setMsg("用户冻结");
-            httpServletResponse.getWriter().write(JSON.toJSONString(result));
-            return;
         }
         if(e instanceof BadCredentialsException){
             result.setMsg("账户密码不正确");
-            httpServletResponse.getWriter().write(JSON.toJSONString(result));
-            return;
         }
         if(e instanceof DisabledException){
             result.setMsg("用户未启用");
-            httpServletResponse.getWriter().write(JSON.toJSONString(result));
-            return;
         }
         Logging logging = new Logging();
         logging.setId(SequenceUtil.makeStringId());
@@ -76,6 +65,6 @@ public class SecurityAuthenticationFailureHandler implements AuthenticationFailu
         logging.setSuccess(false);
         logging.setLoggingType(LoggingType.LOGIN);
         loggingService.save(logging);
-        httpServletResponse.getWriter().write(JSON.toJSONString(result));
+        ServletUtil.write(JSON.toJSONString(result));
     }
 }

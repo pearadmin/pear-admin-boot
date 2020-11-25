@@ -6,6 +6,7 @@ import com.pearadmin.common.plugins.logging.enums.BusinessType;
 import com.pearadmin.common.plugins.logging.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +46,6 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
         result.setMsg("登陆成功");
         result.setCode(200);
         httpServletRequest.getSession().setAttribute("currentUser",authentication.getPrincipal());
-        httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
-        httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(result));
+        ServletUtil.write(JSON.toJSONString(result));
     }
 }

@@ -1,6 +1,7 @@
 package com.pearadmin.security.process;
 
 import com.alibaba.fastjson.JSON;
+import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,8 +27,6 @@ public class SecurityLogoutSuccessHandler implements LogoutSuccessHandler {
         result.setMsg("注销成功");
         result.setSuccess(true);
         SecurityContextHolder.clearContext();
-        httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
-        httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(result));
+        ServletUtil.write(JSON.toJSONString(result));
     }
 }

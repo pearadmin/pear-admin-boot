@@ -30,9 +30,7 @@ public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
             result.setSuccess(false);
             result.setMsg("暂无权限");
             result.setCode(403);
-            httpServletResponse.setHeader("Content-type","application/json;charset=UTF-8");
-            httpServletResponse.setCharacterEncoding("UTF-8");
-            httpServletResponse.getWriter().write(JSON.toJSONString(result));
+            ServletUtil.write(JSON.toJSONString(result));
         }else{
             httpServletResponse.sendRedirect("/error/403");
         }
