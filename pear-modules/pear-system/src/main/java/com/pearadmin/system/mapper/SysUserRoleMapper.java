@@ -16,5 +16,11 @@ public interface SysUserRoleMapper {
 
     int deleteByUserId(String userId);
 
+    int deleteByUserIds(String[] userIds);
+
+    int deleteByRoleId(String roleId);
+
+    int deleteByRoleIds(String[] roleIds);
+
     List<SysUserRole> selectByUserId(String userId);
 }

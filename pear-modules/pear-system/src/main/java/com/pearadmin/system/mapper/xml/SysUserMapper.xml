@@ -177,4 +177,20 @@
            </foreach>
     </delete>
 
+    <!-- 根据部门字段清空部门字段 -->
+    <update id="resetDeptByDeptId" parameterType="string">
+        update sys_user
+        set dept_id = ""
+        where dept_id = #{deptId}
+    </update>
+
+    <!-- 根据部门字段清空部门字段 -->
+    <update id="resetDeptByDeptIds" parameterType="string">
+        update sys_user
+        set dept_id = ""
+        where dept_id in
+        <foreach collection ="deptIds" item="deptId" separator =",">
+        #{deptId}
+    </foreach >
+    </update>
 </mapper>

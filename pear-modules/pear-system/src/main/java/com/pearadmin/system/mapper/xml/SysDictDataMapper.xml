@@ -115,4 +115,9 @@
           delete from sys_dict_data where data_id = #{id}
     </delete>
 
+    <!-- 根据 Id 删除用户数据 -->
+    <delete id="deleteByCode" parameterType="string">
+          delete from sys_dict_data where type_code = #{code}
+    </delete>
+
 </mapper>

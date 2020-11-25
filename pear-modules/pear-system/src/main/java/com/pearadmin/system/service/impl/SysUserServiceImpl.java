@@ -15,6 +15,8 @@ import com.pearadmin.system.mapper.SysUserRoleMapper;
 import com.pearadmin.system.domain.SysMenu;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,9 +98,11 @@ public class SysUserServiceImpl implements ISysUserService {
      * Return: Boolean
      * */
     @Override
+    @Transactional
     public boolean remove(String id) {
-        int result = sysUserMapper.deleteById(id);
-        if(result>0){
+        int userRoleResult = sysUserRoleMapper.deleteByUserId(id);
+        int userResult = sysUserMapper.deleteById(id);
+        if(userRoleResult>0 && userResult>0){
             return true;
         }else{
             return false;
@@ -111,9 +115,11 @@ public class SysUserServiceImpl implements ISysUserService {
      * Return: Boolean
      * */
     @Override
+    @Transactional
     public boolean batchRemove(String[] ids) {
-        int result = sysUserMapper.deleteByIds(ids);
-        if(result>0){
+        int userResult = sysUserMapper.deleteByIds(ids);
+        int userRoleResult  = sysUserRoleMapper.deleteByUserIds(ids);
+        if(userResult>0 && userRoleResult>0){
             return true;
         }else{
             return false;

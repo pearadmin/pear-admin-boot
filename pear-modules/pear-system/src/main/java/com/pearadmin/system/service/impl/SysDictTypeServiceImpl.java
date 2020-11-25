@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictType;
+import com.pearadmin.system.mapper.SysDictDataMapper;
 import com.pearadmin.system.mapper.SysDictTypeMapper;
 import com.pearadmin.system.service.ISysDictDataService;
 import com.pearadmin.system.service.ISysDictTypeService;
@@ -23,8 +24,12 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
 
     @Resource
     private SysDictTypeMapper sysDictTypeMapper;
-    @Autowired
+
+    @Resource
     ISysDictDataService iSysDictDataService;
+
+    @Resource
+    private SysDictDataMapper sysDictDataMapper;
 
     /**
      * Describe: 根据条件查询用户列表数据
@@ -99,11 +104,15 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     @Override
     public Boolean remove(String id) {
         SysDictType sysDictType =  sysDictTypeMapper.selectById(id);
-        Integer result=0;
+
+        Integer dictTypeResult = 0;
+        Integer dictDataResult = 0;
+
         if(sysDictType!=null) {
-             result = sysDictTypeMapper.deleteById(id);
+             dictTypeResult = sysDictTypeMapper.deleteById(id);
+             dictDataResult = sysDictDataMapper.deleteByCode(sysDictType.getTypeCode());
         }
-        if(result>0){
+        if(dictDataResult>0 && dictTypeResult>0){
             iSysDictDataService.refreshChcheTypeCode(sysDictType.getTypeCode());
             return true;
         }else{

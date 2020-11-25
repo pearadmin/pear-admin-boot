@@ -18,4 +18,10 @@ public interface SysRolePowerMapper {
     int batchInsert(List<SysRolePower> sysRolePowers);
 
     int deleteByRoleId(String roleId);
+
+    int deleteByRoleIds(String[] roleIds);
+
+    int deleteByPowerId(String powerId);
+
+    int deleteByPowerIds(String[] powerIds);
 }

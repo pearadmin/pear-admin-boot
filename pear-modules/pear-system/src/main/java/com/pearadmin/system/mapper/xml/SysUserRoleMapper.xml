@@ -22,6 +22,27 @@
           delete from sys_user_role where user_id = #{userId}
     </delete>
 
+    <!-- 根据 Id 批量删除用户数据 -->
+    <delete id="deleteByUserIds" parameterType="string">
+        delete from sys_user_role where user_id in
+        <foreach collection ="userIds" item="userId" separator =",">
+            #{userId}
+        </foreach >
+    </delete>
+
+    <!-- 根据 Id 删除用户数据 -->
+    <delete id="deleteByRoleId" parameterType="string">
+          delete from sys_user_role where role_id = #{roleId}
+    </delete>
+
+    <!-- 根据 Id 批量删除用户数据 -->
+    <delete id="deleteByRoleIds" parameterType="string">
+        delete from sys_user_role where role_id in
+        <foreach collection ="roleIds" item="roleId" separator =",">
+            #{roleId}
+        </foreach >
+    </delete>
+
     <select id="selectByUserId" parameterType="string" resultMap="SysUserRoleMap">
         select * from sys_user_role
         where user_id = #{userId}

@@ -38,21 +38,21 @@ public interface SysUserMapper {
     /**
      * Describe: 添加用户数据
      * Param: username
-     * Return: SysUser
+     * Return: Integer
      * */
     Integer insert(SysUser sysUser);
 
     /**
      * Describe: 根据 Id 修改用户
      * Param: username
-     * Return: SysUser
+     * Return: Integer
      * */
     Integer updateById(SysUser sysUser);
 
     /**
      * Describe: 根据 Id 删除用户
      * Param: username
-     * Return: SysUser
+     * Return: Integer
      * */
     Integer deleteById(String id);
 
@@ -60,7 +60,21 @@ public interface SysUserMapper {
     /**
      * Describe: 根据 Id 批量删除
      * Param: username
-     * Return: SysUser
+     * Return: Integer
      * */
     Integer deleteByIds(String[] ids);
+
+    /**
+     * Describe: 重置部门
+     * Param: deptId
+     * Return: Integer
+     * */
+    Integer resetDeptByDeptId(String deptId);
+
+    /**
+     * Describe: 批量重置部门
+     * Param: deptIds
+     * Return: Integer
+     * */
+    Integer resetDeptByDeptIds(String[] deptIds);
 }

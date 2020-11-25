@@ -20,6 +20,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -193,11 +194,13 @@ public class SysUserController extends BaseController {
      * Param: id
      * Return: ResuBean
      * */
+    @Transactional
     @DeleteMapping("remove/{id}")
     @ApiOperation(value="删除用户数据")
     @PreAuthorize("hasPermission('/system/user/remove','sys:user:remove')")
     @Logging(title = "删除用户",describe = "删除用户",type = BusinessType.REMOVE)
     public Result remove(@PathVariable String id){
+        // TODO remove userRole data
         boolean result  = sysUserService.remove(id);
         return decide(result);
     }

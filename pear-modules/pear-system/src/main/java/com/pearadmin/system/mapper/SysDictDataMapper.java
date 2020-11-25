@@ -55,4 +55,11 @@ public interface SysDictDataMapper {
      * */
     Integer deleteById(String id);
 
+    /**
+     * Describe: 根据 code 删除字典数据
+     * Param: id
+     * Return 执行结果
+     * */
+    Integer deleteByCode(String code);
+
 }
