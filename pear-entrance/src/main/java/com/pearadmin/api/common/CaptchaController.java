@@ -1,16 +1,10 @@
 package com.pearadmin.api.common;
 
-import com.pearadmin.common.exception.auth.CaptchaException;
-import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
-import com.wf.captcha.ArithmeticCaptcha;
-import com.wf.captcha.base.Captcha;
 import com.wf.captcha.utils.CaptchaUtil;
 import com.pearadmin.common.web.base.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 

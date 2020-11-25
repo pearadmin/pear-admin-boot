@@ -2,8 +2,11 @@
 server:
   # 端 口
   port: 8383
+  # Servlet
   servlet:
+    # Session
     session:
+      # 超 时 时 间
       timeout: 120m
 
 # Spring 配置
@@ -15,7 +18,7 @@ spring:
     # 运 行 环 境
     active: datasource
   activiti:
-    # 检 查 流 程 定 义 文 件
+    # 是 否 检 查 流 程 定 义 文 件
     check-process-definitions: false
 
 # mybatis 配 置

@@ -28,5 +28,5 @@ function makeHeadImgByUserName(name) {
     context.textAlign = 'center';
     context.textBaseline = "middle";
     context.fillText(nick, fontSize, fontSize);
-    return  canvas.toDataURL("image/png");
+    return canvas.toDataURL("image/png");
 }

@@ -17,6 +17,9 @@ import java.io.Serializable;
 @Configuration
 public class RedisConfig {
 
+    /**
+     * Redis 操作模板
+     * */
     @Bean
     public RedisTemplate<String, Serializable>
     redisTemplate(LettuceConnectionFactory connectionFactory) {
@@ -26,5 +29,4 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(connectionFactory);
         return redisTemplate;
     }
-
 }

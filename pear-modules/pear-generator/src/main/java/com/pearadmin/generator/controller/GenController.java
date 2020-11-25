@@ -41,6 +41,7 @@ import com.pearadmin.generator.service.IGenTableColumnService;
 @Controller
 @RequestMapping("/generator")
 public class GenController extends BaseController {
+
     private String prefix = "generator";
 
     @Resource

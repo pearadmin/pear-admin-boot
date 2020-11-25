@@ -1,5 +1,6 @@
 package com.pearadmin.common.tools.servlet;
 
+import com.pearadmin.common.constant.CharsetConstant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -70,7 +71,7 @@ public class ServletUtil {
     public static void write(String msg) throws IOException{
         HttpServletResponse response = getResponse();
         response.setHeader("Content-type","application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding(CharsetConstant.UTF8);
         response.getWriter().write(msg);
     }
 

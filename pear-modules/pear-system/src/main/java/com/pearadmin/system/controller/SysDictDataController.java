@@ -7,7 +7,6 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysDictData;
-import com.pearadmin.system.domain.SysDictType;
 import com.pearadmin.system.service.ISysDictDataService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;

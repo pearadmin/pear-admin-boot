@@ -25,7 +25,6 @@ public class QuartzConfig {
         prop.put("org.quartz.scheduler.instanceName", "PearScheduler");
         // 设置为AUTO时使用，默认的实现org.quartz.scheduler.SimpleInstanceGenerator是基于主机名称和时间戳生成。
         prop.put("org.quartz.scheduler.instanceId", "AUTO");
-        // 线程池配置
         prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
         prop.put("org.quartz.threadPool.threadCount", "20");
         prop.put("org.quartz.threadPool.threadPriority", "5");
