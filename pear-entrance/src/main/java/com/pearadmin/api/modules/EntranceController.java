@@ -26,10 +26,8 @@ public class EntranceController extends BaseController {
      * Return: 登录视图
      * */
     @GetMapping("login")
-    public ModelAndView login(Model model){
+    public ModelAndView login( ){
         if (SecurityUtil.isAuthentication()) {
-            SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
-            model.addAttribute("userInfo",sysUser);
             return JumpPage("index");
         }else{
             return JumpPage("login");
@@ -43,10 +41,8 @@ public class EntranceController extends BaseController {
      * */
     @GetMapping("index")
     @Logging(title = "主页",describe = "返回 Index 主页视图",type = BusinessType.ADD)
-    public ModelAndView index(Model model)
+    public ModelAndView index( )
     {
-        SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
-        model.addAttribute("userInfo",sysUser);
         return JumpPage("index");
     }
 
