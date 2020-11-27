@@ -26,7 +26,7 @@
                 <!-- 头 像 -->
                 <a href="javascript:;">
                     <img src="" id="headImg" class="layui-nav-img">
-                    <span th:text="${userInfo.realName}"></span>
+                    <span th:text="${#authentication.principal.getRealName()}"></span>
                 </a>
                 <!-- 功 能 菜 单 -->
                 <dl class="layui-nav-child">
@@ -67,7 +67,7 @@
         let admin = layui.admin;
         admin.render();
 
-        $('#headImg').attr("src",makeHeadImgByUserName([[${userInfo.realName}]]));
+        $('#headImg').attr("src",makeHeadImgByUserName([[${#authentication.principal.getRealName()}]]));
     })
 </script>
 </body>
