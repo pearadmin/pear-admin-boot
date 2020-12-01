@@ -14,7 +14,7 @@ import java.io.IOException;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class SecurityExpiredSessionStrategy implements SessionInformationExpiredStrategy {
+public class SecurityExpiredSessionHandler implements SessionInformationExpiredStrategy {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 

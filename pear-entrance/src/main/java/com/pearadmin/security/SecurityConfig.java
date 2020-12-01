@@ -69,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityCaptchaSupport securityCaptchaSupport; //自定义验证码验证
 
     @Resource
-    private SecurityExpiredSessionStrategy securityExpiredSessionStrategy;
+    private SecurityExpiredSessionHandler securityExpiredSessionHandler;
 
 
     /**
@@ -161,7 +161,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //在需要使用到session时才创建session
                 .maximumSessions(1)//同时登陆多个只保留一个
                 .maxSessionsPreventsLogin(false)
-                .expiredSessionStrategy(securityExpiredSessionStrategy) // //踢出用户操作
+                .expiredSessionStrategy(securityExpiredSessionHandler) // //踢出用户操作
                 .sessionRegistry(sessionRegistry()); //用于统计在线
 
         // 取消跨站请求伪造防护
