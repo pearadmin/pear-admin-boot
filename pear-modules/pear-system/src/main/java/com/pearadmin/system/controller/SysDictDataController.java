@@ -122,6 +122,30 @@ public class SysDictDataController extends BaseController {
         return result;
     }
     /**
+     * 根据字典code加载字典text 返回
+     */
+    @RequestMapping(value = "/loadDictItem/{dictCode}", method = RequestMethod.GET)
+    public Result<List<SysDictDataModel>> loadDictItem(@PathVariable String dictCode,@RequestParam(name="key") String keys, @RequestParam(value = "sign",required = false) String sign,HttpServletRequest request) {
+        Result<List<SysDictDataModel>> result = new Result<>();
+        try {
+            if(dictCode.indexOf(",")!=-1) {
+                String[] params = dictCode.split(",");
+                if(params.length!=3) {
+                    return Result.failure("字典Code格式不正确！");
+                }
+                String[] keyArray = keys.split(",");
+                List<SysDictDataModel> texts = iSysBaseAPI.queryTableDictByKeys(params[0], params[1], params[2], keyArray);
+                return Result.success(texts);
+            }else {
+                return Result.failure("字典Code格式不正确！");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.failure("操作失败！");
+        }
+    }
+
+    /**
      * Describe: 数据字典类型新增视图
      * Param: sysDictType
      * Return: ModelAndView
