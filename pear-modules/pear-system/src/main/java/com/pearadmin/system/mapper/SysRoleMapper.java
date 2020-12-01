@@ -13,7 +13,12 @@ import java.util.List;
  * */
 @Mapper
 public interface SysRoleMapper {
-
+    /**
+     * Describe: 根据 username 查询用户权限
+     * Param: username
+     * Return: SysPower
+     * */
+    List<SysRole> selectByUsername(String username);
     /**
      * Describe: 查询角色列表
      * Param: SysRole

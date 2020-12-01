@@ -1,10 +1,9 @@
 package com.pearadmin.system.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pearadmin.system.domain.SysDeptModel;
-import com.pearadmin.system.domain.SysDictDataModel;
-import com.pearadmin.system.domain.SysDictTypeModel;
-import com.pearadmin.system.domain.SysUserModel;
+import com.pearadmin.common.plugins.logging.enums.BusinessType;
+import com.pearadmin.common.plugins.logging.enums.LoggingType;
+import com.pearadmin.system.domain.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +20,12 @@ public interface ISysBaseAPI {
 
 	/**
 	 * 日志添加
-	 * @param LogContent 内容
+	 * @param title 标题
+	 * @param description 描述
 	 * @param logType 日志类型(0:操作日志;1:登录日志;2:定时任务)
 	 * @param operatetype 操作类型(1:添加;2:修改;3:删除;)
 	 */
-	void addLog(String LogContent, Integer logType, Integer operatetype);
+	void addLog(String title,String description, LoggingType logType, BusinessType operatetype);
 	
 	/**
 	  * 根据用户账号查询用户信息
@@ -46,7 +46,7 @@ public interface ISysBaseAPI {
 	 * @param username
 	 * @return
 	 */
-	public List<String> getRolesByUsername(String username);
+	public List<SysRoleModel> getRolesByUsername(String username);
 
 	/**
 	 * 通过用户账号查询部门集合
