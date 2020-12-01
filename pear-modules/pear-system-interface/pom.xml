@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 依 赖 项 目 -->
+    <parent>
+        <groupId>com.pearadmin</groupId>
+        <artifactId>pear-modules</artifactId>
+        <version>1.0.0-RELEASE</version>
+    </parent>
+
+    <!-- 仓 库 地 址 -->
+    <groupId>com.pearadmin</groupId>
+    <artifactId>pear-system-interface</artifactId>
+    <version>1.0.0-RELEASE</version>
+    <name>系统模块</name>
+    <description>Demo project for Spring Boot</description>
+
+    <!-- 引 用 依 赖 -->
+    <dependencies>
+        <!-- 公用模块 -->
+        <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-common</artifactId>
+        </dependency>
+    </dependencies>
+</project>

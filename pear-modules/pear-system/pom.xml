@@ -23,6 +23,11 @@
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-common</artifactId>
         </dependency>
+        <!-- 公用模块 -->
+        <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-system-interface</artifactId>
+        </dependency>
         <!-- Web 模块 -->
        <dependency>
             <groupId>org.springframework.boot</groupId>
