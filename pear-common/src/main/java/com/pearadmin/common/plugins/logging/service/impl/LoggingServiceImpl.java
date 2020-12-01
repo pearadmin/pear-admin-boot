@@ -41,7 +41,7 @@ public class LoggingServiceImpl implements LoggingService {
         logging.setBrowser(ServletUtil.getBrowser());
         logging.setRequestBody(ServletUtil.getQueryParam());
         logging.setSystemOs(ServletUtil.getSystem());
-        logging.setOperateName(SecurityUtil.currentUser().getName());
+        logging.setOperateName(null != SecurityUtil.currentUser() ? SecurityUtil.currentUser().getName() : "未登录用户");
         int result = loggingMapper.insert(logging);
         if(result>0){
             return true;
