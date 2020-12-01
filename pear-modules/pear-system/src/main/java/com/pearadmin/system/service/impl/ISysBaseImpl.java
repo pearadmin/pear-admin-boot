@@ -130,7 +130,7 @@ public class ISysBaseImpl implements ISysBaseAPI {
     }
 
     @Override
-    public List<SysDictDataModel> queryFilterTableDictInfo(String table, String text, String code, String filterSql) {
+    public List<SysDictDataModel> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql) {
         return buildSysDictDataModel(sysDictDataMapper.queryTableDictItemsByCodeAndFilter(table,text,code,filterSql));
     }
 

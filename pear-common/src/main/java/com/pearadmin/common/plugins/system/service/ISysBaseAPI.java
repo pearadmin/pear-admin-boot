@@ -68,7 +68,7 @@ public interface ISysBaseAPI {
 	 * @param code value
 	 * @return
 	 */
-	public List<SysDictDataModel> queryFilterTableDictInfo(String table, String text, String code, String filterSql);
+	public List<SysDictDataModel> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql);
 
 
 	/**

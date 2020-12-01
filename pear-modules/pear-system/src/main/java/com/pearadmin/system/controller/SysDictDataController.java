@@ -1,7 +1,10 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.plugins.system.domain.SysDictDataModel;
+import com.pearadmin.common.plugins.system.service.ISysBaseAPI;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.sql.SqlInjectionUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,6 +35,9 @@ public class SysDictDataController extends BaseController {
 
     @Resource
     private ISysDictDataService sysDictDataService;
+
+    @Resource
+    private ISysBaseAPI iSysBaseAPI;
 
     /**
      * Describe: 数据字典列表视图
@@ -66,6 +73,53 @@ public class SysDictDataController extends BaseController {
     public Result selectByCode (String typeCode){
         List<SysDictData> list = sysDictDataService.selectByCode(typeCode);
         return success(list);
+    }
+    /**
+     * 获取字典数据
+     * @param dictCode 字典code
+     * @param dictCode 表名,文本字段,code字段  | 举例：sys_user,realname,id
+     * @return
+     */
+    @GetMapping(value = "/getDictItems/{dictCode}")
+    public Result<List<SysDictDataModel>> getDictItems(@PathVariable String dictCode, @RequestParam(value = "sign",required = false) String sign,HttpServletRequest request) {
+
+        Result<List<SysDictDataModel>> result = new Result<List<SysDictDataModel>>();
+        List<SysDictDataModel> ls = null;
+        try {
+            if(dictCode.indexOf(",")!=-1) {
+                //关联表字典（举例：sys_user,realname,id）
+                String[] params = dictCode.split(",");
+
+                if(params.length<3) {
+                    return Result.failure("字典Code格式不正确！");
+                }
+                //SQL注入校验（只限制非法串改数据库）
+                final String[] sqlInjCheck = {params[0],params[1],params[2]};
+                SqlInjectionUtil.filterContent(sqlInjCheck);
+
+                if(params.length==4) {
+                    //SQL注入校验（查询条件SQL 特殊check，此方法仅供此处使用）
+                    SqlInjectionUtil.specialFilterContent(params[3]);
+                    ls = iSysBaseAPI.queryTableDictItemsByCodeAndFilter(params[0],params[1],params[2],params[3]);
+                }else if (params.length==3) {
+                    ls = iSysBaseAPI.queryTableDictItemsByCode(params[0],params[1],params[2]);
+                }else{
+                    return Result.failure("字典Code格式不正确！");
+                }
+            }else {
+                //字典表
+                ls = iSysBaseAPI.selectDictByCode(dictCode);
+            }
+
+            result.setSuccess(true);
+            result.setData(ls);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.failure("操作失败！");
+        }
+
+        return result;
     }
     /**
      * Describe: 数据字典类型新增视图
