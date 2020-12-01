@@ -145,9 +145,9 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="btn-save" id="btn-save">保存
+            <button class="pear-btn pear-btn-sm pear-btn-primary" lay-submit lay-filter="btn-save" id="btn-save">保存
             </button>
-            <button class="pear-btn pear-btn-md close" type="button">关闭</button>
+            <button class="pear-btn pear-btn-sm close" type="button">关闭</button>
         </div>
     </div>
 </form>
@@ -185,9 +185,7 @@
         });
 
         $(".close").click(function(){
-
-            layer.msg("关闭当前页面");
-
+            parent.layui.tab.delCurrentTabByElem('content',function(id){})
         })
 
         dtree.renderSelect({
