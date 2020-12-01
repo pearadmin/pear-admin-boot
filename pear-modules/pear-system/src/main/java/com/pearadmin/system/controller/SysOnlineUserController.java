@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +48,9 @@ public class SysOnlineUserController extends BaseController {
             sysOnlineUser.setUserId(objs.getUserId());
             sysOnlineUser.setUsername(objs.getUsername());
             sysOnlineUser.setRealName(objs.getRealName());
+            sysOnlineUser.setLastTime(objs.getLastTime());
+            System.out.println(objs.getLastTime());
+            sysOnlineUser.setOnlineTime(Duration.between(objs.getLastTime(), LocalDateTime.now()).toMinutes() + "分钟");
             onlineUser.add(sysOnlineUser);
         }
         // TODO 使用 Stream 进行内存数据过滤

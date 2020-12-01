@@ -20,7 +20,8 @@
         <result property="createTime" column="create_time"></result>
         <result property="createBy" column="create_by"></result>
         <result property="updateTime" column="update_time"></result>
-        <result property="updateBy" column="updateTime"></result>
+        <result property="updateBy" column="update_by"></result>
+        <result property="lastTime" column="last_time"></result>
         <result property="remark" column="remark"></result>
     </resultMap>
 
@@ -159,6 +160,9 @@
              </if>
              <if test="deptId!=null and deptId!=''">
                  dept_id = #{deptId},
+             </if>
+             <if test="lastTime!=null">
+                 last_time = #{lastTime},
              </if>
          </set>
          where user_id = #{userId}

@@ -5,6 +5,8 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,7 +15,6 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-
 @Data
 @Alias("SysUser")
 public class SysUser extends BaseDomain implements UserDetails {
@@ -89,13 +90,19 @@ public class SysUser extends BaseDomain implements UserDetails {
      * */
     private String roleIds;
 
+
+    /**
+     * 最后一次登录时间
+     *
+     * */
+    private LocalDateTime lastTime;
+
     /**
      *
-     *  权限 这里暂时不用 security 的 Authorities
+     * 权限 这里暂时不用 security 的 Authorities
      *
      */
     private List<SysPower> powerList;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

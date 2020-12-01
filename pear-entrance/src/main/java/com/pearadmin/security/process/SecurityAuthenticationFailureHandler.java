@@ -38,10 +38,9 @@ public class SecurityAuthenticationFailureHandler implements AuthenticationFailu
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        Result result = new Result();
-        result.setCode(500);
-        result.setSuccess(false);
-        result.setMsg("登陆失败");
+
+        Result result = Result.failure(500,"登录失败");
+
         if(e instanceof CaptchaException){
             result.setMsg("验证码有误");
         }

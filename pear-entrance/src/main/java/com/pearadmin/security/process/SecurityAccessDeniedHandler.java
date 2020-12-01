@@ -26,10 +26,7 @@ public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         if(ServletUtil.isAjax(httpServletRequest)){
-            Result result = new Result();
-            result.setSuccess(false);
-            result.setMsg("暂无权限");
-            result.setCode(403);
+            Result result = Result.failure(403,"暂无权限");
             ServletUtil.write(JSON.toJSONString(result));
         }else{
             httpServletResponse.sendRedirect("/error/403");

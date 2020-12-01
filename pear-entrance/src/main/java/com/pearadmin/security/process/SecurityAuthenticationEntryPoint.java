@@ -21,10 +21,7 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
 
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        Result result = new Result();
-        result.setSuccess(false);
-        result.setMsg("未知账户");
-        result.setCode(401);
+        Result result = Result.failure(401,"未知账户");
         ServletUtil.write(JSON.toJSONString(result));
     }
 }

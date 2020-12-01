@@ -22,11 +22,8 @@ public class SecurityLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        Result result = new Result();
-        result.setCode(200);
-        result.setMsg("注销成功");
-        result.setSuccess(true);
         SecurityContextHolder.clearContext();
+        Result result = Result.success(200,"注销成功");
         ServletUtil.write(JSON.toJSONString(result));
     }
 }
