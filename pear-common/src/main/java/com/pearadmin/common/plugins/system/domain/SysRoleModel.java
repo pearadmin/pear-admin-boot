@@ -10,7 +10,6 @@ import org.apache.ibatis.type.Alias;
  * CreateTime: 2019/10/23
  * */
 @Data
-@Alias("SysRole")
 public class SysRoleModel extends BaseDomain {
 
     /**

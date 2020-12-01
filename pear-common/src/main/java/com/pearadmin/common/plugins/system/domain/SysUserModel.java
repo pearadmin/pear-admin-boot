@@ -16,7 +16,6 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @Data
-@Alias("SysUserModel")
 public class SysUserModel extends BaseDomain implements UserDetails {
 
     /**
