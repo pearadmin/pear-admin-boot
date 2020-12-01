@@ -58,9 +58,5 @@
             <groupId>com.github.whvcse</groupId>
             <artifactId>easy-captcha</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-system-interface</artifactId>
-        </dependency>
     </dependencies>
 </project>
