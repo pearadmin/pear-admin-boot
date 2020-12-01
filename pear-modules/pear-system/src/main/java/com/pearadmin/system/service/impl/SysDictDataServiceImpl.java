@@ -35,7 +35,7 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
         @Override
         public List<SysDictData> load(String typeCode) {
             SysDictDataMapper tempSysDictDataMapper =SpringUtil.getBean("sysDictDataMapper",SysDictDataMapper.class);
-            return tempSysDictDataMapper.queryDictItemsByCode(typeCode);
+            return tempSysDictDataMapper.selectByCode(typeCode);
         }
     });
     @Override
@@ -44,7 +44,7 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     }
 
     @Override
-    public List<SysDictData> queryDictItemsByCode(String typeCode) {
+    public List<SysDictData> selectByCode(String typeCode) {
         try {
             List<SysDictData>  list=  loadingCacheSysDictData.get(typeCode);
             return list;

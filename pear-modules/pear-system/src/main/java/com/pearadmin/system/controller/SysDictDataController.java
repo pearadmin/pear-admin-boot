@@ -62,9 +62,9 @@ public class SysDictDataController extends BaseController {
      * Return: Result
      * */
     @GetMapping("selectByCode")
-    @PreAuthorize("hasPermission('/system/dictData/queryDictItemsByCode','sys:dictData:queryDictItemsByCode')")
+    @PreAuthorize("hasPermission('/system/dictData/selectByCode','sys:dictData:selectByCode')")
     public Result selectByCode (String typeCode){
-        List<SysDictData> list = sysDictDataService.queryDictItemsByCode(typeCode);
+        List<SysDictData> list = sysDictDataService.selectByCode(typeCode);
         return success(list);
     }
     /**

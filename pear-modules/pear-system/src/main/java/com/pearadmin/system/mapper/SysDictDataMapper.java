@@ -19,7 +19,7 @@ public interface SysDictDataMapper {
      * @param typeCode
      * @return
      */
-    List<SysDictData> queryDictItemsByCode(@Param("typeCode") String typeCode);
+    List<SysDictData> selectByCode(@Param("typeCode") String typeCode);
     /**
      * Describe: 查询字典数据信息
      * Param: SysDictData

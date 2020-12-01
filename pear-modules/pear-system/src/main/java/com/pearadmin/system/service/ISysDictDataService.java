@@ -26,7 +26,7 @@ public interface ISysDictDataService {
      * @param typeCode
      * @return
      */
-    List<SysDictData> queryDictItemsByCode(String typeCode);
+    List<SysDictData> selectByCode(String typeCode);
 
     /**
      * 刷新字典缓存
