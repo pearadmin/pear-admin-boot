@@ -89,6 +89,9 @@
             <if test="remark!=null">
                 remark,
             </if>
+            <if test="status!=null">
+                status,
+            </if>
             <if test="enable">
                 enable,
             </if>
@@ -123,6 +126,9 @@
             </if>
             <if test="remark!=null">
                 #{remark},
+            </if>
+             <if test="status!=null and status!=''">
+                #{status},
             </if>
             <if test="enable!=null and enable!=''">
                 #{enable},
