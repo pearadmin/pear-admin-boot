@@ -4,14 +4,12 @@ import com.pearadmin.common.plugins.logging.domain.Logging;
 import com.pearadmin.common.plugins.logging.enums.BusinessType;
 import com.pearadmin.common.plugins.logging.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
+import com.pearadmin.common.plugins.system.domain.*;
+import com.pearadmin.common.plugins.system.service.ISysBaseAPI;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.system.domain.*;
-import com.pearadmin.system.mapper.SysDeptMapper;
-import com.pearadmin.system.mapper.SysPowerMapper;
-import com.pearadmin.system.mapper.SysRoleMapper;
-import com.pearadmin.system.mapper.SysUserMapper;
-import com.pearadmin.system.service.ISysBaseAPI;
-import com.pearadmin.system.service.ISysUserService;
+import com.pearadmin.system.mapper.*;
+import com.pearadmin.system.service.ISysDictDataService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +37,9 @@ public class ISysBaseImpl implements ISysBaseAPI {
     @Resource
     private SysPowerMapper sysPowerMapper;
     @Resource
-    private SysDeptMapper sysDeptMapper;
+    private ISysDictDataService iSysDictDataService;
+    @Resource
+    private SysDictDataMapper sysDictDataMapper;
     @Override
     public void addLog(String title,String description, LoggingType logType, BusinessType operatetype) {
         Logging logging = new Logging();
@@ -84,6 +84,8 @@ public class ISysBaseImpl implements ISysBaseAPI {
         return sysUserModel;
     }
 
+
+
     @Override
     public SysUserModel getUserById(String id) {
         SysUser sysUser= sysUserMapper.selectById(id);
@@ -112,104 +114,44 @@ public class ISysBaseImpl implements ISysBaseAPI {
         return sysRoleModelList;
     }
 
-    @Override
-    public List<String> getDepartIdsByUsername(String username) {
 
-        return null;
-    }
+
 
     @Override
-    public List<String> getDepartNamesByUsername(String username) {
-        return null;
+    public List<SysDictDataModel> selectDictByCode(String typeCode) {
+        List<SysDictData>  sysDictDataList= iSysDictDataService.selectByCode(typeCode);
+        return buildSysDictDataModel(sysDictDataList);
     }
 
-    @Override
-    public String getDatabaseType() throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<SysDictDataModel> selectByCode(String typeCode) {
-        return null;
-    }
-
-    @Override
-    public List<SysDictDataModel> queryAllDict() {
-        return null;
-    }
-
-    @Override
-    public List<SysDictTypeModel> queryAllSysDictType() {
-        return null;
-    }
 
     @Override
     public List<SysDictDataModel> queryTableDictItemsByCode(String table, String text, String code) {
-        return null;
-    }
-
-    @Override
-    public List<SysDictDataModel> queryAllDepartBackDictModel() {
-        return null;
+        return buildSysDictDataModel(sysDictDataMapper.queryTableDictItemsByCode(table,text,code));
     }
 
     @Override
     public List<SysDictDataModel> queryFilterTableDictInfo(String table, String text, String code, String filterSql) {
-        return null;
+        return buildSysDictDataModel(sysDictDataMapper.queryTableDictItemsByCodeAndFilter(table,text,code,filterSql));
     }
 
     @Override
-    public List<String> queryTableDictByKeys(String table, String text, String code, String[] keyArray) {
-        return null;
+    public List<SysDictDataModel>  queryTableDictByKeys(String table, String text, String code, String[] keyArray) {
+        return buildSysDictDataModel(sysDictDataMapper.queryTableDictByKeys(table,text,code,keyArray));
+    }
+    private  List<SysDictDataModel> buildSysDictDataModel(List<SysDictData>  sysDictDataList){
+        List<SysDictDataModel> sysDictDataModelList=new ArrayList<>();
+        if(sysDictDataList!=null&&sysDictDataList.size()>0){
+            for(SysDictData sysDictData:sysDictDataList){
+                try{
+                    SysDictDataModel sysDictDataModel = new SysDictDataModel();
+                    BeanUtils.copyProperties(sysDictData, sysDictDataModel);
+                    sysDictDataModelList.add(sysDictDataModel);
+                }catch (Exception e){
+                }
+            }
+        }
+        return sysDictDataModelList;
     }
 
-    @Override
-    public List<String> getRoleIdsByUsername(String username) {
-        return null;
-    }
 
-    @Override
-    public String getDepartIdsByOrgCode(String orgCode) {
-        return null;
-    }
-
-    @Override
-    public SysDeptModel getParentDepartId(String departId) {
-        return null;
-    }
-
-    @Override
-    public List<SysDeptModel> getAllSysDepart() {
-        return null;
-    }
-
-    @Override
-    public List<String> getDeptHeadByDepId(String deptId) {
-        return null;
-    }
-
-    @Override
-    public String upload(MultipartFile file, String bizPath, String uploadType) {
-        return null;
-    }
-
-    @Override
-    public String upload(MultipartFile file, String bizPath, String uploadType, String customBucket) {
-        return null;
-    }
-
-    @Override
-    public void viewAndDownload(String filePath, String uploadpath, String uploadType, HttpServletResponse response) {
-
-    }
-
-    @Override
-    public List<SysUserModel> queryAllUserByIds(String[] userIds) {
-        return null;
-    }
-
-    @Override
-    public List<SysUserModel> queryUserByNames(String[] userNames) {
-        return null;
-    }
 }
