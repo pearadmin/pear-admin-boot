@@ -13,8 +13,8 @@ import java.util.List;
 
 /**
  * @Description: 底层共通业务API，提供其他独立模块调用
- * @Author: scott
- * @Date:2019-4-20 
+ * @Author: Songaw
+ * @Date:2020年12月1日14:33:12
  * @Version:V1.0
  */
 public interface ISysBaseAPI {
