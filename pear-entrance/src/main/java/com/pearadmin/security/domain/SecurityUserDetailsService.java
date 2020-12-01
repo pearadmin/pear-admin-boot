@@ -2,9 +2,8 @@ package com.pearadmin.security.domain;
 
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.domain.SysUser;
-import com.pearadmin.system.mapper.SysPowerMapper;
 import com.pearadmin.system.mapper.SysUserMapper;
-import org.springframework.security.authentication.LockedException;
+import com.pearadmin.system.mapper.SysPowerMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,7 +1,5 @@
 package com.pearadmin.security.process;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +18,6 @@ import java.io.IOException;
  * */
 @Component
 public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
-
-    public static final Logger log = LoggerFactory.getLogger(SecurityAccessDeniedHandler.class);
 
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {

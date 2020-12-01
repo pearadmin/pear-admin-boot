@@ -3,7 +3,7 @@ package com.pearadmin.security;
 import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
 import com.pearadmin.security.process.*;
-import com.pearadmin.security.domain.RedisTokenRepository;
+import com.pearadmin.security.domain.SecurityUserTokenService;
 import com.pearadmin.security.support.SecurityPermissionEvaluator;
 import com.pearadmin.security.support.SecurityCaptchaSupport;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityUserDetailsService securityUserDetailsService; //实现userservice
 
     @Resource
-    private RedisTokenRepository redisTokenRepository;//remember me redis持久化
+    private SecurityUserTokenService securityUserTokenService;//remember me redis持久化
 
     @Resource
     private SecurityCaptchaSupport securityCaptchaSupport; //自定义验证码验证
@@ -144,8 +144,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .deleteCookies("JSESSIONID") //退出登录删除 cookie缓存
-                //配置用户登出自定义处理类
-                .logoutSuccessHandler(securityAccessLogoutHander)
+                .logoutSuccessHandler(securityAccessLogoutHander) //配置用户登出自定义处理类
                 .and()
             .exceptionHandling()
                 .accessDeniedHandler(securityAccessDeniedHander) //配置没有权限自定义处理类
@@ -153,7 +152,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .rememberMe()
                 .rememberMeParameter("remember-me")
                 .rememberMeCookieName("rememberme-token")
-                .tokenRepository(redisTokenRepository)
+                .tokenRepository(securityUserTokenService)
                 .key(securityProperty.getRememberKey())
                 .and()
             .sessionManagement()

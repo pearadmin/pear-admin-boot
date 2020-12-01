@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 拦截未知的运行时异常
+     * 拦 截 未 知 的 运 行 时 异 常
      */
     @ExceptionHandler({RuntimeException.class})
     public Result notFount(RuntimeException e)
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 权限异常处理
+     * 权 限 异 常 处 理
      * */
     @ExceptionHandler({AccessDeniedException.class})
     public Object access(HttpServletRequest request,AccessDeniedException e){
@@ -51,7 +51,6 @@ public class GlobalExceptionHandler {
             return Result.failure("暂无权限");
 
         } else {
-
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.addObject("errorMessage", e.getMessage());
             modelAndView.setViewName("error/403");
