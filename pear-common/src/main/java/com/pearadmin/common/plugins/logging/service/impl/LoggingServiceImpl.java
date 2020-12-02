@@ -20,17 +20,9 @@ import java.util.List;
 @Service
 public class LoggingServiceImpl implements LoggingService {
 
-    /**
-     * 日 志 服 务
-     * */
     @Resource
     private LoggingMapper loggingMapper;
 
-    /**
-     * 执 行 插 入 操 作
-     * @param logging 日志实体
-     * @return 执行结果
-     * */
     @Override
     public boolean save(Logging logging) {
         logging.setOperateAddress(ServletUtil.getRemoteHost());
@@ -50,11 +42,6 @@ public class LoggingServiceImpl implements LoggingService {
         }
     }
 
-    /**
-     * 执 行 查 询 操 作
-     * @param loggingType 日志类型
-     * @return 执行结果
-     * */
     @Override
     public List<Logging> data(LoggingType loggingType) {
         return loggingMapper.selectList(loggingType);
