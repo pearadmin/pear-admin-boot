@@ -121,12 +121,6 @@
                 <version>${commons.lang3.version}</version>
             </dependency>
             <!-- 模 块 引 用 -->
-            <!-- 系统接口 -->
-            <dependency>
-                <groupId>com.pearadmin</groupId>
-                <artifactId>pear-system-interface</artifactId>
-                <version>${pear.system.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-system</artifactId>
