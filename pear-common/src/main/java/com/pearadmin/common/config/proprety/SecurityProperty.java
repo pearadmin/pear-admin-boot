@@ -31,4 +31,5 @@ public class SecurityProperty {
      * 开放接口列表
      * */
     private String[] openApi;
+
 }

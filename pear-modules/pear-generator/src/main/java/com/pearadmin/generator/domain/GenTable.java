@@ -2,7 +2,7 @@ package com.pearadmin.generator.domain;
 
 import java.util.List;
 import lombok.ToString;
-import com.pearadmin.common.constant.GeneratorConstants;
+import com.pearadmin.common.constant.GeneratorConstant;
 import com.pearadmin.common.web.base.BaseDomain;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -325,7 +325,7 @@ public class GenTable extends BaseDomain
 
     public static boolean isSub(String tplCategory)
     {
-        return tplCategory != null && StringUtils.equals(GeneratorConstants.TPL_SUB, tplCategory);
+        return tplCategory != null && StringUtils.equals(GeneratorConstant.TPL_SUB, tplCategory);
     }
 
     public boolean isTree()
@@ -335,7 +335,7 @@ public class GenTable extends BaseDomain
 
     public static boolean isTree(String tplCategory)
     {
-        return tplCategory != null && StringUtils.equals(GeneratorConstants.TPL_TREE, tplCategory);
+        return tplCategory != null && StringUtils.equals(GeneratorConstant.TPL_TREE, tplCategory);
     }
 
     public boolean isCrud()
@@ -345,7 +345,7 @@ public class GenTable extends BaseDomain
 
     public static boolean isCrud(String tplCategory)
     {
-        return tplCategory != null && StringUtils.equals(GeneratorConstants.TPL_CRUD, tplCategory);
+        return tplCategory != null && StringUtils.equals(GeneratorConstant.TPL_CRUD, tplCategory);
     }
 
     public boolean isSuperColumn(String javaField)
@@ -358,8 +358,8 @@ public class GenTable extends BaseDomain
         if (isTree(tplCategory))
         {
             return StringUtils.equalsAnyIgnoreCase(javaField,
-                    ArrayUtils.addAll(GeneratorConstants.TREE_ENTITY, GeneratorConstants.BASE_ENTITY));
+                    ArrayUtils.addAll(GeneratorConstant.TREE_ENTITY, GeneratorConstant.BASE_ENTITY));
         }
-        return StringUtils.equalsAnyIgnoreCase(javaField, GeneratorConstants.BASE_ENTITY);
+        return StringUtils.equalsAnyIgnoreCase(javaField, GeneratorConstant.BASE_ENTITY);
     }
 }

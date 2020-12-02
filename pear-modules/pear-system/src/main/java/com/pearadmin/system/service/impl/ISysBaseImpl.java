@@ -55,6 +55,7 @@ public class ISysBaseImpl implements ISysBaseAPI {
         logging.setSuccess(true);
         // 日 志 类 型
         logging.setLoggingType(logType);
+        // 记 录 日 志
         loggingService.save(logging);
     }
 
@@ -84,8 +85,6 @@ public class ISysBaseImpl implements ISysBaseAPI {
         return sysUserModel;
     }
 
-
-
     @Override
     public SysUserModel getUserById(String id) {
         SysUser sysUser= sysUserMapper.selectById(id);
@@ -114,15 +113,11 @@ public class ISysBaseImpl implements ISysBaseAPI {
         return sysRoleModelList;
     }
 
-
-
-
     @Override
     public List<SysDictDataModel> selectDictByCode(String typeCode) {
         List<SysDictData>  sysDictDataList= iSysDictDataService.selectByCode(typeCode);
         return buildSysDictDataModel(sysDictDataList);
     }
-
 
     @Override
     public List<SysDictDataModel> queryTableDictItemsByCode(String table, String text, String code) {
@@ -138,6 +133,7 @@ public class ISysBaseImpl implements ISysBaseAPI {
     public List<SysDictDataModel>  queryTableDictByKeys(String table, String text, String code, String[] keyArray) {
         return buildSysDictDataModel(sysDictDataMapper.queryTableDictByKeys(table,text,code,keyArray));
     }
+
     private  List<SysDictDataModel> buildSysDictDataModel(List<SysDictData>  sysDictDataList){
         List<SysDictDataModel> sysDictDataModelList=new ArrayList<>();
         if(sysDictDataList!=null&&sysDictDataList.size()>0){
@@ -152,6 +148,4 @@ public class ISysBaseImpl implements ISysBaseAPI {
         }
         return sysDictDataModelList;
     }
-
-
 }
