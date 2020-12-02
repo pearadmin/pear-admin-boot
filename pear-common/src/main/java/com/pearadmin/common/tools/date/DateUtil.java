@@ -1,15 +1,16 @@
 package com.pearadmin.common.tools.date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
-
 import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 时间工具类
- */
+ * Describe: 日 期 工 具 类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class DateUtil extends org.apache.commons.lang3.time.DateUtils
 {
     public static String YYYY = "yyyy";

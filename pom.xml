@@ -11,14 +11,6 @@
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
-    <!-- 依 赖 项 目 -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
-        <relativePath/>
-    </parent>
-
     <!-- 版 本 管 理 -->
     <properties>
         <!-- JDK 版本 -->
@@ -73,11 +65,24 @@
         <dynamic.verion>3.2.1</dynamic.verion>
         <!-- jackson -->
         <jackson.version>2.9.9</jackson.version>
+        <!-- spring boot version -->
+        <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
+        <!-- Maven 配置 -->
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
     </properties>
 
     <!-- 依 赖 管 理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- Spring Boot 版本依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- 数 据 库 连 接 工 具 -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -246,7 +251,7 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <!-- 热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

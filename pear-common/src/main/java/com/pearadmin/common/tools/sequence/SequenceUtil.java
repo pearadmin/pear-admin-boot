@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Sequence Util
+ * Describe: Sequence 工具类
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 public class SequenceUtil {
 
@@ -79,7 +81,7 @@ public class SequenceUtil {
 
     public static List<String> makeStringIds(int size){
 
-        List<String> ids = new ArrayList<>();
+        List<String> ids = new ArrayList<String>();
         for (int i = 0;i<size;i++){
             ids.add(makeStringId());
         }
@@ -90,7 +92,7 @@ public class SequenceUtil {
      * 根 据 一 定 数 量 的 Id
      * */
     public Set<Long> makeId(int initSize) throws Exception{
-        Set<Long> ids = new HashSet<>(initSize);
+        Set<Long> ids = new HashSet<Long>(initSize);
         for (long current = 0; current < initSize; current++){
             ids.add(makeId());
         }
