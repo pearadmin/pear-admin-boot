@@ -29,7 +29,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">${comment}：</label>
                 <div class="layui-input-block">
-                    <select name="${field}" #if($column.required) lay-required#end>
+                    <select name="${field}" #if($column.required) lay-required#end   #if("" !=$column.dictType)dict-code="${column.dictType}"#end >
                         <option value="">所有</option>
                     </select>
                 </div>
@@ -91,7 +91,7 @@
 <th:block th:include="include :: footer" />
 <script th:inline="javascript">
 
-    layui.use(['form', 'jquery','laydate'], function () {
+    layui.use(['form', 'jquery','laydate','dictionary'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let laydate = layui.laydate;

@@ -80,12 +80,16 @@ public class RedisTokenRepository implements PersistentTokenRepository {
     }
 
     private void deleteIfPresent(String key){
-        if(redisTemplate.hasKey(key)){
-            String series = generateKey(stringRedisTemplate.opsForValue().get(key),SERIES_KEY);
-            if(series!=null && redisTemplate.hasKey(series)){
-                redisTemplate.delete(series);
-                redisTemplate.delete(key);
+        try {
+            if (redisTemplate.hasKey(key)) {
+                String series = generateKey(stringRedisTemplate.opsForValue().get(key), SERIES_KEY);
+                if (series != null && redisTemplate.hasKey(series)) {
+                    redisTemplate.delete(series);
+                    redisTemplate.delete(key);
+                }
             }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
     private String generateKey(String series,String prefix) {
