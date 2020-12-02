@@ -40,8 +40,10 @@ public class ISysBaseImpl implements ISysBaseAPI {
     private ISysDictDataService iSysDictDataService;
     @Resource
     private SysDictDataMapper sysDictDataMapper;
+
     @Override
     public void addLog(String title,String description, LoggingType logType, BusinessType operatetype) {
+        // 创 建 实 例
         Logging logging = new Logging();
         // 日 志 编 号
         logging.setId(SequenceUtil.makeStringId());
