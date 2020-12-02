@@ -9,6 +9,9 @@ layui.define(['jquery', 'element','form'], function(exports) {
     $("select[dict-code]").each(function(){
         var _that = $(this);
         var dictCode = $(this).attr("dict-code");
+
+        var defaultValue = $("[dict-code='"+dictCode+"']").attr("default-value");
+
         $.ajax({
             url:'/system/dictData/selectByCode',
             data:{'typeCode':dictCode},
@@ -16,8 +19,14 @@ layui.define(['jquery', 'element','form'], function(exports) {
             success:function(result){
                 if(result.success === true){
                     for (var j =0;j<result.data.length;j++){
-                        console.log(result[j]);
-                        _that.append("<option value='"+result.data[j].dataValue+"'>"+result.data[j].dataLabel+"</option>");
+
+                        var flag = false;
+
+                        if(defaultValue === result.data[j].dataValue){
+                            flag = true;
+                        }
+
+                        _that.append("<option selected = '"+ flag +"' value='"+result.data[j].dataValue+"'>"+result.data[j].dataLabel+"</option>");
                     }
                 }
                 form.render();
