@@ -30,7 +30,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">${comment}：</label>
         <div class="layui-input-block">
-            <select name="${field}" #if($column.required) lay-required#end #if("" !=$column.dictType)dict-code="${column.dictType}"#end >
+            <select name="${field}" #if($column.required) lay-required#end #if("" !=$column.dictType)dict-code="${column.dictType}" th:attr="default-value=*{${field}}"#end >
                 <option value="">所有</option>
             </select>
         </div>
