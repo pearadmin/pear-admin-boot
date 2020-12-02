@@ -5,7 +5,7 @@ package com.pearadmin.common.constant;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-public class GeneratorConstants
+public class GeneratorConstant
 {
     /** 单表（增删改查） */
     public static final String TPL_CRUD = "crud";

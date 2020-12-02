@@ -34,10 +34,6 @@ public class UploadProperty {
      * upload path 根据系统环境获取上传路径
      * */
     public String getUploadPath(){
-        if(this.os.equals(SystemConstant.WINDOWS)){
-            return this.windowsPath;
-        }else{
-            return this.linuxPath;
-        }
+        return this.os.equals(SystemConstant.WINDOWS)?this.windowsPath:this.linuxPath;
     }
 }

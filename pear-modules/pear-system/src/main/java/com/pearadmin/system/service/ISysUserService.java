@@ -5,7 +5,6 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.domain.SysMenu;
-
 import java.util.List;
 
 /**

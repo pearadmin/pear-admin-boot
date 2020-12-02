@@ -37,7 +37,6 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
         this.intervalTime = intervalTime;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean isRepeatSubmit(HttpServletRequest request)
     {

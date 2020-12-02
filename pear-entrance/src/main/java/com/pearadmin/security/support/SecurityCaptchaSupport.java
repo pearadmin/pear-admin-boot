@@ -1,30 +1,40 @@
 package com.pearadmin.security.support;
 
-import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.tools.servlet.ServletUtil;
-import com.pearadmin.common.tools.text.StringUtils;
-import com.pearadmin.common.web.domain.response.Result;
-import com.wf.captcha.utils.CaptchaUtil;
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import com.alibaba.fastjson.JSON;
 import javax.servlet.ServletException;
+import com.wf.captcha.utils.CaptchaUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import com.pearadmin.common.tools.text.StringUtils;
+import com.pearadmin.common.tools.servlet.ServletUtil;
+import com.pearadmin.common.web.domain.response.Result;
+import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 /**
+ * 登 录 验 证 码 过 滤 器
  * @author John Ming
  * @createTime 2020/11/20
  */
 @Component
 public class SecurityCaptchaSupport extends OncePerRequestFilter implements Filter {
 
+    /**
+     * 过 滤 接 口
+     * */
     private String defaultFilterProcessUrl = "/login";
+
+    /**
+     * 过 滤 方 法
+     * */
     private String method = "POST";
 
+    /**
+     * 验 证 码 校 监 逻 辑
+     * */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         if (method.equalsIgnoreCase(request.getMethod()) && defaultFilterProcessUrl.equals(request.getServletPath())) {

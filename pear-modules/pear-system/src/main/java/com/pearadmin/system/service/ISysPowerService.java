@@ -1,9 +1,6 @@
 package com.pearadmin.system.service;
 
 import com.pearadmin.system.domain.SysPower;
-import com.pearadmin.system.domain.SysRole;
-import com.pearadmin.system.domain.SysUser;
-
 import java.util.List;
 
 /**

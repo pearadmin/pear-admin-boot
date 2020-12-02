@@ -3,7 +3,7 @@ package com.pearadmin.security;
 import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.security.domain.SecurityUserDetailsService;
 import com.pearadmin.security.process.*;
-import com.pearadmin.security.domain.RedisTokenRepository;
+import com.pearadmin.security.domain.SecurityUserTokenService;
 import com.pearadmin.security.support.SecurityPermissionEvaluator;
 import com.pearadmin.security.support.SecurityCaptchaSupport;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -36,7 +36,7 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties(SecurityProperty.class)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Resource
     private SecurityPermissionEvaluator securityPermissionEvaluator; //注解权限
@@ -63,13 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityUserDetailsService securityUserDetailsService; //实现userservice
 
     @Resource
-    private RedisTokenRepository redisTokenRepository;//remember me redis持久化
+    private SecurityUserTokenService securityUserTokenService;//remember me redis持久化
 
     @Resource
     private SecurityCaptchaSupport securityCaptchaSupport; //自定义验证码验证
 
     @Resource
-    private SecurityExpiredSessionStrategy securityExpiredSessionStrategy;
+    private SecurityExpiredSessionHandler securityExpiredSessionHandler;
 
 
     /**
@@ -144,8 +144,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .deleteCookies("JSESSIONID") //退出登录删除 cookie缓存
-                //配置用户登出自定义处理类
-                .logoutSuccessHandler(securityAccessLogoutHander)
+                .logoutSuccessHandler(securityAccessLogoutHander) //配置用户登出自定义处理类
                 .and()
             .exceptionHandling()
                 .accessDeniedHandler(securityAccessDeniedHander) //配置没有权限自定义处理类
@@ -153,7 +152,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .rememberMe()
                 .rememberMeParameter("remember-me")
                 .rememberMeCookieName("rememberme-token")
-                .tokenRepository(redisTokenRepository)
+                .tokenRepository(securityUserTokenService)
                 .key(securityProperty.getRememberKey())
                 .and()
             .sessionManagement()
@@ -162,7 +161,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //在需要使用到session时才创建session
                 .maximumSessions(1)//同时登陆多个只保留一个
                 .maxSessionsPreventsLogin(false)
-                .expiredSessionStrategy(securityExpiredSessionStrategy) // //踢出用户操作
+                .expiredSessionStrategy(securityExpiredSessionHandler) // //踢出用户操作
                 .sessionRegistry(sessionRegistry()); //用于统计在线
 
         // 取消跨站请求伪造防护

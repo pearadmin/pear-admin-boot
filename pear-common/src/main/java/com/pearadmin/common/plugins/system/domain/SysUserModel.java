@@ -1,11 +1,9 @@
 package com.pearadmin.common.plugins.system.domain;
 
-import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
-import org.apache.ibatis.type.Alias;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import com.pearadmin.common.web.base.BaseDomain;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;

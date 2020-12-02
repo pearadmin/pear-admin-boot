@@ -9,16 +9,12 @@ import com.pearadmin.system.mapper.SysUserMapper;
 import com.pearadmin.system.service.ISysDeptService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class SysDeptServiceImpl implements ISysDeptService {
 
-    /**
-     * 注入部门服务
-     * */
     @Resource
     private SysDeptMapper sysDeptMapper;
 
