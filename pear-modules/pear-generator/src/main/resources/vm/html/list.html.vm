@@ -19,11 +19,11 @@
                         <div class="layui-input-inline">
                             <input type="text" name="${javaField}" placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-required#end/>
                         </div>
-    #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
+    #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && "" !=$column.dictType)
                
                         <label class="layui-form-label">${comment}：</label>
                         <div class="layui-input-inline">
-                            <select name="${javaField}" #if($column.required) lay-required#end>
+                            <select name="${javaField}" #if($column.required) lay-required#end  #if("" !=$column.dictType)dict-code="${column.dictType}" #end>
                                 <option value="">所有</option>
                             </select>
                         </div>
@@ -68,7 +68,7 @@
          </div>
     <th:block th:include="include :: footer" />
          <script>
-             layui.use(['table', 'form', 'jquery'], function () {
+             layui.use(['table', 'form', 'jquery','dictionary'], function () {
                  let table = layui.table;
                  let form = layui.form;
                  let $ = layui.jquery;
