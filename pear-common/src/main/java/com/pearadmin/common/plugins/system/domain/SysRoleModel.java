@@ -2,7 +2,6 @@ package com.pearadmin.common.plugins.system.domain;
 
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
-import org.apache.ibatis.type.Alias;
 
 /**
  * Describe: 角色领域模型
