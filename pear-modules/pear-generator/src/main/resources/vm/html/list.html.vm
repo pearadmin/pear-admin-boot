@@ -66,6 +66,13 @@
                  </script>
              </div>
          </div>
+#foreach($column in $columns)
+#if("" !=$column.dictType&&"input" !=$column.dictType)
+    <script type="text/html" id="${column.javaField}_parseDictText">
+        {{layui.dictionary.parseDictText(d.${column.javaField},  '${column.dictType}')}}
+    </script>
+#end
+#end
     <th:block th:include="include :: footer" />
          <script>
              layui.use(['table', 'form', 'jquery','dictionary'], function () {
@@ -78,21 +85,24 @@
                  let cols = [
                      [
                          {type: 'checkbox'},
-                         #foreach($column in $columns)
-                             #set($javaField=$column.javaField)
-                             #set($comment=$column.columnComment)
-                             #if($column.pk)
-                                 {
-                                     field: '${javaField}',
-                                     title: '${comment}'
-                                 },
-                             #elseif($column.list && "" != $javaField)
-                                 {
-                                     field: '${javaField}',
-                                     title: '${comment}'
-                                 },
-                             #end
-                         #end
+#foreach($column in $columns)
+#set($javaField=$column.javaField)
+#set($comment=$column.columnComment)
+#if($column.pk)
+                         {
+                             field: '${javaField}',
+                             title: '${comment}'
+                         },
+#elseif($column.list && "" != $javaField)
+                        {
+                             field: '${javaField}',
+                             title: '${comment}'
+#if("" !=$column.dictType&&"input" !=$column.dictType)
+                            ,templet: "#${column.javaField}_parseDictText"
+#end
+                        },
+#end
+#end
                          {title: '操作', toolbar: '#${businessName}-bar', align: 'center', width: 130}
                      ]
                  ]
