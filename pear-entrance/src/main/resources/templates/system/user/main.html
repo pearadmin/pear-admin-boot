@@ -25,6 +25,7 @@
             border: none;
             cursor: pointer;
             box-sizing: border-box;
+            display:inline-block;
             outline: 0;
             border-radius: 2px;
             -webkit-appearance: none;
@@ -39,6 +40,22 @@
         .button-default{
             color: #2f495e;
             background-color: #edf2f7;
+        }
+    </style>
+    <style>
+        .user-main{
+            width: calc(100% - 312px);
+            float: right;
+        }
+        .user-left{
+            width: 300px;
+            float: left;
+        }
+        .user-collasped.user-main{
+            width: 100%;
+        }
+        .user-collasped.user-left{
+            width: 0px;
         }
     </style>
 </head>
@@ -67,8 +84,7 @@
         </form>
     </div>
 </div>
-<div class="layui-row layui-col-space10">
-    <div class="layui-col-md3">
+    <div class="user-left user-collasped">
         <div class="layui-card">
             <div class="layui-card-body">
                 <div class="button button-primary user-group" user-group=""> 全 部 用 户 </div>
@@ -79,15 +95,13 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md9">
+    <div class="user-main user-collasped">
         <div class="layui-card">
             <div class="layui-card-body">
                 <table id="user-table" lay-filter="user-table"></table>
             </div>
         </div>
     </div>
-</div>
-
 </body>
 
 <script type="text/html" id="user-toolbar">
@@ -98,6 +112,10 @@
     <button sec:authorize="hasPermission('/system/user/remove','sys:user:remove')" class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="pear-icon pear-icon-ashbin"></i>
         删除
+    </button>
+    <button class="pear-btn pear-btn-warming pear-btn-md" lay-event="collasped">
+        <i class="pear-icon pear-icon-modular"></i>
+        高级
     </button>
 </script>
 
@@ -213,6 +231,15 @@
                 window.refresh();
             } else if (obj.event === 'batchRemove') {
                 window.batchRemove(obj);
+            } else if(obj.event == 'collasped'){
+                if($(".user-left").hasClass("user-collasped")){
+                    $(".user-left").removeClass("user-collasped");
+                    $(".user-main").removeClass("user-collasped");
+                }else{
+                    $(".user-left").addClass("user-collasped");
+                    $(".user-main").addClass("user-collasped");
+                }
+                table.resize();
             }
         });
 

@@ -36,6 +36,7 @@ input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
 	color: #ccc;
 }
+
 .layui-input:hover,
 .layui-textarea:hover,
 .layui-input:focus,
