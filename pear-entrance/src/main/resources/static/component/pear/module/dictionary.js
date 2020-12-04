@@ -25,8 +25,12 @@ layui.define(['jquery', 'element','form'], function(exports) {
                         if(defaultValue === result.data[j].dataValue){
                             flag = true;
                         }
+                        if(flag){
+                            _that.append("<option selected = '"+ flag +"' value='"+result.data[j].dataValue+"'>"+result.data[j].dataLabel+"</option>");
+                        }else{
+                            _that.append("<option  value='"+result.data[j].dataValue+"'>"+result.data[j].dataLabel+"</option>");
+                        }
 
-                        _that.append("<option selected = '"+ flag +"' value='"+result.data[j].dataValue+"'>"+result.data[j].dataLabel+"</option>");
                     }
                 }
                 form.render();
