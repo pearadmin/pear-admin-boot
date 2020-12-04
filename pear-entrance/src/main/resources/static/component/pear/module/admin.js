@@ -84,6 +84,8 @@ layui.define(['table', 'jquery', 'element', 'form', 'tab', 'menu', 'frame'],
 						$(".refresh a").addClass("layui-anim-rotate");
 						$(".refresh a").addClass("layui-anim-loop");
 						$(".refresh a").addClass("layui-icon-loading");
+                        sessionStorage.clear();
+                        localStorage.clear();
 						bodyTab.refresh(400);
 						setTimeout(function() {
 							$(".refresh a").addClass("layui-icon-refresh-1");

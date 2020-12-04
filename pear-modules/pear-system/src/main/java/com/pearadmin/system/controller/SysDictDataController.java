@@ -77,7 +77,7 @@ public class SysDictDataController extends BaseController {
     /**
      * 获取字典数据
      * @param dictCode 字典code
-     * @param dictCode 表名,文本字段,code字段  | 举例：sys_user,realname,id
+     * @param dictCode 表名,文本字段,code字段  | 举例：sys_dept,dept_name,dept_id
      * @return
      */
     @GetMapping(value = "/getDictItems/{dictCode}")
