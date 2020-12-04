@@ -1,7 +1,6 @@
 
 function makeHeadImgByUserName(name) {
     var nick = "未";
-    //判断name是否为空
     if (name) {
         nick = name.charAt(0);
     }
