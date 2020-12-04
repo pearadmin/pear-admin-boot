@@ -36,4 +36,5 @@ public class UploadProperty {
     public String getUploadPath(){
         return this.os.equals(SystemConstant.WINDOWS)?this.windowsPath:this.linuxPath;
     }
+
 }

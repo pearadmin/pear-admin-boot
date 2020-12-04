@@ -13,6 +13,7 @@
 
     <!-- 版 本 管 理 -->
     <properties>
+        <revision>1.1.2.RELEASE</revision>
         <!-- JDK 版本 -->
         <java.version>1.8</java.version>
         <!-- 数 据 源 版 本 -->
