@@ -39,18 +39,27 @@
     <div class="layui-form-item">
         <label class="layui-form-label">${comment}：</label>
         <div class="layui-input-block">
-            <label class="check-box">
+#if("" !=$column.dictType)
+            <div class="check-box" check-box-dict-code="${column.dictType}" th:attr="default-value=*{${field}}" name="${field}"></div>
+#else
+            <div class="check-box">
                 <input type="checkbox" name="${field}" title="无" lay-skin="primary" #if($column.required) lay-required#end>
-            </label>
+            </div>
+#end
         </div>
     </div>
 #elseif($column.htmlType == "radio")
     <div class="layui-form-item">
         <label class="layui-form-label">${comment}：</label>
         <div class="layui-input-block">
+#if("" !=$column.dictType)
+            <div class="radio-box" radio-dict-code="${column.dictType}" th:attr="default-value=*{${field}}" name="${field}">
+            </div>
+#else
             <div class="radio-box">
                 <input type="radio" name="${field}" value="" title="未知" #if($column.required) lay-required#end>
             </div>
+#end
         </div>
     </div>
 #elseif($column.htmlType == "datetime")
@@ -119,6 +128,20 @@
         #end
 
         form.on('submit(${businessName}-update)', function (data) {
+            for(var key in data.field){
+                var type=$(data.form).find("input[name='"+key+"']").attr("type");
+                if(type=="checkbox"){
+                    var value="";
+                    $(data.form).find("input[name='"+key+"']:checked").each(function(){
+                        value+=$(this).val()+",";
+                    })
+                    if(value!=""){
+                        value=value.substr(0,value.length-1);
+                        data.field[key]=value;
+                    }
+
+                }
+            }
             $.ajax({
                 url: prefix+'update',
                 data: JSON.stringify(data.field),

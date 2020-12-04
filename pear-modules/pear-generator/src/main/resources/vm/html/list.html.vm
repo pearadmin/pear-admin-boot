@@ -69,7 +69,12 @@
 #foreach($column in $columns)
 #if("" !=$column.dictType&&"input" !=$column.dictType)
     <script type="text/html" id="${column.javaField}_parseDictText">
+#if($column.htmlType == "checkbox")
+        {{layui.dictionary.parseDictTexts(d.${column.javaField},  '${column.dictType}')}}
+#else
         {{layui.dictionary.parseDictText(d.${column.javaField},  '${column.dictType}')}}
+#end
+
     </script>
 #end
 #end
