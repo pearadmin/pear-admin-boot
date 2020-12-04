@@ -38,6 +38,36 @@ layui.define(['jquery', 'element','form'], function(exports) {
 
         }
         /**
+         * 根据code值到数据库中获取字典
+         * @param dictCode
+         */
+        this.tableDictListByCode=function(dictCode){
+            var loadTableDictData = sessionStorage.getItem('loadTableDictData'+dictCode);
+            if(loadTableDictData==null) {
+                $.ajax({
+                    url: '/system/dictData/getDictItems/'+dictCode,
+                    type: 'get',
+                    async: false,
+                    success: function (result) {
+                        if (result.success === true) {
+                            loadTableDictData=result.data;
+                            try{
+                                window.sessionStorage.removeItem('loadTableDictData'+dictCode);
+                                sessionStorage.setItem('loadTableDictData'+dictCode, JSON.stringify(loadTableDictData));
+                            }catch(e){
+
+                            }
+                        }
+
+                    }
+                })
+            }else{
+                loadTableDictData=JSON.parse(loadTableDictData);
+            }
+            return loadTableDictData;
+
+        }
+        /**
          * 根据单个字典值获取字典label
          * @param value
          * @param dictCode
@@ -102,7 +132,26 @@ layui.define(['jquery', 'element','form'], function(exports) {
         form.render();
 
     });
+    $("select[table-dict-code]").each(function(){
+        var _that = $(this);
+        var dictCode = $(this).attr("table-dict-code");
 
+        var defaultValue =  $(this).attr("default-value");
+        var loadDictData =dictionary.tableDictListByCode(dictCode);
+        for (var j =0;j<loadDictData.length;j++){
+            var flag = false;
+            if(defaultValue === loadDictData[j].dataValue){
+                flag = true;
+            }
+            if(flag){
+                _that.append("<option selected = '"+ flag +"' value='"+loadDictData[j].dataValue+"'>"+loadDictData[j].dataLabel+"</option>");
+            }else{
+                _that.append("<option  value='"+loadDictData[j].dataValue+"'>"+loadDictData[j].dataLabel+"</option>");
+            }
+        }
+        form.render();
+
+    });
     $("div[radio-dict-code]").each(function(){
         var _that = $(this);
         var dictCode = $(this).attr("radio-dict-code");
