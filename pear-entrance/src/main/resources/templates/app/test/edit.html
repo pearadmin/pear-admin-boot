@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改单表字典测试')" />
+</head>
+<body>
+<form class="layui-form" th:object="${tDictTest}">
+    <div class="mainBox">
+        <div class="main-container">
+            <input name="id" th:field="*{id}" type="hidden">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名：</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" th:field="*{name}" placeholder="请输入姓名" class="layui-input" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别单选：</label>
+        <div class="layui-input-block">
+            <div class="radio-box" radio-dict-code="user_sex" th:attr="default-value=*{sex}" name="sex">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">兴趣爱好多选：</label>
+        <div class="layui-input-block">
+            <div class="check-box" check-box-dict-code="user_interest" th:attr="default-value=*{interest}" name="interest"></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户来源下拉框：</label>
+        <div class="layui-input-block">
+            <select name="source"  dict-code="user_source" th:attr="default-value=*{source}" >
+                <option value="">所有</option>
+            </select>
+        </div>
+    </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="test-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    layui.use(['form', 'jquery','laydate','dictionary'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let laydate = layui.laydate;
+
+        let prefix = "/app/test/";
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        form.on('submit(test-update)', function (data) {
+            for(var key in data.field){
+                var type=$(data.form).find("input[name='"+key+"']").attr("type");
+                if(type=="checkbox"){
+                    var value="";
+                    $(data.form).find("input[name='"+key+"']:checked").each(function(){
+                        value+=$(this).val()+",";
+                    })
+                    if(value!=""){
+                        value=value.substr(0,value.length-1);
+                        data.field[key]=value;
+                    }
+
+                }
+            }
+            $.ajax({
+                url: prefix+'update',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));
+                            parent.layui.table.reload("test-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</html>
