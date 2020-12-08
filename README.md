@@ -34,7 +34,7 @@
 
 Spring Boot + Security + MyBatis + Thymeleaf + Activiti 快速开发平台
 
-项目不定时更新，建议 Star watch 一份
+ 项目不定时更新，建议 Star watch 一份
 
 #### 模块划分
 
