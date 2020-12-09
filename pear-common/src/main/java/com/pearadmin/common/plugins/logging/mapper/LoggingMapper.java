@@ -26,4 +26,13 @@ public interface LoggingMapper {
      * Return: 日志信息列表
      * */
     List<Logging> selectList(LoggingType loggingType);
+
+
+    /**
+     * 根据id查询日志
+     *
+     * @param id
+     * @return
+     */
+    Logging getById(String id);
 }

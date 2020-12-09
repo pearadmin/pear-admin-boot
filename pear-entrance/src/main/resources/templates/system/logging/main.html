@@ -14,10 +14,10 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <table style="margin-top: 10px;" id="log-login-table" lay-filter="user-table"></table>
+                    <table style="margin-top: 10px;" id="log-login-table" lay-filter="log-login-table"></table>
                 </div>
                 <div class="layui-tab-item">
-                    <table style="margin-top: 10px;" id="log-operate-table" lay-filter="user-table"></table>
+                    <table style="margin-top: 10px;" id="log-operate-table" lay-filter="log-operate-table"></table>
                 </div>
             </div>
         </div>
@@ -100,13 +100,13 @@
             });
         }
 
-        table.on('toolbar(log-operate-table)', function (obj) {
+        table.on('tool(log-operate-table)', function (obj) {
             if (obj.event === 'details') {
                 window.details(obj);
             }
         });
 
-        table.on('toolbar(log-login-table)', function (obj) {
+        table.on('tool(log-login-table)', function (obj) {
             if (obj.event === 'details') {
                 window.details(obj);
             }
@@ -117,7 +117,7 @@
                 type: 2,
                 title: '详细信息',
                 shade: 0,
-                area: ['450px', '550px'],
+                area: ['400px', '400px'],
                 content: MODULE_PATH + "details?id="+obj.data['id']
             });
         }
