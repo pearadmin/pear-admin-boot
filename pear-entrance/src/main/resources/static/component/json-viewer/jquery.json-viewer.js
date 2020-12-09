@@ -1,8 +1,3 @@
-/**
- * jQuery json-viewer
- * @author: Alexandre Bodelot <alexandre.bodelot@gmail.com>
- * @link: https://github.com/abodelot/jquery.json-viewer
- */
 (function($) {
 
   /**

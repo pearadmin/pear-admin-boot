@@ -13,18 +13,12 @@
         </div>
     </div>
 </div>
-
+</body>
 <script th:src="@{/component/jquery.min.js}"></script>
 <script th:src="@{/component/json-viewer/jquery.json-viewer.js}"></script>
-
 <script>
     function showJSON(details) {
-        console.log(details);
         $("#json-renderer").jsonViewer(details);
     }
 </script>
-
-</body>
-
-
 </html>
