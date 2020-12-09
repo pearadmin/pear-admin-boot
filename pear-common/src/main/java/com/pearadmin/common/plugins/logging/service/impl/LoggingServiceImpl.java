@@ -46,4 +46,9 @@ public class LoggingServiceImpl implements LoggingService {
     public List<Logging> data(LoggingType loggingType) {
         return loggingMapper.selectList(loggingType);
     }
+
+    @Override
+    public Logging getById(String id) {
+        return loggingMapper.getById(id);
+    }
 }
