@@ -1,6 +1,8 @@
 package com.pearadmin.system.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.plugins.logging.domain.Logging;
@@ -9,6 +11,7 @@ import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.ResultTable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("system/logging")
 public class SysLoggingController extends BaseController {
+
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     /**
      * 引 入 日 志 组 件  的 日 志 服 务
@@ -72,9 +79,13 @@ public class SysLoggingController extends BaseController {
     }
 
     @GetMapping("/details")
-    public ModelAndView details(String id) {
+    public ModelAndView details(String id){
         Map<String, Object> params = new HashMap<>();
-        params.put("loggingDetails", JSON.toJSONString(loggingService.getById(id)));
+        try {
+            params.put("loggingDetails", objectMapper.writeValueAsString(loggingService.getById(id)));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return JumpPage("system/logging/logging-details", params);
     }
 }
