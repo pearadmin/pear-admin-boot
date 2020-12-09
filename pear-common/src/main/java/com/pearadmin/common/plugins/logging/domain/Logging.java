@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -105,8 +106,7 @@ public class Logging {
     /**
      * 操 作 时 间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 操 作 人 员 名 称

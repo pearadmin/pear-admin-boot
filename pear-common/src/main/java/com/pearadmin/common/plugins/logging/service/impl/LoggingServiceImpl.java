@@ -9,6 +9,7 @@ import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class LoggingServiceImpl implements LoggingService {
     public boolean save(Logging logging) {
         logging.setOperateAddress(ServletUtil.getRemoteHost());
         logging.setMethod(ServletUtil.getRequestURI());
-        logging.setCreateTime(new Date());
+        logging.setCreateTime(LocalDateTime.now());
         logging.setRequestMethod(RequestMethod.valueOf(ServletUtil.getMethod()));
         logging.setOperateUrl(ServletUtil.getRequestURI());
         logging.setBrowser(ServletUtil.getBrowser());
