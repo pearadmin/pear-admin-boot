@@ -79,13 +79,7 @@ public class SysLoggingController extends BaseController {
     }
 
     @GetMapping("/details")
-    public ModelAndView details(String id){
-        Map<String, Object> params = new HashMap<>();
-        try {
-            params.put("loggingDetails", objectMapper.writeValueAsString(loggingService.getById(id)));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return JumpPage("system/logging/logging-details", params);
+    public ModelAndView details(){
+        return JumpPage("system/logging/logging-details");
     }
 }

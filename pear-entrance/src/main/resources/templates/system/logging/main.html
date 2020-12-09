@@ -34,7 +34,9 @@
 </script>
 
 <script type="text/html" id="log-bar">
-    <button class="pear-btn pear-btn-sm pear-btn-primary"  lay-event="details"><i class="pear-icon pear-icon-edit"></i></button>
+    <button class="pear-btn pear-btn-sm pear-btn-primary" lay-event="details">
+        <i class="pear-icon pear-icon-edit"></i>
+    </button>
 </script>
 
 <script type="text/html" id="log-createTime">
@@ -112,13 +114,18 @@
             }
         });
 
-        window.details = function(obj){
+        window.details = function (obj) {
+            console.log(obj.data)
             layer.open({
                 type: 2,
                 title: '详细信息',
                 shade: 0,
                 area: ['400px', '400px'],
-                content: MODULE_PATH + "details?id="+obj.data['id']
+                content: MODULE_PATH + "details",
+                success: function (layero) {
+                    let iframeWin = window[layero.find('iframe')[0]['name']];
+                    iframeWin.showJSON(obj.data);
+                }
             });
         }
     })

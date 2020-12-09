@@ -8,7 +8,6 @@
 <body>
 <div>
     <div>
-        <input id="details" type="hidden" th:value="${loggingDetails}">
         <div>
             <pre id="json-renderer"></pre>
         </div>
@@ -19,8 +18,10 @@
 <script th:src="@{/component/json-viewer/jquery.json-viewer.js}"></script>
 
 <script>
-    let details = $("#details").val();
-    $("#json-renderer").jsonViewer(JSON.parse(details));
+    function showJSON(details) {
+        console.log(details);
+        $("#json-renderer").jsonViewer(details);
+    }
 </script>
 
 </body>
