@@ -16,7 +16,7 @@ spring:
   # Druid Pool 运行环境
   profiles:
     # 运 行 环 境
-    active: datasource
+    active: dev
   activiti:
     # 是 否 检 查 流 程 定 义 文 件
     check-process-definitions: false
@@ -89,12 +89,8 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
 
-# logging 配置
 logging:
-  # 日 志 级 别
-  level:
-    # 日 志 包 配 置
-    com.pearadmin.*: DEBUG
+  config: classpath:logback-spring.xml
 
 
 

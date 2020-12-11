@@ -90,19 +90,136 @@
             <groupId>com.baomidou</groupId>
             <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.26</version>
+        </dependency>
     </dependencies>
 
     <!-- 构建工具 -->
+
     <build>
         <plugins>
+            <!--**********分离资源文件及依赖包打包配置*************-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/lib</outputDirectory>
+                            <excludeTransitive>false</excludeTransitive>
+                            <stripVersion>false</stripVersion>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>static/**</exclude>
+                        <exclude>templates/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layout>ZIP</layout>
+                    <includes>
+                        <include>
+                            <groupId>non-exists</groupId>
+                            <artifactId>non-exists</artifactId>
+                        </include>
+                    </includes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+                        <configuration>
+                            <classifier>classes</classifier>
+                            <attach>false</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <property name="dist">target/build</property>
+                                <property name="res">target/build/conf</property>
+                                <property name="dist-tmp">target/build/tmp</property>
+                                <property name="bin">target/build/bin</property>
+                                <property name="app-name">${project.artifactId}-${project.version}</property>
+                                <property name="real-app-name">${project.artifactId}</property>
+                                <property name="buildDir">src/main/build</property>
+                                <delete dir="${dist}" />
+                                <mkdir dir="${dist}" />
+                                <mkdir dir="${dist-tmp}" />
+                                <mkdir dir="${res}" />
+                                <mkdir dir="${bin}" />
+                                <copy file="target/${app-name}.jar" tofile="${dist-tmp}/${app-name}.jar" />
+                                <unzip src="${dist-tmp}/${app-name}.jar" dest="${dist-tmp}" />
+                                <delete file="${dist-tmp}/${app-name}.jar" />
+                                <move file="target/${app-name}-classes.jar" tofile="${dist}/${real-app-name}.jar"/>
+                                <move todir="${dist}/lib">
+                                    <fileset dir="target/lib" />
+                                </move>
+
+                                <delete dir="${dist-tmp}" />
+
+                                <copy todir="${res}">
+                                    <fileset dir="target/classes">
+                                        <include name="**/static/**" />
+                                        <include name="**/templates/**" />
+                                    </fileset>
+                                </copy>
+                                <copy todir="${res}">
+                                    <fileset dir="target/classes">
+                                        <include name="**/*.properties" />
+                                        <include name="**/*.xml" />
+                                        <include name="**/*.yml" />
+                                    </fileset>
+                                </copy>
+                                <fixcrlf srcdir="${buildDir}/scripts" eol="unix"/>
+                                <copy todir="${bin}">
+                                    <fileset dir="${buildDir}/scripts">
+                                        <include name="*.sh" />
+                                        <include name="*.txt" />
+                                        <include name="*.bat" />
+                                    </fileset>
+                                </copy>
+                                <zip destfile='${dist}/${real-app-name}.zip'>
+                                    <zipfileset filemode="755" dir= '${dist}' />
+                                </zip>
+                            </target>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
