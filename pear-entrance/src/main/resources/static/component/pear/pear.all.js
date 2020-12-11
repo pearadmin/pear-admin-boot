@@ -29,5 +29,9 @@ layui.config({
 	count:"count",
 	topBar: "topBar",
 	button: "button",
-	common: "common"
+	design: "design",
+	common: "common",
+	eleTree: "eleTree",
+	dictionary: 'dictionary',
+	json: 'json'
 });

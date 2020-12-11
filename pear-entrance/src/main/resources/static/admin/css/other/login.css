@@ -68,17 +68,20 @@
 }
 
 body {
-	background-size: cover;
 	background-color: whitesmoke;
 	height: 100%;
 }
 
-.captcha {
-	margin-right: 10px;
+.code {
+	float: left;
+	margin-right: 13px;
+	margin: 0px !important;
 	border: #e6e6e6 1px solid;
+	display: inline-block!important;
 }
 
-.captchaImage {
+.codeImage {
+	float: right;
 	height: 42px;
 	border: #e6e6e6 1px solid;
 }

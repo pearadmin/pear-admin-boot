@@ -80,6 +80,6 @@ public class SysLoggingController extends BaseController {
 
     @GetMapping("/details")
     public ModelAndView details(){
-        return JumpPage("system/logging/logging-details");
+        return JumpPage("system/logging/details");
     }
 }

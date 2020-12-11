@@ -22,7 +22,7 @@
     </div>
     <div class="layui-form-item">
         <input placeholder="验证码 : " name="captcha" hover class="code layui-input layui-input-inline"  />
-        <img src="/system/captcha/generate" class="captchaImage" id="captchaImage"/>
+        <img src="/system/captcha/generate" class="codeImage" id="captchaImage"/>
     </div>
     <div class="layui-form-item">
         <input type="checkbox" name="remember-me" title="记住密码" lay-skin="primary">
@@ -66,15 +66,11 @@
         });
 
         $("#captchaImage").click(function(){
-
             document.getElementById("captchaImage").src="/system/captcha/generate?"+Math.random();
         })
-
-        // 定时验证码刷新
         setInterval(function(){
             document.getElementById("captchaImage").src="/system/captcha/generate?"+Math.random();
-        },30000)
-
+        },30000);
 
         validateKickout();
 
