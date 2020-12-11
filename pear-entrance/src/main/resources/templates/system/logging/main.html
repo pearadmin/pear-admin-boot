@@ -124,7 +124,7 @@
                 content: MODULE_PATH + "details",
                 success: function (layero) {
                     let iframeWin = window[layero.find('iframe')[0]['name']];
-                    iframeWin.showJSON(obj.data);
+                    iframeWin.show(obj.data);
                 }
             });
         }
