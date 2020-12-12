@@ -86,6 +86,9 @@ Springboot
 ├─pear-entrance 启动模块
 │  ├─static 静态资源
 │  ├─templates 页面文件
+│  ├─application-dev.yml 开发环境配置
+│  ├─application-prod.yml 线上环境配置
+│  ├─application-test.yml 测试环境配置
 │  └─application.yml 配置文件
 │
 ├─pear-modules 业务模块
@@ -122,12 +125,12 @@ Springboot
 
 ```
 #### 启动方式
-maven打包
-\Pear-Admin-Boot\pear-entrance\target\build\pear-entrance.zip
-上传服务器并解压 
-可快速修改服务器静态文件\conf\templates
-快速修改业务jar包\lib\pear-system-1.0.0-RELEASE.jar
-第一次打包之后 只要pom文件无改动 可以单独打某一业务jiar包 上传到\lib下替换原来jar
+
+1. maven打包 取\Pear-Admin-Boot\pear-entrance\target\build\pear-entrance.zip 
+2. 上传服务器并解压 unzip pear-entrance.zip
+3. 可快速修改服务器静态文件\conf\templates 
+4. 快速修改业务jar包 如  \lib\pear-system-1.0.0-RELEASE.jar 
+5. 第一次打包之后 只要pom文件无改动 可以单独打某一业务jiar包 上传到\lib下替换原来jar
 
 ```
 ├─pear-entrance 启动模块
@@ -138,9 +141,13 @@ maven打包
        |    | ├─stop.sh linux停止文件
        |    | ├─windows-start.bat windows启动文件
        |    ├─conf 配置文件
-            │  ├─static 静态资源
-            │  ├─templates 页面文件
-            │  └─application.yml 配置文件
+       |    │  ├─static 静态资源
+       |    │  ├─templates 页面文件
+       |    │  ├─application-dev.yml 开发环境配置
+       |    │  ├─application-prod.yml 线上环境配置
+       |    │  ├─application-test.yml 测试环境配置
+       |    │  └─application.yml 配置文件
+       |    |
        |    ├─lib lib包
        |    ├─pear-entrance.jar 启动jar
        |    └─pear-entrance.zip 压缩包 上传服务器并解压
