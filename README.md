@@ -129,9 +129,10 @@ Springboot
 1. maven打包 取\Pear-Admin-Boot\pear-entrance\target\build\pear-entrance.zip 
 2. 上传服务器并解压 unzip pear-entrance.zip
 3. 可快速修改服务器静态文件\conf\templates 
+3. 可快速修改服务器配置文件与配置环境\conf\application.yml:spring.profiles.active:dev
 4. 快速修改业务jar包 如  \lib\pear-system-1.0.0-RELEASE.jar 
 5. 第一次打包之后 只要pom文件无改动 可以单独打某一业务jiar包 上传到\lib下替换原来jar
-
+6. 日志在\conf\logback-spring.xml下配置 test环境和prod环境默认日志路径 /var/log/pear dev环境 默认在打包目录里生成logs目录下
 ```
 ├─pear-entrance 启动模块
    └─target 打包目录
@@ -143,6 +144,7 @@ Springboot
        |    ├─conf 配置文件
        |    │  ├─static 静态资源
        |    │  ├─templates 页面文件
+       |    │  ├─logback-spring.xml 日志配置
        |    │  ├─application-dev.yml 开发环境配置
        |    │  ├─application-prod.yml 线上环境配置
        |    │  ├─application-test.yml 测试环境配置
