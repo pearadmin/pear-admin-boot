@@ -121,7 +121,40 @@ Springboot
 
 
 ```
+#### 启动方式
+maven打包
+\Pear-Admin-Boot\pear-entrance\target\build\pear-entrance.zip
+上传服务器并解压 
+可快速修改服务器静态文件\conf\templates
+快速修改业务jar包\lib\pear-system-1.0.0-RELEASE.jar
+第一次打包之后 只要pom文件无改动 可以单独打某一业务jiar包 上传到\lib下替换原来jar
 
+```
+├─pear-entrance 启动模块
+   └─target 打包目录
+       ├─ build 打包结果
+       |    ├─bin 启动文件
+       |    | ├─start.sh linux启动文件
+       |    | ├─stop.sh linux停止文件
+       |    | ├─windows-start.bat windows启动文件
+       |    ├─conf 配置文件
+            │  ├─static 静态资源
+            │  ├─templates 页面文件
+            │  └─application.yml 配置文件
+       |    ├─lib lib包
+       |    ├─pear-entrance.jar 启动jar
+       |    └─pear-entrance.zip 压缩包 上传服务器并解压
+       └─ classes 打包class文件
+
+1：linux启动环境
+sh start.sh
+
+3：windows启动环境
+windows-start.bat
+
+3：linux停止应用
+sh stop.sh
+```
 #### 开源共建
 
 1. 欢迎提交 [pull request](https://gitee.com/Jmysy/Pear-Admin-Boot/pulls)，注意对应提交对应 `master` 分支
