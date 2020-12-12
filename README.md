@@ -86,6 +86,7 @@ Springboot
 ├─pear-entrance 启动模块
 │  ├─static 静态资源
 │  ├─templates 页面文件
+│  ├─logback-spring.xml 日志配置
 │  ├─application-dev.yml 开发环境配置
 │  ├─application-prod.yml 线上环境配置
 │  ├─application-test.yml 测试环境配置
