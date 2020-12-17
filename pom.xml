@@ -229,6 +229,7 @@
                 <artifactId>thymeleaf-extras-springsecurity5</artifactId>
                 <version>${thymeleaf-extras.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
