@@ -22,6 +22,8 @@ import java.util.List;
 @Alias("SysUser")
 public class SysUser extends BaseDomain implements UserDetails {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * 编号
      */
