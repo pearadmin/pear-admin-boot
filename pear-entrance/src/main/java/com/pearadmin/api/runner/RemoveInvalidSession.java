@@ -3,14 +3,13 @@ package com.pearadmin.api.runner;
 import com.pearadmin.system.domain.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.impl.util.CollectionUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Component;
-
+import javax.annotation.Resource;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,20 +17,19 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author: Heiky
- * @Date: 2020/12/17 15:34
- * @Description:
+ * Describe: Security 在线用户监测任务
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
  */
-
 @Slf4j
 @Component
 public class RemoveInvalidSession implements CommandLineRunner {
 
-    @Autowired
+    @Resource
     @Qualifier("manageSessionThreadPool")
     private ScheduledThreadPoolExecutor manageSessionThreadPool;
 
-    @Autowired
+    @Resource
     private SessionRegistry sessionRegistry;
 
     @Value("${server.servlet.session.timeout}")
@@ -59,7 +57,7 @@ public class RemoveInvalidSession implements CommandLineRunner {
                         }
                     }
                 } else {
-                    log.info("目前sessionRegistry中，没有已经过期的httpSession");
+                    log.info("[在线用户检测] 目前sessionRegistry中，没有已经过期的httpSession");
                 }
             }
         }, 60, 10, TimeUnit.SECONDS);
