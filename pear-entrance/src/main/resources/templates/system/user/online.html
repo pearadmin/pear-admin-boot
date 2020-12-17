@@ -81,7 +81,7 @@
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: MODULE_PATH + "remove/" + obj.data['onlineId'],
+                    url: MODULE_PATH + "remove/" + obj.data['userId'],
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
