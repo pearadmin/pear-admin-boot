@@ -90,6 +90,7 @@
             <groupId>com.baomidou</groupId>
             <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
         </dependency>
+        <!-- yaml 解析 -->
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
@@ -98,7 +99,6 @@
     </dependencies>
 
     <!-- 构建工具 -->
-
     <build>
         <plugins>
             <!--**********分离资源文件及依赖包打包配置*************-->

@@ -4,35 +4,39 @@
     <th:block th:include="include :: header('登录')"/>
     <link rel="stylesheet" href="admin/css/other/login.css" />
 </head>
-<!-- 代 码 结 构 -->
 <body background="admin/images/background2.svg">
-<form class="layui-form" action="javascript:void(0);">
-    <div class="layui-form-item">
-        <img class="logo" src="admin/images/logo.png" />
-        <div class="title">Pear Admin</div>
-        <div class="desc">
-            明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一
+    <form class="layui-form" action="javascript:void(0);">
+        <!-- logo dom -->
+        <div class="layui-form-item">
+            <img class="logo" src="admin/images/logo.png" />
+            <div class="title">Pear Admin</div>
+            <div class="desc">
+                明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <input name="username" type="text" placeholder="账 户 : admin " value="admin" hover class="layui-input"  />
-    </div>
-    <div class="layui-form-item">
-        <input name="password" type="password" placeholder="密 码 : admin " value="admin" hover class="layui-input"  />
-    </div>
-    <div class="layui-form-item">
-        <input placeholder="验证码 : " name="captcha" hover class="code layui-input layui-input-inline"  />
-        <img src="/system/captcha/generate" class="codeImage" id="captchaImage"/>
-    </div>
-    <div class="layui-form-item">
-        <input type="checkbox" name="remember-me" title="记住密码" lay-skin="primary">
-    </div>
-    <div class="layui-form-item">
-        <button class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
-            登 入
-        </button>
-    </div>
-</form>
+        <!-- username input -->
+        <div class="layui-form-item">
+            <input name="username" type="text" placeholder="账 户 : admin " value="admin" hover class="layui-input"  />
+        </div>
+        <!-- password input -->
+        <div class="layui-form-item">
+            <input name="password" type="password" placeholder="密 码 : admin " value="admin" hover class="layui-input"  />
+        </div>
+        <!-- captcha input -->
+        <div class="layui-form-item">
+            <input placeholder="验证码 : " name="captcha" hover class="code layui-input layui-input-inline"  />
+            <img src="/system/captcha/generate" class="codeImage" id="captchaImage"/>
+        </div>
+        <div class="layui-form-item">
+            <input type="checkbox" name="remember-me" title="记住密码" lay-skin="primary">
+        </div>
+        <!-- submit button -->
+        <div class="layui-form-item">
+            <button class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
+                登 入
+            </button>
+        </div>
+    </form>
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['form','jquery','layer'], function() {
@@ -73,9 +77,7 @@
         },30000);
 
         validateKickout();
-
     })
-
 
 </script>
 <!-- Session 过期处理 -->
@@ -89,7 +91,6 @@
                     title: "系统提示"
                 },
                 function(index) {
-                    //关闭弹窗
                     layer.close(index);
                 });
         }else if(getParam("sessionout") == 1){
@@ -98,7 +99,6 @@
                     title: "系统提示"
                 },
                 function(index) {
-                    //关闭弹窗
                     layer.close(index);
                 });
         }
@@ -112,6 +112,5 @@
     }
 
 </script>
-
 </body>
 </html>

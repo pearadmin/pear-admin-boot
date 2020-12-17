@@ -15,10 +15,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 
 /**
- * @Author: Heiky
- * @Date: 2020/12/17 10:33
- * @Description: 自定义用户注销处理类
- */
+ * Describe: 自定义用户注销处理类
+ * Author: Heiky
+ * CreateTime: 2020/12/17
+ * */
 public class SecurityLogoutHandler implements LogoutHandler {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityLogoutHandler.class);

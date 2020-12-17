@@ -13,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +21,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
- * @Author: Heiky
- * @Date: 2020/12/17 10:38
- * @Description: 自定义remember-me成功处理类
- */
-
+ * Describe: 自定义remember-me成功处理类
+ * Author: Heiky
+ * CreateTime: 2020/12/17
+ * */
 @Component
 public class RememberMeAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 

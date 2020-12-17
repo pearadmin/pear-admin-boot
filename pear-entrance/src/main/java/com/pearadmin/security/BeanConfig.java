@@ -13,16 +13,14 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ITemplateResolver;
-
 import javax.annotation.Resource;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
- * @Author: Heiky
- * @Date: 2020/12/17 10:55
- * @Description:
- */
-
+ * Describe: Security Configuration 配置扩展 (Security Configuration 部分)
+ * Author: Heiky
+ * CreateTime: 2020/12/17
+ * */
 @Configuration
 public class BeanConfig {
 
@@ -31,7 +29,6 @@ public class BeanConfig {
      */
     @Resource
     private SecurityPermissionEvaluator securityPermissionEvaluator;
-
 
     /**
      * Describe: 自定义权限注解实现
@@ -93,7 +90,6 @@ public class BeanConfig {
                 new ScheduledThreadPoolExecutor(1, r -> {
                     Thread t = new Thread(r);
                     t.setName("removeSession");
-                    // 设置为守护线程
                     t.setDaemon(true);
                     return t;
                 });

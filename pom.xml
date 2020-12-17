@@ -229,18 +229,18 @@
                 <artifactId>thymeleaf-extras-springsecurity5</artifactId>
                 <version>${thymeleaf-extras.version}</version>
             </dependency>
-
+            <!-- Dynamic datasource 动态数据源 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>${dynamic.verion}</version>
             </dependency>
+            <!-- Jackson 扩展包 -->
             <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 

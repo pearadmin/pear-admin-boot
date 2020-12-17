@@ -4,15 +4,14 @@ import com.pearadmin.system.domain.SysUser;
 import org.activiti.engine.impl.util.CollectionUtil;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @Author: Heiky
- * @Date: 2020/12/17 11:40
- * @Description:
- */
+ * Describe: Session 自定义工具类
+ * Author: Heiky
+ * CreateTime: 2020/12/17
+ * */
 public class HttpSessionUtil {
 
     /**
