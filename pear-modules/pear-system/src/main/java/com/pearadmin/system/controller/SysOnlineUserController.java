@@ -3,14 +3,15 @@ package com.pearadmin.system.controller;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.common.web.session.HttpSessionContext;
+import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysOnlineUser;
 import com.pearadmin.system.domain.SysUser;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -23,7 +24,7 @@ import java.util.List;
  * Describe: 在线用户控制器
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
- * */
+ */
 
 @RestController
 @RequestMapping("system/online")
@@ -36,13 +37,13 @@ public class SysOnlineUserController extends BaseController {
      * Describe: 在线用户列表
      * Param: username
      * Return: ModelAndView
-     * */
+     */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/system/online/data','sys:online:data')")
-    public ResultTable data(String username){
+    public ResultTable data(String username) {
         List<Object> allPrincipalsUser = sessionRegistry.getAllPrincipals();
-        List<SysOnlineUser>  onlineUser= new ArrayList<>();
-        for (Object obj : allPrincipalsUser ){
+        List<SysOnlineUser> onlineUser = new ArrayList<>();
+        for (Object obj : allPrincipalsUser) {
             SysOnlineUser sysOnlineUser = new SysOnlineUser();
             SysUser objs = (SysUser) obj;
             sysOnlineUser.setUserId(objs.getUserId());
@@ -59,7 +60,32 @@ public class SysOnlineUserController extends BaseController {
 
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/online/main','sys:online:main')")
-    public ModelAndView main(){
+    public ModelAndView main() {
         return JumpPage("system/user/online");
+    }
+
+
+    @DeleteMapping("/remove/{onlineId}")
+    @ResponseBody
+    public Result remove(@PathVariable String onlineId) {
+        List<Object> principals = sessionRegistry.getAllPrincipals();
+        for (Object principal : principals) {
+            SysUser userDetails = (SysUser) principal;
+            String userId = userDetails.getUserId();
+            if (onlineId.equals(userId)) {
+                if ("admin".equals(userDetails.getUsername())) {
+                    return failure("不允许操作超级管理员[admin]下线");
+                }
+                for (SessionInformation sessionInformation : sessionRegistry.getAllSessions(userDetails, false)) {
+                    sessionInformation.expireNow();
+                    sessionRegistry.removeSessionInformation(sessionInformation.getSessionId());
+                    HttpSessionContext sessionContext = HttpSessionContextHolder.currentSessionContext();
+                    // 销毁session
+                    sessionContext.getSession(sessionInformation.getSessionId()).invalidate();
+                }
+                return success(String.format("用户[%s]已下线", userDetails.getRealName()));
+            }
+        }
+        return failure();
     }
 }
