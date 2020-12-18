@@ -1,9 +1,10 @@
 package com.pearadmin.common.web.session;
 
+
 /**
- * @Author: Heiky
- * @Date: 2020/12/17 17:47
- * @Description: HttpSessionContext对象持有者
+ * Describe: HttpSessionContext对象持有者
+ * Author: Heiky
+ * CreateTime: 2020/12/17
  */
 public class HttpSessionContextHolder {
 

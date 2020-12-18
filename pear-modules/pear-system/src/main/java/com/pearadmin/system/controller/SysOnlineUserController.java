@@ -50,7 +50,6 @@ public class SysOnlineUserController extends BaseController {
             sysOnlineUser.setUsername(objs.getUsername());
             sysOnlineUser.setRealName(objs.getRealName());
             sysOnlineUser.setLastTime(objs.getLastTime());
-            System.out.println(objs.getLastTime());
             sysOnlineUser.setOnlineTime(Duration.between(objs.getLastTime(), LocalDateTime.now()).toMinutes() + "分钟");
             onlineUser.add(sysOnlineUser);
         }
@@ -58,6 +57,10 @@ public class SysOnlineUserController extends BaseController {
         return dataTable(onlineUser);
     }
 
+    /**
+     * Describe: 获取在线用户列表视图
+     * Return: ModelAndView
+     */
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/online/main','sys:online:main')")
     public ModelAndView main() {
@@ -65,19 +68,27 @@ public class SysOnlineUserController extends BaseController {
     }
 
 
+    /**
+     * Describe: 踢出用户（下线）
+     * Param: onlineId
+     * Return: ModelAndView
+     */
     @DeleteMapping("/remove/{onlineId}")
     @ResponseBody
     public Result remove(@PathVariable String onlineId) {
+        // 从sessionRegistry中获取所有的用户信息
         List<Object> principals = sessionRegistry.getAllPrincipals();
         for (Object principal : principals) {
             SysUser userDetails = (SysUser) principal;
             String userId = userDetails.getUserId();
             if (onlineId.equals(userId)) {
+                // 不允许操作admin用户下线
                 if ("admin".equals(userDetails.getUsername())) {
                     return failure("不允许操作超级管理员[admin]下线");
                 }
                 for (SessionInformation sessionInformation : sessionRegistry.getAllSessions(userDetails, false)) {
                     sessionInformation.expireNow();
+                    // 从sessionRegistry中清除session信息
                     sessionRegistry.removeSessionInformation(sessionInformation.getSessionId());
                     HttpSessionContext sessionContext = HttpSessionContextHolder.currentSessionContext();
                     // 销毁session

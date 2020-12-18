@@ -1,5 +1,6 @@
 package com.pearadmin.api.runner;
 
+import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.impl.util.CollectionUtil;
@@ -9,7 +10,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,8 +28,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RemoveInvalidSession implements CommandLineRunner {
 
-    @Resource
-    @Qualifier("manageSessionThreadPool")
+    @Resource(name = "manageSessionThreadPool")
     private ScheduledThreadPoolExecutor manageSessionThreadPool;
 
     @Resource
@@ -38,6 +40,7 @@ public class RemoveInvalidSession implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         manageSessionThreadPool.scheduleWithFixedDelay(() -> {
+            // 从sessionRegistry中获取所有的用户信息
             List<Object> principals = sessionRegistry.getAllPrincipals();
             for (Object principal : principals) {
                 SysUser userDetails = (SysUser) principal;
@@ -50,10 +53,13 @@ public class RemoveInvalidSession implements CommandLineRunner {
                     List<SessionInformation> sessionInformationList = sessionRegistry.getAllSessions(userDetails, false);
                     if (CollectionUtil.isNotEmpty(sessionInformationList)) {
                         for (SessionInformation sessionInformation : sessionInformationList) {
-                            // 清除已经过期的session
+                            // 清除已经过期的session（SessionRegistry）
                             sessionInformation.expireNow();
                             sessionRegistry.removeSessionInformation(sessionInformation.getSessionId());
-                            log.info(String.format("HttpSessionId[%s]------>已从sessionRegistry中移除", sessionInformation.getSessionId()));
+                            log.info(String.format("HttpSessionId[%s]------>已从SessionRegistry中移除", sessionInformation.getSessionId()));
+                            // 销毁已经过期的session
+                            HttpSessionContextHolder.currentSessionContext().getSession(sessionInformation.getSessionId()).invalidate();
+                            log.info(String.format("HttpSessionId[%s]------>已从HttpSessionContext中移除", sessionInformation.getSessionId()));
                         }
                     }
                 } else {

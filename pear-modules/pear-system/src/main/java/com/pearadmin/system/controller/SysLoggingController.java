@@ -31,10 +31,6 @@ import java.util.Map;
 @RequestMapping("system/logging")
 public class SysLoggingController extends BaseController {
 
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
     /**
      * 引 入 日 志 组 件  的 日 志 服 务
      */

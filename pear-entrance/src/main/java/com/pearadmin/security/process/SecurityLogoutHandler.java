@@ -1,5 +1,6 @@
 package com.pearadmin.security.process;
 
+import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSessionEvent;
  * Describe: 自定义用户注销处理类
  * Author: Heiky
  * CreateTime: 2020/12/17
- * */
+ */
 public class SecurityLogoutHandler implements LogoutHandler {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityLogoutHandler.class);
@@ -43,16 +44,20 @@ public class SecurityLogoutHandler implements LogoutHandler {
         if (httpSessionEventPublisher != null) {
             // 构建要销毁的session
             HttpSessionEvent sessionEvent = new HttpSessionEvent(request.getSession());
+            // 发布session销毁事件
             httpSessionEventPublisher.sessionDestroyed(sessionEvent);
         }
+        // 销毁session
         if (invalidateHttpSession) {
             HttpSession session = request.getSession(false);
+            // 移除HttpSessionContext中的session信息
+            HttpSessionContextHolder.currentSessionContext().removeSession(session);
             if (session != null) {
                 log.debug("Invalidating session: " + session.getId());
                 session.invalidate();
             }
         }
-
+        // 清空Authentication
         if (clearAuthentication) {
             SecurityContext context = SecurityContextHolder.getContext();
             context.setAuthentication(null);
