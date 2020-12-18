@@ -13,6 +13,7 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ITemplateResolver;
+
 import javax.annotation.Resource;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
@@ -20,7 +21,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * Describe: Security Configuration 配置扩展 (Security Configuration 部分)
  * Author: Heiky
  * CreateTime: 2020/12/17
- * */
+ */
 @Configuration
 public class BeanConfig {
 
@@ -68,6 +69,9 @@ public class BeanConfig {
         return templateEngine;
     }
 
+    /**
+     * 注册HttpSessionEventPublisher，发布HttpSessionEvent
+     */
     @Bean
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
@@ -84,6 +88,9 @@ public class BeanConfig {
         return new SecurityLogoutHandler(httpSessionEventPublisher);
     }
 
+    /**
+     * 注册ScheduledThreadPoolExecutor，进行在线用户用户检测，清除过期Session
+     */
     @Bean
     public ScheduledThreadPoolExecutor manageSessionThreadPool() {
         ScheduledThreadPoolExecutor executor =

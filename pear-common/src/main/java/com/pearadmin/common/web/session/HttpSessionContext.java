@@ -4,10 +4,11 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 /**
- * @Author: Heiky
- * @Date: 2020/12/17 17:14
- * @Description: 单例模式 HttpSessionContext
+ * Describe: 单例模式 HttpSessionContext
+ * Author: Heiky
+ * CreateTime: 2020/12/17
  */
 public class HttpSessionContext {
 
