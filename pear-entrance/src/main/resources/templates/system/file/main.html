@@ -160,7 +160,7 @@
             }
             let ids = "";
             for (let i = 0; i < data.length; i++) {
-                ids += data[i].userId + ",";
+                ids += data[i].id + ",";
             }
             ids = ids.substr(0, ids.length - 1);
             layer.confirm('确定要删除选中文件', {icon: 3, title: '提示'}, function (index) {
