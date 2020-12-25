@@ -138,10 +138,8 @@
         });
 
         window.renderData = function(code){
-
             typeCode = code;
             $(".empty").hide();
-
             table.render({
                 elem: '#dict-data-table',
                 url: '/system/dictData/data?typeCode=' + typeCode,

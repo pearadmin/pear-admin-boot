@@ -45,12 +45,9 @@
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery', 'element', 'util'], function () {
+    layui.use(['table','jquery', 'element'], function () {
         let table = layui.table;
-        let element = layui.element;
         let form = layui.form;
-        let util = layui.util;
-        let $ = layui.jquery;
 
         let MODULE_PATH = "/system/logging/";
 

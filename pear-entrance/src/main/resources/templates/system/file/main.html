@@ -16,7 +16,7 @@
                 <div class="layui-input-inline">
                     <input type="text" name="username" placeholder="" class="layui-input">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="role-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="file-query">
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
@@ -53,11 +53,6 @@
             class="layui-icon layui-icon-download-circle"></i></a>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
-</script>
-
-<script type="text/html" id="role-enable">
-    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用"
-           lay-filter="role-enable" {{d.enable== '0' ? 'checked' : '' }} >
 </script>
 
 <script type="text/html" id="file-img">
@@ -107,10 +102,6 @@
         table.on('tool(file-table)', function (obj) {
             if (obj.event === 'remove') {
                 window.remove(obj);
-            } else if (obj.event === 'edit') {
-                window.edit(obj);
-            } else if (obj.event === 'power') {
-                window.power(obj);
             }
         });
 
@@ -124,38 +115,9 @@
             }
         });
 
-        form.on('submit(role-query)', function (data) {
-            table.reload('role-table', {where: data.field})
+        form.on('submit(file-query)', function (data) {
+            table.reload('file-table', {where: data.field})
             return false;
-        });
-
-        form.on('switch(role-enable)', function (obj) {
-            let operate;
-
-            if (obj.elem.checked) {
-                operate = "enable";
-            } else {
-                operate = "disable";
-            }
-
-            let loading = layer.load()
-
-            $.ajax({
-                url: '/system/role/' + operate,
-                data: JSON.stringify({roleId: this.value}),
-                dataType: 'json',
-                contentType: 'application/json',
-                type: 'put',
-                success: function (result) {
-                    layer.close(loading);
-                    if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                        });
-                    } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
-                    }
-                }
-            })
         });
 
         window.add = function () {
@@ -165,26 +127,6 @@
                 shade: 0.1,
                 area: ['500px', '400px'],
                 content: MODULE_PATH + 'add'
-            });
-        }
-
-        window.power = function (obj) {
-            layer.open({
-                type: 2,
-                title: '授权',
-                shade: 0.1,
-                area: ['320px', '400px'],
-                content: MODULE_PATH + 'power?roleId=' + obj.data["roleId"]
-            });
-        }
-
-        window.edit = function (obj) {
-            layer.open({
-                type: 2,
-                title: '修改',
-                shade: 0.1,
-                area: ['500px', '400px'],
-                content: MODULE_PATH + 'edit?roleId=' + obj.data['roleId']
             });
         }
 
@@ -221,7 +163,7 @@
                 ids += data[i].userId + ",";
             }
             ids = ids.substr(0, ids.length - 1);
-            layer.confirm('确定要删除这些用户', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除选中文件', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
@@ -232,7 +174,7 @@
                         layer.close(loading);
                         if (result.success) {
                             layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                                table.reload('user-table');
+                                table.reload('file-table');
                             });
                         } else {
                             layer.msg(result.msg, {icon: 2, time: 1000});
@@ -243,7 +185,7 @@
         }
 
         window.refresh = function () {
-            table.reload('role-table');
+            table.reload('file-table');
         }
     })
 </script>

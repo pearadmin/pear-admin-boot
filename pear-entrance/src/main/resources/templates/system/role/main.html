@@ -120,15 +120,12 @@
 
         form.on('switch(role-enable)', function (obj) {
             let operate;
-
             if (obj.elem.checked) {
                 operate = "enable";
             } else {
                 operate = "disable";
             }
-
             let loading = layer.load()
-
             $.ajax({
                 url: '/system/role/' + operate,
                 data: JSON.stringify({roleId: this.value}),
@@ -138,8 +135,7 @@
                 success: function (result) {
                     layer.close(loading);
                     if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                        });
+                        layer.msg(result.msg, {icon: 1, time: 1000});
                     } else {
                         layer.msg(result.msg, {icon: 2, time: 1000});
                     }
@@ -210,7 +206,7 @@
                 ids += data[i].roleId + ",";
             }
             ids = ids.substr(0, ids.length - 1);
-            layer.confirm('确定要删除这些用户', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除选中角色', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({

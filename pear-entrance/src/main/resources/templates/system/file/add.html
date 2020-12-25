@@ -99,11 +99,8 @@
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
                     parent.layui.table.reload("file-table");
                 })
-            }, progress: function (n, elem) {
-                let percent = n + '%'
-                console.log(elem);
-                console.log(percent);
-            }, before: function () {
+            },
+            before: function () {
                 layerIndex = layer.load();
             }
         });
