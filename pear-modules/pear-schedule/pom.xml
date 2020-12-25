@@ -9,6 +9,7 @@
         <artifactId>pear-modules</artifactId>
         <version>1.0.0-RELEASE</version>
     </parent>
+    
     <!-- Maven 配置信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-schedule</artifactId>

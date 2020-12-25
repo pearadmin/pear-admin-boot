@@ -18,6 +18,9 @@ public class CommonTask implements BaseTaskService {
 
     private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
 
+    /**
+     * 任务实现
+     * */
     @Override
     public void run(String params) {
         log.info("Params === >> " + params);

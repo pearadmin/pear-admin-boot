@@ -44,7 +44,6 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        // 记录日志
         Logging logging = new Logging();
         logging.setId(SequenceUtil.makeStringId());
         logging.setTitle("登录");
@@ -54,22 +53,17 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
         logging.setLoggingType(LoggingType.LOGIN);
         loggingService.save(logging);
 
-        // 更新用户
         SysUser sysUser = new SysUser();
-        // 获取最近登录时间
-        LocalDateTime now = LocalDateTime.now();
         sysUser.setUserId(((SysUser) SecurityUtil.currentUser().getPrincipal()).getUserId());
-        sysUser.setLastTime(now);
+        sysUser.setLastTime(LocalDateTime.now());
         sysUserService.update(sysUser);
 
         SysUser currentUser = (SysUser) authentication.getPrincipal();
-        currentUser.setLastTime(now);
+        currentUser.setLastTime(LocalDateTime.now());
         request.getSession().setAttribute("currentUser", authentication.getPrincipal());
-
         HttpSessionUtil.expiredSession(request, sessionRegistry);
 
-        // 响应消息
-        Result result = Result.success(200, "登录成功");
+        Result result = Result.success("登录成功");
         ServletUtil.write(JSON.toJSONString(result));
     }
 }
