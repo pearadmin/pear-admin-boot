@@ -60,7 +60,7 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
         try {
             loadingCacheSysDictData.refresh(typeCode);
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
@@ -101,15 +101,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     @Override
     public Boolean remove(String id) {
         SysDictData sysDictData=  sysDictDataMapper.selectById(id);
-        int result=0;
         if(sysDictData!=null) {
-             result = sysDictDataMapper.deleteById(id);
+             sysDictDataMapper.deleteById(id);
         }
-        if(result>0){
-            refreshChcheTypeCode(sysDictData.getTypeCode());
-            return true;
-        }else{
-            return false;
-        }
+        refreshChcheTypeCode(sysDictData.getTypeCode());
+        return true;
     }
 }

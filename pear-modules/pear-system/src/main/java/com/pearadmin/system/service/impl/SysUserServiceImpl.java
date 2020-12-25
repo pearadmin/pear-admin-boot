@@ -100,13 +100,9 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     @Transactional
     public boolean remove(String id) {
-        int userRoleResult = sysUserRoleMapper.deleteByUserId(id);
-        int userResult = sysUserMapper.deleteById(id);
-        if(userRoleResult>0 && userResult>0){
-            return true;
-        }else{
-            return false;
-        }
+        sysUserRoleMapper.deleteByUserId(id);
+        sysUserMapper.deleteById(id);
+        return true;
     }
 
     /**
@@ -117,13 +113,9 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     @Transactional
     public boolean batchRemove(String[] ids) {
-        int userResult = sysUserMapper.deleteByIds(ids);
-        int userRoleResult  = sysUserRoleMapper.deleteByUserIds(ids);
-        if(userResult>0 && userRoleResult>0){
-            return true;
-        }else{
-            return false;
-        }
+        sysUserMapper.deleteByIds(ids);
+        sysUserRoleMapper.deleteByUserIds(ids);
+        return true;
     }
 
     /**

@@ -91,13 +91,9 @@ public class SysDeptServiceImpl implements ISysDeptService {
     @Override
     @Transactional
     public Boolean remove(String id) {
-        int deptResult = sysDeptMapper.deleteById(id);
-        int deptUserResult = sysUserMapper.resetDeptByDeptId(id);
-        if(deptResult>0 && deptUserResult>0){
-            return true;
-        }else{
-            return false;
-        }
+        sysDeptMapper.deleteById(id);
+        sysUserMapper.resetDeptByDeptId(id);
+        return true;
     }
 
     /**
@@ -106,13 +102,10 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Return: Boolean
      * */
     @Override
+    @Transactional
     public boolean batchRemove(String[] ids) {
-        int deptResult = sysDeptMapper.deleteByIds(ids);
-        int deptUserResult = sysUserMapper.resetDeptByDeptIds(ids);
-        if(deptResult>0 && deptUserResult>0){
-            return true;
-        }else{
-            return false;
-        }
+        sysDeptMapper.deleteByIds(ids);
+        sysUserMapper.resetDeptByDeptIds(ids);
+        return true;
     }
 }

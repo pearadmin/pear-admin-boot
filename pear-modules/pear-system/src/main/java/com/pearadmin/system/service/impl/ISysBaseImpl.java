@@ -11,13 +11,8 @@ import com.pearadmin.system.domain.*;
 import com.pearadmin.system.mapper.*;
 import com.pearadmin.system.service.ISysDictDataService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +23,9 @@ import java.util.List;
  * */
 @Service
 public class ISysBaseImpl implements ISysBaseAPI {
-    @Autowired
-    LoggingService loggingService;
+
+    @Resource
+    private LoggingService loggingService;
     @Resource
     private SysUserMapper sysUserMapper;
     @Resource

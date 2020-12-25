@@ -165,14 +165,10 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     @Transactional
     public Boolean remove(String id) {
-        int roleResult = sysRoleMapper.deleteById(id);
-        int userRoleResult = sysUserRoleMapper.deleteByRoleId(id);
-        int rolePowerResult = sysRolePowerMapper.deleteByRoleId(id);
-        if(roleResult>0 && userRoleResult>0 && rolePowerResult>0){
-            return true;
-        }else{
-            return false;
-        }
+        sysRoleMapper.deleteById(id);
+        sysUserRoleMapper.deleteByRoleId(id);
+        sysRolePowerMapper.deleteByRoleId(id);
+        return true;
     }
 
     /**
@@ -183,14 +179,10 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     @Transactional
     public boolean batchRemove(String[] ids) {
-        int roleResult = sysRoleMapper.deleteByIds(ids);
-        int userRoleResult = sysUserRoleMapper.deleteByRoleIds(ids);
-        int rolePowerResult = sysRolePowerMapper.deleteByRoleIds(ids);
-        if(roleResult>0 && userRoleResult>0 && rolePowerResult>0){
-            return true;
-        }else{
-            return false;
-        }
+        sysRoleMapper.deleteByIds(ids);
+        sysUserRoleMapper.deleteByRoleIds(ids);
+        sysRolePowerMapper.deleteByRoleIds(ids);
+        return true;
     }
 
 }
