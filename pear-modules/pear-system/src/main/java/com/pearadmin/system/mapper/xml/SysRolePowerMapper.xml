@@ -30,7 +30,7 @@
     <!-- 根据 Id 删除角色数据 -->
     <delete id="deleteByRoleIds" parameterType="string">
           delete from sys_role_power where role_id in
-        <foreach collection ="roleIds" item="roleId" separator =",">
+        <foreach collection ="roleIds" item="roleId" open="(" separator="," close=")">
             #{roleId}
         </foreach >
     </delete>
@@ -43,7 +43,7 @@
     <!-- 根据 Id 删除角色数据 -->
     <delete id="deleteByPowerIds" parameterType="string">
         delete from sys_role_power where power_id in
-        <foreach collection ="powerIds" item="powerId" separator =",">
+        <foreach collection ="powerIds" item="powerId" open="(" separator="," close=")">
             #{powerId}
         </foreach >
     </delete>
