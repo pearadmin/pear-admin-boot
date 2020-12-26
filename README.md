@@ -42,7 +42,7 @@ Spring Boot + Security + MyBatis + Thymeleaf + Activiti 快速开发平台
 | --- | --- | --- | --- | --- | --- |
 |核心框架     |Spring Boot     |已完成     |接口文档     |Swagger     |已完成     |
 |权限管理     |Spring Security     |已完成     |定时任务     |Quartz     |已完成     |
-|流程控制     |Activiti     |开发中     |代码生成     |MyBatis Plus     |开发中     |
+|流程控制     |Activiti     |已完成     |代码生成     |MyBatis Plus     |已完成     |
 
 #### 内置功能
 
