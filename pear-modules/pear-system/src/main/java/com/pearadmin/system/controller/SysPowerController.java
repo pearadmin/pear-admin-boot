@@ -7,6 +7,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.service.ISysPowerService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -90,6 +91,9 @@ public class SysPowerController extends BaseController {
     @PostMapping("save")
     @PreAuthorize("hasPermission('/system/power/add','sys:power:add')")
     public Result save(@RequestBody SysPower sysPower){
+        if(Strings.isBlank(sysPower.getParentId())){
+            return failure("请选择上级菜单");
+        }
         sysPower.setPowerId(SequenceUtil.makeStringId());
         boolean result = sysPowerService.save(sysPower);
         return decide(result);
@@ -103,6 +107,9 @@ public class SysPowerController extends BaseController {
     @PutMapping("update")
     @PreAuthorize("hasPermission('/system/power/edit','sys:power:edit')")
     public Result update(@RequestBody SysPower sysPower){
+        if(Strings.isBlank(sysPower.getParentId())){
+            return failure("请选择上级菜单");
+        }
         boolean result = sysPowerService.update(sysPower);
         return decide(result);
     }
