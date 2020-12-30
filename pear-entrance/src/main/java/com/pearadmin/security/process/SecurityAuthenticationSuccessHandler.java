@@ -42,8 +42,7 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
     private SessionRegistry sessionRegistry;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException{
         Logging logging = new Logging();
         logging.setId(SequenceUtil.makeStringId());
         logging.setTitle("登录");

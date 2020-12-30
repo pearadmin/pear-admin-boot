@@ -19,7 +19,7 @@ public class SecurityExpiredSessionHandler implements SessionInformationExpiredS
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
-    public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
+    public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException {
         redirectStrategy.sendRedirect(event.getRequest(), event.getResponse(), "/login?kickout=1");
     }
 }

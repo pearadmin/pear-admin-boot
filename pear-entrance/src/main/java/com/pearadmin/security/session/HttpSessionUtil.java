@@ -1,6 +1,5 @@
 package com.pearadmin.security.session;
 
-import com.pearadmin.common.web.session.HttpSessionContext;
 import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysUser;
 import org.activiti.engine.impl.util.CollectionUtil;
