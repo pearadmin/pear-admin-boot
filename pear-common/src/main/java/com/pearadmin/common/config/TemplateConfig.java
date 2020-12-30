@@ -15,7 +15,7 @@ import java.io.Serializable;
  * CreateTime: 2020/11/22
  * */
 @Configuration
-public class RedisConfig {
+public class TemplateConfig {
 
     /**
      * Redis 操作模板
