@@ -1,5 +1,8 @@
 package com.pearadmin.api.modules;
 
+import com.pearadmin.security.session.HttpSessionUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pearadmin.system.domain.SysUser;
 import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Describe: 入 口 控 制 器
  * Author: 就 眠 仪 式
@@ -20,14 +25,18 @@ import org.springframework.ui.Model;
 @RequestMapping
 public class EntranceController extends BaseController {
 
+    @Autowired
+    private SessionRegistry sessionRegistry;
+
     /**
      * Describe: 获取登录视图
      * Param: ModelAndView
      * Return: 登录视图
      * */
     @GetMapping("login")
-    public ModelAndView login( ){
+    public ModelAndView login(HttpServletRequest request){
         if (SecurityUtil.isAuthentication()) {
+            HttpSessionUtil.expiredSession(request, sessionRegistry);
             return JumpPage("index");
         }else{
             return JumpPage("login");

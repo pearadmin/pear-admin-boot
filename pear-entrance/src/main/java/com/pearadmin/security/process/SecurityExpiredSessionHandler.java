@@ -20,6 +20,6 @@ public class SecurityExpiredSessionHandler implements SessionInformationExpiredS
 
     @Override
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException {
-        redirectStrategy.sendRedirect(event.getRequest(), event.getResponse(), "/login?kickout=1");
+        redirectStrategy.sendRedirect(event.getRequest(), event.getResponse(), "/login?abnormalout=1");
     }
 }

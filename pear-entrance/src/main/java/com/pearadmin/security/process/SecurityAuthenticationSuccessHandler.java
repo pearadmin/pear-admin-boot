@@ -38,9 +38,6 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
     @Resource
     private ISysUserService sysUserService;
 
-    @Resource
-    private SessionRegistry sessionRegistry;
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException{
         Logging logging = new Logging();
@@ -60,8 +57,6 @@ public class SecurityAuthenticationSuccessHandler implements AuthenticationSucce
         SysUser currentUser = (SysUser) authentication.getPrincipal();
         currentUser.setLastTime(LocalDateTime.now());
         request.getSession().setAttribute("currentUser", authentication.getPrincipal());
-        HttpSessionUtil.expiredSession(request, sessionRegistry);
-
         Result result = Result.success("登录成功");
         ServletUtil.write(JSON.toJSONString(result));
     }
