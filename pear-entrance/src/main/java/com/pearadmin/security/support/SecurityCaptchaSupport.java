@@ -8,7 +8,7 @@ import com.wf.captcha.utils.CaptchaUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
-import com.pearadmin.common.tools.text.StringUtils;
+import com.pearadmin.common.tools.text.StringUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -40,7 +40,7 @@ public class SecurityCaptchaSupport extends OncePerRequestFilter implements Filt
         if (method.equalsIgnoreCase(request.getMethod()) && defaultFilterProcessUrl.equals(request.getServletPath())) {
             String Captcha = ServletUtil.getRequest().getParameter("captcha");
             response.setContentType("application/json;charset=UTF-8");
-            if (StringUtils.isEmpty(Captcha)){
+            if (StringUtil.isEmpty(Captcha)){
                 response.getWriter().write(JSON.toJSONString(Result.failure("验证码不能为空!")));
                 return;
             }

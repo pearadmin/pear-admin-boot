@@ -17,11 +17,12 @@ spring:
   profiles:
     # 运 行 环 境
     active: dev
+  # 工 作 流 程
   activiti:
     # 是 否 检 查 流 程 定 义 文 件
     check-process-definitions: false
 
-# mybatis 配 置
+# Mybatis 配 置
 mybatis:
   # 配 置 扫 描
   mapper-locations: classpath*:**/xml/**.xml
@@ -58,20 +59,20 @@ pear:
       email: Jmys1992@gmail.com
   # 权 限 配 置
   security:
-    #开启超级管理员账号--配置之后不需要验证权限
+    # 开 启 超 级 管 理 员 账 号 -- 不需要验证权限
     super-auth-open: true
-    #超级管理员账号--配置之后不需要验证权限
+    # 超 级 管 理 员 账 号 -- 不需要验证权限
     super-admin: admin
-    #记住密码key
+    # 记 住 密 码 KEY
     remember-key: oanus_admins_2020_perar_admins_springboot
     # 不 需 要 权 限 拦 截 的 接 口 配 置
     open-api:
-      - /login/**  # 开放 登录 接口
-      - /system/captcha/** # 开放 验证码生成 接口
-      - /assets/** # 开放 静态资源
-      - /admin/** # 开放 静态资源
-      - /component/** # 开放 静态资源
-      - /favicon.ico # 开放 Logo
+      - /login/**  # 开放登录接口
+      - /system/captcha/** # 开放验证码接口
+      - /assets/** # 开放静态资源
+      - /admin/** # 开放静态资源
+      - /component/** # 开放静态资源
+      - /favicon.ico # 开放FAVICON
   # 上 传 配 置
   upload:
     # 当前系统环境

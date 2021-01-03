@@ -6,7 +6,7 @@ import java.util.List;
 import com.pearadmin.common.constant.GeneratorConstant;
 import com.pearadmin.common.tools.date.DateUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
-import com.pearadmin.common.tools.text.StringUtils;
+import com.pearadmin.common.tools.text.StringUtil;
 import com.pearadmin.generator.config.GenConfig;
 import com.pearadmin.generator.domain.GenTable;
 import com.pearadmin.generator.domain.GenTableColumn;
@@ -46,9 +46,9 @@ public class VelocityUtils
         VelocityContext velocityContext = new VelocityContext();
         velocityContext.put("tplCategory", genTable.getTplCategory());
         velocityContext.put("tableName", genTable.getTableName());
-        velocityContext.put("functionName", StringUtils.isNotEmpty(functionName) ? functionName : "【请填写功能名称】");
+        velocityContext.put("functionName", StringUtil.isNotEmpty(functionName) ? functionName : "【请填写功能名称】");
         velocityContext.put("ClassName", genTable.getClassName());
-        velocityContext.put("className", StringUtils.uncapitalize(genTable.getClassName()));
+        velocityContext.put("className", StringUtil.uncapitalize(genTable.getClassName()));
         velocityContext.put("moduleName", genTable.getModuleName());
         velocityContext.put("businessName", genTable.getBusinessName());
         velocityContext.put("basePackage", getPackagePrefix(packageName));
@@ -143,57 +143,57 @@ public class VelocityUtils
         // 业务名称
         String businessName = genTable.getBusinessName();
 
-        String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
+        String javaPath = PROJECT_PATH + "/" + StringUtil.replace(packageName, ".", "/");
         String mybatisPath = MYBATIS_PATH + "/" + moduleName;
         String htmlPath = TEMPLATES_PATH + "/" + moduleName + "/" + businessName;
 
         if (template.contains("domain.java.vm"))
         {
-            fileName = StringUtils.format("{}/domain/{}.java", javaPath, className);
+            fileName = StringUtil.format("{}/domain/{}.java", javaPath, className);
         }
-        if (template.contains("sub-domain.java.vm") && StringUtils.equals(GeneratorConstant.TPL_SUB, genTable.getTplCategory()))
+        if (template.contains("sub-domain.java.vm") && StringUtil.equals(GeneratorConstant.TPL_SUB, genTable.getTplCategory()))
         {
-            fileName = StringUtils.format("{}/domain/{}.java", javaPath, genTable.getSubTable().getClassName());
+            fileName = StringUtil.format("{}/domain/{}.java", javaPath, genTable.getSubTable().getClassName());
         }
         else if (template.contains("mapper.java.vm"))
         {
-            fileName = StringUtils.format("{}/mapper/{}Mapper.java", javaPath, className);
+            fileName = StringUtil.format("{}/mapper/{}Mapper.java", javaPath, className);
         }
         else if (template.contains("service.java.vm"))
         {
-            fileName = StringUtils.format("{}/service/I{}Service.java", javaPath, className);
+            fileName = StringUtil.format("{}/service/I{}Service.java", javaPath, className);
         }
         else if (template.contains("serviceImpl.java.vm"))
         {
-            fileName = StringUtils.format("{}/service/impl/{}ServiceImpl.java", javaPath, className);
+            fileName = StringUtil.format("{}/service/impl/{}ServiceImpl.java", javaPath, className);
         }
         else if (template.contains("controller.java.vm"))
         {
-            fileName = StringUtils.format("{}/controller/{}Controller.java", javaPath, className);
+            fileName = StringUtil.format("{}/controller/{}Controller.java", javaPath, className);
         }
         else if (template.contains("mapper.xml.vm"))
         {
-            fileName = StringUtils.format("{}/mapper/xml/{}Mapper.xml", javaPath, className);
+            fileName = StringUtil.format("{}/mapper/xml/{}Mapper.xml", javaPath, className);
         }
         else if (template.contains("list.html.vm"))
         {
-            fileName = StringUtils.format("{}/main.html", htmlPath, businessName);
+            fileName = StringUtil.format("{}/main.html", htmlPath, businessName);
         }
         else if (template.contains("list-tree.html.vm"))
         {
-            fileName = StringUtils.format("{}/main.html", htmlPath, businessName);
+            fileName = StringUtil.format("{}/main.html", htmlPath, businessName);
         }
         else if (template.contains("tree.html.vm"))
         {
-            fileName = StringUtils.format("{}/main.html", htmlPath);
+            fileName = StringUtil.format("{}/main.html", htmlPath);
         }
         else if (template.contains("add.html.vm"))
         {
-            fileName = StringUtils.format("{}/add.html", htmlPath);
+            fileName = StringUtil.format("{}/add.html", htmlPath);
         }
         else if (template.contains("edit.html.vm"))
         {
-            fileName = StringUtils.format("{}/edit.html", htmlPath);
+            fileName = StringUtil.format("{}/edit.html", htmlPath);
         }
         else if (template.contains("sql.vm"))
         {
@@ -226,7 +226,7 @@ public class VelocityUtils
     public static String getPackagePrefix(String packageName)
     {
         int lastIndex = packageName.lastIndexOf(".");
-        String basePackage = StringUtils.substring(packageName, 0, lastIndex);
+        String basePackage = StringUtil.substring(packageName, 0, lastIndex);
         return basePackage;
     }
 
@@ -241,7 +241,7 @@ public class VelocityUtils
         List<GenTableColumn> columns = genTable.getColumns();
         GenTable subGenTable = genTable.getSubTable();
         HashSet<String> importList = new HashSet<String>();
-        if (StringUtils.isNotNull(subGenTable))
+        if (StringUtil.isNotNull(subGenTable))
         {
             importList.add("java.util.List");
         }
@@ -268,7 +268,7 @@ public class VelocityUtils
      */
     public static String getPermissionPrefix(String moduleName, String businessName)
     {
-        return StringUtils.format("{}:{}", moduleName, businessName);
+        return StringUtil.format("{}:{}", moduleName, businessName);
     }
 
     /**
@@ -278,7 +278,7 @@ public class VelocityUtils
      */
     public static String getParentMenuId(JSONObject paramsObj)
     {
-        if (StringUtils.isNotEmpty(paramsObj) && paramsObj.containsKey(GeneratorConstant.PARENT_MENU_ID))
+        if (StringUtil.isNotEmpty(paramsObj) && paramsObj.containsKey(GeneratorConstant.PARENT_MENU_ID))
         {
             return paramsObj.getString(GeneratorConstant.PARENT_MENU_ID);
         }
@@ -294,9 +294,9 @@ public class VelocityUtils
     {
         if (paramsObj.containsKey(GeneratorConstant.TREE_CODE))
         {
-            return StringUtils.toCamelCase(paramsObj.getString(GeneratorConstant.TREE_CODE));
+            return StringUtil.toCamelCase(paramsObj.getString(GeneratorConstant.TREE_CODE));
         }
-        return StringUtils.EMPTY;
+        return StringUtil.EMPTY;
     }
 
     /**
@@ -308,9 +308,9 @@ public class VelocityUtils
     {
         if (paramsObj.containsKey(GeneratorConstant.TREE_PARENT_CODE))
         {
-            return StringUtils.toCamelCase(paramsObj.getString(GeneratorConstant.TREE_PARENT_CODE));
+            return StringUtil.toCamelCase(paramsObj.getString(GeneratorConstant.TREE_PARENT_CODE));
         }
-        return StringUtils.EMPTY;
+        return StringUtil.EMPTY;
     }
 
     /**
@@ -322,9 +322,9 @@ public class VelocityUtils
     {
         if (paramsObj.containsKey(GeneratorConstant.TREE_NAME))
         {
-            return StringUtils.toCamelCase(paramsObj.getString(GeneratorConstant.TREE_NAME));
+            return StringUtil.toCamelCase(paramsObj.getString(GeneratorConstant.TREE_NAME));
         }
-        return StringUtils.EMPTY;
+        return StringUtil.EMPTY;
     }
 
     /**

@@ -11,7 +11,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.text.Convert;
-import com.pearadmin.common.tools.text.StringUtils;
+import com.pearadmin.common.tools.text.StringUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.ResultSelect;
@@ -21,7 +21,6 @@ import com.pearadmin.generator.domain.GenTable;
 import com.pearadmin.generator.domain.GenTableColumn;
 import com.pearadmin.generator.service.IGenTableService;
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -122,7 +121,7 @@ public class GenController extends BaseController {
         List<GenTable> genTables = genTableService.selectGenTableAll();
         List<ResultSelect> cxSelect = new ArrayList<ResultSelect>();
         for (GenTable genTable : genTables) {
-            if (!StringUtils.equals(table.getTableName(), genTable.getTableName())) {
+            if (!StringUtil.equals(table.getTableName(), genTable.getTableName())) {
                 ResultSelect cxTable = new ResultSelect(genTable.getTableName(), genTable.getTableName() + '：' + genTable.getTableComment());
                 List<ResultSelect> cxColumns = new ArrayList<ResultSelect>();
                 for (GenTableColumn tableColumn : genTable.getColumns()) {

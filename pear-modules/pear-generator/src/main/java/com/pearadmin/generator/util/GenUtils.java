@@ -2,7 +2,7 @@ package com.pearadmin.generator.util;
 
 import java.util.Arrays;
 import com.pearadmin.common.constant.GeneratorConstant;
-import com.pearadmin.common.tools.text.StringUtils;
+import com.pearadmin.common.tools.text.StringUtil;
 import com.pearadmin.generator.config.GenConfig;
 import com.pearadmin.generator.domain.GenTable;
 import com.pearadmin.generator.domain.GenTableColumn;
@@ -39,7 +39,7 @@ public class GenUtils
         column.setTableId(table.getTableId());
         column.setCreateBy(table.getCreateBy());
         // 设置java字段名
-        column.setJavaField(StringUtils.toCamelCase(columnName));
+        column.setJavaField(StringUtil.toCamelCase(columnName));
 
         if (arraysContains(GeneratorConstant.COLUMNTYPE_STR, dataType))
         {
@@ -58,7 +58,7 @@ public class GenUtils
             column.setHtmlType(GeneratorConstant.HTML_INPUT);
 
             // 如果是浮点型
-            String[] str = StringUtils.split(StringUtils.substringBetween(column.getColumnType(), "(", ")"), ",");
+            String[] str = StringUtil.split(StringUtil.substringBetween(column.getColumnType(), "(", ")"), ",");
             if (str != null && str.length == 2 && Integer.parseInt(str[1]) > 0)
             {
                 column.setJavaType(GeneratorConstant.TYPE_BIGDECIMAL);
@@ -95,23 +95,23 @@ public class GenUtils
         }
 
         // 查询字段类型
-        if (StringUtils.endsWithIgnoreCase(columnName, "name"))
+        if (StringUtil.endsWithIgnoreCase(columnName, "name"))
         {
             column.setQueryType(GeneratorConstant.QUERY_LIKE);
         }
         // 状态字段设置单选框
-        if (StringUtils.endsWithIgnoreCase(columnName, "status"))
+        if (StringUtil.endsWithIgnoreCase(columnName, "status"))
         {
             column.setHtmlType(GeneratorConstant.HTML_RADIO);
         }
         // 类型&性别字段设置下拉框
-        else if (StringUtils.endsWithIgnoreCase(columnName, "type")
-                || StringUtils.endsWithIgnoreCase(columnName, "sex"))
+        else if (StringUtil.endsWithIgnoreCase(columnName, "type")
+                || StringUtil.endsWithIgnoreCase(columnName, "sex"))
         {
             column.setHtmlType(GeneratorConstant.HTML_SELECT);
         }
         // 文件字段设置上传控件
-        else if (StringUtils.endsWithIgnoreCase(columnName, "file"))
+        else if (StringUtil.endsWithIgnoreCase(columnName, "file"))
         {
             column.setHtmlType(GeneratorConstant.HTML_UPLOAD);
         }
@@ -139,7 +139,7 @@ public class GenUtils
     {
         int lastIndex = packageName.lastIndexOf(".");
         int nameLength = packageName.length();
-        String moduleName = StringUtils.substring(packageName, lastIndex + 1, nameLength);
+        String moduleName = StringUtil.substring(packageName, lastIndex + 1, nameLength);
         return moduleName;
     }
 
@@ -153,7 +153,7 @@ public class GenUtils
     {
         int lastIndex = tableName.lastIndexOf("_");
         int nameLength = tableName.length();
-        String businessName = StringUtils.substring(tableName, lastIndex + 1, nameLength);
+        String businessName = StringUtil.substring(tableName, lastIndex + 1, nameLength);
         return businessName;
     }
 
@@ -167,12 +167,12 @@ public class GenUtils
     {
         boolean autoRemovePre = GenConfig.getAutoRemovePre();
         String tablePrefix = GenConfig.getTablePrefix();
-        if (autoRemovePre && StringUtils.isNotEmpty(tablePrefix))
+        if (autoRemovePre && StringUtil.isNotEmpty(tablePrefix))
         {
-            String[] searchList = StringUtils.split(tablePrefix, ",");
+            String[] searchList = StringUtil.split(tablePrefix, ",");
             tableName = replaceFirst(tableName, searchList);
         }
-        return StringUtils.convertToCamelCase(tableName);
+        return StringUtil.convertToCamelCase(tableName);
     }
 
     /**
@@ -214,9 +214,9 @@ public class GenUtils
      */
     public static String getDbType(String columnType)
     {
-        if (StringUtils.indexOf(columnType, "(") > 0)
+        if (StringUtil.indexOf(columnType, "(") > 0)
         {
-            return StringUtils.substringBefore(columnType, "(");
+            return StringUtil.substringBefore(columnType, "(");
         }
         else
         {
@@ -232,9 +232,9 @@ public class GenUtils
      */
     public static Integer getColumnLength(String columnType)
     {
-        if (StringUtils.indexOf(columnType, "(") > 0)
+        if (StringUtil.indexOf(columnType, "(") > 0)
         {
-            String length = StringUtils.substringBetween(columnType, "(", ")");
+            String length = StringUtil.substringBetween(columnType, "(", ")");
             return Integer.valueOf(length);
         }
         else
@@ -254,7 +254,7 @@ public class GenUtils
         String[] values = new String[length];
         for (int i = 0; i < length; i++)
         {
-            values[i] = StringUtils.EMPTY;
+            values[i] = StringUtil.EMPTY;
         }
         return values;
     }
