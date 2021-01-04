@@ -13,7 +13,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.ResultTable;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.domain.SysMenu;
-import com.pearadmin.system.dto.EditPassword;
+import com.pearadmin.system.param.EditPassword;
 import com.pearadmin.system.service.ISysRoleService;
 import com.pearadmin.system.service.ISysUserService;
 import io.swagger.annotations.Api;

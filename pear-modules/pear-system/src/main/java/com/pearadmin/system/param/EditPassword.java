@@ -1,4 +1,4 @@
-package com.pearadmin.system.dto;
+package com.pearadmin.system.param;
 
 import lombok.Getter;
 import lombok.Setter;
