@@ -2,7 +2,7 @@ package com.pearadmin.generator.util;
 
 import java.util.Properties;
 
-import com.pearadmin.common.constant.CharsetConstant;
+import com.pearadmin.common.constant.SystemConstant;
 import org.apache.velocity.app.Velocity;
 
 /**
@@ -21,8 +21,8 @@ public class VelocityInitializer
         try
         {
             p.setProperty("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-            p.setProperty(Velocity.ENCODING_DEFAULT, CharsetConstant.UTF8);
-            p.setProperty(Velocity.OUTPUT_ENCODING, CharsetConstant.UTF8);
+            p.setProperty(Velocity.ENCODING_DEFAULT, SystemConstant.UTF8);
+            p.setProperty(Velocity.OUTPUT_ENCODING, SystemConstant.UTF8);
             Velocity.init(p);
         }
         catch (Exception e)

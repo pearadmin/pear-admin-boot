@@ -3,7 +3,7 @@ package com.pearadmin.schedule.controller;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.common.web.domain.response.result.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleLogBean;
 import com.pearadmin.schedule.service.IScheduleLogService;
 import org.springframework.security.access.prepost.PreAuthorize;

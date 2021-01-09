@@ -5,7 +5,7 @@ import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.common.web.domain.response.result.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleJobBean;
 import com.pearadmin.schedule.service.IScheduleJobService;
 import org.springframework.security.access.prepost.PreAuthorize;

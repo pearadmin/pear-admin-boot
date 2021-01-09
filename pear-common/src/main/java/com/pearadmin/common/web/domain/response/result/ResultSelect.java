@@ -1,13 +1,13 @@
-package com.pearadmin.common.web.domain.response;
+package com.pearadmin.common.web.domain.response.result;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * CxSelect树结构实体类
- * 
- * @author ruoyi
- */
+ * Describe: 前 端 下 拉 树
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class ResultSelect implements Serializable
 {
     private static final long serialVersionUID = 1L;

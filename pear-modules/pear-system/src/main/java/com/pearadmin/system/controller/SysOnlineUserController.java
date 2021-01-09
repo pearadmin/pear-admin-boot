@@ -2,12 +2,11 @@ package com.pearadmin.system.controller;
 
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.common.web.domain.response.result.ResultTable;
 import com.pearadmin.common.web.session.HttpSessionContext;
 import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysOnlineUser;
 import com.pearadmin.system.domain.SysUser;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;

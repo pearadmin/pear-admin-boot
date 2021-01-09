@@ -2,9 +2,9 @@ package com.pearadmin.system.controller;
 
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
-import com.pearadmin.common.web.domain.response.ResuTree;
+import com.pearadmin.common.web.domain.response.result.ResuTree;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.common.web.domain.response.result.ResultTable;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.service.ISysPowerService;
 import org.apache.logging.log4j.util.Strings;

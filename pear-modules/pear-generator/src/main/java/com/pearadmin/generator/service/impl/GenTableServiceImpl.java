@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import com.pearadmin.common.constant.CharsetConstant;
 import com.pearadmin.common.constant.GeneratorConstant;
+import com.pearadmin.common.constant.SystemConstant;
 import com.pearadmin.common.exception.base.BusinessException;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.text.CharsetKit;
@@ -213,7 +213,7 @@ public class GenTableServiceImpl implements IGenTableService
         {
             // 渲染模板
             StringWriter sw = new StringWriter();
-            Template tpl = Velocity.getTemplate(template, CharsetConstant.UTF8);
+            Template tpl = Velocity.getTemplate(template, SystemConstant.UTF8);
             tpl.merge(context, sw);
             dataMap.put(template, sw.toString());
         }
@@ -262,7 +262,7 @@ public class GenTableServiceImpl implements IGenTableService
             if (!StringUtil.contains(template, "sql.vm"))
             {
                 StringWriter sw = new StringWriter();
-                Template tpl = Velocity.getTemplate(template, CharsetConstant.UTF8);
+                Template tpl = Velocity.getTemplate(template, SystemConstant.UTF8);
                 tpl.merge(context, sw);
                 try
                 {
@@ -275,7 +275,7 @@ public class GenTableServiceImpl implements IGenTableService
                 }
             }else  if (StringUtil.contains(template, "sql.vm")){
                 StringWriter sw = new StringWriter();
-                Template tpl = Velocity.getTemplate(template, CharsetConstant.UTF8);
+                Template tpl = Velocity.getTemplate(template, SystemConstant.UTF8);
                 tpl.merge(context, sw);
                 System.out.println("生成的sql:--------\n"+sw);
             }
@@ -320,12 +320,12 @@ public class GenTableServiceImpl implements IGenTableService
         for (String template : templates)
         {
             StringWriter sw = new StringWriter();
-            Template tpl = Velocity.getTemplate(template, CharsetConstant.UTF8);
+            Template tpl = Velocity.getTemplate(template, SystemConstant.UTF8);
             tpl.merge(context, sw);
             try
             {
                 zip.putNextEntry(new ZipEntry(VelocityUtils.getFileName(template, table)));
-                IOUtils.write(sw.toString(), zip, CharsetConstant.UTF8);
+                IOUtils.write(sw.toString(), zip, SystemConstant.UTF8);
                 IOUtils.closeQuietly(sw);
                 zip.flush();
                 zip.closeEntry();

@@ -5,7 +5,7 @@ import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.ResultTable;
+import com.pearadmin.common.web.domain.response.result.ResultTable;
 import com.pearadmin.system.domain.SysConfig;
 import com.pearadmin.system.service.ISysConfigService;
 import io.swagger.annotations.ApiOperation;

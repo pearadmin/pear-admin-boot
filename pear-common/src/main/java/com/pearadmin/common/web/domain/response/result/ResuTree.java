@@ -1,9 +1,9 @@
-package com.pearadmin.common.web.domain.response;
+package com.pearadmin.common.web.domain.response.result;
 
 import lombok.Data;
 
 /**
- * Describe: Ajax 返回 Dtree 结果封装数据
+ * Describe: 前端 tree 结果封装数据
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
@@ -29,7 +29,6 @@ public class ResuTree {
         private Integer code = 200;
 
         private String message = "默认";
-
     }
 
 }

@@ -1,7 +1,7 @@
 # Tomcat
 server:
   # 端 口
-  port: 8484
+  port: 8080
   # Servlet
   servlet:
     # Session

@@ -6,12 +6,6 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-
-/**
- * Describe: 自定义HttpSessionListener
- * Author: Heiky
- * CreateTime: 2020/12/17
- */
 @WebListener
 public class SecuritySessionListener implements HttpSessionListener {
 

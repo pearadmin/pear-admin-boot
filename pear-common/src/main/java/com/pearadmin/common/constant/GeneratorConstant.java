@@ -7,6 +7,7 @@ package com.pearadmin.common.constant;
  * */
 public class GeneratorConstant
 {
+
     /** 单表（增删改查） */
     public static final String TPL_CRUD = "crud";
 
@@ -103,4 +104,5 @@ public class GeneratorConstant
 
     /** 需要 */
     public static final String REQUIRE = "1";
+
 }

@@ -1,14 +1,12 @@
 package com.pearadmin.common.tools.servlet;
 
-import com.pearadmin.common.constant.CharsetConstant;
+import com.pearadmin.common.constant.SystemConstant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
@@ -71,7 +69,7 @@ public class ServletUtil {
     public static void write(String msg) throws IOException{
         HttpServletResponse response = getResponse();
         response.setHeader("Content-type","application/json;charset=UTF-8");
-        response.setCharacterEncoding(CharsetConstant.UTF8);
+        response.setCharacterEncoding(SystemConstant.UTF8);
         response.getWriter().write(msg);
     }
 

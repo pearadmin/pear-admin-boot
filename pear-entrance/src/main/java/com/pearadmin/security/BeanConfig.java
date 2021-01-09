@@ -17,11 +17,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import javax.annotation.Resource;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-/**
- * Describe: Security Configuration 配置扩展 (Security Configuration 部分)
- * Author: Heiky
- * CreateTime: 2020/12/17
- */
 @Configuration
 public class BeanConfig {
 

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties("pear.upload")
-public class UploadProperty {
+public class TemplateProperty {
 
     /**
      * 当前系统环境

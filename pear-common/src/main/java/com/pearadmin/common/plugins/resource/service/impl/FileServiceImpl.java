@@ -1,6 +1,6 @@
 package com.pearadmin.common.plugins.resource.service.impl;
 
-import com.pearadmin.common.config.proprety.UploadProperty;
+import com.pearadmin.common.config.proprety.TemplateProperty;
 import com.pearadmin.common.plugins.resource.domain.File;
 import com.pearadmin.common.plugins.resource.mapper.FileMapper;
 import com.pearadmin.common.plugins.resource.service.IFileService;
@@ -10,7 +10,6 @@ import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.FileInputStream;
@@ -37,7 +36,7 @@ public class FileServiceImpl implements IFileService {
      * 上 传 可 读 配 置
      * */
     @Resource
-    private UploadProperty uploadProperty;
+    private TemplateProperty uploadProperty;
 
     /**
      * Describe: 文 件 夹 列 表

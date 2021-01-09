@@ -1,8 +1,5 @@
 package com.pearadmin.system.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.plugins.logging.domain.Logging;
@@ -10,8 +7,7 @@ import com.pearadmin.common.plugins.logging.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.ResultTable;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pearadmin.common.web.domain.response.result.ResultTable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Describe: 日 志 控 制 器
