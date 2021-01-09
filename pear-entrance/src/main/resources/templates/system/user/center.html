@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('个人中心')"/>
-    <link rel="stylesheet" href="../../admin/css/other/person.css"/>
+    <link rel="stylesheet" href="../../admin/css/other/center.css"/>
 </head>
 <body class="pear-container">
 <div class="layui-row layui-col-space10">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div style="height: 45px;border-top: 1px whitesmoke solid;text-align: center;line-height: 45px;font-size: 13.5px;">
-                <span>今日事 ，今日毕</span>
+                <span th:text="${userInfo.remark}">今日事 ，今日毕</span>
             </div>
         </div>
         <div class="layui-card">
