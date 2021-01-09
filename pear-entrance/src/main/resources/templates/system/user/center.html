@@ -11,7 +11,7 @@
             <div class="layui-card-body" style="padding: 25px;">
                 <div class="text-center layui-text">
                     <div class="user-info-head" id="userInfoHead">
-                        <img src="../../admin/images/avatar.jpg" width="115px" height="115px" alt="">
+                        <img id="avatar" src="" width="115px" height="115px" alt="">
                     </div>
                     <h2 style="padding-top: 20px;font-size: 20px;" th:text="${userInfo.realName}"></h2>
                     <p style="padding-top: 8px;margin-top: 10px;font-size: 13.5px;">China ， 中国</p>
@@ -140,10 +140,13 @@
     </div>
 </div>
 <th:block th:include="include :: footer"/>
-<script>
+<script th:src="@{/admin/js/headImg.js}"></script>
+<script th:inline="javascript">
     layui.use(['element', 'jquery', 'layer'], function () {
         let $ = layui.jquery;
         let layer = layui.layer;
+
+        $('#avatar').attr("src",makeHeadImgByUserName([[${#authentication.principal.getRealName()}]]));
 
         $(".editPassword").click(function () {
             layer.open({
