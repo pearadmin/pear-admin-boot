@@ -1,10 +1,10 @@
-package com.pearadmin.security;
+package com.pearadmin.secure;
 
 import com.pearadmin.common.config.proprety.SecurityProperty;
-import com.pearadmin.security.domain.SecurityUserDetailsService;
-import com.pearadmin.security.domain.SecurityUserTokenService;
-import com.pearadmin.security.process.*;
-import com.pearadmin.security.support.SecurityCaptchaSupport;
+import com.pearadmin.secure.domain.SecureUserDetailsService;
+import com.pearadmin.secure.domain.SecureUserTokenService;
+import com.pearadmin.secure.process.*;
+import com.pearadmin.secure.support.SecureCaptchaSupport;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import javax.annotation.Resource;
 
 /**
@@ -27,37 +28,37 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties(SecurityProperty.class)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecureConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
      * 配置未登录自定义处理类
      */
     @Resource
-    private SecurityAuthenticationEntryPoint securityAuthenticationEntryPoint;
+    private SecureAuthenticationEntryPoint securityAuthenticationEntryPoint;
 
     /**
      * 登录成功处理类
      */
     @Resource
-    private SecurityAuthenticationSuccessHandler securityAccessSuccessHander;
+    private SecureAuthenticationSuccessHandler securityAccessSuccessHander;
 
     /**
      * 登录失败处理类
      */
     @Resource
-    private SecurityAuthenticationFailureHandler securityAccessFailureHander;
+    private SecureAuthenticationFailureHandler securityAccessFailureHander;
 
     /**
      * 退出登录处理类
      */
     @Resource
-    private SecurityLogoutSuccessHandler securityAccessLogoutHander;
+    private SecureLogoutSuccessHandler securityAccessLogoutHander;
 
     /**
      * 没有权限处理类
      */
     @Resource
-    private SecurityAccessDeniedHandler securityAccessDeniedHander;
+    private SecureAccessDeniedHandler securityAccessDeniedHander;
 
     /**
      * 配置不拦截url
@@ -69,22 +70,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      * 实现userservice
      */
     @Resource
-    private SecurityUserDetailsService securityUserDetailsService;
+    private SecureUserDetailsService securityUserDetailsService;
 
     /**
      * remember me redis持久化
      */
     @Resource
-    private SecurityUserTokenService securityUserTokenService;
+    private SecureUserTokenService securityUserTokenService;
 
     /**
      * 自定义验证码验证
      */
     @Resource
-    private SecurityCaptchaSupport securityCaptchaSupport;
+    private SecureCaptchaSupport securityCaptchaSupport;
 
     @Resource
-    private SecurityExpiredSessionHandler securityExpiredSessionHandler;
+    private SecureSessionExpiredHandler securityExpiredSessionHandler;
 
     /**
      * 密码加密
@@ -99,10 +100,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private SessionRegistry sessionRegistry;
 
     @Resource
-    private SecurityLogoutHandler securityLogoutHandler;
+    private SecureLogoutHandler securityLogoutHandler;
 
     @Resource
-    private RememberMeAuthenticationSuccessHandler rememberMeAuthenticationSuccessHandler;
+    private SecureRememberMeHandler rememberMeAuthenticationSuccessHandler;
 
 
     /**
@@ -175,6 +176,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // 防止iframe 造成跨域
         http.headers().frameOptions().disable();
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.pearadmin.security.process;
+package com.pearadmin.secure.process;
 
 import com.pearadmin.common.plugins.logging.domain.Logging;
 import com.pearadmin.common.plugins.logging.enums.BusinessType;
@@ -6,7 +6,7 @@ import com.pearadmin.common.plugins.logging.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
-import com.pearadmin.security.session.HttpSessionUtil;
+import com.pearadmin.secure.session.SecureSessionService;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.security.core.Authentication;
@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
  * CreateTime: 2020/12/17
  * */
 @Component
-public class RememberMeAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class SecureRememberMeHandler implements AuthenticationSuccessHandler {
 
     @Resource
     private LoggingService loggingService;
@@ -61,7 +61,7 @@ public class RememberMeAuthenticationSuccessHandler implements AuthenticationSuc
         currentUser.setLastTime(now);
         request.getSession().setAttribute("currentUser", currentUser);
 
-        HttpSessionUtil.expiredSession(request, sessionRegistry);
+        SecureSessionService.expiredSession(request, sessionRegistry);
 
         // 注册新的SessionInformation
         sessionRegistry.registerNewSession(request.getSession().getId(), authentication.getPrincipal());

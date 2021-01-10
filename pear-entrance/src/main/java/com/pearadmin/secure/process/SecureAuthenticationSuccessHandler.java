@@ -1,4 +1,4 @@
-package com.pearadmin.security.process;
+package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.common.plugins.logging.domain.Logging;
@@ -9,16 +9,13 @@ import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.security.session.HttpSessionUtil;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -30,7 +27,7 @@ import java.time.LocalDateTime;
  * CreateTime: 2019/10/23
  */
 @Component
-public class SecurityAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class SecureAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Resource
     private LoggingService loggingService;

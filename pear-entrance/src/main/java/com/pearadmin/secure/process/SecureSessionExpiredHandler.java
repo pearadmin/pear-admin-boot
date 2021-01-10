@@ -1,11 +1,11 @@
-package com.pearadmin.security.process;
+package com.pearadmin.secure.process;
 
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.stereotype.Component;
-import javax.servlet.ServletException;
+
 import java.io.IOException;
 
 /**
@@ -14,7 +14,7 @@ import java.io.IOException;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class SecurityExpiredSessionHandler implements SessionInformationExpiredStrategy {
+public class SecureSessionExpiredHandler implements SessionInformationExpiredStrategy {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 

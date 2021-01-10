@@ -1,7 +1,7 @@
-package com.pearadmin.security;
+package com.pearadmin.secure;
 
-import com.pearadmin.security.process.SecurityLogoutHandler;
-import com.pearadmin.security.support.SecurityPermissionEvaluator;
+import com.pearadmin.secure.process.SecureLogoutHandler;
+import com.pearadmin.secure.support.SecurePermissionSupport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.session.SessionRegistry;
@@ -13,28 +13,22 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ITemplateResolver;
-
 import javax.annotation.Resource;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
+/**
+ * Describe: Security 扩展配置
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ */
 @Configuration
-public class BeanConfig {
+public class SecureExtendConfiguration {
 
     /**
      * 注解权限
      */
     @Resource
-    private SecurityPermissionEvaluator securityPermissionEvaluator;
-
-    /**
-     * Describe: 自定义权限注解实现
-     */
-    @Bean
-    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler() {
-        DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
-        handler.setPermissionEvaluator(securityPermissionEvaluator);
-        return handler;
-    }
+    private SecurePermissionSupport securityPermissionEvaluator;
 
     /**
      * Describe: 加密方式
@@ -53,6 +47,26 @@ public class BeanConfig {
     }
 
     /**
+     * 注册HttpSessionEventPublisher，发布HttpSessionEvent
+     */
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
+
+
+
+    /**
+     * Describe: 自定义权限注解实现
+     */
+    @Bean
+    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler() {
+        DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
+        handler.setPermissionEvaluator(securityPermissionEvaluator);
+        return handler;
+    }
+
+    /**
      * thymeleaf security 别名注册，方便前端使用
      */
     @Bean
@@ -65,22 +79,14 @@ public class BeanConfig {
     }
 
     /**
-     * 注册HttpSessionEventPublisher，发布HttpSessionEvent
-     */
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
-    }
-
-    /**
      * 注册自定义的LogoutHandler
      *
      * @param httpSessionEventPublisher
      * @return SecurityLogoutHandler
      */
     @Bean
-    public SecurityLogoutHandler securityLogoutHandler(HttpSessionEventPublisher httpSessionEventPublisher) {
-        return new SecurityLogoutHandler(httpSessionEventPublisher);
+    public SecureLogoutHandler securityLogoutHandler(HttpSessionEventPublisher httpSessionEventPublisher) {
+        return new SecureLogoutHandler(httpSessionEventPublisher);
     }
 
     /**
@@ -97,4 +103,5 @@ public class BeanConfig {
                 });
         return executor;
     }
+
 }

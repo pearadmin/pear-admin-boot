@@ -1,4 +1,4 @@
-package com.pearadmin.security.process;
+package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
@@ -28,7 +28,7 @@ import java.io.IOException;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class SecurityAuthenticationFailureHandler implements AuthenticationFailureHandler {
+public class SecureAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     /**
      * 引 入 日 志 服 务

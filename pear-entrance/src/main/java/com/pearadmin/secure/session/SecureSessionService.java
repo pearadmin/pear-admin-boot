@@ -1,4 +1,4 @@
-package com.pearadmin.security.session;
+package com.pearadmin.secure.session;
 
 import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysUser;
@@ -10,18 +10,12 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * Describe: Session 自定义工具类
- * Author: Heiky
- * CreateTime: 2020/12/17
- * */
-public class HttpSessionUtil {
+ * Describe: Security Session 操作服务
+ * Author: 就眠仪式
+ * CreateTime: 2019/10/23
+ */
+public class SecureSessionService {
 
-    /**
-     * 从sessionRegistry中清除session信息
-     *
-     * @param request
-     * @param sessionRegistry
-     */
     public static void expiredSession(HttpServletRequest request, SessionRegistry sessionRegistry) {
         SysUser currentUser = (SysUser) request.getSession().getAttribute("currentUser");
         String sessionId = request.getSession().getId();
@@ -50,5 +44,4 @@ public class HttpSessionUtil {
             }
         }
     }
-
 }

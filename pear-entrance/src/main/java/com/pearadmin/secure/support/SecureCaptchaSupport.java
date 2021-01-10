@@ -1,4 +1,4 @@
-package com.pearadmin.security.support;
+package com.pearadmin.secure.support;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,7 +20,7 @@ import java.io.IOException;
  * @createTime 2020/11/20
  */
 @Component
-public class SecurityCaptchaSupport extends OncePerRequestFilter implements Filter {
+public class SecureCaptchaSupport extends OncePerRequestFilter implements Filter {
 
     /**
      * 过 滤 接 口

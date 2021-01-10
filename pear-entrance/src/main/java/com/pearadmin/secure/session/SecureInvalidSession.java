@@ -1,4 +1,4 @@
-package com.pearadmin.api.runner;
+package com.pearadmin.secure.session;
 
 import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysUser;
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class RemoveInvalidSession implements CommandLineRunner {
+public class SecureInvalidSession implements CommandLineRunner {
 
     @Resource(name = "manageSessionThreadPool")
     private ScheduledThreadPoolExecutor manageSessionThreadPool;

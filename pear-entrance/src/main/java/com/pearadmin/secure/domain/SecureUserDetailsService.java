@@ -1,4 +1,4 @@
-package com.pearadmin.security.domain;
+package com.pearadmin.secure.domain;
 
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.domain.SysUser;
@@ -17,7 +17,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class SecurityUserDetailsService implements UserDetailsService {
+public class SecureUserDetailsService implements UserDetailsService {
 
     @Resource
     private SysUserMapper sysUserMapper;

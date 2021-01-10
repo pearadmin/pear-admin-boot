@@ -1,6 +1,6 @@
 package com.pearadmin.api.modules;
 
-import com.pearadmin.security.session.HttpSessionUtil;
+import com.pearadmin.secure.session.SecureSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +11,6 @@ import com.pearadmin.common.plugins.logging.enums.BusinessType;
 import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.web.base.BaseController;
 import org.springframework.web.servlet.ModelAndView;
-import com.pearadmin.system.domain.SysUser;
-import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,7 +34,7 @@ public class EntranceController extends BaseController {
     @GetMapping("login")
     public ModelAndView login(HttpServletRequest request){
         if (SecurityUtil.isAuthentication()) {
-            HttpSessionUtil.expiredSession(request, sessionRegistry);
+            SecureSessionService.expiredSession(request, sessionRegistry);
             return JumpPage("index");
         }else{
             return JumpPage("login");

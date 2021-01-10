@@ -1,4 +1,4 @@
-package com.pearadmin.security.support;
+package com.pearadmin.secure.support;
 
 import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.system.domain.SysPower;
@@ -18,7 +18,7 @@ import java.util.Set;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class SecurityPermissionEvaluator implements PermissionEvaluator {
+public class SecurePermissionSupport implements PermissionEvaluator {
 
     @Resource
     private SecurityProperty securityProperty;

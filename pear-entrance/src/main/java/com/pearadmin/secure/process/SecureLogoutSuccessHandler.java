@@ -1,4 +1,4 @@
-package com.pearadmin.security.process;
+package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.common.tools.servlet.ServletUtil;
@@ -18,7 +18,7 @@ import java.io.IOException;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class SecurityLogoutSuccessHandler implements LogoutSuccessHandler {
+public class SecureLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {

@@ -1,9 +1,7 @@
-package com.pearadmin.security.process;
+package com.pearadmin.secure.process;
 
 import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,17 +20,17 @@ import javax.servlet.http.HttpSessionEvent;
  * CreateTime: 2020/12/17
  */
 @Slf4j
-public class SecurityLogoutHandler implements LogoutHandler {
+public class SecureLogoutHandler implements LogoutHandler {
 
     private boolean invalidateHttpSession = true;
     private boolean clearAuthentication = true;
 
     private HttpSessionEventPublisher httpSessionEventPublisher;
 
-    public SecurityLogoutHandler() {
+    public SecureLogoutHandler() {
     }
 
-    public SecurityLogoutHandler(HttpSessionEventPublisher httpSessionEventPublisher) {
+    public SecureLogoutHandler(HttpSessionEventPublisher httpSessionEventPublisher) {
         this.httpSessionEventPublisher = httpSessionEventPublisher;
     }
 
