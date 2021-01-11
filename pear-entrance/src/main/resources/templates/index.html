@@ -25,8 +25,8 @@
             <li class="layui-nav-item">
                 <!-- 头 像 -->
                 <a href="javascript:;">
-                    <img src="" id="headImg" class="layui-nav-img">
-                    <span th:text="${#authentication.principal.getRealName()}"></span>
+                    <img src="" id="avatar" style="width: 40px;height: 40px;">
+                    <span th:text="${#authentication.principal.realName}"></span>
                 </a>
                 <!-- 功 能 菜 单 -->
                 <dl class="layui-nav-child">
@@ -61,13 +61,14 @@
 </div>
 <!-- 依 赖 脚 本 -->
 <th:block th:include="include :: footer"/>
-<script th:src="@{/admin/js/headImg.js}"></script>
 <script th:inline="javascript">
-    layui.use(['admin'], function () {
+    layui.use(['admin','jquery'], function () {
         let admin = layui.admin;
+        let $ = layui.jquery;
+
         admin.render();
 
-        $('#headImg').attr("src",makeHeadImgByUserName([[${#authentication.principal.getRealName()}]]));
+        $('#avatar').attr("src","/system/file/download/"+[[${session.currentUser.avatar}]]);
     })
 </script>
 </body>

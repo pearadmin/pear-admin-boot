@@ -170,6 +170,9 @@
              <if test="lastTime!=null">
                  last_time = #{lastTime},
              </if>
+             <if test="avatar!=null">
+                 avatar = #{avatar},
+             </if>
          </set>
          where user_id = #{userId}
     </update>

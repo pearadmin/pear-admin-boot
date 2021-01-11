@@ -104,8 +104,7 @@
                             </div>
                             <div class="layui-row layui-col-space10" style="margin: 15px;">
                                 <div class="layui-col-md1">
-                                    <img src="../../admin/images/act.jpg"
-                                         style="width: 100%;height: 100%;border-radius: 5px;"/>
+                                    <img src="../../admin/images/act.jpg" style="width: 100%;height: 100%;border-radius: 5px;"/>
                                 </div>
                                 <div class="layui-col-md11" style="height: 80px;">
                                     <div class="title">为什么程序员们愿意在GitHub上开源自己的成果给别人免费使用和学习？</div>
@@ -146,8 +145,6 @@
         let $ = layui.jquery;
         let layer = layui.layer;
 
-        $('#avatar').attr("src",makeHeadImgByUserName([[${#authentication.principal.getRealName()}]]));
-
         $(".editPassword").click(function () {
             layer.open({
                 type: 2,
@@ -157,6 +154,22 @@
                 content: '/system/user/editPassword'
             });
         })
+
+        $("#avatar").attr("src", "/system/file/download/"+[[${userInfo.avatar}]]);
+
+        $("#avatar").click(function () {
+            layer.open({
+                type: 2,
+                title: '更换图片',
+                shade: 0.1,
+                area: ["900px", "500px"],
+                content: '/system/user/profile/'+[[${userInfo.userId}]],
+                btn: ['确定', '取消'],
+                yes: function (index, layero) {
+                    window['layui-layer-iframe' + index].submitForm();
+                }
+            });
+        });
     })
 </script>
 </body>

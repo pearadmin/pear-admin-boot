@@ -144,6 +144,11 @@ public class SysUserController extends BaseController {
         return JumpPage(MODULE_PATH + "editPassword");
     }
 
+    /**
+     * Describe: 用户密码修改接口
+     * Param editPassword
+     * Return: Result
+     */
     @PutMapping("editPassword")
     public Result editPassword(@RequestBody EditPassword editPassword) {
         String oldPassword = editPassword.getOldPassword();
@@ -183,9 +188,24 @@ public class SysUserController extends BaseController {
     }
 
     /**
+     * Describe: 头像修改接口
+     * Param: SysUser
+     * Return: Result
+     */
+    @PutMapping("updateAvatar")
+    @ApiOperation(value = "修改用户头像")
+    @PreAuthorize("hasPermission('/system/user/edit','sys:user:edit')")
+    @Logging(title = "修改头像", describe = "修改头像", type = BusinessType.EDIT)
+    public Result updateAvatar(@RequestBody SysUser sysUser) {
+        sysUser.setUserId(((SysUser)SecurityUtil.currentUser().getPrincipal()).getUserId());
+        boolean result = sysUserService.update(sysUser);
+        return decide(result);
+    }
+
+    /**
      * Describe: 用户批量删除接口
      * Param: ids
-     * Return: ResuBean
+     * Return: Result
      */
     @DeleteMapping("batchRemove/{ids}")
     @ApiOperation(value = "批量删除用户")
@@ -199,7 +219,7 @@ public class SysUserController extends BaseController {
     /**
      * Describe: 用户删除接口
      * Param: id
-     * Return: ResuBean
+     * Return: Result
      */
     @Transactional
     @DeleteMapping("remove/{id}")
@@ -252,7 +272,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * Describe: 跳转用户个人资料
+     * Describe: 个人资料
      * Param: null
      * Return: ModelAndView
      */
@@ -262,6 +282,17 @@ public class SysUserController extends BaseController {
         SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
         model.addAttribute("userInfo", sysUserService.getById(sysUser.getUserId()));
         return JumpPage(MODULE_PATH + "center");
+    }
+
+    /**
+     * Describe: 更换头像
+     * Param: null
+     * Return: ModelAndView
+     */
+    @GetMapping("profile/{id}")
+    public ModelAndView profile(Model model,@PathVariable("id")String userId){
+        model.addAttribute("userId",userId);
+        return JumpPage(MODULE_PATH + "profile");
     }
 
 }
