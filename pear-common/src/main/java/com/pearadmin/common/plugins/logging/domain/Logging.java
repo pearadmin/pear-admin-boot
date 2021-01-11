@@ -6,6 +6,7 @@ import com.pearadmin.common.plugins.logging.aop.enums.RequestMethod;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ibatis.type.Alias;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import java.util.Map;
  * CreateTime: 2019/10/23
  */
 @Data
+@Alias("Logging")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Logging {

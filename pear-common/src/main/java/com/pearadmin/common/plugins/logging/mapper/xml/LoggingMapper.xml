@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pearadmin.common.plugins.logging.mapper.LoggingMapper">
 
-    <select id="selectList" resultType="com.pearadmin.common.plugins.logging.domain.Logging">
+    <select id="selectList" resultType="Logging">
         select
         id as id,
         title as title,
@@ -27,7 +27,34 @@
         order by create_time desc
     </select>
 
-    <insert id="insert" parameterType="com.pearadmin.common.plugins.logging.domain.Logging">
+    <select id="selectTopLoginLog" resultType="Logging">
+        select
+        id as id,
+        title as title,
+        method as method,
+        business_type as businessType,
+        request_method as requestMethod,
+        operate_name as operateName,
+        operate_url as operateUrl,
+        operate_address as operateAddress,
+        request_param as requestParam,
+        response_body as responseBody,
+        success as success,
+        error_msg as errorMsg,
+        create_time as createTime,
+        description as description,
+        request_body as requestBody,
+        logging_type as loggingType,
+        browser as browser,
+        system_os as systemOs
+        from sys_logging
+        where logging_type = "LOGIN"
+        and operate_name = #{operateName}
+        order by create_time desc
+        limit 1,11
+    </select>
+
+    <insert id="insert" parameterType="Logging">
         insert into sys_logging
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -143,7 +170,7 @@
         </trim>
     </insert>
 
-    <select id="getById" resultType="com.pearadmin.common.plugins.logging.domain.Logging">
+    <select id="getById" resultType="Logging">
         select
         id as id,
         title as title,

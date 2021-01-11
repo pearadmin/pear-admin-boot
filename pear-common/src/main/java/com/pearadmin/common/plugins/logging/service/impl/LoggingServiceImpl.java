@@ -51,4 +51,9 @@ public class LoggingServiceImpl implements LoggingService {
     public Logging getById(String id) {
         return loggingMapper.getById(id);
     }
+
+    @Override
+    public List<Logging> selectTopLoginLog(String operateName) {
+        return loggingMapper.selectTopLoginLog(operateName);
+    }
 }

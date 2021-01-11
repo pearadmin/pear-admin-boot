@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugins.logging.aop.annotation.Logging;
 import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
+import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.plugins.repeat.annotation.RepeatSubmit;
 import com.pearadmin.common.tools.security.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
@@ -58,6 +59,12 @@ public class SysUserController extends BaseController {
      */
     @Resource
     private ISysRoleService sysRoleService;
+
+    /**
+     * Describe: 日志模块服务
+     */
+    @Resource
+    private LoggingService loggingService;
 
     /**
      * Describe: 获取用户列表视图
@@ -281,6 +288,7 @@ public class SysUserController extends BaseController {
     public ModelAndView center(Model model) {
         SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
         model.addAttribute("userInfo", sysUserService.getById(sysUser.getUserId()));
+        model.addAttribute("logs", loggingService.selectTopLoginLog(sysUser.getUsername()));
         return JumpPage(MODULE_PATH + "center");
     }
 

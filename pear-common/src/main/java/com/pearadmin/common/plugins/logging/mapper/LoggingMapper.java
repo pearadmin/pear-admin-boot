@@ -35,4 +35,12 @@ public interface LoggingMapper {
      * @return
      */
     Logging getById(String id);
+
+    /**
+     * 根据 operateName 查询日志
+     *
+     * @param operateName
+     * @return
+     */
+    List<Logging> selectTopLoginLog(String operateName);
 }

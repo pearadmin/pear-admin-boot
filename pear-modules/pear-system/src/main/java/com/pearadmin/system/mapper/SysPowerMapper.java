@@ -22,6 +22,11 @@ public interface SysPowerMapper {
      * */
     List<SysPower> selectList(SysPower sysPower);
 
+    /**
+     * Describe: 保存 SysPower 权限数据
+     * Param: SysPower
+     * Return: SysPower
+     * */
     Integer insert(SysPower sysPower);
 
     /**
