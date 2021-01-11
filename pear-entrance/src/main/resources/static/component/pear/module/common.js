@@ -1,8 +1,21 @@
 ;
 "use strict";
-layui.define(["layer", "jquery"], function (exports) {
+layui.define(["layer", "jquery","table"], function (exports) {
     var $ = layui.jquery;
+    var table = layui.table;
     var obj = {
+        checkField: function(obj, field) {
+            let data = table.checkStatus(obj.config.id).data;
+            if (data.length === 0) {
+                return "";
+            }
+            let ids = "";
+            for (let i = 0; i < data.length; i++) {
+                ids += data[i][field] + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            return ids;
+        },
         resizeTable:function(tableId){
             layui.table.resize(tableId);
         }

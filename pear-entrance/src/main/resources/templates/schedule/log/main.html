@@ -30,6 +30,7 @@
     </div>
 </div>
 </body>
+
 <script type="text/html" id="log-bar">
     {{#if (d.status == 0) { }}
     <span style="color: green">成功</span>
@@ -37,9 +38,11 @@
     <span style="color: red">异常</span>
     {{# } }}
 </script>
+
 <script type="text/html" id="log-createTime">
     {{layui.util.toDateString(d.createTime,  "yyyy-MM-dd HH:mm:ss")}}
 </script>
+
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'form', 'jquery'], function () {

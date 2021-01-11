@@ -27,7 +27,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("system/online")
-public class SysOnlineUserController extends BaseController {
+public class SysOnlineController extends BaseController {
 
     @Resource
     private SessionRegistry sessionRegistry;

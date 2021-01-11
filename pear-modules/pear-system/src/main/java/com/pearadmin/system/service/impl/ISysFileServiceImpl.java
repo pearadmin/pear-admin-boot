@@ -1,9 +1,9 @@
-package com.pearadmin.common.plugins.resource.service.impl;
+package com.pearadmin.system.service.impl;
 
 import com.pearadmin.common.config.proprety.TemplateProperty;
-import com.pearadmin.common.plugins.resource.domain.File;
-import com.pearadmin.common.plugins.resource.mapper.FileMapper;
-import com.pearadmin.common.plugins.resource.service.IFileService;
+import com.pearadmin.system.domain.SysFile;
+import com.pearadmin.system.mapper.SysFileMapper;
+import com.pearadmin.system.service.ISysFileService;
 import com.pearadmin.common.tools.file.FileUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
@@ -24,13 +24,13 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @Service
-public class FileServiceImpl implements IFileService {
+public class ISysFileServiceImpl implements ISysFileService {
 
     /**
      * 引 入 服 务
      * */
     @Resource
-    private FileMapper fileMapper;
+    private SysFileMapper fileMapper;
 
     /**
      * 上 传 可 读 配 置
@@ -79,7 +79,7 @@ public class FileServiceImpl implements IFileService {
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();
             }
-            File fileDomain = new File();
+            SysFile fileDomain = new SysFile();
             file.transferTo(filepath);
             fileDomain.setId(fileId);
             fileDomain.setFileDesc(name);
@@ -109,7 +109,7 @@ public class FileServiceImpl implements IFileService {
     @Override
     public void download(String id) {
         try {
-            File file = fileMapper.selectById(id);
+            SysFile file = fileMapper.selectById(id);
             java.io.File files = new java.io.File(file.getFilePath());
             if (files.exists()) {
                 FileCopyUtils.copy(new FileInputStream(file.getFilePath()), ServletUtil.getResponse().getOutputStream());
@@ -125,7 +125,7 @@ public class FileServiceImpl implements IFileService {
      * Return: File
      * */
     @Override
-    public List<File> data() {
+    public List<SysFile> data() {
         return fileMapper.selectList();
     }
 
@@ -137,7 +137,7 @@ public class FileServiceImpl implements IFileService {
      * */
     @Override
     public boolean remove(String id) {
-        File file = fileMapper.selectById(id);
+        SysFile file = fileMapper.selectById(id);
         new java.io.File(file.getFilePath()).delete();
         int removeInfo = fileMapper.deleteById(id);
         if(removeInfo>0){

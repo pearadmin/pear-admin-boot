@@ -2,64 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:include="include :: header('用户列表')"/>
-    <style>
-        .dept-tree {
-            width: 100%;
-            height: -webkit-calc(100vh - 247px);
-            height: -moz-calc(100vh - 247px);
-            height: calc(100vh - 247px);
-            margin-top: 20px;
-        }
-        .button{
-            margin-top: 10px;
-            width: 94%;
-            margin-left: 3%;
-            display: block;
-            height: 40px;
-            line-height: 40px;
-            padding: 0 15px;
-            white-space: nowrap;
-            text-align: center;
-            font-size: 14.5px;
-            border: none;
-            cursor: pointer;
-            box-sizing: border-box;
-            display:inline-block;
-            outline: 0;
-            border-radius: 2px;
-            -webkit-appearance: none;
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
-        }
-        .button-primary{
-            background-color: #5FB878;
-            color: white;
-        }
-        .button-default{
-            color: #2f495e;
-            background-color: #edf2f7;
-        }
-        .user-main{
-            width: calc(100% - 312px);
-            float: right;
-        }
-        .user-left{
-            width: 300px;
-            float: left;
-        }
-        .user-collasped.user-main{
-            width: 100%;
-        }
-        .user-collasped.user-left{
-            width: 0px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../../admin/css/other/user.css" />
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
         <form class="layui-form" action="" lay-filter="user-query-form">
             <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
+                <label class="layui-form-label">用户</label>
                 <div class="layui-input-inline">
                     <input type="text" name="realName" placeholder="" class="layui-input">
                 </div>
@@ -143,11 +93,13 @@
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'dtree','form', 'jquery'], function () {
+    layui.use(['table', 'dtree','form', 'jquery','popup','common'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
         let dtree = layui.dtree;
+        let popup = layui.popup;
+        let common = layui.common;
 
         let MODULE_PATH = "/system/user/";
 
@@ -227,13 +179,8 @@
             } else if (obj.event === 'batchRemove') {
                 window.batchRemove(obj);
             } else if(obj.event == 'collasped'){
-                if($(".user-left").hasClass("user-collasped")){
-                    $(".user-left").removeClass("user-collasped");
-                    $(".user-main").removeClass("user-collasped");
-                }else{
-                    $(".user-left").addClass("user-collasped");
-                    $(".user-main").addClass("user-collasped");
-                }
+                $(".user-left").toggleClass("user-collasped");
+                $(".user-main").toggleClass("user-collasped");
                 table.resize();
             }
         });
@@ -250,7 +197,7 @@
             } else {
                 operate = "disable";
             }
-            let loading = layer.load()
+            let loading = layer.load();
             $.ajax({
                 url: '/system/user/' + operate,
                 data: JSON.stringify({userId: this.value}),
@@ -260,9 +207,9 @@
                 success: function (result) {
                     layer.close(loading);
                     if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000});
+                        popup.success(result.msg);
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        popup.failure(result.msg);
                     }
                 }
             })
@@ -299,11 +246,11 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            popup.success(result.msg,function(){
                                 obj.del();
                             });
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 })
@@ -311,16 +258,11 @@
         }
 
         window.batchRemove = function (obj) {
-            let data = table.checkStatus(obj.config.id).data;
-            if (data.length === 0) {
-                layer.msg("未选中数据", {icon: 3, time: 1000});
+            let ids = common.checkField(obj,'userId');
+            if (common.isEmpty(ids)) {
+                popup.warning("未选中数据");
                 return false;
             }
-            let ids = "";
-            for (let i = 0; i < data.length; i++) {
-                ids += data[i].userId + ",";
-            }
-            ids = ids.substr(0, ids.length - 1);
             layer.confirm('确定要删除选中用户', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
@@ -331,11 +273,11 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            popup.success(result.msg,function(){
                                 table.reload('user-table');
-                            });
+                            })
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 })

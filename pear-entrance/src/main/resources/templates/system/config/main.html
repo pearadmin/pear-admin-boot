@@ -61,10 +61,12 @@
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery'], function () {
+    layui.use(['table', 'form', 'jquery','common','popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
+        let common = layui.common;
+        let popup = layui.popup;
 
         let MODULE_PATH = "/system/config/";
 
@@ -147,11 +149,11 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                                obj.del();
+                            popup.success(result.msg,function(){
+                                table.reload('config-table');
                             });
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 })
@@ -159,16 +161,11 @@
         }
 
         window.batchRemove = function (obj) {
-            let data = table.checkStatus(obj.config.id).data;
-            if (data.length === 0) {
-                layer.msg("未选中数据", {icon: 3, time: 1000});
+            let ids = common.checkField(obj,'configId');
+            if (common.isEmpty(ids)) {
+                popup.warning("未选中数据");
                 return false;
             }
-            let ids = "";
-            for (let i = 0; i < data.length; i++) {
-                ids += data[i].configId + ",";
-            }
-            ids = ids.substr(0, ids.length - 1);
             layer.confirm('确定要删除选中配置', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
@@ -179,11 +176,11 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            popup.success(result.msg,function(){
                                 table.reload('config-table');
                             });
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 });

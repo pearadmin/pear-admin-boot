@@ -38,10 +38,11 @@
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery'], function () {
+    layui.use(['table', 'form', 'jquery','popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
+        let popup = layui.popup;
 
         let MODULE_PATH = "/system/online/";
 
@@ -87,11 +88,11 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            popup.success(result.msg, function () {
                                 obj.del();
                             });
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 })

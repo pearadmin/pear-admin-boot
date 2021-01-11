@@ -96,10 +96,11 @@
 
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    layui.use(['table', 'form', 'jquery'], function () {
+    layui.use(['table', 'form', 'jquery','popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
+        let popup = layui.popup;
 
         let typeCode;
 
@@ -166,13 +167,11 @@
                 window.addType();
             } else if (obj.event === 'refresh') {
                 window.refreshType();
-            } else if (obj.event === 'batchRemove') {
-                layer.msg("批量删除")
             }
         });
 
         form.on('submit(dict-type-query)', function (data) {
-            table.reload('dict-type-table', {where: data.field})
+            table.reload('dict-type-table', {where: data.field});
             return false;
         });
 
@@ -193,10 +192,9 @@
                 success: function (result) {
                     layer.close(loading);
                     if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                        });
+                        popup.success(result.msg);
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        popup.failure(result.msg);
                     }
                 }
             })
@@ -233,15 +231,15 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            popup.success(result.msg, function(){
                                 if(typeCode == obj.data['typeCode']){
                                     $("[lay-id='dict-data-table']").remove();
                                     $(".empty").show();
                                 }
                                 obj.del();
-                            });
+                            })
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 })
@@ -283,11 +281,11 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            popup.success(result.msg,function(){
                                 obj.del();
-                            });
+                            })
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 })
@@ -309,8 +307,6 @@
                 window.addData();
             } else if (obj.event === 'refresh') {
                 window.refreshData();
-            } else if (obj.event === 'batchRemove') {
-                layer.msg("批量删除")
             }
         });
 
@@ -337,10 +333,9 @@
                 success: function (result) {
                     layer.close(loading);
                     if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                        });
+                        popup.success(result.msg);
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        popup.failure(result.msg);
                     }
                 }
             })

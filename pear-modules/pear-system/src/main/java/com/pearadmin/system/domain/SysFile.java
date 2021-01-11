@@ -1,4 +1,4 @@
-package com.pearadmin.common.plugins.resource.domain;
+package com.pearadmin.system.domain;
 
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
  * CreateTime: 2019/10/23
  * */
 @Data
-public class File extends BaseDomain {
+public class SysFile extends BaseDomain {
 
     /**
      * 文件编号

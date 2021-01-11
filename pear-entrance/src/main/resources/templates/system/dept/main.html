@@ -58,11 +58,12 @@
 <th:block th:include="include :: footer"/>
 
 <script>
-    layui.use(['table', 'form', 'jquery', 'treetable'], function () {
+    layui.use(['table', 'form', 'jquery', 'treetable','popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
         let treetable = layui.treetable;
+        let popup = layui.popup;
 
         let MODULE_PATH = "/system/dept/";
 
@@ -160,9 +161,9 @@
                 success: function (result) {
                     layer.close(loading);
                     if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000});
+                        popup.success(result.msg);
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        popup.failure(result.msg);
                     }
                 }
             })
@@ -199,11 +200,11 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            popup.success(result.msg,  function () {
                                 obj.del();
                             });
                         } else {
-                            layer.msg(result.msg, {icon: 2, time: 1000});
+                            popup.failure(result.msg);
                         }
                     }
                 })

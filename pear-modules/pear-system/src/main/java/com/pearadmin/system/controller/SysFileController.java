@@ -2,8 +2,8 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.plugins.resource.domain.File;
-import com.pearadmin.common.plugins.resource.service.IFileService;
+import com.pearadmin.system.domain.SysFile;
+import com.pearadmin.system.service.ISysFileService;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -34,7 +34,7 @@ public class SysFileController extends BaseController {
      * 移 除 服 务
      * */
     @Resource
-    private IFileService fileService;
+    private ISysFileService fileService;
 
     /**
      * Describe: 文件管理页面
@@ -56,7 +56,7 @@ public class SysFileController extends BaseController {
     @PreAuthorize("hasPermission('/system/file/data','sys:file:data')")
     public ResultTable data(PageDomain pageDomain){
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
-        PageInfo<File> pageInfo = new PageInfo<>(fileService.data());
+        PageInfo<SysFile> pageInfo = new PageInfo<>(fileService.data());
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 

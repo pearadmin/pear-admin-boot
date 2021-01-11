@@ -1,6 +1,6 @@
-package com.pearadmin.common.plugins.resource.service;
+package com.pearadmin.system.service;
 
-import com.pearadmin.common.plugins.resource.domain.File;
+import com.pearadmin.system.domain.SysFile;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-public interface IFileService {
+public interface ISysFileService {
 
     /**
      * 文 件 上 传 服 务
@@ -24,7 +24,7 @@ public interface IFileService {
     /**
      * 文 件 列 表
      * */
-    List<File> data();
+    List<SysFile> data();
 
     /**
      * 删 除 文 件
