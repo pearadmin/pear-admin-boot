@@ -23,24 +23,21 @@ public interface LoggingMapper {
     /**
      * Describe: 查询日志信息
      * Param: LoggingType
-     * Return: 日志信息列表
+     * Return: 日志列表
      * */
     List<Logging> selectList(LoggingType loggingType);
 
-
     /**
-     * 根据id查询日志
-     *
-     * @param id
-     * @return
+     * Describe: 根据 id 查询日志信息
+     * Param: id
+     * Return: Logging
      */
     Logging getById(String id);
 
     /**
-     * 根据 operateName 查询日志
-     *
-     * @param operateName
-     * @return
+     * Describe: 根据 operateName 查询日志
+     * Param: operateName
+     * Return 日志列表
      */
     List<Logging> selectTopLoginLog(String operateName);
 }
