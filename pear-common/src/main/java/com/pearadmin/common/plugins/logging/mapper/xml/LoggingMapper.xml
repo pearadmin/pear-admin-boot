@@ -23,8 +23,7 @@
         browser as browser,
         system_os as systemOs
         from sys_logging
-        where logging_type = #{loggingType}
-        order by create_time desc
+        where logging_type = #{loggingType} order by create_time desc
     </select>
 
     <select id="selectTopLoginLog" resultType="Logging">
@@ -48,10 +47,7 @@
         browser as browser,
         system_os as systemOs
         from sys_logging
-        where logging_type = "LOGIN"
-        and operate_name = #{operateName}
-        order by create_time desc
-        limit 1,11
+        where logging_type = "LOGIN" and operate_name = #{operateName} order by create_time desc limit 1,11
     </select>
 
     <insert id="insert" parameterType="Logging">

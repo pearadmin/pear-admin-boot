@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('系统监控')"/>
+    <link rel="stylesheet" href="/admin/css/other/console1.css"/>
+</head>
+<body class="pear-container">
+<div class="layui-row layui-col-space10">
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">系统信息</div>
+            <div class="layui-card-body">
+                <table class="layui-table" lay-skin="line">
+                    <thead>
+                    <tr>
+                        <th>系统名称</th>
+                        <th>系统模型</th>
+                        <th>系统版本</th>
+                        <th>系统路径</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${osInfo.name}"></td>
+                        <td th:text="${osInfo.arch}"></td>
+                        <td th:text="${osInfo.version}"></td>
+                        <td th:text="${osInfo.fileSeparator}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6">
+    <div class="layui-card">
+        <div class="layui-card-header">内存信息</div>
+        <div class="layui-card-body">
+            <table class="layui-table" lay-skin="line">
+                <thead>
+                <tr>
+                    <th>空闲内存</th>
+                    <th>最大内存</th>
+                    <th>已用内存</th>
+                    <th>内存总量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${runtimeInfo.freeMemory}"></td>
+                    <td th:text="${runtimeInfo.maxMemory}"></td>
+                    <td th:text="${runtimeInfo.usableMemory}"></td>
+                    <td th:text="${runtimeInfo.totalMemory}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">主机信息</div>
+            <div class="layui-card-body">
+                <table class="layui-table" lay-skin="line">
+                    <thead>
+                    <tr>
+                        <th>主机名称</th>
+                        <th>主机地址</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${hostInfo.name}"></td>
+                        <td th:text="${hostInfo.address}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">JVM信息</div>
+            <div class="layui-card-body">
+                <table class="layui-table" lay-skin="line">
+                    <thead>
+                    <tr>
+                        <th>虚拟机名称</th>
+                        <th>虚拟机版本</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${jvmInfo.name}"></td>
+                        <td th:text="${jvmInfo.version}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">用户信息</div>
+            <div class="layui-card-body">
+                <table class="layui-table" lay-skin="line">
+                    <thead>
+                    <tr>
+                        <th>用户名称</th>
+                        <th>用户目录</th>
+                        <th>所属国家</th>
+                        <th>使用语言</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${userInfo.name}"></td>
+                        <td th:text="${userInfo.homeDir}"></td>
+                        <td th:text="${userInfo.country}"></td>
+                        <td th:text="${userInfo.language}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<th:block th:include="include :: footer"/>
+</body>
+</html>

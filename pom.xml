@@ -77,6 +77,8 @@
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
         <!-- yaml 解析 -->
         <yaml.version>1.26</yaml.version>
+        <!-- HuTool 工具类 -->
+        <hutool.version>5.5.7</hutool.version>
         <!-- Maven 配置 -->
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
@@ -85,6 +87,11 @@
     <!-- 依 赖 管 理 -->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
             <!-- yaml 解析 -->
             <dependency>
                 <groupId>org.yaml</groupId>
