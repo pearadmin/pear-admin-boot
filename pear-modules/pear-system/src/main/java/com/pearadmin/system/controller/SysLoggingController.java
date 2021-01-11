@@ -69,8 +69,13 @@ public class SysLoggingController extends BaseController {
         return pageTable(pageInfo.getList(), pageInfo.getTotal());
     }
 
-    @GetMapping("/details")
+    /**
+     * Describe: 日志详情
+     * Param: null
+     * Return: ModelAndView
+     */
+    @GetMapping("/info")
     public ModelAndView details(){
-        return JumpPage("system/logging/details");
+        return JumpPage("system/logging/info");
     }
 }
