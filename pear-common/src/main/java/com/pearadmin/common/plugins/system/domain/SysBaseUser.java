@@ -14,7 +14,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @Data
-public class SysUserModel extends BaseDomain implements UserDetails {
+public class SysBaseUser extends BaseDomain implements UserDetails {
 
     /**
      * 编号
@@ -99,7 +99,7 @@ public class SysUserModel extends BaseDomain implements UserDetails {
      * 权限 这里暂时不用 security 的 Authorities
      *
      */
-    private List<SysPowerModel> powerList;
+    private List<SysBasePower> powerList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

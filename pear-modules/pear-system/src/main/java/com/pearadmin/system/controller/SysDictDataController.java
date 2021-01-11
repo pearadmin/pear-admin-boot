@@ -1,7 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.plugins.system.domain.SysDictDataModel;
+import com.pearadmin.common.plugins.system.domain.SysBaseDictData;
 import com.pearadmin.common.plugins.system.service.ISysBaseAPI;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.sql.SqlInjectionUtil;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Describe: 主页控制器
+ * Describe: 数据字典控制器
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
@@ -28,9 +28,6 @@ import java.util.List;
 @RequestMapping("system/dictData")
 public class SysDictDataController extends BaseController {
 
-    /**
-     * 基础路径
-     * */
     private String MODULE_PATH = "system/dict/data/";
 
     @Resource
@@ -74,31 +71,26 @@ public class SysDictDataController extends BaseController {
         List<SysDictData> list = sysDictDataService.selectByCode(typeCode);
         return success(list);
     }
+
     /**
-     * 获取字典数据
-     * @param dictCode 字典code
-     * @param dictCode 表名,文本字段,code字段  | 举例：sys_dept,dept_name,dept_id
-     * @return
+     * Describe: 获取字典数据
+     * Param: dictCode 字典code
+     * Return: Result
      */
     @GetMapping(value = "/getDictItems/{dictCode}")
-    public Result<List<SysDictDataModel>> getDictItems(@PathVariable String dictCode, @RequestParam(value = "sign",required = false) String sign,HttpServletRequest request) {
-
-        Result<List<SysDictDataModel>> result = new Result<List<SysDictDataModel>>();
-        List<SysDictDataModel> ls = null;
+    public Result<List<SysBaseDictData>> getDictItems(@PathVariable String dictCode, @RequestParam(value = "sign",required = false) String sign, HttpServletRequest request) {
+        Result<List<SysBaseDictData>> result = new Result<List<SysBaseDictData>>();
+        List<SysBaseDictData> ls = null;
         try {
             if(dictCode.indexOf(",")!=-1) {
-                //关联表字典（举例：sys_user,realname,id）
                 String[] params = dictCode.split(",");
 
                 if(params.length<3) {
                     return Result.failure("字典Code格式不正确！");
                 }
-                //SQL注入校验（只限制非法串改数据库）
                 final String[] sqlInjCheck = {params[0],params[1],params[2]};
                 SqlInjectionUtil.filterContent(sqlInjCheck);
-
                 if(params.length==4) {
-                    //SQL注入校验（查询条件SQL 特殊check，此方法仅供此处使用）
                     SqlInjectionUtil.specialFilterContent(params[3]);
                     ls = iSysBaseAPI.queryTableDictItemsByCodeAndFilter(params[0],params[1],params[2],params[3]);
                 }else if (params.length==3) {
@@ -107,26 +99,25 @@ public class SysDictDataController extends BaseController {
                     return Result.failure("字典Code格式不正确！");
                 }
             }else {
-                //字典表
                 ls = iSysBaseAPI.selectDictByCode(dictCode);
             }
-
             result.setSuccess(true);
             result.setData(ls);
-
         } catch (Exception e) {
             e.printStackTrace();
             return Result.failure("操作失败！");
         }
-
         return result;
     }
+
     /**
-     * 根据字典code加载字典text 返回
+     * Describe: 根据字典code加载字典text
+     * Param: dictCode 字典code
+     * Return: Result
      */
     @RequestMapping(value = "/loadDictItem/{dictCode}", method = RequestMethod.GET)
-    public Result<List<SysDictDataModel>> loadDictItem(@PathVariable String dictCode,@RequestParam(name="key") String keys, @RequestParam(value = "sign",required = false) String sign,HttpServletRequest request) {
-        Result<List<SysDictDataModel>> result = new Result<>();
+    public Result<List<SysBaseDictData>> loadDictItem(@PathVariable String dictCode, @RequestParam(name="key") String keys, @RequestParam(value = "sign",required = false) String sign, HttpServletRequest request) {
+        Result<List<SysBaseDictData>> result = new Result<>();
         try {
             if(dictCode.indexOf(",")!=-1) {
                 String[] params = dictCode.split(",");
@@ -134,7 +125,7 @@ public class SysDictDataController extends BaseController {
                     return Result.failure("字典Code格式不正确！");
                 }
                 String[] keyArray = keys.split(",");
-                List<SysDictDataModel> texts = iSysBaseAPI.queryTableDictByKeys(params[0], params[1], params[2], keyArray);
+                List<SysBaseDictData> texts = iSysBaseAPI.queryTableDictByKeys(params[0], params[1], params[2], keyArray);
                 return Result.success(texts);
             }else {
                 return Result.failure("字典Code格式不正确！");

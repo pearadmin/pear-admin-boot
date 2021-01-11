@@ -9,7 +9,7 @@ import lombok.Data;
  * CreateTime: 2019/10/23
  * */
 @Data
-public class SysRoleModel extends BaseDomain {
+public class SysBaseRole extends BaseDomain {
 
     /**
      * 编号

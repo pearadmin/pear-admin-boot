@@ -27,7 +27,7 @@ public interface ISysBaseAPI {
 	 * @param username
 	 * @return
 	 */
-	SysUserModel getUserByName(String username);
+	SysBaseUser getUserByName(String username);
 
 
 	/**
@@ -35,21 +35,21 @@ public interface ISysBaseAPI {
 	 * @param id
 	 * @return
 	 */
-	SysUserModel getUserById(String id);
+	SysBaseUser getUserById(String id);
 	
 	/**
 	 * 通过用户账号查询角色集合
 	 * @param username
 	 * @return
 	 */
-	List<SysRoleModel> getRolesByUsername(String username);
+	List<SysBaseRole> getRolesByUsername(String username);
 
 	/**
 	 * 根据字典code获取可用的字典列表数据
 	 * @param typeCode
 	 * @return
 	 */
-	List<SysDictDataModel> selectDictByCode(String typeCode);
+	List<SysBaseDictData> selectDictByCode(String typeCode);
 
 	/**
 	 * 查询表字典通过查询指定table的 text code key 获取字典值
@@ -58,7 +58,7 @@ public interface ISysBaseAPI {
 	 * @param code value
 	 * @return
 	 */
-    List<SysDictDataModel> queryTableDictItemsByCode(String table, String text, String code);
+    List<SysBaseDictData> queryTableDictItemsByCode(String table, String text, String code);
 
 
 	/**
@@ -68,7 +68,7 @@ public interface ISysBaseAPI {
 	 * @param code value
 	 * @return
 	 */
-	List<SysDictDataModel> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql);
+	List<SysBaseDictData> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql);
 
 
 	/**
@@ -79,6 +79,6 @@ public interface ISysBaseAPI {
 	 * @param keyArray values
 	 * @return
 	 */
-	List<SysDictDataModel>queryTableDictByKeys(String table, String text, String code, String[] keyArray);
+	List<SysBaseDictData>queryTableDictByKeys(String table, String text, String code, String[] keyArray);
 
 }

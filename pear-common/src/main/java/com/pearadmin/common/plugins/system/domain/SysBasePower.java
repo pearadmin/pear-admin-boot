@@ -9,7 +9,7 @@ import lombok.Data;
  * CreateTime: 2019/10/23
  * */
 @Data
-public class SysPowerModel extends BaseDomain {
+public class SysBasePower extends BaseDomain {
 
     /**
      * 编号
@@ -65,4 +65,5 @@ public class SysPowerModel extends BaseDomain {
      * 计算列 提供给前端组件
      * */
     private String checkArr = "0";
+
 }
