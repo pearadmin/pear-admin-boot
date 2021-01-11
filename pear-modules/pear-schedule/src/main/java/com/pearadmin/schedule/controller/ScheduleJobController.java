@@ -1,6 +1,7 @@
 package com.pearadmin.schedule.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
@@ -21,7 +22,7 @@ import java.time.LocalDateTime;
  * createTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("schedule/job")
+@RequestMapping(ControllerConstant.API_SCHEDULE_PREFIX + "job")
 public class ScheduleJobController extends BaseController {
 
     /**

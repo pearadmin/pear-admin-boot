@@ -1,6 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugins.logging.annotation.Logging;
 import com.pearadmin.common.plugins.logging.enums.BusinessType;
 import com.pearadmin.common.plugins.repeat.annotation.RepeatSubmit;
@@ -37,7 +38,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  */
 @RestController
-@RequestMapping("system/user")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "user")
 @Api(value = "用户controller", tags = {"用户操作接口"})
 public class SysUserController extends BaseController {
 

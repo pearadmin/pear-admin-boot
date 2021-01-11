@@ -2,6 +2,7 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.system.domain.SysFile;
 import com.pearadmin.system.service.ISysFileService;
 import com.pearadmin.common.web.base.BaseController;
@@ -22,7 +23,7 @@ import javax.annotation.Resource;
  * CreateTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("system/file")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "file")
 public class SysFileController extends BaseController {
 
     /**

@@ -2,6 +2,7 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugins.logging.domain.Logging;
 import com.pearadmin.common.plugins.logging.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
@@ -22,7 +23,7 @@ import javax.annotation.Resource;
  * CreateTime: 2019/10/23
  */
 @RestController
-@RequestMapping("system/logging")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "logging")
 public class SysLoggingController extends BaseController {
 
     /**

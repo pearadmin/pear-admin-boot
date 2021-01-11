@@ -1,6 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
@@ -22,7 +23,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("system/dictType")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "dictType")
 public class SysDictTypeController extends BaseController {
 
     @Resource

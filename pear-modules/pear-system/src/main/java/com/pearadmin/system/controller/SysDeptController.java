@@ -1,5 +1,6 @@
 package com.pearadmin.system.controller;
 
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.result.ResuTree;
@@ -20,7 +21,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("system/dept")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "dept")
 public class SysDeptController extends BaseController {
 
     /**

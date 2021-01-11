@@ -1,6 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
@@ -24,7 +25,7 @@ import java.util.Arrays;
  * CreateTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("system/role")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "role")
 @Api(value="角色controller",tags={"角色操作接口"})
 public class SysRoleController extends BaseController {
 

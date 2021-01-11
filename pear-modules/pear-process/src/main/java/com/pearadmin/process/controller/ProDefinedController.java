@@ -1,5 +1,6 @@
 package com.pearadmin.process.controller;
 
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -23,7 +24,7 @@ import java.util.List;
  * createTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("/process/defined")
+@RequestMapping(ControllerConstant.API_PROCESS_PREFIX + "defined")
 public class ProDefinedController extends BaseController {
 
     /**

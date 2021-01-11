@@ -1,6 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugins.system.domain.SysBaseDictData;
 import com.pearadmin.common.plugins.system.service.ISysBaseAPI;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
@@ -25,7 +26,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("system/dictData")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "dictData")
 public class SysDictDataController extends BaseController {
 
     private String MODULE_PATH = "system/dict/data/";

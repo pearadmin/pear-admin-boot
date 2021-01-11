@@ -3,6 +3,7 @@ package com.pearadmin.process.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -29,7 +30,7 @@ import java.util.List;
  * createTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("/process/model/")
+@RequestMapping(ControllerConstant.API_PROCESS_PREFIX + "model")
 public class ProModelController extends BaseController {
 
     private String modelPath = "process/model/";

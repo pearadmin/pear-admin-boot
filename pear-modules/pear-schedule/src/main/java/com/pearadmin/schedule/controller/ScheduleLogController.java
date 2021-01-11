@@ -1,6 +1,7 @@
 package com.pearadmin.schedule.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.result.ResultTable;
@@ -19,7 +20,7 @@ import javax.annotation.Resource;
  * createTime: 2019/10/23
  * */
 @RestController
-@RequestMapping("schedule/log")
+@RequestMapping(ControllerConstant.API_SCHEDULE_PREFIX + "log")
 public class ScheduleLogController extends BaseController {
 
     /**

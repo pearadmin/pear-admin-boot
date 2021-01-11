@@ -1,5 +1,6 @@
 package com.pearadmin.system.controller;
 
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.result.ResultTable;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("system/online")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "online")
 public class SysOnlineController extends BaseController {
 
     @Resource

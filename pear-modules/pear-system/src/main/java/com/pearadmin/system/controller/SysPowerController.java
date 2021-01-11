@@ -1,5 +1,6 @@
 package com.pearadmin.system.controller;
 
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.result.ResuTree;
@@ -23,7 +24,7 @@ import java.util.List;
  * */
 
 @RestController
-@RequestMapping("system/power")
+@RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "power")
 public class SysPowerController extends BaseController {
 
     /**

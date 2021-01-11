@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.text.Convert;
 import com.pearadmin.common.tools.text.StringUtil;
@@ -38,7 +39,7 @@ import com.pearadmin.generator.service.IGenTableColumnService;
  * CreateTime: 2019/10/23
  * */
 @Controller
-@RequestMapping("/generator")
+@RequestMapping(ControllerConstant.API_GENERATOR_PREFIX)
 public class GenController extends BaseController {
 
     private String prefix = "generator";
