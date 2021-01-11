@@ -3,7 +3,7 @@ package com.pearadmin.system.controller;
 import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.result.ResultTable;
+import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.common.web.session.HttpSessionContext;
 import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysOnlineUser;

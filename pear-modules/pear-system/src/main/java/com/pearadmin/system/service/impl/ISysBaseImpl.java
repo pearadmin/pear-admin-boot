@@ -1,8 +1,8 @@
 package com.pearadmin.system.service.impl;
 
 import com.pearadmin.common.plugins.logging.domain.Logging;
-import com.pearadmin.common.plugins.logging.enums.BusinessType;
-import com.pearadmin.common.plugins.logging.enums.LoggingType;
+import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
+import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.plugins.system.domain.*;
 import com.pearadmin.common.plugins.system.service.ISysBaseAPI;

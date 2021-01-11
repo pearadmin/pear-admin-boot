@@ -1,7 +1,7 @@
 package com.pearadmin.common.plugins.logging.service;
 
 import com.pearadmin.common.plugins.logging.domain.Logging;
-import com.pearadmin.common.plugins.logging.enums.LoggingType;
+import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
 
 import java.util.List;
 

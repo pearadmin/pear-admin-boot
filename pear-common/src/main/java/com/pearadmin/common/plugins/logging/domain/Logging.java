@@ -1,15 +1,13 @@
 package com.pearadmin.common.plugins.logging.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.pearadmin.common.plugins.logging.enums.BusinessType;
-import com.pearadmin.common.plugins.logging.enums.LoggingType;
-import com.pearadmin.common.plugins.logging.enums.RequestMethod;
+import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
+import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
+import com.pearadmin.common.plugins.logging.aop.enums.RequestMethod;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

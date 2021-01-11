@@ -1,4 +1,4 @@
-package com.pearadmin.common.plugins.logging.factory;
+package com.pearadmin.common.plugins.logging.async;
 
 import com.pearadmin.common.plugins.logging.domain.Logging;
 import com.pearadmin.common.plugins.logging.service.LoggingService;

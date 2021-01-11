@@ -7,7 +7,7 @@ import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.common.web.domain.response.result.ResultTable;
+import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.process.domain.ProModel;
 import com.pearadmin.process.param.CreateModelParam;
 import org.activiti.bpmn.model.BpmnModel;

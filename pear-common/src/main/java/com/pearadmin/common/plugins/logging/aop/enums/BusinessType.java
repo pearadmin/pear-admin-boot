@@ -1,4 +1,4 @@
-package com.pearadmin.common.plugins.logging.enums;
+package com.pearadmin.common.plugins.logging.aop.enums;
 
 /**
  * Describe: 日 志 业 务 类 型

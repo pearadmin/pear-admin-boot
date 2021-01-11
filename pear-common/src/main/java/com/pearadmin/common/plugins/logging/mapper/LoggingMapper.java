@@ -1,7 +1,7 @@
 package com.pearadmin.common.plugins.logging.mapper;
 
 import com.pearadmin.common.plugins.logging.domain.Logging;
-import com.pearadmin.common.plugins.logging.enums.LoggingType;
+import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.pearadmin.common.web.domain.response.result;
+package com.pearadmin.common.web.domain.response.module;
 
 import lombok.Data;
 

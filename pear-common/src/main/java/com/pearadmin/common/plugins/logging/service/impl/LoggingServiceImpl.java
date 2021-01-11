@@ -1,8 +1,8 @@
 package com.pearadmin.common.plugins.logging.service.impl;
 
 import com.pearadmin.common.plugins.logging.domain.Logging;
-import com.pearadmin.common.plugins.logging.enums.LoggingType;
-import com.pearadmin.common.plugins.logging.enums.RequestMethod;
+import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
+import com.pearadmin.common.plugins.logging.aop.enums.RequestMethod;
 import com.pearadmin.common.plugins.logging.mapper.LoggingMapper;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.tools.security.SecurityUtil;
@@ -10,7 +10,6 @@ import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**

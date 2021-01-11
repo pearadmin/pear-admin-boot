@@ -5,28 +5,23 @@
 .pear-admin .layui-header .layui-layout-left{
 	transition: all .3s;
 }
-
 .pear-admin .layui-logo .title {
 	font-size: 20px;
 }
-
 .pear-admin .layui-header {
 	left: 230px;
 	width: calc(100% - 230px);
 	background-color: white;
 	border-bottom: 1px solid whitesmoke;
 }
-
 .pear-admin .layui-header .layui-nav-img {
 	width: 30px;
 	height: 30px;
 }
-
 .pear-admin .layui-layout-control {
 	left: 120px;
 	position: absolute;
 }
-
 .pear-admin .layui-logo {
 	width: 230px;
 	height: 60px;
@@ -35,12 +30,10 @@
 	background-color: #28333E;
 
 }
-
 .pear-admin .layui-logo img {
 	width: 34px;
 	height: 34px;
 }
-
 .pear-admin .layui-logo .title {
 	font-size: 21px;
 	font-weight: 550;
@@ -49,45 +42,37 @@
 	top: 5px;
 	margin-left: 5px;
 }
-
 .pear-admin .layui-logo .logo {
 	display: none;
 }
-
 .pear-admin .layui-side {
 	top: 0px;
 	width: 230px;
 	box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
 	z-index: 9999;
 }
-
 .pear-admin .layui-side-scroll::-webkit-scrollbar {
 	width: 0px;
 	height: 0px;
 }
-
 .pear-admin .layui-side-scroll {
 	height: calc(100% - 60px)!important;
 	background-color: #28333E;
 	width: 247px;
 
 }
-
 .pear-admin .layui-header .layui-nav .layui-nav-item>a {
 	color: black;
 	font-size: 15px;
 }
-
 .pear-admin .layui-body {
 	left: 230px;
 	bottom: 0px;
 }
-
 .pear-admin .layui-layout-left {
 	left: 0px;
 
 }
-
 /** 隐 藏 布 局 样 式 */
 .pear-mini .layui-logo .title {
 	display: none;
@@ -117,7 +102,12 @@
 .pear-mini .layui-side-scroll {
 	height: calc(100% - 60px);
 }
-
+.avatar{
+	width: 35px;
+	height: 35px;
+	border-radius: 50px;
+	margin-right: 5px;
+}
 .pear-admin .layui-header .layui-nav .layui-nav-bar {
 	top: 0px !important;
 	height: 2px !important;

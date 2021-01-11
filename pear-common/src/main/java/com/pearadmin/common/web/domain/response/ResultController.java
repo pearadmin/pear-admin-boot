@@ -1,11 +1,15 @@
 package com.pearadmin.common.web.domain.response;
 
-import com.pearadmin.common.web.domain.response.result.ResuTree;
-import com.pearadmin.common.web.domain.response.result.ResultTable;
+import com.pearadmin.common.web.domain.response.module.ResuTree;
+import com.pearadmin.common.web.domain.response.module.ResultTable;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.Map;
 
+/**
+ * Describe: 统一响应 Controller
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public class ResultController {
 
     /**

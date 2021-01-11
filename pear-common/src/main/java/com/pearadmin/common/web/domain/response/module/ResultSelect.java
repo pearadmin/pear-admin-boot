@@ -1,4 +1,4 @@
-package com.pearadmin.common.web.domain.response.result;
+package com.pearadmin.common.web.domain.response.module;
 
 import java.io.Serializable;
 import java.util.List;

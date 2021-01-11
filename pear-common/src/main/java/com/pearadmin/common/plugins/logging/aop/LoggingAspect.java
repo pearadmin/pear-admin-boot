@@ -1,8 +1,8 @@
-package com.pearadmin.common.plugins.logging.aspect;
+package com.pearadmin.common.plugins.logging.aop;
 
 import com.pearadmin.common.plugins.logging.domain.Logging;
-import com.pearadmin.common.plugins.logging.enums.LoggingType;
-import com.pearadmin.common.plugins.logging.factory.LoggingFactory;
+import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
+import com.pearadmin.common.plugins.logging.async.LoggingFactory;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -28,7 +28,7 @@ public class LoggingAspect {
     /**
      * 切 面 编 程
      * */
-    @Pointcut("@annotation(com.pearadmin.common.plugins.logging.annotation.Logging) || @within(com.pearadmin.common.plugins.logging.annotation.Logging)")
+    @Pointcut("@annotation(com.pearadmin.common.plugins.logging.aop.annotation.Logging) || @within(com.pearadmin.common.plugins.logging.aop.annotation.Logging)")
     public void dsPointCut() { }
 
     /**
@@ -42,7 +42,7 @@ public class LoggingAspect {
         Object result;
 
         try {
-            com.pearadmin.common.plugins.logging.annotation.Logging loggingAnnotation = getLogging(joinPoint);
+            com.pearadmin.common.plugins.logging.aop.annotation.Logging loggingAnnotation = getLogging(joinPoint);
             // 日 志 编 号
             logging.setId(SequenceUtil.makeStringId());
             // 模 块 标 题
@@ -73,15 +73,15 @@ public class LoggingAspect {
     /**
      * 获 取 注 解
      * */
-    public com.pearadmin.common.plugins.logging.annotation.Logging getLogging(ProceedingJoinPoint point) {
+    public com.pearadmin.common.plugins.logging.aop.annotation.Logging getLogging(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();
-        com.pearadmin.common.plugins.logging.annotation.Logging targetLogging = targetClass.getAnnotation(com.pearadmin.common.plugins.logging.annotation.Logging.class);
+        com.pearadmin.common.plugins.logging.aop.annotation.Logging targetLogging = targetClass.getAnnotation(com.pearadmin.common.plugins.logging.aop.annotation.Logging.class);
         if ( targetLogging != null) {
             return targetLogging;
         } else {
             Method method = signature.getMethod();
-            com.pearadmin.common.plugins.logging.annotation.Logging logging = method.getAnnotation(com.pearadmin.common.plugins.logging.annotation.Logging.class);
+            com.pearadmin.common.plugins.logging.aop.annotation.Logging logging = method.getAnnotation(com.pearadmin.common.plugins.logging.aop.annotation.Logging.class);
             return logging;
         }
     }

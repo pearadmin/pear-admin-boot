@@ -1,4 +1,4 @@
-package com.pearadmin.common.plugins.logging.enums;
+package com.pearadmin.common.plugins.logging.aop.enums;
 
 /**
  * Describe: 请 求 方 式

@@ -1,6 +1,6 @@
-package com.pearadmin.common.plugins.logging.annotation;
+package com.pearadmin.common.plugins.logging.aop.annotation;
 
-import com.pearadmin.common.plugins.logging.enums.BusinessType;
+import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
 
 import java.lang.annotation.*;
 
