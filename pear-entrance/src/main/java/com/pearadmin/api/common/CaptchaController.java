@@ -40,4 +40,5 @@ public class CaptchaController extends BaseController {
         }
         return failure("验证失败");
     }
+
 }
