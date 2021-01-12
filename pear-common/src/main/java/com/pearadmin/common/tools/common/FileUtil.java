@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.file;
+package com.pearadmin.common.tools.common;
 
 /**
  * Describe: 文 件 工 具 类

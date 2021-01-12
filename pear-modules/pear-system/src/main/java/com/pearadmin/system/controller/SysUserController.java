@@ -6,7 +6,7 @@ import com.pearadmin.common.plugins.logging.aop.annotation.Logging;
 import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugins.logging.service.LoggingService;
 import com.pearadmin.common.plugins.repeat.annotation.RepeatSubmit;
-import com.pearadmin.common.tools.security.SecurityUtil;
+import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.base.BaseController;

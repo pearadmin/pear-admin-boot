@@ -2,10 +2,10 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.plugins.system.domain.SysBaseDictData;
+import com.pearadmin.common.plugins.system.domain.SysBaseDictionary;
 import com.pearadmin.common.plugins.system.service.ISysBaseAPI;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
-import com.pearadmin.common.tools.sql.SqlInjectionUtil;
+import com.pearadmin.common.tools.database.SqlInjectionUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -79,9 +79,9 @@ public class SysDictDataController extends BaseController {
      * Return: Result
      */
     @GetMapping(value = "/getDictItems/{dictCode}")
-    public Result<List<SysBaseDictData>> getDictItems(@PathVariable String dictCode, @RequestParam(value = "sign",required = false) String sign, HttpServletRequest request) {
-        Result<List<SysBaseDictData>> result = new Result<List<SysBaseDictData>>();
-        List<SysBaseDictData> ls = null;
+    public Result<List<SysBaseDictionary>> getDictItems(@PathVariable String dictCode, @RequestParam(value = "sign",required = false) String sign, HttpServletRequest request) {
+        Result<List<SysBaseDictionary>> result = new Result<List<SysBaseDictionary>>();
+        List<SysBaseDictionary> ls = null;
         try {
             if(dictCode.indexOf(",")!=-1) {
                 String[] params = dictCode.split(",");
@@ -117,8 +117,8 @@ public class SysDictDataController extends BaseController {
      * Return: Result
      */
     @RequestMapping(value = "/loadDictItem/{dictCode}", method = RequestMethod.GET)
-    public Result<List<SysBaseDictData>> loadDictItem(@PathVariable String dictCode, @RequestParam(name="key") String keys, @RequestParam(value = "sign",required = false) String sign, HttpServletRequest request) {
-        Result<List<SysBaseDictData>> result = new Result<>();
+    public Result<List<SysBaseDictionary>> loadDictItem(@PathVariable String dictCode, @RequestParam(name="key") String keys, @RequestParam(value = "sign",required = false) String sign, HttpServletRequest request) {
+        Result<List<SysBaseDictionary>> result = new Result<>();
         try {
             if(dictCode.indexOf(",")!=-1) {
                 String[] params = dictCode.split(",");
@@ -126,7 +126,7 @@ public class SysDictDataController extends BaseController {
                     return Result.failure("字典Code格式不正确！");
                 }
                 String[] keyArray = keys.split(",");
-                List<SysBaseDictData> texts = iSysBaseAPI.queryTableDictByKeys(params[0], params[1], params[2], keyArray);
+                List<SysBaseDictionary> texts = iSysBaseAPI.queryTableDictByKeys(params[0], params[1], params[2], keyArray);
                 return Result.success(texts);
             }else {
                 return Result.failure("字典Code格式不正确！");

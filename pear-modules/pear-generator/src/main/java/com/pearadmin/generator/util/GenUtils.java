@@ -2,7 +2,7 @@ package com.pearadmin.generator.util;
 
 import java.util.Arrays;
 import com.pearadmin.common.constant.GeneratorConstant;
-import com.pearadmin.common.tools.text.StringUtil;
+import com.pearadmin.common.tools.string.StringUtil;
 import com.pearadmin.generator.config.GenConfig;
 import com.pearadmin.generator.domain.GenTable;
 import com.pearadmin.generator.domain.GenTableColumn;

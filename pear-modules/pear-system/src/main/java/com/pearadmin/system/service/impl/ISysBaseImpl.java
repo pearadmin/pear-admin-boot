@@ -111,32 +111,32 @@ public class ISysBaseImpl implements ISysBaseAPI {
     }
 
     @Override
-    public List<SysBaseDictData> selectDictByCode(String typeCode) {
+    public List<SysBaseDictionary> selectDictByCode(String typeCode) {
         List<SysDictData>  sysDictDataList= iSysDictDataService.selectByCode(typeCode);
         return buildSysDictDataModel(sysDictDataList);
     }
 
     @Override
-    public List<SysBaseDictData> queryTableDictItemsByCode(String table, String text, String code) {
+    public List<SysBaseDictionary> queryTableDictItemsByCode(String table, String text, String code) {
         return buildSysDictDataModel(sysDictDataMapper.queryTableDictItemsByCode(table,text,code));
     }
 
     @Override
-    public List<SysBaseDictData> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql) {
+    public List<SysBaseDictionary> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql) {
         return buildSysDictDataModel(sysDictDataMapper.queryTableDictItemsByCodeAndFilter(table,text,code,filterSql));
     }
 
     @Override
-    public List<SysBaseDictData>  queryTableDictByKeys(String table, String text, String code, String[] keyArray) {
+    public List<SysBaseDictionary>  queryTableDictByKeys(String table, String text, String code, String[] keyArray) {
         return buildSysDictDataModel(sysDictDataMapper.queryTableDictByKeys(table,text,code,keyArray));
     }
 
-    private  List<SysBaseDictData> buildSysDictDataModel(List<SysDictData>  sysDictDataList){
-        List<SysBaseDictData> sysDictDataModelList=new ArrayList<>();
+    private  List<SysBaseDictionary> buildSysDictDataModel(List<SysDictData>  sysDictDataList){
+        List<SysBaseDictionary> sysDictDataModelList=new ArrayList<>();
         if(sysDictDataList!=null&&sysDictDataList.size()>0){
             for(SysDictData sysDictData:sysDictDataList){
                 try{
-                    SysBaseDictData sysDictDataModel = new SysBaseDictData();
+                    SysBaseDictionary sysDictDataModel = new SysBaseDictionary();
                     BeanUtils.copyProperties(sysDictData, sysDictDataModel);
                     sysDictDataModelList.add(sysDictDataModel);
                 }catch (Exception e){

@@ -1,7 +1,7 @@
 package com.pearadmin.generator.service.impl;
 
 import java.util.List;
-import com.pearadmin.common.tools.text.Convert;
+import com.pearadmin.common.tools.string.Convert;
 import com.pearadmin.generator.domain.GenTableColumn;
 import org.springframework.stereotype.Service;
 import com.pearadmin.generator.mapper.GenTableColumnMapper;

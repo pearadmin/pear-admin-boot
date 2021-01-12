@@ -2,7 +2,7 @@ package ${packageName}.controller;
 
 import com.github.pagehelper.PageInfo;
 import ${packageName}.domain.${ClassName};
-import com.pearadmin.common.tools.text.Convert;
+import com.pearadmin.common.tools.string.Convert;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;

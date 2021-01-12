@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.text;
+package com.pearadmin.common.tools.string;
 
 
 import java.util.Collection;

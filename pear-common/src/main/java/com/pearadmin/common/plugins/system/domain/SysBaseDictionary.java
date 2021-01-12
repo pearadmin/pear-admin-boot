@@ -9,7 +9,7 @@ import lombok.Data;
  * CreateTime: 2019/10/23
  * */
 @Data
-public class SysBaseDictData extends BaseDomain {
+public class SysBaseDictionary extends BaseDomain {
 
     /**
      *  id 编号

@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.sql;
+package com.pearadmin.common.tools.database;
 
 import lombok.extern.slf4j.Slf4j;
 

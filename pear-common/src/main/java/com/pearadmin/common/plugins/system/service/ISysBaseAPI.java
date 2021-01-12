@@ -6,11 +6,10 @@ import com.pearadmin.common.plugins.system.domain.*;
 import java.util.List;
 
 /**
- * @Description: 底层共通业务API，提供其他独立模块调用
- * @Author: Songaw
- * @Date:2020年12月1日14:33:12
- * @Version:V1.0
- */
+ * Describe: 系统基础 API
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 public interface ISysBaseAPI {
 
 	/**
@@ -49,7 +48,7 @@ public interface ISysBaseAPI {
 	 * @param typeCode
 	 * @return
 	 */
-	List<SysBaseDictData> selectDictByCode(String typeCode);
+	List<SysBaseDictionary> selectDictByCode(String typeCode);
 
 	/**
 	 * 查询表字典通过查询指定table的 text code key 获取字典值
@@ -58,7 +57,7 @@ public interface ISysBaseAPI {
 	 * @param code value
 	 * @return
 	 */
-    List<SysBaseDictData> queryTableDictItemsByCode(String table, String text, String code);
+    List<SysBaseDictionary> queryTableDictItemsByCode(String table, String text, String code);
 
 
 	/**
@@ -68,7 +67,7 @@ public interface ISysBaseAPI {
 	 * @param code value
 	 * @return
 	 */
-	List<SysBaseDictData> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql);
+	List<SysBaseDictionary> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql);
 
 
 	/**
@@ -79,6 +78,6 @@ public interface ISysBaseAPI {
 	 * @param keyArray values
 	 * @return
 	 */
-	List<SysBaseDictData>queryTableDictByKeys(String table, String text, String code, String[] keyArray);
+	List<SysBaseDictionary>queryTableDictByKeys(String table, String text, String code, String[] keyArray);
 
 }

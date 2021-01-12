@@ -24,7 +24,7 @@ public class SecurePermissionSupport implements PermissionEvaluator {
     private SecurityProperty securityProperty;
 
     /**
-     * Describe: 自定义 Security 权限认证 @HasPermission
+     * Describe: 自定义 Security 权限认证 @hasPermission
      * Param: Authentication
      * Return Boolean
      * */

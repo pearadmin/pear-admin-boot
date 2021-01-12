@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.date;
+package com.pearadmin.common.tools.datetime;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import java.lang.management.ManagementFactory;

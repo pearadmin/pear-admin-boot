@@ -8,7 +8,7 @@ import com.wf.captcha.utils.CaptchaUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
-import com.pearadmin.common.tools.text.StringUtil;
+import com.pearadmin.common.tools.string.StringUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -22,14 +22,7 @@ import java.io.IOException;
 @Component
 public class SecureCaptchaSupport extends OncePerRequestFilter implements Filter {
 
-    /**
-     * 过 滤 接 口
-     * */
     private String defaultFilterProcessUrl = "/login";
-
-    /**
-     * 过 滤 方 法
-     * */
     private String method = "POST";
 
     /**

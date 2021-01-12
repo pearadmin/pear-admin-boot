@@ -4,7 +4,7 @@ import com.pearadmin.common.config.proprety.TemplateProperty;
 import com.pearadmin.system.domain.SysFile;
 import com.pearadmin.system.mapper.SysFileMapper;
 import com.pearadmin.system.service.ISysFileService;
-import com.pearadmin.common.tools.file.FileUtil;
+import com.pearadmin.common.tools.common.FileUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Service;

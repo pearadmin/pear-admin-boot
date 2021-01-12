@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.pearadmin.common.plugins.logging.aop.annotation.Logging;
 import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
-import com.pearadmin.common.tools.security.SecurityUtil;
+import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.web.base.BaseController;
 import org.springframework.web.servlet.ModelAndView;
 
