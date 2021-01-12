@@ -9,7 +9,7 @@
     开 箱 即 用 的 Spring 快 速 开 发 平 台
   </h4> 
 
-  [预 览](http://boot.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
+  [预 览](http://boot.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/) | [更新](http://forum.pearadmin.com/posts/fb16cb02ba2347a6ac236c434e07f8e1/detail)
 
 </div>
 
