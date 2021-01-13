@@ -1,22 +1,11 @@
 package com.pearadmin.api.common.domain;
 
 import cn.hutool.core.util.NumberUtil;
+import lombok.Data;
 import lombok.ToString;
 
-@ToString
+@Data
 public class MemInfo {
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public void setUsed(double used) {
-        this.used = used;
-    }
-
-    public void setFree(double free) {
-        this.free = free;
-    }
 
     /**
      * 内存总量

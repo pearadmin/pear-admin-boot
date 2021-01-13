@@ -97,12 +97,12 @@
                 <ul class="pear-card-status">
                     <li th:each="sysFile:${cpu.sysFiles}">
                         <p th:text="${sysFile.typeName}"></p>
-                        磁盘大小<span th:text="${sysFile.total}"></span>&nbsp;&nbsp;
-                        空闲大小<span th:text="${sysFile.free}"></span>&nbsp;&nbsp;
+                        磁盘大小&nbsp;<span th:text="${sysFile.total}"></span>&nbsp;&nbsp;
+                        空闲大小&nbsp;<span th:text="${sysFile.free}"></span>&nbsp;&nbsp;
                         <br/>
                         <br/>
-                        已经使用<span th:text="${sysFile.used}"></span>&nbsp;&nbsp;
-                        使用概率<span th:text="${sysFile.usage + '%'}"></span>
+                        已经使用&nbsp;<span th:text="${sysFile.used}"></span>&nbsp;&nbsp;
+                        使用概率&nbsp;<span th:text="${sysFile.usage + '%'}"></span>
                         <br/>
                         <a href="javascript:;" data-id="1" class="pear-btn pear-btn-xs pear-btn-success pear-reply">详情</a>
                     </li>

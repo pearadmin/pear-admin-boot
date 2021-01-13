@@ -3,6 +3,7 @@ package com.pearadmin.api.common.domain;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
+import lombok.Data;
 import lombok.ToString;
 
 import java.lang.management.ManagementFactory;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-@ToString
+@Data
 public class CpuInfo {
     /**
      * 磁盘相关信息
@@ -22,22 +23,6 @@ public class CpuInfo {
      *
      */
     private MemInfo memInfo;
-
-    public MemInfo getMemInfo() {
-        return memInfo;
-    }
-
-    public void setMemInfo(MemInfo memInfo) {
-        this.memInfo = memInfo;
-    }
-
-    public List<SysFileInfo> getSysFiles() {
-        return sysFiles;
-    }
-
-    public void setSysFiles(List<SysFileInfo> sysFiles) {
-        this.sysFiles = sysFiles;
-    }
 
     /**
      * 核心数
@@ -69,54 +54,6 @@ public class CpuInfo {
      */
     private double free;
 
-    public void setCpuNum(int cpuNum) {
-        this.cpuNum = cpuNum;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public void setSys(double sys) {
-        this.sys = sys;
-    }
-
-    public void setUsed(double used) {
-        this.used = used;
-    }
-
-    public void setWait(double wait) {
-        this.wait = wait;
-    }
-
-    public void setFree(double free) {
-        this.free = free;
-    }
-
-    public int getCpuNum() {
-        return cpuNum;
-    }
-
-    public double getTotal() {
-        return NumberUtil.round(NumberUtil.mul(total, 100), 2).doubleValue();
-    }
-
-    public double getSys() {
-        return NumberUtil.round(NumberUtil.mul(sys / total, 100), 2).doubleValue();
-    }
-
-    public double getUsed() {
-        return NumberUtil.round(NumberUtil.mul(used / total, 100), 2).doubleValue();
-    }
-
-    public double getWait() {
-        return NumberUtil.round(NumberUtil.mul(wait / total, 100), 2).doubleValue();
-    }
-
-    public double getFree() {
-        return NumberUtil.round(NumberUtil.mul(free / total, 100), 2).doubleValue();
-    }
-    //sysInfo
     /**
      * 服务器名称
      */
@@ -142,48 +79,7 @@ public class CpuInfo {
      */
     private String sysInfoOsArch;
 
-    public String getSysInfoComputerName() {
-        return sysInfoComputerName;
-    }
-
-    public void setSysInfoComputerName(String sysInfoComputerName) {
-        this.sysInfoComputerName = sysInfoComputerName;
-    }
-
-    public String getSysInfoComputerIp() {
-        return sysInfoComputerIp;
-    }
-
-    public void setSysInfoComputerIp(String sysInfoComputerIp) {
-        this.sysInfoComputerIp = sysInfoComputerIp;
-    }
-
-    public String getSysInfoUserDir() {
-        return sysInfoUserDir;
-    }
-
-    public void setSysInfoUserDir(String sysInfoUserDir) {
-        this.sysInfoUserDir = sysInfoUserDir;
-    }
-
-    public String getSysInfoOsName() {
-        return sysInfoOsName;
-    }
-
-    public void setSysInfoOsName(String sysInfoOsName) {
-        this.sysInfoOsName = sysInfoOsName;
-    }
-
-    public String getSysInfoOsArch() {
-        return sysInfoOsArch;
-    }
-
-    public void setSysInfoOsArch(String sysInfoOsArch) {
-        this.sysInfoOsArch = sysInfoOsArch;
-    }
-
-    //jvmInfo
-    /**
+   /**
      * 当前JVM占用的内存总数(M)
      */
     private double jvmInfoTotal;
@@ -208,26 +104,6 @@ public class CpuInfo {
      */
     private String jvmInfoHome;
 
-    public void setJvmInfoTotal(double jvmInfoTotal) {
-        this.jvmInfoTotal = jvmInfoTotal;
-    }
-
-    public void setJvmInfoMax(double jvmInfoMax) {
-        this.jvmInfoMax = jvmInfoMax;
-    }
-
-    public void setJvmInfoFree(double jvmInfoFree) {
-        this.jvmInfoFree = jvmInfoFree;
-    }
-
-    public void setJvmInfoVersion(String jvmInfoVersion) {
-        this.jvmInfoVersion = jvmInfoVersion;
-    }
-
-    public void setJvmInfoHome(String jvmInfoHome) {
-        this.jvmInfoHome = jvmInfoHome;
-    }
-
     public double getJvmInfoTotal() {
         return NumberUtil.div(jvmInfoTotal, (1024 * 1024), 2);
     }
@@ -244,17 +120,8 @@ public class CpuInfo {
         return NumberUtil.div(jvmInfoTotal - jvmInfoFree, (1024 * 1024), 2);
     }
 
-    public String getJvmInfoVersion() {
-        return jvmInfoVersion;
-    }
+    public double getJvmUsage() { return NumberUtil.mul(NumberUtil.div(jvmInfoTotal - jvmInfoFree, jvmInfoTotal, 4), 100); }
 
-    public String getJvmInfoHome() {
-        return jvmInfoHome;
-    }
-
-    public double getJvmUsage() {
-        return NumberUtil.mul(NumberUtil.div(jvmInfoTotal - jvmInfoFree, jvmInfoTotal, 4), 100);
-    }
     /**
      * 获取JDK名称
      */
@@ -279,7 +146,6 @@ public class CpuInfo {
         long time = ManagementFactory.getRuntimeMXBean().getStartTime();
         Date date = new Date(time);
 
-        //运行多少分钟
         long runMS = DateUtil.between(date, new Date(), DateUnit.MS);
 
         long nd = 1000 * 24 * 60 * 60;
