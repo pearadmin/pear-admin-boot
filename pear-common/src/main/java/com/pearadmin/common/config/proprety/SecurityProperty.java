@@ -32,4 +32,9 @@ public class SecurityProperty {
      * */
     private String[] openApi;
 
+    /**
+     * 是否允许多账号在线
+     * */
+    private Integer maximum = 1;
+
 }

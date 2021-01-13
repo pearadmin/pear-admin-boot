@@ -5,7 +5,7 @@ import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.common.web.domain.response.module.ResuTree;
+import com.pearadmin.common.web.domain.response.module.ResultTree;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysRole;
@@ -152,7 +152,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("getRolePower")
     @ApiOperation(value="获取角色权限数据")
     @PreAuthorize("hasPermission('/system/role/power','sys:role:power')")
-    public ResuTree getRolePower(String roleId){
+    public ResultTree getRolePower(String roleId){
         return dataTree(sysRoleService.getRolePower(roleId));
     }
 

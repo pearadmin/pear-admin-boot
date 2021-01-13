@@ -3,7 +3,7 @@ package com.pearadmin.system.controller;
 import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
-import com.pearadmin.common.web.domain.response.module.ResuTree;
+import com.pearadmin.common.web.domain.response.module.ResultTree;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysDept;
@@ -64,7 +64,7 @@ public class SysDeptController extends BaseController {
      * Return ModelAndView
      * */
     @GetMapping("tree")
-    public ResuTree tree(SysDept param){
+    public ResultTree tree(SysDept param){
         List<SysDept> data = sysDeptService.list(param);
         return dataTree(data);
     }

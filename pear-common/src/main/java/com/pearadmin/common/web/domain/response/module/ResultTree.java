@@ -8,7 +8,7 @@ import lombok.Data;
  * CreateTime: 2019/10/23
  * */
 @Data
-public class ResuTree {
+public class ResultTree {
 
     /**
      * 状态信息

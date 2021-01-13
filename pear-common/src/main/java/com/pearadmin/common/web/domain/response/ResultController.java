@@ -1,6 +1,6 @@
 package com.pearadmin.common.web.domain.response;
 
-import com.pearadmin.common.web.domain.response.module.ResuTree;
+import com.pearadmin.common.web.domain.response.module.ResultTree;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
@@ -135,8 +135,8 @@ public class ResultController {
      * Param data
      * Return Tree数据
      * */
-    protected  static ResuTree dataTree(Object data){
-        ResuTree resuTree = new ResuTree();
+    protected  static ResultTree dataTree(Object data){
+        ResultTree resuTree = new ResultTree();
         resuTree.setData(data);
         return resuTree;
     }

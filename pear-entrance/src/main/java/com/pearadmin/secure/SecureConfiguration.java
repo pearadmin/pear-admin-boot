@@ -164,7 +164,7 @@ public class SecureConfiguration extends WebSecurityConfigurerAdapter {
                 // 在需要使用到session时才创建session
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 // 同时登陆多个只保留一个
-                .maximumSessions(1)
+                .maximumSessions(securityProperty.getMaximum())
                 .maxSessionsPreventsLogin(false)
                 // 踢出用户操作
                 .expiredSessionStrategy(securityExpiredSessionHandler)
