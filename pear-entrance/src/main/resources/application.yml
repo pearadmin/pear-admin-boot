@@ -31,31 +31,31 @@ mybatis:
 
 # Pear 插 件 配 置 信 息
 pear:
-    # Document 配 置 信 息
+  # Document 配 置 信 息
   swagger:
-      # 文 档 标 题
+    # 文 档 标 题
     title: Pear Admin API
-      # 是 否 开 启
+    # 是 否 开 启
     enable: true
-      # 描 述 信 息
+    # 描 述 信 息
     describe: 企 业 快 速 开 发 平 台
-      # 扫 包 路 径
+    # 扫 包 路 径
     scan-package: com.pearadmin
-      # 协 议
-    licence: apache
-      # 协 议 地 址
+    # 协 议
+    licence: MIT
+    # 协 议 地 址
     licence-url: https://gitee.com/pear_community
-      # 组 织 信 息
+    # 组 织 信 息
     terms-of-service-url: https://gitee.com/pear_community
-      # 版 本 信 息
+    # 版 本 信 息
     version: Release 2.0.0
-      # 扩 展 信 息
+    # 扩 展 信 息
     contact:
-        # 作 者
+      # 作 者
       name: 就 眠 仪 式
-        # 连 接
+      # 连 接
       url: www.pearadmin.cn
-        # 邮 箱
+      # 邮 箱
       email: Jmys1992@gmail.com
   # 权 限 配 置
   security:
@@ -83,6 +83,13 @@ pear:
     windows-path: D:\home\uploads\
     # linux 上传路径
     linux-path: /home/uploads/
+  # 邮 箱 配 置
+  mail:
+    host:
+    port:
+    from:
+    user:
+    pass:
 
 # Page Helper
 pagehelper:
