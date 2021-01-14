@@ -71,7 +71,11 @@ public class SysMailController extends BaseController {
      */
     @PostMapping("/save")
     public Result save(@RequestBody SysMail sysMail) {
-        return decide(sysMailService.save(sysMail));
+        try {
+            return decide(sysMailService.save(sysMail));
+        }catch (Exception e){
+            return failure("请检查邮箱配置");
+        }
     }
 
     /**
