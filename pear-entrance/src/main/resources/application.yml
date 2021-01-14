@@ -85,8 +85,8 @@ pear:
     linux-path: /home/uploads/
   # 邮 箱 配 置
   mail:
-    host: smtp.qq.com
-    port: 25
+    host:
+    port:
     from:
     user:
     pass:
