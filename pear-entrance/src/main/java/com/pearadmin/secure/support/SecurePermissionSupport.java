@@ -6,6 +6,7 @@ import com.pearadmin.system.domain.SysUser;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ import java.util.Set;
  * Describe: 自定义 Security 权限注解实现
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
- * */
+ */
 @Component
 public class SecurePermissionSupport implements PermissionEvaluator {
 
@@ -27,28 +28,27 @@ public class SecurePermissionSupport implements PermissionEvaluator {
      * Describe: 自定义 Security 权限认证 @hasPermission
      * Param: Authentication
      * Return Boolean
-     * */
+     */
     @Override
-    public boolean hasPermission(Authentication authentication, Object o, Object o1)
-    {
+    public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
         SysUser securityUserDetails = (SysUser) authentication.getPrincipal();
         if (securityProperty.isSuperAuthOpen() && securityProperty.getSuperAdmin().equals(securityUserDetails.getUsername())) {
             return true;
         }
         List<SysPower> powerList = securityUserDetails.getPowerList();
         Set<String> permissions = new HashSet<>();
-        for (SysPower sysPower :powerList) {
+        for (SysPower sysPower : powerList) {
             permissions.add(sysPower.getPowerCode());
         }
-        if(permissions.contains(o1)){
+        if (permissions.contains(permission)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     @Override
-    public boolean hasPermission(Authentication authentication, Serializable serializable, String s, Object o) {
+    public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {
         return false;
     }
 }
