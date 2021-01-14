@@ -41,9 +41,9 @@ pear:
     describe: 企 业 快 速 开 发 平 台
     # 扫 包 路 径
     scan-package: com.pearadmin
-      # 协 议
-    licence: apache
-      # 协 议 地 址
+    # 协 议
+    licence: MIT
+    # 协 议 地 址
     licence-url: https://gitee.com/pear_community
     # 组 织 信 息
     terms-of-service-url: https://gitee.com/pear_community
