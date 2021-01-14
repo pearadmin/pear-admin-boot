@@ -11,6 +11,8 @@ import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysMail;
 import com.pearadmin.system.service.ISysMailService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,6 +42,8 @@ public class SysMailController extends BaseController {
      * Return: ModelAndView
      */
     @GetMapping("/main")
+    @ApiOperation(value = "邮件管理页面")
+    @PreAuthorize("hasPermission('/system/mail/main','sys:mail:main')")
     public ModelAndView main() {
         return JumpPage(MODULE_PATH + "main");
     }
@@ -50,16 +54,20 @@ public class SysMailController extends BaseController {
      * Return: 邮件列表
      */
     @GetMapping("/data")
+    @ApiOperation(value = "邮件列表数据")
+    @PreAuthorize("hasPermission('/system/mail/data','sys:mail:data')")
     public ResultTable data(SysMail sysMail, PageDomain pageDomain) {
         PageInfo<SysMail> page = sysMailService.page(sysMail, pageDomain);
         return pageTable(page.getList(), page.getTotal());
     }
 
     /**
-     * Describe: 邮件发送
+     * Describe: 邮件发送页面
      * Return: ModelAndView
      */
     @GetMapping("/add")
+    @ApiOperation(value = "邮件发送页面")
+    @PreAuthorize("hasPermission('/system/mail/add','sys:mail:add')")
     public ModelAndView add() {
         return JumpPage(MODULE_PATH + "add");
     }
@@ -70,10 +78,12 @@ public class SysMailController extends BaseController {
      * Return: 操作结果
      */
     @PostMapping("/save")
+    @ApiOperation(value = "邮件保存和发送")
+    @PreAuthorize("hasPermission('/system/mail/save','sys:mail:save')")
     public Result save(@RequestBody SysMail sysMail) {
         try {
             return decide(sysMailService.save(sysMail));
-        }catch (Exception e){
+        } catch (Exception e) {
             return failure("请检查邮箱配置");
         }
     }
@@ -84,6 +94,8 @@ public class SysMailController extends BaseController {
      * Return: 操作结果
      */
     @DeleteMapping("/remove/{mailId}")
+    @ApiOperation(value = "删除邮件")
+    @PreAuthorize("hasPermission('/system/mail/remove','sys:mail:remove')")
     public Result remove(@PathVariable String mailId) {
         return decide(sysMailService.removeById(mailId));
     }
@@ -94,6 +106,8 @@ public class SysMailController extends BaseController {
      * Return: 操作结果
      */
     @DeleteMapping("/batchRemove/{ids}")
+    @ApiOperation(value = "批量删除邮件")
+    @PreAuthorize("hasPermission('/system/mail/remove','sys:mail:remove')")
     public Result batchRemove(@PathVariable String ids) {
         ArrayList<String> idList = CollectionUtil.newArrayList(StringUtil.split(ids, ","));
         return decide(sysMailService.removeByIds(idList));
