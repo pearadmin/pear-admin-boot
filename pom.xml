@@ -79,6 +79,8 @@
         <yaml.version>1.26</yaml.version>
         <!-- HuTool 工具类 -->
         <hutool.version>5.5.7</hutool.version>
+        <!-- Xss 工具类 -->
+        <jsoup.version>1.9.2</jsoup.version>
         <!-- Maven 配置 -->
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
@@ -254,6 +256,11 @@
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

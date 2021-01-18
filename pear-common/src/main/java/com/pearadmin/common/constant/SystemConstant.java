@@ -27,4 +27,8 @@ public class SystemConstant {
      * */
     public static String GBK = "GBK";
 
+    /**
+     * 空串
+     * */
+    public static String EMPTY = "";
 }
