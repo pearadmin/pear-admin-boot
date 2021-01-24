@@ -18,25 +18,25 @@
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">核心数</div>
-                                    <div class="count" th:text="${cpu.cpuNum}">21</div>
+                                    <div class="count pear-text" th:text="${cpu.cpuNum}">21</div>
                                 </div>
                             </div>
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">空闲率</div>
-                                    <div class="count"  th:text="${cpu.free + '%'}">32</div>
+                                    <div class="count pear-text"  th:text="${cpu.free + '%'}">32</div>
                                 </div>
                             </div>
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">等待率</div>
-                                    <div class="count" th:text="${cpu.wait + '%'}"></div>
+                                    <div class="count pear-text" th:text="${cpu.wait + '%'}"></div>
                                 </div>
                             </div>
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">使用率</div>
-                                    <div class="count" th:text="${cpu.used + '%'}"></div>
+                                    <div class="count pear-text" th:text="${cpu.used + '%'}"></div>
                                 </div>
                             </div>
                         </div>
@@ -53,25 +53,25 @@
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">空闲内存</div>
-                                    <div class="count" th:text="${cpu.memInfo.free + 'G'}"></div>
+                                    <div class="count pear-text" th:text="${cpu.memInfo.free + 'G'}"></div>
                                 </div>
                             </div>
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">最大内存</div>
-                                    <div class="count" th:text="${cpu.memInfo.total + 'G'}"></div>
+                                    <div class="count pear-text" th:text="${cpu.memInfo.total + 'G'}"></div>
                                 </div>
                             </div>
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">已用内存</div>
-                                    <div class="count" th:text="${cpu.memInfo.used + 'G'}"></div>
+                                    <div class="count pear-text" th:text="${cpu.memInfo.used + 'G'}"></div>
                                 </div>
                             </div>
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">内存使用</div>
-                                    <div class="count" th:text="${#numbers.formatDecimal(cpu.memInfo.used / cpu.memInfo.total * 100, 2, 2)+ '%'}"></div>
+                                    <div class="count pear-text" th:text="${#numbers.formatDecimal(cpu.memInfo.used / cpu.memInfo.total * 100, 2, 2)+ '%'}"></div>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                         已经使用&nbsp;<span th:text="${sysFile.used}"></span>&nbsp;&nbsp;
                         使用概率&nbsp;<span th:text="${sysFile.usage + '%'}"></span>
                         <br/>
-                        <a href="javascript:;" data-id="1" class="pear-btn pear-btn-xs pear-btn-success pear-reply">详情</a>
+                        <a href="javascript:;" data-id="1" class="pear-btn pear-btn-xs pear-btn-primary pear-reply">详情</a>
                     </li>
                 </ul>
             </div>
