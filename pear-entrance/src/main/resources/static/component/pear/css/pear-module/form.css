@@ -19,12 +19,12 @@
 
 .layui-input[hover]:focus {
 	box-shadow: 0px 0px 3px 1px #5FB878 !important;
-	border: #5FB878 1px solid;
+	border: #5FB878 1px solid!important;
 }
 
 .layui-input[success] {
 	box-shadow: 0px 0px 3px 1px #5FB878 !important;
-	border: #5FB878 1px solid;
+	border: #5FB878 1px solid!important;
 }
 
 .layui-input[failure] {
@@ -68,4 +68,3 @@ textarea::-webkit-input-placeholder {
 	border-color: #eee!important;
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out!important;
 }
-

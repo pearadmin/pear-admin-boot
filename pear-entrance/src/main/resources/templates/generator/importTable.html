@@ -45,7 +45,7 @@
 
         let active = {
             reload: function () {
-                search(false);
+                table.reload('table_import', {where: data.field, page: {curr: 1}});
             },
             remove: function (ids) {
                 common.ajaxRemove(prefix + "/remove", ids, function (res) {
@@ -55,7 +55,7 @@
         };
 
         form.on('submit(form-search)', function (data) {
-            search(true);
+            table.reload('table_import', {where: data.field, page: {curr: 1}});//执行重载
         });
 
         table.render({
@@ -71,13 +71,6 @@
                 , {field: 'createTime', title: '创建时间', width: 160, sort: true}
                 , {field: 'updateTime', title: '更新时间', width: 160}
             ])
-        });
-
-        table.on('sort(table_import)', function (obj) {
-            let field = JSON.stringify($('#searchForm'));
-            field.orderByColumn = obj.field;
-            field.isAsc = obj.type;
-            table.reload('table_import', {where: field, page: {curr: 1}});//执行重载
         });
     });
 

@@ -35,4 +35,8 @@ layui.config({
 	dictionary: 'dictionary',
 	json: 'json',
 	cropper:"cropper",
+	yaml: "yaml",
+	theme: "theme"
+}).use(['layer', 'theme'], function () {
+	layui.theme.changeTheme(window, false);
 });

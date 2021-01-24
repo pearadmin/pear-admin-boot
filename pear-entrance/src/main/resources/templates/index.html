@@ -55,6 +55,8 @@
 </div>
 <!-- 遮 盖 层 -->
 <div class="pear-cover"></div>
+<!-- 移 动 端 便 捷 操 作 -->
+<div class="pear-collasped-pe collaspe"><a href="#" class="layui-icon layui-icon-shrink-right"></a></div>
 <!-- 加 载 动 画-->
 <div class="loader-main">
     <div class="loader"></div>
@@ -62,13 +64,40 @@
 <!-- 依 赖 脚 本 -->
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    layui.use(['admin','jquery'], function () {
+    layui.use(['admin','jquery','layer'], function () {
         let admin = layui.admin;
         let $ = layui.jquery;
+        let layer = layui.layer;
+
+        // 框架初始化时会读取 根目录下 pear.config.yml 文件作为初始化配置
+        // 你可以通过 admin.setConfigPath 方法修改配置文件位置
+        // 你可以通过 admin.setConfigType 方法修改配置文件类型
+        admin.setConfigType("yml");
+        admin.setConfigPath("pear.config.yml");
 
         admin.render();
 
         $('#avatar').attr("src","/system/file/download/"+[[${session.currentUser.avatar}]]);
+
+        $("body").on("click", ".logout", function() {
+            let loader = layer.load();
+            $.ajax({
+                url: '/logout',
+                dataType: 'json',
+                type: 'post',
+                success: function(result) {
+                    layer.close(loader);
+                    if (result.success) {
+                        layer.msg("注销成功", {
+                            icon: 1,
+                            time: 1200
+                        }, function() {
+                            location.href = "/";
+                        });
+                    }
+                }
+            })
+        })
     })
 </script>
 </body>

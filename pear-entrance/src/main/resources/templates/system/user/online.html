@@ -32,8 +32,9 @@
 </body>
 
 <script type="text/html" id="online-bar">
-    <button sec:authorize="hasPermission('/system/online/remove','sys:online:remove')" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove">
-    踢出</button>
+    <button sec:authorize="hasPermission('/system/online/remove','sys:online:remove')" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="remove">
+        <i class="pear-icon pear-icon-pin"></i>
+    </button>
 </script>
 
 <th:block th:include="include :: footer"/>

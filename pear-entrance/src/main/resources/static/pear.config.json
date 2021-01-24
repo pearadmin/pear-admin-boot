@@ -63,5 +63,9 @@
 			"title": "交流社区",
 			"href": "http://forum.pearadmin.com/"
 		}
-	]
+	],
+	"other": {
+		"autoHead": false,
+		"keepLoad": 1200
+	}
 }
