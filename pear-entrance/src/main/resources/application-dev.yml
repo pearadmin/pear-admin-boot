@@ -31,7 +31,7 @@ spring:
         master:
           url: jdbc:mysql://mysql.pearadmin.com/pear-admin-boot?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
           username: root
-          password: pear-mysql
+          password: root
           druid:
             # 初始连接数
             initialSize: 5
