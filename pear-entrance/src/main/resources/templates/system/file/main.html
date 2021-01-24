@@ -60,8 +60,8 @@
     <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="role-enable" {{d.enable == '0' ? 'checked' : '' }} >
 </script>
 
-<script type="text/html" id="file-img">
-    <img src="/system/file/download/{{d.id}}"/>
+<script type="text/html" id="file-image">
+    <a href="javascript:void(0);" class="pear-text">查看</a>
 </script>
 
 <script type="text/html" id="file-createTime">
@@ -86,7 +86,7 @@
                 {title: '原名称', field: 'fileDesc', align: 'center', width: 260},
                 {title: '类型', field: 'fileType', align: 'center', width: 80},
                 {title: '文件大小', field: 'fileSize', align: 'center'},
-                {title: '预览', field: 'fileType', align: 'center', templet: "#file-img"},
+                {title: '预览', field: 'fileType', align: 'center', templet: "#file-image",event:"file-image"},
                 {title: '创建日期', field: 'createTime', align: 'center', templet: "#file-createTime"},
                 {title: '操作', toolbar: '#role-bar', align: 'center', width: 150}
             ]
@@ -109,6 +109,8 @@
         table.on('tool(file-table)', function (obj) {
             if (obj.event === 'remove') {
                 window.remove(obj);
+            }else if(obj.event === 'file-image'){
+                window.show(obj);
             }
         });
 
@@ -134,6 +136,18 @@
                 shade: 0.1,
                 area: ['500px', '400px'],
                 content: MODULE_PATH + 'add'
+            });
+        }
+
+        window.show = function(obj){
+            layer.open({
+                type: 1,
+                title: false,
+                closeBtn: 0,
+                offset: ['100px','100px'],
+                skin:'layui-layer-nobg',
+                shadeClose: true,
+                content: '<img style="max-width: 100%;" src="/system/file/download/'+obj.data.id+'"/>'
             });
         }
 
