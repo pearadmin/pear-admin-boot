@@ -91,18 +91,17 @@
 
         table.on('tool(log-operate-table)', function (obj) {
             if (obj.event === 'details') {
-                window.details(obj);
+                window.info(obj);
             }
         });
 
         table.on('tool(log-login-table)', function (obj) {
             if (obj.event === 'details') {
-                window.details(obj);
+                window.info(obj);
             }
         });
 
-        window.details = function (obj) {
-            console.log(obj.data)
+        window.info = function (obj) {
             layer.open({
                 type: 2,
                 title: '详细信息',
