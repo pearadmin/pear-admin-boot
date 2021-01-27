@@ -236,7 +236,7 @@
             <!-- 代 码 生 成 模 块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
-                <artifactId>pear-generator</artifactId>
+                <artifactId>pear-generate</artifactId>
                 <version>${pear.generator.version}</version>
             </dependency>
             <!-- 权 限 标 签 依 赖 -->

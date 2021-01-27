@@ -20,7 +20,7 @@
 
     <!-- 模 块 管 理 -->
     <modules>
-        <module>pear-generator</module>  <!-- 代码生成模块 -->
+        <module>pear-generate</module>  <!-- 代码生成模块 -->
         <module>pear-system</module>     <!-- 系统业务模块 -->
         <module>pear-schedule</module>   <!-- 定时任务模块 -->
         <module>pear-process</module>    <!-- 工作流程模块 -->

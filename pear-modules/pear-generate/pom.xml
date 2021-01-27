@@ -12,7 +12,7 @@
 
     <!-- Maven 地 址 -->
     <groupId>com.pearadmin</groupId>
-    <artifactId>pear-generator</artifactId>
+    <artifactId>pear-generate</artifactId>
     <version>1.0.0-RELEASE</version>
 
     <!-- 项 目 信 息 -->
@@ -21,14 +21,17 @@
 
     <!-- 依 赖 管 理 -->
     <dependencies>
+        <!-- 模 板 引 擎 -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
         </dependency>
+        <!-- 通 用 代 码 -->
         <dependency>
             <groupId>com.pearadmin</groupId>
             <artifactId>pear-common</artifactId>
         </dependency>
+        <!-- 分 页 依 赖 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>

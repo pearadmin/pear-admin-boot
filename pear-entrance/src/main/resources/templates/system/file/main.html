@@ -50,14 +50,10 @@
 
 <script type="text/html" id="role-bar">
     <a class="pear-btn pear-btn-primary pear-btn-sm" href="/system/file/download/{{d.id}}" download="{{d.fileDesc}}">
-        <i class="layui-icon layui-icon-download-circle"></i>
+        <i class="pear-icon pear-icon-direction-down"></i>
     </a>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
-</script>
-
-<script type="text/html" id="role-enable">
-    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="role-enable" {{d.enable == '0' ? 'checked' : '' }} >
 </script>
 
 <script type="text/html" id="file-image">

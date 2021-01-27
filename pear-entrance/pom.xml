@@ -41,7 +41,7 @@
         <!-- 代 码 生 成 -->
         <dependency>
             <groupId>com.pearadmin</groupId>
-            <artifactId>pear-generator</artifactId>
+            <artifactId>pear-generate</artifactId>
         </dependency>
         <!-- 系 统 业 务 -->
         <dependency>
