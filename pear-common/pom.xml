@@ -18,6 +18,12 @@
 
     <!-- 依赖管理 -->
     <dependencies>
+        <!--OSHI可以跨平台查看服务器信息-->
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <version>3.9.1</version>
+        </dependency>
         <!-- Web 模块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

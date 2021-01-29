@@ -1,10 +1,9 @@
-package com.pearadmin.api.common.domain;
+package com.pearadmin.common.tools.system;
 
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import lombok.Data;
-import lombok.ToString;
 
 import java.lang.management.ManagementFactory;
 import java.util.Date;
@@ -13,6 +12,7 @@ import java.util.List;
 
 @Data
 public class CpuInfo {
+
     /**
      * 磁盘相关信息
      */

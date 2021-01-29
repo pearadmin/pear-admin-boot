@@ -1,4 +1,4 @@
-package com.pearadmin.api.common.domain;
+package com.pearadmin.common.tools.system;
 
 import lombok.Data;
 import lombok.ToString;
