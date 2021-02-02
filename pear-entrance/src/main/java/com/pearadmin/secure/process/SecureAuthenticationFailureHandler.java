@@ -1,14 +1,14 @@
 package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
+import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.exception.auth.CaptchaException;
-import com.pearadmin.common.plugins.logging.domain.Logging;
 import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
-import com.pearadmin.common.plugins.logging.service.LoggingService;
+import com.pearadmin.system.service.ISysLogService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -34,7 +34,7 @@ public class SecureAuthenticationFailureHandler implements AuthenticationFailure
      * 引 入 日 志 服 务
      * */
     @Resource
-    private LoggingService loggingService;
+    private ISysLogService sysLogService;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
@@ -56,14 +56,14 @@ public class SecureAuthenticationFailureHandler implements AuthenticationFailure
         if(e instanceof DisabledException){
             result.setMsg("用户未启用");
         }
-        Logging logging = new Logging();
-        logging.setId(SequenceUtil.makeStringId());
-        logging.setTitle("登录");
-        logging.setDescription(result.getMsg());
-        logging.setBusinessType(BusinessType.OTHER);
-        logging.setSuccess(false);
-        logging.setLoggingType(LoggingType.LOGIN);
-        loggingService.save(logging);
+        SysLog sysLog = new SysLog();
+        sysLog.setId(SequenceUtil.makeStringId());
+        sysLog.setTitle("登录");
+        sysLog.setDescription(result.getMsg());
+        sysLog.setBusinessType(BusinessType.OTHER);
+        sysLog.setSuccess(false);
+        sysLog.setLoggingType(LoggingType.LOGIN);
+        sysLogService.save(sysLog);
         ServletUtil.write(JSON.toJSONString(result));
     }
 }

@@ -3,6 +3,12 @@
 <head>
     <th:block th:include="include :: header('个人中心')"/>
     <link rel="stylesheet" href="../../admin/css/other/center.css"/>
+    <style>
+        .layui-form-item{
+            margin-top: 17px!important;
+            margin-bottom: 17px!important;
+        }
+    </style>
 </head>
 <body class="pear-container">
 <div class="layui-row layui-col-space10">
@@ -39,25 +45,55 @@
                 <div class="layui-tab layui-tab-brief">
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
-                            <br>
-                            名称&nbsp; : &nbsp;<span th:text="${userInfo.realName}"></span>
-                            <br>
-                            <br>
-                            账户&nbsp; : &nbsp;<span th:text="${userInfo.username}"></span>&nbsp;&nbsp;&nbsp;<a style="font-size: 13px;color: #01AAED">修改密码</a>
-                            <br>
-                            <br>
-                            住址&nbsp; : &nbsp;<span> 中国 &nbsp;&nbsp;济南&nbsp;&nbsp; 高新区 </span>
-                            <br>
-                            <br>
-                            手机&nbsp; : &nbsp;<span th:text="${userInfo.phone}"></span>
-                            <br>
-                            <br>
-                            简介&nbsp; : &nbsp;<span th:text="${userInfo.remark}"></span>
-                            <br>
-                            <br>
-                            <br>
-                            <button class="pear-btn pear-btn-primary pear-btn-sm">修改资料</button>
-                            <button class="pear-btn pear-btn-sm edit-password">更改密码</button>
+                            <form class="layui-form">
+                                <div class="layui-form-item layui-hide">
+                                    <label class="layui-form-label">编号</label>
+                                    <div class="layui-input-block">
+                                        <input th:value="${userInfo.userId}" type="text" name="userId" lay-verify="title"
+                                           autocomplete="off" placeholder="请输入标题" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">账号</label>
+                                    <div class="layui-input-block">
+                                        <input th:value="${userInfo.username}" type="text" readonly name="username" lay-verify="title"
+                                           autocomplete="off" placeholder="请输入标题" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">姓名</label>
+                                    <div class="layui-input-block">
+                                        <input  th:value="${userInfo.realName}"  type="text" name="realName" lay-verify="title"
+                                           autocomplete="off" placeholder="请输入标题" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">邮箱</label>
+                                    <div class="layui-input-block">
+                                        <input th:value="${userInfo.email}" type="text" name="email" lay-verify="title"
+                                           autocomplete="off" placeholder="请输入标题" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">电话</label>
+                                    <div class="layui-input-block">
+                                        <input th:value="${userInfo.phone}" type="text" name="phone" lay-verify="title"
+                                           autocomplete="off" placeholder="请输入标题" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item layui-form-text">
+                                    <label class="layui-form-label">描述</label>
+                                    <div class="layui-input-block">
+                                        <textarea th:text="${userInfo.remark}" placeholder="请输入描述" name="details" class="layui-textarea"></textarea>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="pear-btn pear-btn-primary pear-btn-sm" lay-submit lay-filter="user-update">修改资料</button>
+                                        <button class="pear-btn pear-btn-sm edit-password">更改密码</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -138,11 +174,11 @@
     </div>
 </div>
 <th:block th:include="include :: footer"/>
-<script th:src="@{/admin/js/headImg.js}"></script>
 <script th:inline="javascript">
-    layui.use(['element', 'jquery', 'layer'], function () {
+    layui.use(['element', 'jquery', 'layer','form'], function () {
         let $ = layui.jquery;
         let layer = layui.layer;
+        let form = layui.form;
 
         $(".edit-password").click(function () {
             layer.open({
@@ -168,6 +204,24 @@
                     window['layui-layer-iframe' + index].submitForm();
                 }
             });
+        });
+
+        form.on('submit(user-update)', function (data) {
+            $.ajax({
+                url: '/system/user/updateInfo',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg("修改成功", {icon: 1, time: 1000});
+                    } else {
+                        layer.msg("修改失败", {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
         });
     })
 </script>

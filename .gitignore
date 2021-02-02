@@ -17,7 +17,7 @@ build/**
 .idea
 *.iml
 .metadata/**
-logging.fileDir*
+sysLog.fileDir*
 
 /.settings/**
 

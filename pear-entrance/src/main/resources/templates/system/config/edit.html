@@ -23,18 +23,6 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">类型</label>
-                    <div class="layui-input-block">
-                        <select name="configType" id="configType">
-                            <option value="STRING" th:selected="${sysConfig.configType eq 'STRING'}">STRING</option>
-                            <option value="DOUBLE" th:selected="${sysConfig.configType eq 'DOUBLE'}">DOUBLE</option>
-                            <option value="INTEGER" th:selected="${sysConfig.configType eq 'INTEGER'}">INTEGER</option>
-                            <option value="DATETIME" th:selected="${sysConfig.configType eq 'DATETIME'}">DATETIME
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
                         <input type="text" th:value="${sysConfig.configCode}" name="configCode" lay-verify="title"

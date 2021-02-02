@@ -84,6 +84,7 @@ public class SysMailController extends BaseController {
         try {
             return decide(sysMailService.save(sysMail));
         } catch (Exception e) {
+            e.printStackTrace();
             return failure("请检查邮箱配置");
         }
     }

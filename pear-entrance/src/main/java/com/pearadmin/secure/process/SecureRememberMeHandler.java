@@ -1,9 +1,9 @@
 package com.pearadmin.secure.process;
 
-import com.pearadmin.common.plugins.logging.domain.Logging;
+import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
-import com.pearadmin.common.plugins.logging.service.LoggingService;
+import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.secure.session.SecureSessionService;
@@ -20,16 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-/**
- * Describe: 自定义remember-me成功处理类
- * Author: Heiky
- * CreateTime: 2020/12/17
- * */
 @Component
 public class SecureRememberMeHandler implements AuthenticationSuccessHandler {
 
     @Resource
-    private LoggingService loggingService;
+    private ISysLogService sysLogService;
 
     @Resource
     private ISysUserService sysUserService;
@@ -40,14 +35,14 @@ public class SecureRememberMeHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         // 记录日志
-        Logging logging = new Logging();
-        logging.setId(SequenceUtil.makeStringId());
-        logging.setTitle("Remember Me");
-        logging.setDescription("登录成功");
-        logging.setBusinessType(BusinessType.OTHER);
-        logging.setSuccess(true);
-        logging.setLoggingType(LoggingType.LOGIN);
-        loggingService.save(logging);
+        SysLog sysLog = new SysLog();
+        sysLog.setId(SequenceUtil.makeStringId());
+        sysLog.setTitle("Remember Me");
+        sysLog.setDescription("登录成功");
+        sysLog.setBusinessType(BusinessType.OTHER);
+        sysLog.setSuccess(true);
+        sysLog.setLoggingType(LoggingType.LOGIN);
+        sysLogService.save(sysLog);
 
         // 更新用户
         SysUser sysUser = new SysUser();

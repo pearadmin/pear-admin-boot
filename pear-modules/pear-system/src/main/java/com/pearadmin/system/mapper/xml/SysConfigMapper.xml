@@ -15,10 +15,10 @@
         <result column="remark" property="remark"></result>
     </resultMap>
 
-    <!-- 查询系统配置列表 -->
     <select id="selectList" resultMap="SysConfigMap">
         select * from sys_config
         <where>
+            config_type = 'custom'
             <if test="configCode!=null and configCode!=''">
                 and config_code like "%"#{configCode}"%"
             </if>
@@ -31,6 +31,11 @@
     <!-- 根据 Id 查询系统配置-->
     <select id="selectById" parameterType="string" resultMap="SysConfigMap">
         select * from sys_config where config_id = #{id}
+    </select>
+
+    <!-- 根据 Code 查询系统配置-->
+    <select id="selectByCode" parameterType="string" resultMap="SysConfigMap">
+        select * from sys_config where config_code = #{code}
     </select>
 
     <!-- 新增 SysConfig 数据 -->

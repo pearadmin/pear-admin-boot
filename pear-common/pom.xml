@@ -18,7 +18,6 @@
 
     <!-- 依赖管理 -->
     <dependencies>
-        <!--OSHI可以跨平台查看服务器信息-->
         <dependency>
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>

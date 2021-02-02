@@ -1,7 +1,7 @@
 package com.pearadmin.common.plugins.logging.async;
 
-import com.pearadmin.common.plugins.logging.domain.Logging;
-import com.pearadmin.common.plugins.logging.service.LoggingService;
+import com.pearadmin.common.plugins.system.domain.SysBaseLog;
+import com.pearadmin.common.plugins.system.service.SysContext;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
@@ -18,15 +18,13 @@ public class LoggingFactory {
      * 引 入 日 志 服 务
      * */
     @Resource
-    private LoggingService loggingService;
+    private SysContext sysContext;
 
     /**
      * 执 行 日 志 入 库 操 作
      * */
     @Async
-    public void record(Logging logging){
-
-        // 异 步 操 作 无 返 回 值 处 理
-        loggingService.save(logging);
+    public void record(SysBaseLog sysLog){
+        sysContext.saveLog(sysLog);
     }
 }

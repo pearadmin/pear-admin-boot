@@ -81,6 +81,7 @@ public class SysConfigController extends BaseController {
     public Result save(@RequestBody SysConfig sysConfig){
         sysConfig.setConfigId(SequenceUtil.makeStringId());
         sysConfig.setCreateTime(LocalDateTime.now());
+        sysConfig.setConfigType("custom");
         boolean result = sysConfigService.save(sysConfig);
         return decide(result);
     }

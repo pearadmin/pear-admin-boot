@@ -25,6 +25,8 @@ tab:
   keepState: true
   ## 最大可打开的选项卡数量
   tabMax: 30
+  ## Tab 记忆
+  session: true
   ## 默认选项卡数据
   index: 
     id: "10" ## 标识 ID , 建议与菜单项中的 ID 一致

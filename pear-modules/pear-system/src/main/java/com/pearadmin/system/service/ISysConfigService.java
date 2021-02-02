@@ -29,10 +29,17 @@ public interface ISysConfigService {
 
     /**
      * Describe: 根据 Id 查询系统配置
-     * Param: SysConfig
-     * Return: List<SysConfig>
+     * Param: id
+     * Return: SysConfig
      * */
     SysConfig getById(String id);
+
+    /**
+     * Describe: 根据 code 查询系统配置
+     * Param: code
+     * Return: SysConfig
+     * */
+    SysConfig getByCode(String code);
 
     /**
      * Describe: 插入 SysConfig 数据

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 @WebFilter
 public class XssSupport implements Filter {
 
-    private static boolean IS_INCLUDE_RICH_TEXT = false;//是否过滤富文本内容
+    private static boolean IS_INCLUDE_RICH_TEXT = false;
 
     public List<String> excludes = new ArrayList<String>();
 

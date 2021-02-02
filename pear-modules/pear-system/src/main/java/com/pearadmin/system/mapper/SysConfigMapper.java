@@ -35,6 +35,13 @@ public interface SysConfigMapper {
     SysConfig selectById(@Param("id") String id);
 
     /**
+     * Describe: 根据 Code 查询系统配置
+     * Param: code
+     * Return: SysConfig
+     * */
+    SysConfig selectByCode(@Param("code") String code);
+
+    /**
      * Describe: 根据 Id 修改系统配置
      * Param: SysConfig
      * Return: Boolean
@@ -54,6 +61,5 @@ public interface SysConfigMapper {
      * Return: SysConfig
      * */
     Integer deleteByIds(String[] id);
-
 
 }

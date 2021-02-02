@@ -1,6 +1,7 @@
 package com.pearadmin.common.plugins.logging.aop;
 
-import com.pearadmin.common.plugins.logging.domain.Logging;
+import com.pearadmin.common.plugins.logging.aop.annotation.Logging;
+import com.pearadmin.common.plugins.system.domain.SysBaseLog;
 import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
 import com.pearadmin.common.plugins.logging.async.LoggingFactory;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
@@ -37,35 +38,24 @@ public class LoggingAspect {
     @Around("dsPointCut()")
     private Object around(ProceedingJoinPoint joinPoint) throws Throwable
     {
-        Logging logging = new Logging();
-
+        SysBaseLog sysLog = new SysBaseLog();
         Object result;
-
         try {
-            com.pearadmin.common.plugins.logging.aop.annotation.Logging loggingAnnotation = getLogging(joinPoint);
-            // 日 志 编 号
-            logging.setId(SequenceUtil.makeStringId());
-            // 模 块 标 题
-            logging.setTitle(loggingAnnotation.value());
-            // 模 块 标 题
-            logging.setTitle(loggingAnnotation.title());
-            // 模 块 描 述
-            logging.setDescription(loggingAnnotation.describe());
-            // 业 务 类 型
-            logging.setBusinessType(loggingAnnotation.type());
-            // 是 否 成 功
-            logging.setSuccess(true);
-            // 日 志 类 型
-            logging.setLoggingType(LoggingType.OPERATE);
-            // 执 行 方 法
+            Logging loggingAnnotation = getLogging(joinPoint);
+            sysLog.setId(SequenceUtil.makeStringId());
+            sysLog.setTitle(loggingAnnotation.value());
+            sysLog.setTitle(loggingAnnotation.title());
+            sysLog.setDescription(loggingAnnotation.describe());
+            sysLog.setBusinessType(loggingAnnotation.type());
+            sysLog.setSuccess(true);
+            sysLog.setLoggingType(LoggingType.OPERATE);
             result = joinPoint.proceed();
-
         }catch (Exception exception){
-            logging.setSuccess(false);
-            logging.setErrorMsg(exception.getMessage());
+            sysLog.setSuccess(false);
+            sysLog.setErrorMsg(exception.getMessage());
             throw exception;
         }finally {
-            loggingFactory.record(logging);
+            loggingFactory.record(sysLog);
         }
         return result;
     }

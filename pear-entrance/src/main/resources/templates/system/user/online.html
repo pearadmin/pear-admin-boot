@@ -37,6 +37,12 @@
     </button>
 </script>
 
+<script type="text/html" id="online-state">
+    <span class="pear-text">
+        在线
+    </span>
+</script>
+
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'form', 'jquery','popup'], function () {
@@ -52,6 +58,7 @@
                 {type: 'checkbox'},
                 {title: '用户名', field: 'realName', align: 'center', width: 100},
                 {title: '账号', field: 'username', align: 'center'},
+                {title: '状态', field: 'username', align: 'center',templet: '#online-state'},
                 {title: '在线时长', field: 'onlineTime', align: 'center'},
                 {title: '登录时间', field: 'lastTime', align: 'center'},
                 {title: '操作', toolbar: '#online-bar', align: 'center', width: 100}

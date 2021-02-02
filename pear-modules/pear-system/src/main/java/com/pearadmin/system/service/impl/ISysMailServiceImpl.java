@@ -21,12 +21,6 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author: Heiky
- * @Date: 2021/1/13 15:24
- * @Description:
- */
-
 @Service
 public class ISysMailServiceImpl implements ISysMailService {
 
@@ -63,8 +57,7 @@ public class ISysMailServiceImpl implements ISysMailService {
     @Override
     public Boolean sendMail(SysMail sysMail) {
         ArrayList<String> tos = CollectionUtil.newArrayList(StrUtil.split(sysMail.getReceiver(), ";"));
-        String send = MailUtil.send(mailAccount, tos,
-                ObjectUtil.isEmpty(sysMail.getSubject()) ? null : sysMail.getSubject(), sysMail.getContent(), false);
+        String send = MailUtil.send(mailAccount, tos, ObjectUtil.isEmpty(sysMail.getSubject()) ? null : sysMail.getSubject(), sysMail.getContent(), false);
         return ObjectUtil.isNotEmpty(send);
     }
 
@@ -79,4 +72,5 @@ public class ISysMailServiceImpl implements ISysMailService {
     public Integer removeByIds(List<String> ids) {
         return sysMailMapper.deleteByIds(ids);
     }
+
 }

@@ -83,13 +83,7 @@ pear:
     windows-path: D:\home\uploads\
     # linux 上传路径
     linux-path: /home/uploads/
-  # 邮 箱 配 置
-  mail:
-    host:
-    port:
-    from:
-    user:
-    pass:
+
 
 # Page Helper
 pagehelper:

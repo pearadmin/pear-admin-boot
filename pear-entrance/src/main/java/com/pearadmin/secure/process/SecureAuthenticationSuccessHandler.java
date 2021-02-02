@@ -1,10 +1,10 @@
 package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.plugins.logging.domain.Logging;
+import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
-import com.pearadmin.common.plugins.logging.service.LoggingService;
+import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
@@ -30,21 +30,21 @@ import java.time.LocalDateTime;
 public class SecureAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Resource
-    private LoggingService loggingService;
+    private ISysLogService sysLogService;
 
     @Resource
     private ISysUserService sysUserService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException{
-        Logging logging = new Logging();
-        logging.setId(SequenceUtil.makeStringId());
-        logging.setTitle("登录");
-        logging.setDescription("登录成功");
-        logging.setBusinessType(BusinessType.OTHER);
-        logging.setSuccess(true);
-        logging.setLoggingType(LoggingType.LOGIN);
-        loggingService.save(logging);
+        SysLog sysLog = new SysLog();
+        sysLog.setId(SequenceUtil.makeStringId());
+        sysLog.setTitle("登录");
+        sysLog.setDescription("登录成功");
+        sysLog.setBusinessType(BusinessType.OTHER);
+        sysLog.setSuccess(true);
+        sysLog.setLoggingType(LoggingType.LOGIN);
+        sysLogService.save(sysLog);
 
         SysUser sysUser = new SysUser();
         sysUser.setUserId(((SysUser) SecurityUtil.currentUser().getPrincipal()).getUserId());

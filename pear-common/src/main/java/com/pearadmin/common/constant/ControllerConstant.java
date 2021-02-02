@@ -26,5 +26,4 @@ public class ControllerConstant {
      * 工作流程基础路径
      * */
     public final static String API_PROCESS_PREFIX = "/process/";
-
 }

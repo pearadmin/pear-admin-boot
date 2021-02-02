@@ -10,9 +10,10 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 	};
 
 	pearMenu.prototype.render = function(opt) {
+
 		var option = {
 			elem: opt.elem,
-			async: opt.async ? opt.async : false,
+			async: opt.async,
 			parseData: opt.parseData,
 			url: opt.url,
 			defaultOpen: opt.defaultOpen,
@@ -23,35 +24,26 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			height: opt.height,
 			theme: opt.theme,
 			data: opt.data ? opt.data : [],
-			change: opt.change ? opt.change : function() {
-			},
+			change: opt.change ? opt.change : function() {},
 			done: opt.done ? opt.done : function() {}
 		}
-
 		if (option.async) {
-			getData(option.url).then(function(data){
+			getData(option.url).then(function(data) {
 				option.data = data;
-				if (option.parseData != false) {
-					option.parseData(option.data);
-				}
-				if (option.data.length > 0) {
-					if (option.control != false) {
-						createMenuAndControl(option);
-					} else {
-						createMenu(option);
-					}
-				}
-				element.init();
-				downShow(option);
-				option.done();
+				renderMenu(option);
 			});
+		} else {
+			//renderMenu中需要调用done事件，done事件中需要menu对象，但是此时还未返回menu对象，做个延时提前返回对象
+			window.setTimeout(function() {
+				renderMenu(option);
+			}, 500);
 		}
 		return new pearMenu(opt);
 	}
 
 	pearMenu.prototype.click = function(clickEvent) {
 		var _this = this;
-		$("body").on("click","#" + _this.option.elem + " .site-demo-active",function(){
+		$("body").on("click", "#" + _this.option.elem + " .site-demo-active", function() {
 			var dom = $(this);
 			var data = {
 				menuId: dom.attr("menu-id"),
@@ -71,6 +63,13 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			var domsss = hash(domss);
 			if (domsss.text() != '') {
 				data['menuPath'] = domsss.find("span").text() + " / " + data['menuPath'];
+			}
+			if ($("#" + _this.option.elem).is(".pear-nav-mini")) {
+				if(_this.option.accordion){
+					activeMenus = $(this).parent().parent().parent().children("a");
+				}else{
+					activeMenus.push($(this).parent().parent().parent().children("a"));
+				}
 			}
 			clickEvent(dom, data);
 		})
@@ -112,7 +111,6 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			$("#" + this.option.elem + " a[menu-id='" + pearId + "']").parents(".layui-nav-item").addClass("layui-nav-itemed");
 			$("#" + this.option.elem + " a[menu-id='" + pearId + "']").parents("dd").addClass("layui-nav-itemed");
 		}
-
 		$("#" + this.option.elem + " a[menu-id='" + pearId + "']").parent().addClass("layui-this");
 	}
 
@@ -137,16 +135,31 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 				width: "60px"
 			}, 400);
 			isHoverMenu(true, config);
-
 		}
 	}
 
-	function getData(url){
+	function getData(url) {
 		var defer = $.Deferred();
-		$.get(url+"?fresh=" + Math.random(), function(result) {
+		$.get(url + "?fresh=" + Math.random(), function(result) {
 			defer.resolve(result)
 		});
 		return defer.promise();
+	}
+
+	function renderMenu(option) {
+		if (option.parseData != false) {
+			option.parseData(option.data);
+		}
+		if (option.data.length > 0) {
+			if (option.control != false) {
+				createMenuAndControl(option);
+			} else {
+				createMenu(option);
+			}
+		}
+		element.init();
+		downShow(option);
+		option.done();
 	}
 
 	function createMenu(option) {
@@ -176,7 +189,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 					'" menu-title="' + item.title + '"  href="' + href + '"  ' + target + '><i class="' + item.icon +
 					'"></i><span>' + item.title + '</span></a>';
 			}
-			// 调 用 递 归 方 法 加 载 无 限 层 级 的 子 菜 单 
+			// 调 用 递 归 方 法 加 载 无 限 层 级 的 子 菜 单
 			content += loadchild(item);
 			// 结 束 一 个 根 菜 单 项
 			content += '</li>';
@@ -205,15 +218,17 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 				menuItem = '<ul  pear-id="' + item.id + '" lay-filter="' + option.elem +
 					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
 				// 兼容移动端
-				controlPe += '<li class="layui-nav-item"><a class="pe-title" href="javascript:;" >'+ item.title +'</a>';
-				controlItemPe += '<dd  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +'"><a href="javascript:void(0);">'+ item.title +'</a></dd>';
+				controlPe += '<li class="layui-nav-item"><a class="pe-title" href="javascript:;" >' + item.title + '</a>';
+				controlItemPe += '<dd  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
+					'"><a href="javascript:void(0);">' + item.title + '</a></dd>';
 			} else {
 				controlItem = '<li  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
 					'" class="layui-nav-item"><a href="#">' + item.title + '</a></li>';
 				menuItem = '<ul style="display:none" pear-id="' + item.id + '" lay-filter="' + option.elem +
 					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
 
-				controlItemPe += '<dd pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +'"><a href="javascript:void(0);">'+ item.title +'</a></dd>';
+				controlItemPe += '<dd pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
+					'"><a href="javascript:void(0);">' + item.title + '</a></dd>';
 
 			}
 			index++;
@@ -247,7 +262,6 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			})
 			menu += menuItem + '</ul>';
 			control += controlItem;
-
 		})
 		controlItemPe += "</li></dl></ul>"
 		controlPe += controlItemPe;
@@ -275,7 +289,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 		}
 		// 创 建 子 菜 单 结 构
 		var content = '<dl class="layui-nav-child">';
-		// 如 果 嵌 套 不 等 于 空 
+		// 如 果 嵌 套 不 等 于 空
 		if (obj.children != null && obj.children.length > 0) {
 			// 遍 历 子 项 目
 			$.each(obj.children, function(i, note) {
@@ -351,43 +365,42 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 	/** 二 级 悬 浮 菜 单*/
 	function isHoverMenu(b, option) {
 		if (b) {
-			$("#" + option.elem + ".pear-nav-mini .layui-nav-item,#" + option.elem + ".pear-nav-mini dd").hover(function() {
-				$(this).children(".layui-nav-child").addClass("layui-nav-hover");
-
-				var top = $(this).offset().top + 5;
-				var y = window.document.body.clientHeight;
-
+			$("#" + option.elem + ".pear-nav-mini .layui-nav-item,#" + option.elem + ".pear-nav-mini dd").hover(function(e) {
+				e.stopPropagation();
+				var _this = $(this);
+				_this.siblings().find(".layui-nav-child")
+					.removeClass("layui-nav-hover").css({
+					left: 0,
+					top: 0
+				});
+				_this.children(".layui-nav-child").addClass("layui-nav-hover");
+				_this.closest('.layui-nav-item').data('time') && clearTimeout(_this.closest('.layui-nav-item').data('time'));
 				var height = $(window).height();
-
-				var topLength = $(this).offset().top;
-
-				var thisHeight = $(this).children(".layui-nav-child").height();
-
-				if((thisHeight+topLength)>height){
-					topLength = height-thisHeight-10;
+				var topLength = _this.offset().top;
+				var thisHeight = _this.children(".layui-nav-child").height();
+				if ((thisHeight + topLength) > height) {
+					topLength = height - thisHeight - 10;
 				}
-				if (!$(this).is(".layui-nav-item")) {
-					var left = $(this).offset().left + $(this).width()+2;
-					$(this).children(".layui-nav-child").offset({
-						left: left
-					});
-				} else {
-					var left = $(this).offset().left + 62;
-					$(this).children(".layui-nav-child").offset({
-						left: left
-					});
+				var left = _this.offset().left + 60;
+				if (!_this.hasClass("layui-nav-item")) {
+					left = _this.offset().left + _this.width();
 				}
-				$(this).children(".layui-nav-child").offset({
-					top: topLength
+				_this.children(".layui-nav-child").offset({
+					top: topLength,
+					left: left + 3
 				});
-			}, function() {
-				$(this).children(".layui-nav-child").removeClass("layui-nav-hover");
-				$(this).children(".layui-nav-child").css({
-					left: '0px'
-				});
-				$(this).children(".layui-nav-child").css({
-					top: '0px'
-				});
+			}, function(e) {
+				e.stopPropagation();
+				var _this = $(this);
+				_this.closest('.layui-nav-item').data('time', setTimeout(function() {
+					_this.closest('.layui-nav-item')
+						.find(".layui-nav-child")
+						.removeClass("layui-nav-hover")
+						.css({
+							left: 0,
+							top: 0
+						});
+				}, 50));
 			})
 		} else {
 			$("#" + option.elem + " .layui-nav-item").off('mouseenter').unbind('mouseleave');

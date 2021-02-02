@@ -71,6 +71,15 @@ public class SysConfigServiceImpl implements ISysConfigService {
         return sysConfigMapper.selectById(id);
     }
 
+    /**
+     * Describe: 根据 Code 查询系统配置
+     * Param: code
+     * Return: 返回系统配置信息
+     * */
+    @Override
+    public SysConfig getByCode(String code) {
+        return sysConfigMapper.selectByCode(code);
+    }
 
     /**
      * Describe: 根据 ID 修改系统配置
@@ -116,4 +125,5 @@ public class SysConfigServiceImpl implements ISysConfigService {
             return false;
         }
     }
+
 }

@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugins.logging.aop.annotation.Logging;
 import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
-import com.pearadmin.common.plugins.logging.service.LoggingService;
+import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.plugins.repeat.annotation.RepeatSubmit;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
@@ -64,7 +64,7 @@ public class SysUserController extends BaseController {
      * Describe: 日志模块服务
      */
     @Resource
-    private LoggingService loggingService;
+    private ISysLogService sysLogService;
 
     /**
      * Describe: 获取用户列表视图
@@ -288,9 +288,22 @@ public class SysUserController extends BaseController {
     public ModelAndView center(Model model) {
         SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
         model.addAttribute("userInfo", sysUserService.getById(sysUser.getUserId()));
-        model.addAttribute("logs", loggingService.selectTopLoginLog(sysUser.getUsername()));
+        model.addAttribute("logs", sysLogService.selectTopLoginLog(sysUser.getUsername()));
         return JumpPage(MODULE_PATH + "center");
     }
+
+    /**
+     * Describe: 用户修改接口
+     * Param ModelAndView
+     * Return 返回用户修改接口
+     */
+    @PutMapping("updateInfo")
+    @ApiOperation(value = "修改用户数据")
+    public Result updateInfo(@RequestBody SysUser sysUser) {
+        boolean result = sysUserService.update(sysUser);
+        return decide(result);
+    }
+
 
     /**
      * Describe: 更换头像
@@ -302,5 +315,4 @@ public class SysUserController extends BaseController {
         model.addAttribute("userId",userId);
         return JumpPage(MODULE_PATH + "profile");
     }
-
 }
