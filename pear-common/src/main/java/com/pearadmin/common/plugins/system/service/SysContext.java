@@ -11,15 +11,6 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 public interface SysContext {
-
-	/**
-	 * 日志添加
-	 * @param title 标题
-	 * @param description 描述
-	 * @param logType 日志类型(0:操作日志;1:登录日志;2:定时任务)
-	 * @param operatetype 操作类型(1:添加;2:修改;3:删除;)
-	 */
-	void addLog(String title, String description, LoggingType logType, BusinessType operatetype);
 	
 	/**
 	  * 根据用户账号查询用户信息

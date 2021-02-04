@@ -54,8 +54,6 @@ public class SecureExtendConfiguration {
         return new HttpSessionEventPublisher();
     }
 
-
-
     /**
      * Describe: 自定义权限注解实现
      */
@@ -103,5 +101,4 @@ public class SecureExtendConfiguration {
                 });
         return executor;
     }
-
 }

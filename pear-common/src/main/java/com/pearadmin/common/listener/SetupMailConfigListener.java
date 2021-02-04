@@ -1,7 +1,8 @@
-package com.pearadmin.common.listener.mail;
+package com.pearadmin.common.listener;
 
 import cn.hutool.extra.mail.MailAccount;
 import com.pearadmin.common.constant.ConfigurationConstant;
+import com.pearadmin.common.listener.event.MailConfigEvent;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

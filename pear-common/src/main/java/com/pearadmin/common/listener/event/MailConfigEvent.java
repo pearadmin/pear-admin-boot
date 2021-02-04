@@ -1,4 +1,4 @@
-package com.pearadmin.common.listener.mail;
+package com.pearadmin.common.listener.event;
 
 import org.springframework.context.ApplicationEvent;
 

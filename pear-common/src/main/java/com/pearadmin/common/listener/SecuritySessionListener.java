@@ -1,4 +1,4 @@
-package com.pearadmin.common.listener.web;
+package com.pearadmin.common.listener;
 
 import com.pearadmin.common.web.session.HttpSessionContext;
 
@@ -20,4 +20,5 @@ public class SecuritySessionListener implements HttpSessionListener {
     public void sessionDestroyed(HttpSessionEvent se) {
         sessionContext.removeSession(se.getSession());
     }
+
 }

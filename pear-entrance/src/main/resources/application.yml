@@ -1,7 +1,7 @@
 # Tomcat
 server:
   # 端 口
-  port: 8181
+  port: 8080
   # Servlet
   servlet:
     # Session
@@ -75,6 +75,7 @@ pear:
       - /admin/** # 开放静态资源
       - /component/** # 开放静态资源
       - /favicon.ico # 开放FAVICON
+
   # 上 传 配 置
   upload:
     # 当前系统环境

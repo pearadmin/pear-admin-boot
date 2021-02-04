@@ -40,18 +40,6 @@ public class SysContextService implements SysContext {
     private SysDictDataMapper sysDictDataMapper;
 
     @Override
-    public void addLog(String title,String description, LoggingType logType, BusinessType operatetype) {
-        SysLog sysLog = new SysLog();
-        sysLog.setId(SequenceUtil.makeStringId());
-        sysLog.setTitle(title);
-        sysLog.setDescription(description);
-        sysLog.setBusinessType(operatetype);
-        sysLog.setSuccess(true);
-        sysLog.setLoggingType(logType);
-        sysLogService.save(sysLog);
-    }
-
-    @Override
     public SysBaseUser getUserByName(String username) {
         SysUser sysUser= sysUserMapper.selectByUsername(username);
         SysBaseUser sysUserModel=null;

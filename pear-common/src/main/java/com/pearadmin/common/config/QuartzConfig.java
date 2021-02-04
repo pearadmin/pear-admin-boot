@@ -3,6 +3,9 @@ package com.pearadmin.common.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+
+import javax.annotation.Resource;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -14,13 +17,16 @@ import java.util.Properties;
 @Configuration
 public class QuartzConfig {
 
+    @Resource
+    private DataSource dataSource;
+
     /**
      * Describe: 定时任务工厂
      * Param: DataSource
      * Return: ScheduleFactoryBean
      * */
     @Bean
-    public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
+    public SchedulerFactoryBean schedulerFactoryBean() {
         Properties prop = new Properties();
         prop.put("org.quartz.scheduler.instanceName", "PearScheduler");
         // 设置为AUTO时使用，默认的实现org.quartz.scheduler.SimpleInstanceGenerator是基于主机名称和时间戳生成。

@@ -4,7 +4,7 @@ import cn.hutool.core.map.MapUtil;
 import com.pearadmin.common.constant.ConfigurationConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.system.domain.SysConfig;
-import com.pearadmin.common.listener.mail.MailConfigEvent;
+import com.pearadmin.common.listener.event.MailConfigEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.transaction.annotation.Transactional;

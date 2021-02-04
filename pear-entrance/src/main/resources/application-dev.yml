@@ -5,7 +5,7 @@ spring:
     # 端 口
     port: 6379
     # 认 证
-    password: pear-redis
+    password:
     # 选 择 数 据 库
     database: 0
     # 连 接 池 配 置
