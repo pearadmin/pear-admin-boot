@@ -1,4 +1,4 @@
-package com.pearadmin.common.web.listener;
+package com.pearadmin.common.listener.web;
 
 import com.pearadmin.common.web.session.HttpSessionContext;
 
