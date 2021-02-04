@@ -114,7 +114,7 @@ public class ResultController {
     /**
      * 页面跳转
      * */
-    public ModelAndView JumpPage(String path){
+    public ModelAndView jumpPage(String path){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(path);
         return modelAndView;
@@ -123,7 +123,7 @@ public class ResultController {
     /**
      * 带参数的页面跳转
      * */
-    public ModelAndView JumpPage(String path, Map<String,?> params){
+    public ModelAndView jumpPage(String path, Map<String,?> params){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(path);
         modelAndView.addAllObjects(params);

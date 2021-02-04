@@ -49,7 +49,7 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value="获取角色列表视图")
     @PreAuthorize("hasPermission('/system/role/main','sys:role:main')")
     public ModelAndView main(){
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -74,7 +74,7 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value="获取角色新增视图")
     @PreAuthorize("hasPermission('/system/role/add','sys:role:add')")
     public ModelAndView add(){
-        return JumpPage(MODULE_PATH + "add");
+        return jumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -128,7 +128,7 @@ public class SysRoleController extends BaseController {
     @PreAuthorize("hasPermission('/system/role/power','sys:role:power')")
     public ModelAndView power(Model model, String roleId){
         model.addAttribute("roleId",roleId);
-        return JumpPage(MODULE_PATH + "power");
+        return jumpPage(MODULE_PATH + "power");
     }
 
     /**

@@ -45,7 +45,7 @@ public class SysMailController extends BaseController {
     @ApiOperation(value = "邮件管理页面")
     @PreAuthorize("hasPermission('/system/mail/main','sys:mail:main')")
     public ModelAndView main() {
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -69,7 +69,7 @@ public class SysMailController extends BaseController {
     @ApiOperation(value = "邮件发送页面")
     @PreAuthorize("hasPermission('/system/mail/add','sys:mail:add')")
     public ModelAndView add() {
-        return JumpPage(MODULE_PATH + "add");
+        return jumpPage(MODULE_PATH + "add");
     }
 
     /**

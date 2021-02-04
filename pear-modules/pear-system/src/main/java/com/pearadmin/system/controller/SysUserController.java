@@ -75,7 +75,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "获取用户列表视图")
     @PreAuthorize("hasPermission('/system/user/main','sys:user:main')")
     public ModelAndView main() {
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -102,7 +102,7 @@ public class SysUserController extends BaseController {
     @PreAuthorize("hasPermission('/system/user/add','sys:user:add')")
     public ModelAndView add(Model model) {
         model.addAttribute("sysRoles", sysRoleService.list(null));
-        return JumpPage(MODULE_PATH + "add");
+        return jumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -138,7 +138,7 @@ public class SysUserController extends BaseController {
     public ModelAndView edit(Model model, String userId) {
         model.addAttribute("sysRoles", sysUserService.getUserRole(userId));
         model.addAttribute("sysUser", sysUserService.getById(userId));
-        return JumpPage(MODULE_PATH + "edit");
+        return jumpPage(MODULE_PATH + "edit");
     }
 
     /**
@@ -148,7 +148,7 @@ public class SysUserController extends BaseController {
      */
     @GetMapping("editPassword")
     public ModelAndView editPasswordView() {
-        return JumpPage(MODULE_PATH + "editPassword");
+        return jumpPage(MODULE_PATH + "editPassword");
     }
 
     /**
@@ -289,7 +289,7 @@ public class SysUserController extends BaseController {
         SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
         model.addAttribute("userInfo", sysUserService.getById(sysUser.getUserId()));
         model.addAttribute("logs", sysLogService.selectTopLoginLog(sysUser.getUsername()));
-        return JumpPage(MODULE_PATH + "center");
+        return jumpPage(MODULE_PATH + "center");
     }
 
     /**
@@ -313,6 +313,6 @@ public class SysUserController extends BaseController {
     @GetMapping("profile/{id}")
     public ModelAndView profile(Model model,@PathVariable("id")String userId){
         model.addAttribute("userId",userId);
-        return JumpPage(MODULE_PATH + "profile");
+        return jumpPage(MODULE_PATH + "profile");
     }
 }

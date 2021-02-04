@@ -42,7 +42,7 @@ public class SysDictTypeController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/dictType/main','sys:dictType:main')")
     public ModelAndView main(){
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -72,7 +72,7 @@ public class SysDictTypeController extends BaseController {
     @GetMapping("add")
     @PreAuthorize("hasPermission('/system/dictType/add','sys:dictType:add')")
     public ModelAndView add(){
-        return JumpPage(MODULE_PATH + "add");
+        return jumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -97,7 +97,7 @@ public class SysDictTypeController extends BaseController {
     @PreAuthorize("hasPermission('/system/dictType/edit','sys:dictType:edit')")
     public ModelAndView edit(Model model, String dictTypeId){
         model.addAttribute("sysDictType",sysDictTypeService.getById(dictTypeId));
-        return JumpPage(MODULE_PATH + "edit");
+        return jumpPage(MODULE_PATH + "edit");
     }
 
     /**

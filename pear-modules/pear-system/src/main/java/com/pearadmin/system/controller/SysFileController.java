@@ -45,7 +45,7 @@ public class SysFileController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/file/main','sys:file:main')")
     public ModelAndView main(){
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -69,7 +69,7 @@ public class SysFileController extends BaseController {
     @GetMapping("add")
     @PreAuthorize("hasPermission('/system/file/add','sys:file:add')")
     public ModelAndView add(){
-        return JumpPage(MODULE_PATH + "add");
+        return jumpPage(MODULE_PATH + "add");
     }
 
     /**

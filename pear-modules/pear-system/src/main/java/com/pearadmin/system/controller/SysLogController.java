@@ -3,7 +3,6 @@ package com.pearadmin.system.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
 import com.pearadmin.system.service.ISysLogService;
@@ -17,10 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
 
 /**
  * Describe: 日 志 控 制 器
@@ -42,7 +38,7 @@ public class SysLogController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/log/main','sys:log:main')")
     public ModelAndView main() {
-        return JumpPage("system/log/main");
+        return jumpPage("system/log/main");
     }
 
     /**
@@ -79,7 +75,7 @@ public class SysLogController extends BaseController {
     @GetMapping("/info")
     @PreAuthorize("hasPermission('/system/log/info','sys:log:info')")
     public ModelAndView details(){
-        return JumpPage("system/log/info");
+        return jumpPage("system/log/info");
     }
 
 }

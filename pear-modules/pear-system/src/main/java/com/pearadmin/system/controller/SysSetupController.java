@@ -44,7 +44,7 @@ public class SysSetupController extends BaseController {
         sysSetup.setMailHost(mailHostConfig==null?"":mailHostConfig.getConfigValue());
         sysSetup.setMailPort(mailPortConfig==null?"":mailPortConfig.getConfigValue());
         model.addAttribute("setup",sysSetup);
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     @Transactional

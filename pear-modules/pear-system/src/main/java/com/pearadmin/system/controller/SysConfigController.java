@@ -45,7 +45,7 @@ public class SysConfigController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/config/main','sys:config:main')")
     public ModelAndView main(){
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -68,7 +68,7 @@ public class SysConfigController extends BaseController {
     @GetMapping("add")
     @PreAuthorize("hasPermission('/system/config/add','sys:config:add')")
     public ModelAndView add(){
-        return JumpPage(MODULE_PATH + "add");
+        return jumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -95,7 +95,7 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("hasPermission('/system/config/edit','sys:config:edit')")
     public ModelAndView edit(Model model, String configId){
         model.addAttribute("sysConfig",sysConfigService.getById(configId));
-        return JumpPage(MODULE_PATH + "edit");
+        return jumpPage(MODULE_PATH + "edit");
     }
 
     /**

@@ -45,7 +45,7 @@ public class ProDefinedController extends BaseController {
      * */
     @GetMapping("main")
     public ModelAndView main(){
-        return JumpPage(modelPath + "main");
+        return jumpPage(modelPath + "main");
     }
 
     /**

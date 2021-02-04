@@ -46,7 +46,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("hasPermission('/system/dictData/main','sys:dictData:main')")
     public ModelAndView main(Model model, String typeCode){
         model.addAttribute("typeCode",typeCode);
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -146,7 +146,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("hasPermission('/system/dictData/add','sys:dictData:add')")
     public ModelAndView add(Model model,String typeCode){
         model.addAttribute("typeCode",typeCode);
-        return JumpPage(MODULE_PATH+"add");
+        return jumpPage(MODULE_PATH+"add");
     }
 
     /**
@@ -171,7 +171,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("hasPermission('/system/dictData/edit','sys:dictData:edit')")
     public ModelAndView edit(Model model,String dataId){
         model.addAttribute("sysDictData",sysDictDataService.getById(dataId));
-        return JumpPage(MODULE_PATH+"edit");
+        return jumpPage(MODULE_PATH+"edit");
     }
 
     /**

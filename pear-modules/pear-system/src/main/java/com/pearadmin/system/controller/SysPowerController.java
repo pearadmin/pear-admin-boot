@@ -47,7 +47,7 @@ public class SysPowerController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/power/main','sys:power:main')")
     public ModelAndView main(ModelAndView modelAndView){
-        return JumpPage(MODULE_PATH + "main");
+        return jumpPage(MODULE_PATH + "main");
     }
 
     /**
@@ -69,7 +69,7 @@ public class SysPowerController extends BaseController {
     @GetMapping("add")
     @PreAuthorize("hasPermission('/system/power/add','sys:power:add')")
     public ModelAndView add(){
-        return JumpPage(MODULE_PATH + "add");
+        return jumpPage(MODULE_PATH + "add");
     }
 
     /**
@@ -81,7 +81,7 @@ public class SysPowerController extends BaseController {
     @PreAuthorize("hasPermission('/system/power/edit','sys:power:edit')")
     public ModelAndView edit(Model model, String powerId){
         model.addAttribute("sysPower",sysPowerService.getById(powerId));
-        return JumpPage(MODULE_PATH + "edit");
+        return jumpPage(MODULE_PATH + "edit");
     }
 
     /**

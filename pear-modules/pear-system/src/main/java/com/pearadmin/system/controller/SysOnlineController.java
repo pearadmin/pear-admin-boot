@@ -64,7 +64,7 @@ public class SysOnlineController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/online/main','sys:online:main')")
     public ModelAndView main() {
-        return JumpPage("system/user/online");
+        return jumpPage("system/user/online");
     }
 
 

@@ -33,7 +33,7 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/main','${permissionPrefix}:main')")
     public ModelAndView main()
     {
-        return JumpPage(prefix + "/main");
+        return jumpPage(prefix + "/main");
     }
 
     /**
@@ -55,7 +55,7 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
     public ModelAndView add()
     {
-        return JumpPage(prefix + "/add");
+        return jumpPage(prefix + "/add");
     }
 
     /**
@@ -78,7 +78,7 @@ public class ${ClassName}Controller extends BaseController
     {
         ${ClassName} ${className} = ${className}Service.select${ClassName}ById(${pkColumn.javaField});
         mmap.put("${className}", ${className});
-        return JumpPage(prefix + "/edit");
+        return jumpPage(prefix + "/edit");
     }
 
     /**

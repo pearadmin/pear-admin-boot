@@ -37,7 +37,7 @@ public class ScheduleLogController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/schdule/log/main','sch:log:main')")
     public ModelAndView main(){
-        return JumpPage("schedule/log/main");
+        return jumpPage("schedule/log/main");
     }
 
     /**

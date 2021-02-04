@@ -39,7 +39,7 @@ public class ScheduleJobController extends BaseController {
     @GetMapping("main")
     @PreAuthorize("hasPermission('/schdule/job/main','sch:job:main')")
     public ModelAndView main(){
-        return JumpPage("schedule/job/main");
+        return jumpPage("schedule/job/main");
     }
 
     /**
@@ -62,7 +62,7 @@ public class ScheduleJobController extends BaseController {
     @GetMapping("add")
     @PreAuthorize("hasPermission('/schdule/job/add','sch:job:add')")
     public ModelAndView add(){
-        return JumpPage("schedule/job/add");
+        return jumpPage("schedule/job/add");
     }
 
     /**
@@ -74,7 +74,7 @@ public class ScheduleJobController extends BaseController {
     @PreAuthorize("hasPermission('/schdule/job/edit','sch:job:edit')")
     public ModelAndView edit(Model model, String jobId){
         model.addAttribute("scheduleJob",scheduleJobService.getById(jobId));
-        return JumpPage("schedule/job/edit");
+        return jumpPage("schedule/job/edit");
     }
 
     /**

@@ -43,9 +43,9 @@ public class EntranceController extends BaseController {
     public ModelAndView login(HttpServletRequest request){
         if (SecurityUtil.isAuthentication()) {
             SecureSessionService.expiredSession(request, sessionRegistry);
-            return JumpPage("index");
+            return jumpPage("index");
         }else{
-            return JumpPage("login");
+            return jumpPage("login");
         }
     }
 
@@ -58,7 +58,7 @@ public class EntranceController extends BaseController {
     @Logging(title = "主页",describe = "返回 Index 主页视图",type = BusinessType.ADD)
     public ModelAndView index( )
     {
-        return JumpPage("index");
+        return jumpPage("index");
     }
 
     /**
@@ -77,7 +77,7 @@ public class EntranceController extends BaseController {
         model.addAttribute("week",week);
         model.addAttribute("month",month);
         model.addAttribute("today",today);
-        return JumpPage("console/console");
+        return jumpPage("console/console");
     }
 
     /**
@@ -86,7 +86,7 @@ public class EntranceController extends BaseController {
      * */
     @GetMapping("error/403")
     public ModelAndView noPermission(){
-        return JumpPage("error/403");
+        return jumpPage("error/403");
     }
 
     /**
@@ -95,7 +95,7 @@ public class EntranceController extends BaseController {
      * */
     @GetMapping("error/404")
     public ModelAndView notFound(){
-        return JumpPage("error/404");
+        return jumpPage("error/404");
     }
 
     /**
@@ -104,7 +104,7 @@ public class EntranceController extends BaseController {
      * */
     @GetMapping("error/500")
     public ModelAndView onException(){
-        return JumpPage("error/500");
+        return jumpPage("error/500");
     }
 
 }
