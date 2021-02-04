@@ -4,10 +4,11 @@ import org.springframework.context.ApplicationEvent;
 
 import java.util.Map;
 
+
 /**
- * @Author: Heiky
- * @Date: 2021/2/4 11:23
- * @Description: 添加邮箱配置之后，发布邮箱配置事件
+ * Describe: 添 加 邮 箱 配 置 之 后，发 布 邮 箱 配 置 事 件
+ * Author: BoscoKuo
+ * CreateTime: 2021/2/4 11:23
  */
 public class MailConfigEvent extends ApplicationEvent {
 

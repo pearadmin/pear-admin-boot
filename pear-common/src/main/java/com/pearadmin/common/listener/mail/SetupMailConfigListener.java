@@ -8,12 +8,13 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-/**
- * @Author: Heiky
- * @Date: 2021/2/4 11:22
- * @Description:
- */
 
+
+/**
+ * Describe: 邮 件 配 置 监 听 器
+ * Author: BoscoKuo
+ * CreateTime: 2021/2/4 11:22
+ */
 @Component
 public class SetupMailConfigListener implements ApplicationListener<MailConfigEvent>, ApplicationContextAware {
 
