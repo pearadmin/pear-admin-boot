@@ -28,11 +28,12 @@
     <div class="layui-card-body">
         <table id="model-table" lay-filter="model-table"></table>
         <script type="text/html" id="barDemo">
-            <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">删除</a>
+            <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">
+                <i class="layui-icon layui-icon-delete"></i>
+            </a>
         </script>
         <script type="text/html" id="xml">
-            <a download="{{d.bpmn}}"
-               href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
+            <a download="{{d.bpmn}}" href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
         </script>
         <script type="text/html" id="png">
             <a lay-event="png">{{d.png}}</a>
@@ -58,14 +59,14 @@
             , cols: [
                 [
                     {type: 'checkbox'}
-                    , {field: 'id', title: '流程编号', sort: true}
-                    , {field: 'name', title: '流程名称'}
-                    , {field: 'key', title: '流程标识', sort: true}
-                    , {field: 'version', title: '流程版本', sort: true}
+                    , {field: 'id', title: '流程编号', sort: true,width: 150}
+                    , {field: 'name', title: '流程名称',width: 120}
+                    , {field: 'key', title: '流程标识', sort: true,width: 120}
+                    , {field: 'version', title: '流程版本', sort: true, width:120}
                     , {field: 'bpmn', title: '资源文件', templet: '#xml', sort: true}
                     , {field: 'png', title: '流程图片', templet: '#png', sort: true}
-                    , {field: 'deploymentId', title: '部署 ID', sort: true}
-                    , {title: '操作', width: 80, align: 'center', toolbar: '#barDemo'}
+                    , {field: 'deploymentId', title: '部署 ID', sort: true,width: 120}
+                    , {title: '操作', align: 'center', toolbar: '#barDemo', width: 100}
                 ]
             ]
         });
@@ -91,7 +92,7 @@
                 type: 1,
                 title: 'png',
                 shade: 0.1,
-                area: ['800px', '500px'],
+                area: ['80%', '80%'],
                 content: '<img src="/process/defined/resource?definedId=' + obj.data.deploymentId + '&resourceName=' + obj.data.png + '">'
             });
         }

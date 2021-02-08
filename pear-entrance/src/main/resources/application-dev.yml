@@ -1,7 +1,7 @@
 spring:
   redis:
     # 主 机 地 址
-    host: redis.pearadmin.com
+    host: 127.0.0.1
     # 端 口
     port: 6379
     # 认 证

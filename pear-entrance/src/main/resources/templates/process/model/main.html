@@ -32,14 +32,16 @@
                     class="pear-icon pear-icon-print"></i></a>
             <a  sec:authorize="hasPermission('/process/model/edit','pro:model:edit')" class="pear-btn pear-btn-sm pear-btn-warming" lay-event="design"><i
                     class="layui-icon layui-icon-edit"></i></a>
-            <a  sec:authorize="hasPermission('/process/model/remove','pro:model:remove')" class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i></a>
+            <a  sec:authorize="hasPermission('/process/model/remove','pro:model:remove')" class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i
+                    class="layui-icon layui-icon-delete"></i></a>
         </script>
     </div>
 </div>
-<div   sec:authorize="hasPermission('/process/model/add','pro:model:add')" class="createModel">
+<div  sec:authorize="hasPermission('/process/model/add','pro:model:add')" class="createModel">
     <i class="layui-icon layui-icon-add-1"></i>
 </div>
 <style>
+
     .createModel {
         position: absolute;
         right: 30px;
@@ -57,6 +59,7 @@
         font-size: 23px;
         color: white;
     }
+
 </style>
 <th:block th:include="include :: footer"/>
 <script>
