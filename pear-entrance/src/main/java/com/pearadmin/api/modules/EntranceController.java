@@ -72,8 +72,7 @@ public class EntranceController extends BaseController {
         Integer today =  sysLogService.data(LoggingType.LOGIN,LocalDate.now().atTime(LocalTime.MIN), LocalDate.now().atTime(LocalTime.MAX)).size();
         Integer week =  sysLogService.data(LoggingType.LOGIN,LocalDate.now().plusDays(-7).atTime(LocalTime.MIN), LocalDate.now().atTime(LocalTime.MAX)).size();
         Integer month =  sysLogService.data(LoggingType.LOGIN,LocalDate.now().plusDays(-30).atTime(LocalTime.MIN), LocalDate.now().atTime(LocalTime.MAX)).size();
-        Integer all =  sysLogService.data(LoggingType.LOGIN,LocalDate.now().plusDays(-90).atTime(LocalTime.MIN), LocalDate.now().atTime(LocalTime.MAX)).size();
-        model.addAttribute("all",all);
+
         model.addAttribute("week",week);
         model.addAttribute("month",month);
         model.addAttribute("today",today);
