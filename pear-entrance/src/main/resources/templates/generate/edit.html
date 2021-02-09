@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('代码生成修改')"/>
-    <link href="../admin/css/other/generate.css" rel="stylesheet"/>
+    <link  th:href="@{/admin/css/other/generate.css}" rel="stylesheet"/>
 </head>
 <body class="pear-container">
 <form class="layui-form" lay-filter="form-genset" th:object="${table}">

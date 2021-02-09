@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('403')"/>
-    <link href="../../admin/css/other/error.css" rel="stylesheet"/>
+    <link th:href="@{/admin/css/other/error.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="content">
