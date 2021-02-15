@@ -3,7 +3,7 @@ package com.pearadmin.schedule.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJob;
 import com.pearadmin.schedule.mapper.ScheduleJobMapper;
 import com.pearadmin.schedule.service.IScheduleJobService;
 import com.pearadmin.schedule.handler.ScheduleHandler;
@@ -37,7 +37,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      * Return: Schedule
      * */
     @Override
-    public ScheduleJobBean getById(String jobId) {
+    public ScheduleJob getById(String jobId) {
         return scheduleJobMapper.selectById(jobId);
     }
 
@@ -47,9 +47,9 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      * Return: pageInfo
      * */
     @Override
-    public PageInfo<ScheduleJobBean> page(ScheduleJobBean param, PageDomain pageDomain) {
+    public PageInfo<ScheduleJob> page(ScheduleJob param, PageDomain pageDomain) {
         PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
-        List<ScheduleJobBean> list = scheduleJobMapper.selectList(param);
+        List<ScheduleJob> list = scheduleJobMapper.selectList(param);
         return new PageInfo<>(list);
     }
 
@@ -59,7 +59,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      * Return: list
      * */
     @Override
-    public List<ScheduleJobBean> list(ScheduleJobBean param) {
+    public List<ScheduleJob> list(ScheduleJob param) {
         return scheduleJobMapper.selectList(param);
     }
 
@@ -70,7 +70,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      * */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean save(ScheduleJobBean record) {
+    public Boolean save(ScheduleJob record) {
         ScheduleHandler.createJob(scheduler,record);
         int result =  scheduleJobMapper.insert(record);
         if(result>0){
@@ -87,7 +87,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
      * */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean update(ScheduleJobBean record) {
+    public Boolean update(ScheduleJob record) {
         ScheduleHandler.updateJob(scheduler,record);
         int result = scheduleJobMapper.updateById(record);
         if(result>0){
@@ -105,7 +105,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean pause(String jobId) {
-        ScheduleJobBean scheduleJob = scheduleJobMapper.selectById(jobId);
+        ScheduleJob scheduleJob = scheduleJobMapper.selectById(jobId);
         ScheduleHandler.pauseJob(scheduler,Long.parseLong(jobId));
         scheduleJob.setStatus("1");
         int result = scheduleJobMapper.updateById(scheduleJob);
@@ -124,7 +124,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean resume(String jobId) {
-        ScheduleJobBean scheduleJob = scheduleJobMapper.selectById(jobId);
+        ScheduleJob scheduleJob = scheduleJobMapper.selectById(jobId);
         ScheduleHandler.resumeJob(scheduler,Long.parseLong(jobId));
         scheduleJob.setStatus("0");
         int result = scheduleJobMapper.updateById(scheduleJob);
@@ -143,7 +143,7 @@ public class ScheduleJobServiceImpl implements IScheduleJobService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void run(String jobId) {
-        ScheduleJobBean scheduleJob = scheduleJobMapper.selectById(jobId);
+        ScheduleJob scheduleJob = scheduleJobMapper.selectById(jobId);
         ScheduleHandler.run(scheduler,scheduleJob);
     }
 

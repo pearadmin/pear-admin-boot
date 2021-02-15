@@ -2,7 +2,7 @@ package com.pearadmin.schedule.service;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.schedule.domain.ScheduleLogBean;
+import com.pearadmin.schedule.domain.ScheduleLog;
 
 import java.util.List;
 
@@ -19,20 +19,20 @@ public interface IScheduleLogService {
      * Param: ScheduleJob
      * Return: Boolean 执行结果
      * */
-    Boolean insert(ScheduleLogBean scheduleLog);
+    Boolean insert(ScheduleLog scheduleLog);
 
     /**
      * Describe: 定时任务列表
      * Param: ScheduleJob
      * Return: List
      * */
-    List<ScheduleLogBean> list(ScheduleLogBean scheduleLogBean);
+    List<ScheduleLog> list(ScheduleLog scheduleLogBean);
 
     /**
      * Describe: 定时任务列表  分页
      * Param: ScheduleJob
      * Return: pageInfo
      * */
-    PageInfo<ScheduleLogBean> page(ScheduleLogBean scheduleLogBean, PageDomain pageDomain);
+    PageInfo<ScheduleLog> page(ScheduleLog scheduleLogBean, PageDomain pageDomain);
 
 }

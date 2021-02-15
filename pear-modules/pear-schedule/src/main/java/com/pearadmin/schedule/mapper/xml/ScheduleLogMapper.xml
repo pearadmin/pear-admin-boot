@@ -3,7 +3,7 @@
 <mapper namespace="com.pearadmin.schedule.mapper.ScheduleLogMapper" >
 
   <!-- 映射处理集合 -->
-  <resultMap id="ScheduleLogMap" type="ScheduleLogBean" >
+  <resultMap id="ScheduleLogMap" type="ScheduleLog" >
     <id column="log_id" property="logId" jdbcType="BIGINT" />
     <result column="job_id" property="jobId" jdbcType="BIGINT" />
     <result column="bean_name" property="beanName" jdbcType="VARCHAR" />
@@ -15,14 +15,14 @@
   </resultMap>
 
   <!-- 根据条件处理 -->
-  <select id="selectList" parameterType="ScheduleLogBean" resultMap="ScheduleLogMap">
+  <select id="selectList" parameterType="ScheduleLog" resultMap="ScheduleLogMap">
      select a.log_id,a.job_id,a.bean_name,a.params,a.error,a.status,a.create_time,a.times,b.job_name as jobName from schedule_log a left join schedule_job b on
      a.job_id = b.job_id
      order by create_time desc
   </select>
 
   <!-- 插入任务日志 -->
-  <insert id="insert" parameterType="ScheduleLogBean">
+  <insert id="insert" parameterType="ScheduleLog">
     insert into schedule_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="logId!=null">

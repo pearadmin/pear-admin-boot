@@ -18,7 +18,7 @@ import java.util.Properties;
 
 public class SystemUtil {
 
-    private static final int OSHI_WAIT_SECOND = 500;
+    private static final int WAIT_SECOND = 100;
 
     public static CpuInfo getCpu(){
         CpuInfo cpu = new CpuInfo();
@@ -134,7 +134,7 @@ public class SystemUtil {
     private static void setCpuInfo(CentralProcessor processor, CpuInfo cpu) {
         // CPU信息
         long[] prevTicks = processor.getSystemCpuLoadTicks();
-        Util.sleep(OSHI_WAIT_SECOND);
+        Util.sleep(WAIT_SECOND);
         long[] ticks = processor.getSystemCpuLoadTicks();
         long nice = ticks[CentralProcessor.TickType.NICE.getIndex()] - prevTicks[CentralProcessor.TickType.NICE.getIndex()];
         long irq = ticks[CentralProcessor.TickType.IRQ.getIndex()] - prevTicks[CentralProcessor.TickType.IRQ.getIndex()];

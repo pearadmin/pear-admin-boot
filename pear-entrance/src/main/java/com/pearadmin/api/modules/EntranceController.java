@@ -69,13 +69,6 @@ public class EntranceController extends BaseController {
     @GetMapping("console")
     public ModelAndView home(Model model)
     {
-        Integer today =  sysLogService.data(LoggingType.LOGIN,LocalDate.now().atTime(LocalTime.MIN), LocalDate.now().atTime(LocalTime.MAX)).size();
-        Integer week =  sysLogService.data(LoggingType.LOGIN,LocalDate.now().plusDays(-7).atTime(LocalTime.MIN), LocalDate.now().atTime(LocalTime.MAX)).size();
-        Integer month =  sysLogService.data(LoggingType.LOGIN,LocalDate.now().plusDays(-30).atTime(LocalTime.MIN), LocalDate.now().atTime(LocalTime.MAX)).size();
-
-        model.addAttribute("week",week);
-        model.addAttribute("month",month);
-        model.addAttribute("today",today);
         return jumpPage("console/console");
     }
 

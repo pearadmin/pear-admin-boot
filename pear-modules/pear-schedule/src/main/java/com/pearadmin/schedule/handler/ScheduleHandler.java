@@ -1,6 +1,6 @@
 package com.pearadmin.schedule.handler;
 
-import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJob;
 import lombok.NoArgsConstructor;
 import org.quartz.*;
 
@@ -21,7 +21,7 @@ public class ScheduleHandler {
      * 触发器 KEY
      */
     public static TriggerKey getTriggerKey(Long jobId){
-        return TriggerKey.triggerKey(SCHEDULE_NAME+jobId) ;
+        return TriggerKey.triggerKey(SCHEDULE_NAME + jobId) ;
     }
 
     /**
@@ -47,7 +47,7 @@ public class ScheduleHandler {
      * Param: Scheduler ScheduleJobBean
      * Return: null
      * */
-    public static void createJob (Scheduler scheduler, ScheduleJobBean scheduleJob){
+    public static void createJob (Scheduler scheduler, ScheduleJob scheduleJob){
         try {
             // 构建定时器
             JobDetail jobDetail = JobBuilder.newJob(ScheduleContext.class).withIdentity(getJobKey(Long.parseLong(scheduleJob.getJobId()))).build() ;
@@ -57,7 +57,7 @@ public class ScheduleHandler {
             CronTrigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity(getTriggerKey(Long.parseLong(scheduleJob.getJobId())))
                     .withSchedule(scheduleBuilder).build();
-            jobDetail.getJobDataMap().put(ScheduleJobBean.JOB_PARAM_KEY,scheduleJob);
+            jobDetail.getJobDataMap().put(ScheduleJob.JOB_PARAM_KEY,scheduleJob);
             scheduler.scheduleJob(jobDetail,trigger);
             // 如果该定时器处于暂停状态
             if (scheduleJob.getStatus().equals("1")){
@@ -73,13 +73,13 @@ public class ScheduleHandler {
      * Param: Scheduler ScheduleJobBean
      * Return: null
      * */
-    public static void updateJob(Scheduler scheduler, ScheduleJobBean scheduleJob) {
+    public static void updateJob(Scheduler scheduler, ScheduleJob scheduleJob) {
         try {
             TriggerKey triggerKey = getTriggerKey(Long.parseLong(scheduleJob.getJobId()));
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression()).withMisfireHandlingInstructionDoNothing();
             CronTrigger trigger = getCronTrigger(scheduler, Long.parseLong(scheduleJob.getJobId()));
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
-            trigger.getJobDataMap().put(ScheduleJobBean.JOB_PARAM_KEY, scheduleJob);
+            trigger.getJobDataMap().put(ScheduleJob.JOB_PARAM_KEY, scheduleJob);
             scheduler.rescheduleJob(triggerKey, trigger);
             if(scheduleJob.getStatus().equals("1")){
                 pauseJob(scheduler, Long.parseLong(scheduleJob.getJobId()));
@@ -133,10 +133,10 @@ public class ScheduleHandler {
      * Param: Scheduler ScheduleJobBean
      * Return: null
      * */
-    public static void run (Scheduler scheduler, ScheduleJobBean scheduleJob){
+    public static void run (Scheduler scheduler, ScheduleJob scheduleJob){
         try {
             JobDataMap dataMap = new JobDataMap() ;
-            dataMap.put(ScheduleJobBean.JOB_PARAM_KEY,scheduleJob);
+            dataMap.put(ScheduleJob.JOB_PARAM_KEY,scheduleJob);
             scheduler.triggerJob(getJobKey(Long.parseLong(scheduleJob.getJobId())),dataMap);
         } catch (SchedulerException e){
             throw new RuntimeException("run Fail",e) ;

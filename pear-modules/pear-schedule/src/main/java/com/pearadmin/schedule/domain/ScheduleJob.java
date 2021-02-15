@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * */
 @Data
 @Alias("ScheduleJob")
-public class ScheduleJobBean implements Serializable {
+public class ScheduleJob implements Serializable {
 
 	/**
 	 * 任务调度参数key

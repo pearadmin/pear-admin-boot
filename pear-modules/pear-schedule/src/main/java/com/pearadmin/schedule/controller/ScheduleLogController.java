@@ -5,7 +5,7 @@ import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
-import com.pearadmin.schedule.domain.ScheduleLogBean;
+import com.pearadmin.schedule.domain.ScheduleLog;
 import com.pearadmin.schedule.service.IScheduleLogService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,8 +47,8 @@ public class ScheduleLogController extends BaseController {
      * */
     @GetMapping("data")
     @PreAuthorize("hasPermission('/schdule/log/data','sch:log:data')")
-    public ResultTable data(ScheduleLogBean scheduleLogBean, PageDomain pageDomain){
-        PageInfo<ScheduleLogBean> pageInfo = scheduleLogService.page(scheduleLogBean,pageDomain);
+    public ResultTable data(ScheduleLog scheduleLogBean, PageDomain pageDomain){
+        PageInfo<ScheduleLog> pageInfo = scheduleLogService.page(scheduleLogBean,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
     }
 }

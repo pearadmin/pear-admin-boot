@@ -1,6 +1,6 @@
 package com.pearadmin.schedule.mapper;
 
-import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJob;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
@@ -17,28 +17,28 @@ public interface ScheduleJobMapper {
      * Param: ScheduleJob
      * Return: Integer 影响条数
      * */
-    Integer insert(ScheduleJobBean scheduleJob);
+    Integer insert(ScheduleJob scheduleJob);
 
     /**
      * Describe: 根据条件查询定时任务列表
      * Param: ScheduleJob
      * Return: ScheduleJob 列表
      * */
-    List<ScheduleJobBean> selectList(ScheduleJobBean param);
+    List<ScheduleJob> selectList(ScheduleJob param);
 
     /**
      * Describe: 根据 jobId 查询定时任务
      * Param: jobId
      * Return: ScheduleJob
      * */
-    ScheduleJobBean selectById(String jobId);
+    ScheduleJob selectById(String jobId);
 
     /**
      * Describe: 根据 JobId 修改定时任务
      * Param: ScheduleJob
      * Return: Integer 影响条数
      * */
-    Integer updateById(ScheduleJobBean scheduleJob);
+    Integer updateById(ScheduleJob scheduleJob);
 
     /**
      * Describe: 根据 JobId 删除定时任务

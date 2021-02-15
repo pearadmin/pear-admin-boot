@@ -2,8 +2,8 @@ package com.pearadmin.schedule.handler;
 
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.spring.SpringUtil;
-import com.pearadmin.schedule.domain.ScheduleJobBean;
-import com.pearadmin.schedule.domain.ScheduleLogBean;
+import com.pearadmin.schedule.domain.ScheduleJob;
+import com.pearadmin.schedule.domain.ScheduleLog;
 import com.pearadmin.schedule.service.IScheduleLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
@@ -26,9 +26,12 @@ public class ScheduleContext extends QuartzJobBean {
      * */
     @Override
     protected void executeInternal(JobExecutionContext context) {
-        ScheduleJobBean jobBean = (ScheduleJobBean) context.getMergedJobDataMap().get(ScheduleJobBean.JOB_PARAM_KEY) ;
+        Object o = context.getMergedJobDataMap().get(ScheduleJob.JOB_PARAM_KEY);
+
+        System.out.println("获取任务:"+o.toString());
+        ScheduleJob jobBean = (ScheduleJob) context.getMergedJobDataMap().get(ScheduleJob.JOB_PARAM_KEY);
         IScheduleLogService scheduleJobLogService = (IScheduleLogService) SpringUtil.getBean("scheduleLogService");
-        ScheduleLogBean logBean = new ScheduleLogBean() ;
+        ScheduleLog logBean = new ScheduleLog() ;
         logBean.setLogId(SequenceUtil.makeStringId());
         logBean.setJobId(jobBean.getJobId());
         logBean.setBeanName(jobBean.getBeanName());

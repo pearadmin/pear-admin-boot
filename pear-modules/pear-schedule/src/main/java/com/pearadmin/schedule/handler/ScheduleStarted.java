@@ -1,6 +1,6 @@
 package com.pearadmin.schedule.handler;
 
-import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJob;
 import com.pearadmin.schedule.mapper.ScheduleJobMapper;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
@@ -23,8 +23,8 @@ public class ScheduleStarted {
 
     @PostConstruct
     public void init (){
-        List<ScheduleJobBean> scheduleJobList = scheduleJobMapper.selectList(null);
-        for (ScheduleJobBean scheduleJob : scheduleJobList) {
+        List<ScheduleJob> scheduleJobList = scheduleJobMapper.selectList(null);
+        for (ScheduleJob scheduleJob : scheduleJobList) {
             CronTrigger cronTrigger = ScheduleHandler.getCronTrigger(scheduler,Long.parseLong(scheduleJob.getJobId())) ;
             if (cronTrigger == null){
                 ScheduleHandler.createJob(scheduler,scheduleJob);

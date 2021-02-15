@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
  * CreateTime: 2019/10/23
  * */
 @Data
-@Alias("ScheduleLogBean")
-public class ScheduleLogBean implements Serializable {
+@Alias("ScheduleLog")
+public class ScheduleLog implements Serializable {
 
 	/**
 	 * 日志编号

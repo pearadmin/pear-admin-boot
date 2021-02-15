@@ -2,7 +2,6 @@ package com.pearadmin.system.service;
 
 import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -40,6 +39,4 @@ public interface ISysLogService {
      * Return: 日志列表
      */
     List<SysLog> selectTopLoginLog(String operateName);
-
-
 }

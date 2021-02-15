@@ -2,7 +2,7 @@ package com.pearadmin.schedule.service;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
-import com.pearadmin.schedule.domain.ScheduleJobBean;
+import com.pearadmin.schedule.domain.ScheduleJob;
 
 import java.util.List;
 
@@ -18,14 +18,14 @@ public interface IScheduleJobService {
      * Param: ScheduleJob
      * Return: Boolean 执行结果
      * */
-    Boolean save(ScheduleJobBean scheduleJob);
+    Boolean save(ScheduleJob scheduleJob);
 
     /**
      * Describe: 修改定时任务
      * Param: ScheduleJob
      * Return: Boolean 执行结果
      * */
-    Boolean update(ScheduleJobBean scheduleJob);
+    Boolean update(ScheduleJob scheduleJob);
 
     /**
      * Describe: 停止定时任务
@@ -60,19 +60,19 @@ public interface IScheduleJobService {
      * Param: ScheduleJob
      * Return: list
      * */
-    List<ScheduleJobBean> list(ScheduleJobBean param);
+    List<ScheduleJob> list(ScheduleJob param);
 
     /**
      * Describe: 定时任务列表 分页
      * Param: ScheduleJob PageDomain
      * Return: pageInfo
      * */
-    PageInfo<ScheduleJobBean> page(ScheduleJobBean param, PageDomain pageDomain);
+    PageInfo<ScheduleJob> page(ScheduleJob param, PageDomain pageDomain);
 
     /**
      * Describe: 根据编号获取定时任务
      * Param: JobId
      * Return: Schedule
      * */
-    ScheduleJobBean getById(String jobId);
+    ScheduleJob getById(String jobId);
 }

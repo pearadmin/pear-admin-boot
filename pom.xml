@@ -274,12 +274,6 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- 热部署 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 
     <!-- 模 块 管 理 -->
