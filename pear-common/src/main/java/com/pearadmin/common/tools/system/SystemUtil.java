@@ -18,7 +18,7 @@ import java.util.Properties;
 
 public class SystemUtil {
 
-    private static final int WAIT_SECOND = 100;
+    private static final int WAIT_SECOND = 110;
 
     public static CpuInfo getCpu(){
         CpuInfo cpu = new CpuInfo();
@@ -32,7 +32,6 @@ public class SystemUtil {
         setSysFiles(si.getOperatingSystem(),cpu);
         return cpu;
     }
-
 
     private static void setSysInfo(CpuInfo cpu) {
         Properties props = System.getProperties();
@@ -115,7 +114,6 @@ public class SystemUtil {
         cpu.setJvmInfoHome(props.getProperty("java.home"));
 
     }
-
 
     /**
      * 设置内存信息
