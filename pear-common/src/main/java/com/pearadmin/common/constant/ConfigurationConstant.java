@@ -12,4 +12,7 @@ public class ConfigurationConstant {
 
     public final static String MAIN_PASS = "main_pass";
 
+    public final static String UPLOAD_KIND = "upload_kind";
+
+    public final static String UPLOAD_PATH = "upload_path";
 }

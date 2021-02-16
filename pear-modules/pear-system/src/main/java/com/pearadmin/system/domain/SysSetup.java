@@ -15,16 +15,8 @@ public class SysSetup {
 
     private String mailPass;
 
-    private String ossKey;
+    private String uploadKind;
 
-    private String ossBucket;
-
-    private String ossPoint;
-
-    private String ossSecret;
-
-    private String ossPath;
-
-    private String ossType;
+    private String uploadPath;
 
 }

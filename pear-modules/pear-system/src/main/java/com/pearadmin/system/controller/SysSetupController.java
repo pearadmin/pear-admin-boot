@@ -40,7 +40,9 @@ public class SysSetupController extends BaseController implements ApplicationEve
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/setup/main','sys:setup:main')")
     public ModelAndView main(Model model) {
+
         SysSetup sysSetup = new SysSetup();
+
         SysConfig mailFromConfig = sysConfigService.getByCode(ConfigurationConstant.MAIN_FROM);
         SysConfig mailUserConfig = sysConfigService.getByCode(ConfigurationConstant.MAIN_USER);
         SysConfig mailPassConfig = sysConfigService.getByCode(ConfigurationConstant.MAIN_PASS);
@@ -51,6 +53,12 @@ public class SysSetupController extends BaseController implements ApplicationEve
         sysSetup.setMailPass(mailPassConfig == null ? "" : mailPassConfig.getConfigValue());
         sysSetup.setMailHost(mailHostConfig == null ? "" : mailHostConfig.getConfigValue());
         sysSetup.setMailPort(mailPortConfig == null ? "" : mailPortConfig.getConfigValue());
+
+        SysConfig uploadKindConfig = sysConfigService.getByCode(ConfigurationConstant.UPLOAD_KIND);
+        SysConfig uploadPathConfig = sysConfigService.getByCode(ConfigurationConstant.UPLOAD_PATH);
+        sysSetup.setUploadKind(uploadKindConfig == null ? "" : uploadKindConfig.getConfigValue());
+        sysSetup.setUploadPath(uploadPathConfig == null ? "" : uploadPathConfig.getConfigValue());
+
         model.addAttribute("setup", sysSetup);
         return jumpPage(MODULE_PATH + "main");
     }
@@ -59,16 +67,25 @@ public class SysSetupController extends BaseController implements ApplicationEve
     @PutMapping("save")
     @PreAuthorize("hasPermission('/system/setup/add','sys:setup:add')")
     public Result save(@RequestBody SysSetup sysSetup) {
+
         String from = sysSetup.getMailFrom();
         String user = sysSetup.getMailUser();
         String pass = sysSetup.getMailPass();
         String port = sysSetup.getMailPort();
         String host = sysSetup.getMailHost();
+
+        String uploadKind = sysSetup.getUploadKind();
+        String uploadPath = sysSetup.getUploadPath();
+
         updateSetup("邮箱来源", ConfigurationConstant.MAIN_FROM, from);
         updateSetup("邮箱用户", ConfigurationConstant.MAIN_USER, user);
         updateSetup("邮箱密码", ConfigurationConstant.MAIN_PASS, pass);
         updateSetup("邮箱端口", ConfigurationConstant.MAIN_PORT, port);
         updateSetup("邮箱主机", ConfigurationConstant.MAIN_HOST, host);
+
+        updateSetup("上传方式", ConfigurationConstant.UPLOAD_KIND, uploadKind);
+        updateSetup("上传路径", ConfigurationConstant.UPLOAD_PATH, uploadPath);
+
         HashMap<String, String> map = MapUtil.newHashMap(5);
         map.put(ConfigurationConstant.MAIN_FROM, from);
         map.put(ConfigurationConstant.MAIN_USER, user);
