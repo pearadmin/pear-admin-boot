@@ -22,14 +22,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">${comment}：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="${field}" placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-required#end/>
+                    <input type="text" name="${field}" placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-verify="required"#end/>
                 </div>
             </div>
 #elseif($column.htmlType == "select")
             <div class="layui-form-item">
                 <label class="layui-form-label">${comment}：</label>
                 <div class="layui-input-block">
-                    <select name="${field}" #if($column.required) lay-required#end   #if("" !=$column.dictType)dict-code="${column.dictType}"#end >
+                    <select name="${field}" #if($column.required) lay-verify="required" #end   #if("" !=$column.dictType)dict-code="${column.dictType}"#end >
                         <option value="">所有</option>
                     </select>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="check-box" check-box-dict-code="${column.dictType}" name="${field}"></div>
 #else
                     <div class="check-box">
-                        <input type="checkbox" name="${field}" title="无" lay-skin="primary" #if($column.required) lay-required#end>
+                        <input type="checkbox" name="${field}" title="无" lay-skin="primary" #if($column.required) lay-verify="required"#end>
                     </div>
 #end
                 </div>
@@ -56,7 +56,7 @@
                     </div>
 #else
                     <div class="radio-box">
-                        <input type="radio" name="${field}" value="" title="未知" #if($column.required) lay-required#end>
+                        <input type="radio" name="${field}" value="" title="未知" #if($column.required) lay-verify="required"#end>
                     </div>
 #end
                 </div>
@@ -66,7 +66,7 @@
                 <label class="col-sm-3 control-label">${comment}：</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
-                        <input type="text" name="${field}" class="layui-input" id="${field}" #if($column.required) lay-required#end>
+                        <input type="text" name="${field}" class="layui-input" id="${field}" #if($column.required) lay-verify="required"#end>
                     </div>
                 </div>
             </div>
