@@ -21,18 +21,6 @@
 
     <!-- 依赖管理 -->
     <dependencies>
-        <!--OSHI可以跨平台查看服务器信息-->
-        <dependency>
-            <groupId>com.github.oshi</groupId>
-            <artifactId>oshi-core</artifactId>
-            <version>3.9.1</version>
-        </dependency>
-        <!--核心，包括Bean操作、日期、各种Util等-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
-            <version>4.6.1</version>
-        </dependency>
         <!-- 工 具 类 -->
         <dependency>
             <groupId>cn.hutool</groupId>

@@ -44,7 +44,7 @@
 <script type="text/html" id="mail-toolbar">
     <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
-        发邮件
+        发送
     </button>
     <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
@@ -76,10 +76,11 @@
         let cols = [
             [
                 {type: 'checkbox'},
-                {title: '收件人邮箱', field: 'receiver', align: 'center'},
-                {title: '邮件主题', field: 'subject', align: 'center'},
+                {title: '主题', field: 'subject'},
+                {title: '正文', field: 'content'},
+                {title: '收件人', field: 'receiver', align: 'center'},
                 {title: '发件人', field: 'createBy', align: 'center'},
-                {title: '发送时间', field: 'createTime', align: 'center', templet: "#file-createTime"},
+                {title: '创建时间', field: 'createTime', align: 'center', templet: "#file-createTime"},
                 {title: '操作', toolbar: '#mail-bar', align: 'center', width:100}
             ]
         ]
@@ -95,8 +96,7 @@
             defaultToolbar: [{
                 title: '刷新',
                 layEvent: 'refresh',
-                icon: 'layui-icon-refresh',
-            }, 'filter', 'print', 'exports']
+                icon: 'layui-icon-refresh'}, 'filter', 'print', 'exports']
         });
 
         table.on('tool(mail-table)', function (obj) {
