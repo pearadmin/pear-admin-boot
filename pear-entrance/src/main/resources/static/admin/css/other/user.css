@@ -5,6 +5,12 @@
     height: calc(100vh - 247px);
     margin-top: 20px;
 }
+.dtree-laySimple-item-this{
+    background-color: transparent!important;
+}
+.dtree-nav-div:hover{
+    background-color: transparent!important;
+}
 .button{
     margin-top: 10px;
     width: 94%;
