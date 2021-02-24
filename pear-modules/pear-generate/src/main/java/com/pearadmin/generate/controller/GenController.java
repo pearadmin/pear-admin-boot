@@ -109,7 +109,7 @@ public class GenController extends BaseController {
             table.setTableId(SequenceUtil.makeStringId());
         });
         genTableService.importGenTable(tableList, "");
-        return success();
+        return success("导入成功");
     }
 
     /**
@@ -145,7 +145,7 @@ public class GenController extends BaseController {
     public Result editSave(@Validated GenTable genTable) {
         genTableService.validateEdit(genTable);
         genTableService.updateGenTable(genTable);
-        return success();
+        return success("保存成功");
     }
 
     @PostMapping("/remove")

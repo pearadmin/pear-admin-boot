@@ -5,7 +5,7 @@
     <link  th:href="@{/admin/css/other/generate.css}" rel="stylesheet"/>
 </head>
 <body class="pear-container">
-<form class="layui-form" lay-filter="form-genset" th:object="${table}">
+<form class="layui-form" action="" lay-filter="form-generate" th:object="${table}">
     <div class="mainBox">
         <div class="main-container">
             <div class="layui-row layui-col-space10">
@@ -155,13 +155,12 @@
 <script th:inline="javascript">
     let prefix = "/generate";
     let menuTree;
-    layui.use(['dtree', 'common', 'table', 'form','tab','layer'], function () {
+    layui.use(['dtree', 'common', 'table', 'form','layer'], function () {
 
         let $ = layui.jquery,
             common = layui.common,
             form = layui.form,
             dtree = layui.dtree,
-            tab = layui.tab,
             layer = layui.layer,
             table = layui.table;
 
@@ -176,8 +175,12 @@
                 async: false,
                 success: function (data) {
                     if (data.code == 200) {
-                        console.log("保存成功");
-                        layui.layer.msg("保存成功",{icon:1,time:1000})
+                        layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                            // 关闭当前页面
+                            parent.layui.tab.delCurrentTabByElem('content',function(id){})
+                        });
+                    }else{
+                        layer.msg(data.msg, {icon: 2, time: 1000})
                     }
                 }
             });
