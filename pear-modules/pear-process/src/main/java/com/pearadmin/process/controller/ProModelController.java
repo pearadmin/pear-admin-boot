@@ -16,6 +16,8 @@ import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.Model;
+import org.activiti.engine.repository.ModelQuery;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -70,8 +72,12 @@ public class ProModelController extends BaseController {
      * Return: ResultTable
      * */
     @GetMapping("data")
-    public ResultTable list(PageDomain pageDomain){
-        List<Model> list = repositoryService.createModelQuery().listPage(pageDomain.start(),pageDomain.end());
+    public ResultTable list(PageDomain pageDomain,String modelName){
+        ModelQuery modelQuery = repositoryService.createModelQuery();
+        if (StringUtils.hasText(modelName)){
+            modelQuery.modelNameLike(modelName);
+        }
+        List<Model> list = modelQuery.listPage(pageDomain.start(),pageDomain.end());
         List<ProModel> data = new ArrayList<>();
 
         list.forEach(model -> {
@@ -83,7 +89,7 @@ public class ProModelController extends BaseController {
             data.add(proModel);
         });
 
-        long count = repositoryService.createModelQuery().list().size();
+        long count = modelQuery.list().size();
         return pageTable(data,count);
     }
 

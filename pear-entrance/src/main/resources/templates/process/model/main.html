@@ -10,7 +10,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">模型名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="realName" placeholder="" class="layui-input">
+                    <input type="text" name="modelName" placeholder="" class="layui-input">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="model-query">
                     <i class="layui-icon layui-icon-search"></i>
@@ -111,6 +111,7 @@
         });
 
         form.on('submit(model-query)', function (data) {
+            console.log(data);
             table.reload('model-table', {where: data.field})
             return false;
         });
