@@ -26,10 +26,7 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <button type="button" class="pear-btn pear-btn-md pear-btn-primary" data-type="reload" lay-submit
-                            lay-filter="form-search"
-                            id="form-search"><i class="layui-icon">&#xe615;</i>搜索
-                    </button>
+                    <button type="button" class="pear-btn pear-btn-md pear-btn-primary" data-type="reload" lay-submit lay-filter="form-search" id="form-search"><i class="layui-icon">&#xe615;</i>搜索</button>
                 </div>
             </div>
         </form>
@@ -40,9 +37,9 @@
         <script type="text/html" id="table_gen_toolbar">
             <button class="pear-btn pear-btn-md pear-btn-primary" lay-event="batch-gencode"><i class="layui-icon">&#xe654;</i>生成
             </button>
-            <button class="pear-btn pear-btn-md pear-btn-warming" lay-event="import"><i class="layui-icon">&#xe654;</i>导入
+            <button class="pear-btn pear-btn-md" lay-event="import"><i class="layui-icon">&#xe654;</i>导入
             </button>
-            <button class="pear-btn pear-btn-md pear-btn-danger" lay-event="batch-remove"><i class="layui-icon">&#xe640;</i>删除
+            <button class="pear-btn pear-btn-md" lay-event="batch-remove"><i class="layui-icon">&#xe640;</i>删除
             </button>
         </script>
         <table id="table_gen" lay-filter="table_gen"></table>

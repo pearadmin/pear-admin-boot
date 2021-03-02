@@ -27,19 +27,21 @@
 <div class="layui-card">
     <div class="layui-card-body">
         <table id="model-table" lay-filter="model-table"></table>
-        <script type="text/html" id="barDemo">
-            <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del">
-                <i class="layui-icon layui-icon-delete"></i>
-            </a>
-        </script>
-        <script type="text/html" id="xml">
-            <a download="{{d.bpmn}}" href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
-        </script>
-        <script type="text/html" id="png">
-            <a lay-event="png">{{d.png}}</a>
-        </script>
     </div>
 </div>
+
+<script type="text/html" id="barDemo">
+    <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i></a>
+</script>
+
+<script type="text/html" id="xml">
+    <a download="{{d.bpmn}}" href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
+</script>
+
+<script type="text/html" id="png">
+    <a lay-event="png">{{d.png}}</a>
+</script>
+
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'layer', 'jquery', 'form'], function () {
