@@ -146,7 +146,7 @@ layui.define(['table', 'jquery', 'element', 'yaml','form', 'tab', 'menu', 'frame
 							url: data.menuUrl,
 							icon: data.menuIcon,
 							close: true
-						}, 300);
+						}, 500);
 						compatible();
 					})
 				} else {

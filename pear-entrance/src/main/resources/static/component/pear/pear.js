@@ -24,7 +24,6 @@ layui.config({
 	iconPicker:"iconPicker",
 	treetable:"treetable",
 	dtree:"dtree",
-	tinymce:"tinymce/tinymce",
 	area:"area",
 	count:"count",
 	topBar: "topBar",
