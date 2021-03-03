@@ -6,13 +6,13 @@
     <parent>
         <groupId>com.pearadmin</groupId>
         <artifactId>pear-admin-boot</artifactId>
-        <version>1.3.5-RELEASE</version>
+        <version>1.3.6-RELEASE</version>
     </parent>
 
     <!-- 基本信息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-common</artifactId>
-    <version>1.3.5-RELEASE</version>
+    <version>1.3.6-RELEASE</version>
     <name>公共模块</name>
     <description>Demo project for Spring Boot</description>
 
