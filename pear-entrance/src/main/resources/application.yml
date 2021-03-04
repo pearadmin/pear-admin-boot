@@ -78,8 +78,6 @@ pear:
 
   # 上 传 配 置
   upload:
-    # 当前系统环境
-    os: windows
     # windows 上传路径
     windows-path: D:\home\uploads\
     # linux 上传路径

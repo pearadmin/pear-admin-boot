@@ -17,11 +17,6 @@ import java.io.File;
 public class TemplateProperty {
 
     /**
-     * 当前系统环境
-     * */
-    private String os;
-
-    /**
      *  windows 系统文件上传路径
      * */
     private String windowsPath;
