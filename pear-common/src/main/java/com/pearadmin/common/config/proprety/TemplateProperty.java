@@ -1,9 +1,10 @@
 package com.pearadmin.common.config.proprety;
 
-import com.pearadmin.common.constant.SystemConstant;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
 
 /**
  * Describe: 接 口 文 档 配 置 类
@@ -34,7 +35,7 @@ public class TemplateProperty {
      * upload path 根据系统环境获取上传路径
      * */
     public String getUploadPath(){
-        return this.os.equals(SystemConstant.WINDOWS)?this.windowsPath:this.linuxPath;
+        return '\\' == File.separatorChar ? this.windowsPath : this.linuxPath;
     }
 
 }
