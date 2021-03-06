@@ -46,8 +46,7 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     @Override
     public List<SysDictData> selectByCode(String typeCode) {
         try {
-            List<SysDictData>  list=  loadingCacheSysDictData.get(typeCode);
-            return list;
+            return loadingCacheSysDictData.get(typeCode);
         } catch (ExecutionException e) {
             e.printStackTrace();
         }

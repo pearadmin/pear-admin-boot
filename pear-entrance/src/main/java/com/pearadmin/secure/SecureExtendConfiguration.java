@@ -92,13 +92,11 @@ public class SecureExtendConfiguration {
      */
     @Bean
     public ScheduledThreadPoolExecutor manageSessionThreadPool() {
-        ScheduledThreadPoolExecutor executor =
-                new ScheduledThreadPoolExecutor(1, r -> {
-                    Thread t = new Thread(r);
-                    t.setName("removeSession");
-                    t.setDaemon(true);
-                    return t;
-                });
-        return executor;
+        return new ScheduledThreadPoolExecutor(1, r -> {
+            Thread t = new Thread(r);
+            t.setName("removeSession");
+            t.setDaemon(true);
+            return t;
+        });
     }
 }

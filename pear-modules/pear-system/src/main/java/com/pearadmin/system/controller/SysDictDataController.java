@@ -83,7 +83,7 @@ public class SysDictDataController extends BaseController {
         Result<List<SysBaseDict>> result = new Result<List<SysBaseDict>>();
         List<SysBaseDict> ls = null;
         try {
-            if(dictCode.indexOf(",")!=-1) {
+            if(dictCode.contains(",")) {
                 String[] params = dictCode.split(",");
 
                 if(params.length<3) {
@@ -120,7 +120,7 @@ public class SysDictDataController extends BaseController {
     public Result<List<SysBaseDict>> loadDictItem(@PathVariable String dictCode, @RequestParam(name="key") String keys, @RequestParam(value = "sign",required = false) String sign, HttpServletRequest request) {
         Result<List<SysBaseDict>> result = new Result<>();
         try {
-            if(dictCode.indexOf(",")!=-1) {
+            if(dictCode.contains(",")) {
                 String[] params = dictCode.split(",");
                 if(params.length!=3) {
                     return Result.failure("字典Code格式不正确！");

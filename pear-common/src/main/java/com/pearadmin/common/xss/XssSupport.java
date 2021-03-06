@@ -9,6 +9,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import javax.servlet.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,9 +63,7 @@ public class XssSupport implements Filter {
         String temp = filterConfig.getInitParameter("excludes");
         if (temp != null) {
             String[] url = temp.split(",");
-            for (int i = 0; url != null && i < url.length; i++) {
-                excludes.add(url[i]);
-            }
+            excludes.addAll(Arrays.asList(url));
         }
     }
 
