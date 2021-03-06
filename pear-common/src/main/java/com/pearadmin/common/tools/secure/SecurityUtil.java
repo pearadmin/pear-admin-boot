@@ -30,11 +30,7 @@ public class SecurityUtil {
     public static boolean isAuthentication(){
         // if security session eq s-id is not null to index
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            return true;
-        }else{
-            return false;
-        }
+        return !(auth instanceof AnonymousAuthenticationToken);
     }
 
 }
