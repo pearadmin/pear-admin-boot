@@ -55,7 +55,7 @@
         };
 
         form.on('submit(form-search)', function (data) {
-            table.reload('table_import', {where: data.field, page: {curr: 1}});//执行重载
+            table.reload('table_import', {where: data.field, page: {curr: 1}});
         });
 
         table.render({
@@ -94,8 +94,8 @@
         layui.common.ajax.post(prefix + "/importTable", data, function (res) {
             if (res.success) {
                 layer.msg(res.msg, {icon: 1, time: 1000}, function () {
+                    parent.layui.table.reload('table_gen');
                     parent.layui.layer.closeAll();
-                    parent.layui.table.reload();
                 });
             }
         });
