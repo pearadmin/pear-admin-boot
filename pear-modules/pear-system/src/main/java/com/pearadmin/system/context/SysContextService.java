@@ -54,7 +54,7 @@ public class SysContextService implements SysContext {
                         SysBasePower sysPowerModel = new SysBasePower();
                         BeanUtils.copyProperties(sysPower, sysPowerModel);
                         sysPowerModelList.add(sysPowerModel);
-                    }catch (Exception e){
+                    }catch (Exception ignored){
 
                     }
                 }

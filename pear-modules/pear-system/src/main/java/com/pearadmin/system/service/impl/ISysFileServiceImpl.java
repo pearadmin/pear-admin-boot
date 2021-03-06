@@ -71,8 +71,7 @@ public class ISysFileServiceImpl implements ISysFileService {
             String fileId = SequenceUtil.makeStringId();
             String name = file.getOriginalFilename();
             String suffixName = name.substring(name.lastIndexOf("."));
-            String hash = fileId;
-            String fileName = hash + suffixName;
+            String fileName = fileId + suffixName;
             String fileDir = LocalDate.now().toString();
             String parentPath = uploadProperty.getUploadPath() +fileDir;
             java.io.File filepath = new java.io.File(parentPath, fileName);

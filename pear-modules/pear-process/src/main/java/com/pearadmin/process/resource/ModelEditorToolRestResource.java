@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("service")
@@ -15,7 +16,7 @@ public class ModelEditorToolRestResource {
     public String getStencilset() {
         InputStream stencilsetStream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
         try {
-            return IOUtils.toString(stencilsetStream, "utf-8");
+            return IOUtils.toString(stencilsetStream, StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new ActivitiException("Error while loading stencil set", e);
         }

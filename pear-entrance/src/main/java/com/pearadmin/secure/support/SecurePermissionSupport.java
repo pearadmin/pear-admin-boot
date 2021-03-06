@@ -40,11 +40,7 @@ public class SecurePermissionSupport implements PermissionEvaluator {
         for (SysPower sysPower : powerList) {
             permissions.add(sysPower.getPowerCode());
         }
-        if (permissions.contains(permission)) {
-            return true;
-        } else {
-            return false;
-        }
+        return permissions.contains(permission);
     }
 
     @Override

@@ -83,11 +83,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     public boolean save(SysRole sysRole) {
         int result = sysRoleMapper.insert(sysRole);
-        if(result>0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**
@@ -108,11 +104,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     public boolean update(SysRole sysRole) {
         Integer result = sysRoleMapper.updateById(sysRole);
-        if(result > 0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**
@@ -150,11 +142,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
             rolePowers.add(sysRolePower);
         });
         int result = sysRolePowerMapper.batchInsert(rolePowers);
-        if(result > 0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**

@@ -89,11 +89,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
     @Override
     public Boolean updateById(SysConfig sysConfig) {
         int result = sysConfigMapper.updateById(sysConfig);
-        if(result > 0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**
@@ -104,11 +100,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
     @Override
     public Boolean remove(String id) {
         Integer result = sysConfigMapper.deleteById(id);
-        if(result>0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**
@@ -119,11 +111,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
     @Override
     public Boolean batchRemove(String[] ids) {
         Integer result = sysConfigMapper.deleteByIds(ids);
-        if(result>0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
 }

@@ -27,12 +27,12 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 
     /**
      * 间隔时间，单位:秒 默认10秒
-     * 
+     *
      * 两次相同参数的请求，如果间隔时间大于该参数，系统不会认定为重复提交的数据
      */
     private int intervalTime = 10;
 
-    public void setIntervalTime()
+    public void setIntervalTime(int intervalTime)
     {
         this.intervalTime = intervalTime;
     }
@@ -92,10 +92,6 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
     {
         long time1 = (Long) nowMap.get(REPEAT_TIME);
         long time2 = (Long) preMap.get(REPEAT_TIME);
-        if ((time1 - time2) < (this.intervalTime * 1000))
-        {
-            return true;
-        }
-        return false;
+        return (time1 - time2) < (this.intervalTime * 1000L);
     }
 }

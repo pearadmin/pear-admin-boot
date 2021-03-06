@@ -30,11 +30,11 @@ public class SequenceUtil {
     private static final long sequenceBits = 12L;
     /** 为 算 法 提 供 可 用 配 置 */
     private static final long workerIdShift = sequenceBits;
-    private static final long maxWorkerId = -1L ^ (-1L << workerIdBits);
-    private static final long maxCenterId = -1L ^ (-1L << centerIdBits);
+    private static final long maxWorkerId = ~(-1L << workerIdBits);
+    private static final long maxCenterId = ~(-1L << centerIdBits);
     private static final long centerIdShift = sequenceBits + workerIdBits;
     private static final long timestampLeftShift = sequenceBits + workerIdBits + centerIdBits;
-    private static final long sequenceMask = -1L ^ (-1L << sequenceBits);
+    private static final long sequenceMask = ~(-1L << sequenceBits);
     public static synchronized long makeSequence() throws Exception{
         long timestamp = timeGen();
         // 当 前 时 间 小 于 上 次 Id 生 成 时 间 ,说 明 系 统 时 钟 回 退, 应 会 抛 出 异 常

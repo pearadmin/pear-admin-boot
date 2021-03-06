@@ -28,7 +28,7 @@ public class VelocityUtils
 
     /** html空间路径 */
     private static final String TEMPLATES_PATH = "main/resources/templates";
-    
+
     /** 默认上级菜单，系统工具 */
     private static final String DEFAULT_PARENT_MENU_ID = "3";
 
@@ -100,7 +100,7 @@ public class VelocityUtils
 
     /**
      * 获取模板信息
-     * 
+     *
      * @return 模板列表
      */
     public static List<String> getTemplateList(String tplCategory)
@@ -204,7 +204,7 @@ public class VelocityUtils
 
     /**
      * 获取项目文件路径
-     * 
+     *
      * @return 路径
      */
     public static String getProjectPath()
@@ -219,20 +219,19 @@ public class VelocityUtils
 
     /**
      * 获取包前缀
-     * 
+     *
      * @param packageName 包名称
      * @return 包前缀名称
      */
     public static String getPackagePrefix(String packageName)
     {
         int lastIndex = packageName.lastIndexOf(".");
-        String basePackage = StringUtil.substring(packageName, 0, lastIndex);
-        return basePackage;
+        return StringUtil.substring(packageName, 0, lastIndex);
     }
 
     /**
      * 根据列类型获取导入包
-     * 
+     *
      * @param genTable 业务表对象
      * @return 返回需要导入的包列表
      */
@@ -261,7 +260,7 @@ public class VelocityUtils
 
     /**
      * 获取权限前缀
-     * 
+     *
      * @param moduleName 模块名称
      * @param businessName 业务名称
      * @return 返回权限前缀
@@ -329,7 +328,7 @@ public class VelocityUtils
 
     /**
      * 获取需要在哪一列上面显示展开按钮
-     * 
+     *
      * @param genTable 业务表对象
      * @return 展开按钮列序号
      */

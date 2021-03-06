@@ -126,11 +126,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public boolean save(SysUser sysUser) {
         int result = sysUserMapper.insert(sysUser);
-        if(result>0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**
@@ -141,11 +137,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public boolean update(SysUser sysUser) {
         Integer result = sysUserMapper.updateById(sysUser);
-        if(result > 0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**
@@ -165,11 +157,7 @@ public class SysUserServiceImpl implements ISysUserService {
             sysUserRoles.add(sysUserRole);
         });
         int i = sysUserRoleMapper.batchInsert(sysUserRoles);
-        if(i>0){
-            return true;
-        }else{
-            return false;
-        }
+        return i > 0;
     }
 
     /**

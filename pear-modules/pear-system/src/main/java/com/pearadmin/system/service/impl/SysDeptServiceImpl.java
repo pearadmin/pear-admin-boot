@@ -51,11 +51,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
     @Override
     public boolean save(SysDept sysDept) {
         int result = sysDeptMapper.insert(sysDept);
-        if(result>0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**
@@ -76,11 +72,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
     @Override
     public boolean update(SysDept sysDept) {
         Integer result = sysDeptMapper.updateById(sysDept);
-        if(result > 0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     /**

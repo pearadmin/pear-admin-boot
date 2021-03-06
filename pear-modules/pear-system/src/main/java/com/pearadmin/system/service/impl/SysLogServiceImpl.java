@@ -35,11 +35,7 @@ public class SysLogServiceImpl implements ISysLogService {
         sysLog.setSystemOs(ServletUtil.getSystem());
         sysLog.setOperateName(null != SecurityUtil.currentUser() ? SecurityUtil.currentUser().getName() : "未登录用户");
         int result = sysLogMapper.insert(sysLog);
-        if(result>0){
-            return true;
-        }else{
-            return false;
-        }
+        return result > 0;
     }
 
     @Override
