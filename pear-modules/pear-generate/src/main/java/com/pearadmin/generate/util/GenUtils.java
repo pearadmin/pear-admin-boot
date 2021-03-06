@@ -150,9 +150,31 @@ public class GenUtils
      */
     public static String getBusinessName(String tableName)
     {
-        int lastIndex = tableName.lastIndexOf("_");
+        int lastIndex = tableName.indexOf("_");
         int nameLength = tableName.length();
-        return StringUtil.substring(tableName, lastIndex + 1, nameLength);
+        String end =  StringUtil.substring(tableName, lastIndex + 1, nameLength);
+        String[] arr = end.split("_");
+        String businessName = "";
+        for (String s : arr) {
+            businessName+= upperCaptureName(s);
+        }
+        return lowerCaptureName(businessName);
+    }
+
+    /**
+     * 首字母小写
+     * */
+    public static String lowerCaptureName(String name) {
+        name = name.substring(0, 1).toLowerCase() + name.substring(1);
+        return name;
+    }
+
+    /**
+     * 首字母大写
+     * */
+    public static String upperCaptureName(String name) {
+        name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        return name;
     }
 
     /**
