@@ -1,4 +1,4 @@
 .layui-layer-msg{
-	border-color: whitesmoke!important;
-	border: 1px solid #dcdfe6;
+	border-color: transparent!important;
+	box-shadow: 2px 0 6px rgb(0 21 41 / 0.05)!important;
 }
