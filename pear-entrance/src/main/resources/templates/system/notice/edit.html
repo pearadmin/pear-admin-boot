@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改notice')" />
+</head>
+<body>
+<form class="layui-form" th:object="${sysNotice}">
+    <div class="mainBox">
+        <div class="main-container">
+            <input name="id" th:field="*{id}" type="hidden">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题：</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" th:field="*{title}" placeholder="请输入标题" class="layui-input"  lay-verify="required"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">内容：</label>
+        <div class="layui-input-block">
+            <input type="text" name="content" th:field="*{content}" placeholder="请输入内容" class="layui-input"  lay-verify="required"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">接收者：</label>
+        <div class="layui-input-block">
+            <input type="text" name="accept" th:field="*{accept}" placeholder="请输入接收者" class="layui-input"  lay-verify="required"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型：</label>
+        <div class="layui-input-block">
+            <select name="type"  lay-verify="required" dict-code="sys_notice_type" th:attr="default-value=*{type}" >
+                <option value="">所有</option>
+            </select>
+        </div>
+    </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="notice-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="pear-btn pear-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    layui.use(['form', 'jquery','laydate','dictionary'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let laydate = layui.laydate;
+
+        let prefix = "/system/notice/";
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        form.on('submit(notice-update)', function (data) {
+            for(var key in data.field){
+                var type=$(data.form).find("input[name='"+key+"']").attr("type");
+                if(type=="checkbox"){
+                    var value="";
+                    $(data.form).find("input[name='"+key+"']:checked").each(function(){
+                        value+=$(this).val()+",";
+                    })
+                    if(value!=""){
+                        value=value.substr(0,value.length-1);
+                        data.field[key]=value;
+                    }
+
+                }
+            }
+            $.ajax({
+                url: prefix+'update',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.success) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));
+                            parent.layui.table.reload("notice-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</html>
