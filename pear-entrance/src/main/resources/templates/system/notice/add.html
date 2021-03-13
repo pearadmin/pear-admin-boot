@@ -4,7 +4,7 @@
     <th:block th:include="include :: header('新增notice')" />
 </head>
 <body>
-    <form class="layui-form">
+    <form class="layui-form" action="javascript:void(0);">
         <div class="mainBox">
             <div class="main-container">
             <div class="layui-form-item">
@@ -16,28 +16,31 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">内容：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="content" placeholder="请输入内容" class="layui-input"  lay-verify="required"/>
+                    <textarea type="text" name="content" placeholder="请输入内容" class="layui-input layui-textarea"  lay-verify="required"></textarea>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item layui-hide">
                 <label class="layui-form-label">发送：</label>
                 <div class="layui-input-block">
-                    <select name="sender"  lay-verify="required"    dict-code="input" >
-                        <option value="">所有</option>
-                    </select>
+                    <input th:value="${#authentication.principal.userId}" type="text" name="sender" placeholder="请输入接收者" class="layui-input"  lay-verify="required"/>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item layui-hide accept">
                 <label class="layui-form-label">接收：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="accept" placeholder="请输入接收者" class="layui-input"  lay-verify="required"/>
+                    <select name="accept">
+                        <option value="">所有</option>
+                        <option th:each="user:${users}" th:value="${user.userId}" th:text="${user.realName}"></option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">类型：</label>
                 <div class="layui-input-block">
-                    <select name="type"  lay-verify="required"    dict-code="sys_notice_type" >
+                    <select lay-filter="type" name="type"  lay-verify="required" >
                         <option value="">所有</option>
+                        <option value="public">公告</option>
+                        <option value="private">私信</option>
                     </select>
                 </div>
             </div>
@@ -60,46 +63,74 @@
 <th:block th:include="include :: footer" />
 <script th:inline="javascript">
 
-    layui.use(['form', 'jquery','laydate','dictionary'], function () {
+    layui.use(['form', 'jquery','dictionary','popup'], function () {
         let form = layui.form;
         let $ = layui.jquery;
-        let laydate = layui.laydate;
+        let popup = layui.popup;
 
-        let prefix = "/system/notice/"
+        let prefix = "/system/notice/";
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-        form.on('submit(notice-save)', function (data) {
-            for(var key in data.field){
-                var type=$(data.form).find("input[name='"+key+"']").attr("type");
-                if(type=="checkbox"){
-                    var value="";
-                    $(data.form).find("input[name='"+key+"']:checked").each(function(){
-                        value+=$(this).val()+",";
-                    })
-                    if(value!=""){
-                        value=value.substr(0,value.length-1);
-                        data.field[key]=value;
-                    }
+        // 监听
+        form.on("select(type)", function () {
 
-                }
+            var value=$("select[name='type']").val();
+
+            // 监听
+            if (value === 'public') {
+
+                // 清空 Accept
+                $("select[name='accept']").val("");
+
+                form.render("select")
+
+                // 隐藏 Accept
+                $(".accept").addClass("layui-hide");
+
+            } else if (value === 'private') {
+
+                // 清空 Accept
+                $("select[name='accept']").val("");
+
+                form.render("select")
+
+                // 显示 Accept
+                $(".accept").removeClass("layui-hide");
+
+            } else {
+
+                // 清空 Accept
+                $("select[name='accept']").val("");
+
+                form.render("select")
+
+                // 隐藏 Accept
+                $(".accept").addClass("layui-hide");
             }
-            $.ajax({
-                url: prefix+'save',
-                data: JSON.stringify(data.field),
-                dataType: 'json',
-                contentType: 'application/json',
-                type: 'post',
-                success: function (result) {
-                    if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                            parent.layer.close(parent.layer.getFrameIndex(window.name));
-                            parent.layui.table.reload("notice-table");
-                        });
-                    } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+        });
+
+        form.on('submit(notice-save)', function (data) {
+
+            if(data.field['type']==='private' && data.field['accept'] == ""){
+                popup.failure("请选择接收人");
+            }else{
+                $.ajax({
+                    url: prefix+'save',
+                    data: JSON.stringify(data.field),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'post',
+                    success: function (result) {
+                        if (result.success) {
+                            layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                                parent.layer.close(parent.layer.getFrameIndex(window.name));
+                                parent.layui.table.reload("notice-table");
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
                     }
-                }
-            })
+                })
+            }
             return false;
         });
     });

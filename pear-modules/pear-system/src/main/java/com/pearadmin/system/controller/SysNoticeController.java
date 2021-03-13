@@ -1,14 +1,17 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.system.domain.SysNotice;
 import com.pearadmin.common.tools.string.Convert;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
+import com.pearadmin.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +31,9 @@ public class SysNoticeController extends BaseController
 
     @Autowired
     private ISysNoticeService sysNoticeService;
+
+    @Autowired
+    private ISysUserService sysUserService;
 
     @GetMapping("/main")
     @PreAuthorize("hasPermission('/system/notice/main','system:notice:main')")
@@ -53,8 +59,9 @@ public class SysNoticeController extends BaseController
      */
     @GetMapping("/add")
     @PreAuthorize("hasPermission('/system/notice/add','system:notice:add')")
-    public ModelAndView add()
+    public ModelAndView add(Model model)
     {
+        model.addAttribute("users",sysUserService.list(null));
         return jumpPage(prefix + "/add");
     }
 
@@ -66,6 +73,7 @@ public class SysNoticeController extends BaseController
     @PreAuthorize("hasPermission('/system/notice/add','system:notice:add')")
     public Result save(@RequestBody SysNotice sysNotice)
     {
+        sysNotice.setId(SequenceUtil.makeStringId());
         return decide(sysNoticeService.insertSysNotice(sysNotice));
     }
 

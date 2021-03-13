@@ -1,8 +1,6 @@
 package com.pearadmin.system.domain;
 
 import lombok.Data;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.pearadmin.common.web.base.BaseDomain;
 
 /**
@@ -14,8 +12,6 @@ import com.pearadmin.common.web.base.BaseDomain;
 @Data
 public class SysNotice extends BaseDomain
 {
-    private static final long serialVersionUID = 1L;
-
     /** 编号 */
     private String id;
 
@@ -28,8 +24,14 @@ public class SysNotice extends BaseDomain
     /** 发送人 */
     private String sender;
 
+    /** 发送人 */
+    private String senderName;
+
     /** 接收者 */
     private String accept;
+
+    /** 接收人 */
+    private String acceptName;
 
     /** 类型 */
     private String type;

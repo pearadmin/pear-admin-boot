@@ -57,10 +57,23 @@
                  </script>
              </div>
          </div>
-    <script type="text/html" id="type_parseDictText">
-        {{layui.dictionary.parseDictText(d.type,  'sys_notice_type')}}
 
-    </script>
+     <script type="text/html" id="notice-accept">
+         {{#if (d.acceptName==null || d.acceptName=='') { }}
+         所有人
+         {{# }else { }}
+         {{d.acceptName}}
+         {{# } }}
+     </script>
+
+     <script type="text/html" id="notice-type">
+         {{#if (d.type === 'public') { }}
+         公告
+         {{# }else if(d.type === 'private') { }}
+         私信
+         {{# } }}
+     </script>
+
     <th:block th:include="include :: footer" />
          <script>
              layui.use(['table', 'form', 'jquery','dictionary'], function () {
@@ -73,10 +86,6 @@
                  let cols = [
                      [
                          {type: 'checkbox'},
-                         {
-                             field: 'id',
-                             title: '编号'
-                         },
                         {
                              field: 'title',
                              title: '标题'
@@ -86,17 +95,18 @@
                              title: '内容'
                         },
                         {
-                             field: 'sender',
+                             field: 'senderName',
                              title: '发送人'
                         },
                         {
-                             field: 'accept',
-                             title: '接收者'
+                             field: 'acceptName',
+                             title: '接收者',
+                             templet:"#notice-accept"
                         },
                         {
                              field: 'type',
-                             title: '类型'
-                            ,templet: "#type_parseDictText"
+                             title: '类型',
+                             templet: "#notice-type"
                         },
                          {title: '操作', toolbar: '#notice-bar', align: 'center', width: 130}
                      ]
