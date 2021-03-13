@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
 
     <select id="selectSysNoticeList" parameterType="com.pearadmin.system.domain.SysNotice" resultType="com.pearadmin.system.domain.SysNotice">
-        select acceptUser.real_name as acceptName,senderUser.real_name as senderName,notice.id, notice.title, notice.content, notice.sender, notice.accept, notice.type, notice.create_by, notice.create_time, notice.update_by, notice.update_time, notice.remark from sys_notice
+        select acceptUser.real_name as acceptName,senderUser.real_name as senderName,notice.id, notice.title, notice.content, notice.sender, notice.accept, notice.type, notice.create_by, notice.create_time as createTime, notice.update_by, notice.update_time, notice.remark from sys_notice
         notice
         left join sys_user acceptUser
         on notice.accept = acceptUser.user_id

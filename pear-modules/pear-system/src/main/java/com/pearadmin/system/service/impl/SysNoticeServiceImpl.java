@@ -1,5 +1,6 @@
 package com.pearadmin.system.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -72,6 +73,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
     @Override
     public int insertSysNotice(SysNotice sysNotice)
     {
+        sysNotice.setCreateTime(LocalDateTime.now());
         return sysNoticeMapper.insertSysNotice(sysNotice);
     }
 

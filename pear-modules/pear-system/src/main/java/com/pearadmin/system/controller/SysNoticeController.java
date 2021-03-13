@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.pearadmin.system.service.ISysNoticeService;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * noticeController
  * 
@@ -29,10 +35,10 @@ public class SysNoticeController extends BaseController
 {
     private String prefix = "system/notice";
 
-    @Autowired
+    @Resource
     private ISysNoticeService sysNoticeService;
 
-    @Autowired
+    @Resource
     private ISysUserService sysUserService;
 
     @GetMapping("/main")
@@ -52,6 +58,46 @@ public class SysNoticeController extends BaseController
     {
         PageInfo<SysNotice> pageInfo = sysNoticeService.selectSysNoticePage(sysNotice,pageDomain);
         return pageTable(pageInfo.getList(),pageInfo.getTotal());
+    }
+
+    /**
+     * 查询消息
+     * */
+    @ResponseBody
+    @GetMapping("notice")
+    public List<Map> notice(){
+
+        List<Map> result = new ArrayList<>();
+
+        SysNotice publicParam = new SysNotice();
+        publicParam.setType("public");
+
+        SysNotice privateParam = new SysNotice();
+        privateParam.setType("private");
+
+        SysNotice noticeParam = new SysNotice();
+        noticeParam.setType("notice");
+
+        Map<String,Object> publicArray = new HashMap<>();
+        publicArray.put("id","1");
+        publicArray.put("title","公告");
+        publicArray.put("children",sysNoticeService.selectSysNoticeList(publicParam));
+
+        Map<String,Object> privateArray = new HashMap<>();
+        privateArray.put("id","2");
+        privateArray.put("title","私信");
+        privateArray.put("children",sysNoticeService.selectSysNoticeList(privateParam));
+
+        Map<String,Object> noticeArray = new HashMap<>();
+        noticeArray.put("id","3");
+        noticeArray.put("title","通知");
+        noticeArray.put("children",sysNoticeService.selectSysNoticeList(noticeParam));
+
+        result.add(publicArray);
+        result.add(privateArray);
+        result.add(noticeArray);
+
+        return result;
     }
 
     /**
