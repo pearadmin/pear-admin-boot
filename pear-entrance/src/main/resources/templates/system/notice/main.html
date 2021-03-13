@@ -43,7 +43,7 @@
                          <i class="layui-icon layui-icon-add-1"></i>
                          新增
                      </button>
-                     <button  sec:authorize="hasPermission('/system/notice/remove','system:notice:remove')"   class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+                     <button  sec:authorize="hasPermission('/system/notice/remove','system:notice:remove')"   class="pear-btn pear-btn-md" lay-event="batchRemove">
                          <i class="layui-icon layui-icon-delete"></i>
                          删除
                      </button>
@@ -141,7 +141,7 @@
                  window.add = function () {
                      layer.open({
                          type: 2,
-                         title: '新增notice',
+                         title: '新增消息',
                          shade: 0.1,
                          area: ['550px', '500px'],
                          content: prefix + 'add'
@@ -151,7 +151,7 @@
                  window.edit = function (obj) {
                      layer.open({
                          type: 2,
-                         title: '修改notice',
+                         title: '修改消息',
                          shade: 0.1,
                          area: ['550px', '500px'],
                          content: prefix + 'edit?id=' + obj.data['id']
@@ -159,7 +159,7 @@
                  }
 
                  window.remove = function (obj) {
-                     layer.confirm('确定要删除该notice', {icon: 3, title: '提示'}, function (index) {
+                     layer.confirm('确定要删除该消息', {icon: 3, title: '提示'}, function (index) {
                          layer.close(index);
                          let loading = layer.load();
                          $.ajax({
@@ -191,7 +191,7 @@
                          ids += data[i].id + ",";
                      }
                      ids = ids.substr(0, ids.length - 1);
-                     layer.confirm('确定要删除这些notice', {icon: 3, title: '提示'}, function (index) {
+                     layer.confirm('确定要删除这些消息', {icon: 3, title: '提示'}, function (index) {
                          layer.close(index);
                          let loading = layer.load();
                          $.ajax({

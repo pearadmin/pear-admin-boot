@@ -16,6 +16,7 @@ layui.define(['table', 'jquery', 'element', 'yaml','form', 'tab', 'menu', 'frame
 		let bodyTab;
 		let config;
 		const body = $('body');
+		let logout = function() {};
 
 		const pearAdmin = new function() {
 
@@ -37,6 +38,11 @@ layui.define(['table', 'jquery', 'element', 'yaml','form', 'tab', 'menu', 'frame
 				} else {
 					applyConfig(pearAdmin.readConfig());
 				}
+			}
+
+			this.logout = function(callback) {
+
+				logout = callback;
 			}
 
 			this.readConfig = function() {
@@ -216,6 +222,17 @@ layui.define(['table', 'jquery', 'element', 'yaml','form', 'tab', 'menu', 'frame
 				admin.addClass("pear-mini");
 			}
 		}
+
+		body.on("click", ".logout", function() {
+			// 回调
+			let result = logout();
+
+			if (result) {
+				// 清空缓存
+				bodyTab.clear();
+			}
+		})
+
 
 		body.on("click", ".collaspe,.pear-cover", function() {
 			collaspe()

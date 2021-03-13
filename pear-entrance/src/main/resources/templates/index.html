@@ -64,10 +64,11 @@
 <!-- 依 赖 脚 本 -->
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    layui.use(['admin','jquery','layer'], function () {
+    layui.use(['admin','jquery','layer','popup'], function () {
         let admin = layui.admin;
         let $ = layui.jquery;
         let layer = layui.layer;
+        let popup = layui.popup;
 
         // 框架初始化时会读取 根目录下 pear.config.yml 文件作为初始化配置
         // 你可以通过 admin.setConfigPath 方法修改配置文件位置
@@ -79,21 +80,19 @@
 
         $('#avatar').attr("src","/system/file/download/"+[[${session.currentUser.avatar}]]);
 
-        $("body").on("click", ".logout", function() {
-            let loader = layer.load();
+        admin.logout(function(){
+            let loading = layer.load();
             $.ajax({
                 url: '/logout',
                 dataType: 'json',
                 type: 'post',
                 success: function(result) {
-                    layer.close(loader);
+                    layer.close(loading);
                     if (result.success) {
-                        layer.msg("注销成功", {
-                            icon: 1,
-                            time: 1200
-                        }, function() {
+                        popup.success(result.msg, function() {
                             location.href = "/";
                         });
+                        return true;
                     }
                 }
             })
