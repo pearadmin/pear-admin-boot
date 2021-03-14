@@ -1,6 +1,7 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.system.domain.SysNotice;
 import com.pearadmin.common.tools.string.Convert;
@@ -8,6 +9,7 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
+import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,9 +26,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * noticeController
+ * 消息控制器
  * 
- * @author jmys
+ * @author 就眠仪式
  * @date 2021-03-13
  */
 @RestController
@@ -74,6 +76,7 @@ public class SysNoticeController extends BaseController
 
         SysNotice privateParam = new SysNotice();
         privateParam.setType("private");
+        privateParam.setAccept(((SysUser) SecurityUtil.currentUser().getPrincipal()).getUserId());
 
         SysNotice noticeParam = new SysNotice();
         noticeParam.setType("notice");

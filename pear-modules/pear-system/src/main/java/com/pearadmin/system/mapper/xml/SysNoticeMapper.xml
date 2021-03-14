@@ -32,6 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>  
             <if test="title != null  and title != ''"> and notice.title like concat('%', #{title}, '%')</if>
             <if test="type != null  and type != ''"> and notice.type = #{type}</if>
+            <if test="accept != null and accept !=''"> and notice.accept = #{accept}</if>
         </where>
     </select>
     
