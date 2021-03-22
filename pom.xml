@@ -306,6 +306,7 @@
         </resources>
     </build>
 
+    <!-- 中 央 仓 库 -->
     <repositories>
         <repository>
             <id>aliyun-spring</id>
