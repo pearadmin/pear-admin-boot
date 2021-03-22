@@ -52,13 +52,15 @@ Spring Boot + Security + MyBatis + Thymeleaf + Activiti 快速开发平台
 5.  参数管理：对系统动态配置常用参数。
 6.  通知公告：系统通知公告信息发布维护。
 7.  操作日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。
-8. 登录日志：系统登录日志记录查询包含登录异常。
-9. 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
+8.  登录日志：系统登录日志记录查询包含登录异常。
+9.  定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
 10. 代码生成：前后端代码的生成（java、html、xml、sql）支持CRUD下载 。
 11. 系统接口：根据业务代码自动生成相关的api接口文档。
 12. 服务监控：监视当前系统CPU、内存、磁盘、堆栈等相关信息。
-13. 在线构建器：拖动表单元素生成相应的HTML代码。
-14. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
+13. 快捷部署：提供 Deploy 脚本，支持快速部署
+14. 在线构建器：拖动表单元素生成相应的HTML代码。
+15. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
+
 
 #### 项目结构
 
@@ -118,6 +120,28 @@ Pear Admin Boot
 └─pom.xml  Maven 配置
 
 ```
+
+#### 快速上手
+
+##### 下载
+
+```
+
+git clone https://gitee.com/pear-admin/Pear-Admin-Boot.git
+
+```
+
+##### 配置
+
+[开发配置](https://gitee.com/pear-admin/Pear-Admin-Boot/blob/master/pear-entrance/src/main/resources/application-dev.yml)
+
+[生产配置](https://gitee.com/pear-admin/Pear-Admin-Boot/blob/master/pear-entrance/src/main/resources/application-prod.yml)
+
+
+##### 部署
+
+[启动脚本](https://gitee.com/pear-admin/Pear-Admin-Boot/blob/master/deploy.sh)
+
 
 #### 开源共建
 
