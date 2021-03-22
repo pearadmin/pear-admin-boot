@@ -7,13 +7,13 @@
     <parent>
         <groupId>com.pearadmin</groupId>
         <artifactId>pear-modules</artifactId>
-        <version>1.3.6-RELEASE</version>
+        <version>1.4.1-RELEASE</version>
     </parent>
 
     <!-- Maven 地 址 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-generate</artifactId>
-    <version>1.3.6-RELEASE</version>
+    <version>1.4.1-RELEASE</version>
 
     <!-- 项 目 信 息 -->
     <name>代码生成</name>

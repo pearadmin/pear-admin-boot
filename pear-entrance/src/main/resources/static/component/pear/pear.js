@@ -5,7 +5,7 @@ window.rootPath = (function(src) {
 
 layui.config({
 	base: rootPath + "module/",
-	version: "3.6.7"
+	version: "3.6.8"
 }).extend({
 	admin: "admin",
 	menu: "menu",
