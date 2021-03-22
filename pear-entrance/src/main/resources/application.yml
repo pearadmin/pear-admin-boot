@@ -64,7 +64,7 @@ pear:
     # 超 级 管 理 员 账 号 -- 不需要验证权限
     super-admin: admin
     # 允 许 同 一 账 号 多 端 登 录 个 数
-    maximum: 20
+    maximum: 1
     # 记 住 密 码 KEY
     remember-key: PEAR_REMEMBER
     # 不 需 要 权 限 拦 截 的 接 口 配 置
