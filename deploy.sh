@@ -27,6 +27,7 @@ cp -fv $CONFIGURE_DIR/* "$SOURCE_DIR/pear-entrance/src/main/resources"
 mvn clean package -Dmaven.test.skip
 
 # ### 重启服务 ###
+
 # 创建运行目录
 mkdir -p ${RUNTIME_DIR}
 

@@ -1,11 +1,11 @@
 spring:
   redis:
     # 主 机 地 址
-    host: 127.0.0.1
+    host: redis.pearadmin.com
     # 端 口
     port: 6379
     # 认 证
-    password:
+    password: pear-redis
     # 选 择 数 据 库
     database: 0
     # 连 接 池 配 置
@@ -29,9 +29,9 @@ spring:
       datasource:
         # 主 库 配 置
         master:
-          url: jdbc:mysql://127.0.0.1:3306/pear-admin?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://mysql.pearadmin.com/pear-admin-boot?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
           username: root
-          password: root
+          password: pear-mysql
           druid:
             # 初始连接数
             initialSize: 5
