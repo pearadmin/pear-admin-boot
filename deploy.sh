@@ -7,6 +7,7 @@ cd $(dirname "$0")
 # 项目名
 PROJECT_NAME="Pear-Admin-Boot"
 BRANCH="master"
+VERSION="1.4.1-RELEASE"
 
 # ### 自动计算的变量 ###
 SOURCE_DIR=$(pwd)
@@ -37,8 +38,10 @@ chmod u+x "$RUNTIME_DIR/restart.sh"
 
 # 复制编译结果到运行目录
 cd "$SOURCE_DIR/pear-entrance/target"
-rm -fv $PROJECT_NAME-*-sources.jar
-find . -name "$PROJECT_NAME-*.jar" | xargs -i cp -fv {} "$RUNTIME_DIR/$PROJECT_NAME.jar"
+rm -fv "pear-entrance-$VERSION.jar"
+find . -name "pear-entrance-$VERSION.jar" | xargs -i cp -fv {} "$RUNTIME_DIR/pear-entrance-$VERSION.jar"
+
+NEWPROJECT = "pear-entrance-$VERSION.jar"
 
 # 调用重启脚本
-${RUNTIME_DIR}/restart.sh ${PROJECT_NAME}
+${RUNTIME_DIR}/restart.sh ${NEWPROJECT}
