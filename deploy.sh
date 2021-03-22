@@ -7,7 +7,7 @@ cd $(dirname "$0")
 # 项目名
 PROJECT_NAME="Pear-Admin-Boot"
 BRANCH="master"
-VERSION="1.4.1.RELEASE"
+VERSION="1.4.1-RELEASE"
 
 # ### 自动计算的变量 ###
 SOURCE_DIR=$(pwd)
