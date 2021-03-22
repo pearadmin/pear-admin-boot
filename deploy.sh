@@ -41,4 +41,4 @@ rm -fv $PROJECT_NAME-*-sources.jar
 find . -name "$PROJECT_NAME-*.jar" | xargs -i cp -fv {} "$RUNTIME_DIR/$PROJECT_NAME.jar"
 
 # 调用重启脚本
-${RUNTIME_DIR}/restart ${PROJECT_NAME}
+${RUNTIME_DIR}/restart.sh ${PROJECT_NAME}
