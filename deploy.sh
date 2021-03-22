@@ -32,8 +32,8 @@ mvn clean package -Dmaven.test.skip
 mkdir -p ${RUNTIME_DIR}
 
 # 复制重启脚本到运行目录
-cp -fv "$SOURCE_DIR/restart" ${RUNTIME_DIR}
-chmod u+x "$RUNTIME_DIR/restart"
+cp -fv "$SOURCE_DIR/restart.sh" ${RUNTIME_DIR}
+chmod u+x "$RUNTIME_DIR/restart.sh"
 
 # 复制编译结果到运行目录
 cd "$SOURCE_DIR/pear-entrance/target"
