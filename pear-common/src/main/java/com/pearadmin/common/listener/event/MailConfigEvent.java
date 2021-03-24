@@ -1,9 +1,7 @@
 package com.pearadmin.common.listener.event;
 
 import org.springframework.context.ApplicationEvent;
-
 import java.util.Map;
-
 
 /**
  * Describe: 添 加 邮 箱 配 置 之 后，发 布 邮 箱 配 置 事 件
