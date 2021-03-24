@@ -97,10 +97,10 @@
 .pear-nav-control.pc *{
 	color: darkslategray!important;
 }
-.pear-nav-control.pc .layui-nav-bar{
-	display: none!important;
-}
-
+/*与菜单顶部hover时出现的条冲突*/
+/*.pear-nav-control.pc .layui-nav-bar{*/
+	/*display: none!important;*/
+/*}*/
 .pear-nav-control .layui-nav-child{
 	border: 1px solid whitesmoke;
 	border-radius: 6px;
