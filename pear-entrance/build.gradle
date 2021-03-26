@@ -1,0 +1,25 @@
+description = '启动模块'
+
+dependencies {
+    implementation project(':pear-generate')
+    implementation project(':pear-system')
+    implementation project(':pear-schedule')
+    implementation project(':pear-process')
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    implementation "${lib."activiti-spring-boot-starter-basic"}"
+    implementation "${lib."hutool-all"}"
+    implementation "${lib."mybatis-spring-boot-starter"}"
+    implementation "${lib.'pagehelper-spring-boot-starter'}"
+    implementation "${lib.'mysql-connector-java'}"
+    implementation "${lib.'easy-captcha'}"
+    implementation "${lib.'thymeleaf-extras-springsecurity5'}"
+    implementation "${lib.'dynamic-datasource-spring-boot-starter'}"
+    implementation "${lib.'snakeyaml'}"
+}
+
+

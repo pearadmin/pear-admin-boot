@@ -1,0 +1,13 @@
+description = '系统模块'
+
+dependencies {
+    api project(':pear-common')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation "${lib.'mybatis-spring-boot-starter'}"
+    implementation "${lib.'pagehelper-spring-boot-starter'}"
+    implementation "${lib.'fastjson'}"
+    implementation "${lib.'springfox-swagger2'}"
+    implementation "${lib.'easy-captcha'}"
+}
+

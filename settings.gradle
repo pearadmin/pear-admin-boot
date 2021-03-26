@@ -1,0 +1,16 @@
+rootProject.name = 'pear-admin-boot'
+include(':pear-entrance')
+include(':pear-common')
+include(':pear-modules')
+
+include(':pear-system')
+project(":pear-system").projectDir = file('pear-modules/pear-system')
+
+include(':pear-process')
+project(":pear-process").projectDir = file('pear-modules/pear-process')
+
+include(':pear-generate')
+project(":pear-generate").projectDir = file('pear-modules/pear-generate')
+
+include(':pear-schedule')
+project(":pear-schedule").projectDir = file('pear-modules/pear-schedule')

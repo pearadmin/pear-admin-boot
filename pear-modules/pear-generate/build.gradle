@@ -1,0 +1,13 @@
+description = '代码生成'
+
+dependencies {
+    implementation project(':pear-common')
+
+
+    implementation "${lib.'velocity'}"
+    implementation "${lib.'pagehelper-spring-boot-starter'}"
+}
+
+
+
+

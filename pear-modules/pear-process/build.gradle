@@ -1,0 +1,16 @@
+description = '工作流程'
+
+dependencies {
+    implementation project(':pear-common')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "${lib.'activiti-spring-boot-starter-basic'}"
+    implementation("${lib.'activiti-json-converter'}") {
+        exclude group: 'org.activiti', module: 'activiti-bpmn-model'
+    }
+    implementation "${lib.'batik-codec'}"
+    implementation "${lib.'batik-css'}"
+    implementation "${lib.'batik-svg-dom'}"
+    implementation "${lib.'batik-svggen'}"
+}
+
+

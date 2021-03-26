@@ -1,0 +1,24 @@
+description = '公共模块'
+
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    api 'org.springframework.boot:spring-boot-starter-quartz'
+    api 'org.springframework.boot:spring-boot-starter-security'
+    api 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    api "${lib."fastjson"}"
+    api "${lib."oshi-core"}"
+    api "${lib."commons-lang3"}"
+    api "${lib."springfox-swagger2"}"
+    api "${lib."springfox-swagger-ui"}"
+    api "${lib."mybatis-spring-boot-starter"}"
+    api "${lib."commons-io"}"
+    api "${lib."commons-pool2"}"
+    api "${lib."jackson-datatype-jsr310"}"
+    api "${lib."hutool-all"}"
+    api "${lib."jsoup"}"
+
+}
+

@@ -1,0 +1,10 @@
+description = '定时任务'
+
+dependencies {
+    implementation project(':pear-common')
+    implementation 'org.springframework.boot:spring-boot-starter-quartz'
+    implementation "${lib.'mybatis-spring-boot-starter'}"
+    implementation "${lib.'pagehelper-spring-boot-starter'}"
+}
+
+
