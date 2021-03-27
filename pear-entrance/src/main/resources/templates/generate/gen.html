@@ -197,6 +197,9 @@
                             });
                         } else if (genType === "1") {
                             common.ajax.get(prefix + "/genCode/" + tableName);
+                            layer.msg('执行成功,请稍后刷新自定义代码生成目录…', {
+                                icon: 1
+                            });
                         }
                     });
                     break;
