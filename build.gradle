@@ -6,23 +6,7 @@ plugins {
 // 项目描述
 description = "开箱即用的 Spring 快速开发平台"
 
-// 所有项目配置
-allprojects {
 
-    group = 'com.pearadmin'
-    version = "1.4.1-RELEASE"
-
-    java {
-        withJavadocJar()
-        withSourcesJar()
-    }
-
-    repositories {
-        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
-        maven { url "https://maven.aliyun.com/nexus/content/repositories/gradle-plugin" }
-        mavenCentral()
-    }
-}
 
 ext {
     configuration = [
@@ -95,17 +79,40 @@ ext {
     ]
 }
 
+// 所有项目配置
+allprojects {
+
+    group = 'com.pearadmin'
+    version = "1.4.1-RELEASE"
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    repositories {
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "https://maven.aliyun.com/nexus/content/repositories/gradle-plugin" }
+        mavenCentral()
+    }
+}
 
 subprojects {
 
-    apply plugin: 'java-library'
-    apply plugin: 'java'
-
     apply plugin: 'io.spring.dependency-management'
-
+    apply plugin: 'java-library'
 
     sourceCompatibility = "${javaVersion}"
     targetCompatibility = "${javaVersion}"
+
+    sourceSets {
+        main {
+            resources {
+                //可以将java目录下的所有非.java资源打包到classes下
+                srcDir 'src/main/java'
+            }
+        }
+    }
 
     dependencies {
         annotationProcessor "${lib.lombok}"
@@ -114,7 +121,6 @@ subprojects {
         testCompileOnly "${lib.lombok}"
     }
 
-
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
         options.warnings = false
@@ -122,10 +128,10 @@ subprojects {
         options.compilerArgs += ["-parameters"]
     }
 
-    tasks.withType(GenerateModuleMetadata) {
-        enabled = false
+    test {
+        // 使用JUnit平台
+        useJUnitPlatform()
     }
-
 
 }
 

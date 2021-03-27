@@ -9,11 +9,11 @@ dependencies {
 }
 
 
-sourceSets{
+/*sourceSets{
     main{
         resources {
             srcDirs = ['/src/main/resources']
         }
     }
-}
+}*/
 
