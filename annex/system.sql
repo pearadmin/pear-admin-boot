@@ -52,7 +52,7 @@ CREATE TABLE `gen_table`(
 -- ----------------------------
 INSERT INTO `gen_table`
 VALUES ('1328525218309734400', 'sys_user', 'App用户', NULL, NULL, 'SysUser', 'crud', 'com.pearadmin.system', 'system',
-        'user', 'App用户', 'å°±ç&nbsp;ä»ªå¼', '1', '/', 'null', '', '2020-11-17 10:24:33', '', '2021-01-27 18:09:40',
+        'user', 'App用户', 'jmys', '1', '/', 'null', '', '2020-11-17 10:24:33', '', '2021-01-27 18:09:40',
         '', '1', '系统管理');
 INSERT INTO `gen_table`
 VALUES ('1370410322996756480', 'sys_notice', '站内消息', NULL, NULL, 'SysNotice', 'crud', 'com.pearadmin.system', 'system',
