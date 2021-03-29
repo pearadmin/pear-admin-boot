@@ -35,7 +35,7 @@ public class ISysMailServiceImpl implements ISysMailService {
     public Integer save(SysMail sysMail) {
         if (sendMail(sysMail)) {
             sysMail.setMailId(SequenceUtil.makeStringId());
-            sysMail.setCreateBy(((SysUser) SecurityUtil.currentUser().getPrincipal()).getUsername());
+            sysMail.setCreateBy(((SysUser)SecurityUtil.currentUserObj()).getUsername());
             return sysMailMapper.insert(sysMail);
         } else {
             return 0;
