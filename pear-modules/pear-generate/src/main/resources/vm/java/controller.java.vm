@@ -16,7 +16,7 @@ import ${packageName}.service.I${ClassName}Service;
 
 /**
  * ${functionName}Controller
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
@@ -66,6 +66,10 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
     public Result save(@RequestBody ${ClassName} ${className})
     {
+        SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();
+        ${className}.setCreateTime(LocalDateTime.now());
+        ${className}.setCreateBy(sysUser.getUserId());
+        ${className}.setCreateName(sysUser.getUserName());
         return decide(${className}Service.insert${ClassName}(${className}));
     }
 
@@ -89,6 +93,10 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
     public Result update(@RequestBody ${ClassName} ${className})
     {
+        SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();
+        ${className}.setUpdateTime(LocalDateTime.now());
+        ${className}.setUpdateBy(sysUser.getUserId());
+        ${className}.setUpdateName(sysUser.getUserName());
         return decide(${className}Service.update${ClassName}(${className}));
     }
 

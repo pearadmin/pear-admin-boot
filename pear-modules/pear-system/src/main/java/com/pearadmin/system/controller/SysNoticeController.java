@@ -27,7 +27,7 @@ import java.util.Map;
 
 /**
  * 消息控制器
- * 
+ *
  * @author 就眠仪式
  * @date 2021-03-13
  */
@@ -76,7 +76,7 @@ public class SysNoticeController extends BaseController
 
         SysNotice privateParam = new SysNotice();
         privateParam.setType("private");
-        privateParam.setAccept(((SysUser) SecurityUtil.currentUser().getPrincipal()).getUserId());
+        privateParam.setAccept(((SysUser)SecurityUtil.currentUserObj()).getUserId());
 
         SysNotice noticeParam = new SysNotice();
         noticeParam.setType("notice");

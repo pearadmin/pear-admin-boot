@@ -165,6 +165,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * Param: SysUser
      * Return: 操作结果
      * */
+    @Override
     public List<SysRole> getUserRole(String userId){
         List<SysRole> allRole = sysRoleMapper.selectList(null);
         List<SysUserRole> myRole = sysUserRoleMapper.selectByUserId(userId);

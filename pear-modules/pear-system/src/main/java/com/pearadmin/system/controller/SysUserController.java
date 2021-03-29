@@ -204,7 +204,7 @@ public class SysUserController extends BaseController {
     @PreAuthorize("hasPermission('/system/user/edit','sys:user:edit')")
     @Logging(title = "修改头像", describe = "修改头像", type = BusinessType.EDIT)
     public Result updateAvatar(@RequestBody SysUser sysUser) {
-        sysUser.setUserId(((SysUser)SecurityUtil.currentUser().getPrincipal()).getUserId());
+        sysUser.setUserId(((SysUser)SecurityUtil.currentUserObj()).getUserId());
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }
@@ -247,7 +247,7 @@ public class SysUserController extends BaseController {
     @GetMapping("getUserMenu")
     @ApiOperation(value = "获取用户菜单数据")
     public List<SysMenu> getUserMenu() {
-        SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
+        SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();
         List<SysMenu> menus = sysUserService.getUserMenu(sysUser.getUsername());
         return sysUserService.toUserMenu(menus, "0");
     }
@@ -286,7 +286,7 @@ public class SysUserController extends BaseController {
     @GetMapping("center")
     @ApiOperation(value = "个人资料")
     public ModelAndView center(Model model) {
-        SysUser sysUser = (SysUser) SecurityUtil.currentUser().getPrincipal();
+        SysUser sysUser = (SysUser) SecurityUtil.currentUserObj();
         model.addAttribute("userInfo", sysUserService.getById(sysUser.getUserId()));
         model.addAttribute("logs", sysLogService.selectTopLoginLog(sysUser.getUsername()));
         return jumpPage(MODULE_PATH + "center");
