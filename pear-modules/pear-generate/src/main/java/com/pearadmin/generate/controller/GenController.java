@@ -179,7 +179,7 @@ public class GenController extends BaseController {
      */
     @GetMapping("/genCode/{tableName}")
     @ResponseBody
-    public Result genCode(HttpServletResponse response, @PathVariable("tableName") String tableName) {
+    public Result genCode(@PathVariable("tableName") String tableName) {
         genTableService.generatorCode(tableName);
         return success();
     }
