@@ -139,7 +139,9 @@ layui.define(['message','jquery', 'yaml','form', 'tab', 'menu', 'frame', 'theme'
 						}
 					});
 					bodyTab.click(function(id) {
-						bodyTab.refresh(!param.tab.keepState);
+						if(!param.tab.keepSate){
+							bodyTab.refresh(false);
+						}
 						bodyTab.positionTab();
 						sideMenu.selectItem(id);
 					})
