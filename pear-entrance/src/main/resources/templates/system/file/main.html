@@ -136,15 +136,16 @@
         }
 
         window.show = function(obj){
-            layer.open({
-                type: 1,
-                title: false,
-                closeBtn: 0,
-                offset: ['100px','100px'],
-                skin:'layui-layer-nobg',
-                shadeClose: true,
-                content: '<img style="max-width: 100%;" src="/system/file/download/'+obj.data.id+'"/>'
-            });
+                layer.photos({
+                    photos: {
+                        "title": "预览图片",
+                        "start": 0,
+                        "data": [
+                            {"src": "/system/file/download/"+obj.data.id}
+                        ]
+                    }
+                    ,anim: 5
+                });
         }
 
         window.remove = function (obj) {

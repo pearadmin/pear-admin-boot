@@ -53,3 +53,6 @@
 .user-collasped.user-left{
     width: 0px;
 }
+.user-collasped.user-left .user-group{
+    display: none;
+}

@@ -11,6 +11,7 @@ layui.config({
 	menu: "menu",
 	frame: "frame",
 	tab: "tab",
+	tinymce:"tinymce/tinymce",
 	echarts: "echarts",
 	echartsTheme: "echartsTheme",
 	hash: "hash",

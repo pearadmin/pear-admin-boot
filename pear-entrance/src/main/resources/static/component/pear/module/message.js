@@ -10,19 +10,18 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 	};
 
 	message.prototype.render = function(opt) {
-		//默认配置值
 		var option = {
 			elem: opt.elem,
 			url: opt.url ? opt.url : false,
 			height: opt.height,
 			data: opt.data
 		}
-
 		if (option.url != false) {
 			option.data = getData(option.url);
 			var notice = createHtml(option);
 			$(option.elem).html(notice);
 		}
+		element.init();
 		return new message(option);
 	}
 	
@@ -59,9 +58,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			'<div class="layui-nav-child layui-tab pear-notice" style="left: -200px;">';
 
 		var noticeTitle = '<ul class="layui-tab-title">';
-
 		var noticeContent = '<div class="layui-tab-content" style="height:' + option.height + ';overflow-x: hidden;">'
-
 		var index = 0;
 
 		// 根据 data 便利数据

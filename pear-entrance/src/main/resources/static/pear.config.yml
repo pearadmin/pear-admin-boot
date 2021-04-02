@@ -68,7 +68,7 @@ links:
 ## 其他配置
 other: 
   ## 主页动画时长
-  keepLoad: "1200"
+  keepLoad: "1000"
   ## 布局顶部主题
   autoHead: false
 header:
