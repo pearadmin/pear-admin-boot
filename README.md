@@ -28,7 +28,6 @@
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2020/1019/104805_042b888c_4835367.png" />
 </div>
 
-
 #### 项目介绍  :jack_o_lantern: 
 
 Spring Boot + Security + MyBatis + Thymeleaf + Activiti 快速开发平台

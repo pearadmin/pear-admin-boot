@@ -18,9 +18,7 @@ build/**
 *.iml
 .metadata/**
 sysLog.fileDir*
-
 /.settings/**
-
 classes
 .history
 /target/
