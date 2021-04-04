@@ -17,8 +17,7 @@
     <name>Pear-Admin-Boot</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
-
-
+ggi
     <!-- 版 本 管 理 -->
     <properties>
         <revision>1.1.2.RELEASE</revision>
@@ -29,7 +28,7 @@
         <!-- Mysql 版 本 -->
         <mysql.version>8.0.19</mysql.version>
         <!-- MyBatis 版 本 -->
-        <mybatis.version>2.1.3</mybatis.version>
+        <mybatis.version>2.1.4</mybatis.version>
         <!-- Swagger 版 本 -->
         <swagger.version>2.9.2</swagger.version>
         <!-- Fast Json 序 列 化 版 本 -->

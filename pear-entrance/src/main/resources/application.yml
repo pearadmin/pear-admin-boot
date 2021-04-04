@@ -76,15 +76,14 @@ pear:
       - /component/** # 开放静态资源
       - /favicon.ico # 开放FAVICON
 
-  # 上 传 配 置
+  # 上传配置
   upload:
     # windows 上传路径
     windows-path: D:\home\uploads\
     # linux 上传路径
     linux-path: /home/uploads/
 
-
-# Page Helper
+# Page Helper 分页配置
 pagehelper:
   # 方 言
   helper-dialect: mysql
