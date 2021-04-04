@@ -85,6 +85,12 @@ body,
 
 }
 
+.pear-admin .avatar{
+	width: 34px;
+	height: 34px;
+	border-radius: 50px;
+}
+
 .pear-admin .layui-header .layui-nav .layui-nav-item>a {
 	color: black;
 	font-size: 15px;
