@@ -4,7 +4,7 @@ import cn.hutool.core.map.MapUtil;
 import com.pearadmin.common.constant.ConfigurationConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.system.domain.SysConfig;
-import com.pearadmin.common.listener.event.MailConfigEvent;
+import com.pearadmin.common.listener.event.SetupEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.transaction.annotation.Transactional;
@@ -92,8 +92,8 @@ public class SysSetupController extends BaseController implements ApplicationEve
         map.put(ConfigurationConstant.MAIN_PASS, pass);
         map.put(ConfigurationConstant.MAIN_PORT, port);
         map.put(ConfigurationConstant.MAIN_HOST, host);
-        MailConfigEvent mailConfigEvent = new MailConfigEvent(this, map);
-        applicationEventPublisher.publishEvent(mailConfigEvent);
+        SetupEvent setupEvent = new SetupEvent(this, map);
+        applicationEventPublisher.publishEvent(setupEvent);
         return success("保存成功");
     }
 

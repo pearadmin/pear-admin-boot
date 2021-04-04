@@ -2,8 +2,8 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.plugins.system.domain.SysBaseDict;
-import com.pearadmin.common.plugins.system.service.SysContext;
+import com.pearadmin.common.plugin.system.domain.SysBaseDict;
+import com.pearadmin.common.plugin.system.service.SysContext;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.database.SqlInjectionUtil;
 import com.pearadmin.common.web.base.BaseController;

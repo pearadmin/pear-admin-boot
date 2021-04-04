@@ -1,27 +1,15 @@
-package com.pearadmin.system.domain;
+package com.pearadmin.common.plugin.system.domain;
 
 import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
 import com.pearadmin.common.plugin.logging.aop.enums.RequestMethod;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.apache.ibatis.type.Alias;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Describe: 日 志 实 体 类
- * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
- */
 @Data
-@Alias("SysLog")
-@NoArgsConstructor
-@AllArgsConstructor
-public class SysLog {
+public class SysBaseLog {
 
     /**
      * 编号
@@ -117,4 +105,5 @@ public class SysLog {
      * 扩 展 信 息
      */
     private Map<String, String> map = new HashMap<>();
+
 }

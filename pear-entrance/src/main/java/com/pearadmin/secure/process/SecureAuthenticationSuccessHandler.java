@@ -2,8 +2,8 @@ package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.system.domain.SysLog;
-import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
-import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
+import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
+import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
 import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;

@@ -1,12 +1,9 @@
 package com.pearadmin.system.context;
 
 import com.pearadmin.system.domain.SysLog;
-import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
-import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
 import com.pearadmin.system.service.ISysLogService;
-import com.pearadmin.common.plugins.system.domain.*;
-import com.pearadmin.common.plugins.system.service.SysContext;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.plugin.system.domain.*;
+import com.pearadmin.common.plugin.system.service.SysContext;
 import com.pearadmin.system.domain.*;
 import com.pearadmin.system.mapper.*;
 import com.pearadmin.system.service.ISysDictDataService;

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="include :: header('系统配置列表')"/>
+</head>
+<body class="pear-container">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <!-- Document Html -->
+            <iframe width="100%" height="560px" frameborder="0" src="/swagger-ui.html"></iframe>
+        </div>
+    </div>
+</body>
+<th:block th:include="include :: footer"/>
+</html>

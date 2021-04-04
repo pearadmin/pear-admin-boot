@@ -2,10 +2,10 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.plugins.logging.aop.annotation.Logging;
-import com.pearadmin.common.plugins.logging.aop.enums.BusinessType;
+import com.pearadmin.common.plugin.logging.aop.annotation.Logging;
+import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
 import com.pearadmin.system.service.ISysLogService;
-import com.pearadmin.common.plugins.repeat.annotation.RepeatSubmit;
+import com.pearadmin.common.plugin.submit.annotation.RepeatSubmit;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
@@ -148,7 +148,7 @@ public class SysUserController extends BaseController {
      */
     @GetMapping("editPassword")
     public ModelAndView editPasswordView() {
-        return jumpPage(MODULE_PATH + "editPassword");
+        return jumpPage(MODULE_PATH + "password");
     }
 
     /**

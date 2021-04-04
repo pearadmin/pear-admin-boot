@@ -1,7 +1,7 @@
 package com.pearadmin.system.service;
 
 import com.pearadmin.system.domain.SysLog;
-import com.pearadmin.common.plugins.logging.aop.enums.LoggingType;
+import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
 import java.time.LocalDateTime;
 import java.util.List;
 
