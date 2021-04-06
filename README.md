@@ -136,11 +136,6 @@ git clone https://gitee.com/pear-admin/Pear-Admin-Boot.git
 [生产配置](https://gitee.com/pear-admin/Pear-Admin-Boot/blob/master/pear-entrance/src/main/resources/application-prod.yml)
 
 
-##### 部署
-
-[启动脚本](https://gitee.com/pear-admin/Pear-Admin-Boot/blob/master/deploy.sh)
-
-
 #### 开源共建
 
 1. 欢迎提交 [pull request](https://gitee.com/pear-admin/Pear-Admin-Boot/pulls)，注意对应提交对应 `master` 分支
