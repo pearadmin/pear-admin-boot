@@ -14,6 +14,7 @@ import oshi.util.Util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Properties;
 
 public class SystemUtil {
@@ -81,7 +82,7 @@ public class SystemUtil {
      */
     private static void setSysFiles(OperatingSystem os, CpuInfo cpu) {
         FileSystem fileSystem = os.getFileSystem();
-        OSFileStore[] fsArray = fileSystem.getFileStores();
+        List<OSFileStore> fsArray = fileSystem.getFileStores();
         for (OSFileStore fs : fsArray) {
             long free = fs.getUsableSpace();
             long total = fs.getTotalSpace();
