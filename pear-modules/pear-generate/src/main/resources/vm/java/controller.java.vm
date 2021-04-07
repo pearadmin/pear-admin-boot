@@ -7,12 +7,16 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
+import com.pearadmin.common.tools.secure.SecurityUtil;
+import com.pearadmin.system.domain.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ${packageName}.service.I${ClassName}Service;
+
+import java.time.LocalDateTime;
 
 /**
  * ${functionName}Controller
@@ -69,7 +73,7 @@ public class ${ClassName}Controller extends BaseController
         SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();
         ${className}.setCreateTime(LocalDateTime.now());
         ${className}.setCreateBy(sysUser.getUserId());
-        ${className}.setCreateName(sysUser.getUserName());
+        ${className}.setCreateName(sysUser.getUsername());
         return decide(${className}Service.insert${ClassName}(${className}));
     }
 
@@ -96,7 +100,7 @@ public class ${ClassName}Controller extends BaseController
         SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();
         ${className}.setUpdateTime(LocalDateTime.now());
         ${className}.setUpdateBy(sysUser.getUserId());
-        ${className}.setUpdateName(sysUser.getUserName());
+        ${className}.setUpdateName(sysUser.getUsername());
         return decide(${className}Service.update${ClassName}(${className}));
     }
 
