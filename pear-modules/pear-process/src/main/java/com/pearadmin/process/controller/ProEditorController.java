@@ -21,6 +21,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Describe: 流程编辑器控制器
+ * Author: 就眠仪式
+ * createTime: 2019/10/23
+ * */
 @RestController
 @Api(tags = {"流程设计"})
 @RequestMapping("service")
@@ -32,6 +37,10 @@ public class ProEditorController extends BaseController implements ModelDataJson
     @Resource
     private ObjectMapper objectMapper;
 
+    /**
+     * 获取流程
+     * @param modelId 模型ID
+     */
     @RequestMapping(value="/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
     public ObjectNode getEditorJson(@PathVariable String modelId) {
         ObjectNode modelNode = null;
@@ -91,6 +100,9 @@ public class ProEditorController extends BaseController implements ModelDataJson
         }
     }
 
+    /**
+     * 获取流程工具
+     */
     @ResponseBody
     @GetMapping(value="/editor/stencilset", produces = "application/json;charset=utf-8")
     public String getStencilset() {
