@@ -8,6 +8,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysDept;
 import com.pearadmin.system.service.ISysDeptService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  */
 @RestController
+@Api(tags = {"组织部门"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "dept")
 public class SysDeptController extends BaseController {
 

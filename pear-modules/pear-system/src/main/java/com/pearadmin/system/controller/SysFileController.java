@@ -9,6 +9,7 @@ import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
+import io.swagger.annotations.Api;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 
 /**
- * Describe: 文 件 控 制 器
+ * Describe: 文件控制器
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
- * */
+ */
 @RestController
+@Api(tags = {"资源文件"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "file")
 public class SysFileController extends BaseController {
 

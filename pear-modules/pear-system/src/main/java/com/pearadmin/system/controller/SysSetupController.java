@@ -5,6 +5,7 @@ import com.pearadmin.common.constant.ConfigurationConstant;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.system.domain.SysConfig;
 import com.pearadmin.common.listener.event.SetupEvent;
+import io.swagger.annotations.Api;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,7 @@ import java.util.HashMap;
  * CreateTime: 2019/10/23
  */
 @RestController
+@Api(tags = {"系统设置"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "setup")
 public class SysSetupController extends BaseController implements ApplicationEventPublisherAware {
 

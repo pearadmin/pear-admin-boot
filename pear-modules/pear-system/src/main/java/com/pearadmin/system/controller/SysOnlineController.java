@@ -8,6 +8,7 @@ import com.pearadmin.common.web.session.HttpSessionContext;
 import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysOnlineUser;
 import com.pearadmin.system.domain.SysUser;
+import io.swagger.annotations.Api;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
@@ -25,8 +26,8 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  */
-
 @RestController
+@Api(tags = {"在线用户"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "online")
 public class SysOnlineController extends BaseController {
 

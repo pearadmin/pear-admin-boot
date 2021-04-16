@@ -9,6 +9,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysConfig;
 import com.pearadmin.system.service.ISysConfigService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ import java.time.LocalDateTime;
  * CreateTime: 2019/10/23
  * */
 @RestController
+@Api(tags = {"全局配置"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "config")
 public class SysConfigController extends BaseController {
 

@@ -1,7 +1,9 @@
-package com.pearadmin.process.resource;
+package com.pearadmin.process.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.pearadmin.common.web.base.BaseController;
+import io.swagger.annotations.Api;
 import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.RepositoryService;
@@ -9,6 +11,8 @@ import org.activiti.engine.repository.Model;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -18,14 +22,38 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 @RestController
+@Api(tags = {"流程设计"})
 @RequestMapping("service")
-public class ModelEditorSaveRestResource implements ModelDataJsonConstants {
+public class ProEditorController extends BaseController implements ModelDataJsonConstants {
 
     @Resource
     private RepositoryService repositoryService;
 
     @Resource
     private ObjectMapper objectMapper;
+
+    @RequestMapping(value="/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
+    public ObjectNode getEditorJson(@PathVariable String modelId) {
+        ObjectNode modelNode = null;
+        Model model = repositoryService.getModel(modelId);
+        if (model != null) {
+            try {
+                if (StringUtils.isNotEmpty(model.getMetaInfo())) {
+                    modelNode = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
+                } else {
+                    modelNode = objectMapper.createObjectNode();
+                    modelNode.put(MODEL_NAME, model.getName());
+                }
+                modelNode.put(MODEL_ID, model.getId());
+                ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(
+                        new String(repositoryService.getModelEditorSource(model.getId()), StandardCharsets.UTF_8));
+                modelNode.put("model", editorJsonNode);
+            } catch (Exception e) {
+                throw new ActivitiException("Error creating model JSON", e);
+            }
+        }
+        return modelNode;
+    }
 
     /**
      * 保存流程
@@ -62,4 +90,16 @@ public class ModelEditorSaveRestResource implements ModelDataJsonConstants {
             throw new ActivitiException("Error saving model", e);
         }
     }
+
+    @ResponseBody
+    @GetMapping(value="/editor/stencilset", produces = "application/json;charset=utf-8")
+    public String getStencilset() {
+        InputStream stencilsetStream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
+        try {
+            return IOUtils.toString(stencilsetStream, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new ActivitiException("Error while loading stencil set", e);
+        }
+    }
+
 }

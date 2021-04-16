@@ -11,6 +11,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysUserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -26,12 +27,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 消息控制器
- *
- * @author 就眠仪式
- * @date 2021-03-13
+ * Describe: 消息控制器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  */
 @RestController
+@Api(tags = {"消息公告"})
 @RequestMapping("/system/notice")
 public class SysNoticeController extends BaseController
 {

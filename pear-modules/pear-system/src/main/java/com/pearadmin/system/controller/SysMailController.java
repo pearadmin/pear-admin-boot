@@ -20,13 +20,13 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 
 /**
- * @Author: Heiky
- * @Date: 2021/1/13 15:34
- * @Description:
+ * Describe: 邮箱控制器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  */
 @RestController
+@Api(tags = {"邮箱管理"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "mail")
-@Api(value = "邮件controller", tags = {"邮件操作接口"})
 public class SysMailController extends BaseController {
 
     /**

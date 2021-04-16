@@ -7,6 +7,7 @@ import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.schedule.domain.ScheduleLog;
 import com.pearadmin.schedule.service.IScheduleLogService;
+import io.swagger.annotations.Api;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
  * createTime: 2019/10/23
  * */
 @RestController
+@Api(tags = {"任务日志"})
 @RequestMapping(ControllerConstant.API_SCHEDULE_PREFIX + "log")
 public class ScheduleLogController extends BaseController {
 

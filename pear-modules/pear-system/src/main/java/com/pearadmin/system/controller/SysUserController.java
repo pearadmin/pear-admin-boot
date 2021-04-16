@@ -39,8 +39,8 @@ import java.util.List;
  * CreateTime: 2019/10/23
  */
 @RestController
+@Api(tags = {"用户管理"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "user")
-@Api(value = "用户controller", tags = {"用户操作接口"})
 public class SysUserController extends BaseController {
 
     /**

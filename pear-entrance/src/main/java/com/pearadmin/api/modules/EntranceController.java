@@ -2,6 +2,7 @@ package com.pearadmin.api.modules;
 
 import com.pearadmin.secure.session.SecureSessionService;
 import com.pearadmin.system.service.ISysLogService;
+import io.swagger.annotations.Api;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  * */
 @RestController
 @RequestMapping
+@Api(tags = {"项目入口"})
 public class EntranceController extends BaseController {
 
     @Resource

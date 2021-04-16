@@ -3,6 +3,7 @@ package com.pearadmin.api.common;
 import com.pearadmin.common.web.domain.response.Result;
 import com.wf.captcha.utils.CaptchaUtil;
 import com.pearadmin.common.web.base.BaseController;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * CreateTime: 2019/10/23
  * */
 @RestController
+@Api(tags = {"验证生成"})
 @RequestMapping("system/captcha")
 public class CaptchaController extends BaseController {
 

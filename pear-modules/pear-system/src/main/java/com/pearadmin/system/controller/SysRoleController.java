@@ -25,8 +25,8 @@ import java.util.Arrays;
  * CreateTime: 2019/10/23
  * */
 @RestController
+@Api(tags = {"系统角色"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "role")
-@Api(value="角色controller",tags={"角色操作接口"})
 public class SysRoleController extends BaseController {
 
     /**

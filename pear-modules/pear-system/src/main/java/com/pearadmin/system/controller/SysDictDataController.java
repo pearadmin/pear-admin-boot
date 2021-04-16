@@ -12,6 +12,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.service.ISysDictDataService;
+import io.swagger.annotations.Api;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @RestController
+@Api(tags = {"字典类型"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "dictData")
 public class SysDictDataController extends BaseController {
 

@@ -10,6 +10,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.process.domain.ProModel;
 import com.pearadmin.process.param.CreateModelParam;
+import io.swagger.annotations.Api;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.editor.language.json.converter.BpmnJsonConverter;
@@ -32,6 +33,7 @@ import java.util.List;
  * createTime: 2019/10/23
  * */
 @RestController
+@Api(tags = {"流程模型"})
 @RequestMapping(ControllerConstant.API_PROCESS_PREFIX + "model")
 public class ProModelController extends BaseController {
 

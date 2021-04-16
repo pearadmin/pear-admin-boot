@@ -21,6 +21,7 @@ import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.generate.domain.GenTable;
 import com.pearadmin.generate.domain.GenTableColumn;
 import com.pearadmin.generate.service.IGenTableService;
+import io.swagger.annotations.Api;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,6 +40,7 @@ import com.pearadmin.generate.service.IGenTableColumnService;
  * CreateTime: 2019/10/23
  * */
 @Controller
+@Api(tags = {"代码生成"})
 @RequestMapping(ControllerConstant.API_GENERATOR_PREFIX)
 public class GenController extends BaseController {
 
