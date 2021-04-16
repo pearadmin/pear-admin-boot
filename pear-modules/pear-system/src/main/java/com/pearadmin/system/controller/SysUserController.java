@@ -234,7 +234,6 @@ public class SysUserController extends BaseController {
     @PreAuthorize("hasPermission('/system/user/remove','sys:user:remove')")
     @Logging(title = "删除用户", describe = "删除用户", type = BusinessType.REMOVE)
     public Result remove(@PathVariable String id) {
-        // TODO remove userRole data
         boolean result = sysUserService.remove(id);
         return decide(result);
     }
@@ -244,7 +243,7 @@ public class SysUserController extends BaseController {
      * Param SysRole
      * Return 执行结果
      */
-    @GetMapping("getUserMenu")
+    @GetMapping("menu")
     @ApiOperation(value = "获取用户菜单数据")
     public List<SysMenu> getUserMenu() {
         SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();

@@ -7,7 +7,7 @@ logo:
 ## 菜单配置
 menu: 
   ## 菜单数据来源
-  data: /system/user/getUserMenu
+  data: /system/user/menu
   ## 是否同时只打开一个菜单目录
   accordion: true
   ## 是否开启多系统菜单模式

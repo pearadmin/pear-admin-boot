@@ -1,15 +1,13 @@
-html,
-body,
-.layui-layout {
-	height: 100%;
-}
-
 .pear-admin .layui-header,
 .pear-admin .layui-body,
 .pear-admin .layui-logo,
 .pear-admin .layui-side,
 .pear-admin .layui-header .layui-layout-left {
 	transition: all .3s;
+}
+
+html, body, .layui-layout {
+	height: 100%;
 }
 
 .pear-admin .layui-logo .title {
@@ -83,12 +81,6 @@ body,
 	background-color: #28333E;
 	width: 247px;
 
-}
-
-.pear-admin .avatar{
-	width: 34px;
-	height: 34px;
-	border-radius: 50px;
 }
 
 .pear-admin .layui-header .layui-nav .layui-nav-item>a {
