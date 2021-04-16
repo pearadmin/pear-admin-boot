@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MonitorController extends BaseController {
 
     @GetMapping("main")
-    @PreAuthorize("hasPermission('/system/user/main','sys:user:main')")
+    @PreAuthorize("hasPermission('/system/monitor/main','sys:monitor:main')")
     public ModelAndView main(Model model){
         CpuInfo cpu = SystemUtil.getCpu();
         model.addAttribute("cpu", cpu);
