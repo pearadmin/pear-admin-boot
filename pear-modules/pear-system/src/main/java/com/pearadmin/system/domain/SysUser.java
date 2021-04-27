@@ -4,6 +4,7 @@ import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.ibatis.type.Alias;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @Alias("SysUser")
-public class SysUser extends BaseDomain implements UserDetails {
+public class SysUser extends BaseDomain implements UserDetails, CredentialsContainer {
 
     private static final long serialVersionUID = 1L;
 
@@ -131,4 +132,8 @@ public class SysUser extends BaseDomain implements UserDetails {
         return "1".equals(this.getEnable()) ? true : false;
     }
 
+    @Override
+    public void eraseCredentials() {
+        this.password = null;
+    }
 }
