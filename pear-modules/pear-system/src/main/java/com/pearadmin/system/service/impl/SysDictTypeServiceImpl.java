@@ -79,7 +79,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
         return sysDictTypeMapper.selectById(id);
     }
 
-
     /**
      * Describe: 根据 ID 修改字典类型
      * Param: SysDictType
@@ -88,8 +87,9 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     @Override
     public Boolean updateById(SysDictType sysDictType) {
         int result = sysDictTypeMapper.updateById(sysDictType);
+        SysDictType dictType = sysDictTypeMapper.selectById(sysDictType.getId());
         if(result > 0){
-            iSysDictDataService.refreshCacheTypeCode(sysDictType.getTypeCode());
+            iSysDictDataService.refreshCacheTypeCode(dictType.getTypeCode());
             return true;
         }else{
             return false;
@@ -104,7 +104,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     @Override
     public Boolean remove(String id) {
         SysDictType sysDictType =  sysDictTypeMapper.selectById(id);
-
         if(sysDictType!=null) {
              sysDictTypeMapper.deleteById(id);
              sysDictDataMapper.deleteByCode(sysDictType.getTypeCode());

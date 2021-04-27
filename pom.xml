@@ -89,7 +89,7 @@
     <!-- 依 赖 管 理 -->
     <dependencyManagement>
         <dependencies>
-            <!-- Hutool 工具类 -->
+            <!-- 常 用 工 具 类 -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -285,17 +285,17 @@
         <module>pear-modules</module>       <!-- 业 务 模 块 -->
     </modules>
 
-    <!-- 构建工具 -->
+    <!-- 构 建 工 具 -->
     <build>
         <resources>
-            <!-- 加载 .Java 下的 XML 文件 -->
+            <!-- 加 载 .Java 下 的 XML 文 件 -->
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
             </resource>
-            <!-- 加载 .Java 下的 XML 文件 -->
+            <!-- 加 载 .Java 下 的 XML 文 件 -->
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
