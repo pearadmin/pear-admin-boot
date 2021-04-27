@@ -185,7 +185,7 @@
             let loading = layer.load()
             $.ajax({
                 url: '/system/dictType/' + operate,
-                data: JSON.stringify({id: this.value}),
+                data: JSON.stringify({id: this.value,typeCode: typeCode}),
                 dataType: 'json',
                 contentType: 'application/json',
                 type: 'put',
@@ -326,7 +326,7 @@
             let loading = layer.load()
             $.ajax({
                 url: '/system/dictData/' + operate,
-                data: JSON.stringify({dataId: this.value}),
+                data: JSON.stringify({dataId: this.value,typeCode: typeCode}),
                 dataType: 'json',
                 contentType: 'application/json',
                 type: 'put',

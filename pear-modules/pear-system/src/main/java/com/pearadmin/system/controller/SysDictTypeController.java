@@ -144,9 +144,9 @@ public class SysDictTypeController extends BaseController {
      * Return ResuTree
      * */
     @PutMapping("disable")
-    public Result disable(@RequestBody SysDictType sysDIctType){
-        sysDIctType.setEnable("1");
-        boolean result = sysDictTypeService.updateById(sysDIctType);
+    public Result disable(@RequestBody SysDictType sysDictType){
+        sysDictType.setEnable("1");
+        boolean result = sysDictTypeService.updateById(sysDictType);
         return decide(result);
     }
 }

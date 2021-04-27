@@ -62,7 +62,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     public Boolean save(SysDictType sysDictType) {
         Integer result = sysDictTypeMapper.insert(sysDictType);
         if(result > 0){
-            iSysDictDataService.refreshChcheTypeCode(sysDictType.getTypeCode());
+            iSysDictDataService.refreshCacheTypeCode(sysDictType.getTypeCode());
             return true;
         }else{
             return false;
@@ -89,7 +89,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     public Boolean updateById(SysDictType sysDictType) {
         int result = sysDictTypeMapper.updateById(sysDictType);
         if(result > 0){
-            iSysDictDataService.refreshChcheTypeCode(sysDictType.getTypeCode());
+            iSysDictDataService.refreshCacheTypeCode(sysDictType.getTypeCode());
             return true;
         }else{
             return false;
@@ -109,7 +109,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
              sysDictTypeMapper.deleteById(id);
              sysDictDataMapper.deleteByCode(sysDictType.getTypeCode());
         }
-        iSysDictDataService.refreshChcheTypeCode(sysDictType.getTypeCode());
+        iSysDictDataService.refreshCacheTypeCode(sysDictType.getTypeCode());
         return true;
     }
 }

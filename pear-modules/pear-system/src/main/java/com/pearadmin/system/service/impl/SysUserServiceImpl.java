@@ -187,6 +187,7 @@ public class SysUserServiceImpl implements ISysUserService {
         String name = !(securityProperty.isSuperAuthOpen() && username.equals(securityProperty.getSuperAdmin()))?username:"";
         return sysPowerMapper.selectMenuByUsername(name);
     }
+
     /**
      * Describe: 递归获取菜单tree
      * Param: sysMenus
