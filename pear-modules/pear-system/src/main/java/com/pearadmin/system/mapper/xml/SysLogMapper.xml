@@ -144,7 +144,7 @@
                 #{requestParam},
             </if>
             <if test="responseBody != null">
-                #{requestBody},
+                #{responseBody},
             </if>
             <if test="success != null">
                 #{success},
