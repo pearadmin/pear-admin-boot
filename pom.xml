@@ -267,6 +267,8 @@
         </dependencies>
     </dependencyManagement>
 
+
+
     <!-- 继 承 依 赖 -->
     <dependencies>
         <!-- Lombok -->
@@ -287,6 +289,13 @@
 
     <!-- 构 建 工 具 -->
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
         <resources>
             <!-- 加 载 .Java 下 的 XML 文 件 -->
             <resource>
