@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ISysMailServiceImpl implements ISysMailService {
+public class SysMailServiceImpl implements ISysMailService {
 
     @Resource
     private SysMailMapper sysMailMapper;
@@ -35,7 +35,7 @@ public class ISysMailServiceImpl implements ISysMailService {
     public Integer save(SysMail sysMail) {
         if (sendMail(sysMail)) {
             sysMail.setMailId(SequenceUtil.makeStringId());
-            sysMail.setCreateBy(((SysUser)SecurityUtil.currentUserObj()).getUsername());
+            sysMail.setCreateBy(((SysUser) SecurityUtil.currentUserObj()).getUsername());
             return sysMailMapper.insert(sysMail);
         } else {
             return 0;

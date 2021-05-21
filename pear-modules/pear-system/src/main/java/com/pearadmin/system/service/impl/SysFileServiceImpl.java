@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class ISysFileServiceImpl implements ISysFileService {
+public class SysFileServiceImpl implements ISysFileService {
 
     /**
      * 引 入 服 务
@@ -71,6 +71,7 @@ public class ISysFileServiceImpl implements ISysFileService {
     @Override
     @Transactional
     public String upload(MultipartFile file) {
+        String result = "";
         try {
             String fileId = SequenceUtil.makeStringId();
             String name = file.getOriginalFilename();
@@ -82,8 +83,9 @@ public class ISysFileServiceImpl implements ISysFileService {
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();
             }
-            SysFile fileDomain = new SysFile();
             file.transferTo(filepath);
+
+            SysFile fileDomain = new SysFile();
             fileDomain.setId(fileId);
             fileDomain.setFileDesc(name);
             fileDomain.setFileName(fileName);
@@ -92,16 +94,16 @@ public class ISysFileServiceImpl implements ISysFileService {
             fileDomain.setCreateTime(LocalDateTime.now());
             fileDomain.setFileSize(FileUtil.getPrintSize(filepath.length()));
             fileDomain.setFileType(suffixName.replace(".", ""));
-            int result = fileMapper.insert(fileDomain);
-            if (result > 0) {
-                return fileId;
+            int flag = fileMapper.insert(fileDomain);
+            if (flag > 0) {
+                result = fileId;
             } else {
-                return "";
+                result = "";
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            return "";
+            log.error("failed to upload file.detail message:{}", e.getMessage());
         }
+        return result;
     }
 
     /**
@@ -145,10 +147,10 @@ public class ISysFileServiceImpl implements ISysFileService {
         //如果文件不存在
         if (file != null && file.getFilePath() != null) {
             File deleteFile;
-            if((deleteFile=new File(file.getFilePath())).exists()){
-                fileDeleteResult=deleteFile.delete();
-            }else {
-                fileDeleteResult=false;
+            if ((deleteFile = new File(file.getFilePath())).exists()) {
+                fileDeleteResult = deleteFile.delete();
+            } else {
+                fileDeleteResult = false;
             }
         } else {
             fileDeleteResult = false;
