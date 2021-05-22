@@ -11,7 +11,7 @@ import java.util.Date;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-public class DateUtil extends org.apache.commons.lang3.time.DateUtils
+public class PearDateUtil extends org.apache.commons.lang3.time.DateUtils
 {
     public static String YYYY = "yyyy";
 

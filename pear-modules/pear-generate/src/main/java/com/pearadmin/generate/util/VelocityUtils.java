@@ -3,8 +3,10 @@ package com.pearadmin.generate.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import cn.hutool.core.date.DateUtil;
 import com.pearadmin.common.constant.GenerateConstant;
-import com.pearadmin.common.tools.datetime.DateUtil;
+
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.string.StringUtil;
 import com.pearadmin.generate.config.GenConfig;
@@ -54,7 +56,7 @@ public class VelocityUtils
         velocityContext.put("basePackage", getPackagePrefix(packageName));
         velocityContext.put("packageName", packageName);
         velocityContext.put("author", genTable.getFunctionAuthor());
-        velocityContext.put("datetime", DateUtil.getDate());
+        velocityContext.put("datetime", DateUtil.today());
         velocityContext.put("pkColumn", genTable.getPkColumn());
         velocityContext.put("importList", getImportList(genTable));
         velocityContext.put("permissionPrefix", getPermissionPrefix(moduleName, businessName));
@@ -210,11 +212,9 @@ public class VelocityUtils
     public static String getProjectPath()
     {
         String packageName = GenConfig.getPackageName();
-        StringBuffer projectPath = new StringBuffer();
-        projectPath.append("main/java/");
-        projectPath.append(packageName.replace(".", "/"));
-        projectPath.append("/");
-        return projectPath.toString();
+        return "main/java/" +
+                packageName.replace(".", "/") +
+                "/";
     }
 
     /**
