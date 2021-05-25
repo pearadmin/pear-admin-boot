@@ -87,7 +87,7 @@ pear:
     #  ftp服务器地址
     hostname:
     # ftp服务器端口
-    port:
+    port: 0000
     # ftp服务器用户名
     username:
     # ftp服务器密码

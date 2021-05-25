@@ -95,7 +95,7 @@
             }
             , allDone: function () {
                 layer.close(layerIndex);
-                layer.msg("上传成功", {icon: 1, time: 1200}, function () {
+                layer.msg("上传完成", {icon: 1, time: 1200}, function () {
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
                     parent.layui.table.reload("file-table");
                 })
