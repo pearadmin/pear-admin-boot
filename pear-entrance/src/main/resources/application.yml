@@ -82,6 +82,16 @@ pear:
     windows-path: D:\home\uploads\
     # linux 上传路径
     linux-path: /home/uploads/
+    # 是否使用ftp服务器
+    ftp-use: false
+    #  ftp服务器地址
+    hostname:
+    # ftp服务器端口
+    port:
+    # ftp服务器用户名
+    username:
+    # ftp服务器密码
+    password:
 
 # Page Helper 分页配置
 pagehelper:
