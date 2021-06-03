@@ -18,6 +18,11 @@
   <select id="selectList" parameterType="ScheduleLog" resultMap="ScheduleLogMap">
      select a.log_id,a.job_id,a.bean_name,a.params,a.error,a.status,a.create_time,a.times,b.job_name as jobName from schedule_log a left join schedule_job b on
      a.job_id = b.job_id
+    <where>
+      <if test="jobName!=null and jobName!=''">
+        and job_name like "%"#{jobName}"%"
+      </if>
+    </where>
      order by create_time desc
   </select>
 

@@ -46,11 +46,9 @@
 </script>
 <script type="text/html" id="job-bar">
     {{#if (d.status == 0) { }}
-    <button sec:authorize="hasPermission('/schedule/job/pause','sch:job:pause')" class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="layui-icon layui-icon-pause"></i>
-    </button>
+    <button sec:authorize="hasPermission('/schedule/job/pause','sch:job:pause')" class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="layui-icon layui-icon-pause"></i></button>
     {{# }else if(d.status == 1){ }}
-    <button sec:authorize="hasPermission('/schedule/job/resume','sch:job:resume')"  class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="layui-icon layui-icon-play"></i>
-    </button>
+    <button sec:authorize="hasPermission('/schedule/job/resume','sch:job:resume')"  class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="layui-icon layui-icon-play"></i></button>
     {{# } }}
     <button sec:authorize="hasPermission('/schedule/job/run','sch:job:run')"  class="pear-btn pear-btn-success pear-btn-sm" lay-event="run"><i class="layui-icon layui-icon-release"></i>
     </button>
