@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import com.pearadmin.common.config.proprety.SecurityProperty;
-import com.pearadmin.secure.domain.SecureUserDetailsService;
+import com.pearadmin.secure.domain.SecureUserDetailsServiceImpl;
 import com.pearadmin.secure.domain.SecureUserTokenService;
 import javax.annotation.Resource;
 
@@ -69,7 +69,7 @@ public class SecureConfiguration extends WebSecurityConfigurerAdapter {
      * 实现userservice
      */
     @Resource
-    private SecureUserDetailsService securityUserDetailsService;
+    private SecureUserDetailsServiceImpl securityUserDetailsService;
 
     /**
      * remember me redis持久化
