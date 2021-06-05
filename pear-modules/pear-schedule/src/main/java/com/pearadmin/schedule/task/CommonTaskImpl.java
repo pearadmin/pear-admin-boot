@@ -13,17 +13,18 @@ import java.util.Date;
  * CreateTime: 2019/10/23
  * */
 @Slf4j
-@Component("exceptionTask")
-public class ExceptionTask implements BaseTaskService {
+@Component("commonTask")
+public class CommonTaskImpl implements BaseTaskService {
 
-
-    private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
 
     /**
      * 任务实现
      * */
     @Override
-    public void run(String params) throws Exception{
-        throw new Exception("发生异常");
+    public void run(String params) {
+        log.info("Params === >> " + params);
+        log.info("当前时间::::" + FORMAT.format(new Date()));
+        System.out.println("执行成功");
     }
 }

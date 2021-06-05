@@ -22,6 +22,7 @@ public class XssSupport implements Filter {
 
     public List<String> excludes = new ArrayList<String>();
 
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;

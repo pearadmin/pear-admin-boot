@@ -60,7 +60,7 @@ public class ScheduleHandler {
             jobDetail.getJobDataMap().put(ScheduleJob.JOB_PARAM_KEY,scheduleJob);
             scheduler.scheduleJob(jobDetail,trigger);
             // 如果该定时器处于暂停状态
-            if (scheduleJob.getStatus().equals("1")){
+            if ("1".equals(scheduleJob.getStatus())){
                 pauseJob(scheduler,Long.parseLong(scheduleJob.getJobId())) ;
             }
         } catch (SchedulerException e){
@@ -81,7 +81,7 @@ public class ScheduleHandler {
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
             trigger.getJobDataMap().put(ScheduleJob.JOB_PARAM_KEY, scheduleJob);
             scheduler.rescheduleJob(triggerKey, trigger);
-            if(scheduleJob.getStatus().equals("1")){
+            if("1".equals(scheduleJob.getStatus())){
                 pauseJob(scheduler, Long.parseLong(scheduleJob.getJobId()));
             }
         } catch (SchedulerException e) {

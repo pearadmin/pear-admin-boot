@@ -75,6 +75,7 @@ public class SysFileServiceImpl implements ISysFileService {
         try {
             String fileId = SequenceUtil.makeStringId();
             String name = file.getOriginalFilename();
+            assert name != null;
             String suffixName = name.substring(name.lastIndexOf("."));
             String fileName = fileId + suffixName;
             String fileDir = LocalDate.now().toString();
@@ -115,6 +116,7 @@ public class SysFileServiceImpl implements ISysFileService {
     public void download(String id) {
         try {
             SysFile file = fileMapper.selectById(id);
+            if(null==file){file=new SysFile();}
             java.io.File files = new java.io.File(file.getFilePath());
             if (files.exists()) {
                 FileCopyUtils.copy(new FileInputStream(file.getFilePath()), ServletUtil.getResponse().getOutputStream());

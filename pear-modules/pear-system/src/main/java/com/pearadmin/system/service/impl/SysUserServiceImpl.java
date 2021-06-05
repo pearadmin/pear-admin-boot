@@ -171,7 +171,7 @@ public class SysUserServiceImpl implements ISysUserService {
         List<SysUserRole> myRole = sysUserRoleMapper.selectByUserId(userId);
         allRole.forEach(sysRole->{
             myRole.forEach(sysUserRole->{
-                if(sysRole.getRoleId().equals(sysUserRole.getRoleId()))sysRole.setChecked(true);
+                if(sysRole.getRoleId().equals(sysUserRole.getRoleId())){sysRole.setChecked(true);}
             });
         });
         return allRole;

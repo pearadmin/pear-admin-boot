@@ -7,16 +7,16 @@ import org.jsoup.safety.Whitelist;
 
 public class JsoupUtil {
 
-    private static final Whitelist whitelist = Whitelist.basicWithImages();
+    private static final Whitelist WHITELIST = Whitelist.basicWithImages();
 
-    private static final Document.OutputSettings outputSettings = new Document.OutputSettings().prettyPrint(false);
+    private static final Document.OutputSettings OUTPUT_SETTINGS = new Document.OutputSettings().prettyPrint(false);
 
     static {
-        whitelist.addAttributes(":all", "style");
+        WHITELIST.addAttributes(":all", "style");
     }
 
     public static String clean(String content) {
-        return Jsoup.clean(content, SystemConstant.EMPTY, whitelist, outputSettings);
+        return Jsoup.clean(content, SystemConstant.EMPTY, WHITELIST, OUTPUT_SETTINGS);
     }
 
 }

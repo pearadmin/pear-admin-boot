@@ -17,7 +17,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  * */
 @Component
-public class SecureUserDetailsService implements UserDetailsService {
+public class SecureUserDetailsServiceImpl implements UserDetailsService {
 
     @Resource
     private SysUserMapper sysUserMapper;

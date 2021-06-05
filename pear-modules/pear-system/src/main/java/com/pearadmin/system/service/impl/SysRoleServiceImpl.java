@@ -118,7 +118,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
         List<SysRolePower> myPower =  sysRolePowerMapper.selectByRoleId(roleId);
         allPower.forEach(sysPower->{
             myPower.forEach(sysRolePower->{
-                if(sysRolePower.getPowerId().equals(sysPower.getPowerId()))sysPower.setCheckArr("1");
+                if(sysRolePower.getPowerId().equals(sysPower.getPowerId())){sysPower.setCheckArr("1");}
             });
         });
         return allPower;
