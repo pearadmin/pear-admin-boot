@@ -91,9 +91,9 @@ public class SysDeptController extends BaseController {
     @PostMapping("save")
     @ApiOperation(value = "保存部门数据")
     @PreAuthorize("hasPermission('/system/dept/add','sys:dept:add')")
-    public Result save(@RequestBody SysDept SysDept) {
-        SysDept.setDeptId(SequenceUtil.makeStringId());
-        boolean result = sysDeptService.save(SysDept);
+    public Result save(@RequestBody SysDept sysDept) {
+        sysDept.setDeptId(SequenceUtil.makeStringId());
+        boolean result = sysDeptService.save(sysDept);
         return decide(result);
     }
 
