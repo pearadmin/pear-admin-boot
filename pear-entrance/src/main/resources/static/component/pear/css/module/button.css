@@ -14,21 +14,27 @@
 	font-size: 14px;
 	background-color: white;
 	border: 1px solid #dcdfe6;
-	border-radius: 4px;
-	margin-left: 1.5px;
-	margin-right: 1.5px;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .03);
 }
 
 .pear-btn i {
 	font-size: 13px;
 }
 
+.pear-btn:hover {
+	opacity: .8;
+	filter: alpha(opacity=80);
+	color: #409eff;
+	border-color: #c6e2ff;
+	background-color: #ECF5FF;
+}
+
 .pear-btn-danger,
 .pear-btn-warming,
 .pear-btn-success,
 .pear-btn-primary {
-	color: #fff !important;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+	color: #fff !important
 }
 /** Button 主题 */
 .pear-btn-primary {
