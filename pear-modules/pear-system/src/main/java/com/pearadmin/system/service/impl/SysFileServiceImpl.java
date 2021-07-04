@@ -116,7 +116,7 @@ public class SysFileServiceImpl implements ISysFileService {
     public void download(String id) {
         try {
             SysFile file = fileMapper.selectById(id);
-            if(null==file){file=new SysFile();}
+            if( null==file ){ file = new SysFile(); }
             java.io.File files = new java.io.File(file.getFilePath());
             if (files.exists()) {
                 FileCopyUtils.copy(new FileInputStream(file.getFilePath()), ServletUtil.getResponse().getOutputStream());

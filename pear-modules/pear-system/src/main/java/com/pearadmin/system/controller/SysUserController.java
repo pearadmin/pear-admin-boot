@@ -201,7 +201,6 @@ public class SysUserController extends BaseController {
      */
     @PutMapping("updateAvatar")
     @ApiOperation(value = "修改用户头像")
-    @PreAuthorize("hasPermission('/system/user/edit','sys:user:edit')")
     @Logging(title = "修改头像", describe = "修改头像", type = BusinessType.EDIT)
     public Result updateAvatar(@RequestBody SysUser sysUser) {
         sysUser.setUserId(((SysUser)SecurityUtil.currentUserObj()).getUserId());
