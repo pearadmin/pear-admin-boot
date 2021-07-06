@@ -21,7 +21,13 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			var notice = createHtml(option);
 			$(option.elem).html(notice);
 		}
-		element.init();
+		setTimeout(function(){
+			element.init();
+			$(opt.elem+" li").click(function(e){
+				$(this).siblings().removeClass('pear-this');
+				$(this).addClass('pear-this');
+			})
+		},300);
 		return new message(option);
 	}
 	
@@ -65,7 +71,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 		$.each(option.data, function(i, item) {
 
 			if (index === 0) {
-				noticeTitle += '<li class="layui-this">' + item.title + '</li>';
+				noticeTitle += '<li class="layui-this pear-this">' + item.title + '</li>';
 				noticeContent += '<div class="layui-tab-item layui-show">';
 			} else {
 				noticeTitle += '<li>' + item.title + '</li>';

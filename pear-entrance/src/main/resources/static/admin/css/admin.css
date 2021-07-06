@@ -1,13 +1,15 @@
+html,
+body,
+.layui-layout {
+	height: 100%;
+}
+
 .pear-admin .layui-header,
 .pear-admin .layui-body,
 .pear-admin .layui-logo,
 .pear-admin .layui-side,
 .pear-admin .layui-header .layui-layout-left {
 	transition: all .3s;
-}
-
-html, body, .layui-layout {
-	height: 100%;
 }
 
 .pear-admin .layui-logo .title {
@@ -33,8 +35,12 @@ html, body, .layui-layout {
 }
 
 .pear-admin .layui-layout-control {
-	left: 120px;
+	left: 140px;
 	position: absolute;
+}
+
+.pear-admin .layui-layout-control .layui-nav{
+	padding: 0px;
 }
 
 .pear-admin .layui-logo {
@@ -43,7 +49,6 @@ html, body, .layui-layout {
 	line-height: 60px;
 	position: relative;
 	background-color: #28333E;
-
 }
 
 .pear-admin .layui-logo img {

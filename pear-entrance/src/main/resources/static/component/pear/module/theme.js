@@ -1,6 +1,6 @@
 layui.define(["jquery","layer"], function (exports) {
 	var MOD_NAME = 'theme',
-	    $ = layui.jquery;
+		$ = layui.jquery;
 
 	var theme = {};
 	theme.autoHead = false;
@@ -22,7 +22,7 @@ layui.define(["jquery","layer"], function (exports) {
 	}
 
 	theme.colorSet = function(color) {
-		
+
 		let style = '';
 		style += '.light-theme .pear-nav-tree .layui-this a:hover,.light-theme .pear-nav-tree .layui-this,.light-theme .pear-nav-tree .layui-this a,.pear-nav-tree .layui-this a,.pear-nav-tree .layui-this{background-color: ' +color + '!important;}';
 		style += '.pear-admin .layui-logo .title{color:' + color + '!important;}';
@@ -33,7 +33,7 @@ layui.define(["jquery","layer"], function (exports) {
 		style += '.layui-header .layui-nav-child .layui-this a{background-color:' + color +'!important;color:white!important;}';
 		style += '#preloader{background-color:' + color + '!important;}';
 		style += '.pearone-color .color-content li.layui-this:after, .pearone-color .color-content li:hover:after {border: ' +color + ' 3px solid!important;}';
-		style += '.layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this{background-color:' + color + '!important}';	
+		style += '.layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this{background-color:' + color + '!important}';
 		style += '.pear-social-entrance {background-color:' + color + '!important}';
 		style += '.pear-admin .pe-collaspe {background-color:' + color + '!important}';
 		style += '.layui-fixbar li {background-color:' + color + '!important}';
@@ -46,13 +46,14 @@ layui.define(["jquery","layer"], function (exports) {
 		style += '.layui-form-onswitch { border-color: ' + color + '; background-color: '+color+';}'
 		style += '.layui-form-radio>i:hover, .layui-form-radioed>i {color: ' + color + ';}'
 		style += '.layui-laypage .layui-laypage-curr .layui-laypage-em{background-color:'+ color +'!important}'
-		style += '.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{border-bottom: 2px solid '+color+'!important}'
+		style += '.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{border-bottom: 3px solid '+color+'!important}'
 		style += '.layui-tab-brief>.layui-tab-title .layui-this{color:'+color+'!important}'
 		style += '.layui-progress-bar{background-color:'+color+'}';
 		style += '.layui-elem-quote{border-left: 5px solid '+ color +'}';
 		style += '.layui-timeline-axis{color:' + color + '}';
 		style += '.layui-laydate .layui-this{background-color:'+color+'!important}';
-		style += '.pear-text{color:' + color + '!important}';
+		style += '.pear-this,.pear-text{color:' + color + '!important}';
+		style += '.pear-back{background-color:'+ color +'!important}';
 		style += '.pear-collasped-pe{background-color:'+color+'!important}'
 		style += '.layui-form-select dl dd.layui-this{background-color:'+color+'}'
 		style += '.tag-item-normal{background:'+color+'!important}';
@@ -65,12 +66,15 @@ layui.define(["jquery","layer"], function (exports) {
 		style += 'div[xm-select-skin=normal] dl dd:not(.xm-dis-disabled) i{border-color:'+color+'!important}'
 		style += 'div[xm-select-skin=normal] dl dd.xm-select-this:not(.xm-dis-disabled) i{color:'+color+'!important}'
 		style += 'div[xm-select-skin=normal].xm-form-selected .xm-select, div[xm-select-skin=normal].xm-form-selected .xm-select:hover{border-color:'+color+'!important}'
-		style += '.user-group.button-primary{background-color:'+color+'!important}'
-		style += '.layui-layer-btn a:first-child{border-color:'+color+';background-color:'+color+'!important}'
+		style += '.layui-layer-btn a:first-child{border-color:'+color+';background-color:'+color+'!important}';
 		style += '.layui-form-checkbox[lay-skin=primary]:hover i{border-color:'+color+'!important}'
 		style += '.pear-tab-menu .item:hover{background-color:'+color+'!important}'
-
-		let colorPane = $("#pear-admin-color");
+		style += '.layui-form-danger:focus {border-color:#FF5722 !important}'
+		style += '.pear-admin .user a:hover{color:'+color+'!important}'
+		style += '.pear-admin .user .layui-this a:hover{color:white!important}'
+		style += '.pear-notice .layui-this{color:'+color+'!important}'
+		style += '.layui-form-radio:hover *, .layui-form-radioed, .layui-form-radioed>i{color:' + color + ' !important}';
+		var colorPane = $("#pear-admin-color");
 		if(colorPane.length>0){
 			colorPane.html(style);
 		}else{
