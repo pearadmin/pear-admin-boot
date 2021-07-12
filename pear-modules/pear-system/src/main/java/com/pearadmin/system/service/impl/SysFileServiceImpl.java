@@ -1,6 +1,7 @@
 package com.pearadmin.system.service.impl;
 
 import com.pearadmin.common.config.proprety.TemplateProperty;
+import com.pearadmin.common.constant.SystemConstant;
 import com.pearadmin.common.tools.common.FileUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
@@ -116,7 +117,10 @@ public class SysFileServiceImpl implements ISysFileService {
     public void download(String id) {
         try {
             SysFile file = fileMapper.selectById(id);
-            if( null==file ){ file = new SysFile(); }
+            if( null==file ){
+                file = new SysFile();
+                file.setFilePath(SystemConstant.EMPTY);
+            }
             java.io.File files = new java.io.File(file.getFilePath());
             if (files.exists()) {
                 FileCopyUtils.copy(new FileInputStream(file.getFilePath()), ServletUtil.getResponse().getOutputStream());
