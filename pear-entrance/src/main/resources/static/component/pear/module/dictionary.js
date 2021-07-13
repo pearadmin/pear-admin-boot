@@ -6,9 +6,9 @@ layui.define(['jquery', 'element','form'], function(exports) {
     const form = layui.form;
 
     const dictionary = new function() {
+
         /**
          * 根据Code 获取字典列表
-         * @param dictCode
          */
         this.dictListByCode=function(dictCode){
             var loadDictData = sessionStorage.getItem('loadDictData'+dictCode);
@@ -37,13 +37,13 @@ layui.define(['jquery', 'element','form'], function(exports) {
             return loadDictData;
 
         }
+
         /**
          * 根据code值到数据库中获取字典
-         * @param dictCode
          */
         this.tableDictListByCode=function(dictCode){
             var loadTableDictData = sessionStorage.getItem('loadTableDictData'+dictCode);
-            if(loadTableDictData==null) {
+            if(loadTableDictData == null || loadTableDictData.length == 0 || loadTableDictData == '[]') {
                 $.ajax({
                     url: '/system/dictData/getDictItems/'+dictCode,
                     type: 'get',
@@ -67,25 +67,22 @@ layui.define(['jquery', 'element','form'], function(exports) {
             return loadTableDictData;
 
         }
+
         /**
          * 根据单个字典值获取字典label
-         * @param value
-         * @param dictCode
-         * @returns {*}
          */
         this.parseDictText=function(value,dictCode){
             var loadDictData = this.dictListByCode(dictCode);
             for (var j = 0; j < loadDictData.length; j++) {
-                if (value === loadDictData[j].dataValue) {
+                if (value == loadDictData[j].dataValue) {
                     return loadDictData[j].dataLabel
                 }
             }
             return value;
         }
+
         /**
-         * 根据多个code获取字典label,隔开
-         * @param values
-         * @param dictCode
+         * 根据多个code获取字典label
          */
         this.parseDictTexts=function(values,dictCode){
             var loadDictData = this.dictListByCode(dictCode);
@@ -132,6 +129,7 @@ layui.define(['jquery', 'element','form'], function(exports) {
         form.render();
 
     });
+
     $("select[table-dict-code]").each(function(){
         var _that = $(this);
         var dictCode = $(this).attr("table-dict-code");
@@ -152,6 +150,7 @@ layui.define(['jquery', 'element','form'], function(exports) {
         form.render();
 
     });
+
     $("div[radio-dict-code]").each(function(){
         var _that = $(this);
         var dictCode = $(this).attr("radio-dict-code");
@@ -175,6 +174,7 @@ layui.define(['jquery', 'element','form'], function(exports) {
         }
         form.render();
     });
+
     $("div[check-box-dict-code]").each(function(){
         var _that = $(this);
         var dictCode = $(this).attr("check-box-dict-code");
@@ -202,5 +202,6 @@ layui.define(['jquery', 'element','form'], function(exports) {
         }
         form.render();
     });
+
     exports(MOD_NAME, dictionary);
 });

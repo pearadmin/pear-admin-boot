@@ -63,9 +63,9 @@
         </div>
     </div>
 #elseif($column.htmlType == "datetime")
-    <div class="form-group">
-        <label class="col-sm-3 control-label">${comment}：</label>
-        <div class="col-sm-8">
+    <div class="layui-form-item">
+        <label class="layui-form-label">${comment}：</label>
+        <div class="layui-input-block">
             <div class="input-group date">
                 <input type="text" name="${field}" class="layui-input" id="${field}" #if($column.required) lay-verify="required"#end>
             </div>
