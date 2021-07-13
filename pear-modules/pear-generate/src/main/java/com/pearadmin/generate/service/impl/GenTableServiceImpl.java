@@ -20,7 +20,7 @@ import com.pearadmin.common.tools.string.StringUtil;
 import com.pearadmin.generate.domain.GenTable;
 import com.pearadmin.generate.domain.GenTableColumn;
 import com.pearadmin.generate.service.IGenTableService;
-import com.pearadmin.generate.util.VelocityInitializer;
+import com.pearadmin.generate.tools.VelocityInitializer;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
@@ -34,8 +34,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.pearadmin.generate.mapper.GenTableColumnMapper;
 import com.pearadmin.generate.mapper.GenTableMapper;
-import com.pearadmin.generate.util.GenUtils;
-import com.pearadmin.generate.util.VelocityUtils;
+import com.pearadmin.generate.tools.GenUtils;
+import com.pearadmin.generate.tools.VelocityUtils;
 
 import javax.annotation.Resource;
 

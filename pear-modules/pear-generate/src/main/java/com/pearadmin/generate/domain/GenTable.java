@@ -13,7 +13,7 @@ import org.apache.ibatis.type.Alias;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-@ToString
+
 @Alias("GenTable")
 public class GenTable extends BaseDomain
 {

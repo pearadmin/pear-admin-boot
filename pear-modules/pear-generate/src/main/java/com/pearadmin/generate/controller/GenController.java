@@ -119,7 +119,6 @@ public class GenController extends BaseController {
      */
     @GetMapping("/edit")
     public String edit(String tableId, ModelMap mmap) {
-        System.out.println("表格编号:"+tableId);
         GenTable table = genTableService.selectGenTableById(tableId);
         List<GenTable> genTables = genTableService.selectGenTableAll();
         List<ResultSelect> cxSelect = new ArrayList<ResultSelect>();

@@ -1,4 +1,4 @@
-package com.pearadmin.generate.util;
+package com.pearadmin.generate.tools;
 
 import java.util.Properties;
 

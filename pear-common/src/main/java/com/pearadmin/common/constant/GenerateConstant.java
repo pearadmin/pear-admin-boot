@@ -39,6 +39,9 @@ public class GenerateConstant
     /** 数据库时间类型 */
     public static final String[] COLUMNTYPE_TIME = { "datetime", "time", "date", "timestamp" };
 
+    /** 数据库布尔类型 */
+    public static final String[] COLUMNTYPE_BOOL = { "bit" };
+
     /** 数据库数字类型 */
     public static final String[] COLUMNTYPE_NUMBER = { "tinyint", "smallint", "mediumint", "int", "number", "integer",
             "bigint", "float", "float", "double", "decimal" };
@@ -98,6 +101,8 @@ public class GenerateConstant
 
     /** 时间类型 */
     public static final String TYPE_DATE = "Date";
+
+    public static final String TYPE_BOOLEAN = "Boolean";
 
     /** 模糊查询 */
     public static final String QUERY_LIKE = "LIKE";

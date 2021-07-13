@@ -1,4 +1,4 @@
-package com.pearadmin.generate.util;
+package com.pearadmin.generate.tools;
 
 import java.util.Arrays;
 import com.pearadmin.common.constant.GenerateConstant;
@@ -38,7 +38,7 @@ public class GenUtils
         String columnName = column.getColumnName();
         column.setTableId(table.getTableId());
         column.setCreateBy(table.getCreateBy());
-        // 设置java字段名
+
         column.setJavaField(StringUtil.toCamelCase(columnName));
 
         if (arraysContains(GenerateConstant.COLUMNTYPE_STR, dataType))
@@ -47,6 +47,10 @@ public class GenUtils
             Integer columnLength = getColumnLength(column.getColumnType());
             String htmlType = columnLength >= 500 ? GenerateConstant.HTML_TEXTAREA : GenerateConstant.HTML_INPUT;
             column.setHtmlType(htmlType);
+        } else if (arraysContains(GenerateConstant.COLUMNTYPE_BOOL, dataType)) {
+
+            column.setJavaType(GenerateConstant.TYPE_BOOLEAN);
+            column.setHtmlType(GenerateConstant.HTML_RADIO);
         }
         else if (arraysContains(GenerateConstant.COLUMNTYPE_TIME, dataType))
         {
@@ -59,6 +63,7 @@ public class GenUtils
 
             // 如果是浮点型
             String[] str = StringUtil.split(StringUtil.substringBetween(column.getColumnType(), "(", ")"), ",");
+
             if (str != null && str.length == 2 && Integer.parseInt(str[1]) > 0)
             {
                 column.setJavaType(GenerateConstant.TYPE_BIGDECIMAL);
