@@ -1,15 +1,17 @@
-/**
- * 树形表格 1.x
- * date:2018-07-22   License By https://easyweb.vip
- */
 layui.define(['layer', 'table'], function (exports) {
     var $ = layui.jquery;
     var layer = layui.layer;
     var table = layui.table;
 
+    var instances = [];
+
     var treetable = {
+
         // 渲染树形表格
         render: function (param) {
+
+            param.method = param.method?param.method:"GET";
+
             // 检查参数
             if (!treetable.checkParam(param)) {
                 return;
@@ -18,13 +20,23 @@ layui.define(['layer', 'table'], function (exports) {
             if (param.data) {
                 treetable.init(param, param.data);
             } else {
-                $.getJSON(param.url, param.where, function (res) {
-                    if(param.parseData){
-                        res.data = param.parseData(res);
-                        param.data = res.data;
-                    }
-                    treetable.init(param, res.data);
-                });
+                if(param.method === 'post' || param.method === 'POST') {
+                    $.post(param.url, param.where, function(res){
+                        if(param.parseData){
+                            res = param.parseData(res);
+                            param.data = res.data;
+                        }
+                        treetable.init(param, res.data);
+                    });
+                } else {
+                    $.get(param.url, param.where, function(res){
+                        if(param.parseData){
+                            res = param.parseData(res);
+                            param.data = res.data;
+                        }
+                        treetable.init(param, res.data);
+                    });
+                }
             }
         },
         // 渲染表格
@@ -111,6 +123,20 @@ layui.define(['layer', 'table'], function (exports) {
 
             // 渲染表格
             table.render(param);
+            var result = instances.some(item=>item.key===param.elem);
+            if(!result){
+                instances.push({key:param.elem,value:param});
+            }
+        },
+        // 表格重载
+        reload: function(elem) {
+            instances.forEach(function(item){
+                if(item.key === elem) {
+                    // 清空
+                    $(elem).next().remove();
+                    treetable.render(item.value);
+                }
+            })
         },
         // 计算缩进的数量
         getEmptyNum: function (pid, data) {
@@ -197,8 +223,6 @@ layui.define(['layer', 'table'], function (exports) {
             });
         }
     };
-
-
 
     // 给图标列绑定事件
     $('body').on('click', '.treeTable .treeTable-icon', function () {

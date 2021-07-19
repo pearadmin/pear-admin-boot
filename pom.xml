@@ -84,6 +84,7 @@
         <!-- Maven 配 置 编 译 JDK 版 本-->
         <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.source>8</maven.compiler.source>
+
     </properties>
 
     <!-- 依 赖 管 理 -->

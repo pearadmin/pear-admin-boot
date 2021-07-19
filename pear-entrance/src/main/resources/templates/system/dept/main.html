@@ -67,19 +67,19 @@
 
         let MODULE_PATH = "/system/dept/";
 
-        window.render = function () {
-            treetable.render({
+        treetable.render({
                 treeColIndex: 1,
                 treeSpid: 0,
                 treeIdName: 'deptId',
                 treePidName: 'parentId',
                 skin: 'line',
-                method: 'post',
+                method: 'get',
                 treeDefaultClose: false,
                 toolbar: '#dept-toolbar',
                 elem: '#dept-table',
                 url: '/system/dept/data',
                 page: false,
+                defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh'}, 'filter', 'print', 'exports'],
                 cols: [
                     [
                         {type: 'checkbox'},
@@ -93,8 +93,7 @@
                         {title: '操作', templet: '#dept-bar', width: 120, align: 'center'}
                     ]
                 ]
-            });
-        }
+        });
 
         form.on('submit(dept-query)', function (data) {
             var keyword = data.field.deptName;
@@ -123,8 +122,6 @@
             }
             return false;
         });
-
-        render();
 
         table.on('tool(dept-table)', function (obj) {
             if (obj.event === 'remove') {
@@ -209,6 +206,10 @@
                     }
                 })
             });
+        }
+
+        window.refresh = function () {
+            treetable.reload('#dept-table');
         }
     })
 </script>

@@ -78,19 +78,19 @@
 
         let MODULE_PATH = "/system/power/";
 
-        window.render = function () {
-            treetable.render({
+        treetable.render({
                 treeColIndex: 1,
                 treeSpid: 0,
                 treeIdName: 'powerId',
                 treePidName: 'parentId',
                 skin: 'line',
-                method: 'post',
+                method: 'get',
                 treeDefaultClose: true,
                 toolbar: '#power-toolbar',
                 elem: '#power-table',
                 url: '/system/power/data',
                 page: false,
+                defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh'}, 'filter', 'print', 'exports'],
                 cols: [
                     [
                         {type: 'checkbox'},
@@ -102,10 +102,7 @@
                         {title: '操作', templet: '#power-bar', width: 150, align: 'center'}
                     ]
                 ]
-            });
-        }
-
-        render();
+        });
 
         form.on('submit(power-query)', function (data) {
             var keyword = data.field.powerName;
@@ -219,6 +216,10 @@
                     }
                 })
             });
+        }
+
+        window.refresh = function () {
+            treetable.reload('#power-table');
         }
     })
 </script>
