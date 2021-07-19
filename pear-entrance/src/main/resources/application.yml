@@ -44,15 +44,15 @@ pear:
     # 协 议
     licence: MIT
     # 协 议 地 址
-    licence-url: https://gitee.com/pear_community
+    licence-url: https://gitee.com/pear-admin/Pear-Admin-Boot/blob/master/LICENSE
     # 组 织 信 息
-    terms-of-service-url: https://gitee.com/pear_community
+    terms-of-service-url: https://gitee.com/pear-admin
     # 版 本 信 息
     version: Release 2.0.0
     # 扩 展 信 息
     contact:
       # 作 者
-      name: 就 眠 仪 式
+      name: 就 眠 儀 式
       # 连 接
       url: www.pearadmin.cn
       # 邮 箱
