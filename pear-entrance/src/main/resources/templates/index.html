@@ -26,8 +26,7 @@
             <li class="layui-nav-item user">
                 <!-- 头 像 -->
                 <a href="javascript:;">
-                    <img src="" id="avatar" class="layui-nav-img">
-                    <span th:text="${#authentication.principal.realName}"></span>
+                    <img class="layui-nav-img">
                 </a>
                 <!-- 功 能 菜 单 -->
                 <dl class="layui-nav-child">
@@ -79,9 +78,9 @@
         admin.setConfigType("yml");
         admin.setConfigPath("pear.config.yml");
 
-        admin.render();
+        admin.setAvatar("/system/file/download/"+[[${session.currentUser.avatar}]],[[${session.currentUser.realName}]]);
 
-        $('.layui-nav-img').attr("src","/system/file/download/"+[[${session.currentUser.avatar}]]);
+        admin.render();
 
         // 注销实现
         admin.logout(function(){
