@@ -197,21 +197,14 @@ public class GenTableServiceImpl implements IGenTableService
     public Map<String, String> previewCode(String tableId)
     {
         Map<String, String> dataMap = new LinkedHashMap<>();
-        // 查询表信息
         GenTable table = genTableMapper.selectGenTableById(tableId);
-        // 设置主子表信息
         setSubTable(table);
-        // 设置主键列信息
         setPkColumn(table);
         VelocityInitializer.initVelocity();
-
         VelocityContext context = VelocityUtils.prepareContext(table);
-
-        // 获取模板列表
         List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory());
         for (String template : templates)
         {
-            // 渲染模板
             StringWriter sw = new StringWriter();
             Template tpl = Velocity.getTemplate(template, SystemConstant.UTF8);
             tpl.merge(context, sw);
@@ -303,19 +296,20 @@ public class GenTableServiceImpl implements IGenTableService
 
     /**
      * 查询表信息并生成代码
+     *
+     * @param tableName 表名
+     * @param zip 压缩文件流
      */
     private void generatorCode(String tableName, ZipOutputStream zip)
     {
         GenTable table = genTableMapper.selectGenTableByName(tableName);
 
         setSubTable(table);
-
         setPkColumn(table);
 
         VelocityInitializer.initVelocity();
         VelocityContext context = VelocityUtils.prepareContext(table);
 
-        // 获取模板列表
         List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory());
         for (String template : templates)
         {
@@ -347,17 +341,15 @@ public class GenTableServiceImpl implements IGenTableService
     {
         if (GenerateConstant.TPL_TREE.equals(genTable.getTplCategory()))
         {
-            String options = JSON.toJSONString(genTable.getParams());
-            JSONObject paramsObj = JSONObject.parseObject(options);
-            if (StringUtil.isEmpty(paramsObj.getString(GenerateConstant.TREE_CODE)))
+            if (StringUtil.isEmpty(genTable.getTreeCode()))
             {
                 throw new BusinessException("树编码字段不能为空");
             }
-            else if (StringUtil.isEmpty(paramsObj.getString(GenerateConstant.TREE_PARENT_CODE)))
+            else if (StringUtil.isEmpty(genTable.getTreeParentCode()))
             {
                 throw new BusinessException("树父编码字段不能为空");
             }
-            else if (StringUtil.isEmpty(paramsObj.getString(GenerateConstant.TREE_NAME)))
+            else if (StringUtil.isEmpty(genTable.getTreeName()))
             {
                 throw new BusinessException("树名称字段不能为空");
             }
