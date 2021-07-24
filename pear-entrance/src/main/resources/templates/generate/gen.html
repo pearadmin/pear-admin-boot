@@ -262,13 +262,10 @@
                     value = value.replace(/</g, "&lt;");
                     value = value.replace(/>/g, "&gt;");
                     let templateName = index.substring(index.lastIndexOf("/") + 1, index.length).replace(/\.vm/g, "");
-                    if (!layui.common.equals("sql", templateName) && !layui.common.equals("tree.html", templateName) && !layui.common
-                        .equals("sub-domain.java", templateName)) {
-                        items.push({
-                            title: templateName,
-                            content: "<pre class=\"layui-code\">" + value + "</pre>"
-                        })
-                    }
+                    items.push({
+                        title: templateName,
+                        content: "<pre class=\"layui-code\">" + value + "</pre>"
+                    })
                 });
                 top.layer.tab({
                     area: ['100%', '100%'],

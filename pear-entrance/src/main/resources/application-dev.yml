@@ -21,7 +21,8 @@ spring:
         min-idle: 0
     # 超时时间
     timeout: 1000
-  # 数据源配置
+
+  # 数据库配置
   datasource:
     dynamic:
       primary: master #设置默认的数据源或者数据源组,默认值即为master

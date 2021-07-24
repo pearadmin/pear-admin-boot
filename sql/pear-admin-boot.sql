@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 28/04/2021 01:18:06
+ Date: 25/07/2021 02:04:48
 */
 
 SET NAMES utf8mb4;
@@ -44,14 +44,16 @@ CREATE TABLE `gen_table`  (
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `parent_menu_id` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '父级菜单',
   `parent_menu_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '父级菜单名称',
+  `tree_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '树表主键',
+  `tree_parent_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '树表父级字段',
   PRIMARY KEY (`table_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
-INSERT INTO `gen_table` VALUES ('1328525218309734400', 'sys_user', 'App用户', NULL, NULL, 'SysUser', 'crud', 'com.pearadmin.system', 'system', 'user', 'App用户', 'Jmys', '1', '/pear-system', 'null', '', '2020-11-17 10:24:33', '', '2021-04-02 16:07:18', '', '1', '系统管理');
-INSERT INTO `gen_table` VALUES ('1370410322996756480', 'sys_notice', '站内消息', NULL, NULL, 'SysNotice', 'crud', 'com.pearadmin.system', 'system', 'notice', 'notice', 'jmys', '1', 'D:\\openSource\\Pear-Admin-Boot\\pear-modules\\pear-system', 'null', '', '2021-03-12 16:24:16', '', '2021-03-30 18:04:17', '生成', '1', '系统管理');
+INSERT INTO `gen_table` VALUES ('1418977532593569792', 'sys_power', '权限列表', NULL, NULL, 'SysPower', 'tree', 'com.pearadmin.system', 'system', 'power', '权限列表', '就眠仪式', '0', '/', 'null', '', '2021-07-25 00:53:01', '', '2021-07-25 01:31:08', '权限列表', '1', '系统管理', 'id', 'parent_id');
+INSERT INTO `gen_table` VALUES ('1418978010781974528', 'sys_user', '用户列表', NULL, NULL, 'SysUser', 'crud', 'com.pearadmin.system', 'system', 'user', '用户列表', '就眠仪式', '0', '/', 'null', '', '2021-07-25 00:54:55', '', '2021-07-25 01:04:45', '用户列表', '0', '顶级权限', '3', '3');
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -86,35 +88,320 @@ CREATE TABLE `gen_table_column`  (
 -- ----------------------------
 -- Records of gen_table_column
 -- ----------------------------
-INSERT INTO `gen_table_column` VALUES ('1328525219052126208', '1328525218309734400', 'user_id', '编号', 'char(19)', 'String', 'userId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 1, '', '2020-11-17 10:24:33', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525219400253440', '1328525218309734400', 'username', '账户', 'char(20)', 'String', 'username', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', 'input', 2, '', '2020-11-17 10:24:33', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525219786129408', '1328525218309734400', 'password', '密码', 'char(60)', 'String', 'password', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 3, '', '2020-11-17 10:24:33', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525220104896512', '1328525218309734400', 'salt', '姓名', 'char(10)', 'String', 'salt', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 4, '', '2020-11-17 10:24:33', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525220423663616', '1328525218309734400', 'status', '状态', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', 'input', 5, '', '2020-11-17 10:24:33', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525220734042112', '1328525218309734400', 'real_name', '姓名', 'char(8)', 'String', 'realName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', 'input', 6, '', '2020-11-17 10:24:33', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525221044420608', '1328525218309734400', 'email', '邮箱', 'char(20)', 'String', 'email', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 7, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525221363187712', '1328525218309734400', 'avatar', '头像', 'varchar(30)', 'String', 'avatar', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', 'input', 8, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525221677760512', '1328525218309734400', 'sex', '性别', 'char(1)', 'String', 'sex', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', 'user_sex', 9, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525222000721920', '1328525218309734400', 'phone', '电话', 'char(11)', 'String', 'phone', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 10, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525222415958016', '1328525218309734400', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', 'input', 11, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525222764085248', '1328525218309734400', 'create_by', '创建人', 'char(1)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 12, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525223091240960', '1328525218309734400', 'update_time', '修改时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', 'input', 13, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525223552614400', '1328525218309734400', 'update_by', '修改人', 'char(1)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', 'input', 14, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525223896547328', '1328525218309734400', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', 'input', 15, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525224206925824', '1328525218309734400', 'enable', '是否启用', 'char(1)', 'String', 'enable', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 16, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525224542470144', '1328525218309734400', 'login', '是否登录', 'char(1)', 'String', 'login', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 17, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1328525224861237248', '1328525218309734400', 'dept_id', '部门编号', 'char(19)', 'String', 'deptId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 18, '', '2020-11-17 10:24:34', NULL, '2021-04-02 16:07:18');
-INSERT INTO `gen_table_column` VALUES ('1370410323613319168', '1370410322996756480', 'id', '编号', 'char(20)', 'String', 'id', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 1, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410323856588800', '1370410322996756480', 'title', '标题', 'varchar(255)', 'String', 'title', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', 'input', 2, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410324095664128', '1370410322996756480', 'content', '内容', 'text', 'String', 'content', '0', '0', '1', '1', '1', '1', NULL, 'EQ', 'input', 'input', 3, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410324317962240', '1370410322996756480', 'sender', '发送人', 'char(20)', 'String', 'sender', '0', '0', '1', '1', NULL, '1', NULL, 'EQ', 'select', 'input', 4, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410324557037568', '1370410322996756480', 'accept', '接收者', 'char(20)', 'String', 'accept', '0', '0', '1', '1', '1', '1', NULL, 'EQ', 'input', 'input', 5, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410324766752768', '1370410322996756480', 'type', '类型', 'char(10)', 'String', 'type', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', 'sys_notice_type', 6, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410325018411008', '1370410322996756480', 'create_by', '创建人', 'char(20)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 7, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410325240709120', '1370410322996756480', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', 'input', 8, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410325471395840', '1370410322996756480', 'update_by', '修改人', 'char(20)', 'String', 'updateBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 9, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410325702082560', '1370410322996756480', 'update_time', '修改时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', 'input', 10, '', '2021-03-12 16:24:16', NULL, '2021-03-30 18:04:17');
-INSERT INTO `gen_table_column` VALUES ('1370410325928574976', '1370410322996756480', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 11, '', '2021-03-12 16:24:17', NULL, '2021-03-30 18:04:17');
+INSERT INTO `gen_table_column` VALUES ('1418977532627124224', '1418977532593569792', 'power_id', '权限编号', 'char(19)', 'String', 'powerId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 1, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532648095744', '1418977532593569792', 'power_name', '权限名称', 'varchar(255)', 'String', 'powerName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', 'input', 2, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532660678656', '1418977532593569792', 'power_type', '权限类型', 'char(1)', 'String', 'powerType', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', 'input', 3, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532673261568', '1418977532593569792', 'power_code', '权限标识', 'char(30)', 'String', 'powerCode', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 4, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532681650176', '1418977532593569792', 'power_url', '权限路径', 'varchar(255)', 'String', 'powerUrl', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 5, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532690038784', '1418977532593569792', 'open_type', '打开方式', 'char(10)', 'String', 'openType', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', 'input', 6, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532698427392', '1418977532593569792', 'parent_id', '父类编号', 'char(19)', 'String', 'parentId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 7, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532702621696', '1418977532593569792', 'icon', '图标', 'varchar(128)', 'String', 'icon', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 8, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532711010304', '1418977532593569792', 'sort', '排序', 'int', 'Long', 'sort', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 9, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532715204608', '1418977532593569792', 'create_by', '创建人', 'char(19)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 10, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532723593216', '1418977532593569792', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', 'input', 11, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532727787520', '1418977532593569792', 'update_by', '修改人', 'char(19)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', 'input', 12, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532740370432', '1418977532593569792', 'update_time', '修改时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', 'input', 13, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532748759040', '1418977532593569792', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', 'input', 14, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418977532757147648', '1418977532593569792', 'enable', '是否开启', 'char(1)', 'String', 'enable', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 15, '', '2021-07-25 00:53:01', NULL, '2021-07-25 01:31:08');
+INSERT INTO `gen_table_column` VALUES ('1418978010802946048', '1418978010781974528', 'user_id', '编号', 'char(19)', 'String', 'userId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 1, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010811334656', '1418978010781974528', 'username', '账户', 'char(20)', 'String', 'username', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', 'input', 2, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010815528960', '1418978010781974528', 'password', '密码', 'char(60)', 'String', 'password', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 3, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010819723264', '1418978010781974528', 'salt', '姓名', 'char(10)', 'String', 'salt', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 4, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010828111872', '1418978010781974528', 'status', '状态', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', 'input', 5, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010832306176', '1418978010781974528', 'real_name', '姓名', 'char(8)', 'String', 'realName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', 'input', 6, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010836500480', '1418978010781974528', 'email', '邮箱', 'char(20)', 'String', 'email', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 7, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010840694784', '1418978010781974528', 'avatar', '头像', 'varchar(30)', 'String', 'avatar', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 8, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010849083392', '1418978010781974528', 'sex', '性别', 'char(1)', 'String', 'sex', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', 'input', 9, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010853277696', '1418978010781974528', 'phone', '电话', 'char(11)', 'String', 'phone', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 10, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010857472000', '1418978010781974528', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', 'input', 11, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010861666304', '1418978010781974528', 'create_by', '创建人', 'char(1)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', 'input', 12, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010874249216', '1418978010781974528', 'update_time', '修改时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', 'input', 13, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010882637824', '1418978010781974528', 'update_by', '修改人', 'char(1)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', 'input', 14, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010886832128', '1418978010781974528', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', 'input', 15, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010895220736', '1418978010781974528', 'enable', '是否启用', 'char(1)', 'String', 'enable', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 16, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010903609344', '1418978010781974528', 'login', '是否登录', 'char(1)', 'String', 'login', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 17, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010907803648', '1418978010781974528', 'dept_id', '部门编号', 'char(19)', 'String', 'deptId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'input', 18, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+INSERT INTO `gen_table_column` VALUES ('1418978010916192256', '1418978010781974528', 'last_time', '最后一次登录时间', 'datetime', 'Date', 'lastTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', 'input', 19, '', '2021-07-25 00:54:55', NULL, '2021-07-25 01:04:45');
+
+-- ----------------------------
+-- Table structure for schedule_calendars
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_calendars`;
+CREATE TABLE `schedule_calendars`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CALENDAR_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CALENDAR` blob NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `CALENDAR_NAME`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_calendars
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_cron_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_cron_triggers`;
+CREATE TABLE `schedule_cron_triggers`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CRON_EXPRESSION` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TIME_ZONE_ID` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) USING BTREE,
+  CONSTRAINT `schedule_cron_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `schedule_triggers` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_cron_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_fired_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_fired_triggers`;
+CREATE TABLE `schedule_fired_triggers`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ENTRY_ID` varchar(95) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `INSTANCE_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `FIRED_TIME` bigint(0) NOT NULL,
+  `SCHED_TIME` bigint(0) NOT NULL,
+  `PRIORITY` int(0) NOT NULL,
+  `STATE` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `JOB_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `JOB_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `IS_NONCONCURRENT` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `REQUESTS_RECOVERY` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `ENTRY_ID`) USING BTREE,
+  INDEX `IDX_QRTZ_FT_TRIG_INST_NAME`(`SCHED_NAME`, `INSTANCE_NAME`) USING BTREE,
+  INDEX `IDX_QRTZ_FT_INST_JOB_REQ_RCVRY`(`SCHED_NAME`, `INSTANCE_NAME`, `REQUESTS_RECOVERY`) USING BTREE,
+  INDEX `IDX_QRTZ_FT_J_G`(`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_FT_JG`(`SCHED_NAME`, `JOB_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_FT_T_G`(`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_FT_TG`(`SCHED_NAME`, `TRIGGER_GROUP`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_fired_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_group
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_group`;
+CREATE TABLE `schedule_group`  (
+  `group_id` char(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '注释',
+  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '组名称',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_by` char(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `update_by` char(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改人',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`group_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of schedule_group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_job
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_job`;
+CREATE TABLE `schedule_job`  (
+  `job_id` char(19) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '任务id',
+  `bean_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'spring bean名称',
+  `params` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数',
+  `cron_expression` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'cron表达式',
+  `status` tinyint(0) NULL DEFAULT NULL COMMENT '任务状态  0：正常  1：暂停',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `job_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`job_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_job
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_job_details
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_job_details`;
+CREATE TABLE `schedule_job_details`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `JOB_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `JOB_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `DESCRIPTION` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `JOB_CLASS_NAME` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `IS_DURABLE` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `IS_NONCONCURRENT` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `IS_UPDATE_DATA` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `REQUESTS_RECOVERY` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `JOB_DATA` blob NULL,
+  PRIMARY KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_J_REQ_RECOVERY`(`SCHED_NAME`, `REQUESTS_RECOVERY`) USING BTREE,
+  INDEX `IDX_QRTZ_J_GRP`(`SCHED_NAME`, `JOB_GROUP`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_job_details
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_locks
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_locks`;
+CREATE TABLE `schedule_locks`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `LOCK_NAME` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `LOCK_NAME`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_locks
+-- ----------------------------
+INSERT INTO `schedule_locks` VALUES ('PearScheduler', 'TRIGGER_ACCESS');
+
+-- ----------------------------
+-- Table structure for schedule_log
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_log`;
+CREATE TABLE `schedule_log`  (
+  `log_id` char(19) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '任务日志id',
+  `job_id` char(19) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '任务id',
+  `bean_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'spring bean名称',
+  `params` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数',
+  `status` tinyint(0) NOT NULL COMMENT '任务状态    0：成功    1：失败',
+  `error` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '失败信息',
+  `times` int(0) NOT NULL COMMENT '耗时(单位：毫秒)',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`log_id`) USING BTREE,
+  INDEX `job_id`(`job_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务日志' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_log
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_paused_trigger_grps
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_paused_trigger_grps`;
+CREATE TABLE `schedule_paused_trigger_grps`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `TRIGGER_GROUP`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_paused_trigger_grps
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_scheduler_state
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_scheduler_state`;
+CREATE TABLE `schedule_scheduler_state`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `INSTANCE_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `LAST_CHECKIN_TIME` bigint(0) NOT NULL,
+  `CHECKIN_INTERVAL` bigint(0) NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `INSTANCE_NAME`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_scheduler_state
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_simple_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_simple_triggers`;
+CREATE TABLE `schedule_simple_triggers`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `REPEAT_COUNT` bigint(0) NOT NULL,
+  `REPEAT_INTERVAL` bigint(0) NOT NULL,
+  `TIMES_TRIGGERED` bigint(0) NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) USING BTREE,
+  CONSTRAINT `schedule_simple_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `schedule_triggers` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_simple_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_simprop_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_simprop_triggers`;
+CREATE TABLE `schedule_simprop_triggers`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `STR_PROP_1` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `STR_PROP_2` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `STR_PROP_3` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `INT_PROP_1` int(0) NULL DEFAULT NULL,
+  `INT_PROP_2` int(0) NULL DEFAULT NULL,
+  `LONG_PROP_1` bigint(0) NULL DEFAULT NULL,
+  `LONG_PROP_2` bigint(0) NULL DEFAULT NULL,
+  `DEC_PROP_1` decimal(13, 4) NULL DEFAULT NULL,
+  `DEC_PROP_2` decimal(13, 4) NULL DEFAULT NULL,
+  `BOOL_PROP_1` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `BOOL_PROP_2` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) USING BTREE,
+  CONSTRAINT `schedule_simprop_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `schedule_triggers` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_simprop_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for schedule_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_triggers`;
+CREATE TABLE `schedule_triggers`  (
+  `SCHED_NAME` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `JOB_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `JOB_GROUP` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `DESCRIPTION` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `NEXT_FIRE_TIME` bigint(0) NULL DEFAULT NULL,
+  `PREV_FIRE_TIME` bigint(0) NULL DEFAULT NULL,
+  `PRIORITY` int(0) NULL DEFAULT NULL,
+  `TRIGGER_STATE` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TRIGGER_TYPE` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `START_TIME` bigint(0) NOT NULL,
+  `END_TIME` bigint(0) NULL DEFAULT NULL,
+  `CALENDAR_NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `MISFIRE_INSTR` smallint(0) NULL DEFAULT NULL,
+  `JOB_DATA` blob NULL,
+  PRIMARY KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_T_J`(`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_T_JG`(`SCHED_NAME`, `JOB_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_T_C`(`SCHED_NAME`, `CALENDAR_NAME`) USING BTREE,
+  INDEX `IDX_QRTZ_T_G`(`SCHED_NAME`, `TRIGGER_GROUP`) USING BTREE,
+  INDEX `IDX_QRTZ_T_STATE`(`SCHED_NAME`, `TRIGGER_STATE`) USING BTREE,
+  INDEX `IDX_QRTZ_T_N_STATE`(`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`, `TRIGGER_STATE`) USING BTREE,
+  INDEX `IDX_QRTZ_T_N_G_STATE`(`SCHED_NAME`, `TRIGGER_GROUP`, `TRIGGER_STATE`) USING BTREE,
+  INDEX `IDX_QRTZ_T_NEXT_FIRE_TIME`(`SCHED_NAME`, `NEXT_FIRE_TIME`) USING BTREE,
+  INDEX `IDX_QRTZ_T_NFT_ST`(`SCHED_NAME`, `TRIGGER_STATE`, `NEXT_FIRE_TIME`) USING BTREE,
+  INDEX `IDX_QRTZ_T_NFT_MISFIRE`(`SCHED_NAME`, `MISFIRE_INSTR`, `NEXT_FIRE_TIME`) USING BTREE,
+  INDEX `IDX_QRTZ_T_NFT_ST_MISFIRE`(`SCHED_NAME`, `MISFIRE_INSTR`, `NEXT_FIRE_TIME`, `TRIGGER_STATE`) USING BTREE,
+  INDEX `IDX_QRTZ_T_NFT_ST_MISFIRE_GRP`(`SCHED_NAME`, `MISFIRE_INSTR`, `NEXT_FIRE_TIME`, `TRIGGER_GROUP`, `TRIGGER_STATE`) USING BTREE,
+  CONSTRAINT `schedule_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `schedule_job_details` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule_triggers
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -305,9 +592,9 @@ CREATE TABLE `sys_logging`  (
 -- ----------------------------
 -- Records of sys_logging
 -- ----------------------------
-INSERT INTO `sys_logging` VALUES ('1387093346635218944', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2021-04-28 01:16:39', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
-INSERT INTO `sys_logging` VALUES ('1387093352247197696', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2021-04-28 01:16:41', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
-INSERT INTO `sys_logging` VALUES ('1387093362711986176', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2021-04-28 01:16:43', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1418995375045345280', '登录', '/login', 'OTHER', 'POST', 'admin', '/login', '127.0.0.1', NULL, NULL, '1', NULL, '2021-07-25 02:03:56', '登录成功', NULL, '谷歌浏览器', 'Windows', 'LOGIN');
+INSERT INTO `sys_logging` VALUES ('1418995380669906944', '主页', '/index', 'ADD', 'GET', 'admin', '/index', '127.0.0.1', NULL, NULL, '1', NULL, '2021-07-25 02:03:57', '返回 Index 主页视图', NULL, '谷歌浏览器', 'Windows', 'OPERATE');
+INSERT INTO `sys_logging` VALUES ('1418995385006817280', '查询用户', '/system/user/data', 'QUERY', 'GET', 'admin', '/system/user/data', '127.0.0.1', NULL, NULL, '1', NULL, '2021-07-25 02:03:58', '查询用户', 'page=1&limit=10', '谷歌浏览器', 'Windows', 'OPERATE');
 
 -- ----------------------------
 -- Table structure for sys_mail
@@ -399,8 +686,8 @@ INSERT INTO `sys_power` VALUES ('1305870685385523200', '百度一下', '1', '', 
 INSERT INTO `sys_power` VALUES ('1305875436139446272', '百度一下', '1', 'http://www.baidu.com', 'http://www.baidu.com', '0', '451002662209589248', 'layui-icon-search', 1, NULL, NULL, NULL, NULL, NULL, '1');
 INSERT INTO `sys_power` VALUES ('1307299332784914432', '系统配置', '1', 'sys:config:main', '/system/config/main', '0', '1', 'layui-icon layui-icon layui-icon-note', 6, NULL, NULL, NULL, NULL, NULL, '1');
 INSERT INTO `sys_power` VALUES ('1307562196556840960', '工作流程', '0', '', '', '0', '0', 'layui-icon layui-icon-chat', 5, NULL, NULL, NULL, NULL, NULL, '1');
-INSERT INTO `sys_power` VALUES ('1307562519451140096', '模型管理', '1', '/process/model/main', '/process/model/main', '0', '1307562196556840960', 'layui-icon-circle', 0, NULL, NULL, NULL, NULL, NULL, '1');
-INSERT INTO `sys_power` VALUES ('1308571483794046976', '流程定义', '1', 'process:defined:main', '/process/defined/main', '0', '1307562196556840960', 'layui-icon-chart-screen', 1, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1307562519451140096', '模型管理', '1', '/process/model/main', '/process/model/main', '_iframe', '1307562196556840960', 'layui-icon layui-icon-rate', 0, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `sys_power` VALUES ('1308571483794046976', '流程定义', '1', 'process:defined:main', '/process/defined/main', '_iframe', '1307562196556840960', 'layui-icon layui-icon-vercode', 1, NULL, NULL, NULL, NULL, NULL, '1');
 INSERT INTO `sys_power` VALUES ('1310206853057085440', '用户修改', '2', 'sys:user:edit', '', '', '2', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
 INSERT INTO `sys_power` VALUES ('1310208636370288640', '用户删除', '2', 'sys:user:remove', '', '', '2', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
 INSERT INTO `sys_power` VALUES ('1310209696916832256', '角色新增', '2', 'sys:role:add', '', '', '3', 'layui-icon-vercode', 0, NULL, NULL, NULL, NULL, NULL, '1');
@@ -748,6 +1035,20 @@ INSERT INTO `sys_role_power` VALUES ('1370974927745712188', '1313761100243664896
 INSERT INTO `sys_role_power` VALUES ('1370974927745712189', '1313761100243664896', '1318230013262168064', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('1370974927745712190', '1313761100243664896', '1318230265385975808', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('1370974927745712191', '1313761100243664896', '1308571483794046976', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959552', '1356112133691015168', '694203021537574912', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959553', '1356112133691015168', '442650770626711552', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959554', '1356112133691015168', '1310397832091402240', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959555', '1356112133691015168', '1310390699333517312', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959556', '1356112133691015168', '1310390994826428416', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959557', '1356112133691015168', '1310391095670079488', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959558', '1356112133691015168', '1310391707069579264', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959559', '1356112133691015168', '1310398020692475904', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959560', '1356112133691015168', '1310398158974484480', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959561', '1356112133691015168', '442651158935375872', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959562', '1356112133691015168', '1310395250908332032', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959563', '1356112133691015168', '1307562196556840960', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959564', '1356112133691015168', '1307562519451140096', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_role_power` VALUES ('1417395897527959565', '1356112133691015168', '1308571483794046976', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('442062615250866176', '693913251020275712', '1', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('442062615250866177', '693913251020275712', '2', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_role_power` VALUES ('442062615250866178', '693913251020275712', '3', NULL, NULL, NULL, NULL, NULL);
@@ -784,7 +1085,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1306230031168569344', 'feng', '$2a$10$jjf2h8Cx2lkFMKy3NY9pguADYAMewyPr2IJw8YAI5zSH2/0R/9Kra', NULL, '1', '风筝', 'feng@gmail.com', NULL, '0', '15553726531', '2000-02-09 00:00:00', NULL, NULL, NULL, '被岁月镂空，亦受其雕琢', '1', NULL, '1', NULL);
-INSERT INTO `sys_user` VALUES ('1309861917694623744', 'admin', '$2a$10$6T.NGloFO.mD/QOAUelMTOcjAH8N49h34TsXduDVlnNMrASIGBNz6', NULL, '1', '管理', 'Jmys1992@qq.com', '1378647938930049024', '0', '15553726531', '2020-09-26 22:26:32', NULL, NULL, NULL, '被岁月镂空，亦受其雕琢', '1', NULL, '1', '2021-04-28 01:16:39');
+INSERT INTO `sys_user` VALUES ('1309861917694623744', 'admin', '$2a$10$6T.NGloFO.mD/QOAUelMTOcjAH8N49h34TsXduDVlnNMrASIGBNz6', NULL, '1', '管理', 'Jmys1992@qq.com', '1417168309870133248', '0', '15553726531', '2020-09-26 22:26:32', NULL, NULL, NULL, '被岁月镂空，亦受其雕琢', '1', NULL, '1', '2021-07-25 02:03:56');
 INSERT INTO `sys_user` VALUES ('1310409555649232897', 'ruhua', '$2a$10$pkvLdCLdFp2sXZpmK34wveekbWvHinW2ldBnic4SqjiKO8jK4Etka', NULL, '1', '如花', 'ruhua@gmail.com', NULL, '0', '15553726531', '2020-09-28 10:42:39', NULL, NULL, NULL, NULL, '1', NULL, '1', NULL);
 INSERT INTO `sys_user` VALUES ('1349016976730619905', 'mwj', '$2a$10$mD0pnwOGjmOKihboidaTveUdrqcDYoluzfCOA0Ho87iwr9PKrDA6i', NULL, '1', '风筝', '', NULL, '1', '666666666', '2021-01-12 23:34:45', NULL, NULL, NULL, NULL, '1', NULL, '6', '2021-01-12 23:35:12');
 INSERT INTO `sys_user` VALUES ('1349021166525743105', 'xiana', '$2a$10$6VuyGmiEbIix/gPDU8oe3O7DZSxGVByjXCHQGtyEMoRAt74M/daee', NULL, '1', '夏娜', 'xiana@gmail.com', NULL, '0', '15553726531', '2021-01-12 23:51:24', NULL, NULL, NULL, NULL, '1', NULL, '1', NULL);
@@ -792,6 +1093,7 @@ INSERT INTO `sys_user` VALUES ('1355966975355912193', 'sanman', '$2a$10$AD3QnQMR
 INSERT INTO `sys_user` VALUES ('1355967204012589057', 'langhua', '$2a$10$MNbf6dSvvncpoPsNFyMW6ObPwfj3jCKsZa7LvVAiXco1DWtgA46he', NULL, '1', '浪花', 'langhua@gmail.com', NULL, '0', '15553726531', '2021-02-01 03:52:29', NULL, NULL, NULL, NULL, '1', NULL, '1', NULL);
 INSERT INTO `sys_user` VALUES ('1355967579994193921', 'zidian', '$2a$10$c9OatFOMGnj37A6UJTwfGOKqCwCx50K8eZsjV5YoBRlpYHcz8WfyW', NULL, '1', '字典', 'zidian', NULL, '0', '15553726531', '2021-02-01 03:53:58', NULL, NULL, NULL, NULL, '1', NULL, '1', NULL);
 INSERT INTO `sys_user` VALUES ('1370973608502886401', 'duanlang', '$2a$10$XNcKlX3AnXR/Gh2g8aLX5OFtLD69Yjl1O8PDLmITH4WCQT.shsrWe', NULL, '1', '断浪', 'duanlang@gmail.com', NULL, '0', '15553726531', '2021-03-14 13:42:34', NULL, NULL, NULL, NULL, '1', NULL, '1', '2021-03-14 13:47:28');
+INSERT INTO `sys_user` VALUES ('1417395546586349569', 'jmys', '$2a$10$0HzindahrO8KyTSOrDt7A.0FkDN.6A4JkLf4FdYvhaArFHBsOh4uO', NULL, '1', '柏良', '854085467@qq.com', NULL, '0', '15553726531', '2021-07-20 16:06:47', NULL, NULL, NULL, NULL, '1', NULL, '1', '2021-07-20 16:08:48');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -892,6 +1194,7 @@ INSERT INTO `sys_user_role` VALUES ('1355967580686254081', '1355967579994193921'
 INSERT INTO `sys_user_role` VALUES ('1360858458609418240', '1309861917694623744', '1309851245195821056');
 INSERT INTO `sys_user_role` VALUES ('1360858458609418241', '1309861917694623744', '1313761100243664896');
 INSERT INTO `sys_user_role` VALUES ('1370973609278832640', '1370973608502886401', '1313761100243664896');
+INSERT INTO `sys_user_role` VALUES ('1417395547056111616', '1417395546586349569', '1356112133691015168');
 INSERT INTO `sys_user_role` VALUES ('442110794142978048', NULL, '1');
 INSERT INTO `sys_user_role` VALUES ('442110794142978049', NULL, '2');
 INSERT INTO `sys_user_role` VALUES ('442110794142978050', NULL, '3');

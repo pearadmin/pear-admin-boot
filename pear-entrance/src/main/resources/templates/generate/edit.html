@@ -66,21 +66,15 @@
                                 </div>
                             </div>
                             <div class="layui-form-item tree-field layui-hide">
-                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>树表字段：</label>
+                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>主键字段：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="treeCode" lay-verify="required" lay-verType="tips" placeholder="请输入树表字段" maxlength="50" th:field="*{treeCode}"/>
+                                    <input class="layui-input" type="text" name="treeCode"  placeholder="请输入树表字段" maxlength="50" th:field="*{treeCode}"/>
                                 </div>
                             </div>
                             <div class="layui-form-item tree-field layui-hide">
-                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>树表字段：</label>
+                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>父级字段：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="treeParentCode" lay-verify="required" lay-verType="tips" placeholder="请输入树表字段" maxlength="50" th:field="*{treeParentCode}"/>
-                                </div>
-                            </div>
-                            <div class="layui-form-item tree-field layui-hide">
-                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>树表字段：</label>
-                                <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="treeName" lay-verify="required" lay-verType="tips" placeholder="请输入树表字段" maxlength="50" th:field="*{treeName}"/>
+                                    <input class="layui-input" type="text" name="treeParentCode"  placeholder="请输入树表字段" maxlength="50" th:field="*{treeParentCode}"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -168,11 +162,9 @@
                 async: false,
                 success: function (data) {
                     if (data.code == 200) {
-                        layer.msg(data.msg, {icon: 1, time: 1000}, function () {
-                            parent.layui.tab.delCurrentTabByElem('content',function(id){})
-                        });
+                        layer.msg(data.msg, {icon: 1, time: 1000});
                     }else{
-                        layer.msg(data.msg, {icon: 2, time: 1000})
+                        layer.msg(data.msg, {icon: 2, time: 1000});
                     }
                 }
             });

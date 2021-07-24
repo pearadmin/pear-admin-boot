@@ -202,6 +202,7 @@ public class GenTableServiceImpl implements IGenTableService
         setPkColumn(table);
         VelocityInitializer.initVelocity();
         VelocityContext context = VelocityUtils.prepareContext(table);
+
         List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory());
         for (String template : templates)
         {
@@ -311,6 +312,7 @@ public class GenTableServiceImpl implements IGenTableService
         VelocityContext context = VelocityUtils.prepareContext(table);
 
         List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory());
+
         for (String template : templates)
         {
             StringWriter sw = new StringWriter();
@@ -348,10 +350,6 @@ public class GenTableServiceImpl implements IGenTableService
             else if (StringUtil.isEmpty(genTable.getTreeParentCode()))
             {
                 throw new BusinessException("树父编码字段不能为空");
-            }
-            else if (StringUtil.isEmpty(genTable.getTreeName()))
-            {
-                throw new BusinessException("树名称字段不能为空");
             }
         }
         else if (GenerateConstant.TPL_SUB.equals(genTable.getTplCategory()))

@@ -25,8 +25,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="updateBy"       column="update_by"         />
 		<result property="updateTime"     column="update_time"       />
 		<result property="remark"         column="remark"            />
-		<result property="parentMenuId"     column="parent_menu_id"       />
-		<result property="parentMenuName"     column="parent_menu_name"       />
+		<result property="parentMenuId"     column="parent_menu_id"  />
+		<result property="parentMenuName"     column="parent_menu_name"  />
+		<result property="treeCode" column="tree_code"  			 />
+		<result property="treeParentCode" column="tree_parent_code"  />
 		<collection property="columns" javaType="java.util.List" resultMap="GenTableColumnResult" />
 	</resultMap>
 	
@@ -56,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectGenTableVo">
-        select table_id, table_name, table_comment, sub_table_name, sub_table_fk_name, class_name, tpl_category, package_name, module_name, business_name, function_name, function_author, gen_type, gen_path, options, create_by, create_time, update_by, update_time, remark from gen_table
+        select tree_code, tree_parent_code ,table_id, table_name, table_comment, sub_table_name, sub_table_fk_name, class_name, tpl_category, package_name, module_name, business_name, function_name, function_author, gen_type, gen_path, options, create_by, create_time, update_by, update_time, remark from gen_table
     </sql>
     
     <select id="selectGenTableList" parameterType="GenTable" resultMap="GenTableResult">
@@ -101,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectGenTableById" parameterType="string" resultMap="GenTableResult">
-	    SELECT t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,
+	    SELECT t.tree_code, t.tree_parent_code , t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,
 			   c.column_id, t.parent_menu_id, t.parent_menu_name , c.column_name, c.column_comment, c.column_type, c.java_type, c.java_field, c.is_pk, c.is_increment, c.is_required, c.is_insert, c.is_edit, c.is_list, c.is_query, c.query_type, c.html_type, c.dict_type, c.sort
 		FROM gen_table t
 			 LEFT JOIN gen_table_column c ON t.table_id = c.table_id
@@ -109,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectGenTableByName" parameterType="string" resultMap="GenTableResult">
-	    SELECT t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,
+	    SELECT t.tree_code, t.tree_parent_code ,t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,
 			   c.column_id, t.parent_menu_id, t.parent_menu_name , c.column_name, c.column_comment, c.column_type, c.java_type, c.java_field, c.is_pk, c.is_increment, c.is_required, c.is_insert, c.is_edit, c.is_list, c.is_query, c.query_type, c.html_type, c.dict_type, c.sort
 		FROM gen_table t
 			 LEFT JOIN gen_table_column c ON t.table_id = c.table_id
@@ -117,7 +119,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectGenTableAll" parameterType="string" resultMap="GenTableResult">
-	    SELECT t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,
+	    SELECT t.tree_code, t.tree_parent_code ,t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,
 			   c.column_id, c.column_name, c.column_comment, c.column_type, c.java_type, c.java_field, c.is_pk, c.is_increment, c.is_required, c.is_insert, c.is_edit, c.is_list, c.is_query, c.query_type, c.html_type, c.dict_type, c.sort
 		FROM gen_table t
 			 LEFT JOIN gen_table_column c ON t.table_id = c.table_id
@@ -181,6 +183,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null">remark = #{remark},</if>
 			<if test="parentMenuId != null">parent_menu_id = #{parentMenuId},</if>
 			<if test="parentMenuName != null">parent_menu_name = #{parentMenuName},</if>
+			<if test="treeCode !=null">tree_code = #{treeCode},</if>
+			<if test="treeParentCode !=null">tree_parent_code = #{treeParentCode},</if>
             update_time = sysdate()
         </set>
         where table_id = #{tableId}

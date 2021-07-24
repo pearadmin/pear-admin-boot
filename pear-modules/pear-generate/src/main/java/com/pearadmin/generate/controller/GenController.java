@@ -44,7 +44,7 @@ import com.pearadmin.generate.service.IGenTableColumnService;
 @RequestMapping(ControllerConstant.API_GENERATOR_PREFIX)
 public class GenController extends BaseController {
 
-    private String prefix = "generate";
+    private String prefix = "generate/";
 
     @Resource
     private IGenTableService genTableService;
@@ -54,7 +54,7 @@ public class GenController extends BaseController {
 
     @GetMapping("main")
     public String gen() {
-        return prefix + "/gen";
+        return prefix + "gen";
     }
 
     /**
@@ -96,7 +96,7 @@ public class GenController extends BaseController {
      */
     @GetMapping("/importTable")
     public String importTable() {
-        return prefix + "/importTable";
+        return prefix + "importTable";
     }
 
     /**
@@ -118,7 +118,7 @@ public class GenController extends BaseController {
      * 修改代码生成业务
      */
     @GetMapping("/edit")
-    public String edit(String tableId, ModelMap mmap) {
+    public String edit(String tableId, ModelMap modelMap) {
         GenTable table = genTableService.selectGenTableById(tableId);
         List<GenTable> genTables = genTableService.selectGenTableAll();
         List<ResultSelect> cxSelect = new ArrayList<ResultSelect>();
@@ -133,9 +133,9 @@ public class GenController extends BaseController {
                 cxSelect.add(cxTable);
             }
         }
-        mmap.put("table", table);
-        mmap.put("data", JSON.toJSON(cxSelect));
-        return prefix + "/edit";
+        modelMap.put("table", table);
+        modelMap.put("data", JSON.toJSON(cxSelect));
+        return prefix + "edit";
     }
 
     /**

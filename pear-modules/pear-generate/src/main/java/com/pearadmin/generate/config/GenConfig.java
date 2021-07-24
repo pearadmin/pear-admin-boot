@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
- * Describe: 读取代码相关配置
+ * Describe: 默 认 配 置
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

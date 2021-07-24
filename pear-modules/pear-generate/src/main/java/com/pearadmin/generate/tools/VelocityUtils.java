@@ -25,14 +25,8 @@ public class VelocityUtils
     /** 项目空间路径 */
     private static final String PROJECT_PATH = "main/java";
 
-    /** mybatis空间路径 */
-    private static final String MYBATIS_PATH = "main/resources/mapper";
-
     /** html空间路径 */
     private static final String TEMPLATES_PATH = "main/resources/templates";
-
-    /** 默认上级菜单，系统工具 */
-    private static final String DEFAULT_PARENT_MENU_ID = "3";
 
     /**
      * 设置模板变量信息
@@ -73,31 +67,14 @@ public class VelocityUtils
 
     public static void setMenuVelocityContext(VelocityContext context, GenTable genTable)
     {
-        String options = genTable.getOptions();
         String parentMenuId = genTable.getParentMenuId();
         context.put("parentMenuId", parentMenuId);
     }
 
     public static void setTreeVelocityContext(VelocityContext context, GenTable genTable)
     {
-        String options = genTable.getOptions();
-        JSONObject paramsObj = JSONObject.parseObject(options);
-        String treeCode = getTreecode(paramsObj);
-        String treeParentCode = getTreeParentCode(paramsObj);
-        String treeName = getTreeName(paramsObj);
-
-        context.put("treeCode", treeCode);
-        context.put("treeParentCode", treeParentCode);
-        context.put("treeName", treeName);
-        context.put("expandColumn", getExpandColumn(genTable));
-        if (paramsObj.containsKey(GenerateConstant.TREE_PARENT_CODE))
-        {
-            context.put("tree_parent_code", paramsObj.getString(GenerateConstant.TREE_PARENT_CODE));
-        }
-        if (paramsObj.containsKey(GenerateConstant.TREE_NAME))
-        {
-            context.put("tree_name", paramsObj.getString(GenerateConstant.TREE_NAME));
-        }
+        context.put("treeCode", genTable.getTreeCode());
+        context.put("treeParentCode", genTable.getTreeParentCode());
     }
 
     /**
@@ -121,7 +98,6 @@ public class VelocityUtils
         else if (GenerateConstant.TPL_TREE.equals(tplCategory))
         {
             templates.add("vm/html/tree.html.vm");
-            templates.add("vm/html/list-tree.html.vm");
         }
         templates.add("vm/html/add.html.vm");
         templates.add("vm/html/edit.html.vm");
@@ -134,19 +110,13 @@ public class VelocityUtils
      */
     public static String getFileName(String template, GenTable genTable)
     {
-        // 文件名称
         String fileName = "";
-        // 包路径
         String packageName = genTable.getPackageName();
-        // 模块名
         String moduleName = genTable.getModuleName();
-        // 大写类名
         String className = genTable.getClassName();
-        // 业务名称
         String businessName = genTable.getBusinessName();
 
         String javaPath = PROJECT_PATH + "/" + StringUtil.replace(packageName, ".", "/");
-        String mybatisPath = MYBATIS_PATH + "/" + moduleName;
         String htmlPath = TEMPLATES_PATH + "/" + moduleName + "/" + businessName;
 
         if (template.contains("domain.java.vm"))
@@ -178,10 +148,6 @@ public class VelocityUtils
             fileName = StringUtil.format("{}/mapper/xml/{}Mapper.xml", javaPath, className);
         }
         else if (template.contains("list.html.vm"))
-        {
-            fileName = StringUtil.format("{}/main.html", htmlPath, businessName);
-        }
-        else if (template.contains("list-tree.html.vm"))
         {
             fileName = StringUtil.format("{}/main.html", htmlPath, businessName);
         }
@@ -268,88 +234,5 @@ public class VelocityUtils
     public static String getPermissionPrefix(String moduleName, String businessName)
     {
         return StringUtil.format("{}:{}", moduleName, businessName);
-    }
-
-    /**
-     * 获取上级菜单ID字段
-     *
-     * @return 上级菜单ID字段
-     */
-    public static String getParentMenuId(JSONObject paramsObj)
-    {
-        if (StringUtil.isNotEmpty(paramsObj) && paramsObj.containsKey(GenerateConstant.PARENT_MENU_ID))
-        {
-            return paramsObj.getString(GenerateConstant.PARENT_MENU_ID);
-        }
-        return DEFAULT_PARENT_MENU_ID;
-    }
-
-    /**
-     * 获取树编码
-     *
-     * @return 树编码
-     */
-    public static String getTreecode(JSONObject paramsObj)
-    {
-        if (paramsObj.containsKey(GenerateConstant.TREE_CODE))
-        {
-            return StringUtil.toCamelCase(paramsObj.getString(GenerateConstant.TREE_CODE));
-        }
-        return StringUtil.EMPTY;
-    }
-
-    /**
-     * 获取树父编码
-     *
-     * @return 树父编码
-     */
-    public static String getTreeParentCode(JSONObject paramsObj)
-    {
-        if (paramsObj.containsKey(GenerateConstant.TREE_PARENT_CODE))
-        {
-            return StringUtil.toCamelCase(paramsObj.getString(GenerateConstant.TREE_PARENT_CODE));
-        }
-        return StringUtil.EMPTY;
-    }
-
-    /**
-     * 获取树名称
-     *
-     * @return 树名称
-     */
-    public static String getTreeName(JSONObject paramsObj)
-    {
-        if (paramsObj.containsKey(GenerateConstant.TREE_NAME))
-        {
-            return StringUtil.toCamelCase(paramsObj.getString(GenerateConstant.TREE_NAME));
-        }
-        return StringUtil.EMPTY;
-    }
-
-    /**
-     * 获取需要在哪一列上面显示展开按钮
-     *
-     * @param genTable 业务表对象
-     * @return 展开按钮列序号
-     */
-    public static int getExpandColumn(GenTable genTable)
-    {
-        String options = genTable.getOptions();
-        JSONObject paramsObj = JSONObject.parseObject(options);
-        String treeName = paramsObj.getString(GenerateConstant.TREE_NAME);
-        int num = 0;
-        for (GenTableColumn column : genTable.getColumns())
-        {
-            if (column.isList())
-            {
-                num++;
-                String columnName = column.getColumnName();
-                if (columnName.equals(treeName))
-                {
-                    break;
-                }
-            }
-        }
-        return num;
     }
 }
