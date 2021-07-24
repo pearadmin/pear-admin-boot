@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 /**
- * Describe: 接 口 文 档 配 置 类
+ * Describe: 文 件 上 传 配 置 类
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
