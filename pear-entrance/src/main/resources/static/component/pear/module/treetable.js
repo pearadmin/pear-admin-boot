@@ -7,16 +7,11 @@ layui.define(['layer', 'table'], function (exports) {
 
     var treetable = {
 
-        // 渲染树形表格
         render: function (param) {
-
             param.method = param.method?param.method:"GET";
-
-            // 检查参数
             if (!treetable.checkParam(param)) {
                 return;
             }
-            // 获取数据
             if (param.data) {
                 treetable.init(param, param.data);
             } else {
@@ -44,7 +39,6 @@ layui.define(['layer', 'table'], function (exports) {
             var mData = [];
             var doneCallback = param.done;
             var tNodes = data;
-            // 补上id和pid字段
             for (var i = 0; i < tNodes.length; i++) {
                 var tt = tNodes[i];
                 if (!tt.id) {
@@ -63,7 +57,6 @@ layui.define(['layer', 'table'], function (exports) {
                 }
             }
 
-            // 对数据进行排序
             var sort = function (s_pid, data) {
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].pid == s_pid) {
@@ -78,7 +71,7 @@ layui.define(['layer', 'table'], function (exports) {
             };
             sort(param.treeSpid, tNodes);
 
-            // 重写参数
+            param.prevUrl = param.url;
             param.url = undefined;
             param.data = mData;
             param.page = {
@@ -109,10 +102,6 @@ layui.define(['layer', 'table'], function (exports) {
                 $(param.elem).next().addClass('treeTable');
                 $('.treeTable .layui-table-page').css('display', 'none');
                 $(param.elem).next().attr('treeLinkage', param.treeLinkage);
-                // 绑定事件换成对body绑定
-                /*$('.treeTable .treeTable-icon').click(function () {
-                    treetable.toggleRows($(this), param.treeLinkage);
-                });*/
                 if (param.treeDefaultClose) {
                     treetable.foldAll(param.elem);
                 }
@@ -128,17 +117,16 @@ layui.define(['layer', 'table'], function (exports) {
                 instances.push({key:param.elem,value:param});
             }
         },
-        // 表格重载
         reload: function(elem) {
             instances.forEach(function(item){
                 if(item.key === elem) {
-                    // 清空
                     $(elem).next().remove();
+                    item.value.data = undefined;
+                    item.value.url = item.value.prevUrl;
                     treetable.render(item.value);
                 }
             })
         },
-        // 计算缩进的数量
         getEmptyNum: function (pid, data) {
             var num = 0;
             if (!pid) {

@@ -90,12 +90,8 @@ public class SysPowerServiceImpl implements ISysPowerService {
     @Override
     @Transactional
     public boolean remove(String id) {
-        int powerResult = sysPowerMapper.deleteById(id);
-        int rolePowerResult = sysRolePowerMapper.deleteByPowerId(id);
-        if(powerResult > 0 && rolePowerResult>0){
-            return true;
-        }else{
-            return false;
-        }
+        sysPowerMapper.deleteById(id);
+        sysRolePowerMapper.deleteByPowerId(id);
+        return true;
     }
 }

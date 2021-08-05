@@ -35,10 +35,6 @@
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
-    <button sec:authorize="hasPermission('/system/power/remove','sys:power:remove')" class="pear-btn pear-btn-md" lay-event="batchRemove">
-        <i class="layui-icon layui-icon-delete"></i>
-        删除
-    </button>
 </script>
 
 <script type="text/html" id="power-bar">
@@ -85,12 +81,12 @@
                 treePidName: 'parentId',
                 skin: 'line',
                 method: 'get',
-                treeDefaultClose: true,
+                treeDefaultClose: false,
                 toolbar: '#power-toolbar',
                 elem: '#power-table',
                 url: '/system/power/data',
                 page: false,
-                defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh'}, 'filter', 'print', 'exports'],
+                defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh', title: '刷新'}, 'filter', 'print', 'exports'],
                 cols: [
                     [
                         {type: 'checkbox'},
@@ -145,8 +141,6 @@
                 window.add();
             } else if (obj.event === 'refresh') {
                 window.refresh();
-            } else if (obj.event === 'batchRemove') {
-                window.batchRemove(obj);
             }
         });
 
@@ -174,7 +168,6 @@
                 }
             })
         });
-
 
         window.add = function () {
             layer.open({

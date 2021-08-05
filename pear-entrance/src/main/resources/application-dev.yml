@@ -1,7 +1,7 @@
 spring:
   redis:
     # 主 机 地 址
-    host: redis.pearadmin.com
+    host: 127.0.0.1
     # 端 口
     port: 6379
     # 认 证
@@ -22,7 +22,7 @@ spring:
     # 超时时间
     timeout: 1000
 
-  # 数据库配置
+  # 数 据 库 配 置
   datasource:
     dynamic:
       primary: master #设置默认的数据源或者数据源组,默认值即为master

@@ -66,11 +66,10 @@
 </script>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery', 'dtree','common','popup'], function () {
+    layui.use(['table', 'form', 'jquery', 'common','popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
-        let dtree = layui.dtree;
         let common = layui.common;
         let popup = layui.popup;
 
@@ -97,6 +96,7 @@
             skin: 'line',
             toolbar: '#job-toolbar',
             defaultToolbar: [{
+                title: '刷新',
                 layEvent: 'refresh',
                 icon: 'layui-icon-refresh',
             }, 'filter', 'print', 'exports']
