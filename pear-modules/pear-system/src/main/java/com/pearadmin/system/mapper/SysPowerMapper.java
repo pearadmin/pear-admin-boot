@@ -23,6 +23,13 @@ public interface SysPowerMapper {
     List<SysPower> selectList(SysPower sysPower);
 
     /**
+     * Describe: 根据 SysPower 条件查询权限
+     * Param: tenantId
+     * Return: SysPower
+     * */
+    List<SysPower> selectListByParentId(String parentId);
+
+    /**
      * Describe: 保存 SysPower 权限数据
      * Param: SysPower
      * Return: SysPower

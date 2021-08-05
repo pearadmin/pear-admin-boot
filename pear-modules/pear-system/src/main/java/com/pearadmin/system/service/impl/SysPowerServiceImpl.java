@@ -94,4 +94,14 @@ public class SysPowerServiceImpl implements ISysPowerService {
         sysRolePowerMapper.deleteByPowerId(id);
         return true;
     }
+
+    /**
+     * Describe: 根据 parentId 查询权限
+     * Param: parentId
+     * Return: 操作结果
+     * */
+    @Override
+    public List<SysPower> selectByParentId(String parentId) {
+        return sysPowerMapper.selectListByParentId(parentId);
+    }
 }

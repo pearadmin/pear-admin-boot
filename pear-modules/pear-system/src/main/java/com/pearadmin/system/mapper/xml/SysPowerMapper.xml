@@ -49,6 +49,10 @@
         order by sort asc
     </select>
 
+    <select id="selectListByParentId" parameterType="string" resultMap="SysPowerMap">
+        select * from sys_power where parent_id = #{parentId}
+    </select>
+
     <!-- 根据 Id 查询权限-->
     <select id="selectById" parameterType="string" resultMap="SysPowerMap">
         select * from sys_power where power_id = #{id}

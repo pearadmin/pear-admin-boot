@@ -39,9 +39,16 @@ public interface ISysPowerService {
     boolean update(SysPower sysPower);
 
     /**
-     * Describe: 根据 id 删除用户数据
+     * Describe: 根据 id 删除权限
      * Param: id
      * Return: 操作结果
      * */
     boolean remove(String id);
+
+    /**
+     * Describe: 根据 parentId 查询权限
+     * Param: parentId
+     * Return: 操作结果
+     * */
+    List<SysPower> selectByParentId(String parentId);
 }
