@@ -26,7 +26,7 @@
    </resultMap>
 
     <select id="selectMenuByUsername" parameterType="string" resultMap="ResuMenuMap">
-        	 select DISTINCT sp.power_id,sp.* from sys_power sp
+        	 select DISTINCT sp.* from sys_power sp
 			 left join sys_role_power srp on srp.power_id = sp.power_id
 			 left join sys_role sr on sr.role_id = srp.role_id
 			 left join  sys_user_role sur on sur.role_id = sr.role_id

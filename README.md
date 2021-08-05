@@ -22,6 +22,10 @@
       <a href="#">
         <img src="https://img.shields.io/badge/Layui-2.5.6+-green.svg" alt="Layui Version">
     </a>
+    <br/>
+    <a href="#">
+        <img src="https://img.shields.io/badge/MySql-8.0.22-red.svg" alt="Node Version">
+    </a>
 </p>
 
 <div align="center">
