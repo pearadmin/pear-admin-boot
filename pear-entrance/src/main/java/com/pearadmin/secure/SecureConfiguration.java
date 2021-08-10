@@ -39,25 +39,25 @@ public class SecureConfiguration extends WebSecurityConfigurerAdapter {
      * 登录成功处理类
      */
     @Resource
-    private SecureAuthenticationSuccessHandler securityAccessSuccessHander;
+    private SecureAuthenticationSuccessHandler securityAccessSuccessHandler;
 
     /**
      * 登录失败处理类
      */
     @Resource
-    private SecureAuthenticationFailureHandler securityAccessFailureHander;
+    private SecureAuthenticationFailureHandler securityAccessFailureHandler;
 
     /**
      * 退出登录处理类
      */
     @Resource
-    private SecureLogoutSuccessHandler securityAccessLogoutHander;
+    private SecureLogoutSuccessHandler securityAccessLogoutHandler;
 
     /**
      * 没有权限处理类
      */
     @Resource
-    private SecureAccessDeniedHandler securityAccessDeniedHander;
+    private SecureAccessDeniedHandler securityAccessDeniedHandler;
 
     /**
      * 配置不拦截url
@@ -135,20 +135,20 @@ public class SecureConfiguration extends WebSecurityConfigurerAdapter {
                 // 登录接口
                 .loginProcessingUrl("/login")
                 // 配置登录成功自定义处理类
-                .successHandler(securityAccessSuccessHander)
+                .successHandler(securityAccessSuccessHandler)
                 // 配置登录失败自定义处理类
-                .failureHandler(securityAccessFailureHander)
+                .failureHandler(securityAccessFailureHandler)
                 .and()
                 .logout()
                 .addLogoutHandler(securityLogoutHandler)
                 // 退出登录删除 cookie缓存
                 .deleteCookies("JSESSIONID")
                 // 配置用户登出自定义处理类
-                .logoutSuccessHandler(securityAccessLogoutHander)
+                .logoutSuccessHandler(securityAccessLogoutHandler)
                 .and()
                 .exceptionHandling()
                 // 配置没有权限自定义处理类
-                .accessDeniedHandler(securityAccessDeniedHander)
+                .accessDeniedHandler(securityAccessDeniedHandler)
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")
