@@ -125,6 +125,11 @@ public class SysUserServiceImpl implements ISysUserService {
      * */
     @Override
     public boolean save(SysUser sysUser) {
+        SysUser user = new SysUser();
+        user.setUsername(sysUser.getUsername());
+        if(sysUserMapper.count(user)>0){
+            return false;
+        }
         int result = sysUserMapper.insert(sysUser);
         return result > 0;
     }

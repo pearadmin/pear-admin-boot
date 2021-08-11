@@ -36,6 +36,13 @@ public interface SysUserMapper {
     List<SysUser> selectList(SysUser param);
 
     /**
+     * Describe: 根据 SysUser 条件查询用户数量
+     * Param: username
+     * Return: Integer
+     * */
+    Integer count(SysUser sysUser);
+
+    /**
      * Describe: 添加用户数据
      * Param: username
      * Return: Integer
