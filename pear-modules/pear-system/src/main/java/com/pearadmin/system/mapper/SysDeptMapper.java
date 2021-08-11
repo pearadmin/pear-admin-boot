@@ -55,4 +55,11 @@ public interface SysDeptMapper {
      * */
     Integer deleteByIds(String[] ids);
 
+    /**
+     * Describe: 根据 parentId 查询部门
+     * Param: parentId
+     * Return: SysDept
+     * */
+    List<SysDept> selectListByParentId(String parentId);
+
 }

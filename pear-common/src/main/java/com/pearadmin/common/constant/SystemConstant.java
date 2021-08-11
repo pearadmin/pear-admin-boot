@@ -15,7 +15,7 @@ public class SystemConstant {
     /**
      * Linux 系统常量标识
      * */
-    private static String Linux = "linux";
+    public static String Linux = "linux";
 
     /**
      * UTF-8 编码格式

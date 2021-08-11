@@ -103,4 +103,14 @@ public class SysDeptServiceImpl implements ISysDeptService {
         sysUserMapper.resetDeptByDeptIds(ids);
         return true;
     }
+
+    /**
+     * Describe: 根据 parentId 查询部门数据
+     * Param: parentId
+     * Return: 操作结果
+     * */
+    @Override
+    public List<SysDept> selectByParentId(String tenantId) {
+        return sysDeptMapper.selectListByParentId(tenantId);
+    }
 }

@@ -130,6 +130,9 @@ public class SysDeptController extends BaseController {
     @DeleteMapping("remove/{id}")
     @PreAuthorize("hasPermission('/system/dept/remove','sys:dept:remove')")
     public Result remove(@PathVariable String id) {
+        if(sysDeptService.selectByParentId(id).size() > 0) {
+            return failure("请先删除下级部门");
+        }
         boolean result = sysDeptService.remove(id);
         return decide(result);
     }

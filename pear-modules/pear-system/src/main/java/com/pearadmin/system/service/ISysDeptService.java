@@ -61,4 +61,11 @@ public interface ISysDeptService {
      * Return: 操作结果
      * */
     boolean batchRemove(String[] ids);
+
+    /**
+     * Describe: 根据 parentId 查询部门数据
+     * Param: parentId
+     * Return: 操作结果
+     * */
+    List<SysDept> selectByParentId(String tenantId);
 }

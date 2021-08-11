@@ -32,6 +32,10 @@
         select * from sys_dept where dept_id = #{id}
     </select>
 
+    <select id="selectListByParentId" parameterType="string" resultMap="SysDeptMap">
+        select * from sys_dept where parent_id = #{parentId}
+    </select>
+
     <insert id="insert" parameterType="SysDept">
         insert into sys_dept
         <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -119,11 +119,14 @@ public class SysPowerController extends BaseController {
     /**
      * Describe: 根据 id 进行删除
      * Param id
-     * Return ResuTree
+     * Return Result
      * */
     @DeleteMapping("remove/{id}")
     @PreAuthorize("hasPermission('/system/power/remove','sys:power:remove')")
     public Result remove(@PathVariable String id){
+        if(sysPowerService.selectByParentId(id).size() > 0) {
+            return failure("请先删除下级权限");
+        }
         boolean result = sysPowerService.remove(id);
         return decide(result);
     }
@@ -131,7 +134,7 @@ public class SysPowerController extends BaseController {
     /**
      * Describe: 获取父级权限选择数据
      * Param sysPower
-     * Return ResuTree
+     * Return Result
      * */
     @GetMapping("selectParent")
     public ResultTree selectParent(SysPower sysPower){
@@ -147,7 +150,7 @@ public class SysPowerController extends BaseController {
     /**
      * Describe: 根据 Id 开启用户
      * Param powerId
-     * Return ResuTree
+     * Return Result
      * */
     @PutMapping("enable")
     public Result enable(@RequestBody SysPower sysPower){
@@ -159,7 +162,7 @@ public class SysPowerController extends BaseController {
     /**
      * Describe: 根据 Id 禁用用户
      * Param powerId
-     * Return ResuTree
+     * Return Result
      * */
     @PutMapping("disable")
     public Result disable(@RequestBody SysPower sysPower){
