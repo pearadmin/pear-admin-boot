@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- 文件输出格式 -->
-    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+    <property name="PATTERN" value="%boldMagenta(%-12(%d{yyyy-MM-dd HH:mm:ss.SSS})) |- %highlight(%-5level) %cyan([%thread]) %green(%c [%L]) -| %msg%n" />
     <property name="LOG_NAME" value="pear" />
     <!--所在项目包 打印日志用-->
     <property name="PACKAGE_NAME" value="com.pearadmin" />
