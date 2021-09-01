@@ -19,7 +19,7 @@ public interface ${ClassName}Mapper
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return ${functionName}
      */
-    public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
+    ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
 
     /**
      * 查询${functionName}列表
