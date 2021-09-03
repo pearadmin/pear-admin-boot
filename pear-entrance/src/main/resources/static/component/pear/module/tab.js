@@ -66,7 +66,7 @@ layui.define(['jquery', 'element'], function(exports) {
 
 		option.success(sessionStorage.getItem(option.elem + "-pear-tab-data-current"));
 
-		$("body .layui-tab[lay-filter='" + option.elem + "']").on("contextmenu", "li", function(e) {
+		$("body .layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title").on("contextmenu", "li", function(e) {
 
 			// 获取当前元素位置
 			var top = e.clientY;
@@ -550,7 +550,6 @@ layui.define(['jquery', 'element'], function(exports) {
 		})
 
 		$("#" + option.elem + "closeAll").click(function() {
-			var currentId = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title .layui-this").attr("lay-id");
 			var tabtitle = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title li");
 			$.each(tabtitle, function(i) {
 				if ($(this).find("span").is(".able-close")) {
@@ -590,7 +589,6 @@ layui.define(['jquery', 'element'], function(exports) {
 		})
 
 		$("body .layui-tab[lay-filter='" + option.elem + "']").on("click", "#closeAll", function() {
-			var currentId = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title .layui-this").attr("lay-id");
 			var tabtitle = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title li");
 			$.each(tabtitle, function(i) {
 				if ($(this).find("span").is(".able-close")) {

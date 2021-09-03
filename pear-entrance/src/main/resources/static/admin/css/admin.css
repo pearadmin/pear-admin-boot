@@ -4,10 +4,10 @@ body,
 	height: 100%;
 }
 
-.pear-admin .layui-header,
 .pear-admin .layui-body,
 .pear-admin .layui-logo,
 .pear-admin .layui-side,
+.pear-admin .layui-header,
 .pear-admin .layui-header .layui-layout-left {
 	transition: all .3s;
 }
@@ -18,7 +18,7 @@ body,
 
 .pear-admin .layui-layout-right .layui-nav-child {
 	border: 1px solid whitesmoke;
-	border-radius: 6px;
+	border-radius: 4px;
 	width: 150px;
 }
 
