@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.generate.service.IGenTableColumnService;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Describe: 代码生成控制器
@@ -52,13 +53,21 @@ public class GenController extends BaseController {
     @Resource
     private IGenTableColumnService genTableColumnService;
 
+    /**
+     * 代码生成页面
+     *
+     * @return {@link ModelAndView}
+     * */
     @GetMapping("main")
-    public String gen() {
-        return prefix + "gen";
+    public ModelAndView gen() {
+        return jumpPage(prefix + "gen");
     }
 
     /**
      * 查询代码生成列表
+     *
+     * @param genTable 查询参数
+     * @param pageDomain 分页参数
      */
     @GetMapping("/list")
     @ResponseBody
@@ -71,6 +80,9 @@ public class GenController extends BaseController {
 
     /**
      * 查询数据库列表
+     *
+     * @param genTable 查询参数
+     * @param pageDomain 分页参数
      */
     @GetMapping("/db/list")
     @ResponseBody
@@ -116,6 +128,9 @@ public class GenController extends BaseController {
 
     /**
      * 修改代码生成业务
+     *
+     * @param tableId 编号
+     * @param modelMap 数据
      */
     @GetMapping("/edit")
     public String edit(String tableId, ModelMap modelMap) {
@@ -140,6 +155,8 @@ public class GenController extends BaseController {
 
     /**
      * 修改保存代码生成业务
+     *
+     * @param genTable 代码生成实体
      */
     @PostMapping("/edit")
     @ResponseBody
@@ -149,6 +166,11 @@ public class GenController extends BaseController {
         return success("保存成功");
     }
 
+    /**
+     * 根据 编号 删除代码生成配置
+     *
+     * @param ids 代码生成编号
+     */
     @PostMapping("/remove")
     @ResponseBody
     public Result remove(String ids) {
@@ -158,6 +180,8 @@ public class GenController extends BaseController {
 
     /**
      * 预览代码
+     *
+     * @param tableId 表格编号
      */
     @GetMapping("/preview/{tableId}")
     @ResponseBody
@@ -167,7 +191,9 @@ public class GenController extends BaseController {
     }
 
     /**
-     * 生成代码（下载方式）
+     * 下载代码
+     *
+     * @param tableName 表格名称
      */
     @GetMapping("/download/{tableName}")
     public void download(HttpServletResponse response, @PathVariable("tableName") String tableName) throws IOException {
@@ -176,7 +202,9 @@ public class GenController extends BaseController {
     }
 
     /**
-     * 生成代码（自定义路径）
+     * 生成代码
+     *
+     * @param tableName 表格名称
      */
     @GetMapping("/genCode/{tableName}")
     @ResponseBody
@@ -197,7 +225,7 @@ public class GenController extends BaseController {
     }
 
     /**
-     * 生成zip文件
+     * 下载压缩文件
      */
     private void genCode(HttpServletResponse response, byte[] data) throws IOException {
         response.reset();

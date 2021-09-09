@@ -30,9 +30,6 @@ public class EntranceController extends BaseController {
     @Resource
     private SessionRegistry sessionRegistry;
 
-    @Resource
-    private ISysLogService sysLogService;
-
     /**
      * Describe: 获取登录视图
      * Param: ModelAndView
@@ -66,7 +63,7 @@ public class EntranceController extends BaseController {
      * Return: 主页视图
      * */
     @GetMapping("console")
-    public ModelAndView home(Model model)
+    public ModelAndView home()
     {
         return jumpPage("console/console");
     }

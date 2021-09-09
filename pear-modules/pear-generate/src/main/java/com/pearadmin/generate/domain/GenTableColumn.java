@@ -12,7 +12,6 @@ import org.apache.ibatis.type.Alias;
 @Alias("GenTableColumn")
 public class GenTableColumn extends BaseDomain
 {
-    private static final long serialVersionUID = 1L;
 
     /** 编号 */
     private String columnId;
@@ -331,9 +330,9 @@ public class GenTableColumn extends BaseDomain
     public static boolean isSuperColumn(String javaField)
     {
         return StringUtils.equalsAnyIgnoreCase(javaField,
-                // BaseEntity
+                // BaseDomain
                 "createBy", "createTime", "updateBy", "updateTime", "remark",
-                // TreeEntity
+                // TreeDomain
                 "parentName", "parentId", "orderNum", "ancestors");
     }
 

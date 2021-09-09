@@ -38,8 +38,10 @@ public class ProEditorController extends BaseController implements ModelDataJson
     private ObjectMapper objectMapper;
 
     /**
-     * 获取流程
+     * 根据 modelId 获取流程模型
+     *
      * @param modelId 模型ID
+     * @return {@link ObjectNode}
      */
     @RequestMapping(value="/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
     public ObjectNode getEditorJson(@PathVariable String modelId) {
@@ -65,17 +67,19 @@ public class ProEditorController extends BaseController implements ModelDataJson
     }
 
     /**
-     * 保存流程
+     * 保存流程模型
+     *
      * @param modelId 模型ID
      * @param name 流程模型名称
-     * @param description
+     * @param description 流程描述
      * @param json_xml 流程文件
-     * @param svg_xml 图片
+     * @param svg_xml 流程图片
      */
     @RequestMapping(value="/model/{modelId}/save", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void saveModel(@PathVariable String modelId, String name, String description, String json_xml, String svg_xml) {
         try {
+
             Model model = repositoryService.getModel(modelId);
             ObjectNode modelJson = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
             modelJson.put(MODEL_NAME, name);
@@ -95,13 +99,17 @@ public class ProEditorController extends BaseController implements ModelDataJson
             final byte[] result = outStream.toByteArray();
             repositoryService.addModelEditorSourceExtra(model.getId(), result);
             outStream.close();
+
         } catch (Exception e) {
+
             throw new ActivitiException("Error saving model", e);
         }
     }
 
     /**
-     * 获取流程工具
+     * 流程工具列表
+     *
+     * @return {@link String}
      */
     @ResponseBody
     @GetMapping(value="/editor/stencilset", produces = "application/json;charset=utf-8")

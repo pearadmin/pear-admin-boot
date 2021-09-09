@@ -17,8 +17,6 @@ import org.apache.ibatis.type.Alias;
 @Alias("GenTable")
 public class GenTable extends BaseDomain
 {
-    private static final long serialVersionUID = 1L;
-
     /** 编号 */
     private String tableId;
 

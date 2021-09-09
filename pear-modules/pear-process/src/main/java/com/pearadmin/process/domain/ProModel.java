@@ -30,4 +30,5 @@ public class ProModel extends BaseDomain {
          * 版本
          * */
         private Integer version;
+
 }

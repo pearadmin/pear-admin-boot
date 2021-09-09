@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * Describe: 模型创建实体
  * Author: 就眠仪式
- * createTime: 2019/10/23
+ * createTime: 2021/09/09
  * */
 @Data
 public class CreateModelParam {

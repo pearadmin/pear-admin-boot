@@ -2,7 +2,6 @@ package com.pearadmin.generate.mapper;
 
 import com.pearadmin.generate.domain.GenTable;
 import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
 /**

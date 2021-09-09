@@ -17,7 +17,6 @@
                 <pattern>${PATTERN}</pattern>
             </encoder>
         </appender>
-
         <!-- 输出到文件 -->
         <logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug"/>
         <logger name="org.apache.ibatis.reflection" level="INFO"/>
@@ -49,7 +48,6 @@
         </appender>
         <logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug"/>
         <logger name="org.apache.ibatis.reflection" level="INFO"/>
-
         <logger name="${PACKAGE_NAME}" level="debug" />
         <root level="debug">
             <appender-ref ref="TEST_FILE" />

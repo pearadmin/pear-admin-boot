@@ -1,9 +1,9 @@
 package com.pearadmin.api.common;
 
-import com.pearadmin.common.web.domain.response.Result;
-import com.wf.captcha.utils.CaptchaUtil;
-import com.pearadmin.common.web.base.BaseController;
 import io.swagger.annotations.Api;
+import com.wf.captcha.utils.CaptchaUtil;
+import com.pearadmin.common.web.domain.response.Result;
+import com.pearadmin.common.web.base.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
@@ -42,5 +42,4 @@ public class CaptchaController extends BaseController {
         }
         return failure("验证失败");
     }
-
 }
