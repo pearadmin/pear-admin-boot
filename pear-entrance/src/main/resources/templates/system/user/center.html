@@ -175,10 +175,11 @@
 </div>
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    layui.use(['element', 'jquery', 'layer','form'], function () {
+    layui.use(['element', 'jquery', 'layer','form','convert'], function () {
         let $ = layui.jquery;
         let layer = layui.layer;
         let form = layui.form;
+        let convert = layui.convert;
 
         $(".edit-password").click(function () {
             layer.open({
@@ -191,7 +192,11 @@
             return false;
         })
 
-        $("#avatar").attr("src", "/system/file/download/"+[[${userInfo.avatar}]]);
+        let image = new Image();
+        image.src = "/system/file/download/"+[[${userInfo.avatar}]];
+        image.onload = function() {
+            $("#avatar").attr("src", convert.imageToBase64(image));
+        }
 
         $("#avatar").click(function () {
             layer.open({

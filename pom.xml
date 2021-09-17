@@ -14,7 +14,7 @@
     <!-- 基 本 信 息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-admin-boot</artifactId>
-    <version>1.4.1-RELEASE</version>
+    <version>1.5.3-RELEASE</version>
     <name>Pear-Admin-Boot</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
