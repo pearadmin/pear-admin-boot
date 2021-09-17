@@ -6,39 +6,22 @@
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <div class="col-sm-12 search-collapse">
-            <form id="formId" class="layui-form">
-                <div class="layui-form-item">
-                    #foreach($column in $columns)
-                        #if($column.query)
-                            #set($javaField=$column.javaField)
-                            #set($comment=$column.columnComment)
-                            #if($column.htmlType == "input")
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="${javaField}" placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-required#end/>
-                                </div>
-                            #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && "" !=$column.dictType)
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-inline">
-                                    <select name="${javaField}" #if($column.required) lay-required#end  #if("" !=$column.dictType)dict-code="${column.dictType}" #end>
-                                        <option value="">所有</option>
-                                    </select>
-                                </div>
-                            #end
-                        #end
-                    #end
-                    <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="${businessName}-query">
-                        <i class="layui-icon layui-icon-search"></i>
-                        查询
-                    </button>
-                    <button type="reset" class="pear-btn pear-btn-md">
-                        <i class="layui-icon layui-icon-refresh"></i>
-                        重置
-                    </button>
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="keyword" placeholder="" class="layui-input">
                 </div>
-            </form>
-        </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="${businessName}-query">
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button type="reset" class="pear-btn pear-btn-md">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 <div class="layui-card">
@@ -143,7 +126,7 @@
         });
 
         form.on('submit(${businessName}-query)', function (data) {
-            treetable.reload('#${businessName}-table');
+            treetable.search("#${businessName}-table",data.field.keyword)
             return false;
         });
 
