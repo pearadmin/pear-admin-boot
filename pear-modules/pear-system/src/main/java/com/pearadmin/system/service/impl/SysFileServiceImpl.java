@@ -70,7 +70,7 @@ public class SysFileServiceImpl implements ISysFileService {
      * Return: id
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public String upload(MultipartFile file) {
         String result = "";
         try {
@@ -117,7 +117,7 @@ public class SysFileServiceImpl implements ISysFileService {
     public void download(String id) {
         try {
             SysFile file = fileMapper.selectById(id);
-            if( null==file ){
+            if (null == file) {
                 file = new SysFile();
                 file.setFilePath(SystemConstant.EMPTY);
             }

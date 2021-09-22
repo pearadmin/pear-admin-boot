@@ -9,6 +9,7 @@ import com.pearadmin.system.mapper.SysUserMapper;
 import com.pearadmin.system.service.ISysDeptService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 查询部门数据
      * Param: QueryRoleParam
      * Return: 操作结果
-     * */
+     */
     @Override
     public List<SysDept> list(SysDept param) {
         return sysDeptMapper.selectList(param);
@@ -35,10 +36,10 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 查询部门数据 分页
      * Param: QueryRoleParam
      * Return: 操作结果
-     * */
+     */
     @Override
     public PageInfo<SysDept> page(SysDept param, PageDomain pageDomain) {
-        PageHelper.startPage(pageDomain.getPage(),pageDomain.getLimit());
+        PageHelper.startPage(pageDomain.getPage(), pageDomain.getLimit());
         List<SysDept> list = sysDeptMapper.selectList(param);
         return new PageInfo<>(list);
     }
@@ -47,10 +48,10 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 保存部门数据
      * Param: SysDept
      * Return: 操作结果
-     * */
+     */
     @Override
     public boolean save(SysDept sysDept) {
-        if(null==sysDept.getParentId()){
+        if (null == sysDept.getParentId()) {
             sysDept.setParentId("0");
         }
         int result = sysDeptMapper.insert(sysDept);
@@ -61,7 +62,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 根据 ID 查询部门
      * Param: id
      * Return: 返回部门信息
-     * */
+     */
     @Override
     public SysDept getById(String id) {
         return sysDeptMapper.selectById(id);
@@ -71,7 +72,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 修改用户数据
      * Param: SysUser
      * Return: 操作结果
-     * */
+     */
     @Override
     public boolean update(SysDept sysDept) {
         Integer result = sysDeptMapper.updateById(sysDept);
@@ -82,9 +83,9 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 根据 id 删除部门数据
      * Param: id
      * Return: Boolean
-     * */
+     */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Boolean remove(String id) {
         sysDeptMapper.deleteById(id);
         sysUserMapper.resetDeptByDeptId(id);
@@ -95,9 +96,9 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 根据 id 批量删除部门数据
      * Param: ids
      * Return: Boolean
-     * */
+     */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean batchRemove(String[] ids) {
         sysDeptMapper.deleteByIds(ids);
         sysUserMapper.resetDeptByDeptIds(ids);
@@ -108,7 +109,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * Describe: 根据 parentId 查询部门数据
      * Param: parentId
      * Return: 操作结果
-     * */
+     */
     @Override
     public List<SysDept> selectByParentId(String tenantId) {
         return sysDeptMapper.selectListByParentId(tenantId);
