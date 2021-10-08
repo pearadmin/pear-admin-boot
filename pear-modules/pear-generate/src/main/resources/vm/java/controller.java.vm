@@ -26,8 +26,7 @@ import java.time.LocalDateTime;
  */
 @RestController
 @RequestMapping("/${moduleName}/${businessName}")
-public class ${ClassName}Controller extends BaseController
-{
+public class ${ClassName}Controller extends BaseController {
     private String prefix = "${moduleName}/${businessName}";
 
     @Autowired
@@ -35,8 +34,7 @@ public class ${ClassName}Controller extends BaseController
 
     @GetMapping("/main")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/main','${permissionPrefix}:main')")
-    public ModelAndView main()
-    {
+    public ModelAndView main() {
         return jumpPage(prefix + "/main");
     }
 
@@ -46,10 +44,9 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @GetMapping("/data")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/data','${permissionPrefix}:data')")
-    public ResultTable list(@ModelAttribute ${ClassName} ${className}, PageDomain pageDomain)
-    {
-        PageInfo<${ClassName}> pageInfo = ${className}Service.select${ClassName}Page(${className},pageDomain);
-        return pageTable(pageInfo.getList(),pageInfo.getTotal());
+    public ResultTable list(@ModelAttribute ${ClassName} ${className}, PageDomain pageDomain) {
+        PageInfo<${ClassName}> pageInfo = ${className}Service.select${ClassName}Page(${className}, pageDomain);
+        return pageTable(pageInfo.getList(), pageInfo.getTotal());
     }
 
     /**
@@ -57,8 +54,7 @@ public class ${ClassName}Controller extends BaseController
      */
     @GetMapping("/add")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
-    public ModelAndView add()
-    {
+    public ModelAndView add() {
         return jumpPage(prefix + "/add");
     }
 
@@ -68,9 +64,8 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @PostMapping("/save")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
-    public Result save(@RequestBody ${ClassName} ${className})
-    {
-        SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();
+    public Result save(@RequestBody ${ClassName} ${className}) {
+        SysUser sysUser = (SysUser) SecurityUtil.currentUserObj();
         ${className}.setCreateTime(LocalDateTime.now());
         ${className}.setCreateBy(sysUser.getUserId());
         ${className}.setCreateName(sysUser.getUsername());
@@ -82,9 +77,8 @@ public class ${ClassName}Controller extends BaseController
      */
     @GetMapping("/edit")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
-    public ModelAndView edit(${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap)
-    {
-        ${ClassName} ${className} = ${className}Service.select${ClassName}ById(${pkColumn.javaField});
+    public ModelAndView edit(${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap) {
+        ${ClassName} ${className} =${className}Service.select${ClassName}ById(${pkColumn.javaField});
         mmap.put("${className}", ${className});
         return jumpPage(prefix + "/edit");
     }
@@ -95,9 +89,8 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @PutMapping("/update")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
-    public Result update(@RequestBody ${ClassName} ${className})
-    {
-        SysUser sysUser = (SysUser)SecurityUtil.currentUserObj();
+    public Result update(@RequestBody ${ClassName} ${className}) {
+        SysUser sysUser = (SysUser) SecurityUtil.currentUserObj();
         ${className}.setUpdateTime(LocalDateTime.now());
         ${className}.setUpdateBy(sysUser.getUserId());
         ${className}.setUpdateName(sysUser.getUsername());
@@ -108,10 +101,9 @@ public class ${ClassName}Controller extends BaseController
      * 删除${functionName}
      */
     @ResponseBody
-    @DeleteMapping( "/batchRemove")
+    @DeleteMapping("/batchRemove")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
-    public Result batchRemove(String ids)
-    {
+    public Result batchRemove(String ids) {
         return decide(${className}Service.delete${ClassName}ByIds(Convert.toStrArray(ids)));
     }
 
@@ -121,8 +113,7 @@ public class ${ClassName}Controller extends BaseController
     @ResponseBody
     @DeleteMapping("/remove/{${pkColumn.javaField}}")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/remove','${permissionPrefix}:remove')")
-    public Result remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
-    {
+    public Result remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
         return decide(${className}Service.delete${ClassName}ById(${pkColumn.javaField}));
     }
 }
