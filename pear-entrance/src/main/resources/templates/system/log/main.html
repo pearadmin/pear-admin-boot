@@ -14,10 +14,10 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <table style="margin-top: 10px;" id="log-login-table" lay-filter="log-login-table"></table>
+                    <table id="log-login-table" lay-filter="log-login-table" style="margin-top: 10px;"></table>
                 </div>
                 <div class="layui-tab-item">
-                    <table style="margin-top: 10px;" id="log-operate-table" lay-filter="log-operate-table"></table>
+                    <table id="log-operate-table" lay-filter="log-operate-table" style="margin-top: 10px;"></table>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
 </div>
 </body>
 
-<script type="text/html" id="log-status">
+<script id="log-status" type="text/html">
     {{#if (d.success == true) { }}
     <span style="color: green">成功</span>
     {{# }else if(d.success == false){ }}
@@ -33,13 +33,13 @@
     {{# } }}
 </script>
 
-<script type="text/html" id="log-bar">
+<script id="log-bar" type="text/html">
     <button class="pear-btn pear-btn-sm pear-btn-primary" lay-event="details">
         <i class="pear-icon pear-icon-edit"></i>
     </button>
 </script>
 
-<script type="text/html" id="log-createTime">
+<script id="log-createTime" type="text/html">
     {{layui.util.toDateString(d.createTime,  "yyyy-MM-dd HH:mm:ss")}}
 </script>
 

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('在线列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="username" placeholder="" class="layui-input">
+                    <input class="layui-input" name="username" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="online-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="online-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -31,13 +31,14 @@
 </div>
 </body>
 
-<script type="text/html" id="online-bar">
-    <button sec:authorize="hasPermission('/system/online/remove','sys:online:remove')" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove">
+<script id="online-bar" type="text/html">
+    <button sec:authorize="hasPermission('/system/online/remove','sys:online:remove')"
+            class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove">
         <i class="pear-icon pear-icon-ashbin"></i>
     </button>
 </script>
 
-<script type="text/html" id="online-state">
+<script id="online-state" type="text/html">
     <span class="pear-text">
         在线
     </span>
@@ -45,7 +46,7 @@
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery','popup'], function () {
+    layui.use(['table', 'form', 'jquery', 'popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -58,7 +59,7 @@
                 {type: 'checkbox'},
                 {title: '用户名', field: 'realName', align: 'center', width: 100},
                 {title: '账号', field: 'username', align: 'center'},
-                {title: '状态', field: 'username', align: 'center',templet: '#online-state'},
+                {title: '状态', field: 'username', align: 'center', templet: '#online-state'},
                 {title: '在线时长', field: 'onlineTime', align: 'center'},
                 {title: '登录时间', field: 'lastTime', align: 'center'},
                 {title: '操作', toolbar: '#online-bar', align: 'center', width: 100}

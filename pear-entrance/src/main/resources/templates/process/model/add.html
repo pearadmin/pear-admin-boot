@@ -4,27 +4,28 @@
     <th:block th:include="include :: header('流程模型新增')"/>
 </head>
 <body>
-<form class="layui-form" action="">
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="name" placeholder="请输入标题"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" name="key" lay-verify="title" autocomplete="off" placeholder="请输入标题"
-                               class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="key" placeholder="请输入标题"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入描述" name="description" class="layui-textarea"></textarea>
+                        <textarea class="layui-textarea" name="description" placeholder="请输入描述"></textarea>
                     </div>
                 </div>
             </div>
@@ -32,11 +33,11 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="role-save">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="role-save" lay-submit="" type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('流程模型列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="javascript:void(0);">
+        <form action="javascript:void(0);" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">模型名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="modelName" placeholder="" class="layui-input">
+                    <input class="layui-input" name="modelName" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="model-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="model-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -27,17 +27,20 @@
 <div class="layui-card">
     <div class="layui-card-body">
         <table id="model-table" lay-filter="model-table"></table>
-        <script type="text/html" id="barDemo">
-            <a  sec:authorize="hasPermission('/process/model/publish','pro:model:publish')" class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish"><i
+        <script id="barDemo" type="text/html">
+            <a sec:authorize="hasPermission('/process/model/publish','pro:model:publish')"
+               class="pear-btn pear-btn-sm pear-btn-primary" lay-event="publish"><i
                     class="pear-icon pear-icon-print"></i></a>
-            <a  sec:authorize="hasPermission('/process/model/edit','pro:model:edit')" class="pear-btn pear-btn-sm pear-btn-warming" lay-event="design"><i
+            <a sec:authorize="hasPermission('/process/model/edit','pro:model:edit')"
+               class="pear-btn pear-btn-sm pear-btn-warming" lay-event="design"><i
                     class="layui-icon layui-icon-edit"></i></a>
-            <a  sec:authorize="hasPermission('/process/model/remove','pro:model:remove')" class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i
+            <a sec:authorize="hasPermission('/process/model/remove','pro:model:remove')"
+               class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i
                     class="layui-icon layui-icon-delete"></i></a>
         </script>
     </div>
 </div>
-<div  sec:authorize="hasPermission('/process/model/add','pro:model:add')" class="createModel">
+<div class="createModel" sec:authorize="hasPermission('/process/model/add','pro:model:add')">
     <i class="layui-icon layui-icon-add-1"></i>
 </div>
 <style>

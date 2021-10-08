@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('部门列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">部门名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="deptName" placeholder="" class="layui-input">
+                    <input class="layui-input" name="deptName" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="dept-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="dept-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -31,22 +31,26 @@
     </div>
 </div>
 
-<script type="text/html" id="dept-toolbar">
-    <button sec:authorize="hasPermission('/system/dept/add','sys:dept:add')" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+<script id="dept-toolbar" type="text/html">
+    <button sec:authorize="hasPermission('/system/dept/add','sys:dept:add')"
+            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
 </script>
 
-<script type="text/html" id="dept-bar">
-    <button sec:authorize="hasPermission('/system/dept/edit','sys:dept:edit')" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+<script id="dept-bar" type="text/html">
+    <button sec:authorize="hasPermission('/system/dept/edit','sys:dept:edit')"
+            class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
-    <button sec:authorize="hasPermission('/system/dept/remove','sys:dept:remove')" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    <button sec:authorize="hasPermission('/system/dept/remove','sys:dept:remove')"
+            class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
-<script type="text/html" id="dept-status">
-    <input type="checkbox" name="enable" value="{{d.deptId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dept-enable" {{ d.status == '0' ? 'checked' : '' }}>
+<script id="dept-status" type="text/html">
+    <input type="checkbox" name="enable" value="{{d.deptId}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="dept-enable" {{ d.status== '0' ? 'checked' : '' }}>
 </script>
 
 </body>
@@ -54,7 +58,7 @@
 <th:block th:include="include :: footer"/>
 
 <script>
-    layui.use(['table', 'form', 'jquery', 'treetable','popup'], function () {
+    layui.use(['table', 'form', 'jquery', 'treetable', 'popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -64,31 +68,35 @@
         let MODULE_PATH = "/system/dept/";
 
         treetable.render({
-                treeColIndex: 1,
-                treeSpid: 0,
-                treeIdName: 'deptId',
-                treePidName: 'parentId',
-                skin: 'line',
-                method: 'get',
-                treeDefaultClose: false,
-                toolbar: '#dept-toolbar',
-                elem: '#dept-table',
-                url: '/system/dept/data',
-                page: false,
-                defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh', title: '刷新'}, 'filter', 'print', 'exports'],
-                cols: [
-                    [
-                        {type: 'checkbox'},
-                        {field: 'deptName', minWidth: 200, title: '部门名称'},
-                        {field: 'leader', title: '负责人'},
-                        {field: 'phone', title: '联系方式'},
-                        {field: 'email', title: '邮箱'},
-                        {field: 'address', title: '详细地址'},
-                        {field: 'status', title: '状态',templet:'#dept-status'},
-                        {field: 'sort', title: '排序', width: 100},
-                        {title: '操作', templet: '#dept-bar', width: 120, align: 'center'}
-                    ]
+            treeColIndex: 1,
+            treeSpid: 0,
+            treeIdName: 'deptId',
+            treePidName: 'parentId',
+            skin: 'line',
+            method: 'get',
+            treeDefaultClose: false,
+            toolbar: '#dept-toolbar',
+            elem: '#dept-table',
+            url: '/system/dept/data',
+            page: false,
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+                title: '刷新'
+            }, 'filter', 'print', 'exports'],
+            cols: [
+                [
+                    {type: 'checkbox'},
+                    {field: 'deptName', minWidth: 200, title: '部门名称'},
+                    {field: 'leader', title: '负责人'},
+                    {field: 'phone', title: '联系方式'},
+                    {field: 'email', title: '邮箱'},
+                    {field: 'address', title: '详细地址'},
+                    {field: 'status', title: '状态', templet: '#dept-status'},
+                    {field: 'sort', title: '排序', width: 100},
+                    {title: '操作', templet: '#dept-bar', width: 120, align: 'center'}
                 ]
+            ]
         });
 
         form.on('submit(dept-query)', function (data) {
@@ -191,7 +199,7 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            popup.success(result.msg,  function () {
+                            popup.success(result.msg, function () {
                                 obj.del();
                             });
                         } else {

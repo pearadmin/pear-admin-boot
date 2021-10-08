@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('定时任务列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">任务名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="jobName" placeholder="" class="layui-input">
+                    <input class="layui-input" name="jobName" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="job-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="job-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -30,12 +30,14 @@
     </div>
 </div>
 </body>
-<script type="text/html" id="job-toolbar">
-    <button sec:authorize="hasPermission('/schedule/job/add','sch:job:add')" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+<script id="job-toolbar" type="text/html">
+    <button sec:authorize="hasPermission('/schedule/job/add','sch:job:add')"
+            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
-    <button sec:authorize="hasPermission('/schedule/job/remove','sch:job:remove')" class="pear-btn pear-btn-md" lay-event="batchRemove">
+    <button sec:authorize="hasPermission('/schedule/job/remove','sch:job:remove')" class="pear-btn pear-btn-md"
+            lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
@@ -44,20 +46,27 @@
         日志
     </button>
 </script>
-<script type="text/html" id="job-bar">
+<script id="job-bar" type="text/html">
     {{#if (d.status == 0) { }}
-    <button sec:authorize="hasPermission('/schedule/job/pause','sch:job:pause')" class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="layui-icon layui-icon-pause"></i></button>
+    <button sec:authorize="hasPermission('/schedule/job/pause','sch:job:pause')"
+            class="pear-btn pear-btn-warming pear-btn-sm" lay-event="pause"><i class="layui-icon layui-icon-pause"></i>
+    </button>
     {{# }else if(d.status == 1){ }}
-    <button sec:authorize="hasPermission('/schedule/job/resume','sch:job:resume')"  class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="layui-icon layui-icon-play"></i></button>
+    <button sec:authorize="hasPermission('/schedule/job/resume','sch:job:resume')"
+            class="pear-btn pear-btn-warming pear-btn-sm" lay-event="resume"><i class="layui-icon layui-icon-play"></i>
+    </button>
     {{# } }}
-    <button sec:authorize="hasPermission('/schedule/job/run','sch:job:run')"  class="pear-btn pear-btn-success pear-btn-sm" lay-event="run"><i class="layui-icon layui-icon-release"></i>
+    <button sec:authorize="hasPermission('/schedule/job/run','sch:job:run')"
+            class="pear-btn pear-btn-success pear-btn-sm" lay-event="run"><i class="layui-icon layui-icon-release"></i>
     </button>
-    <button sec:authorize="hasPermission('/schedule/job/edit','sch:job:edit')"  class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    <button sec:authorize="hasPermission('/schedule/job/edit','sch:job:edit')"
+            class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
-    <button sec:authorize="hasPermission('/schedule/job/remove','sch:job:remove')"  class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    <button sec:authorize="hasPermission('/schedule/job/remove','sch:job:remove')"
+            class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
-<script type="text/html" id="job-status">
+<script id="job-status" type="text/html">
     {{#if (d.status == 0) { }}
     <span>运行中</span>
     {{# }else if(d.status == 1){ }}
@@ -66,7 +75,7 @@
 </script>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery', 'common','popup'], function () {
+    layui.use(['table', 'form', 'jquery', 'common', 'popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -193,7 +202,7 @@
                 success: function (result) {
                     layer.close(loading);
                     if (result.success) {
-                        popup.success(result.msg,  function () {
+                        popup.success(result.msg, function () {
                             table.reload("job-table");
                         });
                     } else {
@@ -244,7 +253,7 @@
         }
 
         window.batchRemove = function (obj) {
-            let ids = common.checkField(obj,'jobId');
+            let ids = common.checkField(obj, 'jobId');
             if (common.isEmpty(ids)) {
                 popup.warning("未选中数据");
                 return false;

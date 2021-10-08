@@ -4,7 +4,6 @@ import com.pearadmin.common.web.session.HttpSessionContextHolder;
 import com.pearadmin.system.domain.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.impl.util.CollectionUtil;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.core.session.SessionInformation;
@@ -12,7 +11,6 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;

@@ -11,18 +11,18 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">表名称</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" type="text" name="tableName" placeholder="" autocomplete="off">
+                        <input autocomplete="off" class="layui-input" name="tableName" placeholder="" type="text">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">表描述</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" type="text" name="tableComment" placeholder="" autocomplete="off">
+                        <input autocomplete="off" class="layui-input" name="tableComment" placeholder="" type="text">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <button type="button" class="pear-btn pear-btn-primary pear-btn-md" data-type="reload" lay-submit
-                            lay-filter="form-search" id="form-search"><i class="layui-icon">&#xe615;</i>搜索
+                    <button class="pear-btn pear-btn-primary pear-btn-md" data-type="reload" id="form-search" lay-filter="form-search"
+                            lay-submit type="button"><i class="layui-icon">&#xe615;</i>搜索
                     </button>
                 </div>
             </div>
@@ -59,7 +59,7 @@
         });
 
         table.render({
-              elem: '#table_import'
+            elem: '#table_import'
             , url: prefix + "/db/list"
             , autoSort: false
             , skin: 'line'

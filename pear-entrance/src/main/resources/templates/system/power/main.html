@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('权限列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">权限名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="powerName" placeholder="" class="layui-input">
+                    <input class="layui-input" name="powerName" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="power-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="power-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -30,21 +30,24 @@
     </div>
 </div>
 
-<script type="text/html" id="power-toolbar">
-    <button sec:authorize="hasPermission('/system/power/add','sys:power:add')" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+<script id="power-toolbar" type="text/html">
+    <button sec:authorize="hasPermission('/system/power/add','sys:power:add')"
+            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
 </script>
 
-<script type="text/html" id="power-bar">
-    <button sec:authorize="hasPermission('/system/power/edit','sys:power:edit')"  class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+<script id="power-bar" type="text/html">
+    <button sec:authorize="hasPermission('/system/power/edit','sys:power:edit')"
+            class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
-    <button sec:authorize="hasPermission('/system/power/remove','sys:power:remove')"  class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    <button sec:authorize="hasPermission('/system/power/remove','sys:power:remove')"
+            class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
-<script type="text/html" id="power-type">
+<script id="power-type" type="text/html">
     {{#if (d.powerType == '0') { }}
     <span>目录</span>
     {{# }else if(d.powerType == '1'){ }}
@@ -54,18 +57,19 @@
     {{# } }}
 </script>
 
-<script type="text/html" id="power-enable">
-    <input type="checkbox" name="enable" value="{{d.powerId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="power-enable" {{ d.enable== true ? 'checked' : '' }}>
+<script id="power-enable" type="text/html">
+    <input type="checkbox" name="enable" value="{{d.powerId}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="power-enable" {{ d.enable== true ? 'checked' : '' }}>
 </script>
 
-<script type="text/html" id="icon">
+<script id="icon" type="text/html">
     <i class="layui-icon {{d.icon}}"></i>
 </script>
 
 </body>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery', 'treetable','popup'], function () {
+    layui.use(['table', 'form', 'jquery', 'treetable', 'popup'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -75,33 +79,37 @@
         let MODULE_PATH = "/system/power/";
 
         treetable.render({
-                treeColIndex: 1,
-                treeSpid: 0,
-                treeIdName: 'powerId',
-                treePidName: 'parentId',
-                skin: 'line',
-                method: 'get',
-                treeDefaultClose: false,
-                toolbar: '#power-toolbar',
-                elem: '#power-table',
-                url: '/system/power/data',
-                page: false,
-                defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh', title: '刷新'}, 'filter', 'print', 'exports'],
-                cols: [
-                    [
-                        {type: 'checkbox'},
-                        {field: 'powerName', minWidth: 200, title: '权限名称'},
-                        {field: 'icon', title: '图标', templet: '#icon'},
-                        {field: 'powerType', title: '权限类型', templet: '#power-type'},
-                        {field: 'enable', title: '是否可用', templet: '#power-enable'},
-                        {field: 'sort', title: '排序'},
-                        {title: '操作', templet: '#power-bar', width: 150, align: 'center'}
-                    ]
+            treeColIndex: 1,
+            treeSpid: 0,
+            treeIdName: 'powerId',
+            treePidName: 'parentId',
+            skin: 'line',
+            method: 'get',
+            treeDefaultClose: false,
+            toolbar: '#power-toolbar',
+            elem: '#power-table',
+            url: '/system/power/data',
+            page: false,
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+                title: '刷新'
+            }, 'filter', 'print', 'exports'],
+            cols: [
+                [
+                    {type: 'checkbox'},
+                    {field: 'powerName', minWidth: 200, title: '权限名称'},
+                    {field: 'icon', title: '图标', templet: '#icon'},
+                    {field: 'powerType', title: '权限类型', templet: '#power-type'},
+                    {field: 'enable', title: '是否可用', templet: '#power-enable'},
+                    {field: 'sort', title: '排序'},
+                    {title: '操作', templet: '#power-bar', width: 150, align: 'center'}
                 ]
+            ]
         });
 
         form.on('submit(power-query)', function (data) {
-            treetable.search("#power-table",data.field.powerName)
+            treetable.search("#power-table", data.field.powerName)
             return false;
         });
 
@@ -177,7 +185,7 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            popup.success(result.msg,function(){
+                            popup.success(result.msg, function () {
                                 obj.del();
                             })
                         } else {

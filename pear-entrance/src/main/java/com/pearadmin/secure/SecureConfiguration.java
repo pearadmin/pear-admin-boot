@@ -1,21 +1,22 @@
 package com.pearadmin.secure;
 
+import com.pearadmin.common.config.proprety.SecurityProperty;
 import com.pearadmin.secure.process.*;
 import com.pearadmin.secure.support.SecureCaptchaSupport;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import com.pearadmin.common.config.proprety.SecurityProperty;
-import com.pearadmin.secure.domain.SecureUserDetailsService;
-import com.pearadmin.secure.domain.SecureUserTokenService;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
 import javax.annotation.Resource;
 
 /**
@@ -69,13 +70,13 @@ public class SecureConfiguration extends WebSecurityConfigurerAdapter {
      * 实现userservice
      */
     @Resource
-    private SecureUserDetailsService securityUserDetailsService;
+    private UserDetailsService securityUserDetailsService;
 
     /**
      * remember me redis持久化
      */
     @Resource
-    private SecureUserTokenService securityUserTokenService;
+    private PersistentTokenRepository securityUserTokenService;
 
     /**
      * 自定义验证码验证

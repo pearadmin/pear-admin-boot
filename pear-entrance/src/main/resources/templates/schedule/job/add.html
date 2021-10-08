@@ -4,49 +4,49 @@
     <th:block th:include="include :: header('定时任务新增')"/>
 </head>
 <body>
-<form class="layui-form" action="">
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
                 <div class="layui-form-item">
                     <label class="layui-form-label">任务名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="jobName" lay-verify="title" autocomplete="off" placeholder="任务名称"
-                               class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="jobName" placeholder="任务名称"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">运行类</label>
                     <div class="layui-input-block">
-                        <input type="text" name="beanName" lay-verify="title" autocomplete="off" placeholder="运行类"
-                               class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="beanName" placeholder="运行类"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">参数</label>
                     <div class="layui-input-block">
-                        <input type="text" name="params" lay-verify="title" autocomplete="off" placeholder="执行表达式"
-                               class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="params" placeholder="执行表达式"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">表达式</label>
                     <div class="layui-input-block">
-                        <input type="text" id="cronExpression" name="cronExpression" lay-verify="title"
-                               autocomplete="off" placeholder="执行表达式" class="layui-input">
+                        <input autocomplete="off" class="layui-input" id="cronExpression" lay-verify="title"
+                               name="cronExpression" placeholder="执行表达式" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="status" value="0" title="运行">
-                        <input type="radio" name="status" value="1" title="挂起" checked>
+                        <input name="status" title="运行" type="radio" value="0">
+                        <input checked name="status" title="挂起" type="radio" value="1">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="任务描述" name="remark" class="layui-textarea"></textarea>
+                        <textarea class="layui-textarea" name="remark" placeholder="任务描述"></textarea>
                     </div>
                 </div>
             </div>
@@ -54,11 +54,11 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="role-save">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="role-save" lay-submit="" type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>

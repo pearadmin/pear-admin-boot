@@ -4,42 +4,42 @@
     <th:block th:include="include :: header('角色新增')"/>
 </head>
 <body>
-<form class="layui-form" action="">
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="roleName" lay-verify="title" autocomplete="off" placeholder="请输入标题"
-                               class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="roleName" placeholder="请输入标题"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" name="roleCode" lay-verify="title" autocomplete="off" placeholder="请输入标题"
-                               class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="roleCode" placeholder="请输入标题"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="enable" value="0" title="开启">
-                        <input type="radio" name="enable" value="1" title="关闭" checked>
+                        <input name="enable" title="开启" type="radio" value="0">
+                        <input checked name="enable" title="关闭" type="radio" value="1">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">排序</label>
                     <div class="layui-input-block">
-                        <input type="text" name="sort" lay-verify="title" autocomplete="off" placeholder="请输入标题"
-                               class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="sort" placeholder="请输入标题"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入描述" name="details" class="layui-textarea"></textarea>
+                        <textarea class="layui-textarea" name="details" placeholder="请输入描述"></textarea>
                     </div>
                 </div>
             </div>
@@ -47,11 +47,11 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="role-save">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="role-save" lay-submit="" type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>

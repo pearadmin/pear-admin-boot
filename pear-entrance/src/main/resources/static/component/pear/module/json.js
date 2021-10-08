@@ -1,11 +1,11 @@
-layui.define(['jquery', 'element'], function(exports) {
+layui.define(['jquery', 'element'], function (exports) {
     "use strict";
 
     var MOD_NAME = 'json';
 
-    var json = new function() {
+    var json = new function () {
 
-        this.view = function(elem, str) {
+        this.view = function (elem, str) {
 
             $(elem).jsonViewer(str);
         }
@@ -15,7 +15,7 @@ layui.define(['jquery', 'element'], function(exports) {
 });
 
 
-(function($) {
+(function ($) {
 
     /**
      * Check if arg is either an array with at least 1 element, or a dict with at least 1 key
@@ -118,7 +118,7 @@ layui.define(['jquery', 'element'], function(exports) {
      * @param json: a javascript object
      * @param options: an optional options hash
      */
-    $.fn.jsonViewer = function(json, options) {
+    $.fn.jsonViewer = function (json, options) {
         // Merge user options with default options
         options = Object.assign({}, {
             collapsed: false,
@@ -128,7 +128,7 @@ layui.define(['jquery', 'element'], function(exports) {
         }, options);
 
         // jQuery chaining
-        return this.each(function() {
+        return this.each(function () {
 
             // Transform to HTML
             var html = json2html(json, options);
@@ -142,7 +142,7 @@ layui.define(['jquery', 'element'], function(exports) {
 
             // Bind click on toggle buttons
             $(this).off('click');
-            $(this).on('click', 'a.json-toggle', function() {
+            $(this).on('click', 'a.json-toggle', function () {
                 var target = $(this).toggleClass('collapsed').siblings('ul.json-dict, ol.json-array');
                 target.toggle();
                 if (target.is(':visible')) {
@@ -156,7 +156,7 @@ layui.define(['jquery', 'element'], function(exports) {
             });
 
             // Simulate click on toggle button when placeholder is clicked
-            $(this).on('click', 'a.json-placeholder', function() {
+            $(this).on('click', 'a.json-placeholder', function () {
                 $(this).siblings('a.json-toggle').click();
                 return false;
             });

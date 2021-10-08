@@ -1,10 +1,11 @@
-.treeTable-icon  i:last-child{
-	display: none!important;
+.treeTable-icon i:last-child {
+    display: none !important;
 }
 
-.treeTable-empty{
-	margin-left: -3px;
+.treeTable-empty {
+    margin-left: -3px;
 }
+
 .treeTable-empty {
     width: 20px;
     display: inline-block;

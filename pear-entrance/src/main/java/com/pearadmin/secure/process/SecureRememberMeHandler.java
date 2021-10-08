@@ -1,18 +1,19 @@
 package com.pearadmin.secure.process;
 
-import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
-import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.secure.session.SecureSessionService;
+import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.system.domain.SysUser;
+import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

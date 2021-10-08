@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('修改消息')" />
+    <th:block th:include="include :: header('修改消息')"/>
 </head>
 <body>
 <form class="layui-form" th:object="${sysNotice}">
     <div class="mainBox">
         <div class="main-container">
             <input name="id" th:field="*{id}" type="hidden">
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题：</label>
-        <div class="layui-input-block">
-            <input type="text" name="title" th:field="*{title}" placeholder="请输入标题" class="layui-input"  lay-verify="required"/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">内容：</label>
-        <div class="layui-input-block">
-            <textarea type="text" name="content" th:field="*{content}" placeholder="请输入内容" class="layui-textarea"  lay-verify="required"></textarea>
-        </div>
-    </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">标题：</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required" name="title" placeholder="请输入标题" th:field="*{title}"
+                           type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">内容：</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-textarea" lay-verify="required" name="content" placeholder="请输入内容"
+                              th:field="*{content}" type="text"></textarea>
+                </div>
+            </div>
         </div>
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="notice-update">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="notice-update" lay-submit=""
+                    type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>
@@ -36,7 +39,7 @@
     </div>
 </form>
 </body>
-<th:block th:include="include :: footer" />
+<th:block th:include="include :: footer"/>
 <script th:inline="javascript">
     layui.use(['form', 'jquery'], function () {
         let form = layui.form;
@@ -46,7 +49,7 @@
 
         form.on('submit(notice-update)', function (data) {
             $.ajax({
-                url: prefix+'update',
+                url: prefix + 'update',
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json',

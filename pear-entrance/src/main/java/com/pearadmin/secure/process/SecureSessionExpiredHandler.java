@@ -12,7 +12,7 @@ import java.io.IOException;
  * Describe: 自定义 Security 同账号多端登录挤下线 跳转地址
  * Author: John Ming
  * CreateTime: 2019/10/23
- * */
+ */
 @Component
 public class SecureSessionExpiredHandler implements SessionInformationExpiredStrategy {
 

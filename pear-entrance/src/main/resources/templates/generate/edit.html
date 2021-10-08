@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('修改生成配置')"/>
-    <link  th:href="@{/admin/css/other/generate.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/admin/css/other/generate.css}"/>
 </head>
 <body class="pear-container">
-<form class="layui-form" action="" lay-filter="form-generate" th:object="${table}">
+<form action="" class="layui-form" lay-filter="form-generate" th:object="${table}">
     <div class="mainBox">
         <div class="main-container">
             <div class="layui-row layui-col-space10">
@@ -16,37 +16,48 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label"><span class="required-msg ">*</span>名称：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="tableName" lay-verify="required" lay-verType="tips" placeholder="请输入表名称" maxlength="200" th:field="*{tableName}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="200"
+                                           name="tableName" placeholder="请输入表名称" th:field="*{tableName}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label"><span class="required-msg ">*</span>描述：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="tableComment" lay-verify="required" lay-verType="tips" placeholder="请输入表描述" maxlength="500" th:field="*{tableComment}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="500"
+                                           name="tableComment" placeholder="请输入表描述" th:field="*{tableComment}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label"><span class="required-msg ">*</span>实体：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="tableComment" lay-verify="required" lay-verType="tips" placeholder="请输入实体类名称" maxlength="100" th:field="*{className}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="100"
+                                           name="tableComment" placeholder="请输入实体类名称" th:field="*{className}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label" title="用作类描述，例如 用户"><span class="required-msg ">*</span>功能：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="functionName" lay-verify="required" lay-verType="tips" placeholder="请输入生成功能名" maxlength="50" th:field="*{functionName}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="50"
+                                           name="functionName" placeholder="请输入生成功能名" th:field="*{functionName}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label"><span class="required-msg ">*</span>作者：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="functionAuthor" lay-verify="required" lay-verType="tips" placeholder="请输入作者" maxlength="50" th:field="*{functionAuthor}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="50"
+                                           name="functionAuthor" placeholder="请输入作者" th:field="*{functionAuthor}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">备注：</label>
                                 <div class="layui-input-block">
-                                    <textarea class="layui-textarea" rows="5" th:field="*{remark}" name="remark" maxlength="500" autocomplete="off"></textarea>
+                                    <textarea autocomplete="off" class="layui-textarea" maxlength="500" name="remark"
+                                              rows="5" th:field="*{remark}"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -59,60 +70,76 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label"><span class="required-msg ">*</span>生成模板：</label>
                                 <div class="layui-input-block">
-                                    <select id="tplCategory" name='tplCategory' lay-filter="tpl">
-                                        <option value="crud" th:field="*{tplCategory}">单表（增删改查）</option>
-                                        <option value="tree" th:field="*{tplCategory}">树表（增删改查）</option>
+                                    <select id="tplCategory" lay-filter="tpl" name='tplCategory'>
+                                        <option th:field="*{tplCategory}" value="crud">单表（增删改查）</option>
+                                        <option th:field="*{tplCategory}" value="tree">树表（增删改查）</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="layui-form-item tree-field layui-hide">
-                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>主键字段：</label>
+                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span
+                                        class="required-msg ">*</span>主键字段：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="treeCode"  placeholder="请输入树表字段" maxlength="50" th:field="*{treeCode}"/>
+                                    <input class="layui-input" maxlength="50" name="treeCode" placeholder="请输入树表字段"
+                                           th:field="*{treeCode}" type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item tree-field layui-hide">
-                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>父级字段：</label>
+                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span
+                                        class="required-msg ">*</span>父级字段：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="treeParentCode"  placeholder="请输入树表字段" maxlength="50" th:field="*{treeParentCode}"/>
+                                    <input class="layui-input" maxlength="50" name="treeParentCode" placeholder="请输入树表字段"
+                                           th:field="*{treeParentCode}" type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label" title="生成在哪个java包下，例如 com.ruoyi.project.system"><span class=" required-msg ">*</span>基本路径：</label>
+                                <label class="layui-form-label" title="生成在哪个java包下，例如 com.ruoyi.project.system"><span
+                                        class=" required-msg ">*</span>基本路径：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="packageName" lay-verify="required" lay-verType="tips" placeholder="请输入生成包路径" maxlength="100" th:field="*{packageName}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="100"
+                                           name="packageName" placeholder="请输入生成包路径" th:field="*{packageName}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label" title="可理解为子系统名，例如 system"><span class="required-msg ">*</span>模块名称：</label>
+                                <label class="layui-form-label" title="可理解为子系统名，例如 system"><span
+                                        class="required-msg ">*</span>模块名称：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="moduleName" lay-verify="required" lay-verType="tips" placeholder="请输入生成模块名" maxlength="30" th:field="*{moduleName}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="30"
+                                           name="moduleName" placeholder="请输入生成模块名" th:field="*{moduleName}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span class="required-msg ">*</span>业务名称：</label>
+                                <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span
+                                        class="required-msg ">*</span>业务名称：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" type="text" name="businessName" lay-verify="required" lay-verType="tips" placeholder="请输入生成业务名" maxlength="50" th:field="*{businessName}"/>
+                                    <input class="layui-input" lay-verType="tips" lay-verify="required" maxlength="50"
+                                           name="businessName" placeholder="请输入生成业务名" th:field="*{businessName}"
+                                           type="text"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label" title="分配到指定菜单下，例如 系统管理"><span class="required-msg ">*</span>上级菜单：</label>
+                                <label class="layui-form-label" title="分配到指定菜单下，例如 系统管理"><span
+                                        class="required-msg ">*</span>上级菜单：</label>
                                 <div class="layui-input-block">
-                                    <ul id="selectParent" name="parentMenuId" class="dtree" data-id="-1"></ul>
+                                    <ul class="dtree" data-id="-1" id="selectParent" name="parentMenuId"></ul>
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label" title="默认为zip压缩包下载，也可以自定义生成路径"><span class="required-msg ">*</span>生成方式：</label>
+                                <label class="layui-form-label" title="默认为zip压缩包下载，也可以自定义生成路径"><span
+                                        class="required-msg ">*</span>生成方式：</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="genType" value="0" th:field="*{genType}" title="zip压缩包"/>
-                                    <input type="radio" name="genType" value="1" th:field="*{genType}" title="自定义路径"/>
+                                    <input name="genType" th:field="*{genType}" title="zip压缩包" type="radio" value="0"/>
+                                    <input name="genType" th:field="*{genType}" title="自定义路径" type="radio" value="1"/>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label" title="填写磁盘绝对路径，若不填写，则生成到当前Web项目下"><span
                                         class="required-msg ">*</span>生成路径：</label>
                                 <div class="layui-input-block">
-                                    <input class="layui-input" id="genPath" name="genPath" type="text" th:field="*{genPath}" placeholder="请输入项目路径" maxlength="200">
+                                    <input class="layui-input" id="genPath" maxlength="200" name="genPath"
+                                           placeholder="请输入项目路径" th:field="*{genPath}" type="text">
                                 </div>
                             </div>
                         </div>
@@ -122,7 +149,7 @@
                     <div class="layui-card">
                         <div class="layui-card-header">属性配置</div>
                         <div class="layui-card-body">
-                            <input name="tableId" type="hidden" th:field="*{tableId}"/>
+                            <input name="tableId" th:field="*{tableId}" type="hidden"/>
                             <table id="table_gen_column"></table>
                         </div>
                     </div>
@@ -132,7 +159,7 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button class="pear-btn pear-btn-sm pear-btn-primary" lay-submit lay-filter="btn-save" id="btn-save">保存
+            <button class="pear-btn pear-btn-sm pear-btn-primary" id="btn-save" lay-filter="btn-save" lay-submit>保存
             </button>
             <button class="pear-btn pear-btn-sm close" type="button">关闭</button>
         </div>
@@ -142,7 +169,7 @@
 <script th:inline="javascript">
     let prefix = "/generate";
 
-    layui.use(['dtree', 'common', 'table', 'form','layer'], function () {
+    layui.use(['dtree', 'common', 'table', 'form', 'layer'], function () {
 
         let $ = layui.jquery,
             common = layui.common,
@@ -163,7 +190,7 @@
                 success: function (data) {
                     if (data.code == 200) {
                         layer.msg(data.msg, {icon: 1, time: 1000});
-                    }else{
+                    } else {
                         layer.msg(data.msg, {icon: 2, time: 1000});
                     }
                 }
@@ -171,16 +198,17 @@
             return false;
         });
 
-        $(".close").click(function(){
-            parent.layui.tab.delCurrentTabByElem('content',function(id){})
+        $(".close").click(function () {
+            parent.layui.tab.delCurrentTabByElem('content', function (id) {
+            })
         })
 
-        form.on('select(tpl)', function(data){
+        form.on('select(tpl)', function (data) {
             isTree(data.value)
         })
 
         function isTree(tpl) {
-            if(tpl === 'crud') {
+            if (tpl === 'crud') {
                 $(".tree-field").addClass("layui-hide");
             } else {
                 $(".tree-field").removeClass("layui-hide");
@@ -391,7 +419,7 @@
                             if (res.code == 0) {
                                 html += '<option value="input" >空</option>';
                                 $.each(res.data, function (i, item) {
-                                    html += '<option value="'+item.typeCode+'" ' + (dictType === item.typeCode ? ' selected' : '') + '>' + item
+                                    html += '<option value="' + item.typeCode + '" ' + (dictType === item.typeCode ? ' selected' : '') + '>' + item
                                         .typeName + '</option>\n';
                                 });
                             }

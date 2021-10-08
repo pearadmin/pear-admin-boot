@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('用户列表')"/>
-    <link rel="stylesheet" th:href="@{/admin/css/other/user.css}" />
+    <link rel="stylesheet" th:href="@{/admin/css/other/user.css}"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="" lay-filter="user-query-form">
+        <form action="" class="layui-form" lay-filter="user-query-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">用户</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="realName" placeholder="" class="layui-input">
+                    <input class="layui-input" name="realName" placeholder="" type="text">
                 </div>
                 <label class="layui-form-label">账号</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="username" placeholder="" class="layui-input">
+                    <input class="layui-input" name="username" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="user-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="user-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -29,32 +29,34 @@
         </form>
     </div>
 </div>
-    <div class="user-left user-collasped">
-        <div class="layui-card">
-            <div class="layui-card-body">
-                <div class="button button-primary user-group" user-group=""> 全 部 用 户 </div>
-                <div class="button button-default user-group" user-group="-1"> 默 认 分 组 </div>
-                <div style="overflow: auto">
-                    <ul id="dept-tree" class="dept-tree" data-id="0"></ul>
-                </div>
+<div class="user-left user-collasped">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="button button-primary user-group" user-group=""> 全 部 用 户</div>
+            <div class="button button-default user-group" user-group="-1"> 默 认 分 组</div>
+            <div style="overflow: auto">
+                <ul class="dept-tree" data-id="0" id="dept-tree"></ul>
             </div>
         </div>
     </div>
-    <div class="user-main user-collasped">
-        <div class="layui-card">
-            <div class="layui-card-body">
-                <table id="user-table" lay-filter="user-table"></table>
-            </div>
+</div>
+<div class="user-main user-collasped">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <table id="user-table" lay-filter="user-table"></table>
         </div>
     </div>
+</div>
 </body>
 
-<script type="text/html" id="user-toolbar">
-    <button sec:authorize="hasPermission('/system/user/add','sys:user:add')" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+<script id="user-toolbar" type="text/html">
+    <button sec:authorize="hasPermission('/system/user/add','sys:user:add')"
+            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="pear-icon pear-icon-add"></i>
         新增
     </button>
-    <button sec:authorize="hasPermission('/system/user/remove','sys:user:remove')" class="pear-btn pear-btn-md" lay-event="batchRemove">
+    <button sec:authorize="hasPermission('/system/user/remove','sys:user:remove')" class="pear-btn pear-btn-md"
+            lay-event="batchRemove">
         <i class="pear-icon pear-icon-ashbin"></i>
         删除
     </button>
@@ -64,18 +66,21 @@
     </button>
 </script>
 
-<script type="text/html" id="user-bar">
-    <button sec:authorize="hasPermission('/system/user/edit','sys:user:edit')" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="pear-icon pear-icon-edit"></i>
+<script id="user-bar" type="text/html">
+    <button sec:authorize="hasPermission('/system/user/edit','sys:user:edit')"
+            class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="pear-icon pear-icon-edit"></i>
     </button>
-    <button sec:authorize="hasPermission('/system/user/remove','sys:user:remove')" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="pear-icon pear-icon-ashbin"></i>
+    <button sec:authorize="hasPermission('/system/user/remove','sys:user:remove')"
+            class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="pear-icon pear-icon-ashbin"></i>
     </button>
 </script>
 
-<script type="text/html" id="user-enable">
-    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable" {{ d.enable== true ? 'checked' : '' }} />
+<script id="user-enable" type="text/html">
+    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="user-enable" {{ d.enable== true ? 'checked' : '' }} />
 </script>
 
-<script type="text/html" id="user-sex">
+<script id="user-sex" type="text/html">
     {{#if (d.sex == 0) { }}
     <span>男</span>
     {{# }else if(d.sex == 1){ }}
@@ -83,7 +88,7 @@
     {{# } }}
 </script>
 
-<script type="text/html" id="user-login">
+<script id="user-login" type="text/html">
     {{#if (d.login == 0) { }}
     <span>在线</span>
     {{# }else if(d.sex == 1){ }}
@@ -93,7 +98,7 @@
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'dtree','form', 'jquery','popup','common'], function () {
+    layui.use(['table', 'dtree', 'form', 'jquery', 'popup', 'common'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -108,9 +113,9 @@
                 {type: 'checkbox'},
                 {title: '姓名', field: 'realName', align: 'center', width: 110},
                 {title: '账号', field: 'username', align: 'center'},
-                {title: '性别', field: 'sex', align: 'center', templet: '#user-sex',width: 60},
+                {title: '性别', field: 'sex', align: 'center', templet: '#user-sex', width: 60},
                 {title: '电话', field: 'phone', align: 'center'},
-                {title: '启用', field: 'enable', align: 'center', templet: '#user-enable',width: 120},
+                {title: '启用', field: 'enable', align: 'center', templet: '#user-enable', width: 120},
                 {title: '注册时间', field: 'createTime', align: 'center'},
                 {title: '操作', toolbar: '#user-bar', align: 'center', width: 130}
             ]
@@ -125,7 +130,11 @@
             height: 'full-148',
             toolbar: '#user-toolbar',
             text: {none: '暂无人员信息'},
-            defaultToolbar: [{layEvent: 'refresh', icon: 'layui-icon-refresh', title: "刷新"}, 'filter', 'print', 'exports']
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+                title: "刷新"
+            }, 'filter', 'print', 'exports']
         });
 
         dtree.render({
@@ -139,22 +148,22 @@
             response: {treeId: "deptId", parentId: "parentId", title: "deptName"},
         });
 
-        dtree.on("node('dept-tree')" ,function(obj){
+        dtree.on("node('dept-tree')", function (obj) {
             let field = form.val("user-query-form");
-            field.deptId =  obj.param.nodeId;
+            field.deptId = obj.param.nodeId;
             window.refresh(field);
         });
 
-        $(".user-group").click(function(){
-            let group =  $(this).attr("user-group");
+        $(".user-group").click(function () {
+            let group = $(this).attr("user-group");
             let field = form.val("user-query-form");
-            if(group==="-1"){
+            if (group === "-1") {
                 field.deptId = group;
                 $(this).removeClass("button-default");
                 $(this).prev().removeClass("button-primary");
                 $(this).prev().addClass("button-default");
                 $(this).addClass("button-primary");
-            }else{
+            } else {
                 field.deptId = group;
                 $(this).removeClass("button-default");
                 $(this).next().removeClass("button-primary");
@@ -179,7 +188,7 @@
                 window.refresh();
             } else if (obj.event === 'batchRemove') {
                 window.batchRemove(obj);
-            } else if(obj.event == 'collasped'){
+            } else if (obj.event == 'collasped') {
                 $(".user-left").toggleClass("user-collasped");
                 $(".user-main").toggleClass("user-collasped");
                 table.resize();
@@ -247,7 +256,7 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            popup.success(result.msg,function(){
+                            popup.success(result.msg, function () {
                                 obj.del();
                             });
                         } else {
@@ -259,7 +268,7 @@
         }
 
         window.batchRemove = function (obj) {
-            let ids = common.checkField(obj,'userId');
+            let ids = common.checkField(obj, 'userId');
             if (common.isEmpty(ids)) {
                 popup.warning("未选中数据");
                 return false;
@@ -274,7 +283,7 @@
                     success: function (result) {
                         layer.close(loading);
                         if (result.success) {
-                            popup.success(result.msg,function(){
+                            popup.success(result.msg, function () {
                                 table.reload('user-table');
                             })
                         } else {

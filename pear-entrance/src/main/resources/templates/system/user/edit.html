@@ -4,64 +4,64 @@
     <th:block th:include="include :: header('用户修改')"/>
 </head>
 <body>
-<form class="layui-form" action="">
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">编号</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysUser.userId}" name="userId" lay-verify="title"
-                               autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="userId"
+                               placeholder="请输入标题" th:value="${sysUser.userId}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">账号</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysUser.username}" name="username" lay-verify="title"
-                               autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="username"
+                               placeholder="请输入标题" th:value="${sysUser.username}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysUser.realName}" name="realName" lay-verify="title"
-                               autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="realName"
+                               placeholder="请输入标题" th:value="${sysUser.realName}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysUser.email}" name="email" lay-verify="title"
-                               autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="email"
+                               placeholder="请输入标题" th:value="${sysUser.email}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysUser.phone}" name="phone" lay-verify="title"
-                               autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="phone"
+                               placeholder="请输入标题" th:value="${sysUser.phone}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
-                        <input type="radio" th:checked="${sysUser.sex eq '0'}" name="sex" value="0" title="男">
-                        <input type="radio" th:checked="${sysUser.sex eq '1'}" name="sex" value="1" title="女">
+                        <input name="sex" th:checked="${sysUser.sex eq '0'}" title="男" type="radio" value="0">
+                        <input name="sex" th:checked="${sysUser.sex eq '1'}" title="女" type="radio" value="1">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">部门</label>
                     <div class="layui-input-block">
-                        <ul id="selectParent" name="deptId" class="dtree" data-id="0"></ul>
+                        <ul class="dtree" data-id="0" id="selectParent" name="deptId"></ul>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">角色</label>
                     <div class="layui-input-block">
-                        <input th:each="sysRole:${sysRoles}" th:checked="${sysRole.checked}"
-                               th:value="${sysRole.roleId}" th:title="${sysRole.roleName}" type="checkbox"
-                               name="roleIds" lay-skin="primary">
+                        <input lay-skin="primary" name="roleIds"
+                               th:checked="${sysRole.checked}" th:each="sysRole:${sysRoles}" th:title="${sysRole.roleName}"
+                               th:value="${sysRole.roleId}" type="checkbox">
                     </div>
                 </div>
             </div>
@@ -69,12 +69,12 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit=""
-                    lay-filter="user-update">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="user-update" lay-submit=""
+                    type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>
@@ -83,7 +83,7 @@
 </form>
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    layui.use(['form', 'jquery','dtree'], function () {
+    layui.use(['form', 'jquery', 'dtree'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let dtree = layui.dtree;

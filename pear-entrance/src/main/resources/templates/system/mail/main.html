@@ -6,25 +6,25 @@
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">发件人</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="createBy" class="layui-input">
+                    <input class="layui-input" name="createBy" type="text">
                 </div>
                 <label class="layui-form-label">收件人</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="receiver" class="layui-input">
+                    <input class="layui-input" name="receiver" type="text">
                 </div>
                 <label class="layui-form-label">主题</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="subject" class="layui-input">
+                    <input class="layui-input" name="subject" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="mail-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="mail-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -41,7 +41,7 @@
 
 </body>
 
-<script type="text/html" id="mail-toolbar">
+<script id="mail-toolbar" type="text/html">
     <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         发送
@@ -52,19 +52,19 @@
     </button>
 </script>
 
-<script type="text/html" id="mail-bar">
+<script id="mail-bar" type="text/html">
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove">
         <i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
-<script type="text/html" id="mail-createTime">
+<script id="mail-createTime" type="text/html">
     {{layui.util.toDateString(d.createTime,  'yyyy-MM-dd HH:mm:ss')}}
 </script>
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery','popup','common'], function () {
+    layui.use(['table', 'form', 'jquery', 'popup', 'common'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -81,7 +81,7 @@
                 {title: '收件人', field: 'receiver', align: 'center'},
                 {title: '发件人', field: 'createBy', align: 'center'},
                 {title: '创建时间', field: 'createTime', align: 'center', templet: "#file-createTime"},
-                {title: '操作', toolbar: '#mail-bar', align: 'center', width:100}
+                {title: '操作', toolbar: '#mail-bar', align: 'center', width: 100}
             ]
         ]
 
@@ -96,7 +96,8 @@
             defaultToolbar: [{
                 title: '刷新',
                 layEvent: 'refresh',
-                icon: 'layui-icon-refresh'}, 'filter', 'print', 'exports']
+                icon: 'layui-icon-refresh'
+            }, 'filter', 'print', 'exports']
         });
 
         table.on('tool(mail-table)', function (obj) {

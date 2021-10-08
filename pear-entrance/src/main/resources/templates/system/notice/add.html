@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('新增notice')" />
+    <th:block th:include="include :: header('新增notice')"/>
 </head>
 <body>
-    <form class="layui-form" action="javascript:void(0);">
-        <div class="mainBox">
-            <div class="main-container">
+<form action="javascript:void(0);" class="layui-form">
+    <div class="mainBox">
+        <div class="main-container">
             <div class="layui-form-item">
                 <label class="layui-form-label">标题：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" placeholder="请输入标题" class="layui-input"  lay-verify="required"/>
+                    <input class="layui-input" lay-verify="required" name="title" placeholder="请输入标题" type="text"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">内容：</label>
                 <div class="layui-input-block">
-                    <textarea type="text" name="content" placeholder="请输入内容" class="layui-input layui-textarea"  lay-verify="required"></textarea>
+                    <textarea class="layui-input layui-textarea" lay-verify="required" name="content" placeholder="请输入内容"
+                              type="text"></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-hide">
                 <label class="layui-form-label">发送：</label>
                 <div class="layui-input-block">
-                    <input th:value="${#authentication.principal.userId}" type="text" name="sender" placeholder="请输入接收者" class="layui-input"  lay-verify="required"/>
+                    <input class="layui-input" lay-verify="required" name="sender" placeholder="请输入接收者"
+                           th:value="${#authentication.principal.userId}" type="text"/>
                 </div>
             </div>
             <div class="layui-form-item layui-hide accept">
@@ -30,40 +32,40 @@
                 <div class="layui-input-block">
                     <select name="accept">
                         <option value="">所有</option>
-                        <option th:each="user:${users}" th:value="${user.userId}" th:text="${user.realName}"></option>
+                        <option th:each="user:${users}" th:text="${user.realName}" th:value="${user.userId}"></option>
                     </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">类型：</label>
                 <div class="layui-input-block">
-                    <select lay-filter="type" name="type"  lay-verify="required" >
+                    <select lay-filter="type" lay-verify="required" name="type">
                         <option value="">所有</option>
                         <option value="public">公告</option>
                         <option value="private">私信</option>
                     </select>
                 </div>
             </div>
-            </div>
         </div>
-        <div class="bottom">
-            <div class="button-container">
-                <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="notice-save">
-                    <i class="layui-icon layui-icon-ok"></i>
-                    提交
-                </button>
-                <button type="reset" class="pear-btn pear-btn-sm">
-                    <i class="layui-icon layui-icon-refresh"></i>
-                    重置
-                </button>
-            </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="notice-save" lay-submit="" type="submit">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button class="pear-btn pear-btn-sm" type="reset">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
         </div>
-    </form>
+    </div>
+</form>
 </body>
-<th:block th:include="include :: footer" />
+<th:block th:include="include :: footer"/>
 <script th:inline="javascript">
 
-    layui.use(['form', 'jquery','dictionary','popup'], function () {
+    layui.use(['form', 'jquery', 'dictionary', 'popup'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let popup = layui.popup;
@@ -73,7 +75,7 @@
         // 监听
         form.on("select(type)", function () {
 
-            var value=$("select[name='type']").val();
+            var value = $("select[name='type']").val();
 
             // 监听
             if (value === 'public') {
@@ -110,11 +112,11 @@
 
         form.on('submit(notice-save)', function (data) {
 
-            if(data.field['type']==='private' && data.field['accept'] == ""){
+            if (data.field['type'] === 'private' && data.field['accept'] == "") {
                 popup.failure("请选择接收人");
-            }else{
+            } else {
                 $.ajax({
-                    url: prefix+'save',
+                    url: prefix + 'save',
                     data: JSON.stringify(data.field),
                     dataType: 'json',
                     contentType: 'application/json',

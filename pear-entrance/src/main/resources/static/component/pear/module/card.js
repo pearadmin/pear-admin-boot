@@ -1,4 +1,4 @@
-layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
+layui.define(['table', 'laypage', 'jquery', 'element'], function (exports) {
     "use strict";
 
     var MOD_NAME = 'card',
@@ -15,10 +15,10 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
         limit: 0, //每页数量默认是每行数量的双倍
         linenum: 4, //每行数量 2,3,4,6
         currentPage: 1,//当前页
-        data:[],       //静态数据
-        limits:[],     //页码
+        data: [],       //静态数据
+        limits: [],     //页码
         page: true, //是否分页
-        layout: ['count', 'prev', 'page', 'next','limit', 'skip'],//分页控件
+        layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],//分页控件
         request: {
             pageName: 'page' //页码的参数名称，默认：page
             , limitName: 'limit' //每页数据量的参数名，默认：limit
@@ -35,13 +35,14 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
             , countName: 'count' //规定数据总数的字段名称，默认：count
             , dataName: 'data' //规定数据列表的字段名称，默认：data
         },
-        clickItem: function(data){},
+        clickItem: function (data) {
+        },
         done: function () {
 
         }
     };
 
-    var card = function(opt) {
+    var card = function (opt) {
         _instances[opt.elem.substring(1)] = this;
         this.reload(opt);
     };
@@ -67,8 +68,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
         if (!!url) {
             if (url.indexOf("?") >= 0) {
                 url = url + '&v=1.0.0';
-            }
-            else {
+            } else {
                 url = url + '?v=1.0.0';
             }
             if (!!option.page) {
@@ -80,7 +80,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
                     url = url + '&' + key + '=' + option.where[key];
                 }
             }
-            getData(url).then(function(data){
+            getData(url).then(function (data) {
                 data = initData(data, option);
                 if (data.code != option.response.statusCode) {
                     option.data = [];
@@ -93,8 +93,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
                 if (!!option.data && option.data.length > 0) {
                     html = createComponent(option.elem.substring(1), option.linenum, option.data);
                     html += "<div id='cardpage'></div>";
-                }
-                else {
+                } else {
                     html = "<p>没有数据</p>";
                 }
                 $(option.elem).html(html);
@@ -113,15 +112,14 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
                     });
                 }
             });
-        }
-        else {
+        } else {
             if (!option.alldata) {
                 option.alldata = option.data;
             }
             if (option.page) {
                 var data = [];
                 option.count = option.alldata.length;
-                for (var i = (option.currentPage - 1) * option.limit; i < option.currentPage * option.limit && i<option.alldata.length; i++) {
+                for (var i = (option.currentPage - 1) * option.limit; i < option.currentPage * option.limit && i < option.alldata.length; i++) {
                     data.push(option.alldata[i]);
                 }
                 option.data = data;
@@ -129,8 +127,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
             if (!!option.data && option.data.length > 0) {
                 html = createComponent(option.elem.substring(1), option.linenum, option.data);
                 html += "<div id='cardpage'></div>";
-            }
-            else {
+            } else {
                 html = "<p>没有数据</p>";
             }
             $(option.elem).html(html);
@@ -156,19 +153,19 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
         this.init();  // 初始化表格
     }
 
-    function createComponent(elem,linenum,data) {
+    function createComponent(elem, linenum, data) {
         var html = "<div class='cloud-card-component'>"
-        var content = createCards(elem, linenum,data);
+        var content = createCards(elem, linenum, data);
         var page = "";
         content = content + page;
         html += content + "</div>"
         return html;
     }
 
-    function createCards(elem, linenum,data) {
+    function createCards(elem, linenum, data) {
         var content = "<div class='layui-row layui-col-space30'>";
         for (var i = 0; i < data.length; i++) {
-            content += createCard(elem, linenum,data[i],i);
+            content += createCard(elem, linenum, data[i], i);
         }
         content += "</div>";
         return content;
@@ -177,7 +174,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
     function createCard(elem, linenum, item, no) {
         var line = 12 / linenum;
         var card =
-            '<div id=' + item.id + ' onclick="cardTableCheckedCard(' + elem + ',this)" class="layui-col-md' + line + ' ew-datagrid-item" data-index="' + no+'" data-number="1"> <div class="project-list-item"> <img class="project-list-item-cover" src="' +item.image + '"> <div class="project-list-item-body"> <h2>' + item.title + '</h2> <div class="project-list-item-text layui-text">' + item.remark + '</div> <div class="project-list-item-desc"> <span class="time">' +item.time + '</span> <div class="ew-head-list"></div> </div> </div > </div > </div > '
+            '<div id=' + item.id + ' onclick="cardTableCheckedCard(' + elem + ',this)" class="layui-col-md' + line + ' ew-datagrid-item" data-index="' + no + '" data-number="1"> <div class="project-list-item"> <img class="project-list-item-cover" src="' + item.image + '"> <div class="project-list-item-body"> <h2>' + item.title + '</h2> <div class="project-list-item-text layui-text">' + item.remark + '</div> <div class="project-list-item-desc"> <span class="time">' + item.time + '</span> <div class="ew-head-list"></div> </div> </div > </div > </div > '
         return card;
     }
 
@@ -202,13 +199,13 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 
     function getData(url) {
         var defer = $.Deferred();
-        $.get(url + "?fresh=" + Math.random(), function(result) {
+        $.get(url + "?fresh=" + Math.random(), function (result) {
             defer.resolve(result)
         });
         return defer.promise();
     }
 
-    window.cardTableCheckedCard = function (elem,obj) {
+    window.cardTableCheckedCard = function (elem, obj) {
         $(obj).addClass('layui-table-click').siblings().removeClass('layui-table-click');
         var item = {};
         item.id = obj.id;

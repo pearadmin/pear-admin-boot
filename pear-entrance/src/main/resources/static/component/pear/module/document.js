@@ -1,11 +1,11 @@
-layui.define(['jquery', 'element'], function(exports) {
-	"use strict";
+layui.define(['jquery', 'element'], function (exports) {
+    "use strict";
 
-	var MOD_NAME = 'document';
+    var MOD_NAME = 'document';
 
-	var document = function(opt) {
-		this.option = opt;
-	};
+    var document = function (opt) {
+        this.option = opt;
+    };
 
-	exports(MOD_NAME, new document());
+    exports(MOD_NAME, new document());
 })

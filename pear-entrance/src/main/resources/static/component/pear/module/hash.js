@@ -1,6 +1,6 @@
 /**
-  layui hash extend
-**/
+ layui hash extend
+ **/
 
 layui.define(function (exports) {
     /**
@@ -1205,6 +1205,7 @@ layui.define(function (exports) {
                 s = (utf8) ? utf8Encode(s) : s;
                 return binb2rstr(binb(rstr2binb(s), s.length * 8));
             }
+
             /*
              * Calculate the HMAC-SHA-512 of a key and some data (raw strings)
              */
@@ -1711,28 +1712,28 @@ layui.define(function (exports) {
             function rmd160_f(j, x, y, z) {
                 return (0 <= j && j <= 15) ? (x ^ y ^ z) :
                     (16 <= j && j <= 31) ? (x & y) | (~x & z) :
-                    (32 <= j && j <= 47) ? (x | ~y) ^ z :
-                    (48 <= j && j <= 63) ? (x & z) | (y & ~z) :
-                    (64 <= j && j <= 79) ? x ^ (y | ~z) :
-                    'rmd160_f: j out of range';
+                        (32 <= j && j <= 47) ? (x | ~y) ^ z :
+                            (48 <= j && j <= 63) ? (x & z) | (y & ~z) :
+                                (64 <= j && j <= 79) ? x ^ (y | ~z) :
+                                    'rmd160_f: j out of range';
             }
 
             function rmd160_K1(j) {
                 return (0 <= j && j <= 15) ? 0x00000000 :
                     (16 <= j && j <= 31) ? 0x5a827999 :
-                    (32 <= j && j <= 47) ? 0x6ed9eba1 :
-                    (48 <= j && j <= 63) ? 0x8f1bbcdc :
-                    (64 <= j && j <= 79) ? 0xa953fd4e :
-                    'rmd160_K1: j out of range';
+                        (32 <= j && j <= 47) ? 0x6ed9eba1 :
+                            (48 <= j && j <= 63) ? 0x8f1bbcdc :
+                                (64 <= j && j <= 79) ? 0xa953fd4e :
+                                    'rmd160_K1: j out of range';
             }
 
             function rmd160_K2(j) {
                 return (0 <= j && j <= 15) ? 0x50a28be6 :
                     (16 <= j && j <= 31) ? 0x5c4dd124 :
-                    (32 <= j && j <= 47) ? 0x6d703ef3 :
-                    (48 <= j && j <= 63) ? 0x7a6d76e9 :
-                    (64 <= j && j <= 79) ? 0x00000000 :
-                    'rmd160_K2: j out of range';
+                        (32 <= j && j <= 47) ? 0x6d703ef3 :
+                            (48 <= j && j <= 63) ? 0x7a6d76e9 :
+                                (64 <= j && j <= 79) ? 0x00000000 :
+                                    'rmd160_K2: j out of range';
             }
         }
     };

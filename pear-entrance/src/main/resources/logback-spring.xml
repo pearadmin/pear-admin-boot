@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- 文件输出格式 -->
-    <property name="PATTERN" value="%boldMagenta(%-12(%d{yyyy-MM-dd HH:mm:ss.SSS})) |- %highlight(%-5level) %cyan([%thread]) %green(%c [%L]) -| %msg%n" />
-    <property name="LOG_NAME" value="pear" />
+    <property name="PATTERN"
+              value="%boldMagenta(%-12(%d{yyyy-MM-dd HH:mm:ss.SSS})) |- %highlight(%-5level) %cyan([%thread]) %green(%c [%L]) -| %msg%n"/>
+    <property name="LOG_NAME" value="pear"/>
     <!--所在项目包 打印日志用-->
-    <property name="PACKAGE_NAME" value="com.pearadmin" />
+    <property name="PACKAGE_NAME" value="com.pearadmin"/>
     <!-- test文件路径 -->
-    <property name="TEST_FILE_PATH" value="/var/log/${LOG_NAME}" />
+    <property name="TEST_FILE_PATH" value="/var/log/${LOG_NAME}"/>
     <!-- pro文件路径 -->
-    <property name="PROD_FILE_PATH" value="/var/log/${LOG_NAME}" />
+    <property name="PROD_FILE_PATH" value="/var/log/${LOG_NAME}"/>
 
     <!-- 开发环境 -->
     <springProfile name="dev">
@@ -21,12 +22,12 @@
         <logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug"/>
         <logger name="org.apache.ibatis.reflection" level="INFO"/>
 
-        <logger name="${PACKAGE_NAME}" level="debug" />
+        <logger name="${PACKAGE_NAME}" level="debug"/>
         <root level="info">
-           <appender-ref ref="CONSOLE" />
+            <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
-    
+
     <!-- 测试环境 -->
     <springProfile name="test">
         <!-- 每天产生一个文件 -->
@@ -42,18 +43,18 @@
             </rollingPolicy>
             <encoder>
                 <pattern>
-                    [%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %method  %line - %msg%n
+                    [%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %method %line - %msg%n
                 </pattern>
             </encoder>
         </appender>
         <logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug"/>
         <logger name="org.apache.ibatis.reflection" level="INFO"/>
-        <logger name="${PACKAGE_NAME}" level="debug" />
+        <logger name="${PACKAGE_NAME}" level="debug"/>
         <root level="debug">
-            <appender-ref ref="TEST_FILE" />
+            <appender-ref ref="TEST_FILE"/>
         </root>
     </springProfile>
-    
+
     <!-- 生产环境 -->
     <springProfile name="prod">
         <appender name="PROD_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -68,12 +69,12 @@
             </rollingPolicy>
             <encoder>
                 <pattern>
-                    [%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %method  %line - %msg%n
+                    [%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %method %line - %msg%n
                 </pattern>
             </encoder>
         </appender>
         <root level="warn">
-            <appender-ref ref="PROD_FILE" />
+            <appender-ref ref="PROD_FILE"/>
         </root>
     </springProfile>
 </configuration>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('监控')"/>
-    <link rel="stylesheet" href="/admin/css/other/console2.css"/>
+    <link href="/admin/css/other/console2.css" rel="stylesheet"/>
 </head>
 <body class="pear-container">
 <div class="layui-row layui-col-space10">
@@ -24,7 +24,7 @@
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">空闲率</div>
-                                    <div class="count pear-text"  th:text="${cpu.free + '%'}">32</div>
+                                    <div class="count pear-text" th:text="${cpu.free + '%'}">32</div>
                                 </div>
                             </div>
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
@@ -71,7 +71,8 @@
                             <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
                                 <div class="pear-card2">
                                     <div class="title">内存使用</div>
-                                    <div class="count pear-text" th:text="${#numbers.formatDecimal(cpu.memInfo.used / cpu.memInfo.total * 100, 2, 2)+ '%'}"></div>
+                                    <div class="count pear-text"
+                                         th:text="${#numbers.formatDecimal(cpu.memInfo.used / cpu.memInfo.total * 100, 2, 2)+ '%'}"></div>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +105,8 @@
                         已经使用&nbsp;<span th:text="${sysFile.used}"></span>&nbsp;&nbsp;
                         使用概率&nbsp;<span th:text="${sysFile.usage + '%'}"></span>
                         <br/>
-                        <a href="javascript:;" data-id="1" class="pear-btn pear-btn-xs pear-btn-primary pear-reply">详情</a>
+                        <a class="pear-btn pear-btn-xs pear-btn-primary pear-reply" data-id="1"
+                           href="javascript:;">详情</a>
                     </li>
                 </ul>
             </div>
@@ -148,13 +150,13 @@
 </div>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['layer', 'echarts'], function() {
+    layui.use(['layer', 'echarts'], function () {
         var $ = layui.jquery,
             echarts = layui.echarts;
 
         var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
 
-        $("body").on("click", "[data-url]", function() {
+        $("body").on("click", "[data-url]", function () {
             parent.layui.tab.addTabOnlyByElem("content", {
                 id: $(this).attr("data-id"),
                 title: $(this).attr("data-title"),
@@ -242,7 +244,7 @@
             },
             tooltip: {
                 trigger: "axis",
-                formatter: function(params) {
+                formatter: function (params) {
                     let html = '';
                     params.forEach(v => {
                         console.log(v)
@@ -253,7 +255,6 @@
 					                <span style="color:${color[v.componentIndex]};font-weight:700;font-size: 18px">${v.value}</span>
 					                人`;
                     })
-
 
 
                     return html
@@ -393,7 +394,7 @@
 
         echartsRecords.setOption(option);
 
-        window.onresize = function() {
+        window.onresize = function () {
             echartsRecords.resize();
         }
 

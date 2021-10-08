@@ -4,77 +4,77 @@
     <th:block th:include="include :: header('权限修改')"/>
 </head>
 <body>
-<form class="layui-form" action="">
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">编号</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysPower.powerId}" name="powerId" lay-verify="title"
-                               autocomplete="off" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="powerId"
+                               th:value="${sysPower.powerId}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">父级</label>
                     <div class="layui-input-block">
-                        <ul id="selectParent" name="parentId" class="dtree" data-id="-1"></ul>
+                        <ul class="dtree" data-id="-1" id="selectParent" name="parentId"></ul>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysPower.powerName}" name="powerName" lay-verify="title"
-                               autocomplete="off" placeholder="权限名称" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="powerName"
+                               placeholder="权限名称" th:value="${sysPower.powerName}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item" id="powerCodeItem">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input type="text" id="powerCode" th:value="${sysPower.powerCode}" name="powerCode"
-                               autocomplete="off" placeholder="权限标识" class="layui-input">
+                        <input autocomplete="off" class="layui-input" id="powerCode" name="powerCode"
+                               placeholder="权限标识" th:value="${sysPower.powerCode}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '0'}"
-                               name="powerType" value="0" title="目录">
-                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '1'}"
-                               name="powerType" value="1" title="菜单">
-                        <input type="radio" lay-filter="powerType" th:checked="${sysPower.powerType eq '2'}"
-                               name="powerType" value="2" title="按钮">
+                        <input lay-filter="powerType" name="powerType" th:checked="${sysPower.powerType eq '0'}"
+                               title="目录" type="radio" value="0">
+                        <input lay-filter="powerType" name="powerType" th:checked="${sysPower.powerType eq '1'}"
+                               title="菜单" type="radio" value="1">
+                        <input lay-filter="powerType" name="powerType" th:checked="${sysPower.powerType eq '2'}"
+                               title="按钮" type="radio" value="2">
                     </div>
                 </div>
                 <div class="layui-form-item" id="powerUrlItem">
                     <label class="layui-form-label">路径</label>
                     <div class="layui-input-block">
-                        <input type="text" id="powerUrl" th:value="${sysPower.powerUrl}" name="powerUrl"
-                               autocomplete="off" placeholder="菜单路径" class="layui-input">
+                        <input autocomplete="off" class="layui-input" id="powerUrl" name="powerUrl"
+                               placeholder="菜单路径" th:value="${sysPower.powerUrl}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item" id="openTypeItem">
                     <label class="layui-form-label">打开</label>
                     <div class="layui-input-block">
-                        <select name="openType" id="openType">
+                        <select id="openType" name="openType">
                             <option value=""></option>
-                            <option value="_iframe" th:selected="${sysPower.openType eq '_iframe'}">框架</option>
-                            <option value="_blank" th:selected="${sysPower.openType eq '_blank'}">签页</option>
+                            <option th:selected="${sysPower.openType eq '_iframe'}" value="_iframe">框架</option>
+                            <option th:selected="${sysPower.openType eq '_blank'}" value="_blank">签页</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">图标</label>
                     <div class="layui-input-block">
-                        <input type="text" id="icon" th:value="${sysPower.icon}" name="icon" lay-filter="icon"
-                               class="layui-input">
+                        <input class="layui-input" id="icon" lay-filter="icon" name="icon" th:value="${sysPower.icon}"
+                               type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">排序</label>
                     <div class="layui-input-block">
-                        <input type="text" th:value="${sysPower.sort}" name="sort" lay-verify="title" autocomplete="off"
-                               placeholder="排序" class="layui-input">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="sort" placeholder="排序"
+                               th:value="${sysPower.sort}" type="text">
                     </div>
                 </div>
             </div>
@@ -82,11 +82,11 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="power-save">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="power-save" lay-submit="" type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>

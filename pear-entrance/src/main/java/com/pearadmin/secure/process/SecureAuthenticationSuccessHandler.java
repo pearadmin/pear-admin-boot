@@ -1,15 +1,15 @@
 package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
-import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
+import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.system.domain.SysUser;
+import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.system.service.ISysUserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -36,7 +36,7 @@ public class SecureAuthenticationSuccessHandler implements AuthenticationSuccess
     private ISysUserService sysUserService;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException{
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         SysLog sysLog = new SysLog();
         sysLog.setId(SequenceUtil.makeStringId());
         sysLog.setTitle("登录");

@@ -1,10 +1,10 @@
 ;
 "use strict";
-layui.define(["layer", "jquery","table"], function (exports) {
+layui.define(["layer", "jquery", "table"], function (exports) {
     var $ = layui.jquery;
     var table = layui.table;
     var obj = {
-        checkField: function(obj, field) {
+        checkField: function (obj, field) {
             let data = table.checkStatus(obj.config.id).data;
             if (data.length === 0) {
                 return "";
@@ -16,10 +16,10 @@ layui.define(["layer", "jquery","table"], function (exports) {
             ids = ids.substr(0, ids.length - 1);
             return ids;
         },
-        resizeTable:function(tableId){
+        resizeTable: function (tableId) {
             layui.table.resize(tableId);
         }
-        ,sprintf: function (str) {
+        , sprintf: function (str) {
             var args = arguments, flag = true, i = 1;
             str = str.replace(/%s/g, function () {
                 var arg = args[i++];
@@ -108,7 +108,7 @@ layui.define(["layer", "jquery","table"], function (exports) {
             return actions.join('');
         },
         ajaxRemove: function (removeUrl, id, cb) {
-            if(id=='' || id==undefined){
+            if (id == '' || id == undefined) {
                 layui.layer.alert('请选择删除数据！');
                 return;
             }

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('流程定义列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">定义名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="name" placeholder="" class="layui-input">
+                    <input class="layui-input" name="name" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="model-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="model-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -30,15 +30,16 @@
     </div>
 </div>
 
-<script type="text/html" id="barDemo">
+<script id="barDemo" type="text/html">
     <a class="pear-btn pear-btn-sm pear-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i></a>
 </script>
 
-<script type="text/html" id="xml">
-    <a download="{{d.bpmn}}" href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
+<script id="xml" type="text/html">
+    <a download="{{d.bpmn}}"
+       href='/process/defined/resource?definedId={{d.deploymentId}}&resourceName={{d.bpmn}}'>{{d.bpmn}}</a>
 </script>
 
-<script type="text/html" id="png">
+<script id="png" type="text/html">
     <a lay-event="png">{{d.png}}</a>
 </script>
 
@@ -61,13 +62,13 @@
             , cols: [
                 [
                     {type: 'checkbox'}
-                    , {field: 'id', title: '流程编号', sort: true,width: 150}
-                    , {field: 'name', title: '流程名称',width: 120}
-                    , {field: 'key', title: '流程标识', sort: true,width: 120}
-                    , {field: 'version', title: '流程版本', sort: true, width:120}
+                    , {field: 'id', title: '流程编号', sort: true, width: 150}
+                    , {field: 'name', title: '流程名称', width: 120}
+                    , {field: 'key', title: '流程标识', sort: true, width: 120}
+                    , {field: 'version', title: '流程版本', sort: true, width: 120}
                     , {field: 'bpmn', title: '资源文件', templet: '#xml', sort: true}
                     , {field: 'png', title: '流程图片', templet: '#png', sort: true}
-                    , {field: 'deploymentId', title: '部署 ID', sort: true,width: 120}
+                    , {field: 'deploymentId', title: '部署 ID', sort: true, width: 120}
                     , {title: '操作', align: 'center', toolbar: '#barDemo', width: 100}
                 ]
             ]

@@ -4,11 +4,11 @@
     <th:block th:include="include :: header('文件新增')"/>
 </head>
 <body>
-<form class="layui-form" action="javascript:void(0);">
+<form action="javascript:void(0);" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="layui-upload">
-                <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                <button class="layui-btn layui-btn-normal" id="testList" type="button">选择多文件</button>
                 <div class="layui-upload-list">
                     <table class="layui-table">
                         <thead>
@@ -26,11 +26,11 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button id="testListAction" type="submit" class="pear-btn pear-btn-primary pear-btn-sm">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" id="testListAction" type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>

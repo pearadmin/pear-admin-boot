@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('角色列表')"/>
 </head>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">角色名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="roleName" placeholder="" class="layui-input">
+                    <input class="layui-input" name="roleName" placeholder="" type="text">
                 </div>
                 <label class="layui-form-label">角色标识</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="roleCode" placeholder="" class="layui-input">
+                    <input class="layui-input" name="roleCode" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="role-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="role-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -35,33 +35,40 @@
 </div>
 </body>
 
-<script type="text/html" id="role-toolbar">
-    <button sec:authorize="hasPermission('/system/role/add','sys:role:add')" class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+<script id="role-toolbar" type="text/html">
+    <button sec:authorize="hasPermission('/system/role/add','sys:role:add')"
+            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="layui-icon layui-icon-add-1"></i>
         新增
     </button>
-    <button sec:authorize="hasPermission('/system/role/remove','sys:role:remove')" class="pear-btn pear-btn-md" lay-event="batchRemove">
+    <button sec:authorize="hasPermission('/system/role/remove','sys:role:remove')" class="pear-btn pear-btn-md"
+            lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
     </button>
 </script>
 
-<script type="text/html" id="role-bar">
-    <button sec:authorize="hasPermission('/system/role/edit','sys:role:edit')" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+<script id="role-bar" type="text/html">
+    <button sec:authorize="hasPermission('/system/role/edit','sys:role:edit')"
+            class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
     </button>
-    <button sec:authorize="hasPermission('/system/role/power','sys:role:power')" class="pear-btn pear-btn-warming pear-btn-sm" lay-event="power"><i class="layui-icon layui-icon-vercode"></i>
+    <button sec:authorize="hasPermission('/system/role/power','sys:role:power')"
+            class="pear-btn pear-btn-warming pear-btn-sm" lay-event="power"><i
+            class="layui-icon layui-icon-vercode"></i>
     </button>
-    <button sec:authorize="hasPermission('/system/role/remove','sys:role:remove')" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    <button sec:authorize="hasPermission('/system/role/remove','sys:role:remove')"
+            class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
-<script type="text/html" id="role-enable">
-    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="role-enable" {{d.enable== '0' ? 'checked' : '' }} >
+<script id="role-enable" type="text/html">
+    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="role-enable" {{d.enable== '0' ? 'checked' : '' }} >
 </script>
 
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['table', 'form', 'jquery','popup','common'], function () {
+    layui.use(['table', 'form', 'jquery', 'popup', 'common'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
@@ -199,7 +206,7 @@
         }
 
         window.batchRemove = function (obj) {
-            let ids = common.checkField(obj,'roleId');
+            let ids = common.checkField(obj, 'roleId');
             if (common.isEmpty(ids)) {
                 popup.warning("未选中数据");
                 return false;

@@ -1,8 +1,8 @@
 package com.pearadmin.api.common;
 
-import com.pearadmin.common.tools.system.SystemUtil;
-import com.pearadmin.common.tools.system.CpuInfo;
 import com.pearadmin.common.constant.ControllerConstant;
+import com.pearadmin.common.tools.system.CpuInfo;
+import com.pearadmin.common.tools.system.SystemUtil;
 import com.pearadmin.common.web.base.BaseController;
 import io.swagger.annotations.Api;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Describe: 服务器控制器
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
- * */
+ */
 @RestController
 @Api(tags = {"服务监控"})
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "monitor")
@@ -24,7 +24,7 @@ public class MonitorController extends BaseController {
 
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/monitor/main','sys:monitor:main')")
-    public ModelAndView main(Model model){
+    public ModelAndView main(Model model) {
         CpuInfo cpu = SystemUtil.getCpu();
         model.addAttribute("cpu", cpu);
         return jumpPage("system/monitor/main");

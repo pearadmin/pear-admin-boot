@@ -4,7 +4,7 @@
     <th:block th:include="include :: header('发送邮件')"/>
 </head>
 <body>
-<form class="layui-form" action="">
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
@@ -13,8 +13,8 @@
                         收件人
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="receiver" lay-verify="required" autocomplete="off" class="layui-input"
-                        placeholder="多个收件人用(英文分号;)隔开">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="receiver" placeholder="多个收件人用(英文分号;)隔开"
+                               type="text">
                     </div>
                 </div>
 
@@ -23,15 +23,16 @@
                         主题
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="subject" autocomplete="off" class="layui-input"
-                        placeholder="请输入邮件主题，可不填写">
+                        <input autocomplete="off" class="layui-input" name="subject" placeholder="请输入邮件主题，可不填写"
+                               type="text">
                     </div>
                 </div>
 
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">正文</label>
                     <div class="layui-input-block">
-                        <textarea name="content" style="height: 350px" class="layui-textarea" placeholder="请输入邮件正文"></textarea>
+                        <textarea class="layui-textarea" name="content" placeholder="请输入邮件正文"
+                                  style="height: 350px"></textarea>
                     </div>
                 </div>
 
@@ -40,12 +41,12 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit=""
-                    lay-filter="mail-save">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="mail-save" lay-submit=""
+                    type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 发送
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>

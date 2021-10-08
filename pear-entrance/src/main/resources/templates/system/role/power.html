@@ -4,21 +4,21 @@
     <th:block th:include="include :: header('角色授权')"/>
 </head>
 <body>
-<form class="layui-form" action="">
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
-                <ul id="role-power" class="dtree" data-id="0"></ul>
+                <ul class="dtree" data-id="0" id="role-power"></ul>
             </div>
         </div>
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="power-save">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="power-save" lay-submit="" type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
             </button>
-            <button type="reset" class="pear-btn pear-btn-sm">
+            <button class="pear-btn pear-btn-sm" type="reset">
                 <i class="layui-icon layui-icon-refresh"></i>
                 重置
             </button>

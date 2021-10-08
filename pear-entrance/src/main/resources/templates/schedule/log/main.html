@@ -6,17 +6,17 @@
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form" action="">
+        <form action="" class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">任务名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="jobName" placeholder="" class="layui-input">
+                    <input class="layui-input" name="jobName" placeholder="" type="text">
                 </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="log-query">
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="log-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
                     查询
                 </button>
-                <button type="reset" class="pear-btn pear-btn-md">
+                <button class="pear-btn pear-btn-md" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>
                     重置
                 </button>
@@ -26,12 +26,12 @@
 </div>
 <div class="layui-card">
     <div class="layui-card-body">
-        <table style="margin-top: 10px;" id="log-table" lay-filter="log-table"></table>
+        <table id="log-table" lay-filter="log-table" style="margin-top: 10px;"></table>
     </div>
 </div>
 </body>
 
-<script type="text/html" id="log-bar">
+<script id="log-bar" type="text/html">
     {{#if (d.status == 0) { }}
     <span style="color: green">成功</span>
     {{# }else if(d.status == 1){ }}
@@ -39,7 +39,7 @@
     {{# } }}
 </script>
 
-<script type="text/html" id="log-createTime">
+<script id="log-createTime" type="text/html">
     {{layui.util.toDateString(d.createTime,  "yyyy-MM-dd HH:mm:ss")}}
 </script>
 

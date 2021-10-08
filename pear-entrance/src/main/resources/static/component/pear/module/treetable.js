@@ -8,24 +8,24 @@ layui.define(['layer', 'table'], function (exports) {
     var treetable = {
 
         render: function (param) {
-            param.method = param.method?param.method:"GET";
+            param.method = param.method ? param.method : "GET";
             if (!treetable.checkParam(param)) {
                 return;
             }
             if (param.data) {
                 treetable.init(param, param.data);
             } else {
-                if(param.method === 'post' || param.method === 'POST') {
-                    $.post(param.url, param.where, function(res){
-                        if(param.parseData){
+                if (param.method === 'post' || param.method === 'POST') {
+                    $.post(param.url, param.where, function (res) {
+                        if (param.parseData) {
                             res = param.parseData(res);
                             param.data = res.data;
                         }
                         treetable.init(param, res.data);
                     });
                 } else {
-                    $.get(param.url, param.where, function(res){
-                        if(param.parseData){
+                    $.get(param.url, param.where, function (res) {
+                        if (param.parseData) {
                             res = param.parseData(res);
                             param.data = res.data;
                         }
@@ -112,14 +112,14 @@ layui.define(['layer', 'table'], function (exports) {
 
             // 渲染表格
             table.render(param);
-            var result = instances.some(item=>item.key===param.elem);
-            if(!result){
-                instances.push({key:param.elem,value:param});
+            var result = instances.some(item => item.key === param.elem);
+            if (!result) {
+                instances.push({key: param.elem, value: param});
             }
         },
-        reload: function(elem) {
-            instances.forEach(function(item){
-                if(item.key === elem) {
+        reload: function (elem) {
+            instances.forEach(function (item) {
+                if (item.key === elem) {
                     $(elem).next().remove();
                     item.value.data = undefined;
                     item.value.url = item.value.prevUrl;
@@ -127,7 +127,7 @@ layui.define(['layer', 'table'], function (exports) {
                 }
             })
         },
-        search: function(elem,keyword) {
+        search: function (elem, keyword) {
             var $tds = $(elem).next('.treeTable').find('.layui-table-body tbody tr td');
             if (!keyword) {
                 $tds.css('background-color', 'transparent');

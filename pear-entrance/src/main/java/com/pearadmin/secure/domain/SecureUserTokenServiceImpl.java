@@ -1,18 +1,18 @@
 package com.pearadmin.secure.domain;
 
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Describe: Token 记录服务
@@ -20,7 +20,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  */
 @Component
-public class SecureUserTokenService implements PersistentTokenRepository {
+public class SecureUserTokenServiceImpl implements PersistentTokenRepository {
 
     private final static String USERNAME_KEY = "spring:security:rememberMe:username_key:";
     private final static String SERIES_KEY = "spring:security:rememberMe:series_key:";
@@ -37,7 +37,7 @@ public class SecureUserTokenService implements PersistentTokenRepository {
         String key = generateKey(series, SERIES_KEY);
         String usernameKey = generateKey(persistentRememberMeToken.getUsername(), USERNAME_KEY);
         deleteIfPresent(usernameKey);
-        HashMap<String, String> hashMap = new HashMap<>();
+        HashMap<String, String> hashMap = new HashMap<>(3);
         hashMap.put("username", persistentRememberMeToken.getUsername());
         hashMap.put("token", persistentRememberMeToken.getTokenValue());
         hashMap.put("date", String.valueOf(persistentRememberMeToken.getDate().getTime()));

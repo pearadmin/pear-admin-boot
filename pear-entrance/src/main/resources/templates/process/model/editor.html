@@ -9,18 +9,18 @@
 <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <title>流程编辑器</title>
-    <meta name="description" content="">
-    <meta name="viewport"
-          content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
+    <meta content="" name="description">
+    <meta content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width"
+          name="viewport">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="Stylesheet" media="screen" href="../../editor-app/libs/ng-grid-2.0.7.min.css" type="text/css"/>
-    <link rel="stylesheet" href="../../editor-app/libs/bootstrap_3.1.1/css/bootstrap.min.css"/>
-    <link rel="Stylesheet" media="screen" href="../../editor-app/editor/css/editor.css" type="text/css"/>
-    <link rel="stylesheet" href="../../editor-app/css/style.css" type="text/css"/>
-    <link rel="stylesheet" href="../../editor-app/css/style-common.css">
-    <link rel="stylesheet" href="../../editor-app/css/style-editor.css">
+    <link href="../../editor-app/libs/ng-grid-2.0.7.min.css" media="screen" rel="Stylesheet" type="text/css"/>
+    <link href="../../editor-app/libs/bootstrap_3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../editor-app/editor/css/editor.css" media="screen" rel="Stylesheet" type="text/css"/>
+    <link href="../../editor-app/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../../editor-app/css/style-common.css" rel="stylesheet">
+    <link href="../../editor-app/css/style-editor.css" rel="stylesheet">
     <style>
         .wrapper.full {
             padding: 0px !important;
@@ -30,7 +30,7 @@
 </head>
 <body>
 <div class="alert-wrapper" ng-cloak>
-    <div class="alert fadein {{alerts.current.type}}" ng-show="alerts.current" ng-click="dismissAlert()">
+    <div class="alert fadein {{alerts.current.type}}" ng-click="dismissAlert()" ng-show="alerts.current">
         <i class="glyphicon"
            ng-class="{'glyphicon-ok': alerts.current.type == 'info', 'glyphicon-remove': alerts.current.type == 'error'}"></i>
         <span>{{alerts.current.message}}</span>
@@ -39,8 +39,8 @@
         </div>
     </div>
 </div>
-<div id="main" class="wrapper full clearfix" ng-style="{height: window.height + 'px'}" ng-app="activitiModeler"
-     ng-include="'../../editor-app/editor.html'">
+<div class="wrapper full clearfix" id="main" ng-app="activitiModeler" ng-include="'../../editor-app/editor.html'"
+     ng-style="{height: window.height + 'px'}">
 </div>
 <!--[if lt IE 9]>
 <script src="../../editor-app/libs/es5-shim-15.3.4.5/es5-shim.js"></script>
