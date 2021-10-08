@@ -11,11 +11,11 @@ import java.util.Date;
 @Component("commonTask")
 public class CommonTaskImpl implements BaseTaskService {
 
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 任务实现
-     * */
+     */
     @Override
     public void run(String params) {
         log.info("Params === >> " + params);
