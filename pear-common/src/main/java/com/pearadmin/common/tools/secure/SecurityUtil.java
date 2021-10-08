@@ -18,9 +18,7 @@ public class SecurityUtil {
      */
     public static Authentication currentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            return authentication;
-        }
+        if (!(authentication instanceof AnonymousAuthenticationToken)) return authentication;
         return null;
     }
 
@@ -40,7 +38,9 @@ public class SecurityUtil {
      * retrun SysUser
      */
     public static Object currentUserObj() {
-        return SecurityUtil.currentUser().getPrincipal();
+        Authentication authentication = currentUser();
+        if(null!=authentication) return authentication.getPrincipal();
+        return null;
     }
 
 }

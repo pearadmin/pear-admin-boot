@@ -1,5 +1,6 @@
 package com.pearadmin.common.tools.database;
 
+import cn.hutool.crypto.SecureUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,13 +27,12 @@ public class SqlInjectionUtil {
      * @param dictCode:
      * @param sign:
      * @param request:
-     * @Return: void
      */
     public static void checkDictTableSign(String dictCode, String sign, HttpServletRequest request) {
         //表字典SQL注入漏洞,签名校验
         String accessToken = request.getHeader("X-Access-Token");
         String signStr = dictCode + SqlInjectionUtil.TABLE_DICT_SIGN_SALT + accessToken;
-        String javaSign = md5(signStr.getBytes());
+        String javaSign = SecureUtil.md5().digestHex(signStr.getBytes());
         if (!javaSign.equals(sign)) {
             log.error("表字典，SQL注入漏洞签名校验失败 ：" + sign + "!=" + javaSign + ",dictCode=" + dictCode);
             throw new RuntimeException("无权限访问！");
@@ -40,36 +40,11 @@ public class SqlInjectionUtil {
         log.info(" 表字典，SQL注入漏洞签名校验成功！sign=" + sign + ",dictCode=" + dictCode);
     }
 
-    /** 字节数组，计算MD5值 */
-    public static String md5(byte[] data) {
-        try {
-            // 获取data的MD5摘要
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            // mdInst.update(content.getBytes());
-            digest.update(data);
-            byte[] array = digest.digest();
-
-            // 转换为十六进制的字符串形式
-            StringBuilder buf = new StringBuilder();
-            for (byte b : array) {
-                String shaHex = Integer.toHexString(b & 0xFF);
-                if (shaHex.length() < 2) {
-                    buf.append(0);
-                }
-                buf.append(shaHex);
-            }
-            return buf.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
 
     /**
      * sql注入过滤处理，遇到注入关键字抛异常
      *
-     * @param value
-     * @return
+     * @param value sql语句
      */
     public static void filterContent(String value) {
         specialFilterContent(value, XSS_STR);
@@ -78,8 +53,7 @@ public class SqlInjectionUtil {
     /**
      * sql注入过滤处理，遇到注入关键字抛异常
      *
-     * @param values
-     * @return
+     * @param values sql语句
      */
     public static void filterContent(String[] values) {
 
@@ -100,8 +74,7 @@ public class SqlInjectionUtil {
     }
 
     /**
-     * @param value
-     * @return
+     * @param value sql语句
      *
      * @特殊方法(不通用) 仅用于字典条件SQL参数，注入过滤
      */
@@ -113,8 +86,7 @@ public class SqlInjectionUtil {
 
 
     /**
-     * @param value
-     * @return
+     * @param value sql语句
      *
      * @特殊方法(不通用) 仅用于Online报表SQL解析，注入过滤
      */
