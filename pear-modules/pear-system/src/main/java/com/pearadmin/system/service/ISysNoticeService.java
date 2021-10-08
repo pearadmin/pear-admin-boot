@@ -1,21 +1,21 @@
 package com.pearadmin.system.service;
 
-import java.util.List;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysNotice;
 
+import java.util.List;
+
 /**
  * noticeService接口
- * 
+ *
  * @author jmys
  * @date 2021-03-13
  */
-public interface ISysNoticeService 
-{
+public interface ISysNoticeService {
     /**
      * 查询notice
-     * 
+     *
      * @param id noticeID
      * @return notice
      */
@@ -23,16 +23,17 @@ public interface ISysNoticeService
 
 
     /**
-    * 查询notice
+     * 查询notice
+     *
      * @param ${classsName} notice
      * @param pageDomain
      * @return notice 分页集合
-     * */
+     */
     PageInfo<SysNotice> selectSysNoticePage(SysNotice sysNotice, PageDomain pageDomain);
 
     /**
      * 查询notice列表
-     * 
+     *
      * @param sysNotice notice
      * @return notice集合
      */
@@ -40,7 +41,7 @@ public interface ISysNoticeService
 
     /**
      * 新增notice
-     * 
+     *
      * @param sysNotice notice
      * @return 结果
      */
@@ -48,7 +49,7 @@ public interface ISysNoticeService
 
     /**
      * 修改notice
-     * 
+     *
      * @param sysNotice notice
      * @return 结果
      */
@@ -56,7 +57,7 @@ public interface ISysNoticeService
 
     /**
      * 批量删除notice
-     * 
+     *
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -64,7 +65,7 @@ public interface ISysNoticeService
 
     /**
      * 删除notice信息
-     * 
+     *
      * @param id noticeID
      * @return 结果
      */

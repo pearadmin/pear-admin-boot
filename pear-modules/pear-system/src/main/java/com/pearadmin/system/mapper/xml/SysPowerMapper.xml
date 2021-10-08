@@ -23,55 +23,55 @@
         <result column="icon" property="icon"></result>
         <result column="open_type" property="openType"></result>
         <result column="power_url" property="href"></result>
-   </resultMap>
+    </resultMap>
 
     <select id="selectMenuByUsername" parameterType="string" resultMap="ResuMenuMap">
-        	 select DISTINCT sp.* from sys_power sp
-			 left join sys_role_power srp on srp.power_id = sp.power_id
-			 left join sys_role sr on sr.role_id = srp.role_id
-			 left join  sys_user_role sur on sur.role_id = sr.role_id
-			 left join sys_user su on su.user_id = sur.user_id
-			 <where>
-                 <if test="username != null and username != ''">
-                     su.username = #{username}
-                 </if>
-                 and sp.enable = 1 order by sp.sort
-             </where>
+        select DISTINCT sp.* from sys_power sp
+        left join sys_role_power srp on srp.power_id = sp.power_id
+        left join sys_role sr on sr.role_id = srp.role_id
+        left join sys_user_role sur on sur.role_id = sr.role_id
+        left join sys_user su on su.user_id = sur.user_id
+        <where>
+            <if test="username != null and username != ''">
+                su.username = #{username}
+            </if>
+            and sp.enable = 1 order by sp.sort
+        </where>
     </select>
-    
+
     <select id="selectList" parameterType="SysPower" resultMap="SysPowerMap">
         select * from sys_power
         <where>
             <if test="parentId!=null and parentId!=''">
-               and parent_id = #{parentId}
+                and parent_id = #{parentId}
             </if>
         </where>
         order by sort asc
     </select>
 
     <select id="selectListByParentId" parameterType="string" resultMap="SysPowerMap">
-        select * from sys_power where parent_id = #{parentId}
+        select *
+        from sys_power
+        where parent_id = #{parentId}
     </select>
 
     <!-- 根据 Id 查询权限-->
     <select id="selectById" parameterType="string" resultMap="SysPowerMap">
-        select * from sys_power where power_id = #{id}
+        select *
+        from sys_power
+        where power_id = #{id}
     </select>
 
     <select id="selectByUsername" parameterType="string" resultMap="SysPowerMap">
-        SELECT
-	    *
-        FROM
-	    sys_power sp
-	    LEFT JOIN sys_role_power srp ON sp.power_id = srp.power_id
-	    LEFT JOIN sys_role sr ON sr.role_id = srp.role_id
-	    LEFT JOIN sys_user_role sur ON sur.role_id = sr.role_id
-	    LEFT JOIN sys_user su ON su.user_id = sur.user_id
-        WHERE
-	    su.username = #{username}
-	    and sp.enable = 1
-        ORDER BY
-	    sp.sort ASC
+        SELECT *
+        FROM sys_power sp
+                 LEFT JOIN sys_role_power srp ON sp.power_id = srp.power_id
+                 LEFT JOIN sys_role sr ON sr.role_id = srp.role_id
+                 LEFT JOIN sys_user_role sur ON sur.role_id = sr.role_id
+                 LEFT JOIN sys_user su ON su.user_id = sur.user_id
+        WHERE su.username = #{username}
+          and sp.enable = 1
+        ORDER BY sp.sort ASC
     </select>
 
     <insert id="insert" parameterType="SysPower">
@@ -182,7 +182,9 @@
 
     <!-- 根据 Id 删除用户数据 -->
     <delete id="deleteById" parameterType="string">
-          delete from sys_power where power_id = #{id}
+        delete
+        from sys_power
+        where power_id = #{id}
     </delete>
 
 </mapper>

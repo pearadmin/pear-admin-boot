@@ -27,28 +27,32 @@
     </select>
 
     <select id="selectById" parameterType="string" resultMap="SysDictDataMap">
-        select * from sys_dict_data where data_id = #{dataId}
+        select *
+        from sys_dict_data
+        where data_id = #{dataId}
     </select>
 
-    <select id="selectByCode"  resultMap="SysDictDataMap">
-       select * from sys_dict_data s
-       where s.type_code = #{typeCode}
-       order by s.data_value asc
+    <select id="selectByCode" resultMap="SysDictDataMap">
+        select *
+        from sys_dict_data s
+        where s.type_code = #{typeCode}
+        order by s.data_value asc
     </select>
 
     <select id="queryTableDictItemsByCode" parameterType="string" resultMap="SysDictDataMap">
-         select ${text} as "data_label", ${code} as "data_value" from ${table}
+        select ${text} as "data_label", ${code} as "data_value"
+        from ${table}
     </select>
 
     <select id="queryTableDictItemsByCodeAndFilter" resultMap="SysDictDataMap">
-         select ${text} as "data_label", ${code} as "data_value" from ${table}
+        select ${text} as "data_label", ${code} as "data_value" from ${table}
         <if test="filterSql != null and filterSql != ''">
             where ${filterSql}
         </if>
     </select>
 
     <select id="queryTableDictByKeys" resultMap="SysDictDataMap">
-         select ${text} as "data_label", ${code} as "data_value" from ${table} where ${code} in
+        select ${text} as "data_label", ${code} as "data_value" from ${table} where ${code} in
         <foreach item="key" collection="keyArray" open="(" separator="," close=")">
             #{key}
         </foreach>
@@ -126,15 +130,19 @@
                 enable = #{enable},
             </if>
         </set>
-        where data_id =  #{dataId}
+        where data_id = #{dataId}
     </update>
 
     <delete id="deleteById" parameterType="string">
-          delete from sys_dict_data where data_id = #{id}
+        delete
+        from sys_dict_data
+        where data_id = #{id}
     </delete>
 
     <delete id="deleteByCode" parameterType="string">
-          delete from sys_dict_data where type_code = #{code}
+        delete
+        from sys_dict_data
+        where type_code = #{code}
     </delete>
 
 </mapper>

@@ -8,7 +8,6 @@ import com.pearadmin.system.mapper.SysDictDataMapper;
 import com.pearadmin.system.mapper.SysDictTypeMapper;
 import com.pearadmin.system.service.ISysDictDataService;
 import com.pearadmin.system.service.ISysDictTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -1,13 +1,14 @@
 package com.pearadmin.system.service.impl;
 
-import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
 import com.pearadmin.common.plugin.logging.aop.enums.RequestMethod;
-import com.pearadmin.system.mapper.SysLogMapper;
-import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.servlet.ServletUtil;
+import com.pearadmin.system.domain.SysLog;
+import com.pearadmin.system.mapper.SysLogMapper;
+import com.pearadmin.system.service.ISysLogService;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  * Describe: 日 志 服 务 接 口 实 现
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
- * */
+ */
 @Service
 public class SysLogServiceImpl implements ISysLogService {
 
@@ -39,8 +40,8 @@ public class SysLogServiceImpl implements ISysLogService {
     }
 
     @Override
-    public List<SysLog> data(LoggingType loggingType,LocalDateTime startTime,LocalDateTime endTime) {
-        return sysLogMapper.selectList(loggingType,startTime,endTime);
+    public List<SysLog> data(LoggingType loggingType, LocalDateTime startTime, LocalDateTime endTime) {
+        return sysLogMapper.selectList(loggingType, startTime, endTime);
     }
 
     @Override

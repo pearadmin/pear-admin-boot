@@ -130,7 +130,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * Return: 执行结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Boolean saveRolePower(String roleId, List<String> powerIds) {
         sysRolePowerMapper.deleteByRoleId(roleId);
         List<SysRolePower> rolePowers = new ArrayList<>();
@@ -151,7 +151,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * Return: Boolean
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Boolean remove(String id) {
         sysRoleMapper.deleteById(id);
         sysUserRoleMapper.deleteByRoleId(id);

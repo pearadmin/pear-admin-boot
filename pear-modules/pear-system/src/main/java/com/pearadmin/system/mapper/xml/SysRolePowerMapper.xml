@@ -9,7 +9,8 @@
     </resultMap>
 
     <select id="selectByRoleId" parameterType="string" resultMap="SysRolePowerMap">
-        select * from sys_role_power
+        select *
+        from sys_role_power
         where role_id = #{roleId}
     </select>
 
@@ -17,35 +18,39 @@
         insert into sys_role_power
         ( id, role_id, power_id )
         values
-        <foreach collection ="list" item="item" separator =",">
+        <foreach collection="list" item="item" separator=",">
             (#{item.id}, #{item.roleId}, #{item.powerId})
-        </foreach >
+        </foreach>
     </insert>
 
     <!-- 根据 Id 删除角色数据 -->
     <delete id="deleteByRoleId" parameterType="string">
-          delete from sys_role_power where role_id = #{roleId}
+        delete
+        from sys_role_power
+        where role_id = #{roleId}
     </delete>
 
     <!-- 根据 Id 删除角色数据 -->
     <delete id="deleteByRoleIds" parameterType="string">
-          delete from sys_role_power where role_id in
-        <foreach collection ="roleIds" item="roleId" open="(" separator="," close=")">
+        delete from sys_role_power where role_id in
+        <foreach collection="roleIds" item="roleId" open="(" separator="," close=")">
             #{roleId}
-        </foreach >
+        </foreach>
     </delete>
 
     <!-- 根据 Id 删除角色数据 -->
     <delete id="deleteByPowerId" parameterType="string">
-          delete from sys_role_power where power_id = #{powerId}
+        delete
+        from sys_role_power
+        where power_id = #{powerId}
     </delete>
 
     <!-- 根据 Id 删除角色数据 -->
     <delete id="deleteByPowerIds" parameterType="string">
         delete from sys_role_power where power_id in
-        <foreach collection ="powerIds" item="powerId" open="(" separator="," close=")">
+        <foreach collection="powerIds" item="powerId" open="(" separator="," close=")">
             #{powerId}
-        </foreach >
+        </foreach>
     </delete>
 
 </mapper>

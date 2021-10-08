@@ -3,12 +3,12 @@ package com.pearadmin.system.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.system.domain.SysLog;
 import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
-import com.pearadmin.system.service.ISysLogService;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
+import com.pearadmin.system.domain.SysLog;
+import com.pearadmin.system.service.ISysLogService;
 import io.swagger.annotations.Api;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,9 +50,9 @@ public class SysLogController extends BaseController {
      */
     @GetMapping("operateLog")
     @PreAuthorize("hasPermission('/system/log/operateLog','sys:log:operateLog')")
-    public ResultTable operateLog(PageDomain pageDomain, LocalDateTime startTime,LocalDateTime endTime) {
+    public ResultTable operateLog(PageDomain pageDomain, LocalDateTime startTime, LocalDateTime endTime) {
         PageHelper.startPage(pageDomain.getPage(), pageDomain.getLimit());
-        PageInfo<SysLog> pageInfo = new PageInfo<>(sysLogService.data(LoggingType.OPERATE,startTime,endTime));
+        PageInfo<SysLog> pageInfo = new PageInfo<>(sysLogService.data(LoggingType.OPERATE, startTime, endTime));
         return pageTable(pageInfo.getList(), pageInfo.getTotal());
     }
 
@@ -76,7 +76,7 @@ public class SysLogController extends BaseController {
      */
     @GetMapping("/info")
     @PreAuthorize("hasPermission('/system/log/info','sys:log:info')")
-    public ModelAndView details(){
+    public ModelAndView details() {
         return jumpPage("system/log/info");
     }
 

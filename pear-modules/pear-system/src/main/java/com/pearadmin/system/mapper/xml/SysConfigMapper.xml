@@ -30,12 +30,16 @@
 
     <!-- 根据 Id 查询系统配置-->
     <select id="selectById" parameterType="string" resultMap="SysConfigMap">
-        select * from sys_config where config_id = #{id}
+        select *
+        from sys_config
+        where config_id = #{id}
     </select>
 
     <!-- 根据 Code 查询系统配置-->
     <select id="selectByCode" parameterType="string" resultMap="SysConfigMap">
-        select * from sys_config where config_code = #{code}
+        select *
+        from sys_config
+        where config_code = #{code}
     </select>
 
     <!-- 新增 SysConfig 数据 -->
@@ -108,7 +112,9 @@
 
     <!-- 根据 Id 删除系统配置数据 -->
     <delete id="deleteById" parameterType="string">
-          delete from sys_config where config_id = #{id}
+        delete
+        from sys_config
+        where config_id = #{id}
     </delete>
 
     <!-- 根据 Id 批量删除系统配置数据 -->

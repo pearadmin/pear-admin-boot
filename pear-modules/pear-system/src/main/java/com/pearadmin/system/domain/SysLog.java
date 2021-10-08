@@ -96,7 +96,7 @@ public class SysLog {
     /**
      * 使用浏览器
      */
-    private String Browser;
+    private String browser;
 
     /**
      * 操作系统

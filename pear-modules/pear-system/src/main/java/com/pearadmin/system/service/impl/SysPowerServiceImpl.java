@@ -1,7 +1,6 @@
 package com.pearadmin.system.service.impl;
 
 import com.pearadmin.system.domain.SysPower;
-import com.pearadmin.system.domain.SysRole;
 import com.pearadmin.system.mapper.SysPowerMapper;
 import com.pearadmin.system.mapper.SysRolePowerMapper;
 import com.pearadmin.system.service.ISysPowerService;

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -100,8 +99,8 @@ public class SysFileFTPServiceImpl implements ISysFileService {
         //如果文件不存在
         if (file != null && file.getFilePath() != null) {
             FTPClient ftpClient = FTPUtil.open(uploadProperty.getHostname(), uploadProperty.getUsername(), uploadProperty.getPassword());
-            if (ftpClient.isConnected()){
-                FTPUtil.remove(ftpClient,file.getFilePath());
+            if (ftpClient.isConnected()) {
+                FTPUtil.remove(ftpClient, file.getFilePath());
             }
             FTPUtil.close(ftpClient);
         } else {

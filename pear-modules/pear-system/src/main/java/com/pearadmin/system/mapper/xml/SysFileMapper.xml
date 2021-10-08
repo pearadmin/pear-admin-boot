@@ -4,32 +4,30 @@
 
     <!-- 列 表 查 询 -->
     <select id="selectList" resultType="com.pearadmin.system.domain.SysFile">
-        select
-        id as id,
-        file_name as fileName,
-        file_desc as fileDesc,
-        file_path as filePath,
-        file_type as fileType,
-        file_size as fileSize,
-        create_by as createBy,
-        create_time as createTime
-        from
-        sys_file order by create_time desc
+        select id          as id,
+               file_name   as fileName,
+               file_desc   as fileDesc,
+               file_path   as filePath,
+               file_type   as fileType,
+               file_size   as fileSize,
+               create_by   as createBy,
+               create_time as createTime
+        from sys_file
+        order by create_time desc
     </select>
 
     <!-- 根据 ID 查询 -->
     <select id="selectById" resultType="com.pearadmin.system.domain.SysFile">
-        select
-        id as id,
-        file_name as fileName,
-        file_desc as fileDesc,
-        file_path as filePath,
-        file_type as fileType,
-        file_size as fileSize,
-        create_by as createBy,
-        create_time as createTime
-        from
-        sys_file where id = #{id}
+        select id          as id,
+               file_name   as fileName,
+               file_desc   as fileDesc,
+               file_path   as filePath,
+               file_type   as fileType,
+               file_size   as fileSize,
+               create_by   as createBy,
+               create_time as createTime
+        from sys_file
+        where id = #{id}
     </select>
 
     <!-- 插 入 数 据 -->
@@ -96,7 +94,9 @@
     </insert>
 
     <delete id="deleteById" parameterType="string">
-        delete from sys_file where id = #{id}
+        delete
+        from sys_file
+        where id = #{id}
     </delete>
 
 </mapper>

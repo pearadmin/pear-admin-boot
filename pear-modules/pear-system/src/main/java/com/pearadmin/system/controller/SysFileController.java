@@ -3,13 +3,14 @@ package com.pearadmin.system.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.config.proprety.TemplateProperty;
+import com.pearadmin.common.constant.CommonConstant;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.system.domain.SysFile;
-import com.pearadmin.system.service.ISysFileService;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
+import com.pearadmin.system.domain.SysFile;
+import com.pearadmin.system.service.ISysFileService;
 import io.swagger.annotations.Api;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class SysFileController extends BaseController {
     /**
      * 系 统 文 件
      */
-    private String MODULE_PATH = "system/file/";
+    private final String MODULE_PATH = "system/file/";
 
     /**
      * 配置文件
@@ -51,6 +52,7 @@ public class SysFileController extends BaseController {
 
     /**
      * 根据配置文件选择实现类
+     *
      * @return
      */
     private ISysFileService getFileService() {
@@ -140,11 +142,11 @@ public class SysFileController extends BaseController {
      * Param: id
      * Return: 文件流
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @DeleteMapping("batchRemove/{ids}")
     @PreAuthorize("hasPermission('/system/file/remove','sys:file:remove')")
     public Result batchRemove(@PathVariable("ids") String ids) {
-        for (String id : ids.split(",")) {
+        for (String id : ids.split(CommonConstant.COMMA)) {
             getFileService().remove(id);
         }
         return Result.success("删除成功");

@@ -29,11 +29,15 @@
     </select>
 
     <select id="selectById" parameterType="string" resultMap="SysDeptMap">
-        select * from sys_dept where dept_id = #{id}
+        select *
+        from sys_dept
+        where dept_id = #{id}
     </select>
 
     <select id="selectListByParentId" parameterType="string" resultMap="SysDeptMap">
-        select * from sys_dept where parent_id = #{parentId}
+        select *
+        from sys_dept
+        where parent_id = #{parentId}
     </select>
 
     <insert id="insert" parameterType="SysDept">
@@ -130,7 +134,9 @@
     </update>
 
     <delete id="deleteById" parameterType="string">
-          delete from sys_dept where dept_id = #{id}
+        delete
+        from sys_dept
+        where dept_id = #{id}
     </delete>
 
     <delete id="deleteByIds" parameterType="string">

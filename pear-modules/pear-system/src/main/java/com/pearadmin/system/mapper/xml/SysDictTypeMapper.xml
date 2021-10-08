@@ -17,18 +17,20 @@
     </resultMap>
 
     <!-- 查询数据字典列表 -->
-    <select id="selectList" parameterType="SysDictType" resultMap = "SysDictTypeMap">
+    <select id="selectList" parameterType="SysDictType" resultMap="SysDictTypeMap">
         select * from sys_dict_type
         <where>
             <if test="typeName!=null and typeName!=''">
-               and type_name like "%"#{typeName}"%"
+                and type_name like "%"#{typeName}"%"
             </if>
         </where>
     </select>
 
     <!-- 根据 Id 查询字典-->
     <select id="selectById" parameterType="string" resultMap="SysDictTypeMap">
-        select * from sys_dict_type where id = #{id}
+        select *
+        from sys_dict_type
+        where id = #{id}
     </select>
 
     <!-- 插入数据字典数据 -->
@@ -121,6 +123,8 @@
 
     <!-- 根据 Id 删除用户数据 -->
     <delete id="deleteById" parameterType="string">
-          delete from sys_dict_type where id = #{id}
+        delete
+        from sys_dict_type
+        where id = #{id}
     </delete>
 </mapper>

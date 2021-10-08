@@ -2,20 +2,20 @@ package com.pearadmin.system.controller;
 
 import cn.hutool.core.map.MapUtil;
 import com.pearadmin.common.constant.ConfigurationConstant;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
-import com.pearadmin.system.domain.SysConfig;
+import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.listener.event.SetupEvent;
+import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.web.base.BaseController;
+import com.pearadmin.common.web.domain.response.Result;
+import com.pearadmin.system.domain.SysConfig;
+import com.pearadmin.system.domain.SysSetup;
+import com.pearadmin.system.service.ISysConfigService;
 import io.swagger.annotations.Api;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.web.base.BaseController;
-import com.pearadmin.common.web.domain.response.Result;
-import com.pearadmin.system.domain.SysSetup;
-import com.pearadmin.system.service.ISysConfigService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -65,7 +65,7 @@ public class SysSetupController extends BaseController implements ApplicationEve
         return jumpPage(MODULE_PATH + "main");
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @PutMapping("save")
     @PreAuthorize("hasPermission('/system/setup/add','sys:setup:add')")
     public Result save(@RequestBody SysSetup sysSetup) {

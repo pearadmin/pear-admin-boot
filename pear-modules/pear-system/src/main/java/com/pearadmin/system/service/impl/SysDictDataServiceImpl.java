@@ -26,9 +26,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class SysDictDataServiceImpl implements ISysDictDataService {
 
-    @Resource
-    private SysDictDataMapper sysDictDataMapper;
-
     public static LoadingCache<String, List<SysDictData>> loadingCacheSysDictData = CacheBuilder.newBuilder().maximumSize(100).expireAfterWrite(600, TimeUnit.SECONDS).build(new CacheLoader<String, List<SysDictData>>() {
         @Override
         public List<SysDictData> load(String typeCode) {
@@ -36,6 +33,8 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
             return tempSysDictDataMapper.selectByCode(typeCode);
         }
     });
+    @Resource
+    private SysDictDataMapper sysDictDataMapper;
 
     @Override
     public List<SysDictData> list(SysDictData sysDictData) {

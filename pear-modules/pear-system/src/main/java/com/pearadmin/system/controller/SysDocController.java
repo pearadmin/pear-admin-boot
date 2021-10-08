@@ -19,11 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(ControllerConstant.API_SYSTEM_PREFIX + "doc")
 public class SysDocController extends BaseController {
 
-    private String MODULE_PATH = "system/doc/";
+    private final String MODULE_PATH = "system/doc/";
 
     @GetMapping("main")
     @PreAuthorize("hasPermission('/system/doc/main','sys:doc:main')")
-    public ModelAndView main(){
+    public ModelAndView main() {
         return jumpPage(MODULE_PATH + "main");
     }
 }

@@ -29,21 +29,22 @@
 
     <!-- 根据 Id 查询角色-->
     <select id="selectById" parameterType="string" resultMap="SysRoleMap">
-        select * from sys_role where role_id = #{id}
+        select *
+        from sys_role
+        where role_id = #{id}
     </select>
     <!-- 根据 用户名-->
     <select id="selectByUsername" resultMap="SysRoleMap">
-        SELECT
-        *
-        FROM
-        sys_role sr ON sr.role_id = srp.role_id
-        LEFT JOIN sys_user_role sur ON sur.role_id = sr.role_id
-        LEFT JOIN sys_user su ON su.user_id = sur.user_id
+        SELECT *
+        FROM sys_role sr ON sr.role_id = srp.role_id
+        LEFT JOIN sys_user_role sur
+        ON sur.role_id = sr.role_id
+            LEFT JOIN sys_user su ON su.user_id = sur.user_id
         WHERE
-        su.username = #{username}
-        and sr.enable = 1
+            su.username = #{username}
+          and sr.enable = 1
         ORDER BY
-        sr.sort ASC
+            sr.sort ASC
     </select>
 
     <!-- 新增 SysRole 数据 -->
@@ -116,7 +117,9 @@
 
     <!-- 根据 Id 删除用户数据 -->
     <delete id="deleteById" parameterType="string">
-          delete from sys_role where role_id = #{id}
+        delete
+        from sys_role
+        where role_id = #{id}
     </delete>
 
     <!-- 根据 Id 批量删除用户数据 -->

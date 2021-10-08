@@ -1,17 +1,16 @@
 package com.pearadmin.system.domain;
 
-import lombok.Data;
 import com.pearadmin.common.web.base.BaseDomain;
+import lombok.Data;
 
 /**
  * notice对象 sys_notice
- * 
+ *
  * @author jmys
  * @date 2021-03-13
  */
 @Data
-public class SysNotice extends BaseDomain
-{
+public class SysNotice extends BaseDomain {
     /** 编号 */
     private String id;
 
