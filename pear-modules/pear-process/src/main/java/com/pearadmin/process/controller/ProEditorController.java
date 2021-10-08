@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -25,7 +26,7 @@ import java.nio.charset.StandardCharsets;
  * Describe: 流程编辑器控制器
  * Author: 就眠仪式
  * createTime: 2019/10/23
- * */
+ */
 @RestController
 @Api(tags = {"流程设计"})
 @RequestMapping("service")
@@ -43,7 +44,7 @@ public class ProEditorController extends BaseController implements ModelDataJson
      * @param modelId 模型ID
      * @return {@link ObjectNode}
      */
-    @RequestMapping(value="/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
     public ObjectNode getEditorJson(@PathVariable String modelId) {
         ObjectNode modelNode = null;
         Model model = repositoryService.getModel(modelId);
@@ -58,7 +59,7 @@ public class ProEditorController extends BaseController implements ModelDataJson
                 modelNode.put(MODEL_ID, model.getId());
                 ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(
                         new String(repositoryService.getModelEditorSource(model.getId()), StandardCharsets.UTF_8));
-                modelNode.put("model", editorJsonNode);
+                modelNode.replace("model", editorJsonNode);
             } catch (Exception e) {
                 throw new ActivitiException("Error creating model JSON", e);
             }
@@ -69,15 +70,15 @@ public class ProEditorController extends BaseController implements ModelDataJson
     /**
      * 保存流程模型
      *
-     * @param modelId 模型ID
-     * @param name 流程模型名称
+     * @param modelId     模型ID
+     * @param name        流程模型名称
      * @param description 流程描述
-     * @param json_xml 流程文件
-     * @param svg_xml 流程图片
+     * @param jsonXml     流程文件
+     * @param svgXml      流程图片
      */
-    @RequestMapping(value="/model/{modelId}/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/model/{modelId}/save", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
-    public void saveModel(@PathVariable String modelId, String name, String description, String json_xml, String svg_xml) {
+    public void saveModel(@PathVariable String modelId, String name, String description, String jsonXml, String svgXml) {
         try {
 
             Model model = repositoryService.getModel(modelId);
@@ -87,9 +88,9 @@ public class ProEditorController extends BaseController implements ModelDataJson
             model.setMetaInfo(modelJson.toString());
             model.setName(name);
             repositoryService.saveModel(model);
-            repositoryService.addModelEditorSource(model.getId(), json_xml.getBytes(StandardCharsets.UTF_8));
+            repositoryService.addModelEditorSource(model.getId(), jsonXml.getBytes(StandardCharsets.UTF_8));
 
-            InputStream svgStream = new ByteArrayInputStream(svg_xml.getBytes(StandardCharsets.UTF_8));
+            InputStream svgStream = new ByteArrayInputStream(svgXml.getBytes(StandardCharsets.UTF_8));
             TranscoderInput input = new TranscoderInput(svgStream);
             PNGTranscoder transcoder = new PNGTranscoder();
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -112,7 +113,7 @@ public class ProEditorController extends BaseController implements ModelDataJson
      * @return {@link String}
      */
     @ResponseBody
-    @GetMapping(value="/editor/stencilset", produces = "application/json;charset=utf-8")
+    @GetMapping(value = "/editor/stencilset", produces = "application/json;charset=utf-8")
     public String getStencilset() {
         InputStream stencilsetStream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
         try {

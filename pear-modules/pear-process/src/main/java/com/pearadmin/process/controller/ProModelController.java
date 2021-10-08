@@ -31,7 +31,7 @@ import java.util.List;
  * Describe: 流程模型控制器
  * Author: 就眠仪式
  * createTime: 2019/10/23
- * */
+ */
 @RestController
 @Api(tags = {"流程模型"})
 @RequestMapping(ControllerConstant.API_PROCESS_PREFIX + "model")
@@ -49,11 +49,10 @@ public class ProModelController extends BaseController {
      * Describe: 获取流程模型列表视图
      * Param: modelAndView
      * Return: 流程模型列表视图
-     * */
+     */
     @GetMapping("main")
-    public ModelAndView view(ModelAndView modelAndView)
-    {
-        modelAndView.setViewName(modelPath+"main");
+    public ModelAndView view(ModelAndView modelAndView) {
+        modelAndView.setViewName(modelPath + "main");
         return modelAndView;
     }
 
@@ -61,10 +60,10 @@ public class ProModelController extends BaseController {
      * Describe: 获取流程编辑器视图
      * Param: modelAndView
      * Return: 流程编辑视图
-     * */
+     */
     @GetMapping("editor")
-    public ModelAndView editor(ModelAndView modelAndView){
-        modelAndView.setViewName(modelPath+"editor");
+    public ModelAndView editor(ModelAndView modelAndView) {
+        modelAndView.setViewName(modelPath + "editor");
         return modelAndView;
     }
 
@@ -72,14 +71,14 @@ public class ProModelController extends BaseController {
      * Describe: 获取流程模型列表数据
      * Param: modelAndView
      * Return: ResultTable
-     * */
+     */
     @GetMapping("data")
-    public ResultTable list(PageDomain pageDomain,String modelName){
+    public ResultTable list(PageDomain pageDomain, String modelName) {
         ModelQuery modelQuery = repositoryService.createModelQuery();
-        if (StringUtils.hasText(modelName)){
+        if (StringUtils.hasText(modelName)) {
             modelQuery.modelNameLike(modelName);
         }
-        List<Model> list = modelQuery.listPage(pageDomain.start(),pageDomain.end());
+        List<Model> list = modelQuery.listPage(pageDomain.start(), pageDomain.end());
         List<ProModel> data = new ArrayList<>();
 
         list.forEach(model -> {
@@ -92,17 +91,17 @@ public class ProModelController extends BaseController {
         });
 
         long count = modelQuery.list().size();
-        return pageTable(data,count);
+        return pageTable(data, count);
     }
 
     /**
      * Describe: 流程创建视图
      * Param: modelAndView
      * Return: 流程创建视图
-     * */
+     */
     @GetMapping("add")
-    public ModelAndView add(ModelAndView modelAndView){
-        modelAndView.setViewName(modelPath+"add");
+    public ModelAndView add(ModelAndView modelAndView) {
+        modelAndView.setViewName(modelPath + "add");
         return modelAndView;
     }
 
@@ -110,7 +109,7 @@ public class ProModelController extends BaseController {
      * Describe: 创建流程图
      * Param: createModelParam
      * Return: Result
-     * */
+     */
     @PostMapping("create")
     public Result create(@RequestBody CreateModelParam param) throws IOException {
         Model model = repositoryService.newModel();
@@ -129,18 +128,18 @@ public class ProModelController extends BaseController {
     /**
      * Describe: 创建流程图节点信息
      * Param: modelId
-     * */
-    private void createObjectNode(String modelId){
+     */
+    private void createObjectNode(String modelId) {
         ObjectNode editorNode = objectMapper.createObjectNode();
         editorNode.put("id", "canvas");
         editorNode.put("resourceId", "canvas");
         ObjectNode stencilSetNode = objectMapper.createObjectNode();
-        stencilSetNode.put("namespace","http://b3mn.org/stencilset/bpmn2.0#");
-        editorNode.put("stencilset", stencilSetNode);
+        stencilSetNode.put("namespace", "http://b3mn.org/stencilset/bpmn2.0#");
+        editorNode.replace("stencilset", stencilSetNode);
         try {
-            repositoryService.addModelEditorSource(modelId,editorNode.toString().getBytes("utf-8"));
+            repositoryService.addModelEditorSource(modelId, editorNode.toString().getBytes("utf-8"));
         } catch (Exception e) {
-            System.out.println("创建模型时完善ModelEditorSource服务异常："+e);
+            System.out.println("创建模型时完善ModelEditorSource服务异常：" + e);
         }
         System.out.println("创建模型完善ModelEditorSource结束");
     }
@@ -149,9 +148,9 @@ public class ProModelController extends BaseController {
      * Describe: 根据 Id 删除流程图
      * Param: modelId
      * Return: Result
-     * */
+     */
     @PostMapping("deleteById")
-    public Result deleteById(String modelId){
+    public Result deleteById(String modelId) {
         repositoryService.deleteModel(modelId);
         return success("删除成功");
     }
@@ -160,10 +159,10 @@ public class ProModelController extends BaseController {
      * Describe: 发布流程
      * Param: modelId
      * Return: Result
-     * */
+     */
     @ResponseBody
     @RequestMapping("/publish")
-    public Result publish(String modelId){
+    public Result publish(String modelId) {
         try {
             Model modelData = repositoryService.getModel(modelId);
             byte[] bytes = repositoryService.getModelEditorSource(modelData.getId());
@@ -174,7 +173,7 @@ public class ProModelController extends BaseController {
             BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
             Deployment deployment = repositoryService.createDeployment()
                     .name(modelData.getName())
-                    .addBpmnModel(modelData.getKey()+".bpmn20.xml", model)
+                    .addBpmnModel(modelData.getKey() + ".bpmn20.xml", model)
                     .deploy();
             modelData.setDeploymentId(deployment.getId());
             repositoryService.saveModel(modelData);
