@@ -5,7 +5,9 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class FTPUtil {
 
@@ -14,7 +16,7 @@ public class FTPUtil {
     private FTPUtil() {
     }
 
-    public static FTPClient open(String hostname, String username, String password){
+    public static FTPClient open(String hostname, String username, String password) {
         return open(hostname, 21, username, password, "UTF-8");
     }
 
@@ -60,7 +62,7 @@ public class FTPUtil {
         }
     }
 
-    public static void download(FTPClient ftpClient, String path, OutputStream os){
+    public static void download(FTPClient ftpClient, String path, OutputStream os) {
         try {
             ftpClient.retrieveFile(path, os);
         } catch (IOException e) {
@@ -68,8 +70,8 @@ public class FTPUtil {
         }
     }
 
-    public static void remove(FTPClient ftpClient, String path){
-        try{
+    public static void remove(FTPClient ftpClient, String path) {
+        try {
             ftpClient.deleteFile(path);
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,7 +89,7 @@ public class FTPUtil {
                     ftpClient.makeDirectory(sb.toString());
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("please check your path. {}", e.getMessage());
         }
     }

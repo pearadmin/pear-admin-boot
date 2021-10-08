@@ -4,6 +4,7 @@ import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
 import com.pearadmin.common.plugin.logging.aop.enums.RequestMethod;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,7 +85,7 @@ public class SysBaseLog {
     /**
      * 使用浏览器
      */
-    private String Browser;
+    private String browser;
 
     /**
      * 操作系统

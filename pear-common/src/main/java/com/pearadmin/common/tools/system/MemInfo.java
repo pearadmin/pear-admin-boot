@@ -2,7 +2,6 @@ package com.pearadmin.common.tools.system;
 
 import cn.hutool.core.util.NumberUtil;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 public class MemInfo {

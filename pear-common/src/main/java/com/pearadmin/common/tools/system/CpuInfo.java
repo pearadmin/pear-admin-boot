@@ -20,7 +20,6 @@ public class CpuInfo {
 
     /**
      * 內存相关信息
-     *
      */
     private MemInfo memInfo;
 
@@ -79,7 +78,7 @@ public class CpuInfo {
      */
     private String sysInfoOsArch;
 
-   /**
+    /**
      * 当前JVM占用的内存总数(M)
      */
     private double jvmInfoTotal;
@@ -120,7 +119,9 @@ public class CpuInfo {
         return NumberUtil.div(jvmInfoTotal - jvmInfoFree, (1024 * 1024), 2);
     }
 
-    public double getJvmUsage() { return NumberUtil.mul(NumberUtil.div(jvmInfoTotal - jvmInfoFree, jvmInfoTotal, 4), 100); }
+    public double getJvmUsage() {
+        return NumberUtil.mul(NumberUtil.div(jvmInfoTotal - jvmInfoFree, jvmInfoTotal, 4), 100);
+    }
 
     /**
      * 获取JDK名称

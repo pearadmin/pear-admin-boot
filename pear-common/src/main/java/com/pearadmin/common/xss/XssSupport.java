@@ -2,11 +2,12 @@ package com.pearadmin.common.xss;
 
 import com.pearadmin.common.tools.string.StringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.BooleanUtils;
+
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.lang3.BooleanUtils;
-import javax.servlet.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,11 +27,11 @@ public class XssSupport implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        if(handleExcludeURL(req)){
+        if (handleExcludeURL(req)) {
             filterChain.doFilter(request, response);
             return;
         }
-        XssRequest xssRequest = new XssRequest((HttpServletRequest) request,IS_INCLUDE_RICH_TEXT);
+        XssRequest xssRequest = new XssRequest((HttpServletRequest) request, IS_INCLUDE_RICH_TEXT);
         filterChain.doFilter(xssRequest, response);
     }
 
@@ -52,7 +53,7 @@ public class XssSupport implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
         String isIncludeRichText = filterConfig.getInitParameter("isIncludeRichText");
-        if(StringUtil.isNotBlank(isIncludeRichText)){
+        if (StringUtil.isNotBlank(isIncludeRichText)) {
             IS_INCLUDE_RICH_TEXT = BooleanUtils.toBoolean(isIncludeRichText);
         }
         String temp = filterConfig.getInitParameter("excludes");

@@ -9,17 +9,11 @@ import org.springframework.stereotype.Component;
  * Describe: Spring 工 具 类
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
- * */
+ */
 @Component
 public class SpringUtil implements ApplicationContextAware {
 
     public static ApplicationContext applicationContext;
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext)
-            throws BeansException {
-        SpringUtil.applicationContext = applicationContext;
-    }
 
     public static Object getBean(String name) {
         return applicationContext.getBean(name);
@@ -39,6 +33,12 @@ public class SpringUtil implements ApplicationContextAware {
 
     public static Class<? extends Object> getType(String name) {
         return applicationContext.getType(name);
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext)
+            throws BeansException {
+        SpringUtil.applicationContext = applicationContext;
     }
 
 }

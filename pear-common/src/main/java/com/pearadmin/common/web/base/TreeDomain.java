@@ -1,6 +1,6 @@
 package com.pearadmin.common.web.base;
 
-public class TreeDomain extends BaseDomain{
+public class TreeDomain extends BaseDomain {
 
     private String parentId;
 

@@ -21,16 +21,16 @@ public class SystemUtil {
 
     private static final int WAIT_SECOND = 110;
 
-    public static CpuInfo getCpu(){
+    public static CpuInfo getCpu() {
         CpuInfo cpu = new CpuInfo();
-        SystemInfo si=new SystemInfo();
+        SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
-        setCpuInfo(hal.getProcessor(),cpu);
+        setCpuInfo(hal.getProcessor(), cpu);
         MemInfo memInfo = setMemInfo(hal.getMemory());
         cpu.setMemInfo(memInfo);
         setSysInfo(cpu);
         setJvmInfo(cpu);
-        setSysFiles(si.getOperatingSystem(),cpu);
+        setSysFiles(si.getOperatingSystem(), cpu);
         return cpu;
     }
 
