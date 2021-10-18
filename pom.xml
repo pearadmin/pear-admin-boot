@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.5</version>
+        <version>2.5.5</version>
         <relativePath/>
     </parent>
 
@@ -15,9 +15,11 @@
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-admin-boot</artifactId>
     <version>1.5.3-RELEASE</version>
+    <packaging>pom</packaging>
+
+    <!-- 项 目 描 述 -->
     <name>Pear-Admin-Boot</name>
     <description>Demo project for Spring Boot</description>
-    <packaging>pom</packaging>
 
     <!-- 版 本 管 理 -->
     <properties>
@@ -33,7 +35,7 @@
         <!-- Swagger 版 本 -->
         <swagger.version>2.9.2</swagger.version>
         <!-- Fast Json 序 列 化 版 本 -->
-        <fastjson.version>1.2.68</fastjson.version>
+        <fastjson.version>1.2.78</fastjson.version>
         <!-- Lombok 版 本 -->
         <lombok.version>1.18.12</lombok.version>
         <!-- 业 务 模 块 -->
@@ -57,7 +59,7 @@
         <!-- 分 页 工 具 类 -->
         <pagehelper.version>1.2.10</pagehelper.version>
         <!-- 代 码 生 成 依 赖 -->
-        <mybatis.plus.generator.version>3.5.1</mybatis.plus.generator.version>
+        <generator.version>3.5.0</generator.version>
         <!-- freemarker 版本 -->
         <freemarker.version>2.3.30</freemarker.version>
         <!-- 验 证 码 版 本 -->
@@ -73,9 +75,7 @@
         <!-- dynamic 动态数据库  -->
         <dynamic.verion>3.2.1</dynamic.verion>
         <!-- jackson -->
-        <jackson.version>2.9.9</jackson.version>
-        <!-- spring boot version -->
-        <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
+        <jackson.version>2.13.0</jackson.version>
         <!-- yaml 解 析 -->
         <yaml.version>1.26</yaml.version>
         <!-- HuTool 工 具 类 -->
@@ -85,7 +85,7 @@
         <!-- Maven 配 置 编 译 JDK 版 本-->
         <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.source>8</maven.compiler.source>
-
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     </properties>
 
     <!-- 依 赖 管 理 -->
@@ -179,7 +179,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
-                <version>${mybatis.plus.generator.version}</version>
+                <version>${generator.version}</version>
             </dependency>
             <!-- framework 模板引擎 -->
             <dependency>
@@ -315,18 +315,18 @@
         </resources>
     </build>
 
-    <!-- 中 央 仓 库 -->
     <repositories>
         <repository>
-            <id>aliyun-spring</id>
-            <url>https://maven.aliyun.com/repository/spring</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>alimaven</id>
+            <url>https://maven.aliyun.com/repository/public</url>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>alimaven</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
