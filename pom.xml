@@ -14,7 +14,7 @@
     <!-- 基 本 信 息 -->
     <groupId>com.pearadmin</groupId>
     <artifactId>pear-admin-boot</artifactId>
-    <version>1.5.3-RELEASE</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <!-- 项 目 描 述 -->
@@ -23,7 +23,8 @@
 
     <!-- 版 本 管 理 -->
     <properties>
-        <revision>1.1.2.RELEASE</revision>
+        <!-- 全 局 版 本 -->
+        <revision>1.5.4</revision>
         <!-- JDK 版本 -->
         <java.version>1.8</java.version>
         <!-- 数 据 源 版 本 -->
@@ -38,20 +39,6 @@
         <fastjson.version>1.2.78</fastjson.version>
         <!-- Lombok 版 本 -->
         <lombok.version>1.18.12</lombok.version>
-        <!-- 业 务 模 块 -->
-        <pear.modules.version>1.4.1-RELEASE</pear.modules.version>
-        <!-- 启 动 模 块 版 本 -->
-        <pear.entrance.version>1.4.1-RELEASE</pear.entrance.version>
-        <!-- 工 作 流 程 模 块 -->
-        <pear.process.version>1.4.1-RELEASE</pear.process.version>
-        <!-- 公 用 模 块 版 本 -->
-        <pear.common.version>1.4.1-RELEASE</pear.common.version>
-        <!-- 系 统 模 块 版 本 -->
-        <pear.system.version>1.4.1-RELEASE</pear.system.version>
-        <!-- 定 时 任 务 模 块 -->
-        <pear.schedule.version>1.4.1-RELEASE</pear.schedule.version>
-        <!-- 代 码 生 成 模 块 -->
-        <pear.generator.version>1.4.1-RELEASE</pear.generator.version>
         <!-- apache 工 具 类 -->
         <commons.lang3.version>3.10</commons.lang3.version>
         <!-- apache io 工具类 -->
@@ -82,6 +69,8 @@
         <hutool.version>5.5.7</hutool.version>
         <!-- Xss 工 具 类 -->
         <jsoup.version>1.9.2</jsoup.version>
+        <!-- 系 统 工 具 -->
+        <oshi.version>5.7.0</oshi.version>
         <!-- Maven 配 置 编 译 JDK 版 本-->
         <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.source>8</maven.compiler.source>
@@ -131,7 +120,7 @@
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-common</artifactId>
-                <version>${pear.common.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!-- 接 口 文 档 -->
             <dependency>
@@ -149,19 +138,19 @@
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-system</artifactId>
-                <version>${pear.system.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!-- 工 作 流 程 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-process</artifactId>
-                <version>${pear.process.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!-- 定 时 模 块 -->
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-schedule</artifactId>
-                <version>${pear.schedule.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!-- 分 页 组 件 -->
             <dependency>
@@ -181,7 +170,7 @@
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${generator.version}</version>
             </dependency>
-            <!-- framework 模板引擎 -->
+            <!-- framework 模 板 -->
             <dependency>
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
@@ -193,7 +182,7 @@
                 <artifactId>easy-captcha</artifactId>
                 <version>${captcha.version}</version>
             </dependency>
-            <!-- 工 作 流 程 依 赖 -->
+            <!-- 工 作 流 程 -->
             <dependency>
                 <groupId>org.activiti</groupId>
                 <artifactId>activiti-spring-boot-starter-basic</artifactId>
@@ -240,7 +229,7 @@
             <dependency>
                 <groupId>com.pearadmin</groupId>
                 <artifactId>pear-generate</artifactId>
-                <version>${pear.generator.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!-- 权 限 标 签 依 赖 -->
             <dependency>
@@ -265,6 +254,12 @@
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
+            </dependency>
+            <!-- 系 统 资 源 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

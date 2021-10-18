@@ -7,27 +7,17 @@
     <parent>
         <groupId>com.pearadmin</groupId>
         <artifactId>pear-modules</artifactId>
-        <version>1.4.1-RELEASE</version>
+        <version>${revision}</version>
     </parent>
 
     <!-- 仓 库 地 址 -->
     <artifactId>pear-system</artifactId>
-    <version>1.4.1-RELEASE</version>
+
     <name>系统模块</name>
     <description>Demo project for Spring Boot</description>
 
     <!-- 引 用 依 赖 -->
     <dependencies>
-        <!-- 公用模块 -->
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-common</artifactId>
-        </dependency>
-        <!-- Web 模块 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <!-- MyBatis 框架 -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

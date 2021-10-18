@@ -7,13 +7,12 @@
     <parent>
         <groupId>com.pearadmin</groupId>
         <artifactId>pear-admin-boot</artifactId>
-        <version>1.5.3-RELEASE</version>
+        <version>${revision}</version>
     </parent>
 
     <!-- 仓 库 地 址 -->
-    <groupId>com.pearadmin</groupId>
     <artifactId>pear-modules</artifactId>
-    <version>1.4.1-RELEASE</version>
+
     <name>业务逻辑</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
@@ -25,5 +24,13 @@
         <module>pear-schedule</module>   <!-- 定时任务模块 -->
         <module>pear-process</module>    <!-- 工作流程模块 -->
     </modules>
+
+    <dependencies>
+        <!-- 公用模块 -->
+        <dependency>
+            <groupId>com.pearadmin</groupId>
+            <artifactId>pear-common</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

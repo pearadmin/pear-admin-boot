@@ -7,28 +7,17 @@
     <parent>
         <groupId>com.pearadmin</groupId>
         <artifactId>pear-modules</artifactId>
-        <version>1.4.1-RELEASE</version>
+        <version>${revision}</version>
     </parent>
 
     <!-- 仓库信息 -->
     <artifactId>pear-process</artifactId>
-    <version>1.4.1-RELEASE</version>
 
     <!-- 项目描述 -->
     <name>工作流程</name>
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
-        <!-- 公 共 模 块 -->
-        <dependency>
-            <groupId>com.pearadmin</groupId>
-            <artifactId>pear-common</artifactId>
-        </dependency>
-        <!-- Web 模 块 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <!-- 工 作 流 -->
         <dependency>
             <groupId>org.activiti</groupId>
@@ -61,4 +50,5 @@
             <artifactId>batik-svggen</artifactId>
         </dependency>
     </dependencies>
+
 </project>
