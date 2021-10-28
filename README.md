@@ -161,5 +161,3 @@ git clone https://gitee.com/pear-admin/Pear-Admin-Boot.git
 |![](readmes/14.jpg) | ![](readmes/15.jpg) |
 |![](readmes/16.jpg) | ![](readmes/17.jpg) |
 |![](readmes/18.jpg) | ![](readmes/19.jpg)|
-
-

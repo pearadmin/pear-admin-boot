@@ -21,8 +21,7 @@ spring:
         min-idle: 0
     # 超时时间
     timeout: 1000
-
-  # 数 据 库 配 置
+  # 数据源配置
   datasource:
     dynamic:
       primary: master #设置默认的数据源或者数据源组,默认值即为master

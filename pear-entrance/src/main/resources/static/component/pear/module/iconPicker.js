@@ -107,7 +107,7 @@ layui.define(['laypage', 'form'], function (exports) {
                 }
                 oriIcon += '</i>';
 
-                var selectHtml = '<div class="layui-iconpicker layui-unselect layui-form-select" id="' + ICON_BODY + '">' +
+                var selectHtml = '<div class="layui-iconpicker layui-unselect layui-form-select" style="border:none" id="' + ICON_BODY + '">' +
                     '<div class="' + TITLE + '" id="' + TITLE_ID + '">' +
                     '<div class="layui-iconpicker-item">' +
                     '<span class="layui-iconpicker-icon layui-unselect">' +

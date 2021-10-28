@@ -32,5 +32,4 @@
             <artifactId>pear-common</artifactId>
         </dependency>
     </dependencies>
-
 </project>
