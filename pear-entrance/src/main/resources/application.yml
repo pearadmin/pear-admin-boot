@@ -22,12 +22,6 @@ spring:
     # 是 否 检 查 流 程 定 义 文 件
     check-process-definitions: false
 
-# Mybatis 配 置
-mybatis:
-  # 配 置 扫 描
-  mapper-locations: classpath*:**/xml/**.xml
-  # 别 名 扫 描
-  type-aliases-package: com.pearadmin
 
 # Pear 插 件 配 置 信 息
 pear:
@@ -105,4 +99,9 @@ logging:
   config: classpath:logback-spring.xml
 
 
-
+# Mybatis 配 置
+mybatis-plus:
+  # 配 置 扫 描
+  mapper-locations: classpath*:**/xml/**.xml
+  # 别 名 扫 描
+  type-aliases-package: com.pearadmin
