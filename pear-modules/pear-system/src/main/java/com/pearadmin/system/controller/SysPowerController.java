@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -112,6 +113,7 @@ public class SysPowerController extends BaseController {
         if (Strings.isBlank(sysPower.getParentId())) {
             return failure("请选择上级菜单");
         }
+        sysPower.setCreateTime(LocalDateTime.now());
         boolean result = sysPowerService.update(sysPower);
         return decide(result);
     }

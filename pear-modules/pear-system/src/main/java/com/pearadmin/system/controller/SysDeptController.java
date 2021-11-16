@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -118,6 +119,7 @@ public class SysDeptController extends BaseController {
     @PutMapping("update")
     @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")
     public Result update(@RequestBody SysDept sysDept) {
+        sysDept.setCreateTime(LocalDateTime.now());
         boolean result = sysDeptService.update(sysDept);
         return decide(result);
     }

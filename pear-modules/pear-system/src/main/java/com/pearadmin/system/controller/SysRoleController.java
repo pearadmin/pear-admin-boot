@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 /**
@@ -115,6 +116,7 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value = "修改角色数据")
     @PreAuthorize("hasPermission('/system/role/edit','sys:role:edit')")
     public Result update(@RequestBody SysRole sysRole) {
+        sysRole.setCreateTime(LocalDateTime.now());
         boolean result = sysRoleService.update(sysRole);
         return decide(result);
     }

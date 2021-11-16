@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -139,6 +140,7 @@ public class SysNoticeController extends BaseController {
     @PutMapping("/update")
     @PreAuthorize("hasPermission('/system/notice/edit','system:notice:edit')")
     public Result update(@RequestBody SysNotice sysNotice) {
+        sysNotice.setCreateTime(LocalDateTime.now());
         return decide(sysNoticeService.updateSysNotice(sysNotice));
     }
 

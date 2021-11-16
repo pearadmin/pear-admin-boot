@@ -189,6 +189,7 @@ public class SysUserController extends BaseController {
     @PreAuthorize("hasPermission('/system/user/edit','sys:user:edit')")
     @Logging(title = "修改用户", describe = "修改用户", type = BusinessType.EDIT)
     public Result update(@RequestBody SysUser sysUser) {
+        sysUser.setUpdateTime(LocalDateTime.now());
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         boolean result = sysUserService.update(sysUser);
         return decide(result);

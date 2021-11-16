@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -109,6 +110,7 @@ public class SysDictTypeController extends BaseController {
     @PutMapping("update")
     @PreAuthorize("hasPermission('/system/dictType/edit','sys:dictType:edit')")
     public Result update(@RequestBody SysDictType sysDictType) {
+        sysDictType.setCreateTime(LocalDateTime.now());
         boolean result = sysDictTypeService.updateById(sysDictType);
         return decide(result);
     }

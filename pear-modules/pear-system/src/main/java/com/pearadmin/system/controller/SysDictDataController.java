@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -185,6 +186,7 @@ public class SysDictDataController extends BaseController {
     @PutMapping("update")
     @PreAuthorize("hasPermission('/system/dictData/edit','sys:dictData:edit')")
     public Result update(@RequestBody SysDictData sysDictData) {
+        sysDictData.setCreateTime(LocalDateTime.now());
         boolean result = sysDictDataService.updateById(sysDictData);
         return decide(result);
     }
