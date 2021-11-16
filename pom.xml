@@ -104,6 +104,12 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>3.4.3.4</version>
+            </dependency>
             <!-- 接 口 文 档 -->
             <dependency>
                 <groupId>io.springfox</groupId>

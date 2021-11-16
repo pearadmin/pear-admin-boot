@@ -52,11 +52,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <!-- 数 据 库 操 作 框 架 -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
+
         <!-- Quartz 定时任务框架 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
