@@ -6,7 +6,6 @@ import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
@@ -17,7 +16,8 @@ import java.lang.reflect.Method;
  * CreateTime: 2019/10/23
  */
 @Component
-public abstract class BaseRepeatSubmitInterceptor implements HandlerInterceptor {
+public abstract class RepeatSubmitInterceptor implements HandlerInterceptor {
+
     /**
      * 前置拦截,进入处理活力前判断当前提交的内容是否重复
      */

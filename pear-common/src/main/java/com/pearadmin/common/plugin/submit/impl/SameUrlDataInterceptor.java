@@ -1,7 +1,7 @@
 package com.pearadmin.common.plugin.submit.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pearadmin.common.plugin.submit.BaseRepeatSubmitInterceptor;
+import com.pearadmin.common.plugin.submit.RepeatSubmitInterceptor;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import java.util.Map;
  * CreateTime: 2019/10/23
  */
 @Component
-public class SameUrlDataInterceptor extends BaseRepeatSubmitInterceptor {
+public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
     /**
      * 常用字符串标识
      */

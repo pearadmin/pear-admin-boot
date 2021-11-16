@@ -1,13 +1,16 @@
 package com.pearadmin.common.config;
 
 import cn.hutool.extra.mail.MailAccount;
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.pearadmin.common.constant.ConfigurationConstant;
-import com.pearadmin.common.plugin.system.service.SysContext;
+import com.pearadmin.common.plugin.system.service.SystemService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -32,7 +35,7 @@ import java.time.format.DateTimeFormatter;
 public class CoreConfig {
 
     @Resource
-    private SysContext sysContext;
+    private SystemService sysContext;
 
     @Bean
     public MailAccount mailAccount() {

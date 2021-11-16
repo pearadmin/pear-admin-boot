@@ -12,7 +12,7 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  */
-public interface SysContext {
+public interface SystemService {
 
     /**
      * 根据用户账号查询用户信息
@@ -64,7 +64,7 @@ public interface SysContext {
      * @param table 表名
      * @param text  label
      * @param code  value
-     * @return
+     * @param filterSql 条件
      */
     List<SysBaseDict> queryTableDictItemsByCodeAndFilter(String table, String text, String code, String filterSql);
 
@@ -89,6 +89,8 @@ public interface SysContext {
 
     /**
      * 存储日志
+     *
+     * @param log 日志对象
      */
     Boolean saveLog(SysBaseLog log);
 }

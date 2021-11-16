@@ -1,5 +1,7 @@
 package com.pearadmin.common.web.base;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,11 +19,13 @@ public class BaseDomain implements Serializable {
     /**
      * 创建时间
      */
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 创建人
      */
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
     private String createBy;
 
     /**
@@ -32,11 +36,13 @@ public class BaseDomain implements Serializable {
     /**
      * 修改时间
      */
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     /**
      * 修改人
      */
+    @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
     /**

@@ -115,6 +115,9 @@
             <if test="createTime!=null">
                 create_time,
             </if>
+            <if test="createBy!=null">
+                create_by,
+            </if>
             <if test="remark!=null">
                 remark,
             </if>
@@ -152,6 +155,9 @@
             </if>
             <if test="createTime!=null">
                 #{createTime},
+            </if>
+            <if test="createBy!=null">
+                #{createBy},
             </if>
             <if test="remark!=null">
                 #{remark},

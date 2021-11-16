@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.CommonConstant;
 import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugin.system.domain.SysBaseDict;
-import com.pearadmin.common.plugin.system.service.SysContext;
+import com.pearadmin.common.plugin.system.service.SystemService;
 import com.pearadmin.common.tools.database.SqlInjectionUtil;
 import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
@@ -42,7 +42,7 @@ public class SysDictDataController extends BaseController {
     private ISysDictDataService sysDictDataService;
 
     @Resource
-    private SysContext iSysBaseAPI;
+    private SystemService iSysBaseAPI;
 
     /**
      * Describe: 数据字典列表视图

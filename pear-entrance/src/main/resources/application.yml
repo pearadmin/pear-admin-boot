@@ -98,10 +98,13 @@ pagehelper:
 logging:
   config: classpath:logback-spring.xml
 
-
 # Mybatis 配 置
 mybatis-plus:
   # 配 置 扫 描
   mapper-locations: classpath*:**/xml/**.xml
   # 别 名 扫 描
   type-aliases-package: com.pearadmin
+  ## 日志打印
+  configuration:
+    ## 日志实现
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

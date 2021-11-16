@@ -1,7 +1,7 @@
 package com.pearadmin.common.plugin.logging.async;
 
 import com.pearadmin.common.plugin.system.domain.SysBaseLog;
-import com.pearadmin.common.plugin.system.service.SysContext;
+import com.pearadmin.common.plugin.system.service.SystemService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class LoggingFactory {
      * 引 入 日 志 服 务
      */
     @Resource
-    private SysContext sysContext;
+    private SystemService sysContext;
 
     /**
      * 执 行 日 志 入 库 操 作

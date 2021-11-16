@@ -60,7 +60,7 @@
         <!-- security thymeleaf -->
         <thymeleaf-extras.version>3.0.4.RELEASE</thymeleaf-extras.version>
         <!-- dynamic 动态数据库  -->
-        <dynamic.verion>3.2.1</dynamic.verion>
+        <dynamic.verion>3.3.1</dynamic.verion>
         <!-- jackson -->
         <jackson.version>2.13.0</jackson.version>
         <!-- yaml 解 析 -->
@@ -71,6 +71,8 @@
         <jsoup.version>1.9.2</jsoup.version>
         <!-- 系 统 工 具 -->
         <oshi.version>5.7.0</oshi.version>
+        <!-- 网 路 工 具 -->
+        <commons.net.version>3.8.0</commons.net.version>
         <!-- Maven 配 置 编 译 JDK 版 本-->
         <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.source>8</maven.compiler.source>
@@ -103,12 +105,6 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-annotation</artifactId>
-                <version>3.4.3.4</version>
             </dependency>
             <!-- 接 口 文 档 -->
             <dependency>
@@ -266,6 +262,14 @@
                 <groupId>com.github.oshi</groupId>
                 <artifactId>oshi-core</artifactId>
                 <version>${oshi.version}</version>
+            </dependency>
+
+            <!-- 网络工具 -->
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${commons.net.version}</version>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

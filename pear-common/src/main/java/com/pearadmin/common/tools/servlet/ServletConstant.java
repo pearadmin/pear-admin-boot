@@ -42,6 +42,5 @@ public class ServletConstant {
         public static final String IPHONE_UA = "iphone";
         public static final String IPHONE_NAME = "iPhone";
         public static final String UNKNOWN = "UnKnown, More-Info: ";
-
     }
 }

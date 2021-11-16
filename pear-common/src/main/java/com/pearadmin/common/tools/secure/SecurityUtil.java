@@ -1,6 +1,7 @@
 package com.pearadmin.common.tools.secure;
 
 
+import com.pearadmin.common.plugin.system.domain.SysBaseUser;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +15,7 @@ public class SecurityUtil {
 
     /**
      * 获取当前登录用户的信息
-     * return Authentication 权鉴对象
+     * @return Authentication 权鉴对象
      */
     public static Authentication currentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -35,12 +36,24 @@ public class SecurityUtil {
 
     /**
      * 获取当前登录用户对象
-     * retrun SysUser
+     * @return SysUser
      */
     public static Object currentUserObj() {
         Authentication authentication = currentUser();
         if(null!=authentication) return authentication.getPrincipal();
         return null;
     }
+
+    /**
+     * 获取当前用户
+     * @return SysBaseUser
+     * */
+    public static SysBaseUser getPrincipal(){ return (SysBaseUser) currentUser().getPrincipal(); }
+
+    /**
+     * 获取用户编号
+     * @return {@link String}
+     * */
+    public static String getUserId(){ return getPrincipal().getUserId(); }
 
 }

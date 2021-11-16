@@ -120,8 +120,6 @@ public class SysUserController extends BaseController {
         sysUser.setEnable("1");
         sysUser.setStatus("1");
         sysUser.setUserId(SequenceUtil.makeStringId());
-        sysUser.setCreateTime(LocalDateTime.now());
-        sysUser.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         Boolean result = sysUserService.save(sysUser);

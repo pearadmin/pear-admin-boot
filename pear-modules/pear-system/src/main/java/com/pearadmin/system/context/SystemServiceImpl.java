@@ -1,7 +1,7 @@
 package com.pearadmin.system.context;
 
 import com.pearadmin.common.plugin.system.domain.*;
-import com.pearadmin.common.plugin.system.service.SysContext;
+import com.pearadmin.common.plugin.system.service.SystemService;
 import com.pearadmin.system.domain.*;
 import com.pearadmin.system.mapper.*;
 import com.pearadmin.system.service.ISysDictDataService;
@@ -19,7 +19,7 @@ import java.util.List;
  * CreateTime: 2019/10/23
  */
 @Service
-public class SysContextService implements SysContext {
+public class SystemServiceImpl implements SystemService {
 
     @Resource
     private ISysLogService sysLogService;
