@@ -2,6 +2,7 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
+import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
@@ -9,6 +10,7 @@ import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.common.web.domain.response.module.ResultTree;
 import com.pearadmin.system.domain.SysRole;
+import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -89,6 +91,8 @@ public class SysRoleController extends BaseController {
     @PreAuthorize("hasPermission('/system/role/add','sys:role:add')")
     public Result save(@RequestBody SysRole sysRole) {
         sysRole.setRoleId(SequenceUtil.makeStringId());
+        sysRole.setCreateTime(LocalDateTime.now());
+        sysRole.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysRoleService.save(sysRole);
         return decide(result);
     }
@@ -116,7 +120,8 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value = "修改角色数据")
     @PreAuthorize("hasPermission('/system/role/edit','sys:role:edit')")
     public Result update(@RequestBody SysRole sysRole) {
-        sysRole.setCreateTime(LocalDateTime.now());
+        sysRole.setUpdateTime(LocalDateTime.now());
+        sysRole.setUpdateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysRoleService.update(sysRole);
         return decide(result);
     }

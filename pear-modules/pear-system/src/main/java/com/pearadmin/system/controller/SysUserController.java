@@ -121,6 +121,7 @@ public class SysUserController extends BaseController {
         sysUser.setStatus("1");
         sysUser.setUserId(SequenceUtil.makeStringId());
         sysUser.setCreateTime(LocalDateTime.now());
+        sysUser.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         Boolean result = sysUserService.save(sysUser);
@@ -190,6 +191,7 @@ public class SysUserController extends BaseController {
     @Logging(title = "修改用户", describe = "修改用户", type = BusinessType.EDIT)
     public Result update(@RequestBody SysUser sysUser) {
         sysUser.setUpdateTime(LocalDateTime.now());
+        sysUser.setUpdateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         sysUserService.saveUserRole(sysUser.getUserId(), Arrays.asList(sysUser.getRoleIds().split(",")));
         boolean result = sysUserService.update(sysUser);
         return decide(result);

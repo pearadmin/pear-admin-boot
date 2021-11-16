@@ -113,7 +113,6 @@ public class ScheduleJobController extends BaseController {
     @RequestMapping("/update")
     @PreAuthorize("hasPermission('/schdule/job/edit','sch:job:edit')")
     public Result update(@RequestBody ScheduleJob scheduleJob) {
-        scheduleJob.setCreateTime(LocalDateTime.now());
         Boolean result = scheduleJobService.update(scheduleJob);
         return decide(result);
     }

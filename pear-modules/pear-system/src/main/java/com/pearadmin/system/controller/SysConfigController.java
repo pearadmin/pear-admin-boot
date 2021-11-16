@@ -2,12 +2,14 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
+import com.pearadmin.common.tools.secure.SecurityUtil;
 import com.pearadmin.common.tools.sequence.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
 import com.pearadmin.system.domain.SysConfig;
+import com.pearadmin.system.domain.SysUser;
 import com.pearadmin.system.service.ISysConfigService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -83,6 +85,7 @@ public class SysConfigController extends BaseController {
     public Result save(@RequestBody SysConfig sysConfig) {
         sysConfig.setConfigId(SequenceUtil.makeStringId());
         sysConfig.setCreateTime(LocalDateTime.now());
+        sysConfig.setCreateBy(((SysUser)SecurityUtil.currentUser()).getUserId());
         sysConfig.setConfigType("custom");
         boolean result = sysConfigService.save(sysConfig);
         return decide(result);
@@ -109,6 +112,7 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("hasPermission('/system/config/edit','sys:config:edit')")
     public Result update(@RequestBody SysConfig sysConfig) {
         sysConfig.setUpdateTime(LocalDateTime.now());
+        sysConfig.setUpdateBy(((SysUser)SecurityUtil.currentUser()).getUserId());
         boolean result = sysConfigService.updateById(sysConfig);
         return decide(result);
     }
