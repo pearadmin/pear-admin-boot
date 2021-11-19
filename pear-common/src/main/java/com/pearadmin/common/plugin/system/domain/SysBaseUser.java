@@ -2,6 +2,7 @@ package com.pearadmin.common.plugin.system.domain;
 
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,7 +16,8 @@ import java.util.List;
  * CreateTime: 2019/10/23
  */
 @Data
-public class SysBaseUser extends BaseDomain implements UserDetails {
+public class SysBaseUser implements UserDetails, CredentialsContainer {
+
 
     /**
      * 编号
@@ -124,4 +126,8 @@ public class SysBaseUser extends BaseDomain implements UserDetails {
         return "1".equals(this.getEnable()) ? true : false;
     }
 
+    @Override
+    public void eraseCredentials() {
+        this.password = null;
+    }
 }
