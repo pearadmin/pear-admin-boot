@@ -78,7 +78,7 @@ public class ProEditorController extends BaseController implements ModelDataJson
      */
     @RequestMapping(value = "/model/{modelId}/save", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
-    public void saveModel(@PathVariable String modelId, String name, String description, String jsonXml, String svgXml) {
+    public void saveModel(@PathVariable String modelId, String name, String description, String json_xml, String svg_xml) {
         try {
 
             Model model = repositoryService.getModel(modelId);
@@ -88,9 +88,9 @@ public class ProEditorController extends BaseController implements ModelDataJson
             model.setMetaInfo(modelJson.toString());
             model.setName(name);
             repositoryService.saveModel(model);
-            repositoryService.addModelEditorSource(model.getId(), jsonXml.getBytes(StandardCharsets.UTF_8));
+            repositoryService.addModelEditorSource(model.getId(), json_xml.getBytes(StandardCharsets.UTF_8));
 
-            InputStream svgStream = new ByteArrayInputStream(svgXml.getBytes(StandardCharsets.UTF_8));
+            InputStream svgStream = new ByteArrayInputStream(svg_xml.getBytes(StandardCharsets.UTF_8));
             TranscoderInput input = new TranscoderInput(svgStream);
             PNGTranscoder transcoder = new PNGTranscoder();
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
