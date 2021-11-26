@@ -2,6 +2,10 @@ layui-table-body, .layui-table-box, .layui-table-cell {
     overflow: visible;
 }
 
+.layui-form-select dl {
+    z-index: 9999;
+}
+
 td .layui-table-cell .layui-form-select, td .layui-table-cell > input.layui-input {
     margin-top: -2px;
     margin-left: -10px;

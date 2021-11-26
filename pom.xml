@@ -32,7 +32,7 @@
         <!-- Mysql 版 本 -->
         <mysql.version>8.0.19</mysql.version>
         <!-- MyBatis 版 本 -->
-        <mybatis.plus.version>3.4.3</mybatis.plus.version>
+        <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
         <!-- Swagger 版 本 -->
         <swagger.version>2.9.2</swagger.version>
         <!-- Fast Json 序 列 化 版 本 -->
@@ -60,7 +60,7 @@
         <!-- security thymeleaf -->
         <thymeleaf-extras.version>3.0.4.RELEASE</thymeleaf-extras.version>
         <!-- dynamic 动态数据库  -->
-        <dynamic.verion>3.3.1</dynamic.verion>
+        <dynamic.verion>3.5.0</dynamic.verion>
         <!-- jackson -->
         <jackson.version>2.13.0</jackson.version>
         <!-- yaml 解 析 -->

@@ -11,21 +11,21 @@
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">编号</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="roleId"
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="roleId"
                                placeholder="请输入标题" th:value="${sysRole.roleId}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="roleName"
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="roleName"
                                placeholder="请输入标题" th:value="${sysRole.roleName}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">标识</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="roleCode" placeholder="请输入标题"
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="roleCode" placeholder="请输入标题"
                                readonly th:value="${sysRole.roleCode}" type="text">
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">排序</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="sort" placeholder="请输入标题"
+                        <input autocomplete="off" class="layui-input" name="sort" placeholder="请输入标题"
                                th:value="${sysRole.sort}"
                                type="text">
                     </div>

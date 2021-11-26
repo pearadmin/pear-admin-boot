@@ -1,7 +1,6 @@
 package ${packageName}.service;
 
 import java.util.List;
-
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import ${packageName}.domain.${ClassName};

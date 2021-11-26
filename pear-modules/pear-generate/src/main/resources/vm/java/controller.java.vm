@@ -15,7 +15,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ${packageName}.service.I${ClassName}Service;
-
 import java.time.LocalDateTime;
 
 /**
@@ -27,6 +26,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/${moduleName}/${businessName}")
 public class ${ClassName}Controller extends BaseController {
+
     private String prefix = "${moduleName}/${businessName}";
 
     @Autowired
@@ -65,10 +65,6 @@ public class ${ClassName}Controller extends BaseController {
     @PostMapping("/save")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
     public Result save(@RequestBody ${ClassName} ${className}) {
-        SysUser sysUser = (SysUser) SecurityUtil.currentUserObj();
-        ${className}.setCreateTime(LocalDateTime.now());
-        ${className}.setCreateBy(sysUser.getUserId());
-        ${className}.setCreateName(sysUser.getUsername());
         return decide(${className}Service.insert${ClassName}(${className}));
     }
 
@@ -78,7 +74,6 @@ public class ${ClassName}Controller extends BaseController {
     @GetMapping("/edit")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
     public ModelAndView edit(${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap) {
-        ${className}.setUpdateTime(LocalDateTime.now());
         ${ClassName} ${className} =${className}Service.select${ClassName}ById(${pkColumn.javaField});
         mmap.put("${className}", ${className});
         return jumpPage(prefix + "/edit");
@@ -91,10 +86,6 @@ public class ${ClassName}Controller extends BaseController {
     @PutMapping("/update")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
     public Result update(@RequestBody ${ClassName} ${className}) {
-        SysUser sysUser = (SysUser) SecurityUtil.currentUserObj();
-        ${className}.setUpdateTime(LocalDateTime.now());
-        ${className}.setUpdateBy(sysUser.getUserId());
-        ${className}.setUpdateName(sysUser.getUsername());
         return decide(${className}Service.update${ClassName}(${className}));
     }
 

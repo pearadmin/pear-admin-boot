@@ -11,7 +11,7 @@
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">编号</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="powerId"
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="powerId"
                                th:value="${sysPower.powerId}" type="text">
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="powerName"
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="powerName"
                                placeholder="权限名称" th:value="${sysPower.powerName}" type="text">
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">排序</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="sort" placeholder="排序"
+                        <input autocomplete="off" class="layui-input" name="sort" placeholder="排序"
                                th:value="${sysPower.sort}" type="text">
                     </div>
                 </div>

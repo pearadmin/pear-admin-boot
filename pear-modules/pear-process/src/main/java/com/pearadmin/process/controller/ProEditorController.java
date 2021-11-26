@@ -73,14 +73,13 @@ public class ProEditorController extends BaseController implements ModelDataJson
      * @param modelId     模型ID
      * @param name        流程模型名称
      * @param description 流程描述
-     * @param jsonXml     流程文件
-     * @param svgXml      流程图片
+     * @param json_xml     流程文件
+     * @param svg_xml      流程图片
      */
     @RequestMapping(value = "/model/{modelId}/save", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
-    public void saveModel(@PathVariable String modelId, String name, String description, String json_xml, String svg_xml) {
+    public void saveModel(@PathVariable String modelId, String name, String description,String json_xml, String svg_xml) {
         try {
-
             Model model = repositoryService.getModel(modelId);
             ObjectNode modelJson = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
             modelJson.put(MODEL_NAME, name);
@@ -100,9 +99,7 @@ public class ProEditorController extends BaseController implements ModelDataJson
             final byte[] result = outStream.toByteArray();
             repositoryService.addModelEditorSourceExtra(model.getId(), result);
             outStream.close();
-
         } catch (Exception e) {
-
             throw new ActivitiException("Error saving model", e);
         }
     }
@@ -115,9 +112,9 @@ public class ProEditorController extends BaseController implements ModelDataJson
     @ResponseBody
     @GetMapping(value = "/editor/stencilset", produces = "application/json;charset=utf-8")
     public String getStencilset() {
-        InputStream stencilsetStream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
         try {
-            return IOUtils.toString(stencilsetStream, StandardCharsets.UTF_8);
+            return IOUtils.toString(stream, StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new ActivitiException("Error while loading stencil set", e);
         }
