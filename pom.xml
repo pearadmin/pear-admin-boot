@@ -66,7 +66,7 @@
         <!-- yaml 解 析 -->
         <yaml.version>1.26</yaml.version>
         <!-- HuTool 工 具 类 -->
-        <hutool.version>5.5.7</hutool.version>
+        <hutool.version>5.7.16</hutool.version>
         <!-- Xss 工 具 类 -->
         <jsoup.version>1.9.2</jsoup.version>
         <!-- 系 统 工 具 -->
