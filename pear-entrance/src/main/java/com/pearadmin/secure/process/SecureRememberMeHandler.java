@@ -49,7 +49,7 @@ public class SecureRememberMeHandler implements AuthenticationSuccessHandler {
         SysUser sysUser = new SysUser();
         // 获取最近登录时间
         LocalDateTime now = LocalDateTime.now();
-        sysUser.setUserId(((SysUser) SecurityUtil.currentUser().getPrincipal()).getUserId());
+        sysUser.setUserId(((SysUser) SecurityUtil.currentUser()).getUserId());
         sysUser.setLastTime(now);
         sysUserService.update(sysUser);
 

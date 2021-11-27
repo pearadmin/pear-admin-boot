@@ -4,6 +4,8 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Objects;
+
 /**
  * Describe: Security 工 具 类
  * Author: 就 眠 仪 式
@@ -14,11 +16,21 @@ public class SecurityUtil {
     /**
      * 获取当前登录用户的信息
      *
+     * @return Object 当前登录用户
+     */
+    public static Object currentUser() {
+        return Objects.requireNonNull(getAuthentication()).getPrincipal();
+    }
+
+    /**
+     * 获取当前登录用户的信息
+     *
      * @return Authentication 权鉴对象
      */
-    public static Authentication currentUser() {
+    public static Authentication getAuthentication() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) return authentication;
+        if (!(authentication instanceof AnonymousAuthenticationToken))
+            return authentication;
         return null;
     }
 
@@ -33,15 +45,5 @@ public class SecurityUtil {
         return !(auth instanceof AnonymousAuthenticationToken);
     }
 
-    /**
-     * 获取当前登录用户对象
-     *
-     * @return SysUser
-     */
-    public static Object currentUserObj() {
-        Authentication authentication = currentUser();
-        if (null != authentication) return authentication.getPrincipal();
-        return null;
-    }
 
 }

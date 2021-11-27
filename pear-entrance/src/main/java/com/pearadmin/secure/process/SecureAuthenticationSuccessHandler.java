@@ -47,7 +47,7 @@ public class SecureAuthenticationSuccessHandler implements AuthenticationSuccess
         sysLogService.save(sysLog);
 
         SysUser sysUser = new SysUser();
-        sysUser.setUserId(((SysUser) SecurityUtil.currentUser().getPrincipal()).getUserId());
+        sysUser.setUserId(((SysUser) SecurityUtil.currentUser()).getUserId());
         sysUser.setLastTime(LocalDateTime.now());
         sysUserService.update(sysUser);
 

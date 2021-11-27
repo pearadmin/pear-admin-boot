@@ -201,7 +201,7 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "修改用户头像")
     @Logging(title = "修改头像", describe = "修改头像", type = BusinessType.EDIT)
     public Result updateAvatar(@RequestBody SysUser sysUser) {
-        String userId = ((SysUser) SecurityUtil.currentUserObj()).getUserId();
+        String userId = ((SysUser) SecurityUtil.currentUser()).getUserId();
         sysUser.setUserId(userId);
         boolean result = sysUserService.update(sysUser);
         return decide(result);
@@ -244,7 +244,7 @@ public class SysUserController extends BaseController {
     @GetMapping("menu")
     @ApiOperation(value = "获取用户菜单数据")
     public List<SysMenu> getUserMenu() {
-        SysUser sysUser = (SysUser) SecurityUtil.currentUserObj();
+        SysUser sysUser = (SysUser) SecurityUtil.currentUser();
         List<SysMenu> menus = sysUserService.getUserMenu(sysUser.getUsername());
         return sysUserService.toUserMenu(menus, "0");
     }
@@ -283,7 +283,7 @@ public class SysUserController extends BaseController {
     @GetMapping("center")
     @ApiOperation(value = "个人资料")
     public ModelAndView center(Model model) {
-        SysUser sysUser = (SysUser) SecurityUtil.currentUserObj();
+        SysUser sysUser = (SysUser) SecurityUtil.currentUser();
         model.addAttribute("userInfo", sysUserService.getById(sysUser.getUserId()));
         model.addAttribute("logs", sysLogService.selectTopLoginLog(sysUser.getUsername()));
         return jumpPage(MODULE_PATH + "center");

@@ -74,7 +74,7 @@ public class SysNoticeController extends BaseController {
 
         SysNotice privateParam = new SysNotice();
         privateParam.setType("private");
-        privateParam.setAccept(((SysUser) SecurityUtil.currentUserObj()).getUserId());
+        privateParam.setAccept(((SysUser) SecurityUtil.currentUser()).getUserId());
 
         SysNotice noticeParam = new SysNotice();
         noticeParam.setType("notice");
