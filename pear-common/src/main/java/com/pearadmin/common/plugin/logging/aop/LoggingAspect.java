@@ -4,7 +4,7 @@ import com.pearadmin.common.plugin.logging.aop.annotation.Logging;
 import com.pearadmin.common.plugin.logging.aop.enums.LoggingType;
 import com.pearadmin.common.plugin.logging.async.LoggingFactory;
 import com.pearadmin.common.plugin.system.domain.SysBaseLog;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

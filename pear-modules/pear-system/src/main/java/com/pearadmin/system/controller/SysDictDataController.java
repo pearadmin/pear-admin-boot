@@ -5,9 +5,9 @@ import com.pearadmin.common.constant.CommonConstant;
 import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugin.system.domain.SysBaseDict;
 import com.pearadmin.common.plugin.system.service.SystemService;
-import com.pearadmin.common.tools.database.SqlInjectionUtil;
-import com.pearadmin.common.tools.secure.SecurityUtil;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SqlInjectionUtil;
+import com.pearadmin.common.tools.SecurityUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -164,8 +164,6 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("hasPermission('/system/dictData/add','sys:dictData:add')")
     public Result save(@RequestBody SysDictData sysDictData) {
         sysDictData.setDataId(SequenceUtil.makeStringId());
-        sysDictData.setCreateTime(LocalDateTime.now());
-        sysDictData.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         Boolean result = sysDictDataService.save(sysDictData);
         return decide(result);
     }
@@ -190,8 +188,6 @@ public class SysDictDataController extends BaseController {
     @PutMapping("update")
     @PreAuthorize("hasPermission('/system/dictData/edit','sys:dictData:edit')")
     public Result update(@RequestBody SysDictData sysDictData) {
-        sysDictData.setUpdateTime(LocalDateTime.now());
-        sysDictData.setUpdateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysDictDataService.updateById(sysDictData);
         return decide(result);
     }

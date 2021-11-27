@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.secure;
+package com.pearadmin.common.tools;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

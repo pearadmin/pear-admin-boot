@@ -19,11 +19,6 @@
 
     <!-- 依赖管理 -->
     <dependencies>
-        <!-- 工 具 类 -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
         <!-- 代 码 生 成 -->
         <dependency>
             <groupId>com.pearadmin</groupId>

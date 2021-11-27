@@ -2,8 +2,8 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.tools.secure.SecurityUtil;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SecurityUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -33,10 +33,9 @@ import java.util.List;
 public class SysDictTypeController extends BaseController {
 
     private final String MODULE_PATH = "system/dict/";
+
     @Resource
     private ISysDictTypeService sysDictTypeService;
-    @Resource
-    private ISysDictDataService sysDictDataService;
 
     /**
      * Describe: 数据字典列表视图
@@ -88,8 +87,6 @@ public class SysDictTypeController extends BaseController {
     @PreAuthorize("hasPermission('/system/dictType/add','sys:dictType:add')")
     public Result save(@RequestBody SysDictType sysDictType) {
         sysDictType.setId(SequenceUtil.makeStringId());
-        sysDictType.setCreateTime(LocalDateTime.now());
-        sysDictType.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysDictTypeService.save(sysDictType);
         return decide(result);
     }
@@ -114,8 +111,6 @@ public class SysDictTypeController extends BaseController {
     @PutMapping("update")
     @PreAuthorize("hasPermission('/system/dictType/edit','sys:dictType:edit')")
     public Result update(@RequestBody SysDictType sysDictType) {
-        sysDictType.setUpdateTime(LocalDateTime.now());
-        sysDictType.setUpdateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysDictTypeService.updateById(sysDictType);
         return decide(result);
     }

@@ -6,7 +6,7 @@ import com.pearadmin.common.constant.CommonConstant;
 import com.pearadmin.common.constant.GenerateConstant;
 import com.pearadmin.common.constant.SystemConstant;
 import com.pearadmin.common.exception.base.BusinessException;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.tools.string.CharsetKit;
 import com.pearadmin.common.tools.string.Convert;
 import com.pearadmin.common.tools.string.StringUtil;

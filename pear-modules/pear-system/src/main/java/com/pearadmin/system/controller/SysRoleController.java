@@ -2,8 +2,8 @@ package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.tools.secure.SecurityUtil;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SecurityUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -91,8 +91,6 @@ public class SysRoleController extends BaseController {
     @PreAuthorize("hasPermission('/system/role/add','sys:role:add')")
     public Result save(@RequestBody SysRole sysRole) {
         sysRole.setRoleId(SequenceUtil.makeStringId());
-        sysRole.setCreateTime(LocalDateTime.now());
-        sysRole.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysRoleService.save(sysRole);
         return decide(result);
     }
@@ -120,8 +118,6 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value = "修改角色数据")
     @PreAuthorize("hasPermission('/system/role/edit','sys:role:edit')")
     public Result update(@RequestBody SysRole sysRole) {
-        sysRole.setUpdateTime(LocalDateTime.now());
-        sysRole.setUpdateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysRoleService.update(sysRole);
         return decide(result);
     }

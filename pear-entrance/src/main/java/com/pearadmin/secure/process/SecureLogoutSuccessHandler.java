@@ -1,7 +1,7 @@
 package com.pearadmin.secure.process;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.tools.servlet.ServletUtil;
+import com.pearadmin.common.tools.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

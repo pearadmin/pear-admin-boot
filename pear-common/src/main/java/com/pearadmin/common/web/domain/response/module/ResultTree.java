@@ -2,13 +2,15 @@ package com.pearadmin.common.web.domain.response.module;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Describe: 前端 tree 结果封装数据
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  */
 @Data
-public class ResultTree {
+public class ResultTree implements Serializable {
 
     /**
      * 状态信息

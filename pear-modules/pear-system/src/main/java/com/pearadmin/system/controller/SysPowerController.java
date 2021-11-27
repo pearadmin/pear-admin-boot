@@ -1,8 +1,8 @@
 package com.pearadmin.system.controller;
 
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.tools.secure.SecurityUtil;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SecurityUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
@@ -99,8 +99,6 @@ public class SysPowerController extends BaseController {
         if (Strings.isBlank(sysPower.getParentId())) {
             return failure("请选择上级菜单");
         }
-        sysPower.setCreateTime(LocalDateTime.now());
-        sysPower.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         sysPower.setPowerId(SequenceUtil.makeStringId());
         boolean result = sysPowerService.save(sysPower);
         return decide(result);

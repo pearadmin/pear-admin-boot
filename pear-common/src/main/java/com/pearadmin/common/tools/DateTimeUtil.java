@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.datetime;
+package com.pearadmin.common.tools;
 
 import java.lang.management.ManagementFactory;
 import java.util.Date;
@@ -8,7 +8,8 @@ import java.util.Date;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  */
-public class PearDateUtil {
+public class DateTimeUtil {
+
     /**
      * 获取服务器启动时间
      */

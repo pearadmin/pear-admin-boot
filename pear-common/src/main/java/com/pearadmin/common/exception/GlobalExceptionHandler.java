@@ -1,7 +1,7 @@
 package com.pearadmin.common.exception;
 
 import com.pearadmin.common.exception.base.BusinessException;
-import com.pearadmin.common.tools.servlet.ServletUtil;
+import com.pearadmin.common.tools.ServletUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;

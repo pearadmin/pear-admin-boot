@@ -3,13 +3,15 @@ package com.pearadmin.common.web.domain.response.module;
 import com.pearadmin.common.web.base.BaseDomain;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Describe: 前 端 表 格 数 据 封 装
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  */
 @Data
-public class ResultTable extends BaseDomain {
+public class ResultTable implements Serializable {
 
     /**
      * 状态码

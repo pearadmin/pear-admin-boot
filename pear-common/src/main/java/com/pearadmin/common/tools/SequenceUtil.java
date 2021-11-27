@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.sequence;
+package com.pearadmin.common.tools;
 
 import java.util.ArrayList;
 import java.util.HashSet;

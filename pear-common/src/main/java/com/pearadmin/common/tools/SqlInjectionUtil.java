@@ -1,10 +1,9 @@
-package com.pearadmin.common.tools.database;
+package com.pearadmin.common.tools;
 
 import cn.hutool.crypto.SecureUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.MessageDigest;
 
 /**
  * sql注入处理工具类

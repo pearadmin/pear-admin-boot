@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.system;
+package com.pearadmin.common.tools.server;
 
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;

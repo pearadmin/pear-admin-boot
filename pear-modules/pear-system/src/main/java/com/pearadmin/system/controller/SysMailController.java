@@ -113,5 +113,4 @@ public class SysMailController extends BaseController {
         ArrayList<String> idList = CollectionUtil.newArrayList(StringUtil.split(ids, ","));
         return decide(sysMailService.removeByIds(idList));
     }
-
 }

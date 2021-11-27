@@ -2,7 +2,7 @@ package com.pearadmin.api.modules;
 
 import com.pearadmin.common.plugin.logging.aop.annotation.Logging;
 import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
-import com.pearadmin.common.tools.secure.SecurityUtil;
+import com.pearadmin.common.tools.SecurityUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.secure.session.SecureSessionService;
 import io.swagger.annotations.Api;

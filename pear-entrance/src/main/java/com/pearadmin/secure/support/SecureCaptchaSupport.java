@@ -1,7 +1,7 @@
 package com.pearadmin.secure.support;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.common.tools.servlet.ServletUtil;
+import com.pearadmin.common.tools.ServletUtil;
 import com.pearadmin.common.tools.string.StringUtil;
 import com.pearadmin.common.web.domain.response.Result;
 import com.wf.captcha.utils.CaptchaUtil;

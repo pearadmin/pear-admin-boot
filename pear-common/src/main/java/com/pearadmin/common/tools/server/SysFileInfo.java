@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.system;
+package com.pearadmin.common.tools.server;
 
 import lombok.Data;
 

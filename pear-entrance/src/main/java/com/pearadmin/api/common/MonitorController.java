@@ -1,8 +1,8 @@
 package com.pearadmin.api.common;
 
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.tools.system.CpuInfo;
-import com.pearadmin.common.tools.system.SystemUtil;
+import com.pearadmin.common.tools.server.CpuInfo;
+import com.pearadmin.common.tools.server.SystemUtil;
 import com.pearadmin.common.web.base.BaseController;
 import io.swagger.annotations.Api;
 import org.springframework.security.access.prepost.PreAuthorize;

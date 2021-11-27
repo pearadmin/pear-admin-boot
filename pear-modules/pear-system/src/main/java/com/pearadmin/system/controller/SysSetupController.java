@@ -4,7 +4,7 @@ import cn.hutool.core.map.MapUtil;
 import com.pearadmin.common.constant.ConfigurationConstant;
 import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.listener.event.SetupEvent;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.system.domain.SysConfig;

@@ -19,9 +19,9 @@ public class ResultController {
      * Return Tree数据
      */
     protected static ResultTree dataTree(Object data) {
-        ResultTree resuTree = new ResultTree();
-        resuTree.setData(data);
-        return resuTree;
+        ResultTree tree = new ResultTree();
+        tree.setData(data);
+        return tree;
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.servlet;
+package com.pearadmin.common.constant;
 
 /**
  * TODO

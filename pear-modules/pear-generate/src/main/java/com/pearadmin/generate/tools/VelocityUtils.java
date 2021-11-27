@@ -2,7 +2,7 @@ package com.pearadmin.generate.tools;
 
 import cn.hutool.core.date.DateUtil;
 import com.pearadmin.common.constant.GenerateConstant;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.tools.string.StringUtil;
 import com.pearadmin.generate.config.GenConfig;
 import com.pearadmin.generate.domain.GenTable;

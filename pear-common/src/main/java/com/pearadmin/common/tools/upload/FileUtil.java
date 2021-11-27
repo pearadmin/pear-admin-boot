@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.common;
+package com.pearadmin.common.tools.upload;
 
 import com.pearadmin.common.constant.CommonConstant;
 

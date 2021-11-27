@@ -1,4 +1,4 @@
-package com.pearadmin.common.tools.common;
+package com.pearadmin.common.tools.upload;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;

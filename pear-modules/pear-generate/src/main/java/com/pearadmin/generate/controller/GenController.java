@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.tools.string.Convert;
 import com.pearadmin.common.tools.string.StringUtil;
 import com.pearadmin.common.web.base.BaseController;

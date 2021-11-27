@@ -18,5 +18,4 @@ public class JsoupUtil {
     public static String clean(String content) {
         return Jsoup.clean(content, SystemConstant.EMPTY, WHITELIST, OUTPUT_SETTINGS);
     }
-
 }

@@ -5,9 +5,9 @@ import com.pearadmin.common.constant.ControllerConstant;
 import com.pearadmin.common.plugin.logging.aop.annotation.Logging;
 import com.pearadmin.common.plugin.logging.aop.enums.BusinessType;
 import com.pearadmin.common.plugin.submit.annotation.RepeatSubmit;
-import com.pearadmin.common.tools.secure.SecurityUtil;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
-import com.pearadmin.common.tools.servlet.ServletUtil;
+import com.pearadmin.common.tools.SecurityUtil;
+import com.pearadmin.common.tools.SequenceUtil;
+import com.pearadmin.common.tools.ServletUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.common.web.domain.response.Result;
@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -202,7 +201,8 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "修改用户头像")
     @Logging(title = "修改头像", describe = "修改头像", type = BusinessType.EDIT)
     public Result updateAvatar(@RequestBody SysUser sysUser) {
-        sysUser.setUserId(((SysUser) SecurityUtil.currentUserObj()).getUserId());
+        String userId = ((SysUser) SecurityUtil.currentUserObj()).getUserId();
+        sysUser.setUserId(userId);
         boolean result = sysUserService.update(sysUser);
         return decide(result);
     }

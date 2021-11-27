@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.pearadmin.common.tools.spring.SpringUtil;
+import com.pearadmin.common.tools.SpringUtil;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysDictData;
 import com.pearadmin.system.mapper.SysDictDataMapper;

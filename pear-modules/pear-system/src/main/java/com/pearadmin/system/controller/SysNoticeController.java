@@ -1,8 +1,8 @@
 package com.pearadmin.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.tools.secure.SecurityUtil;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SecurityUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.tools.string.Convert;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.request.PageDomain;

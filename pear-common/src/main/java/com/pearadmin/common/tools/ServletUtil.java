@@ -1,5 +1,6 @@
-package com.pearadmin.common.tools.servlet;
+package com.pearadmin.common.tools;
 
+import com.pearadmin.common.constant.ServletConstant;
 import com.pearadmin.common.constant.SystemConstant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

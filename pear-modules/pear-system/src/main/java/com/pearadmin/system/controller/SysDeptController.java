@@ -1,8 +1,8 @@
 package com.pearadmin.system.controller;
 
 import com.pearadmin.common.constant.ControllerConstant;
-import com.pearadmin.common.tools.secure.SecurityUtil;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SecurityUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.web.base.BaseController;
 import com.pearadmin.common.web.domain.response.Result;
 import com.pearadmin.common.web.domain.response.module.ResultTable;
@@ -96,7 +96,6 @@ public class SysDeptController extends BaseController {
     @PreAuthorize("hasPermission('/system/dept/add','sys:dept:add')")
     public Result save(@RequestBody SysDept sysDept) {
         sysDept.setDeptId(SequenceUtil.makeStringId());
-        sysDept.setCreateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysDeptService.save(sysDept);
         return decide(result);
     }
@@ -122,8 +121,6 @@ public class SysDeptController extends BaseController {
     @PutMapping("update")
     @PreAuthorize("hasPermission('/system/dept/edit','sys:dept:edit')")
     public Result update(@RequestBody SysDept sysDept) {
-        sysDept.setCreateTime(LocalDateTime.now());
-        sysDept.setUpdateBy(((SysUser) SecurityUtil.currentUser()).getUserId());
         boolean result = sysDeptService.update(sysDept);
         return decide(result);
     }

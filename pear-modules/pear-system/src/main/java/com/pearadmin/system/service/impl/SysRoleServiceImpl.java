@@ -2,7 +2,7 @@ package com.pearadmin.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pearadmin.common.tools.sequence.SequenceUtil;
+import com.pearadmin.common.tools.SequenceUtil;
 import com.pearadmin.common.web.domain.request.PageDomain;
 import com.pearadmin.system.domain.SysPower;
 import com.pearadmin.system.domain.SysRole;
