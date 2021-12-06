@@ -8,90 +8,86 @@
     <div class="mainBox">
         <div class="main-container">
             <input name="${pkColumn.javaField}" th:field="*{${pkColumn.javaField}}" type="hidden">
-            #foreach($column in $columns)
-                #if($column.edit && !$column.pk)
-                    #if(($column.usableColumn) || (!$column.superColumn))
-                        #set($parentheseIndex=$column.columnComment.indexOf("（"))
-                        #if($parentheseIndex != -1)
-                            #set($comment=$column.columnComment.substring(0, $parentheseIndex))
-                        #else
-                            #set($comment=$column.columnComment)
-                        #end
-                        #set($field=$column.javaField)
-                        #set($dictType=$column.dictType)
-                        #if($column.htmlType == "input")
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="${field}" th:field="*{${field}}"
-                                           placeholder="请输入${comment}" class="layui-input" #if($column.required)
-                                           lay-verify="required"#end/>
-                                </div>
-                            </div>
-                        #elseif($column.htmlType == "select")
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-block">
-                                    <select name="${field}" #if($column.required) lay-verify="required"#end
-                                            #if("" !=$column.dictType)dict-code="${column.dictType}"
-                                            th:attr="default-value=*{${field}}"#end >
-                                        <option value="">所有</option>
-                                    </select>
-                                </div>
-                            </div>
-                        #elseif($column.htmlType == "checkbox")
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-block">
-                                    #if("" !=$column.dictType)
-                                        <div class="check-box" check-box-dict-code="${column.dictType}"
-                                             th:attr="default-value=*{${field}}" name="${field}"></div>
-                                    #else
-                                        <div class="check-box">
-                                            <input type="checkbox" name="${field}" title="无"
-                                                   lay-skin="primary" #if($column.required) lay-verify="required"#end>
-                                        </div>
-                                    #end
-                                </div>
-                            </div>
-                        #elseif($column.htmlType == "radio")
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-block">
-                                    #if("" !=$column.dictType)
-                                        <div class="radio-box" radio-dict-code="${column.dictType}"
-                                             th:attr="default-value=*{${field}}" name="${field}">
-                                        </div>
-                                    #else
-                                        <div class="radio-box">
-                                            <input type="radio" name="${field}" value=""
-                                                   title="未知" #if($column.required) lay-verify="required"#end>
-                                        </div>
-                                    #end
-                                </div>
-                            </div>
-                        #elseif($column.htmlType == "datetime")
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-block">
-                                    <div class="input-group date">
-                                        <input type="text" name="${field}" class="layui-input"
-                                               id="${field}" #if($column.required) lay-verify="required"#end>
-                                    </div>
-                                </div>
-                            </div>
-                        #elseif($column.htmlType == "textarea")
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-block">
-                                    <textarea name="${field}" #if($column.required) lay-verify="required"#end placeholder="请输入${comment}"
-                                              class="layui-textarea">[[*{${field}}]]</textarea>
-                                </div>
-                            </div>
-                        #end
-                    #end
-                #end
-            #end
+#foreach($column in $columns)
+#if($column.edit && !$column.pk)
+#if(($column.usableColumn) || (!$column.superColumn))
+#set($parentheseIndex=$column.columnComment.indexOf("（"))
+#if($parentheseIndex != -1)
+#set($comment=$column.columnComment.substring(0, $parentheseIndex))
+#else
+#set($comment=$column.columnComment)
+#end
+#set($field=$column.javaField)
+#set($dictType=$column.dictType)
+#if($column.htmlType == "input")
+            <div class="layui-form-item">
+                <label class="layui-form-label">${comment}：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="${field}" th:field="*{${field}}"
+                        placeholder="请输入${comment}" class="layui-input" #if($column.required) lay-verify="required"#end/>
+                </div>
+            </div>
+#elseif($column.htmlType == "select")
+            <div class="layui-form-item">
+                <label class="layui-form-label">${comment}：</label>
+                <div class="layui-input-block">
+                    <select name="${field}" #if($column.required) lay-verify="required"#end
+#if("" !=$column.dictType)dict-code="${column.dictType}" th:attr="default-value=*{${field}}"#end >
+                        <option value="">所有</option>
+                    </select>
+                </div>
+            </div>
+#elseif($column.htmlType == "checkbox")
+            <div class="layui-form-item">
+                <label class="layui-form-label">${comment}：</label>
+                <div class="layui-input-block">
+#if("" !=$column.dictType)
+                    <div class="check-box" check-box-dict-code="${column.dictType}" th:attr="default-value=*{${field}}" name="${field}"></div>
+#else
+                    <div class="check-box">
+                        <input type="checkbox" name="${field}" title="无" lay-skin="primary" #if($column.required) lay-verify="required"#end>
+                    </div>
+#end
+                </div>
+            </div>
+#elseif($column.htmlType == "radio")
+            <div class="layui-form-item">
+                <label class="layui-form-label">${comment}：</label>
+                <div class="layui-input-block">
+#if("" !=$column.dictType)
+                    <div class="radio-box" radio-dict-code="${column.dictType}"
+                        th:attr="default-value=*{${field}}" name="${field}">
+                    </div>
+#else
+                    <div class="radio-box">
+                        <input type="radio" name="${field}" value=""
+                            title="未知" #if($column.required) lay-verify="required"#end>
+                    </div>
+#end
+                </div>
+           </div>
+#elseif($column.htmlType == "datetime")
+           <div class="layui-form-item">
+               <label class="layui-form-label">${comment}：</label>
+                   <div class="layui-input-block">
+                       <div class="input-group date">
+                           <input type="text" name="${field}" class="layui-input"
+                               id="${field}" #if($column.required) lay-verify="required"#end>
+                       </div>
+                   </div>
+           </div>
+#elseif($column.htmlType == "textarea")
+           <div class="layui-form-item">
+               <label class="layui-form-label">${comment}：</label>
+               <div class="layui-input-block">
+                   <textarea name="${field}" #if($column.required) lay-verify="required"#end placeholder="请输入${comment}"
+                       class="layui-textarea">[[*{${field}}]]</textarea>
+               </div>
+           </div>
+#end
+#end
+#end
+#end
         </div>
     </div>
     <div class="bottom">
@@ -118,25 +114,25 @@
 
         let prefix = "/${moduleName}/${businessName}/";
 
-        #foreach($column in $columns)
-            #if($column.edit && !$column.pk)
-                #if(($column.usableColumn) || (!$column.superColumn))
-                    #set($parentheseIndex=$column.columnComment.indexOf("（"))
-                    #if($parentheseIndex != -1)
-                        #set($comment=$column.columnComment.substring(0, $parentheseIndex))
-                    #else
-                        #set($comment=$column.columnComment)
-                    #end
-                    #set($field=$column.javaField)
-                    #set($dictType=$column.dictType)
-                    #if($column.htmlType == "datetime")
+#foreach($column in $columns)
+#if($column.edit && !$column.pk)
+#if(($column.usableColumn) || (!$column.superColumn))
+#set($parentheseIndex=$column.columnComment.indexOf("（"))
+#if($parentheseIndex != -1)
+#set($comment=$column.columnComment.substring(0, $parentheseIndex))
+#else
+#set($comment=$column.columnComment)
+#end
+#set($field=$column.javaField)
+#set($dictType=$column.dictType)
+#if($column.htmlType == "datetime")
                         laydate.render({
                             elem: '#$column.javaField'
                         });
-                    #end
-                #end
-            #end
-        #end
+#end
+#end
+#end
+#end
 
         form.on('submit(${businessName}-update)', function (data) {
             for (var key in data.field) {

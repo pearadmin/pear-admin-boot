@@ -9,28 +9,27 @@
         <div class="col-sm-12 search-collapse">
             <form id="formId" class="layui-form">
                 <div class="layui-form-item">
-                    #foreach($column in $columns)
-                        #if($column.query)
-                            #set($javaField=$column.javaField)
-                            #set($comment=$column.columnComment)
-                            #if($column.htmlType == "input")
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="${javaField}" placeholder="请输入${comment}"
-                                           class="layui-input" #if($column.required) lay-required#end/>
-                                </div>
-                            #elseif(($column.htmlType == "select" || $column.htmlType == "radio") &&
-                                "" !=$column.dictType)
-                                <label class="layui-form-label">${comment}：</label>
-                                <div class="layui-input-inline">
-                                    <select name="${javaField}" #if($column.required) lay-required#end
-                                            #if("" !=$column.dictType)dict-code="${column.dictType}" #end>
-                                        <option value="">所有</option>
-                                    </select>
-                                </div>
-                            #end
-                        #end
-                    #end
+#foreach($column in $columns)
+#if($column.query)
+#set($javaField=$column.javaField)
+#set($comment=$column.columnComment)
+#if($column.htmlType == "input")
+                    <label class="layui-form-label">${comment}：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="${javaField}" placeholder="请输入${comment}"
+                            class="layui-input" #if($column.required) lay-required#end/>
+                    </div>
+#elseif(($column.htmlType == "select" || $column.htmlType == "radio") && "" !=$column.dictType)
+                    <label class="layui-form-label">${comment}：</label>
+                    <div class="layui-input-inline">
+                        <select name="${javaField}" #if($column.required) lay-required#end
+#if("" !=$column.dictType)dict-code="${column.dictType}" #end>
+                            <option value="">所有</option>
+                        </select>
+                    </div>
+#end
+#end
+#end
                     <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="${businessName}-query">
                         <i class="layui-icon layui-icon-search"></i>
                         查询
@@ -71,17 +70,17 @@
         </script>
     </div>
 </div>
-    #foreach($column in $columns)
-        #if("" !=$column.dictType && "input" != $column.dictType)
+#foreach($column in $columns)
+#if("" !=$column.dictType && "input" != $column.dictType)
         <script type="text/html" id="${column.javaField}_parseDictText">
-                #if($column.htmlType == "checkbox")
+#if($column.htmlType == "checkbox")
                 {{layui.dictionary.parseDictTexts(d.${column.javaField}, '${column.dictType}')}}
-                #else
+#else
                 {{layui.dictionary.parseDictText(d.${column.javaField}, '${column.dictType}')}}
-                #end
+#end
         </script>
-        #end
-    #end
+#end
+#end
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'form', 'jquery', 'dictionary'], function () {
@@ -94,24 +93,24 @@
         let cols = [
             [
                 {type: 'checkbox'},
-                #foreach($column in $columns)
-                    #set($javaField=$column.javaField)
-                    #set($comment=$column.columnComment)
-                    #if($column.pk)
+#foreach($column in $columns)
+#set($javaField=$column.javaField)
+#set($comment=$column.columnComment)
+#if($column.pk)
                         {
                             field: '${javaField}',
                             title: '${comment}'
                         },
-                    #elseif($column.list && "" != $javaField)
+#elseif($column.list && "" != $javaField)
                         {
                             field: '${javaField}',
                             title: '${comment}'
-                            #if("" !=$column.dictType&&"input" !=$column.dictType)
+#if("" !=$column.dictType&&"input" !=$column.dictType)
                                 , templet: "#${column.javaField}_parseDictText"
-                            #end
+#end
                         },
-                    #end
-                #end
+#end
+#end
                 {title: '操作', toolbar: '#${businessName}-bar', align: 'center', width: 130}
             ]
         ]

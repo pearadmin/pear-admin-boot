@@ -38,7 +38,7 @@
         <!-- Fast Json 序 列 化 版 本 -->
         <fastjson.version>1.2.78</fastjson.version>
         <!-- Lombok 版 本 -->
-        <lombok.version>1.18.12</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
         <!-- apache 工 具 类 -->
         <commons.lang3.version>3.10</commons.lang3.version>
         <!-- apache io 工具类 -->

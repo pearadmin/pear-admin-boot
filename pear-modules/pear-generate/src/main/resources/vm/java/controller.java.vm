@@ -1,6 +1,7 @@
 package ${packageName}.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pearadmin.common.tools.SecurityUtil;
 import ${packageName}.domain.${ClassName};
 import com.pearadmin.common.tools.string.Convert;
 import com.pearadmin.common.web.base.BaseController;
@@ -14,6 +15,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ${packageName}.service.I${ClassName}Service;
+
+import java.time.LocalDateTime;
 
 /**
  * ${functionName}Controller
@@ -63,6 +66,11 @@ public class ${ClassName}Controller extends BaseController {
     @PostMapping("/save")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/add','${permissionPrefix}:add')")
     public Result save(@RequestBody ${ClassName} ${className}) {
+        SysUser sysUser = (SysUser) SecurityUtil.currentUser();
+        ${className}.setId(SequenceUtil.makeStringId());
+        ${className}.setCreateTime(LocalDateTime.now());
+        ${className}.setCreateBy(sysUser.getUserId());
+        ${className}.setCreateName(sysUser.getUsername());
         return decide(${className}Service.insert${ClassName}(${className}));
     }
 
@@ -84,6 +92,10 @@ public class ${ClassName}Controller extends BaseController {
     @PutMapping("/update")
     @PreAuthorize("hasPermission('/${moduleName}/${businessName}/edit','${permissionPrefix}:edit')")
     public Result update(@RequestBody ${ClassName} ${className}) {
+        SysUser sysUser = (SysUser) SecurityUtil.currentUser();
+        ${className}.setUpdateTime(LocalDateTime.now());
+        ${className}.setUpdateBy(sysUser.getUserId());
+        ${className}.setUpdateName(sysUser.getUsername());
         return decide(${className}Service.update${ClassName}(${className}));
     }
 
