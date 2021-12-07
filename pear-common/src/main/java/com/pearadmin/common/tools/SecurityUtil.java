@@ -29,9 +29,10 @@ public class SecurityUtil {
      */
     public static Authentication getAuthentication() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken))
-            return authentication;
-        return null;
+        return !(authentication instanceof AnonymousAuthenticationToken)?authentication:null;
+//        if (!(authentication instanceof AnonymousAuthenticationToken))
+//            return authentication;
+//        return null;
     }
 
     /**
