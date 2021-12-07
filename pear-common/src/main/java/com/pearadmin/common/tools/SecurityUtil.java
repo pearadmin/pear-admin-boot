@@ -14,12 +14,12 @@ import java.util.Objects;
 public class SecurityUtil {
 
     /**
-     * 获取当前登录用户的信息
+     * 获取当前登录用户的信息，如果未登录返回null
      *
      * @return Object 当前登录用户
      */
     public static Object currentUser() {
-        return Objects.requireNonNull(getAuthentication()).getPrincipal();
+        return null!=getAuthentication()?getAuthentication().getPrincipal():null;
     }
 
     /**
